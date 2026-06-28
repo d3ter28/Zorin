@@ -1,0 +1,48 @@
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/db";
+import { decide } from "@/lib/recommendation";
+import { phraseRecommendation } from "@/lib/ai/phrase";
+
+export async function POST(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const { id } = await params;
+  const product = await prisma.product.findUnique({
+    where: { id },
+    include: { competitors: true },
+  });
+  if (!product) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
+  const obs = product.competitors.map((c) => ({
+    price: c.price,
+    observedAt: c.observedAt.toISOString(),
+  }));
+  const decision = decide(
+    { currentPrice: product.currentPrice, cogs: product.cogs },
+    obs,
+  );
+  const phrasing = await phraseRecommendation(decision);
+
+  const saved = await prisma.recommendation.upsert({
+    where: { productId: id },
+    create: {
+      productId: id,
+      action: decision.action,
+      deltaPct: decision.deltaPct,
+      rulesJson: JSON.stringify(decision),
+      phrasing,
+    },
+    update: {
+      action: decision.action,
+      deltaPct: decision.deltaPct,
+      rulesJson: JSON.stringify(decision),
+      phrasing,
+      generatedAt: new Date(),
+    },
+  });
+
+  return NextResponse.json({ decision, phrasing, generatedAt: saved.generatedAt });
+}
