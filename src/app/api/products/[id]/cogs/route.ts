@@ -1,22 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { HttpError, withErrorHandling } from "@/lib/api/errors";
+import { parseCogs, parseJsonBody } from "@/lib/api/validation";
 
-export async function POST(
-  req: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  const body = await req.json();
-  const cogs: number | null =
-    body.cogs === null || body.cogs === "" ? null : Number(body.cogs);
+export const POST = withErrorHandling(
+  async (req: Request, { params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
+    const body = await parseJsonBody(req);
+    const cogs = parseCogs(body.cogs);
 
-  if (cogs !== null && (!Number.isFinite(cogs) || cogs < 0)) {
-    return NextResponse.json({ error: "Invalid cogs" }, { status: 400 });
-  }
+    const product = await prisma.product.findUnique({ where: { id } });
+    if (!product) {
+      throw new HttpError(404, "Not found");
+    }
 
-  await prisma.product.update({ where: { id }, data: { cogs } });
-  // Invalidate cached recommendation.
-  await prisma.recommendation.deleteMany({ where: { productId: id } });
+    await prisma.product.update({ where: { id }, data: { cogs } });
+    // Invalidate cached recommendation.
+    await prisma.recommendation.deleteMany({ where: { productId: id } });
 
-  return NextResponse.json({ ok: true });
-}
+    return NextResponse.json({ ok: true });
+  },
+);
