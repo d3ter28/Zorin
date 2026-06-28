@@ -34,6 +34,17 @@ describe("parseCsv", () => {
     expect(errors.map((e) => e.line)).toEqual([1, 2, 3, 4, 5]);
     expect(errors[0].reason).toMatch(/3 columns/);
     expect(errors[1].reason).toMatch(/sku/i);
+    expect(errors[2].reason).toMatch(/competitor/i);
     expect(errors[3].reason).toMatch(/price/i);
+    expect(errors[4].reason).toMatch(/price/i);
+  });
+
+  it("skips the header even when preceded by blank lines", () => {
+    const csv = "\n\nsku,competitor_name,price\nTEE-001,RivalShop,30";
+    const { rows, errors } = parseCsv(csv);
+    expect(errors).toEqual([]);
+    expect(rows).toEqual([
+      { line: 4, sku: "TEE-001", competitorName: "RivalShop", priceCents: 3000 },
+    ]);
   });
 });

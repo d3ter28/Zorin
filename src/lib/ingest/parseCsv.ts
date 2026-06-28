@@ -24,6 +24,7 @@ const HEADER = "sku,competitor_name,price";
 export function parseCsv(input: string): ParseResult {
   const rows: ParsedRow[] = [];
   const errors: RowError[] = [];
+  let sawFirstContentLine = false;
 
   input.split(/\r?\n/).forEach((raw, index) => {
     const line = index + 1;
@@ -31,7 +32,12 @@ export function parseCsv(input: string): ParseResult {
     if (trimmed === "") return; // skip blank lines
 
     const fields = trimmed.split(",").map((f) => f.trim());
-    if (index === 0 && fields.join(",").toLowerCase() === HEADER) return; // skip header
+
+    // Skip a header row if it is the first non-blank line.
+    if (!sawFirstContentLine) {
+      sawFirstContentLine = true;
+      if (fields.join(",").toLowerCase() === HEADER) return;
+    }
 
     if (fields.length !== 3) {
       errors.push({ line, raw, reason: "malformed line: expected 3 columns" });
