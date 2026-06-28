@@ -120,3 +120,19 @@ delegation.
   slider, and a recommendation (sensible even with no `ANTHROPIC_API_KEY` via fallback)
 - Final code review (whole implementation), then finish the branch (merge/PR) via
   superpowers:finishing-a-development-branch
+
+## 9. Troubleshooting
+
+- **`Runtime SyntaxError: Invalid or unexpected token` at `evalmachine.<anonymous>`** —
+  this is a corrupted Turbopack build manifest in `.next/` (usually from a dev server killed
+  mid-build), not an app bug. The `evalManifest` stack frame is the tell. Fix: stop the dev
+  server, `rm -rf .next`, then `npm run dev` again.
+
+## 10. Hardening (post-Slice-1, branch `harden-slice1`)
+
+- All API routes are wrapped with `withErrorHandling` (`src/lib/api/errors.ts`): malformed JSON
+  and invalid input return **400**, unknown products return **404**, and unexpected failures
+  return an opaque **500** (no stack-trace leak). Input parsing lives in
+  `src/lib/api/validation.ts`.
+- Route-level tests (mocked Prisma) cover the cogs and recommendation endpoints; `vitest.config.ts`
+  now resolves the `@/` alias so route handlers are importable in tests.
