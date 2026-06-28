@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Merchant {
+  id        String    @id @default(cuid())
+  name      String
+  storeUrl  String
+  createdAt DateTime  @default(now())
+  products  Product[]
+}
+
+model Product {
+  id           String            @id @default(cuid())
+  merchantId   String
+  merchant     Merchant          @relation(fields: [merchantId], references: [id])
+  title        String
+  sku          String
+  currentPrice Int
+  cogs         Int?
+  category     String
+  estUnits     Int?
+  createdAt    DateTime          @default(now())
+  competitors  CompetitorPrice[]
+  recommendation Recommendation?
+}
+
+model CompetitorPrice {
+  id             String   @id @default(cuid())
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id])
+  competitorName String
+  competitorUrl  String?
+  price          Int
+  observedAt     DateTime @default(now())
+}
+
+model Recommendation {
+  id          String   @id @default(cuid())
+  productId   String   @unique
+  product     Product  @relation(fields: [productId], references: [id])
+  action      String
+  deltaPct    Float
+  rulesJson   String
+  phrasing    String
+  generatedAt DateTime @default(now())
+}

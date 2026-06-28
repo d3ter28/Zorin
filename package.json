@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.106.0",
+    "@prisma/adapter-better-sqlite3": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "next": "16.2.9",
     "prisma": "^7.8.0",
@@ -24,6 +25,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.3",
+    "dotenv": "^17.4.2",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5",
