@@ -37,6 +37,8 @@ model CompetitorPrice {
   competitorUrl  String?
   price          Int
   observedAt     DateTime @default(now())
+
+  @@unique([productId, competitorName])
 }
 
 model Recommendation {
