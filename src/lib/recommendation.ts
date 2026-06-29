@@ -114,3 +114,16 @@ export function decide(
   // Rule 5: within band -> hold
   return hold("You're competitively positioned near the market median.");
 }
+
+/** Build observations from a product's competitor rows and produce a Decision. */
+export function decideForProduct(product: {
+  currentPrice: number;
+  cogs: number | null;
+  competitors: { price: number; observedAt: Date }[];
+}): Decision {
+  const obs = product.competitors.map((c) => ({
+    price: c.price,
+    observedAt: c.observedAt.toISOString(),
+  }));
+  return decide({ currentPrice: product.currentPrice, cogs: product.cogs }, obs);
+}

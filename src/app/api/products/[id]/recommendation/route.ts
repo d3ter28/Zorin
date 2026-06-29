@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { decide } from "@/lib/recommendation";
+import { decideForProduct } from "@/lib/recommendation";
 import { phraseRecommendation } from "@/lib/ai/phrase";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
 
@@ -15,14 +15,7 @@ export const POST = withErrorHandling(
       throw new HttpError(404, "Not found");
     }
 
-    const obs = product.competitors.map((c) => ({
-      price: c.price,
-      observedAt: c.observedAt.toISOString(),
-    }));
-    const decision = decide(
-      { currentPrice: product.currentPrice, cogs: product.cogs },
-      obs,
-    );
+    const decision = decideForProduct(product);
     const phrasing = await phraseRecommendation(decision);
 
     const saved = await prisma.recommendation.upsert({
