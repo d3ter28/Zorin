@@ -11,7 +11,9 @@ export const MIN_MARGIN_FLOOR = 0.15;
 const POSITION_BAND = 0.1; // ±10% of median is "at market"
 
 function floorPrice(cogs: number): number {
-  return Math.round(cogs / (1 - MIN_MARGIN_FLOOR));
+  // Round UP: rounding down can yield a price whose margin is fractionally
+  // below the floor, so a "raise to floor" recommendation would never converge.
+  return Math.ceil(cogs / (1 - MIN_MARGIN_FLOOR));
 }
 
 function deltaPct(from: number, to: number): number {

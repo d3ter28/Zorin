@@ -15,9 +15,22 @@ describe("decide", () => {
     // Competitors low so position alone would say 'lower'.
     const d = decide({ currentPrice: 10000, cogs: 9500 }, [obs(8000)]);
     expect(d.action).toBe("raise");
-    // floor price so that (p - 9500)/p = 0.15 => p = 9500 / 0.85 = 11176 (rounded)
-    expect(d.suggestedPrice).toBe(Math.round(9500 / (1 - MIN_MARGIN_FLOOR)));
+    // floor price so that (p - 9500)/p >= 0.15 => p = ceil(9500 / 0.85) = 11177
+    expect(d.suggestedPrice).toBe(Math.ceil(9500 / (1 - MIN_MARGIN_FLOOR)));
     expect(d.reasons.join(" ")).toMatch(/margin floor/i);
+  });
+
+  it("recommends a floor price that actually clears the margin floor (converges)", () => {
+    // cogs 2200: Math.round(2200/0.85) = 2588, but (2588-2200)/2588 = 0.1499 < 0.15,
+    // so a price raised to 2588 would STILL be below floor -> never converges.
+    // The recommended floor price must satisfy the margin floor when re-evaluated.
+    const d = decide({ currentPrice: 2000, cogs: 2200 }, [obs(1800), obs(1900)]);
+    expect(d.action).toBe("raise");
+    const fp = d.suggestedPrice;
+    // Re-deciding at the recommended price must NOT raise again — it must hold.
+    const again = decide({ currentPrice: fp, cogs: 2200 }, [obs(1800), obs(1900)]);
+    expect(again.action).not.toBe("raise");
+    expect((fp - 2200) / fp).toBeGreaterThanOrEqual(MIN_MARGIN_FLOOR);
   });
 
   it("lowers toward median when priced >10% above with healthy margin", () => {
@@ -32,10 +45,10 @@ describe("decide", () => {
 
   it("does not lower below the margin floor price", () => {
     // price 12000, median 6000 (+100%), cogs 5500.
-    // floor price = 5500/0.85 = 6471 > median, so clamp to floor.
+    // floor price = ceil(5500/0.85) = 6471 > median, so clamp to floor.
     const d = decide({ currentPrice: 12000, cogs: 5500 }, [obs(6000), obs(6000)]);
     expect(d.action).toBe("lower");
-    expect(d.suggestedPrice).toBe(Math.round(5500 / (1 - MIN_MARGIN_FLOOR)));
+    expect(d.suggestedPrice).toBe(Math.ceil(5500 / (1 - MIN_MARGIN_FLOOR)));
   });
 
   it("raises toward median when priced >10% below with headroom", () => {
