@@ -23,10 +23,27 @@ export function WhatIfSlider({
   const max = Math.round(hi * 1.5);
 
   // Start on the recommended price so Apply is one click away, but let the
-  // merchant drag to any value they prefer (manual override).
-  const [price, setPrice] = useState(suggestedPrice ?? currentPrice);
+  // merchant drag the slider OR type an exact price (manual override).
+  const start = suggestedPrice ?? currentPrice;
+  const [price, setPrice] = useState(start);
+  // Separate text state so partial input ("12", "12.", "12.5") types freely;
+  // `price` (cents) stays the source of truth the slider and Apply read.
+  const [priceText, setPriceText] = useState((start / 100).toFixed(2));
   const [applying, setApplying] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  function setFromCents(cents: number) {
+    setPrice(cents);
+    setPriceText((cents / 100).toFixed(2));
+  }
+
+  function onTypePrice(text: string) {
+    setPriceText(text);
+    const dollars = Number(text);
+    if (text.trim() !== "" && Number.isFinite(dollars) && dollars >= 0) {
+      setPrice(Math.round(dollars * 100));
+    }
+  }
 
   const margin = marginPct(price, cogs);
   const vsMedian =
@@ -65,9 +82,27 @@ export function WhatIfSlider({
         step={50}
         value={price}
         className="mt-3 w-full accent-[var(--accent)]"
-        aria-label="Set price"
-        onChange={(e) => setPrice(Number(e.target.value))}
+        aria-label="Set price with slider"
+        onChange={(e) => setFromCents(Number(e.target.value))}
       />
+      <div className="mt-3 flex items-center gap-2">
+        <label htmlFor="price-input" className="text-xs text-muted">
+          Or set exact price
+        </label>
+        <div className="flex items-center rounded-md border border-line bg-panel pl-2 focus-within:border-accent">
+          <span className="text-sm text-muted">$</span>
+          <input
+            id="price-input"
+            type="text"
+            inputMode="decimal"
+            value={priceText}
+            aria-label="Set exact price"
+            className="w-24 bg-transparent px-1 py-1 text-right text-sm tabular text-ink outline-none"
+            onChange={(e) => onTypePrice(e.target.value)}
+            onBlur={() => setPriceText((price / 100).toFixed(2))}
+          />
+        </div>
+      </div>
       <div className="mt-2 flex gap-5 text-xs text-muted">
         <span>
           Margin:{" "}
@@ -85,12 +120,15 @@ export function WhatIfSlider({
       <div className="mt-4 flex items-center gap-3">
         <button
           className="btn btn-primary"
-          disabled={applying || price === currentPrice}
+          disabled={applying || price === currentPrice || price <= 0}
           onClick={apply}
         >
           {applying ? "Applying…" : `Apply ${formatCents(price)}`}
         </button>
-        {price === currentPrice && (
+        {price <= 0 && (
+          <span className="text-xs text-danger">Enter a price above $0</span>
+        )}
+        {price > 0 && price === currentPrice && (
           <span className="text-xs text-faint">Already the current price</span>
         )}
         {error && (
