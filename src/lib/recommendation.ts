@@ -52,17 +52,23 @@ export function decide(
     return hold("Not enough competitor data to make a recommendation.");
   }
 
-  // Rule 2: margin below floor (overrides position)
+  // Rule 2: margin below floor. Raise to the floor price, but if the market
+  // median sits even higher, go straight there — that clears the floor AND
+  // matches the market in a single move, so a bulk apply converges in one pass
+  // instead of stepping floor -> median across two applies.
   if (margin !== null && fp !== null && margin < MIN_MARGIN_FLOOR) {
+    const target = cmp.compMedian !== null ? Math.max(fp, cmp.compMedian) : fp;
     return {
       action: "raise",
-      deltaPct: deltaPct(product.currentPrice, fp),
-      suggestedPrice: fp,
+      deltaPct: deltaPct(product.currentPrice, target),
+      suggestedPrice: target,
       reasons: [
         `Your current price is below your ${Math.round(
           MIN_MARGIN_FLOOR * 100,
         )}% margin floor.`,
-        `Raising to the floor price protects profitability.`,
+        target > fp
+          ? `Raising to the competitor median restores your margin and matches the market.`
+          : `Raising to the floor price protects profitability.`,
       ],
       signals,
     };

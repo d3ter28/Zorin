@@ -20,6 +20,21 @@ describe("decide", () => {
     expect(d.reasons.join(" ")).toMatch(/margin floor/i);
   });
 
+  it("raises straight to the median when below both the floor and the median (one-pass convergence)", () => {
+    // FILTER-400 regression: price 1000, cogs 900 => 10% margin (below 15% floor),
+    // competitors [1300, 1400] => median 1350. The floor price is only
+    // ceil(900/0.85) = 1059. Raising just to the floor leaves the product still
+    // below the median, so a SECOND apply was needed to reach the median.
+    // The single recommendation must be the median, which also clears the floor.
+    const comps = [obs(1300), obs(1400)];
+    const d = decide({ currentPrice: 1000, cogs: 900 }, comps);
+    expect(d.action).toBe("raise");
+    expect(d.suggestedPrice).toBe(1350);
+    // Re-deciding at the recommended price must hold — converges in one apply.
+    const again = decide({ currentPrice: d.suggestedPrice, cogs: 900 }, comps);
+    expect(again.action).toBe("hold");
+  });
+
   it("recommends a floor price that actually clears the margin floor (converges)", () => {
     // cogs 2200: Math.round(2200/0.85) = 2588, but (2588-2200)/2588 = 0.1499 < 0.15,
     // so a price raised to 2588 would STILL be below floor -> never converges.
