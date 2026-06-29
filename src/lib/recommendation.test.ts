@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { decide, MIN_MARGIN_FLOOR } from "./recommendation";
+import { decide, decideForProduct, MIN_MARGIN_FLOOR } from "./recommendation";
 
 const obs = (price: number) => ({ price, observedAt: "2026-06-28T00:00:00.000Z" });
 
@@ -55,5 +55,28 @@ describe("decide", () => {
     const d = decide({ currentPrice: 12000, cogs: null }, [obs(10000), obs(10000)]);
     expect(d.action).toBe("lower");
     expect(d.signals.marginPct).toBeNull();
+  });
+});
+
+describe("decideForProduct", () => {
+  it("maps competitor rows (Date observedAt) to observations and matches decide()", () => {
+    const product = {
+      currentPrice: 8000,
+      cogs: 4000,
+      competitors: [
+        { price: 10000, observedAt: new Date("2026-06-28T00:00:00.000Z") },
+        { price: 10000, observedAt: new Date("2026-06-28T00:00:00.000Z") },
+      ],
+    };
+    const d = decideForProduct(product);
+    // priced 20% below a $100 median with healthy margin -> raise toward median
+    expect(d.action).toBe("raise");
+    expect(d.suggestedPrice).toBe(10000);
+  });
+
+  it("holds with no competitors", () => {
+    const d = decideForProduct({ currentPrice: 10000, cogs: 5000, competitors: [] });
+    expect(d.action).toBe("hold");
+    expect(d.suggestedPrice).toBe(10000);
   });
 });
