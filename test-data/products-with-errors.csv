@@ -1,0 +1,8 @@
+sku,title,current_price,category,cogs,est_units
+ERR-700,Valid Item,20.00,Home,5.00,10
+ERR-701,Too Few Columns,20.00,Home,5.00
+ERR-702,,20.00,Home,5.00,10
+ERR-703,Bad Price,abc,Home,5.00,10
+ERR-704,Bad Cogs,20.00,Home,xyz,10
+ERR-705,Fractional Units,20.00,Home,5.00,3.5
+ERR-706,Zero Price,0,Home,5.00,10

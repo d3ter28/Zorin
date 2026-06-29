@@ -1,0 +1,15 @@
+sku,competitor_name,price
+GRD-100,RivalRoasters,50.00
+GRD-100,BeanBarn,52.00
+GRD-100,BrewWorld,48.00
+SCALE-200,RivalRoasters,45.00
+SCALE-200,BeanBarn,48.00
+SCALE-200,BrewWorld,50.00
+KETTLE-300,RivalRoasters,78.00
+KETTLE-300,BeanBarn,82.00
+KETTLE-300,BrewWorld,80.00
+FILTER-400,RivalRoasters,13.00
+FILTER-400,BeanBarn,14.00
+MUG-600,RivalRoasters,18.00
+MUG-600,BeanBarn,19.00
+MUG-600,BrewWorld,20.00

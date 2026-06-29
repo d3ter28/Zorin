@@ -1,0 +1,7 @@
+sku,title,current_price,category,cogs,est_units
+GRD-100,Hand Grinder,40.00,Brewing,15.00,80
+SCALE-200,Coffee Scale,60.00,Accessories,20.00,60
+KETTLE-300,Gooseneck Kettle,80.00,Brewing,30.00,45
+FILTER-400,Pour-Over Dripper,10.00,Brewing,9.00,200
+TAMP-500,Espresso Tamper,25.00,Accessories,8.00,70
+MUG-600,Double-Wall Mug,30.00,Drinkware,22.00,150
