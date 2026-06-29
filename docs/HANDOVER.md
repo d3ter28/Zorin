@@ -1,138 +1,88 @@
 # PriceIQ — Handover Doc
 
-**Date:** 2026-06-28
+**Date:** 2026-06-30
 **Project root:** `C:\Users\pohde\projects\priceiq`
-**Current branch:** `slice1-implementation` (branched off `master`)
-**Status:** Planning complete. Implementation NOT started (blocked on tool permissions).
+**Current branch:** `master`
+**Status:** MVP working end-to-end. Product import feature shipped; two runtime bugs fixed. Working tree clean (all committed).
 
 ---
 
 ## 1. What PriceIQ is
 
-An AI-native pricing SaaS for online store owners (Shopify + general ecommerce): tracks
-competitor prices, analyzes margins, and gives plain-English "raise / lower / hold"
-recommendations. The full product is a 6-subsystem platform (store ingestion, competitor
-discovery, scraping, analytics engine, AI recommendations, dashboard/auth/billing).
+An AI-native pricing tool for online store owners. The user uploads their **product catalog** and **competitor prices** (both via CSV), and the app gives plain-English **raise / lower / hold** recommendations per product, with margin protection. Money is stored as **integer cents** everywhere. Single seeded merchant, no auth (this is still an MVP slice).
 
-We deliberately scoped down to a **thin vertical slice** to prove the core value first.
+Decision engine is rules-based (`src/lib/recommendation.ts`); an LLM only phrases the result, with a deterministic fallback so the app never depends on the network.
 
-## 2. What we decided (Slice 1 scope)
+## 2. Most recent work (this session)
 
-Build one merchant flow end-to-end against **seeded mock data**:
+Two features/fixes landed on `master`:
 
-- Enter/seed a store → see your products with current price, COGS input, computed margin
-- Compare each product to tracked competitors (median / min / position)
-- Get one AI pricing recommendation per product (**rules decide, LLM only phrases**)
-- What-if price slider (live client-side margin/position)
-- Data-confidence indicator (competitor count + freshness)
-- Margin-floor warning badge + revenue-opportunity column
+1. **Product catalog CSV import** (commit `805036f`) — mirrors the existing competitor ingest flow.
+2. **Margin-floor convergence fix** (commit `d966d14`) — Bug #2 below.
 
-**Key decisions locked in:**
-- Stack: **Next.js 15 (App Router) + TypeScript + Prisma + SQLite + Vitest + Tailwind**
-- AI: rules engine produces a structured `Decision`; **Claude (`claude-haiku-4-5`) only phrases
-  it**, with a deterministic fallback so the app never depends on the network/API key
-- **Money stored as integer cents** everywhere
-- **Single seeded merchant, no auth** in this slice
-- Margin floor default **15%**; **margin-floor rule wins** over competitive-position rules
-- On COGS update: **invalidate cached recommendation**, regenerate on demand
-- Slider range: **±50%** of current price
-- Revenue-opportunity shows **"—"** when estUnits or median is null
+Earlier in the session two runtime bugs the user found by manual testing were fixed:
 
-**Explicitly deferred (each its own future spec → plan → build):** category benchmarking,
-discount/net-revenue analysis, real scraping, Shopify OAuth, competitor discovery,
-price-change alerts, repricing automation, multi-tenant auth, billing.
+- **Bug #1 — product detail page hung / 404'd.** Root cause: a route folder was named `import` (a JS reserved word), which **broke Turbopack's route codegen** and poisoned ALL sibling `/api/products/[id]/*` routes. Fix: renamed the folder `import` → `catalog` (route is now `/api/products/catalog`), updated the fetch path in `ProductUpload.tsx` and the route test's `describe`. A follow-on stale `.next/types/validator.ts` tsc error was cleared with `rm -rf .next` + `npm run build`. **Lesson: never name a route segment after a JS reserved word under Turbopack.**
+- **Bug #2 — bulk "Apply N changes" never converged.** Root cause: `floorPrice` used `Math.round`, which for some COGS produced a price whose actual margin was *fractionally below* the 15% floor (e.g. cogs 2200 → `round(2588.24)=2588`, margin 14.99%). The engine kept recommending "raise to floor", apply wrote a no-op, and the product never reached "hold". Fix: `Math.round` → `Math.ceil` in `floorPrice` so the floor price always clears the margin floor. Done via TDD (RED test added, then GREEN).
 
-## 3. Artifacts (committed on `slice1-implementation`)
+## 3. The product import feature (commit `805036f`)
 
-- **Spec:** `docs/specs/2026-06-28-priceiq-slice1-design.md`
-- **Implementation plan:** `docs/plans/2026-06-28-priceiq-slice1.md` — 13 bite-sized TDD tasks
-  (Task 0 scaffold → Task 12 verification), each with exact files, full code, and commands.
-- **This handover:** `docs/HANDOVER.md`
+Files:
+- `src/lib/products/parseProductCsv.ts` (+ `.test.ts`) — parses `sku,title,current_price,category,cogs,est_units` (6 cols; cogs/est_units optional; dollars→cents; rejects price ≤ 0).
+- `src/lib/products/importProducts.ts` (+ `.test.ts`) — `importProducts(prisma, merchantId, parsed)`: upserts by `(merchantId, sku)`, invalidates stored recommendations for updated products (`touched`).
+- `src/app/api/products/catalog/route.ts` (+ `route.test.ts`) — `POST`; resolves merchant via `prisma.merchant.findFirst()` or creates a default `{ name: "My Store", storeUrl: "" }`, then calls `importProducts`. 400 on empty body.
+- `src/components/ProductUpload.tsx` — UI mirroring `IngestUpload`; POSTs to `/api/products/catalog`; summary shows added / updated / skipped + per-line errors.
+- `src/components/Dashboard.tsx` (modified) — renders `<ProductUpload>` above `<IngestUpload>`.
+- `test-data/products.csv`, `test-data/competitors.csv`, `test-data/products-with-errors.csv` — coffee-gear sample data engineered to exercise every decision branch:
+  - GRD-100 Hand Grinder → **raise** (below median)
+  - SCALE-200 → **lower** (above median)
+  - KETTLE-300 → **hold** (near median)
+  - FILTER-400 → **raise to floor** (margin below 15%)
+  - TAMP-500 → **hold** (no competitor data)
+  - MUG-600 → **lower to floor** (above median but clamps at margin floor)
 
-Git log:
+## 4. Key technical facts / gotchas
+
+- **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite), Vitest **4**, Tailwind **v4** (OKLCH design tokens). Path alias `@/` → `src/`.
+- **AGENTS.md / CLAUDE.md warn this Next.js has breaking changes vs training data.** Read `node_modules/next/dist/docs/` before writing Next-specific code. Async route `params` is `Promise<{ id: string }>` — must be awaited.
+- **Vitest config includes `src/**/*.test.ts` ONLY** — node env, no jsdom, no `.tsx` component tests. So unit tests do NOT cover route registration or in-browser apply convergence; both runtime bugs were found by manual testing. **Verify behavior in the running app, not just `npm test`.**
+- **Working-directory drift in the Bash tool:** commands sometimes run from `C:\Users\pohde` (home) instead of the project. **Always prefix git/npm/tsx commands with `cd /c/Users/pohde/projects/priceiq &&`.**
+- **SQLite lock:** stop the dev server before `npm run seed` (otherwise the DB is locked). After smoke-testing, re-seed to restore clean demo data.
+- **Dev server must be backgrounded** with `run_in_background: true` (it dies if the spawning shell returns). Runs on http://localhost:3000.
+- **Decision engine** (`src/lib/recommendation.ts`): `MIN_MARGIN_FLOOR = 0.15`, `POSITION_BAND = 0.1` (±10% of median = "at market"). Rule order: (1) no competitor data → hold; (2) margin < floor → raise to floor (overrides position); (3) >10% above median → lower toward median (clamped at floor); (4) >10% below median → raise toward median; (5) within band → hold. `decideForProduct` maps competitor rows → observations → `decide`.
+- **Apply semantics** (`src/lib/apply.ts`): `applyDecision(productId)` recomputes the decision and only writes if `suggestedPrice !== currentPrice`, clearing the stored recommendation on change. A no-op recommendation (suggested === current) is what caused Bug #2's non-convergence.
+
+## 5. Current repo state
+
+- Branch `master`, **working tree clean.** All work committed.
+- Test suite: **`npx vitest run` → 84/84 passing.**
+- `test-data/` is **tracked** in the repo (sample fixtures for the import feature).
+
+Recent git log:
 ```
-d8c5b3f Add Slice 1 implementation plan
-1132c5a Add Slice 1 design spec for PriceIQ
-```
-(Plus this handover commit, if committed.)
-
-## 4. Current repo state
-
-```
-C:\Users\pohde\projects\priceiq
-├── .git/                  (branch: slice1-implementation)
-└── docs/
-    ├── HANDOVER.md
-    ├── plans/2026-06-28-priceiq-slice1.md
-    └── specs/2026-06-28-priceiq-slice1-design.md
+d966d14 fix: round margin-floor price up so recommendations converge
+805036f feat: product catalog CSV import
+5b67995 feat: UI/UX pass — fix dead feedback states, add error/empty/loading states, OKLCH redesign
+ad867a6 feat: wire what-if slider to Apply as manual override, drop dead Regenerate
+68ea756 Merge fix-tsc-route-tests: clean up route-test type errors
 ```
 
-**No application code exists yet.** No `package.json`, no `node_modules`, no scaffold.
-The repo is clean (no uncommitted changes besides possibly this file).
+## 6. How to resume
 
-## 5. Why implementation hasn't started (the blocker)
-
-We chose subagent-driven execution. The implementer subagent could not run **any** command —
-even a read-only `ls` was rejected at the **permission layer**. Direct execution from the main
-session was also interrupted/rejected. So Task 0 (scaffold) never ran.
-
-This is a permissions/harness issue, not a plan or code problem. **Nothing failed; nothing was
-lost.**
-
-## 6. How to resume (pick one)
-
-**Option A — approve commands as they come (simplest):**
-Re-run the plan and approve each permission prompt (`npx create-next-app`, `npm install`,
-`git commit`, etc.) as it appears.
-
-**Option B — bypass-permissions mode:**
-Press `Shift+Tab` to cycle permission mode to "bypass permissions", or restart with
-`claude --dangerously-skip-permissions`. Then execution runs without prompts. (Reasonable here:
-isolated greenfield folder, low risk. Note: it persists for the whole session and removes ALL
-prompts, including destructive ones.)
-
-**Then, the very first step is Task 0 in the plan.** Run from `C:\Users\pohde\projects\priceiq`:
+From `C:\Users\pohde\projects\priceiq`:
 ```bash
-npx create-next-app@latest . --typescript --tailwind --app --src-dir --no-eslint --use-npm --yes
-npm install prisma @prisma/client @anthropic-ai/sdk
-npm install -D vitest @vitejs/plugin-react tsx
+npm run dev            # background it; serves http://localhost:3000
+npm run seed           # reseed clean demo data (STOP the dev server first — SQLite lock)
+npx vitest run         # 84 tests, all green
+npm run build          # typecheck + production build
 ```
-(create-next-app must preserve `docs/` and `.git`. If it refuses on the non-empty dir, scaffold
-into a temp subdir and move files up — never delete `docs/` or `.git`.)
+Manual smoke test for the two fixed bugs: open an individual product detail page (Bug #1 — should load, not hang), and use bulk "Apply N changes" on the dashboard (Bug #2 — every selected change should apply and settle to "hold", no stuck rows).
 
-Then continue Tasks 1–12 in `docs/plans/2026-06-28-priceiq-slice1.md` in order. Each task is
-test-first (TDD), self-contained, with a commit at the end.
+## 7. Possible next steps (not started, not requested)
 
-## 7. Recommended execution method on resume
+- Path to testing the MVP with real users (was discussed but not actioned).
+- Auth / multi-tenant, real competitor scraping/discovery, Shopify OAuth, price-change alerts, billing — all still deferred (see git history for the original Slice 1 scope).
 
-The plan was written for **superpowers:subagent-driven-development** (fresh subagent per task +
-two-stage review). That requires the subagent's tool calls to be permitted. If subagent tool
-calls keep getting denied, fall back to **inline execution** (superpowers:executing-plans) from
-the main session, approving prompts directly — same plan, same TDD discipline, just no subagent
-delegation.
+## 8. Older context
 
-## 8. Definition of done for Slice 1
-
-- `npm test` — all unit tests pass (money, margin, comparison, recommendation, fallback, phrase)
-- `npm run build` — succeeds, no type errors
-- `npm run seed` then `npm run dev` — products table renders 8 seeded products with editable
-  COGS, margins, positions, opportunity; product detail shows competitors, working what-if
-  slider, and a recommendation (sensible even with no `ANTHROPIC_API_KEY` via fallback)
-- Final code review (whole implementation), then finish the branch (merge/PR) via
-  superpowers:finishing-a-development-branch
-
-## 9. Troubleshooting
-
-- **`Runtime SyntaxError: Invalid or unexpected token` at `evalmachine.<anonymous>`** —
-  this is a corrupted Turbopack build manifest in `.next/` (usually from a dev server killed
-  mid-build), not an app bug. The `evalManifest` stack frame is the tell. Fix: stop the dev
-  server, `rm -rf .next`, then `npm run dev` again.
-
-## 10. Hardening (post-Slice-1, branch `harden-slice1`)
-
-- All API routes are wrapped with `withErrorHandling` (`src/lib/api/errors.ts`): malformed JSON
-  and invalid input return **400**, unknown products return **404**, and unexpected failures
-  return an opaque **500** (no stack-trace leak). Input parsing lives in
-  `src/lib/api/validation.ts`.
-- Route-level tests (mocked Prisma) cover the cogs and recommendation endpoints; `vitest.config.ts`
-  now resolves the `@/` alias so route handlers are importable in tests.
+This doc replaces the original Slice 1 planning handover. For the original product vision, locked decisions, and deferred-feature list, see the specs/plans under `docs/specs/` and `docs/plans/`.
