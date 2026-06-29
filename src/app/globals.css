@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
+/*
+ * PriceIQ — restrained product palette (Intent: ethical defaults; impeccable:
+ * product register). One cool-neutral ramp + a single indigo accent for
+ * primary actions, selection, and focus. Semantic hues (positive / warning /
+ * danger) are reserved for data signaling, never decoration. Single committed
+ * light theme — no half-supported dark mode.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: oklch(0.985 0.002 260);
+  --surface: oklch(1 0 0);
+  --panel: oklch(0.972 0.004 260);
+  --line: oklch(0.915 0.005 260);
+  --line-strong: oklch(0.86 0.006 260);
+
+  --ink: oklch(0.24 0.012 265);
+  --muted: oklch(0.47 0.014 265);
+  --faint: oklch(0.6 0.012 265);
+
+  --accent: oklch(0.55 0.16 264);
+  --accent-hover: oklch(0.49 0.16 264);
+  --accent-fg: oklch(0.99 0 0);
+  --accent-soft: oklch(0.96 0.025 264);
+
+  --positive: oklch(0.52 0.13 150);
+  --warning: oklch(0.58 0.13 65);
+  --danger: oklch(0.55 0.2 25);
+  --danger-soft: oklch(0.96 0.03 25);
+
+  --radius: 0.625rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-positive: var(--positive);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Numeric data reads better tabular-aligned. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Interactive components: full state set (default/hover/active/focus/disabled) ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  transition:
+    background-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: 1px solid transparent;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+.btn-primary:active:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(0.5px);
+}
+
+.btn-ghost {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--panel);
+  border-color: var(--faint);
+}
+
+.field {
+  border-radius: 0.45rem;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.4rem 0.55rem;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+.field::placeholder {
+  color: var(--faint);
+}
+.field:hover:not(:disabled) {
+  border-color: var(--faint);
+}
+.field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.field:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .field {
+    transition: none;
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: none;
+  }
+  .animate-pulse {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
 }

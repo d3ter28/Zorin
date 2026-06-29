@@ -51,34 +51,53 @@ export function WhatIfSlider({
   }
 
   return (
-    <div className="rounded border p-4">
-      <div className="mb-2 font-medium">Set price: {formatCents(price)}</div>
+    <div className="rounded-xl border border-line bg-surface p-5">
+      <div className="flex items-baseline justify-between">
+        <h2 className="text-sm font-semibold text-ink">Set your price</h2>
+        <span className="text-lg font-semibold tabular text-ink">
+          {formatCents(price)}
+        </span>
+      </div>
       <input
         type="range"
         min={min}
         max={max}
         step={50}
         value={price}
-        className="w-full"
+        className="mt-3 w-full accent-[var(--accent)]"
         aria-label="Set price"
         onChange={(e) => setPrice(Number(e.target.value))}
       />
-      <div className="mt-2 text-sm text-gray-600">
-        Margin: {margin === null ? "—" : pct(margin)} · vs median:{" "}
-        {vsMedian === null ? "—" : pct(vsMedian)}
+      <div className="mt-2 flex gap-5 text-xs text-muted">
+        <span>
+          Margin:{" "}
+          <span className="tabular text-ink">
+            {margin === null ? "—" : pct(margin)}
+          </span>
+        </span>
+        <span>
+          vs median:{" "}
+          <span className="tabular text-ink">
+            {vsMedian === null ? "—" : pct(vsMedian)}
+          </span>
+        </span>
       </div>
-      <div className="mt-3 flex items-center gap-3">
+      <div className="mt-4 flex items-center gap-3">
         <button
-          className="rounded bg-green-600 px-3 py-1 text-sm text-white disabled:opacity-50"
+          className="btn btn-primary"
           disabled={applying || price === currentPrice}
           onClick={apply}
         >
           {applying ? "Applying…" : `Apply ${formatCents(price)}`}
         </button>
         {price === currentPrice && (
-          <span className="text-xs text-gray-400">Already the current price</span>
+          <span className="text-xs text-faint">Already the current price</span>
         )}
-        {error && <span className="text-xs text-red-600">{error}</span>}
+        {error && (
+          <span className="text-xs text-danger" role="alert">
+            {error}
+          </span>
+        )}
       </div>
     </div>
   );

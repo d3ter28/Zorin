@@ -8,15 +8,17 @@ interface Summary {
   errors: { line: number; reason: string }[];
 }
 
-export function IngestUpload() {
+export function IngestUpload({ onIngested }: { onIngested: () => void }) {
   const [summary, setSummary] = useState<Summary | null>(null);
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function onFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     setBusy(true);
     setSummary(null);
+    setError(null);
     try {
       const text = await file.text();
       const res = await fetch("/api/ingest", {
@@ -24,41 +26,73 @@ export function IngestUpload() {
         headers: { "Content-Type": "text/csv" },
         body: text,
       });
-      setSummary(await res.json());
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(body?.error ?? "Upload failed — check the file format.");
+      }
+      const data: Summary = await res.json();
+      setSummary(data);
+      // Refresh the table in place; the summary below stays visible.
+      onIngested();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed — try again.");
     } finally {
       setBusy(false);
       e.target.value = ""; // allow re-uploading the same file
-      // Reload so the products table reflects new prices and cleared recommendations.
-      if (typeof window !== "undefined") window.location.reload();
     }
   }
 
   return (
-    <div className="mb-6 rounded border border-gray-200 p-4">
-      <label className="block text-sm font-medium">
-        Upload competitor prices (CSV: sku,competitor_name,price)
-      </label>
-      <input
-        type="file"
-        accept=".csv,text/csv"
-        onChange={onFile}
-        disabled={busy}
-        className="mt-2 text-sm"
-      />
+    <section className="mb-8 rounded-xl border border-line bg-surface p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 className="text-sm font-semibold text-ink">Import competitor prices</h2>
+          <p className="mt-0.5 text-xs text-muted">
+            CSV columns: <span className="font-mono">sku, competitor_name, price</span>
+          </p>
+        </div>
+        <label className="btn btn-ghost cursor-pointer">
+          <input
+            type="file"
+            accept=".csv,text/csv"
+            onChange={onFile}
+            disabled={busy}
+            className="sr-only"
+          />
+          {busy ? "Uploading…" : "Choose CSV"}
+        </label>
+      </div>
+
+      {error && (
+        <p role="alert" className="mt-4 text-sm text-danger">
+          {error}
+        </p>
+      )}
+
       {summary && (
-        <div className="mt-3 text-sm">
-          <div>
-            {summary.inserted} inserted, {summary.updated} updated, {summary.skipped} skipped
+        <div className="mt-4">
+          <div className="flex flex-wrap gap-2 text-xs">
+            <span className="rounded-full bg-accent-soft px-2.5 py-1 font-medium text-accent">
+              {summary.inserted} inserted
+            </span>
+            <span className="rounded-full bg-panel px-2.5 py-1 text-muted">
+              {summary.updated} updated
+            </span>
+            <span className="rounded-full bg-panel px-2.5 py-1 text-muted">
+              {summary.skipped} skipped
+            </span>
           </div>
           {summary.errors.length > 0 && (
-            <ul className="mt-1 list-disc pl-5 text-xs text-red-600">
+            <ul className="mt-3 space-y-1 text-xs text-danger">
               {summary.errors.map((er, i) => (
-                <li key={i}>line {er.line}: {er.reason}</li>
+                <li key={i}>
+                  Line {er.line}: {er.reason}
+                </li>
               ))}
             </ul>
           )}
         </div>
       )}
-    </div>
+    </section>
   );
 }

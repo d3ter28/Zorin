@@ -1,12 +1,15 @@
-import { ProductsTable } from "@/components/ProductsTable";
-import { IngestUpload } from "@/components/IngestUpload";
+import { Dashboard } from "@/components/Dashboard";
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-5xl p-8 pb-24">
-      <h1 className="mb-6 text-2xl font-bold">PriceIQ — Demo Store</h1>
-      <IngestUpload />
-      <ProductsTable />
+    <main className="mx-auto max-w-5xl px-6 py-10 pb-28">
+      <header className="mb-8">
+        <h1 className="text-2xl font-semibold tracking-tight text-ink">PriceIQ</h1>
+        <p className="mt-1 text-sm text-muted">
+          Competitor-aware pricing recommendations · Demo Store
+        </p>
+      </header>
+      <Dashboard />
     </main>
   );
 }
