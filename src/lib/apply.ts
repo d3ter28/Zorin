@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import { decideForProduct } from "@/lib/recommendation";
+import type { Action } from "./types";
 
 export interface ApplyResult {
   /** Whether the product exists. */
@@ -7,7 +8,7 @@ export interface ApplyResult {
   /** Whether a price change was actually written. */
   applied: boolean;
   /** The decision action, or "" when not found. */
-  action: string;
+  action: Action | "";
   /** The suggested/new price in cents, or 0 when not found. */
   currentPrice: number;
 }
