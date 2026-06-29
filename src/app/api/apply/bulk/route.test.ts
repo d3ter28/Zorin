@@ -45,6 +45,14 @@ describe("POST /api/apply/bulk", () => {
     expect(await res.json()).toEqual({ applied: 0, skipped: 1 });
   });
 
+  it("is a no-op for an empty productIds array", async () => {
+    const res = await POST(req({ productIds: [] }));
+
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ applied: 0, skipped: 0 });
+    expect(applyDecision).not.toHaveBeenCalled();
+  });
+
   it("returns 400 when productIds is missing or not an array", async () => {
     const res = await POST(req({ nope: true }));
     expect(res.status).toBe(400);
