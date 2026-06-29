@@ -43,12 +43,15 @@ export function toErrorResponse(err: unknown): NextResponse {
  * Wrap a route handler so any thrown error becomes a safe response. Preserves
  * the handler's (req, ctx) signature used by the Next.js App Router.
  */
-export function withErrorHandling<Ctx>(
+export function withErrorHandling<Ctx = unknown>(
   handler: (req: Request, ctx: Ctx) => Promise<NextResponse>,
-): (req: Request, ctx: Ctx) => Promise<NextResponse> {
+): (req: Request, ctx?: Ctx) => Promise<NextResponse> {
+  // `ctx` is optional on the returned wrapper: routes with dynamic segments
+  // receive it from Next.js (and tests pass it explicitly), while context-less
+  // routes can be invoked with just the request.
   return async (req, ctx) => {
     try {
-      return await handler(req, ctx);
+      return await handler(req, ctx as Ctx);
     } catch (err) {
       return toErrorResponse(err);
     }
