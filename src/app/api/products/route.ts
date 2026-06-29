@@ -6,7 +6,7 @@ import { decideForProduct } from "@/lib/recommendation";
 
 export async function GET() {
   const products = await prisma.product.findMany({
-    include: { competitors: true, recommendation: true },
+    include: { competitors: true },
     orderBy: { title: "asc" },
   });
 
