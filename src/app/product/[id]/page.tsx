@@ -2,7 +2,7 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
-import { RecommendationCard } from "@/components/RecommendationCard";
+import { RecommendationCard, type RecView } from "@/components/RecommendationCard";
 import { formatCents } from "@/lib/money";
 
 interface Detail {
@@ -20,9 +20,22 @@ export default function ProductPage({
 }) {
   const { id } = use(params);
   const [d, setD] = useState<Detail | null>(null);
+  const [rec, setRec] = useState<RecView | null>(null);
 
   useEffect(() => {
-    fetch(`/api/products/${id}`).then((r) => r.json()).then(setD);
+    fetch(`/api/products/${id}`)
+      .then((r) => r.json())
+      .then(setD);
+    fetch(`/api/products/${id}/recommendation`, { method: "POST" })
+      .then((r) => r.json())
+      .then((j) =>
+        setRec({
+          action: j.decision.action,
+          suggestedPrice: j.decision.suggestedPrice,
+          phrasing: j.phrasing,
+          competitorCount: j.decision.signals.competitorCount,
+        }),
+      );
   }, [id]);
 
   if (!d) return <main className="p-8">Loading…</main>;
@@ -54,8 +67,19 @@ export default function ProductPage({
         </ul>
       </section>
 
-      <WhatIfSlider currentPrice={d.currentPrice} cogs={d.cogs} compMedian={median} />
-      <RecommendationCard productId={d.id} />
+      <RecommendationCard rec={rec} />
+
+      {rec ? (
+        <WhatIfSlider
+          productId={d.id}
+          currentPrice={d.currentPrice}
+          cogs={d.cogs}
+          compMedian={median}
+          suggestedPrice={rec.suggestedPrice}
+        />
+      ) : (
+        <div className="rounded border p-4 text-gray-500">Loading price tools…</div>
+      )}
     </main>
   );
 }

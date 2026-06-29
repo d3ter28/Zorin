@@ -16,6 +16,8 @@ vi.mock("@/lib/db", () => ({
 import { POST } from "./route";
 
 const ctx = (id: string) => ({ params: Promise.resolve({ id }) });
+const reqWithBody = (body: unknown) =>
+  ({ json: async () => body }) as unknown as Request;
 
 beforeEach(() => {
   findUnique.mockReset();
@@ -72,5 +74,29 @@ describe("POST /api/products/[id]/apply", () => {
     expect(body).toMatchObject({ currentPrice: 5000, action: "hold", applied: false });
     expect(update).not.toHaveBeenCalled();
     expect(deleteMany).not.toHaveBeenCalled();
+  });
+
+  it("applies a manual override price from the request body", async () => {
+    findUnique.mockResolvedValue({ id: "p1", currentPrice: 8000 });
+    update.mockResolvedValue({});
+    deleteMany.mockResolvedValue({});
+
+    const res = await POST(reqWithBody({ price: 9500 }), ctx("p1"));
+
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body).toMatchObject({ currentPrice: 9500, applied: true });
+    expect(update).toHaveBeenCalledWith({
+      where: { id: "p1" },
+      data: { currentPrice: 9500 },
+    });
+    expect(deleteMany).toHaveBeenCalledWith({ where: { productId: "p1" } });
+  });
+
+  it("rejects a non-positive manual price with 400 and writes nothing", async () => {
+    const res = await POST(reqWithBody({ price: 0 }), ctx("p1"));
+
+    expect(res.status).toBe(400);
+    expect(update).not.toHaveBeenCalled();
   });
 });

@@ -44,3 +44,29 @@ export async function applyDecision(productId: string): Promise<ApplyResult> {
     currentPrice: decision.suggestedPrice,
   };
 }
+
+/**
+ * Set a product's price to an explicit value (a manual override from the
+ * what-if slider) rather than the algorithm's recommendation. Clears the stale
+ * stored recommendation on change. `action` is "" since no decision was applied.
+ */
+export async function applyManualPrice(
+  productId: string,
+  price: number,
+): Promise<ApplyResult> {
+  const product = await prisma.product.findUnique({ where: { id: productId } });
+  if (!product) {
+    return { found: false, applied: false, action: "", currentPrice: 0 };
+  }
+
+  const applied = price !== product.currentPrice;
+  if (applied) {
+    await prisma.product.update({
+      where: { id: productId },
+      data: { currentPrice: price },
+    });
+    await prisma.recommendation.deleteMany({ where: { productId } });
+  }
+
+  return { found: true, applied, action: "", currentPrice: price };
+}
