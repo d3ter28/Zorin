@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import { formatCents } from "@/lib/money";
 
 interface RecResponse {
   decision: {
@@ -13,6 +14,7 @@ interface RecResponse {
 export function RecommendationCard({ productId }: { productId: string }) {
   const [data, setData] = useState<RecResponse | null>(null);
   const [loading, setLoading] = useState(false);
+  const [applying, setApplying] = useState(false);
 
   const generate = useCallback(async () => {
     setLoading(true);
@@ -22,6 +24,16 @@ export function RecommendationCard({ productId }: { productId: string }) {
     setData(await res.json());
     setLoading(false);
   }, [productId]);
+
+  async function apply() {
+    setApplying(true);
+    try {
+      await fetch(`/api/products/${productId}/apply`, { method: "POST" });
+    } finally {
+      // Reload so the current price, what-if slider, and card all reflect the new price.
+      if (typeof window !== "undefined") window.location.reload();
+    }
+  }
 
   useEffect(() => {
     generate();
@@ -44,13 +56,24 @@ export function RecommendationCard({ productId }: { productId: string }) {
       </div>
       <p className="mb-2">{data.phrasing}</p>
       <div className="text-xs text-gray-500">{freshness}</div>
-      <button
-        className="mt-3 rounded bg-black px-3 py-1 text-sm text-white"
-        disabled={loading}
-        onClick={generate}
-      >
-        {loading ? "Regenerating…" : "Regenerate"}
-      </button>
+      <div className="mt-3 flex gap-2">
+        {data.decision.action !== "hold" && (
+          <button
+            className="rounded bg-green-600 px-3 py-1 text-sm text-white disabled:opacity-50"
+            disabled={applying}
+            onClick={apply}
+          >
+            {applying ? "Applying…" : `Apply ${formatCents(data.decision.suggestedPrice)}`}
+          </button>
+        )}
+        <button
+          className="rounded bg-black px-3 py-1 text-sm text-white"
+          disabled={loading}
+          onClick={generate}
+        >
+          {loading ? "Regenerating…" : "Regenerate"}
+        </button>
+      </div>
     </div>
   );
 }
