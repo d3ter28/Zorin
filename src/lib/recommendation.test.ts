@@ -108,3 +108,44 @@ describe("decideForProduct", () => {
     expect(d.suggestedPrice).toBe(10000);
   });
 });
+
+describe("fixed-point convergence", () => {
+  // Invariant: applying a single recommendation must settle. Re-deciding at the
+  // recommended price must always 'hold' — never recommend another move. This is
+  // what makes a bulk "Apply all" converge in one pass. The FILTER-400 bug was a
+  // violation: a product below both the floor and the median needed two applies.
+  it("re-deciding at any recommended price holds (one-pass convergence across a matrix)", () => {
+    const competitorSets = [
+      [],
+      [obs(1300), obs(1400)],
+      [obs(8000)],
+      [obs(10000), obs(10000)],
+      [obs(6000), obs(6000)],
+      [obs(1800), obs(1900)],
+      [obs(4500), obs(4800), obs(5000)],
+      [obs(9800), obs(10200)],
+    ];
+    const prices = [500, 1000, 1059, 2000, 5000, 12000];
+    const cogsValues: (number | null)[] = [null, 400, 900, 2200, 5500, 9500];
+
+    const failures: string[] = [];
+    for (const comps of competitorSets) {
+      for (const currentPrice of prices) {
+        for (const cogs of cogsValues) {
+          const first = decide({ currentPrice, cogs }, comps);
+          const again = decide({ currentPrice: first.suggestedPrice, cogs }, comps);
+          if (again.action !== "hold") {
+            failures.push(
+              `price=${currentPrice} cogs=${cogs} comps=[${comps
+                .map((c) => c.price)
+                .join(",")}] -> ${first.action}@${first.suggestedPrice} then ${
+                again.action
+              }@${again.suggestedPrice}`,
+            );
+          }
+        }
+      }
+    }
+    expect(failures).toEqual([]);
+  });
+});
