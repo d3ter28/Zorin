@@ -71,6 +71,7 @@ describe("applyIngest", () => {
       { line: 1, sku: "NOPE-999", competitorName: "RivalShop", priceCents: 2850 },
     ]));
     expect(prisma.competitorPrice.upsert).not.toHaveBeenCalled();
+    expect(prisma.competitorPriceObservation.create).not.toHaveBeenCalled();
     expect(prisma.recommendation.deleteMany).not.toHaveBeenCalled();
     expect(result.inserted).toBe(0);
     expect(result.skipped).toBe(1);
