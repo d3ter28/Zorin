@@ -32,7 +32,7 @@ describe("parseCsv", () => {
     const { rows, errors } = parseCsv(csv);
     expect(rows).toEqual([]);
     expect(errors.map((e) => e.line)).toEqual([1, 2, 3, 4, 5]);
-    expect(errors[0].reason).toMatch(/3 columns/);
+    expect(errors[0].reason).toMatch(/columns/);
     expect(errors[1].reason).toMatch(/sku/i);
     expect(errors[2].reason).toMatch(/competitor/i);
     expect(errors[3].reason).toMatch(/price/i);
@@ -46,5 +46,27 @@ describe("parseCsv", () => {
     expect(rows).toEqual([
       { line: 4, sku: "TEE-001", competitorName: "RivalShop", priceCents: 3000 },
     ]);
+  });
+
+  it("accepts an optional competitor_url 4th column", () => {
+    const csv = [
+      "sku,competitor_name,price,competitor_url",
+      "TEE-001,Acme,12.99,https://acme/p",
+    ].join("\n");
+    const result = parseCsv(csv);
+    expect(result.errors).toEqual([]);
+    expect(result.rows[0]).toMatchObject({
+      sku: "TEE-001",
+      competitorName: "Acme",
+      priceCents: 1299,
+      competitorUrl: "https://acme/p",
+    });
+  });
+
+  it("still accepts the legacy 3-column format (no url)", () => {
+    const csv = ["sku,competitor_name,price", "TEE-001,Acme,12.99"].join("\n");
+    const result = parseCsv(csv);
+    expect(result.errors).toEqual([]);
+    expect(result.rows[0].competitorUrl).toBeUndefined();
   });
 });

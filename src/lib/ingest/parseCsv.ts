@@ -5,6 +5,7 @@ export interface ParsedRow {
   sku: string;
   competitorName: string;
   priceCents: number;
+  competitorUrl?: string;
 }
 
 export interface RowError {
@@ -18,7 +19,8 @@ export interface ParseResult {
   errors: RowError[];
 }
 
-const HEADER = "sku,competitor_name,price";
+const HEADER_3 = "sku,competitor_name,price";
+const HEADER_4 = "sku,competitor_name,price,competitor_url";
 
 /** Parse competitor-price CSV text. Never throws; problems become RowErrors. */
 export function parseCsv(input: string): ParseResult {
@@ -36,14 +38,15 @@ export function parseCsv(input: string): ParseResult {
     // Skip a header row if it is the first non-blank line.
     if (!sawFirstContentLine) {
       sawFirstContentLine = true;
-      if (fields.join(",").toLowerCase() === HEADER) return;
+      const header = fields.join(",").toLowerCase();
+      if (header === HEADER_3 || header === HEADER_4) return;
     }
 
-    if (fields.length !== 3) {
-      errors.push({ line, raw, reason: "malformed line: expected 3 columns" });
+    if (fields.length !== 3 && fields.length !== 4) {
+      errors.push({ line, raw, reason: "malformed line: expected 3 or 4 columns" });
       return;
     }
-    const [sku, competitorName, priceStr] = fields;
+    const [sku, competitorName, priceStr, urlStr] = fields;
     if (sku === "" || competitorName === "") {
       errors.push({ line, raw, reason: "missing sku or competitor_name" });
       return;
@@ -53,7 +56,9 @@ export function parseCsv(input: string): ParseResult {
       errors.push({ line, raw, reason: "invalid price" });
       return;
     }
-    rows.push({ line, sku, competitorName, priceCents });
+    const row: ParsedRow = { line, sku, competitorName, priceCents };
+    if (urlStr && urlStr !== "") row.competitorUrl = urlStr;
+    rows.push(row);
   });
 
   return { rows, errors };

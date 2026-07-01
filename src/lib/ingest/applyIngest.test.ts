@@ -13,6 +13,7 @@ function mockPrisma(opts: {
       upsert: vi.fn().mockResolvedValue({}),
     },
     recommendation: { deleteMany: vi.fn().mockResolvedValue({}) },
+    competitorPriceObservation: { create: vi.fn().mockResolvedValue({}) },
   };
 }
 
@@ -35,11 +36,20 @@ describe("applyIngest", () => {
     ]));
 
     expect(prisma.competitorPrice.upsert).toHaveBeenCalledTimes(2);
-    expect(prisma.competitorPrice.upsert).toHaveBeenCalledWith({
-      where: { productId_competitorName: { productId: "p1", competitorName: "RivalShop" } },
-      create: { productId: "p1", competitorName: "RivalShop", price: 2850 },
-      update: expect.objectContaining({ price: 2850 }),
-    });
+    expect(prisma.competitorPrice.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: { productId_competitorName: { productId: "p1", competitorName: "RivalShop" } },
+        create: expect.objectContaining({
+          productId: "p1",
+          competitorName: "RivalShop",
+          price: 2850,
+          competitorUrl: "",
+          isStale: false,
+        }),
+        update: expect.objectContaining({ price: 2850 }),
+      }),
+    );
+    expect(prisma.competitorPriceObservation.create).toHaveBeenCalledTimes(2);
     expect(result.inserted).toBe(1);
     expect(result.updated).toBe(1);
     expect(result.errors).toEqual([]);

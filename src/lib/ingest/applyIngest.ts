@@ -1,5 +1,6 @@
 import type { PrismaClient } from "@prisma/client";
 import type { ParseResult, RowError } from "./parseCsv";
+import { recordObservation } from "../scrape/recordObservation";
 
 export interface IngestSummary {
   inserted: number;
@@ -11,7 +12,7 @@ export interface IngestSummary {
 /** Minimal Prisma surface this function needs (real client is assignable). */
 type PrismaSurface = Pick<
   PrismaClient,
-  "product" | "competitorPrice" | "recommendation"
+  "product" | "competitorPrice" | "recommendation" | "competitorPriceObservation"
 >;
 
 /** Apply parsed rows: upsert competitor prices, invalidate touched recommendations. */
@@ -50,12 +51,12 @@ export async function applyIngest(
     if (existingKeys.has(key)) updated++;
     else inserted++;
 
-    await prisma.competitorPrice.upsert({
-      where: {
-        productId_competitorName: { productId, competitorName: row.competitorName },
-      },
-      create: { productId, competitorName: row.competitorName, price: row.priceCents },
-      update: { price: row.priceCents, observedAt: new Date() },
+    await recordObservation(prisma, {
+      productId,
+      competitorName: row.competitorName,
+      competitorUrl: row.competitorUrl ?? "",
+      priceCents: row.priceCents,
+      source: "csv",
     });
     touched.add(productId);
   }
