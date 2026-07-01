@@ -11,10 +11,14 @@ export async function GET() {
   });
 
   const rows = products.map((p) => {
-    const obs = p.competitors.map((c) => ({
-      price: c.price,
-      observedAt: c.observedAt.toISOString(),
-    }));
+    // Exclude stale competitors so the displayed median/position matches the
+    // recommendation, which also filters them out (see decideForProduct).
+    const obs = p.competitors
+      .filter((c) => !c.isStale)
+      .map((c) => ({
+        price: c.price,
+        observedAt: c.observedAt.toISOString(),
+      }));
     const decision = decideForProduct(p);
     return {
       id: p.id,

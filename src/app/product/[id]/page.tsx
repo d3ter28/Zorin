@@ -81,6 +81,10 @@ export default function ProductPage({
     );
   }
 
+  // Exclude stale competitors from the what-if median so it matches the
+  // dashboard and the recommendation, which also drop stale prices.
+  const freshCompetitors = d.competitors.filter((c) => !c.isStale);
+
   return (
     <main className="mx-auto max-w-3xl space-y-8 px-6 py-10">
       <Link className="text-sm text-muted hover:text-accent" href="/">
@@ -105,10 +109,10 @@ export default function ProductPage({
           currentPrice={d.currentPrice}
           cogs={d.cogs}
           compMedian={
-            d.competitors.length === 0
+            freshCompetitors.length === 0
               ? null
-              : [...d.competitors].map((c) => c.price).sort((a, b) => a - b)[
-                  Math.floor(d.competitors.length / 2)
+              : [...freshCompetitors].map((c) => c.price).sort((a, b) => a - b)[
+                  Math.floor(freshCompetitors.length / 2)
                 ]
           }
           suggestedPrice={rec.suggestedPrice}

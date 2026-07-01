@@ -64,4 +64,32 @@ describe("GET /api/products", () => {
       suggestedPrice: 5000,
     });
   });
+
+  it("excludes stale competitors from the displayed comparison", async () => {
+    findMany.mockResolvedValue([
+      {
+        id: "p3",
+        title: "Mixed staleness",
+        sku: "M-1",
+        currentPrice: 10000,
+        cogs: 4000,
+        category: "x",
+        estUnits: 10,
+        competitors: [
+          { price: 10000, observedAt: new Date("2026-06-28T00:00:00.000Z"), isStale: false },
+          { price: 2000, observedAt: new Date("2026-01-01T00:00:00.000Z"), isStale: true },
+        ],
+        recommendation: null,
+      },
+    ]);
+
+    const res = await GET();
+    const rows = await res.json();
+
+    // The stale $20 competitor must not drag the displayed median/min down: only
+    // the fresh $100 competitor should count, matching what the recommendation uses.
+    expect(rows[0].comparison.competitorCount).toBe(1);
+    expect(rows[0].comparison.compMedian).toBe(10000);
+    expect(rows[0].comparison.compMin).toBe(10000);
+  });
 });
