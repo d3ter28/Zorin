@@ -19,6 +19,9 @@ export const GET = withErrorHandling(
         name: c.competitorName,
         price: c.price,
         observedAt: c.observedAt.toISOString(),
+        url: c.competitorUrl ?? "",
+        lastObservedAt: c.lastObservedAt.toISOString(),
+        isStale: c.isStale,
       })),
     });
   },

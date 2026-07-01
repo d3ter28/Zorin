@@ -38,6 +38,8 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshMsg, setRefreshMsg] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -89,6 +91,34 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
     }
   }
 
+  async function refreshAll() {
+    setRefreshing(true);
+    setRefreshMsg(null);
+    try {
+      const res = await fetch("/api/refresh", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productIds: rows.map((r) => r.id) }),
+      });
+      if (!res.ok) throw new Error("refresh failed");
+      const { refreshed, failed } = (await res.json()) as {
+        refreshed: number;
+        failed: number;
+      };
+      setRefreshMsg(
+        `Refreshed ${refreshed} price${refreshed === 1 ? "" : "s"}${
+          failed ? `, ${failed} failed` : ""
+        }.`,
+      );
+      // Prices may have moved, so recommendations can change — re-fetch the table.
+      await load();
+    } catch {
+      setRefreshMsg("Couldn't refresh prices — try again.");
+    } finally {
+      setRefreshing(false);
+    }
+  }
+
   if (loading) {
     return (
       <div className="space-y-2 rounded-xl border border-line bg-surface p-4">
@@ -130,6 +160,20 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
 
   return (
     <>
+      {rows.length > 0 && (
+        <div className="mb-3 flex items-center gap-3">
+          <button
+            className="btn btn-ghost"
+            disabled={refreshing}
+            onClick={refreshAll}
+          >
+            {refreshing ? "Refreshing…" : "Refresh all prices"}
+          </button>
+          <span className="text-xs text-muted" aria-live="polite">
+            {refreshMsg}
+          </span>
+        </div>
+      )}
       <div className="overflow-x-auto rounded-xl border border-line bg-surface">
         <table className="w-full min-w-[720px] text-sm">
           <thead>

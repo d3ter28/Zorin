@@ -2,6 +2,7 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
+import { ManageCompetitors } from "@/components/ManageCompetitors";
 import { RecommendationCard, type RecView } from "@/components/RecommendationCard";
 import { formatCents } from "@/lib/money";
 
@@ -10,7 +11,13 @@ interface Detail {
   title: string;
   currentPrice: number;
   cogs: number | null;
-  competitors: { name: string; price: number; observedAt: string }[];
+  competitors: {
+    name: string;
+    price: number;
+    url: string;
+    lastObservedAt: string;
+    isStale: boolean;
+  }[];
 }
 
 export default function ProductPage({
@@ -112,23 +119,7 @@ export default function ProductPage({
         </div>
       )}
 
-      <section className="rounded-xl border border-line bg-surface p-5">
-        <h2 className="mb-3 text-sm font-semibold text-ink">Competitors</h2>
-        {d.competitors.length === 0 ? (
-          <p className="text-sm text-muted">
-            No competitor prices yet. Import a CSV from the dashboard.
-          </p>
-        ) : (
-          <ul className="divide-y divide-line text-sm">
-            {d.competitors.map((c, i) => (
-              <li key={i} className="flex justify-between py-2">
-                <span className="text-muted">{c.name}</span>
-                <span className="tabular text-ink">{formatCents(c.price)}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+      <ManageCompetitors productId={d.id} competitors={d.competitors} />
     </main>
   );
 }

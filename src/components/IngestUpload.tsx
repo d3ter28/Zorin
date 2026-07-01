@@ -48,7 +48,14 @@ export function IngestUpload({ onIngested }: { onIngested: () => void }) {
         <div>
           <h2 className="text-sm font-semibold text-ink">Import competitor prices</h2>
           <p className="mt-0.5 text-xs text-muted">
-            CSV columns: <span className="font-mono">sku, competitor_name, price</span>
+            CSV columns:{" "}
+            <span className="font-mono">
+              sku, competitor_name, price, competitor_url
+            </span>
+          </p>
+          <p className="mt-0.5 text-xs text-faint">
+            <span className="font-mono">competitor_url</span> is optional and
+            enables automatic price refresh.
           </p>
         </div>
         <label className="btn btn-ghost cursor-pointer">
