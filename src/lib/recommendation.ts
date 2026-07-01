@@ -127,11 +127,13 @@ export function decide(
 export function decideForProduct(product: {
   currentPrice: number;
   cogs: number | null;
-  competitors: { price: number; observedAt: Date }[];
+  competitors: { price: number; observedAt: Date; isStale?: boolean }[];
 }): Decision {
-  const obs = product.competitors.map((c) => ({
-    price: c.price,
-    observedAt: c.observedAt.toISOString(),
-  }));
+  const obs = product.competitors
+    .filter((c) => !c.isStale)
+    .map((c) => ({
+      price: c.price,
+      observedAt: c.observedAt.toISOString(),
+    }));
   return decide({ currentPrice: product.currentPrice, cogs: product.cogs }, obs);
 }

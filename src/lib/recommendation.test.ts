@@ -107,6 +107,37 @@ describe("decideForProduct", () => {
     expect(d.action).toBe("hold");
     expect(d.suggestedPrice).toBe(10000);
   });
+
+  it("excludes stale competitors from the decision", () => {
+    // Two competitors at 10000, one stale low outlier at 4000. Without filtering
+    // the median would be dragged down; with filtering it stays at 10000.
+    const product = {
+      currentPrice: 8000,
+      cogs: 4000,
+      competitors: [
+        { price: 10000, observedAt: new Date("2026-06-28T00:00:00.000Z"), isStale: false },
+        { price: 10000, observedAt: new Date("2026-06-28T00:00:00.000Z"), isStale: false },
+        { price: 4000, observedAt: new Date("2026-06-01T00:00:00.000Z"), isStale: true },
+      ],
+    };
+    const d = decideForProduct(product);
+    expect(d.action).toBe("raise");
+    expect(d.suggestedPrice).toBe(10000);
+    expect(d.signals.competitorCount).toBe(2);
+  });
+
+  it("holds when every competitor is stale (treated as no data)", () => {
+    const product = {
+      currentPrice: 8000,
+      cogs: 4000,
+      competitors: [
+        { price: 10000, observedAt: new Date("2026-06-01T00:00:00.000Z"), isStale: true },
+      ],
+    };
+    const d = decideForProduct(product);
+    expect(d.action).toBe("hold");
+    expect(d.reasons.join(" ")).toMatch(/competitor data/i);
+  });
 });
 
 describe("fixed-point convergence", () => {
