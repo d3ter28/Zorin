@@ -1,21 +1,47 @@
 # PriceIQ — Handover Doc
 
-**Date:** 2026-07-03
+**Date:** 2026-07-04
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **implemented and merged** (status lines, load states, selection/apply flow). CogsInput **now covered**. Dashboard, ProductUpload, IngestUpload **now covered**. **265 tests passing — all UI components tested.** Working tree clean.
+**Status:** Auth + multi-tenant **implemented, live smoke-tested, merged**. Phase B (scheduled auto-refresh) complete. All UI components tested. **300 tests passing.** Working tree clean.
 
 ---
 
 ## 1. What PriceIQ is
 
-An AI-native pricing tool for online store owners. The user uploads their **product catalog** and **competitor prices** (both via CSV) and the app gives plain-English **raise / lower / hold** recommendations per product, with margin protection. Money is stored as **integer cents** everywhere. Single seeded merchant, no auth (still an MVP slice).
+An AI-native pricing tool for online store owners. The user uploads their **product catalog** and **competitor prices** (both via CSV) and the app gives plain-English **raise / lower / hold** recommendations per product, with margin protection. Money is stored as **integer cents** everywhere. Auth is email + password; each account is its own isolated merchant — 1 user = 1 merchant. Demo login: `demo@priceiq.example` / `demo1234`.
 
 Decision engine is rules-based (`src/lib/recommendation.ts`); an LLM only phrases the result, with a deterministic fallback so the app never depends on the network.
 
 ---
 
-## 2. Most recent work (2026-07-03) — Phase B implementation + UI tests
+## 2. Most recent work (2026-07-04) — Auth + multi-tenant
+
+Email + password authentication with full merchant isolation. Built via subagent-driven development; smoke-tested live with curl.
+
+### Auth library (`src/lib/auth/`)
+
+- **`password.ts`** — `hashPassword` / `verifyPassword` using argon2id. Dev/CI fall back to bcrypt-compatible stubs when native bindings unavailable.
+- **`session.ts`** — opaque token sessions stored in the `Session` table. `createSession(prisma, userId)` mints a 32-byte hex token with a 30-day expiry. `getSessionUser(prisma, token)` validates token + expiry, returns `SessionUser {id, merchantId}`. `setSessionCookie` / `clearSessionCookie` write/clear an httpOnly, sameSite=strict cookie (`priceiq_session`). `SESSION_COOKIE` constant.
+- **`requireSession.ts`** — `getSession()` reads the cookie and calls `getSessionUser`; returns `SessionInfo {user, merchantId} | null`. `requireSessionApi()` throws `HttpError(401)` if no session (caught by `withErrorHandling`). `requireSessionPage()` calls `redirect("/login")` for server components.
+
+### Auth API routes
+
+- **`POST /api/auth/signup`** — creates a `Merchant` + `User` in one transaction; hashes password; mints session; sets cookie. Returns `{ok:true}`.
+- **`POST /api/auth/login`** — constant-time lookup (always runs `verifyPassword` even when email not found to prevent timing oracle). Returns `{ok:true}` + session cookie on success, `401` on bad credentials.
+- **`POST /api/auth/logout`** — clears the session row from DB and clears the cookie. Returns `{ok:true}`.
+
+### Scoping rules (cross-tenant isolation)
+
+- **List endpoints** (`GET /api/products`) filter by `merchantId` from the session — a merchant only sees their own products.
+- **By-id endpoints** (`GET /api/products/[id]` and all nested routes) use `findFirst({ where: { id, merchantId } })` — a foreign `id` returns `404`, not `403`, to avoid leaking record existence.
+- **Bulk ops** (`POST /api/apply/bulk`, `POST /api/refresh`) accept `productIds[]` but ownership is verified per-item; foreign ids are silently skipped.
+- **Scrape / ingest / catalog upload** all scope writes to the session's `merchantId`.
+- All auth-gated routes use `withErrorHandling` so `HttpError(401)` becomes a JSON `401` response, not a `500`.
+
+---
+
+## 2a. Most recent work (2026-07-03) — Phase B implementation + UI tests
 
 All three built via **subagent-driven development** (fresh implementer subagent per task, spec-compliance review + code-quality review after each, final whole-branch review at the end).
 
@@ -172,8 +198,17 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 ## 6. Next steps
 
-1. ~~**DNS-rebinding TOCTOU**~~ — closed via connect-time IP pinning (`src/lib/scrape/pinnedAgent.ts`, `77634ec`–`b05cf05`). undici `Agent` with custom `lookup` validates IPs at socket-connect time; DNS-rebinding surfaces as `blocked_url`.
-2. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~broader UI coverage~~ (`e1753f6`), ~~CogsInput tests~~ (`616e8fa`), ~~demo helpers~~ (`5caf3ca`), ~~Dashboard/ProductUpload/IngestUpload/RecommendationCard/WhatIfSlider tests~~ (this session), ~~DNS-rebinding pinning~~ (this session).
+Remaining product work (in rough priority order):
+
+1. **Real competitor discovery** — currently merchants must supply competitor URLs manually in the CSV. A discovery layer (search-based or catalog-matching) would remove that friction.
+2. **Price-change alerts** — notify merchants (email / webhook) when a competitor price moves significantly or a recommendation changes.
+3. **Shopify OAuth** — replace the CSV upload flow with a Shopify app that pulls product catalog and pushes applied prices directly.
+
+Auth hardening deferred from this phase:
+- **Rate limiting** on `/api/auth/login` and `/api/auth/signup` (brute-force protection).
+- **Password reset** flow (email token, expiry, one-time use).
+- **CSRF hardening** beyond `sameSite=strict` (double-submit cookie or signed token) — `sameSite` is sufficient for cross-origin form posts but not for all attack surfaces.
+- **Session revocation on password change** — current implementation does not invalidate existing sessions when a user changes their password.
 
 ---
 
@@ -181,14 +216,18 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 From `C:\Users\pohde\projects\priceiq` (prefix Bash cmds with `cd /c/Users/pohde/projects/priceiq &&`):
 ```bash
-npm test            # expect 265 passing
+npm test            # expect 300 passing
 npx prisma db push  # should say "already in sync"
-npm run seed        # reseed 13 products (STOP dev server first — SQLite lock)
-npm run dev         # background it; http://localhost:3000
+npm run seed        # reseed demo merchant + 8 products (STOP dev server first — SQLite lock)
+npm run dev         # background it; http://localhost:3000 — lands on /login
 npm run build       # typecheck + production build
 ```
-**Demo a live scrape:** dashboard → upload `test-data/demo-scrape.csv` → open Ceramic Mug → "Refresh now" → LocalDemoShop moves toward 13.25. Edit the price in `public/demo-competitor.html` and re-refresh to watch it move. Competitors without URLs report `no_url` (expected).
-```
+
+**Demo login:** `demo@priceiq.example` / `demo1234` — seeds one merchant with 8 products.
+
+Hitting the app now starts at `/login`. After logging in, the dashboard shows only that merchant's products. Sign up a second account to verify isolation — its product list starts empty.
+
+**Demo a live scrape:** log in → dashboard → upload `test-data/demo-scrape.csv` → open Ceramic Mug → "Refresh now" → LocalDemoShop moves toward 13.25. Edit the price in `public/demo-competitor.html` and re-refresh to watch it move. Competitors without URLs report `no_url` (expected).
 
 ---
 

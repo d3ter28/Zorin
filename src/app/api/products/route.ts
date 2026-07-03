@@ -4,8 +4,9 @@ import { marginPct } from "@/lib/margin";
 import { compare } from "@/lib/comparison";
 import { decideForProduct } from "@/lib/recommendation";
 import { requireSessionApi } from "@/lib/auth/requireSession";
+import { withErrorHandling } from "@/lib/api/errors";
 
-export async function GET() {
+export const GET = withErrorHandling(async () => {
   const { merchantId } = await requireSessionApi();
   const products = await prisma.product.findMany({
     where: { merchantId },
@@ -39,4 +40,4 @@ export async function GET() {
   });
 
   return NextResponse.json(rows);
-}
+});
