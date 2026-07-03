@@ -3,7 +3,7 @@
 **Date:** 2026-07-03
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **implemented and merged** (status lines, load states, selection/apply flow). **207 tests passing.** Working tree clean.
+**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **implemented and merged** (status lines, load states, selection/apply flow). CogsInput **now covered**. **216 tests passing.** Working tree clean.
 
 ---
 
@@ -158,7 +158,7 @@ c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
 - **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite `dev.db`), Vitest **4**, Tailwind **v4** (OKLCH tokens). Path alias `@/` → `src/`.
 - **AGENTS.md/CLAUDE.md:** this Next.js has breaking changes vs training data. **Read `node_modules/next/dist/docs/` before writing Next code.** Async route `params` is `Promise<{id}>` — must be awaited; client components use `use(params)`.
 - **Windows working-dir drift (Bash tool):** commands run from `C:\Users\pohde` (home), not the project. **Always prefix git/npm/tsx with `cd /c/Users/pohde/projects/priceiq &&`** or they fail "not a git repository".
-- **Tests:** Vitest projects — unit (node, src/**/*.test.ts) + ui (jsdom, src/**/*.test.tsx via @testing-library/react). UI tests cover refresh states, status lines, load states, and the selection/apply flow of ManageCompetitors/ProductsTable. **207 passing.**
+- **Tests:** Vitest projects — unit (node, src/**/*.test.ts) + ui (jsdom, src/**/*.test.tsx via @testing-library/react). UI tests cover refresh states, status lines, load states, the selection/apply flow of ManageCompetitors/ProductsTable, and CogsInput. **216 passing.**
 - **DB:** no migrations. `npx prisma db push` to sync; `npm run seed` (13 products; **stop the dev server first — SQLite lock**).
 - **Dev server:** background it (`run_in_background: true`); http://localhost:3000.
 - **Money:** integer cents. `formatCents` / `dollarsToCents` in `src/lib/money.ts`.
@@ -173,7 +173,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 ## 6. Next steps
 
 1. **Broader UI coverage — DESIGNED + PLANNED, READY TO IMPLEMENT.** Plan at `docs/superpowers/plans/2026-07-03-broader-ui-coverage.md` (committed). Execute with `superpowers:subagent-driven-development`. 3 tasks, +14 tests → 207 expected. See section 2 for the task breakdown.
-2. **Remaining untested components** (not yet designed): `CogsInput`, `Dashboard`, `IngestUpload`, `ProductUpload`, `RecommendationCard`, `WhatIfSlider`. CogsInput is the natural next candidate (embedded in every ProductsTable row, has its own save/error states).
+2. **Remaining untested components** (not yet designed): `Dashboard`, `IngestUpload`, `ProductUpload`, `RecommendationCard`, `WhatIfSlider`.
 3. **DNS-rebinding TOCTOU** — accepted residual SSRF risk; fix = connection-level IP pinning via custom undici dispatcher. Low urgency for single-tenant MVP.
 4. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~demo helpers~~ (`5caf3ca`).
 
@@ -183,7 +183,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 From `C:\Users\pohde\projects\priceiq` (prefix Bash cmds with `cd /c/Users/pohde/projects/priceiq &&`):
 ```bash
-npm test            # expect 207 passing
+npm test            # expect 216 passing
 npx prisma db push  # should say "already in sync"
 npm run seed        # reseed 13 products (STOP dev server first — SQLite lock)
 npm run dev         # background it; http://localhost:3000
