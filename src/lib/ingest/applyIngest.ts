@@ -19,6 +19,7 @@ type PrismaSurface = Pick<
 export async function applyIngest(
   prisma: PrismaSurface,
   parsed: ParseResult,
+  merchantId: string,
 ): Promise<IngestSummary> {
   const errors: RowError[] = [...parsed.errors];
   let inserted = 0;
@@ -29,7 +30,7 @@ export async function applyIngest(
   }
 
   const skus = [...new Set(parsed.rows.map((r) => r.sku))];
-  const products = await prisma.product.findMany({ where: { sku: { in: skus } } });
+  const products = await prisma.product.findMany({ where: { sku: { in: skus }, merchantId } });
   const skuToId = new Map(products.map((p) => [p.sku, p.id]));
   const productIds = [...new Set(products.map((p) => p.id))];
 

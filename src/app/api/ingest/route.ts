@@ -6,12 +6,12 @@ import { applyIngest } from "@/lib/ingest/applyIngest";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 
 export const POST = withErrorHandling(async (req: Request) => {
-  await requireSessionApi();
+  const { merchantId } = await requireSessionApi();
   const text = await req.text();
   if (text.trim() === "") {
     throw new HttpError(400, "Empty CSV body");
   }
   const parsed = parseCsv(text);
-  const summary = await applyIngest(prisma, parsed);
+  const summary = await applyIngest(prisma, parsed, merchantId);
   return NextResponse.json(summary);
 });

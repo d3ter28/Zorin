@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { applyIngest } from "./applyIngest";
 import type { ParseResult } from "./parseCsv";
 
@@ -33,7 +33,7 @@ describe("applyIngest", () => {
     const result = await applyIngest(prisma as never, parsed([
       { line: 1, sku: "TEE-001", competitorName: "RivalShop", priceCents: 2850 }, // exists -> update
       { line: 2, sku: "TEE-001", competitorName: "MarketCo", priceCents: 3000 },  // new -> insert
-    ]));
+    ]), "m1");
 
     expect(prisma.competitorPrice.upsert).toHaveBeenCalledTimes(2);
     expect(prisma.competitorPrice.upsert).toHaveBeenCalledWith(
@@ -59,7 +59,7 @@ describe("applyIngest", () => {
     const prisma = mockPrisma({ products: [{ id: "p1", sku: "TEE-001" }] });
     await applyIngest(prisma as never, parsed([
       { line: 1, sku: "TEE-001", competitorName: "RivalShop", priceCents: 2850 },
-    ]));
+    ]), "m1");
     expect(prisma.recommendation.deleteMany).toHaveBeenCalledWith({
       where: { productId: { in: ["p1"] } },
     });
@@ -69,7 +69,7 @@ describe("applyIngest", () => {
     const prisma = mockPrisma({ products: [] });
     const result = await applyIngest(prisma as never, parsed([
       { line: 1, sku: "NOPE-999", competitorName: "RivalShop", priceCents: 2850 },
-    ]));
+    ]), "m1");
     expect(prisma.competitorPrice.upsert).not.toHaveBeenCalled();
     expect(prisma.competitorPriceObservation.create).not.toHaveBeenCalled();
     expect(prisma.recommendation.deleteMany).not.toHaveBeenCalled();
@@ -82,8 +82,9 @@ describe("applyIngest", () => {
     const prisma = mockPrisma({ products: [] });
     const result = await applyIngest(prisma as never, parsed([], [
       { line: 4, raw: "bad,row,abc", reason: "invalid price" },
-    ]));
+    ]), "m1");
     expect(result.skipped).toBe(1);
     expect(result.errors).toHaveLength(1);
   });
 });
+
