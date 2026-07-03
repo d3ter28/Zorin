@@ -6,6 +6,7 @@ interface Field {
   label: string;
   type: "text" | "email" | "password" | "url";
   placeholder?: string;
+  required?: boolean;
 }
 
 export function AuthForm({
@@ -51,7 +52,7 @@ export function AuthForm({
           <span className="text-sm text-muted">{f.label}</span>
           <input
             type={f.type}
-            required={f.name !== "storeUrl"}
+            required={f.required !== false}
             placeholder={f.placeholder}
             value={values[f.name] ?? ""}
             onChange={(e) => setValues((v) => ({ ...v, [f.name]: e.target.value }))}

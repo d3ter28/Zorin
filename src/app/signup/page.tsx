@@ -12,7 +12,7 @@ export default function SignupPage() {
           { name: "email", label: "Email", type: "email" },
           { name: "password", label: "Password (8+ characters)", type: "password" },
           { name: "storeName", label: "Store name", type: "text" },
-          { name: "storeUrl", label: "Store URL (optional)", type: "url" },
+          { name: "storeUrl", label: "Store URL (optional)", type: "url", required: false },
         ]}
       />
       <p className="mt-4 text-sm text-muted">
