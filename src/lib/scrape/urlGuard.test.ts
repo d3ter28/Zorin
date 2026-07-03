@@ -69,6 +69,14 @@ describe("validateScrapeUrl", () => {
       .toEqual({ ok: false, reason: "private_ip" });
   });
 
+  it("accepts a public IP literal without a DNS lookup", async () => {
+    const noLookup: GuardDeps = {
+      lookup: async () => { throw new Error("must not be called"); },
+    };
+    const res = await validateScrapeUrl("http://93.184.216.34/p", { deps: noLookup });
+    expect(res).toEqual({ ok: true });
+  });
+
   it("rejects hostnames resolving to a private IP (any record)", async () => {
     const d: GuardDeps = { lookup: lookupOf({ "evil.example": ["93.184.216.34", "10.0.0.5"] }) };
     expect(await validateScrapeUrl("https://evil.example/", { deps: d }))
@@ -81,7 +89,7 @@ describe("validateScrapeUrl", () => {
   });
 
   it("allows private targets when allowPrivate is set (demo mode)", async () => {
-    const noLookup: GuardDeps = { lookup: async () => [{ address: "127.0.0.1", family: 4 }] };
+    const noLookup: GuardDeps = { lookup: async () => { throw new Error("must not be called"); } };
     expect(await validateScrapeUrl("http://localhost:3000/demo-competitor.html", { deps: noLookup, allowPrivate: true }))
       .toEqual({ ok: true });
     // scheme check still applies even in demo mode

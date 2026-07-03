@@ -39,7 +39,7 @@ function isPrivateV6(ip: string): boolean {
 }
 
 export interface GuardDeps {
-  /** DNS resolution seam — injectable so tests never hit real DNS. */
+  // DNS resolution seam — injectable so tests never hit real DNS.
   lookup: (hostname: string) => Promise<Array<{ address: string; family: number }>>;
 }
 
@@ -51,15 +51,8 @@ const defaultDeps: GuardDeps = {
   lookup: (hostname) => dnsLookup(hostname, { all: true }),
 };
 
-/**
- * SSRF guard for merchant-supplied scrape URLs. Rejects non-http(s) schemes,
- * private/loopback/link-local/metadata IP literals, and hostnames any of whose
- * DNS records resolve to such an IP. `allowPrivate` skips only the IP checks
- * (never the scheme check) — used in development so the localhost demo works.
- *
- * // DNS-rebinding TOCTOU window is an accepted risk for single-tenant MVP.
- * // Scheme check applies even in demo mode.
- */
+// SSRF guard: rejects non-http(s), private IP literals, and private-resolving hostnames.
+// allowPrivate skips IP checks only (not scheme check) for the local demo. DNS-rebinding TOCTOU is accepted risk.
 export async function validateScrapeUrl(
   url: string,
   opts: { deps?: GuardDeps; allowPrivate?: boolean } = {},
