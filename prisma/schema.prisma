@@ -12,6 +12,7 @@ model Merchant {
   storeUrl  String
   createdAt DateTime  @default(now())
   products  Product[]
+  users     User[]
 }
 
 model Product {
@@ -66,4 +67,23 @@ model Recommendation {
   rulesJson   String
   phrasing    String
   generatedAt DateTime @default(now())
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  merchantId   String    @unique
+  merchant     Merchant  @relation(fields: [merchantId], references: [id])
+  createdAt    DateTime  @default(now())
+  sessions     Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }

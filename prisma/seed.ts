@@ -1,6 +1,7 @@
 // Prisma 7 requires a driver adapter, so we reuse the configured client
 // singleton from src/lib/db.ts rather than instantiating a bare PrismaClient.
 import { prisma } from "../src/lib/db";
+import { hashPassword } from "../src/lib/auth/password";
 
 const PRODUCTS = [
   { title: "Organic Cotton Tee", sku: "TEE-001", currentPrice: 3200, cogs: 1200, category: "Apparel", estUnits: 120, comps: [2800, 3000, 3100] },
@@ -16,8 +17,11 @@ const PRODUCTS = [
 const COMP_NAMES = ["RivalShop", "MarketCo", "PriceLeader"];
 
 async function main() {
+  await prisma.session.deleteMany();
+  await prisma.user.deleteMany();
   await prisma.recommendation.deleteMany();
   await prisma.competitorPrice.deleteMany();
+  await prisma.competitorPriceObservation.deleteMany();
   await prisma.product.deleteMany();
   await prisma.merchant.deleteMany();
 
@@ -44,7 +48,17 @@ async function main() {
       },
     });
   }
-  console.log(`Seeded merchant ${merchant.id} with ${PRODUCTS.length} products.`);
+  await prisma.user.create({
+    data: {
+      email: "demo@priceiq.example",
+      passwordHash: await hashPassword("demo1234"),
+      merchantId: merchant.id,
+    },
+  });
+
+  console.log(
+    `Seeded merchant ${merchant.id} with ${PRODUCTS.length} products. Login: demo@priceiq.example / demo1234`,
+  );
 }
 
 main().finally(() => prisma.$disconnect());
