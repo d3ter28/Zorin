@@ -60,9 +60,9 @@ describe("getSessionUser", () => {
       expiresAt: new Date(Date.now() - 1000),
       user,
     });
-    del.mockResolvedValue({});
+    deleteMany.mockResolvedValue({ count: 1 });
     await expect(getSessionUser(prisma, "t")).resolves.toBeNull();
-    expect(del).toHaveBeenCalledWith({ where: { token: "t" } });
+    expect(deleteMany).toHaveBeenCalledWith({ where: { token: "t" } });
   });
 
   it("returns null for an empty token without querying", async () => {

@@ -25,14 +25,14 @@ export async function getSessionUser(
   prisma: PrismaClient,
   token: string,
 ): Promise<SessionUser | null> {
-  if (!token) return null;
+  if (!token?.trim()) return null;
   const session = await prisma.session.findUnique({
     where: { token },
     include: { user: true },
   });
   if (!session) return null;
   if (session.expiresAt.getTime() <= Date.now()) {
-    await prisma.session.delete({ where: { token } });
+    await prisma.session.deleteMany({ where: { token } });
     return null;
   }
   const { id, email, merchantId } = session.user;
