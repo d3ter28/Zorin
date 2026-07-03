@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { applyDecision, applyManualPrice } from "@/lib/apply";
+import { requireSessionApi } from "@/lib/auth/requireSession";
+import { assertProductOwned } from "@/lib/auth/ownership";
+import { prisma } from "@/lib/db";
 
 /**
  * Read an optional manual price (integer cents) from the request body. Returns
@@ -26,7 +29,9 @@ async function readOptionalPrice(req: Request): Promise<number | null> {
 
 export const POST = withErrorHandling(
   async (req: Request, { params }: { params: Promise<{ id: string }> }) => {
+    const { merchantId } = await requireSessionApi();
     const { id } = await params;
+    await assertProductOwned(prisma, id, merchantId);
     const price = await readOptionalPrice(req);
     const result =
       price === null ? await applyDecision(id) : await applyManualPrice(id, price);

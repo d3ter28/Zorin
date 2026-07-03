@@ -3,9 +3,12 @@ import { prisma } from "@/lib/db";
 import { marginPct } from "@/lib/margin";
 import { compare } from "@/lib/comparison";
 import { decideForProduct } from "@/lib/recommendation";
+import { requireSessionApi } from "@/lib/auth/requireSession";
 
 export async function GET() {
+  const { merchantId } = await requireSessionApi();
   const products = await prisma.product.findMany({
+    where: { merchantId },
     include: { competitors: true },
     orderBy: { title: "asc" },
   });

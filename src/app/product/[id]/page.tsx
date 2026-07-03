@@ -34,13 +34,23 @@ export default function ProductPage({
     let active = true;
     fetch(`/api/products/${id}`)
       .then((r) => {
+        if (r.status === 401) {
+          window.location.href = "/login";
+          return null;
+        }
         if (!r.ok) throw new Error("not found");
         return r.json();
       })
-      .then((data) => active && setD(data))
+      .then((data) => data && active && setD(data))
       .catch(() => active && setFailed(true));
     fetch(`/api/products/${id}/recommendation`, { method: "POST" })
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (r.status === 401) {
+          window.location.href = "/login";
+          return null;
+        }
+        return r.ok ? r.json() : null;
+      })
       .then((j) => {
         if (active && j) {
           setRec({

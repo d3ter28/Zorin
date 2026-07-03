@@ -1,8 +1,22 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { applyDecision } = vi.hoisted(() => ({ applyDecision: vi.fn() }));
+const { filterOwnedProductIds } = vi.hoisted(() => ({ filterOwnedProductIds: vi.fn() }));
 
 vi.mock("@/lib/apply", () => ({ applyDecision }));
+vi.mock("@/lib/db", () => ({ prisma: {} }));
+
+vi.mock("@/lib/auth/requireSession", () => ({
+  requireSessionApi: vi.fn(async () => ({
+    merchantId: "m1",
+    user: { id: "u1", email: "demo@priceiq.example", merchantId: "m1" },
+  })),
+}));
+
+vi.mock("@/lib/auth/ownership", () => ({
+  assertProductOwned: vi.fn(async () => undefined),
+  filterOwnedProductIds,
+}));
 
 import { POST } from "./route";
 
@@ -15,6 +29,9 @@ const req = (body: unknown) =>
 
 beforeEach(() => {
   applyDecision.mockReset();
+  filterOwnedProductIds.mockReset();
+  // Default: pass through all ids as owned
+  filterOwnedProductIds.mockImplementation(async (_p: unknown, ids: string[]) => ids);
 });
 
 describe("POST /api/apply/bulk", () => {
@@ -63,5 +80,17 @@ describe("POST /api/apply/bulk", () => {
     const res = await POST(req({ productIds: ["ok", 7] }));
     expect(res.status).toBe(400);
     expect(applyDecision).not.toHaveBeenCalled();
+  });
+
+  it("applies only owned ids, silently dropping foreign ones", async () => {
+    filterOwnedProductIds.mockResolvedValue(["p1"]);
+    applyDecision.mockResolvedValue({ found: true, applied: true, action: "raise", currentPrice: 2400 });
+
+    const res = await POST(req({ productIds: ["p1", "foreign"] }));
+
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ applied: 1, skipped: 0 });
+    expect(applyDecision).toHaveBeenCalledTimes(1);
+    expect(applyDecision.mock.calls[0][0]).toBe("p1");
   });
 });

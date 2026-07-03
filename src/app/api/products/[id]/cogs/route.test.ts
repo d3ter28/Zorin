@@ -13,6 +13,20 @@ vi.mock("@/lib/db", () => ({
   },
 }));
 
+vi.mock("@/lib/auth/requireSession", () => ({
+  requireSessionApi: vi.fn(async () => ({
+    merchantId: "m1",
+    user: { id: "u1", email: "demo@priceiq.example", merchantId: "m1" },
+  })),
+}));
+
+const { assertProductOwned } = vi.hoisted(() => ({ assertProductOwned: vi.fn(async () => undefined) }));
+
+vi.mock("@/lib/auth/ownership", () => ({
+  assertProductOwned,
+  filterOwnedProductIds: vi.fn(async (_p: unknown, ids: string[]) => ids),
+}));
+
 import { POST } from "./route";
 
 const ctx = (id: string) => ({ params: Promise.resolve({ id }) });
@@ -23,6 +37,8 @@ beforeEach(() => {
   findUnique.mockReset();
   update.mockReset();
   deleteMany.mockReset();
+  assertProductOwned.mockReset();
+  assertProductOwned.mockResolvedValue(undefined);
 });
 
 describe("POST /api/products/[id]/cogs", () => {
@@ -59,7 +75,8 @@ describe("POST /api/products/[id]/cogs", () => {
   });
 
   it("returns 404 for an unknown product", async () => {
-    findUnique.mockResolvedValue(null);
+    const { HttpError } = await import("@/lib/api/errors");
+    assertProductOwned.mockRejectedValue(new HttpError(404, "Not found"));
     const res = await POST(reqWith({ cogs: 100 }), ctx("nope"));
     expect(res.status).toBe(404);
     expect(update).not.toHaveBeenCalled();

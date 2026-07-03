@@ -5,6 +5,13 @@ const { applyIngest } = vi.hoisted(() => ({ applyIngest: vi.fn() }));
 vi.mock("@/lib/db", () => ({ prisma: {} }));
 vi.mock("@/lib/ingest/applyIngest", () => ({ applyIngest }));
 
+vi.mock("@/lib/auth/requireSession", () => ({
+  requireSessionApi: vi.fn(async () => ({
+    merchantId: "m1",
+    user: { id: "u1", email: "demo@priceiq.example", merchantId: "m1" },
+  })),
+}));
+
 import { POST } from "./route";
 
 const req = (body: string) => ({ text: async () => body }) as unknown as Request;

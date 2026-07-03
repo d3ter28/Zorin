@@ -6,6 +6,13 @@ vi.mock("@/lib/db", () => ({
   prisma: { product: { findMany } },
 }));
 
+vi.mock("@/lib/auth/requireSession", () => ({
+  requireSessionApi: vi.fn(async () => ({
+    merchantId: "m1",
+    user: { id: "u1", email: "demo@priceiq.example", merchantId: "m1" },
+  })),
+}));
+
 import { GET } from "./route";
 
 beforeEach(() => {
