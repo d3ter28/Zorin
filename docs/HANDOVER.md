@@ -50,18 +50,14 @@ a5467ca feat: validateScrapeUrl — scheme allowlist + DNS private-IP blocking
 3d747c3 docs: Phase B scheduled-refresh design spec; SSRF plan doc
 ```
 
-### Phase B: Scheduled Auto-Refresh (designed, not yet implemented)
+### Phase B: Scheduled Auto-Refresh (complete, merged)
 
 Design spec: `docs/superpowers/specs/2026-07-03-scheduled-refresh-design.md`
-Plan: `docs/superpowers/plans/2026-07-03-scheduled-refresh.md` *(untracked — commit before executing)*
+Plan: `docs/superpowers/plans/2026-07-03-scheduled-refresh.md`
 
 **Approach:** in-process scheduler started from Next.js `instrumentation.ts`; no external cron, no new dependencies.
 
-**4-task plan:**
-1. `findDueProductIds(prisma, now)` — Prisma query: `{competitorUrl:{not:null}, lastObservedAt:{lt:cutoff}}`; dedup with JS `Set`.
-2. `runScheduledRefresh(prisma, now, deps?)` — loops due ids, per-product try/catch, logs `[auto-refresh] N products: refreshed X, failed Y`.
-3. `startAutoRefresh(deps?)` — module-level `started`/`inFlight` guards; respects `AUTO_REFRESH=0`; first tick ~30s after boot, then hourly. `_resetAutoRefreshForTests()` for test teardown.
-4. `src/instrumentation.ts` — thin shell: calls `startAutoRefresh()` only when `NEXT_RUNTIME === "nodejs"`. Manual verification: boot dev server, watch for `[auto-refresh]` log line ~30s in.
+- `autoRefresh.ts` — hourly in-process scheduler started from `src/instrumentation.ts`; refreshes competitor prices older than 24h via `refreshProduct`; first tick ~30s after boot; one log line per tick; disable with `AUTO_REFRESH=0`.
 
 All logic lives in **`src/lib/scrape/autoRefresh.ts`** (unit-tested); instrumentation shell is excluded from unit tests.
 
@@ -152,7 +148,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 ## 6. Next steps
 
 1. ~~**SSRF hardening**~~ **DONE** (`urlGuard.ts`, merged `3d747c3`). Residual: DNS-rebinding TOCTOU accepted for single-tenant MVP.
-2. **Phase B: scheduled/automatic refresh — DESIGNED, READY TO IMPLEMENT.** Plan at `docs/superpowers/plans/2026-07-03-scheduled-refresh.md` (untracked — commit it first). Execute with `superpowers:subagent-driven-development`. 4 tasks: `findDueProductIds` → `runScheduledRefresh` → `startAutoRefresh` → `instrumentation.ts` + manual verify.
+2. ~~**Phase B: scheduled/automatic refresh**~~ **DONE** (`autoRefresh.ts` + `src/instrumentation.ts`, merged). 181 tests passing (168 baseline + 13 new).
 3. **UI component tests (deferred by design).** Add jsdom + `.tsx` support to cover `ManageCompetitors`/`ProductsTable` refresh states (idle/busy/error) and status-line rendering.
 4. ~~Demo helpers~~ **committed** (`5caf3ca`).
 
