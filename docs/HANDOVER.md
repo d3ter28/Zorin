@@ -42,7 +42,7 @@ First `.tsx` test coverage in the repo. Spec: `docs/superpowers/specs/2026-07-03
 
 Commits: `6cad82e` → `735c3a4` → `eea23ae` → `390206c`.
 
-### Broader UI coverage (designed + planned, NOT started)
+### Broader UI coverage (complete, merged)
 
 Spec: `docs/superpowers/specs/2026-07-03-broader-ui-coverage-design.md` (`fa13f06`)
 Plan: `docs/superpowers/plans/2026-07-03-broader-ui-coverage.md` (`db4df76`)
