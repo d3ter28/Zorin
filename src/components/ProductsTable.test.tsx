@@ -1,0 +1,111 @@
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { ProductsTable } from "./ProductsTable";
+
+// Two "hold" rows: no checkboxes rendered, no apply bar — keeps DOM focused on refresh UI.
+const ROWS = [
+  {
+    id: "p1",
+    title: "Ceramic Mug",
+    sku: "MUG-008",
+    currentPrice: 1500,
+    cogs: 600,
+    category: "kitchen",
+    estUnits: 100,
+    margin: 0.6,
+    comparison: { compMedian: 1400, pctVsMedian: 0.07, competitorCount: 3 },
+    recommendedAction: "hold" as const,
+    suggestedPrice: 1500,
+  },
+  {
+    id: "p2",
+    title: "Steel Bottle",
+    sku: "BTL-002",
+    currentPrice: 2200,
+    cogs: 900,
+    category: "kitchen",
+    estUnits: 50,
+    margin: 0.59,
+    comparison: { compMedian: 2250, pctVsMedian: -0.02, competitorCount: 2 },
+    recommendedAction: "hold" as const,
+    suggestedPrice: 2200,
+  },
+];
+
+const json = (data: unknown, ok = true) => ({ ok, json: async () => data }) as Response;
+
+// Routes GET /api/products to the row fixture; POST /api/refresh to the given handler.
+function stubFetch(onRefresh: () => Promise<Response>) {
+  const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+    const url = String(input);
+    if (url === "/api/products") return json(ROWS);
+    if (url === "/api/refresh" && init?.method === "POST") return onRefresh();
+    throw new Error(`unexpected fetch: ${url}`);
+  });
+  vi.stubGlobal("fetch", fetchMock);
+  return fetchMock;
+}
+
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+
+async function renderLoaded() {
+  render(<ProductsTable refreshToken={0} />);
+  // Wait out the loading skeleton — table appears once GET /api/products resolves.
+  return await screen.findByRole("button", { name: "Refresh all prices" });
+}
+
+describe("ProductsTable refresh states", () => {
+  it("renders the table with an enabled refresh button after load", async () => {
+    stubFetch(async () => json({ refreshed: 0, failed: 0 }));
+    const button = await renderLoaded();
+    expect((button as HTMLButtonElement).disabled).toBe(false);
+    expect(screen.getByText("Ceramic Mug")).toBeTruthy();
+  });
+
+  it("busy: disables the button and shows 'Refreshing…' while the POST is pending", async () => {
+    stubFetch(() => new Promise(() => {})); // never resolves
+    const button = await renderLoaded();
+    await userEvent.click(button);
+    const busy = screen.getByRole("button", { name: "Refreshing…" }) as HTMLButtonElement;
+    expect(busy.disabled).toBe(true);
+  });
+
+  it("success: shows plural summary and re-fetches the table", async () => {
+    const fetchMock = stubFetch(async () => json({ refreshed: 2, failed: 0 }));
+    const button = await renderLoaded();
+    await userEvent.click(button);
+    await screen.findByText("Refreshed 2 prices.");
+    const productLoads = fetchMock.mock.calls.filter(([u]) => String(u) === "/api/products");
+    expect(productLoads.length).toBe(2); // initial load + post-refresh reload
+  });
+
+  it("success with failures: includes the failed count", async () => {
+    stubFetch(async () => json({ refreshed: 1, failed: 1 }));
+    const button = await renderLoaded();
+    await userEvent.click(button);
+    await screen.findByText("Refreshed 1 price, 1 failed.");
+  });
+
+  it("singular: shows 'Refreshed 1 price.' without pluralizing", async () => {
+    stubFetch(async () => json({ refreshed: 1, failed: 0 }));
+    const button = await renderLoaded();
+    await userEvent.click(button);
+    await screen.findByText("Refreshed 1 price.");
+  });
+
+  it("failure: shows the error message and re-enables the button", async () => {
+    stubFetch(async () => json({}, false));
+    const button = await renderLoaded();
+    await userEvent.click(button);
+    await screen.findByText("Couldn't refresh prices — try again.");
+    await waitFor(() => {
+      const b = screen.getByRole("button", { name: "Refresh all prices" }) as HTMLButtonElement;
+      expect(b.disabled).toBe(false);
+    });
+  });
+});

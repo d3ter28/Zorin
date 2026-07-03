@@ -133,7 +133,7 @@ c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
 - **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite `dev.db`), Vitest **4**, Tailwind **v4** (OKLCH tokens). Path alias `@/` → `src/`.
 - **AGENTS.md/CLAUDE.md:** this Next.js has breaking changes vs training data. **Read `node_modules/next/dist/docs/` before writing Next code.** Async route `params` is `Promise<{id}>` — must be awaited; client components use `use(params)`.
 - **Windows working-dir drift (Bash tool):** commands run from `C:\Users\pohde` (home), not the project. **Always prefix git/npm/tsx with `cd /c/Users/pohde/projects/priceiq &&`** or they fail "not a git repository".
-- **Tests:** Vitest, node env, `include: ["src/**/*.test.ts"]` — **no jsdom, no `.tsx`.** UI component tests are deliberately deferred; unit tests use Map/mock-backed prisma and don't touch the real DB. **168 passing.** Route registration and in-browser flows are NOT covered — verify those in the running app.
+- **Tests:** Vitest projects — unit (node, src/**/*.test.ts) + ui (jsdom, src/**/*.test.tsx via @testing-library/react). UI tests cover refresh states of ManageCompetitors/ProductsTable. **193 passing.**
 - **DB:** no migrations. `npx prisma db push` to sync; `npm run seed` (13 products; **stop the dev server first — SQLite lock**).
 - **Dev server:** background it (`run_in_background: true`); http://localhost:3000.
 - **Money:** integer cents. `formatCents` / `dollarsToCents` in `src/lib/money.ts`.
@@ -149,7 +149,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 1. ~~**SSRF hardening**~~ **DONE** (`urlGuard.ts`, merged `3d747c3`). Residual: DNS-rebinding TOCTOU accepted for single-tenant MVP.
 2. ~~**Phase B: scheduled/automatic refresh**~~ **DONE** (`autoRefresh.ts` + `src/instrumentation.ts`, merged). 181 tests passing (168 baseline + 13 new).
-3. **UI component tests (deferred by design).** Add jsdom + `.tsx` support to cover `ManageCompetitors`/`ProductsTable` refresh states (idle/busy/error) and status-line rendering.
+3. ~~**UI component tests (deferred by design)**~~ **DONE** (ManageCompetitors + ProductsTable refresh states, 12 new tests).
 4. ~~Demo helpers~~ **committed** (`5caf3ca`).
 
 ---
@@ -158,7 +158,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 From `C:\Users\pohde\projects\priceiq` (prefix Bash cmds with `cd /c/Users/pohde/projects/priceiq &&`):
 ```bash
-npm test            # expect 181 passing
+npm test            # expect 193 passing
 npx prisma db push  # should say "already in sync"
 npm run seed        # reseed 13 products (STOP dev server first — SQLite lock)
 npm run dev         # background it; http://localhost:3000
