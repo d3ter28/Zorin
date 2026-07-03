@@ -11,7 +11,7 @@ export interface ObservationInput {
   competitorName: string;
   competitorUrl: string;
   priceCents: number;
-  source: "csv" | "scrape";
+  source: "csv" | "scrape" | "discovery";
   now?: Date;
 }
 

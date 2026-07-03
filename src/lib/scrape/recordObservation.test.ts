@@ -104,4 +104,17 @@ describe("recordObservation", () => {
     expect(proj.isStale).toBe(false);
     expect(proj.lastObservedAt).toEqual(new Date("2026-06-30T00:00:00.000Z"));
   });
+
+  it("accepts source 'discovery' and persists it on the history row", async () => {
+    await recordObservation(prisma, {
+      productId: "p1",
+      competitorName: "walmart.com",
+      competitorUrl: "https://walmart.com/item",
+      priceCents: 1499,
+      source: "discovery",
+    });
+    expect(prisma.competitorPriceObservation.create).toHaveBeenCalledWith(
+      expect.objectContaining({ data: expect.objectContaining({ source: "discovery" }) }),
+    );
+  });
 });
