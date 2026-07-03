@@ -1,88 +1,126 @@
 # PriceIQ — Handover Doc
 
-**Date:** 2026-06-30
+**Date:** 2026-07-01
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** MVP working end-to-end. Product import feature shipped; two runtime bugs fixed. Working tree clean (all committed).
+**Status:** Competitor price scraping (Phase A) complete, reviewed, tested (125 passing), and **merged to `master`**. Working tree clean except 3 untracked local-demo helpers. Nothing in-flight. Dev server not running.
 
 ---
 
 ## 1. What PriceIQ is
 
-An AI-native pricing tool for online store owners. The user uploads their **product catalog** and **competitor prices** (both via CSV), and the app gives plain-English **raise / lower / hold** recommendations per product, with margin protection. Money is stored as **integer cents** everywhere. Single seeded merchant, no auth (this is still an MVP slice).
+An AI-native pricing tool for online store owners. The user uploads their **product catalog** and **competitor prices** (both via CSV) and the app gives plain-English **raise / lower / hold** recommendations per product, with margin protection. Money is stored as **integer cents** everywhere. Single seeded merchant, no auth (still an MVP slice).
 
 Decision engine is rules-based (`src/lib/recommendation.ts`); an LLM only phrases the result, with a deterministic fallback so the app never depends on the network.
 
-## 2. Most recent work (this session)
+---
 
-Two features/fixes landed on `master`:
+## 2. Most recent work (this session) — Competitor Price Scraping, Phase A
 
-1. **Product catalog CSV import** (commit `805036f`) — mirrors the existing competitor ingest flow.
-2. **Margin-floor convergence fix** (commit `d966d14`) — Bug #2 below.
+**Goal:** merchants supply competitor product URLs once (via a CSV `competitor_url` column); the system re-scrapes those URLs **on demand** to keep competitor prices — and therefore recommendations — current, removing manual CSV re-uploads.
 
-Earlier in the session two runtime bugs the user found by manual testing were fixed:
+Built via **subagent-driven-development** (12-task TDD plan, fresh implementer + two-stage review per task), then a final whole-branch review, then merged fast-forward to `master`. **HEAD = `8862969`.**
 
-- **Bug #1 — product detail page hung / 404'd.** Root cause: a route folder was named `import` (a JS reserved word), which **broke Turbopack's route codegen** and poisoned ALL sibling `/api/products/[id]/*` routes. Fix: renamed the folder `import` → `catalog` (route is now `/api/products/catalog`), updated the fetch path in `ProductUpload.tsx` and the route test's `describe`. A follow-on stale `.next/types/validator.ts` tsc error was cleared with `rm -rf .next` + `npm run build`. **Lesson: never name a route segment after a JS reserved word under Turbopack.**
-- **Bug #2 — bulk "Apply N changes" never converged.** Root cause: `floorPrice` used `Math.round`, which for some COGS produced a price whose actual margin was *fractionally below* the 15% floor (e.g. cogs 2200 → `round(2588.24)=2588`, margin 14.99%). The engine kept recommending "raise to floor", apply wrote a no-op, and the product never reached "hold". Fix: `Math.round` → `Math.ceil` in `floorPrice` so the floor price always clears the margin floor. Done via TDD (RED test added, then GREEN).
+### Scraping pipeline (`src/lib/scrape/`, each with a `.test.ts`)
+- `urlGuard.ts` — SSRF guard: `isPrivateIp` (IPv4/v6 classification) + `validateScrapeUrl` (scheme allowlist, private-IP blocking, injectable DNS lookup). `fetchPage` re-validates every redirect hop (max 5). Dev/demo bypass: `NODE_ENV !== "production"` or `SCRAPE_ALLOW_PRIVATE=1`. Accepted residual risk: DNS-rebinding TOCTOU (connection-level IP pinning would close it).
+- `fetcher.ts` → `fetchPage` — the ONLY network seam; **failure-as-data, never throws.** Uses `redirect:"manual"` with per-hop re-validation via `urlGuard`.
+- `extractPrice.ts` — pure HTML→price. Ladder: **JSON-LD `offers.price` → OG `product:price:amount` → visible `.price`**. Uses cheerio.
+- `scrapeOne.ts` — fetch + extract + **plausibility gate** (rejects >5× swings). Returns `{ok:true,priceCents} | {ok:false,reason}`. Surfaces `"blocked_url"` as a failure reason.
+- `recordObservation.ts` — shared write path: history row + current-price projection upsert; both set `isStale:false`.
+- `staleness.ts` — staleness threshold logic + `markStale` writer.
+- `refreshProduct.ts` — orchestrates one product: loops competitors, **preserves last-good price on failure**, marks stale, **invalidates cached recommendation if `refreshed > 0`**. URL-less competitors are skipped with reason `no_url` (counts as failed).
 
-## 3. The product import feature (commit `805036f`)
+### API routes
+- `POST /api/products/[id]/refresh` — refresh one product. Returns `RefreshSummary {productId, refreshed, failed, results[]}`.
+- `POST /api/refresh` — bulk; body `{productIds: string[]}` → `{refreshed, failed}`.
 
-Files:
-- `src/lib/products/parseProductCsv.ts` (+ `.test.ts`) — parses `sku,title,current_price,category,cogs,est_units` (6 cols; cogs/est_units optional; dollars→cents; rejects price ≤ 0).
-- `src/lib/products/importProducts.ts` (+ `.test.ts`) — `importProducts(prisma, merchantId, parsed)`: upserts by `(merchantId, sku)`, invalidates stored recommendations for updated products (`touched`).
-- `src/app/api/products/catalog/route.ts` (+ `route.test.ts`) — `POST`; resolves merchant via `prisma.merchant.findFirst()` or creates a default `{ name: "My Store", storeUrl: "" }`, then calls `importProducts`. 400 on empty body.
-- `src/components/ProductUpload.tsx` — UI mirroring `IngestUpload`; POSTs to `/api/products/catalog`; summary shows added / updated / skipped + per-line errors.
-- `src/components/Dashboard.tsx` (modified) — renders `<ProductUpload>` above `<IngestUpload>`.
-- `test-data/products.csv`, `test-data/competitors.csv`, `test-data/products-with-errors.csv` — coffee-gear sample data engineered to exercise every decision branch:
-  - GRD-100 Hand Grinder → **raise** (below median)
-  - SCALE-200 → **lower** (above median)
-  - KETTLE-300 → **hold** (near median)
-  - FILTER-400 → **raise to floor** (margin below 15%)
-  - TAMP-500 → **hold** (no competitor data)
-  - MUG-600 → **lower to floor** (above median but clamps at margin floor)
+### UI
+- `src/components/ManageCompetitors.tsx` — per-product panel; **"Refresh now"** button; per-competitor status line (`confirmed <relative time>` or `⚠ stale`; "no URL" hint when not auto-refreshable).
+- `src/components/ProductsTable.tsx` — dashboard **"Refresh all prices"** button + live status message.
+- `src/components/IngestUpload.tsx` — helper text updated for the 4-column CSV.
+
+### Correctness fix (`8862969`)
+Stale competitors are now excluded from the displayed median/market-position (`src/app/api/products/route.ts`) and the what-if slider median (`src/app/product/[id]/page.tsx`), matching `decideForProduct` which already filtered them. Dashboard, product page, and recommendation now agree.
+
+### Feature commit range (oldest → newest)
+```
+100ec56 docs: implementation plan for competitor price scraping (Phase A)
+d776f03 feat: schema for competitor price history + staleness
+9c0b1c7 chore: add cheerio for HTML price extraction
+d1a5376 feat: pure price extraction from page HTML (JSON-LD/OG/selector)
+88c3403 feat: page fetcher returning failures as data
+37154d8 feat: scrapeOne — fetch, extract, plausibility gate
+b5a9801 feat: shared recordObservation persistence (history + projection)
+1fa2405 feat: staleness threshold logic + markStale writer
+6fd24be feat: exclude stale competitors from pricing decisions
+795cb5d feat: refreshProduct orchestration with staleness + invalidation
+d41b86a feat: CSV competitor_url column + ingest through shared recordObservation
+fbad87f test: assert unknown-SKU ingest writes no observation row
+614ca1d feat: refresh API routes (single + bulk)
+c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
+8862969 fix: exclude stale competitors from displayed median/position
+```
+
+### Untracked local-demo helpers (intentionally NOT committed)
+- `public/demo-competitor.html` — static scrape target: JSON-LD price `13.25` + OG fallback, for SKU `MUG-008`. Served at http://localhost:3000/demo-competitor.html.
+- `test-data/demo-scrape.csv` — `MUG-008 → LocalDemoShop @ 15.00` pointing at the demo page (demo: 15.00 → 13.25 on refresh).
+- `test-data/random-competitors.csv` — 23 randomized rows across 8 real SKUs; mix of `*.example` URLs and blank URLs.
+
+### Verified working (last manual test)
+`POST /api/products/cmqzfk2b5000r1gieh35y2mfi/refresh` (MUG-008 Ceramic Mug) →
+`{"refreshed":1,"failed":2,"results":[{"LocalDemoShop":ok,1325},{"MarketCo":no_url},{"RivalShop":no_url}]}`. LocalDemoShop persisted at 1325 cents. Stale-filtered median/position confirmed.
+
+---
+
+## 3. Prior work still on `master` (earlier sessions)
+
+- **Product catalog CSV import** (`805036f`): `src/lib/products/parseProductCsv.ts`, `importProducts.ts`, route `POST /api/products/catalog`, `ProductUpload.tsx`. Upserts by `(merchantId, sku)`, invalidates recommendations for updated products.
+- **Margin-floor convergence fix** (`d966d14`): `floorPrice` uses `Math.ceil` (not `Math.round`) so the floor price always clears the 15% margin floor and bulk "Apply" converges to "hold".
+- **Route-segment reserved-word bug (historical lesson):** a route folder named `import` broke Turbopack route codegen and poisoned all sibling `/api/products/[id]/*` routes. Renamed to `catalog`. **Never name a route segment after a JS reserved word under Turbopack.**
+
+---
 
 ## 4. Key technical facts / gotchas
 
-- **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite), Vitest **4**, Tailwind **v4** (OKLCH design tokens). Path alias `@/` → `src/`.
-- **AGENTS.md / CLAUDE.md warn this Next.js has breaking changes vs training data.** Read `node_modules/next/dist/docs/` before writing Next-specific code. Async route `params` is `Promise<{ id: string }>` — must be awaited.
-- **Vitest config includes `src/**/*.test.ts` ONLY** — node env, no jsdom, no `.tsx` component tests. So unit tests do NOT cover route registration or in-browser apply convergence; both runtime bugs were found by manual testing. **Verify behavior in the running app, not just `npm test`.**
-- **Working-directory drift in the Bash tool:** commands sometimes run from `C:\Users\pohde` (home) instead of the project. **Always prefix git/npm/tsx commands with `cd /c/Users/pohde/projects/priceiq &&`.**
-- **SQLite lock:** stop the dev server before `npm run seed` (otherwise the DB is locked). After smoke-testing, re-seed to restore clean demo data.
-- **Dev server must be backgrounded** with `run_in_background: true` (it dies if the spawning shell returns). Runs on http://localhost:3000.
-- **Decision engine** (`src/lib/recommendation.ts`): `MIN_MARGIN_FLOOR = 0.15`, `POSITION_BAND = 0.1` (±10% of median = "at market"). Rule order: (1) no competitor data → hold; (2) margin < floor → raise to floor (overrides position); (3) >10% above median → lower toward median (clamped at floor); (4) >10% below median → raise toward median; (5) within band → hold. `decideForProduct` maps competitor rows → observations → `decide`.
-- **Apply semantics** (`src/lib/apply.ts`): `applyDecision(productId)` recomputes the decision and only writes if `suggestedPrice !== currentPrice`, clearing the stored recommendation on change. A no-op recommendation (suggested === current) is what caused Bug #2's non-convergence.
+- **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite `dev.db`), Vitest **4**, Tailwind **v4** (OKLCH tokens). Path alias `@/` → `src/`.
+- **AGENTS.md/CLAUDE.md:** this Next.js has breaking changes vs training data. **Read `node_modules/next/dist/docs/` before writing Next code.** Async route `params` is `Promise<{id}>` — must be awaited; client components use `use(params)`.
+- **Windows working-dir drift (Bash tool):** commands run from `C:\Users\pohde` (home), not the project. **Always prefix git/npm/tsx with `cd /c/Users/pohde/projects/priceiq &&`** or they fail "not a git repository".
+- **Tests:** Vitest, node env, `include: ["src/**/*.test.ts"]` — **no jsdom, no `.tsx`.** UI component tests are deliberately deferred; unit tests use Map/mock-backed prisma and don't touch the real DB. **125 passing.** Route registration and in-browser flows are NOT covered — verify those in the running app.
+- **DB:** no migrations. `npx prisma db push` to sync; `npm run seed` (13 products; **stop the dev server first — SQLite lock**).
+- **Dev server:** background it (`run_in_background: true`); http://localhost:3000.
+- **Money:** integer cents. `formatCents` / `dollarsToCents` in `src/lib/money.ts`.
+- **CSV format:** `sku, competitor_name, price, competitor_url` — `competitor_url` optional; supplying it enables auto-refresh for that competitor.
+- **Decision engine** (`src/lib/recommendation.ts`): `MIN_MARGIN_FLOOR = 0.15`, `POSITION_BAND = 0.1`. Rule order: no comp data → hold; margin < floor → raise to floor; >10% above median → lower toward median (clamped at floor); >10% below → raise toward median; within band → hold. Stale competitors are filtered before deciding.
 
-## 5. Current repo state
+### Dev-server route-tree corruption (hit + fixed this session)
+A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (renders the HTML not-found page; RSC path resolves to `/_not-found`) even though `npm run build` registers them and `GET /api/products/[id]` works. **Fix: kill node, `rm -rf .next`, restart `npm run dev`.** Verify: `curl -o /dev/null -w "%{http_code}" .../[id]/refresh` → `405` for GET means the route matched.
 
-- Branch `master`, **working tree clean.** All work committed.
-- Test suite: **`npx vitest run` → 84/84 passing.**
-- `test-data/` is **tracked** in the repo (sample fixtures for the import feature).
+---
 
-Recent git log:
-```
-d966d14 fix: round margin-floor price up so recommendations converge
-805036f feat: product catalog CSV import
-5b67995 feat: UI/UX pass — fix dead feedback states, add error/empty/loading states, OKLCH redesign
-ad867a6 feat: wire what-if slider to Apply as manual override, drop dead Regenerate
-68ea756 Merge fix-tsc-route-tests: clean up route-test type errors
-```
+## 5. Next steps
+
+1. ~~**[SECURITY — deferred, tracked] SSRF hardening**~~ **DONE** (`urlGuard.ts`, merged). Residual risk: DNS-rebinding TOCTOU is accepted for this single-tenant MVP (fix = connection-level IP pinning via custom undici dispatcher).
+2. **Phase B (not started): scheduled/automatic refresh.** Phase A is on-demand only. Add background/cron refresh so prices update without a click; builds on `refreshProduct` + `/api/refresh`.
+3. **UI component tests (deferred by design).** Add jsdom + `.tsx` support to cover `ManageCompetitors`/`ProductsTable` refresh states (idle/busy/error) and status-line rendering.
+4. **Decide on the 3 untracked demo helpers** — commit as fixtures or `.gitignore`. Currently untracked/uncommitted.
+
+---
 
 ## 6. How to resume
 
-From `C:\Users\pohde\projects\priceiq`:
+From `C:\Users\pohde\projects\priceiq` (prefix Bash cmds with `cd /c/Users/pohde/projects/priceiq &&`):
 ```bash
-npm run dev            # background it; serves http://localhost:3000
-npm run seed           # reseed clean demo data (STOP the dev server first — SQLite lock)
-npx vitest run         # 84 tests, all green
-npm run build          # typecheck + production build
+npm test            # expect 125 passing
+npx prisma db push  # should say "already in sync"
+npm run seed        # reseed 13 products (STOP dev server first — SQLite lock)
+npm run dev         # background it; http://localhost:3000
+npm run build       # typecheck + production build
 ```
-Manual smoke test for the two fixed bugs: open an individual product detail page (Bug #1 — should load, not hang), and use bulk "Apply N changes" on the dashboard (Bug #2 — every selected change should apply and settle to "hold", no stuck rows).
+**Demo a live scrape:** dashboard → upload `test-data/demo-scrape.csv` → open Ceramic Mug → "Refresh now" → LocalDemoShop moves toward 13.25. Edit the price in `public/demo-competitor.html` and re-refresh to watch it move. Competitors without URLs report `no_url` (expected).
+```
 
-## 7. Possible next steps (not started, not requested)
+---
 
-- Path to testing the MVP with real users (was discussed but not actioned).
-- Auth / multi-tenant, real competitor scraping/discovery, Shopify OAuth, price-change alerts, billing — all still deferred (see git history for the original Slice 1 scope).
+## 7. Older context
 
-## 8. Older context
-
-This doc replaces the original Slice 1 planning handover. For the original product vision, locked decisions, and deferred-feature list, see the specs/plans under `docs/specs/` and `docs/plans/`.
+For the original product vision, locked decisions, and deferred-feature list (auth/multi-tenant, real competitor discovery, Shopify OAuth, price-change alerts, billing), see specs/plans under `docs/specs/` and `docs/plans/`, and the Phase-A plan at `docs/superpowers/plans/` (commit `100ec56`).

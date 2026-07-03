@@ -12,7 +12,7 @@ export type ScrapeResult =
   | { ok: true; priceCents: number }
   | { ok: false; reason: ScrapeFailureReason };
 
-/** A new price is plausible if it is within 1/5x..5x of the last known price. */
+// A new price is plausible if within 1/5×..5× of the last known price.
 const PLAUSIBLE_FACTOR = 5;
 
 export function isPlausible(candidateCents: number, lastCents: number | null): boolean {
@@ -27,11 +27,8 @@ interface Deps {
   fetchPage: (url: string) => Promise<FetchResult>;
 }
 
-/**
- * Fetch one competitor URL and extract its price. `lastCents` is the current
- * stored price for this competitor (or null on first scrape) and gates an
- * implausible-jump sanity check. Returns failure as data, never throws.
- */
+// Fetch one competitor URL and extract its price. lastCents gates the plausibility check
+// (null on first scrape). Returns failure as data, never throws.
 export async function scrapeOne(
   url: string,
   lastCents: number | null,
