@@ -3,19 +3,9 @@ import { prisma } from "@/lib/db";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseJsonBody } from "@/lib/api/validation";
 import { hashPassword } from "@/lib/auth/password";
-import { createSession, SESSION_COOKIE } from "@/lib/auth/session";
+import { createSession, setSessionCookie } from "@/lib/auth/session";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
-
-export function setSessionCookie(res: NextResponse, token: string, expiresAt: Date): void {
-  res.cookies.set(SESSION_COOKIE, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    expires: expiresAt,
-    secure: process.env.NODE_ENV === "production",
-  });
-}
 
 export const POST = withErrorHandling(async (req: Request) => {
   const body = await parseJsonBody(req);
