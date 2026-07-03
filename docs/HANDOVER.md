@@ -1,9 +1,9 @@
 # PriceIQ — Handover Doc
 
-**Date:** 2026-07-01
+**Date:** 2026-07-03
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** Competitor price scraping (Phase A) complete, reviewed, tested (125 passing), and **merged to `master`**. Working tree clean except 3 untracked local-demo helpers. Nothing in-flight. Dev server not running.
+**Status:** SSRF hardening complete (Phase A security), demo helpers committed. Phase B (scheduled auto-refresh) designed and planned — **implementation not yet started**. 168 tests passing. Working tree clean except 1 untracked plan file.
 
 ---
 
@@ -15,7 +15,59 @@ Decision engine is rules-based (`src/lib/recommendation.ts`); an LLM only phrase
 
 ---
 
-## 2. Most recent work (this session) — Competitor Price Scraping, Phase A
+## 2. Most recent work (this session) — SSRF Hardening + Phase B Design
+
+### SSRF Hardening (complete, merged to `master`, HEAD = `3d747c3`)
+
+Added full SSRF protection to the Phase A scraping pipeline via **subagent-driven development** (fresh subagent per task, spec review + code-quality review after each). **168 tests passing.**
+
+#### New files
+- **`src/lib/scrape/urlGuard.ts`** — `isPrivateIp(ip)` classifies IPv4/v6 (loopback, RFC1918, link-local/metadata 169.254.x, CGNAT 100.64/10, ULA fc00::/7, v4-mapped including hex form `::ffff:xxxx:xxxx`). `validateScrapeUrl(url, opts)` enforces scheme allowlist + DNS blocking; injectable `GuardDeps.lookup` for tests.
+- **`src/lib/scrape/urlGuard.test.ts`** — 35 tests.
+
+#### Modified files
+- **`src/lib/scrape/fetcher.ts`** — `fetchPage` now calls `validateScrapeUrl` before each hop; `redirect:"manual"` + per-hop re-validation (max 5 hops); `BLOCKED = Object.freeze({ok:false,status:0,html:"",blocked:true})` sentinel; `defaultAllowPrivate()` returns true in dev/test (`NODE_ENV !== "production"` or `SCRAPE_ALLOW_PRIVATE=1`).
+- **`src/lib/scrape/scrapeOne.ts`** — `ScrapeFailureReason` now includes `"blocked_url"`; checks `res.blocked` before `res.status === 0` so blocked fetches don't map to `"timeout"`.
+- **`src/lib/scrape/fetcher.test.ts`** — 10 tests (7 new SSRF cases including missing-Location header).
+- **`src/lib/scrape/scrapeOne.test.ts`** — 7 tests.
+
+#### Key design choices
+- Accepted residual risk: DNS-rebinding TOCTOU (fix = connection-level IP pinning via custom undici dispatcher; deferred for this MVP).
+- `allowPrivate` skips IP checks only — scheme allowlist still enforced.
+- `AbortError` from timeout returns immediately (no retry); other network errors retry once.
+
+#### Commit range (oldest → newest)
+```
+e1d50a7 feat: private-IP classification for scrape URL guard
+08fda2e fix: handle hex-form IPv4-mapped IPv6 in isPrivateIp
+a5467ca feat: validateScrapeUrl — scheme allowlist + DNS private-IP blocking
+48df421 fix: convert docblocks to // comments; strengthen test stubs
+92fc4bc feat: SSRF guard in fetchPage with per-hop redirect re-validation
+9ff49ab fix: freeze BLOCKED singleton; no retry on timeout; convert docblocks to //
+03fe291 feat: surface SSRF-blocked scrapes as blocked_url failure reason
+56f9f40 docs: SSRF hardening complete; fix pre-existing scrapeOne docblocks
+5caf3ca chore: commit local demo helpers as fixtures
+3d747c3 docs: Phase B scheduled-refresh design spec; SSRF plan doc
+```
+
+### Phase B: Scheduled Auto-Refresh (designed, not yet implemented)
+
+Design spec: `docs/superpowers/specs/2026-07-03-scheduled-refresh-design.md`
+Plan: `docs/superpowers/plans/2026-07-03-scheduled-refresh.md` *(untracked — commit before executing)*
+
+**Approach:** in-process scheduler started from Next.js `instrumentation.ts`; no external cron, no new dependencies.
+
+**4-task plan:**
+1. `findDueProductIds(prisma, now)` — Prisma query: `{competitorUrl:{not:null}, lastObservedAt:{lt:cutoff}}`; dedup with JS `Set`.
+2. `runScheduledRefresh(prisma, now, deps?)` — loops due ids, per-product try/catch, logs `[auto-refresh] N products: refreshed X, failed Y`.
+3. `startAutoRefresh(deps?)` — module-level `started`/`inFlight` guards; respects `AUTO_REFRESH=0`; first tick ~30s after boot, then hourly. `_resetAutoRefreshForTests()` for test teardown.
+4. `src/instrumentation.ts` — thin shell: calls `startAutoRefresh()` only when `NEXT_RUNTIME === "nodejs"`. Manual verification: boot dev server, watch for `[auto-refresh]` log line ~30s in.
+
+All logic lives in **`src/lib/scrape/autoRefresh.ts`** (unit-tested); instrumentation shell is excluded from unit tests.
+
+---
+
+## 3. Phase A — Competitor Price Scraping (merged)
 
 **Goal:** merchants supply competitor product URLs once (via a CSV `competitor_url` column); the system re-scrapes those URLs **on demand** to keep competitor prices — and therefore recommendations — current, removing manual CSV re-uploads.
 
@@ -61,7 +113,7 @@ c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
 8862969 fix: exclude stale competitors from displayed median/position
 ```
 
-### Untracked local-demo helpers (intentionally NOT committed)
+### Local-demo helpers (committed `5caf3ca`)
 - `public/demo-competitor.html` — static scrape target: JSON-LD price `13.25` + OG fallback, for SKU `MUG-008`. Served at http://localhost:3000/demo-competitor.html.
 - `test-data/demo-scrape.csv` — `MUG-008 → LocalDemoShop @ 15.00` pointing at the demo page (demo: 15.00 → 13.25 on refresh).
 - `test-data/random-competitors.csv` — 23 randomized rows across 8 real SKUs; mix of `*.example` URLs and blank URLs.
@@ -72,7 +124,7 @@ c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
 
 ---
 
-## 3. Prior work still on `master` (earlier sessions)
+## 4. Prior work still on `master` (earlier sessions)
 
 - **Product catalog CSV import** (`805036f`): `src/lib/products/parseProductCsv.ts`, `importProducts.ts`, route `POST /api/products/catalog`, `ProductUpload.tsx`. Upserts by `(merchantId, sku)`, invalidates recommendations for updated products.
 - **Margin-floor convergence fix** (`d966d14`): `floorPrice` uses `Math.ceil` (not `Math.round`) so the floor price always clears the 15% margin floor and bulk "Apply" converges to "hold".
@@ -80,12 +132,12 @@ c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
 
 ---
 
-## 4. Key technical facts / gotchas
+## 5. Key technical facts / gotchas
 
 - **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite `dev.db`), Vitest **4**, Tailwind **v4** (OKLCH tokens). Path alias `@/` → `src/`.
 - **AGENTS.md/CLAUDE.md:** this Next.js has breaking changes vs training data. **Read `node_modules/next/dist/docs/` before writing Next code.** Async route `params` is `Promise<{id}>` — must be awaited; client components use `use(params)`.
 - **Windows working-dir drift (Bash tool):** commands run from `C:\Users\pohde` (home), not the project. **Always prefix git/npm/tsx with `cd /c/Users/pohde/projects/priceiq &&`** or they fail "not a git repository".
-- **Tests:** Vitest, node env, `include: ["src/**/*.test.ts"]` — **no jsdom, no `.tsx`.** UI component tests are deliberately deferred; unit tests use Map/mock-backed prisma and don't touch the real DB. **125 passing.** Route registration and in-browser flows are NOT covered — verify those in the running app.
+- **Tests:** Vitest, node env, `include: ["src/**/*.test.ts"]` — **no jsdom, no `.tsx`.** UI component tests are deliberately deferred; unit tests use Map/mock-backed prisma and don't touch the real DB. **168 passing.** Route registration and in-browser flows are NOT covered — verify those in the running app.
 - **DB:** no migrations. `npx prisma db push` to sync; `npm run seed` (13 products; **stop the dev server first — SQLite lock**).
 - **Dev server:** background it (`run_in_background: true`); http://localhost:3000.
 - **Money:** integer cents. `formatCents` / `dollarsToCents` in `src/lib/money.ts`.
@@ -97,20 +149,20 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 ---
 
-## 5. Next steps
+## 6. Next steps
 
-1. ~~**[SECURITY — deferred, tracked] SSRF hardening**~~ **DONE** (`urlGuard.ts`, merged). Residual risk: DNS-rebinding TOCTOU is accepted for this single-tenant MVP (fix = connection-level IP pinning via custom undici dispatcher).
-2. **Phase B (not started): scheduled/automatic refresh.** Phase A is on-demand only. Add background/cron refresh so prices update without a click; builds on `refreshProduct` + `/api/refresh`.
+1. ~~**SSRF hardening**~~ **DONE** (`urlGuard.ts`, merged `3d747c3`). Residual: DNS-rebinding TOCTOU accepted for single-tenant MVP.
+2. **Phase B: scheduled/automatic refresh — DESIGNED, READY TO IMPLEMENT.** Plan at `docs/superpowers/plans/2026-07-03-scheduled-refresh.md` (untracked — commit it first). Execute with `superpowers:subagent-driven-development`. 4 tasks: `findDueProductIds` → `runScheduledRefresh` → `startAutoRefresh` → `instrumentation.ts` + manual verify.
 3. **UI component tests (deferred by design).** Add jsdom + `.tsx` support to cover `ManageCompetitors`/`ProductsTable` refresh states (idle/busy/error) and status-line rendering.
-4. **Decide on the 3 untracked demo helpers** — commit as fixtures or `.gitignore`. Currently untracked/uncommitted.
+4. ~~Demo helpers~~ **committed** (`5caf3ca`).
 
 ---
 
-## 6. How to resume
+## 7. How to resume
 
 From `C:\Users\pohde\projects\priceiq` (prefix Bash cmds with `cd /c/Users/pohde/projects/priceiq &&`):
 ```bash
-npm test            # expect 125 passing
+npm test            # expect 168 passing
 npx prisma db push  # should say "already in sync"
 npm run seed        # reseed 13 products (STOP dev server first — SQLite lock)
 npm run dev         # background it; http://localhost:3000
@@ -121,6 +173,6 @@ npm run build       # typecheck + production build
 
 ---
 
-## 7. Older context
+## 8. Older context
 
 For the original product vision, locked decisions, and deferred-feature list (auth/multi-tenant, real competitor discovery, Shopify OAuth, price-change alerts, billing), see specs/plans under `docs/specs/` and `docs/plans/`, and the Phase-A plan at `docs/superpowers/plans/` (commit `100ec56`).
