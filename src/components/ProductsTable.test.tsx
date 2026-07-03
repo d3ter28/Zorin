@@ -35,16 +35,34 @@ const ROWS = [
 
 const json = (data: unknown, ok = true) => ({ ok, json: async () => data }) as Response;
 
-// Routes GET /api/products to the row fixture; POST /api/refresh to the given handler.
-function stubFetch(onRefresh: () => Promise<Response>) {
+interface ApiHandlers {
+  onProducts?: () => Promise<Response>;
+  onRefresh?: () => Promise<Response>;
+  onApply?: () => Promise<Response>;
+}
+
+// Routes the three endpoints ProductsTable calls; unhandled URLs fail loudly.
+function stubApi(handlers: ApiHandlers = {}) {
   const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = String(input);
-    if (url === "/api/products") return json(ROWS);
-    if (url === "/api/refresh" && init?.method === "POST") return onRefresh();
+    if (url === "/api/products") {
+      return (handlers.onProducts ?? (async () => json(ROWS)))();
+    }
+    if (url === "/api/refresh" && init?.method === "POST") {
+      return (handlers.onRefresh ?? (async () => json({ refreshed: 0, failed: 0 })))();
+    }
+    if (url === "/api/apply/bulk" && init?.method === "POST") {
+      return (handlers.onApply ?? (async () => json({})))();
+    }
     throw new Error(`unexpected fetch: ${url}`);
   });
   vi.stubGlobal("fetch", fetchMock);
   return fetchMock;
+}
+
+// Kept so the refresh-states tests read unchanged.
+function stubFetch(onRefresh: () => Promise<Response>) {
+  return stubApi({ onRefresh });
 }
 
 afterEach(() => {
@@ -107,5 +125,35 @@ describe("ProductsTable refresh states", () => {
       const b = screen.getByRole("button", { name: "Refresh all prices" }) as HTMLButtonElement;
       expect(b.disabled).toBe(false);
     });
+  });
+});
+
+describe("ProductsTable load states", () => {
+  it("loading: shows no table or refresh button while the fetch is pending", () => {
+    stubApi({ onProducts: () => new Promise(() => {}) }); // never resolves
+    render(<ProductsTable refreshToken={0} />);
+    expect(screen.queryByRole("button", { name: "Refresh all prices" })).toBeNull();
+    expect(screen.queryByRole("table")).toBeNull();
+  });
+
+  it("load error: shows the message, and Retry re-fetches and renders the table", async () => {
+    const onProducts = vi
+      .fn()
+      .mockResolvedValueOnce(json([], false)) // first load fails
+      .mockResolvedValue(json(ROWS)); // retry succeeds
+    stubApi({ onProducts });
+    render(<ProductsTable refreshToken={0} />);
+    await screen.findByText("Couldn't load products.");
+    await userEvent.click(screen.getByRole("button", { name: "Retry" }));
+    await screen.findByRole("button", { name: "Refresh all prices" });
+    expect(screen.getByText("Ceramic Mug")).toBeTruthy();
+    expect(onProducts).toHaveBeenCalledTimes(2);
+  });
+
+  it("empty: shows the 'No products yet' state and no refresh button", async () => {
+    stubApi({ onProducts: async () => json([]) });
+    render(<ProductsTable refreshToken={0} />);
+    await screen.findByText("No products yet");
+    expect(screen.queryByRole("button", { name: "Refresh all prices" })).toBeNull();
   });
 });
