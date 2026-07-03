@@ -82,7 +82,7 @@ Every data route and server page resolves `merchantId` from the session (replaci
 
 - **Unit (`src/lib/auth/`):** password hash/verify round-trip + wrong-password rejection; session create → get → expire (past `expiresAt` returns null and deletes) → destroy.
 - **Route handlers:** signup happy path, duplicate email, weak password; login happy/wrong-password/unknown-email (same 401 body); logout clears.
-- **Scoping tests:** seed two merchants with products in-test; assert (a) list endpoints return only the session merchant's rows, (b) by-id access to the other merchant's product returns 404, (c) bulk refresh ignores foreign ids.
+- **Scoping tests:** unit-test the ownership helpers (foreign/missing product → 404, id filtering) and the bulk routes (foreign ids silently dropped) with mocked Prisma; verify real cross-tenant isolation with a live two-merchant smoke test (signup second merchant → empty product list, foreign by-id → 404).
 - Follow existing patterns: node Vitest project, injectable Prisma, no network.
 
 ## Out of scope
