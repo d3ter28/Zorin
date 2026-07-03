@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isPrivateIp } from "./urlGuard";
+import { isPrivateIp, validateScrapeUrl, type GuardDeps } from "./urlGuard";
 
 describe("isPrivateIp", () => {
   it.each([
@@ -29,5 +29,63 @@ describe("isPrivateIp", () => {
     "::ffff:0808:0808", // hex-form ::ffff:8.8.8.8 — public
   ])("classifies %s as public", (ip) => {
     expect(isPrivateIp(ip)).toBe(false);
+  });
+});
+
+// Helper: lookup stub resolving every hostname to the given address.
+function lookupOf(map: Record<string, string[]>): GuardDeps["lookup"] {
+  return async (hostname: string) => {
+    const addrs = map[hostname];
+    if (!addrs) throw new Error(`ENOTFOUND ${hostname}`);
+    return addrs.map((address) => ({ address, family: address.includes(":") ? 6 : 4 }));
+  };
+}
+
+describe("validateScrapeUrl", () => {
+  const deps: GuardDeps = { lookup: lookupOf({ "shop.example": ["93.184.216.34"] }) };
+
+  it("accepts a public https URL", async () => {
+    const res = await validateScrapeUrl("https://shop.example/p", { deps });
+    expect(res).toEqual({ ok: true });
+  });
+
+  it("rejects non-http(s) schemes", async () => {
+    for (const url of ["file:///etc/passwd", "ftp://shop.example/", "gopher://x/"]) {
+      expect(await validateScrapeUrl(url, { deps })).toEqual({ ok: false, reason: "scheme" });
+    }
+  });
+
+  it("rejects unparseable URLs", async () => {
+    expect(await validateScrapeUrl("not a url", { deps })).toEqual({ ok: false, reason: "invalid" });
+  });
+
+  it("rejects private IP literals without a DNS lookup", async () => {
+    const noLookup: GuardDeps = {
+      lookup: async () => { throw new Error("lookup must not be called for IP literals"); },
+    };
+    expect(await validateScrapeUrl("http://169.254.169.254/latest/meta-data/", { deps: noLookup }))
+      .toEqual({ ok: false, reason: "private_ip" });
+    expect(await validateScrapeUrl("http://[::1]/", { deps: noLookup }))
+      .toEqual({ ok: false, reason: "private_ip" });
+  });
+
+  it("rejects hostnames resolving to a private IP (any record)", async () => {
+    const d: GuardDeps = { lookup: lookupOf({ "evil.example": ["93.184.216.34", "10.0.0.5"] }) };
+    expect(await validateScrapeUrl("https://evil.example/", { deps: d }))
+      .toEqual({ ok: false, reason: "private_ip" });
+  });
+
+  it("rejects hostnames that fail to resolve", async () => {
+    expect(await validateScrapeUrl("https://nxdomain.example/", { deps }))
+      .toEqual({ ok: false, reason: "dns" });
+  });
+
+  it("allows private targets when allowPrivate is set (demo mode)", async () => {
+    const noLookup: GuardDeps = { lookup: async () => [{ address: "127.0.0.1", family: 4 }] };
+    expect(await validateScrapeUrl("http://localhost:3000/demo-competitor.html", { deps: noLookup, allowPrivate: true }))
+      .toEqual({ ok: true });
+    // scheme check still applies even in demo mode
+    expect(await validateScrapeUrl("file:///etc/passwd", { deps: noLookup, allowPrivate: true }))
+      .toEqual({ ok: false, reason: "scheme" });
   });
 });
