@@ -3,7 +3,7 @@
 **Date:** 2026-07-03
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** SSRF hardening complete (Phase A security), demo helpers committed. Phase B (scheduled auto-refresh) designed and planned — **implementation not yet started**. 168 tests passing. Working tree clean except 1 untracked plan file.
+**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **designed and planned — implementation not yet started**. **193 tests passing.** Working tree clean.
 
 ---
 
@@ -15,9 +15,43 @@ Decision engine is rules-based (`src/lib/recommendation.ts`); an LLM only phrase
 
 ---
 
-## 2. Most recent work (this session) — SSRF Hardening + Phase B Design
+## 2. Most recent work (2026-07-03) — Phase B implementation + UI tests
 
-### SSRF Hardening (complete, merged to `master`, HEAD = `3d747c3`)
+All three built via **subagent-driven development** (fresh implementer subagent per task, spec-compliance review + code-quality review after each, final whole-branch review at the end).
+
+### Phase B: Scheduled Auto-Refresh (complete, merged, live-verified)
+
+Competitor prices now refresh automatically every hour while the server runs.
+
+- **`src/lib/scrape/autoRefresh.ts`** (+ 13 tests in `autoRefresh.test.ts`) — all the logic:
+  - `findDueProductIds(prisma, now)` — products with a URL-bearing competitor whose `lastObservedAt` is older than `REFRESH_AFTER_MS` (24h); JS `Set` dedup.
+  - `runScheduledRefresh(prisma, now, deps?)` — one tick: loops due ids through Phase A's `refreshProduct`, per-product try/catch (one bad product can't kill the tick), logs exactly one line: `[auto-refresh] N products: refreshed X, failed Y`.
+  - `startAutoRefresh(deps?)` — first tick 30s after boot (`setTimeout`), then hourly (`setInterval`, `TICK_MS`); `started` guard (register() can fire twice in dev), `inFlight` guard (skip overlapping ticks), `AUTO_REFRESH=0` kill-switch; `_resetAutoRefreshForTests()` for teardown. `defaultRunTick` lazy-imports `../db` so loading the module never opens SQLite.
+- **`src/instrumentation.ts`** — thin Next.js shell: `register()` dynamically imports `startAutoRefresh` only when `NEXT_RUNTIME === "nodejs"` (static import would crash the edge runtime via prisma's Node APIs). Intentionally has no unit tests.
+- **Live verification:** dev server boot showed `[auto-refresh] 8 products: refreshed 1, failed 43` at ~48s; `AUTO_REFRESH=0` boot showed no line for 60s+. High failed count is expected — most seeded competitors have no URL or `*.example` URLs.
+
+Commits: `14d3228` → `84824de` → `80c24b9` → `998a73d` (+ `1f09c49` doc fix).
+
+### UI refresh-state tests (complete, merged)
+
+First `.tsx` test coverage in the repo. Spec: `docs/superpowers/specs/2026-07-03-ui-refresh-state-tests-design.md`.
+
+- **`vitest.config.ts`** — now uses Vitest 4 `test.projects`: `unit` (node, `src/**/*.test.ts`) + `ui` (jsdom, `src/**/*.test.tsx`), both `extends: true`; `@vitejs/plugin-react` added at root (tsconfig has `"jsx": "preserve"`, so raw esbuild can't compile `.tsx` tests). New devDeps: `jsdom`, `@testing-library/react`, `@testing-library/dom`, `@testing-library/user-event`. **No `@testing-library/jest-dom`** — disabled-state assertions use the `.disabled` property.
+- **`src/components/ManageCompetitors.test.tsx`** — 6 tests: idle / busy / success (stubs `window.location.reload` — jsdom's throws "Not implemented") / network error / non-ok / retry-clears-error.
+- **`src/components/ProductsTable.test.tsx`** — 6 tests: load / busy / plural success ("Refreshed 2 prices." + re-fetch) / with-failures / singular / failure. `stubFetch` helper routes by URL and throws on unexpected fetches.
+
+Commits: `6cad82e` → `735c3a4` → `eea23ae` → `390206c`.
+
+### Broader UI coverage (designed + planned, NOT started)
+
+Spec: `docs/superpowers/specs/2026-07-03-broader-ui-coverage-design.md` (`fa13f06`)
+Plan: `docs/superpowers/plans/2026-07-03-broader-ui-coverage.md` (`db4df76`)
+
+3 tasks, +14 tests → **207 expected**: (1) ManageCompetitors status lines (empty/fresh "confirmed 2h ago"/stale/no-URL hint); (2) ProductsTable load states (skeleton/error+Retry/empty) with `stubFetch` generalized to `stubApi` (adds `/api/apply/bulk` routing, existing tests untouched); (3) ProductsTable selection/apply flow (checkboxes on actionable rows only, pre-selection, toggle counts, "Applying…" busy, POST body `{productIds:["p1","p2"]}`, apply error). Execute with `superpowers:subagent-driven-development`; the plan embeds full test code per task.
+
+---
+
+## 2b. Earlier same-day work — SSRF Hardening (complete, merged)
 
 Added full SSRF protection to the Phase A scraping pipeline via **subagent-driven development** (fresh subagent per task, spec review + code-quality review after each). **168 tests passing.**
 
@@ -50,16 +84,7 @@ a5467ca feat: validateScrapeUrl — scheme allowlist + DNS private-IP blocking
 3d747c3 docs: Phase B scheduled-refresh design spec; SSRF plan doc
 ```
 
-### Phase B: Scheduled Auto-Refresh (complete, merged)
-
-Design spec: `docs/superpowers/specs/2026-07-03-scheduled-refresh-design.md`
-Plan: `docs/superpowers/plans/2026-07-03-scheduled-refresh.md`
-
-**Approach:** in-process scheduler started from Next.js `instrumentation.ts`; no external cron, no new dependencies.
-
-- `autoRefresh.ts` — hourly in-process scheduler started from `src/instrumentation.ts`; refreshes competitor prices older than 24h via `refreshProduct`; first tick ~30s after boot; one log line per tick; disable with `AUTO_REFRESH=0`.
-
-All logic lives in **`src/lib/scrape/autoRefresh.ts`** (unit-tested); instrumentation shell is excluded from unit tests.
+Phase B design docs: spec at `docs/superpowers/specs/2026-07-03-scheduled-refresh-design.md`, plan at `docs/superpowers/plans/2026-07-03-scheduled-refresh.md`.
 
 ---
 
@@ -147,10 +172,10 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 ## 6. Next steps
 
-1. ~~**SSRF hardening**~~ **DONE** (`urlGuard.ts`, merged `3d747c3`). Residual: DNS-rebinding TOCTOU accepted for single-tenant MVP.
-2. ~~**Phase B: scheduled/automatic refresh**~~ **DONE** (`autoRefresh.ts` + `src/instrumentation.ts`, merged). 181 tests passing (168 baseline + 13 new).
-3. ~~**UI component tests (deferred by design)**~~ **DONE** (ManageCompetitors + ProductsTable refresh states, 12 new tests).
-4. ~~Demo helpers~~ **committed** (`5caf3ca`).
+1. **Broader UI coverage — DESIGNED + PLANNED, READY TO IMPLEMENT.** Plan at `docs/superpowers/plans/2026-07-03-broader-ui-coverage.md` (committed). Execute with `superpowers:subagent-driven-development`. 3 tasks, +14 tests → 207 expected. See section 2 for the task breakdown.
+2. **Remaining untested components** (not yet designed): `CogsInput`, `Dashboard`, `IngestUpload`, `ProductUpload`, `RecommendationCard`, `WhatIfSlider`. CogsInput is the natural next candidate (embedded in every ProductsTable row, has its own save/error states).
+3. **DNS-rebinding TOCTOU** — accepted residual SSRF risk; fix = connection-level IP pinning via custom undici dispatcher. Low urgency for single-tenant MVP.
+4. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~demo helpers~~ (`5caf3ca`).
 
 ---
 
