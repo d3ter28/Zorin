@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ceramic Mug — Demo Competitor</title>
+    <!-- Structured price the scraper reads (JSON-LD, first rung of the ladder). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Ceramic Mug (Demo Competitor)",
+        "sku": "MUG-008",
+        "offers": {
+          "@type": "Offer",
+          "price": "13.25",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+    <!-- Open Graph fallback (second rung) in case JSON-LD is stripped. -->
+    <meta property="product:price:amount" content="13.25" />
+    <meta property="product:price:currency" content="USD" />
+  </head>
+  <body>
+    <h1>Ceramic Mug (Demo Competitor)</h1>
+    <p>Price: <span class="price">$13.25</span></p>
+    <p>Edit the numbers above and re-run "Refresh now" to watch the price move.</p>
+  </body>
+</html>
