@@ -1,4 +1,5 @@
 import { lookup as dnsLookup } from "node:dns";
+import { Agent } from "undici";
 import { isPrivateIp } from "./urlGuard";
 
 // Thrown by the pinned connection layer when a socket would target a private IP.
@@ -43,4 +44,15 @@ export function makeGuardedLookup(base: LookupFn = dnsLookup): LookupFn {
     });
   };
   return guarded as unknown as LookupFn;
+}
+
+let pinnedAgent: Agent | undefined;
+
+// Lazy singleton so importing this module allocates nothing (matches the
+// lazy-import discipline elsewhere in src/lib/scrape).
+export function getPinnedAgent(): Agent {
+  if (!pinnedAgent) {
+    pinnedAgent = new Agent({ connect: { lookup: makeGuardedLookup() } });
+  }
+  return pinnedAgent;
 }

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { PrivateIpError, isPrivateIpError, makeGuardedLookup } from "./pinnedAgent";
+import { Agent } from "undici";
+import { PrivateIpError, isPrivateIpError, makeGuardedLookup, getPinnedAgent } from "./pinnedAgent";
 import type { LookupFn } from "./pinnedAgent";
 
 describe("isPrivateIpError", () => {
@@ -101,5 +102,13 @@ describe("makeGuardedLookup", () => {
     const lookup = makeGuardedLookup(failing);
     const { err } = await callLookup(lookup, "missing.example");
     expect(err).toBe(boom);
+  });
+});
+
+describe("getPinnedAgent", () => {
+  it("returns a lazily created undici Agent singleton", () => {
+    const first = getPinnedAgent();
+    expect(first).toBeInstanceOf(Agent);
+    expect(getPinnedAgent()).toBe(first);
   });
 });
