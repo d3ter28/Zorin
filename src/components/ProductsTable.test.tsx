@@ -157,3 +157,81 @@ describe("ProductsTable load states", () => {
     expect(screen.queryByRole("button", { name: "Refresh all prices" })).toBeNull();
   });
 });
+
+// p1/p2 actionable (pre-selected on load), p3 hold (no checkbox).
+const ACTIONABLE_ROWS = [
+  { ...ROWS[0], recommendedAction: "raise" as const, suggestedPrice: 1600 },
+  { ...ROWS[1], recommendedAction: "lower" as const, suggestedPrice: 2100 },
+  {
+    id: "p3",
+    title: "Desk Lamp",
+    sku: "LMP-001",
+    currentPrice: 3500,
+    cogs: 1400,
+    category: "office",
+    estUnits: 20,
+    margin: 0.6,
+    comparison: { compMedian: 3450, pctVsMedian: 0.01, competitorCount: 2 },
+    recommendedAction: "hold" as const,
+    suggestedPrice: 3500,
+  },
+];
+
+async function renderActionable(handlers: ApiHandlers = {}) {
+  const fetchMock = stubApi({ onProducts: async () => json(ACTIONABLE_ROWS), ...handlers });
+  render(<ProductsTable refreshToken={0} />);
+  await screen.findByRole("button", { name: "Refresh all prices" });
+  return fetchMock;
+}
+
+describe("ProductsTable selection and apply", () => {
+  it("renders checkboxes for actionable rows only", async () => {
+    await renderActionable();
+    expect(screen.getByRole("checkbox", { name: "Select Ceramic Mug" })).toBeTruthy();
+    expect(screen.getByRole("checkbox", { name: "Select Steel Bottle" })).toBeTruthy();
+    expect(screen.queryByRole("checkbox", { name: "Select Desk Lamp" })).toBeNull();
+  });
+
+  it("pre-selects actionable rows and shows the apply bar", async () => {
+    await renderActionable();
+    expect(screen.getByText("2 changes selected")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Apply 2 changes" })).toBeTruthy();
+  });
+
+  it("toggling checkboxes updates the count; deselecting all hides the bar", async () => {
+    await renderActionable();
+    await userEvent.click(screen.getByRole("checkbox", { name: "Select Ceramic Mug" }));
+    expect(screen.getByText("1 change selected")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Apply 1 change" })).toBeTruthy();
+    await userEvent.click(screen.getByRole("checkbox", { name: "Select Steel Bottle" }));
+    expect(screen.queryByText(/selected/)).toBeNull();
+    expect(screen.queryByRole("button", { name: /^Apply / })).toBeNull();
+  });
+
+  it("busy: shows 'Applying…' disabled while the POST is pending", async () => {
+    await renderActionable({ onApply: () => new Promise(() => {}) });
+    await userEvent.click(screen.getByRole("button", { name: "Apply 2 changes" }));
+    const busy = screen.getByRole("button", { name: "Applying…" }) as HTMLButtonElement;
+    expect(busy.disabled).toBe(true);
+  });
+
+  it("success: POSTs the selected ids and re-fetches the table", async () => {
+    const fetchMock = await renderActionable({ onApply: async () => json({}) });
+    await userEvent.click(screen.getByRole("button", { name: "Apply 2 changes" }));
+    await waitFor(() => {
+      const productLoads = fetchMock.mock.calls.filter(([u]) => String(u) === "/api/products");
+      expect(productLoads.length).toBe(2); // initial load + post-apply reload
+    });
+    const applyCall = fetchMock.mock.calls.find(([u]) => String(u) === "/api/apply/bulk");
+    expect(applyCall).toBeTruthy();
+    expect(JSON.parse(String(applyCall![1]?.body))).toEqual({ productIds: ["p1", "p2"] });
+  });
+
+  it("failure: shows the apply error in the bar and re-enables the button", async () => {
+    await renderActionable({ onApply: async () => json({}, false) });
+    await userEvent.click(screen.getByRole("button", { name: "Apply 2 changes" }));
+    await screen.findByText("Couldn't apply changes — try again.");
+    const button = screen.getByRole("button", { name: "Apply 2 changes" }) as HTMLButtonElement;
+    expect(button.disabled).toBe(false);
+  });
+});
