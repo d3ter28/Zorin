@@ -11,8 +11,9 @@ model Merchant {
   name      String
   storeUrl  String
   createdAt DateTime  @default(now())
-  products  Product[]
-  user     User?
+  products          Product[]
+  user              User?
+  competitorDomains CompetitorDomain[]
 }
 
 model Product {
@@ -77,6 +78,16 @@ model User {
   merchant     Merchant  @relation(fields: [merchantId], references: [id])
   createdAt    DateTime  @default(now())
   sessions     Session[]
+}
+
+model CompetitorDomain {
+  id         String   @id @default(cuid())
+  merchantId String
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+  domain     String   // normalized, e.g. "walmart.com"
+  createdAt  DateTime @default(now())
+
+  @@unique([merchantId, domain])
 }
 
 model Session {
