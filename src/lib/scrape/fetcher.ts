@@ -4,13 +4,13 @@ export interface FetchResult {
   ok: boolean;
   status: number;
   html: string;
-  /** true when the URL was rejected by the SSRF guard (never fetched). */
+  // true when the URL was rejected by the SSRF guard (never fetched).
   blocked?: true;
 }
 
 export interface FetchPageOptions {
   guardDeps?: GuardDeps;
-  /** Permit private/loopback targets. Defaults to true outside production or when SCRAPE_ALLOW_PRIVATE=1. */
+  // Permit private/loopback targets. Defaults to true outside production or when SCRAPE_ALLOW_PRIVATE=1.
   allowPrivate?: boolean;
 }
 
@@ -19,7 +19,7 @@ const MAX_REDIRECTS = 5;
 const USER_AGENT =
   "Mozilla/5.0 (compatible; PriceIQBot/1.0; +https://priceiq.example/bot)";
 
-const BLOCKED: FetchResult = { ok: false, status: 0, html: "", blocked: true };
+const BLOCKED = Object.freeze<FetchResult>({ ok: false, status: 0, html: "", blocked: true });
 
 function defaultAllowPrivate(): boolean {
   return process.env.SCRAPE_ALLOW_PRIVATE === "1" || process.env.NODE_ENV !== "production";
@@ -59,20 +59,37 @@ type FetchOnce = { kind: "ok"; response: Response } | { kind: "error" };
 
 // One HTTP request with timeout; single retry on thrown network error.
 async function fetchOnce(url: string): Promise<FetchOnce> {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
-    try {
-      const response = await fetch(url, {
-        headers: { "User-Agent": USER_AGENT, Accept: "text/html" },
-        redirect: "manual",
-        signal: controller.signal,
-      });
-      clearTimeout(timer);
-      return { kind: "ok", response };
-    } catch {
-      clearTimeout(timer);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  try {
+    // undici (Node 24 fetch) surfaces the real status + Location on redirect: "manual" despite spec saying status=0
+    const response = await fetch(url, {
+      headers: { "User-Agent": USER_AGENT, Accept: "text/html" },
+      redirect: "manual",
+      signal: controller.signal,
+    });
+    clearTimeout(timer);
+    return { kind: "ok", response };
+  } catch (err) {
+    clearTimeout(timer);
+    if (err instanceof Error && err.name === "AbortError") {
+      return { kind: "error" }; // timed out — no retry
     }
   }
-  return { kind: "error" };
+  // one retry for transient network errors (not timeouts)
+  const controller2 = new AbortController();
+  const timer2 = setTimeout(() => controller2.abort(), TIMEOUT_MS);
+  try {
+    // undici (Node 24 fetch) surfaces the real status + Location on redirect: "manual" despite spec saying status=0
+    const response = await fetch(url, {
+      headers: { "User-Agent": USER_AGENT, Accept: "text/html" },
+      redirect: "manual",
+      signal: controller2.signal,
+    });
+    clearTimeout(timer2);
+    return { kind: "ok", response };
+  } catch {
+    clearTimeout(timer2);
+    return { kind: "error" };
+  }
 }

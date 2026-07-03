@@ -108,6 +108,20 @@ describe("fetchPage", () => {
     expect(fetchSpy.mock.calls.length).toBeLessThanOrEqual(6);
   });
 
+  it("returns not-ok when a redirect has no Location header", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response(null, { status: 301 })),
+    );
+    const res = await fetchPage("https://shop.example/start", {
+      guardDeps: { lookup: lookupAll("93.184.216.34") },
+      allowPrivate: false,
+    });
+    expect(res.ok).toBe(false);
+    expect(res.status).toBe(301);
+    expect(res.blocked).toBeUndefined();
+  });
+
   it("allows localhost when allowPrivate is true (demo mode)", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => new Response("<html>demo</html>", { status: 200 })));
     const res = await fetchPage("http://localhost:3000/demo-competitor.html", {
