@@ -130,4 +130,40 @@ describe("fetchPage", () => {
     });
     expect(res).toMatchObject({ ok: true, html: "<html>demo</html>" });
   });
+
+  it("returns BLOCKED without retry when the pinned connection rejects a private IP", async () => {
+    const { PrivateIpError } = await import("./pinnedAgent");
+    const fetchSpy = vi.fn(async () => {
+      throw new TypeError("fetch failed", {
+        cause: new PrivateIpError("rebind.example", "127.0.0.1"),
+      });
+    });
+    vi.stubGlobal("fetch", fetchSpy);
+    const res = await fetchPage("https://rebind.example/p", {
+      guardDeps: { lookup: lookupAll("93.184.216.34") },
+      allowPrivate: false,
+    });
+    expect(res).toMatchObject({ ok: false, status: 0, blocked: true });
+    expect(fetchSpy).toHaveBeenCalledTimes(1); // no retry on blocked
+  });
+
+  it("passes the pinned dispatcher to fetch when private targets are disallowed", async () => {
+    const fetchSpy = vi.fn(async () => new Response("<html>ok</html>", { status: 200 }));
+    vi.stubGlobal("fetch", fetchSpy);
+    await fetchPage("https://shop.example/p", {
+      guardDeps: { lookup: lookupAll("93.184.216.34") },
+      allowPrivate: false,
+    });
+    expect(fetchSpy.mock.calls[0][1].dispatcher).toBeDefined();
+  });
+
+  it("omits the dispatcher when allowPrivate is true (demo mode)", async () => {
+    const fetchSpy = vi.fn(async () => new Response("<html>demo</html>", { status: 200 }));
+    vi.stubGlobal("fetch", fetchSpy);
+    await fetchPage("http://localhost:3000/demo-competitor.html", {
+      guardDeps: { lookup: lookupAll("127.0.0.1") },
+      allowPrivate: true,
+    });
+    expect(fetchSpy.mock.calls[0][1].dispatcher).toBeUndefined();
+  });
 });

@@ -1,4 +1,5 @@
 import { validateScrapeUrl, type GuardDeps } from "./urlGuard";
+import { getPinnedAgent, isPrivateIpError } from "./pinnedAgent";
 
 export interface FetchResult {
   ok: boolean;
@@ -26,20 +27,22 @@ function defaultAllowPrivate(): boolean {
 }
 
 // Fetch page HTML. Never throws. Each URL (including redirect hops, max 5) is
-// validated by the SSRF guard. DNS-rebinding TOCTOU is accepted risk for this MVP.
+// validated by the SSRF guard. DNS rebinding is closed by connect-time IP pinning (pinnedAgent.ts).
 export async function fetchPage(
   url: string,
   opts: FetchPageOptions = {},
 ): Promise<FetchResult> {
   const allowPrivate = opts.allowPrivate ?? defaultAllowPrivate();
   const guardOpts = { deps: opts.guardDeps, allowPrivate };
+  const pin = !allowPrivate;
 
   let current = url;
   for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
     const verdict = await validateScrapeUrl(current, guardOpts);
     if (!verdict.ok) return BLOCKED;
 
-    const res = await fetchOnce(current);
+    const res = await fetchOnce(current, pin);
+    if (res.kind === "blocked") return BLOCKED;
     if (res.kind === "error") return { ok: false, status: 0, html: "" };
 
     const { response } = res;
@@ -55,10 +58,23 @@ export async function fetchPage(
   return { ok: false, status: 0, html: "" };
 }
 
-type FetchOnce = { kind: "ok"; response: Response } | { kind: "error" };
+type FetchOnce =
+  | { kind: "ok"; response: Response }
+  | { kind: "error" }
+  | { kind: "blocked" };
+
+type Attempt = FetchOnce | { kind: "retryable" };
 
 // One HTTP request with timeout; single retry on thrown network error.
-async function fetchOnce(url: string): Promise<FetchOnce> {
+// pin=true routes through the pinned dispatcher (connect-time private-IP checks).
+async function fetchOnce(url: string, pin: boolean): Promise<FetchOnce> {
+  const first = await attempt(url, pin);
+  if (first.kind !== "retryable") return first;
+  const second = await attempt(url, pin);
+  return second.kind === "retryable" ? { kind: "error" } : second;
+}
+
+async function attempt(url: string, pin: boolean): Promise<Attempt> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
@@ -67,29 +83,16 @@ async function fetchOnce(url: string): Promise<FetchOnce> {
       headers: { "User-Agent": USER_AGENT, Accept: "text/html" },
       redirect: "manual",
       signal: controller.signal,
-    });
-    clearTimeout(timer);
+      ...(pin ? { dispatcher: getPinnedAgent() } : {}),
+    } as RequestInit);
     return { kind: "ok", response };
   } catch (err) {
-    clearTimeout(timer);
+    if (isPrivateIpError(err)) return { kind: "blocked" }; // pinned guard fired — no retry
     if (err instanceof Error && err.name === "AbortError") {
       return { kind: "error" }; // timed out — no retry
     }
-  }
-  // one retry for transient network errors (not timeouts)
-  const controller2 = new AbortController();
-  const timer2 = setTimeout(() => controller2.abort(), TIMEOUT_MS);
-  try {
-    // undici (Node 24 fetch) surfaces the real status + Location on redirect: "manual" despite spec saying status=0
-    const response = await fetch(url, {
-      headers: { "User-Agent": USER_AGENT, Accept: "text/html" },
-      redirect: "manual",
-      signal: controller2.signal,
-    });
-    clearTimeout(timer2);
-    return { kind: "ok", response };
-  } catch {
-    clearTimeout(timer2);
-    return { kind: "error" };
+    return { kind: "retryable" };
+  } finally {
+    clearTimeout(timer);
   }
 }
