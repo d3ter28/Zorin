@@ -52,7 +52,8 @@ const defaultDeps: GuardDeps = {
 };
 
 // SSRF guard: rejects non-http(s), private IP literals, and private-resolving hostnames.
-// allowPrivate skips IP checks only (not scheme check) for the local demo. DNS-rebinding TOCTOU is accepted risk.
+// allowPrivate skips IP checks only (not scheme check) for the local demo.
+// DNS rebinding is closed at connect time by pinnedAgent.ts; this pre-flight check is defense-in-depth.
 export async function validateScrapeUrl(
   url: string,
   opts: { deps?: GuardDeps; allowPrivate?: boolean } = {},

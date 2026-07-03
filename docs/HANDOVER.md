@@ -3,7 +3,7 @@
 **Date:** 2026-07-03
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **implemented and merged** (status lines, load states, selection/apply flow). CogsInput **now covered**. Dashboard, ProductUpload, IngestUpload **now covered**. **251 tests passing — all UI components tested.** Working tree clean.
+**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **implemented and merged** (status lines, load states, selection/apply flow). CogsInput **now covered**. Dashboard, ProductUpload, IngestUpload **now covered**. **265 tests passing — all UI components tested.** Working tree clean.
 
 ---
 
@@ -95,7 +95,7 @@ Phase B design docs: spec at `docs/superpowers/specs/2026-07-03-scheduled-refres
 Built via **subagent-driven-development** (12-task TDD plan, fresh implementer + two-stage review per task), then a final whole-branch review, then merged fast-forward to `master`. **HEAD = `8862969`.**
 
 ### Scraping pipeline (`src/lib/scrape/`, each with a `.test.ts`)
-- `urlGuard.ts` — SSRF guard: `isPrivateIp` (IPv4/v6 classification) + `validateScrapeUrl` (scheme allowlist, private-IP blocking, injectable DNS lookup). `fetchPage` re-validates every redirect hop (max 5). Dev/demo bypass: `NODE_ENV !== "production"` or `SCRAPE_ALLOW_PRIVATE=1`. Accepted residual risk: DNS-rebinding TOCTOU (connection-level IP pinning would close it).
+- `urlGuard.ts` — SSRF guard: `isPrivateIp` (IPv4/v6 classification) + `validateScrapeUrl` (scheme allowlist, private-IP blocking, injectable DNS lookup). `fetchPage` re-validates every redirect hop (max 5). Dev/demo bypass: `NODE_ENV !== "production"` or `SCRAPE_ALLOW_PRIVATE=1`. DNS rebinding closed via connect-time pinning in `pinnedAgent.ts`.
 - `fetcher.ts` → `fetchPage` — the ONLY network seam; **failure-as-data, never throws.** Uses `redirect:"manual"` with per-hop re-validation via `urlGuard`.
 - `extractPrice.ts` — pure HTML→price. Ladder: **JSON-LD `offers.price` → OG `product:price:amount` → visible `.price`**. Uses cheerio.
 - `scrapeOne.ts` — fetch + extract + **plausibility gate** (rejects >5× swings). Returns `{ok:true,priceCents} | {ok:false,reason}`. Surfaces `"blocked_url"` as a failure reason.
@@ -158,7 +158,7 @@ c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
 - **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite `dev.db`), Vitest **4**, Tailwind **v4** (OKLCH tokens). Path alias `@/` → `src/`.
 - **AGENTS.md/CLAUDE.md:** this Next.js has breaking changes vs training data. **Read `node_modules/next/dist/docs/` before writing Next code.** Async route `params` is `Promise<{id}>` — must be awaited; client components use `use(params)`.
 - **Windows working-dir drift (Bash tool):** commands run from `C:\Users\pohde` (home), not the project. **Always prefix git/npm/tsx with `cd /c/Users/pohde/projects/priceiq &&`** or they fail "not a git repository".
-- **Tests:** Vitest projects — unit (node, src/**/*.test.ts) + ui (jsdom, src/**/*.test.tsx via @testing-library/react). UI tests cover refresh states, status lines, load states, the selection/apply flow of ManageCompetitors/ProductsTable, CogsInput, and Dashboard wiring. **251 passing — all UI components tested.**
+- **Tests:** Vitest projects — unit (node, src/**/*.test.ts) + ui (jsdom, src/**/*.test.tsx via @testing-library/react). UI tests cover refresh states, status lines, load states, the selection/apply flow of ManageCompetitors/ProductsTable, CogsInput, and Dashboard wiring. **265 passing — all UI components tested.**
 - **DB:** no migrations. `npx prisma db push` to sync; `npm run seed` (13 products; **stop the dev server first — SQLite lock**).
 - **Dev server:** background it (`run_in_background: true`); http://localhost:3000.
 - **Money:** integer cents. `formatCents` / `dollarsToCents` in `src/lib/money.ts`.
@@ -172,8 +172,8 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 ## 6. Next steps
 
-1. **DNS-rebinding TOCTOU** — accepted residual SSRF risk; fix = connection-level IP pinning via custom undici dispatcher. Low urgency for single-tenant MVP.
-2. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~broader UI coverage~~ (`e1753f6`), ~~CogsInput tests~~ (`616e8fa`), ~~demo helpers~~ (`5caf3ca`), ~~Dashboard/ProductUpload/IngestUpload/RecommendationCard/WhatIfSlider tests~~ (this session).
+1. ~~**DNS-rebinding TOCTOU**~~ — closed via connect-time IP pinning (`src/lib/scrape/pinnedAgent.ts`, `77634ec`–`b05cf05`). undici `Agent` with custom `lookup` validates IPs at socket-connect time; DNS-rebinding surfaces as `blocked_url`.
+2. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~broader UI coverage~~ (`e1753f6`), ~~CogsInput tests~~ (`616e8fa`), ~~demo helpers~~ (`5caf3ca`), ~~Dashboard/ProductUpload/IngestUpload/RecommendationCard/WhatIfSlider tests~~ (this session), ~~DNS-rebinding pinning~~ (this session).
 
 ---
 
@@ -181,7 +181,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 From `C:\Users\pohde\projects\priceiq` (prefix Bash cmds with `cd /c/Users/pohde/projects/priceiq &&`):
 ```bash
-npm test            # expect 251 passing
+npm test            # expect 265 passing
 npx prisma db push  # should say "already in sync"
 npm run seed        # reseed 13 products (STOP dev server first — SQLite lock)
 npm run dev         # background it; http://localhost:3000
