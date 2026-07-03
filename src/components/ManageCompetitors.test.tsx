@@ -37,7 +37,6 @@ function renderPanel() {
 
 describe("ManageCompetitors refresh states", () => {
   it("idle: shows an enabled 'Refresh now' button", () => {
-    vi.stubGlobal("fetch", vi.fn());
     renderPanel();
     const button = screen.getByRole("button", { name: "Refresh now" }) as HTMLButtonElement;
     expect(button.disabled).toBe(false);
