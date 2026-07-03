@@ -172,10 +172,9 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 ## 6. Next steps
 
-1. **Broader UI coverage — DESIGNED + PLANNED, READY TO IMPLEMENT.** Plan at `docs/superpowers/plans/2026-07-03-broader-ui-coverage.md` (committed). Execute with `superpowers:subagent-driven-development`. 3 tasks, +14 tests → 207 expected. See section 2 for the task breakdown.
-2. **Remaining untested components** (not yet designed): `Dashboard`, `IngestUpload`, `ProductUpload`, `RecommendationCard`, `WhatIfSlider`.
-3. **DNS-rebinding TOCTOU** — accepted residual SSRF risk; fix = connection-level IP pinning via custom undici dispatcher. Low urgency for single-tenant MVP.
-4. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~demo helpers~~ (`5caf3ca`).
+1. **Remaining untested components** (not yet designed): `Dashboard`, `IngestUpload`, `ProductUpload`, `RecommendationCard`, `WhatIfSlider`. `Dashboard` or `WhatIfSlider` are natural next candidates.
+2. **DNS-rebinding TOCTOU** — accepted residual SSRF risk; fix = connection-level IP pinning via custom undici dispatcher. Low urgency for single-tenant MVP.
+3. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~broader UI coverage~~ (`e1753f6`), ~~CogsInput tests~~ (`616e8fa`), ~~demo helpers~~ (`5caf3ca`).
 
 ---
 
