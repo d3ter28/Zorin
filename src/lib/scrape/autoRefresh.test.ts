@@ -1,5 +1,12 @@
-import { describe, expect, it, vi } from "vitest";
-import { findDueProductIds, runScheduledRefresh, REFRESH_AFTER_MS } from "./autoRefresh";
+import { describe, expect, it, vi, afterEach, beforeEach } from "vitest";
+import {
+  findDueProductIds,
+  runScheduledRefresh,
+  startAutoRefresh,
+  _resetAutoRefreshForTests,
+  REFRESH_AFTER_MS,
+  TICK_MS,
+} from "./autoRefresh";
 import type { RefreshSummary } from "./refreshProduct";
 
 const NOW = new Date("2026-07-03T12:00:00Z");
@@ -97,5 +104,71 @@ describe("runScheduledRefresh", () => {
     expect(res).toEqual({ products: 0, refreshed: 0, failed: 0 });
     expect(refreshProduct).not.toHaveBeenCalled();
     log.mockRestore();
+  });
+});
+
+describe("startAutoRefresh", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+    _resetAutoRefreshForTests();
+    delete process.env.AUTO_REFRESH;
+  });
+  afterEach(() => {
+    _resetAutoRefreshForTests();
+    vi.useRealTimers();
+    delete process.env.AUTO_REFRESH;
+  });
+
+  it("runs a first tick ~30s after start, then every TICK_MS", async () => {
+    const runTick = vi.fn(async () => {});
+    startAutoRefresh({ runTick });
+    expect(runTick).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(30_000);
+    expect(runTick).toHaveBeenCalledTimes(1);
+    await vi.advanceTimersByTimeAsync(TICK_MS);
+    expect(runTick).toHaveBeenCalledTimes(2);
+  });
+
+  it("is a no-op when called twice", async () => {
+    const runTick = vi.fn(async () => {});
+    startAutoRefresh({ runTick });
+    startAutoRefresh({ runTick });
+    await vi.advanceTimersByTimeAsync(30_000 + TICK_MS);
+    expect(runTick).toHaveBeenCalledTimes(2); // not 4
+  });
+
+  it("does nothing when AUTO_REFRESH=0", async () => {
+    process.env.AUTO_REFRESH = "0";
+    const runTick = vi.fn(async () => {});
+    startAutoRefresh({ runTick });
+    await vi.advanceTimersByTimeAsync(30_000 + TICK_MS * 2);
+    expect(runTick).not.toHaveBeenCalled();
+  });
+
+  it("skips a tick while the previous one is still running", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const runTick = vi.fn(() => gate); // first call never resolves until released
+    startAutoRefresh({ runTick });
+    await vi.advanceTimersByTimeAsync(30_000); // first tick starts, hangs
+    await vi.advanceTimersByTimeAsync(TICK_MS); // would be second tick — must be skipped
+    expect(runTick).toHaveBeenCalledTimes(1);
+    release();
+    await vi.advanceTimersByTimeAsync(TICK_MS); // after release, ticks resume
+    expect(runTick).toHaveBeenCalledTimes(2);
+  });
+
+  it("keeps ticking after a tick throws", async () => {
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+    const runTick = vi
+      .fn()
+      .mockRejectedValueOnce(new Error("boom"))
+      .mockResolvedValue(undefined);
+    startAutoRefresh({ runTick });
+    await vi.advanceTimersByTimeAsync(30_000);
+    await vi.advanceTimersByTimeAsync(TICK_MS);
+    expect(runTick).toHaveBeenCalledTimes(2);
+    expect(error).toHaveBeenCalled();
+    error.mockRestore();
   });
 });

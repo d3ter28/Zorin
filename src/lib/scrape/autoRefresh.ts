@@ -56,3 +56,49 @@ export async function runScheduledRefresh(
   console.log(`[auto-refresh] ${ids.length} products: refreshed ${refreshed}, failed ${failed}`);
   return { products: ids.length, refreshed, failed };
 }
+
+const FIRST_TICK_DELAY_MS = 30_000;
+
+interface StartDeps {
+  // Injectable so timer tests never touch prisma or the network.
+  runTick?: () => Promise<unknown>;
+}
+
+let started = false;
+let inFlight = false;
+let timers: Array<ReturnType<typeof setTimeout>> = [];
+
+async function defaultRunTick(): Promise<unknown> {
+  // Lazy import so merely loading this module never opens the SQLite file.
+  const { prisma } = await import("../db");
+  return runScheduledRefresh(prisma, new Date());
+}
+
+export function startAutoRefresh(deps: StartDeps = {}): void {
+  if (started) return; // Next dev can invoke register() more than once
+  if (process.env.AUTO_REFRESH === "0") return;
+  started = true;
+
+  const runTick = deps.runTick ?? defaultRunTick;
+  const tick = async () => {
+    if (inFlight) return; // previous tick still running — skip this one
+    inFlight = true;
+    try {
+      await runTick();
+    } catch (err) {
+      console.error("[auto-refresh] tick failed:", err);
+    } finally {
+      inFlight = false;
+    }
+  };
+
+  timers.push(setTimeout(tick, FIRST_TICK_DELAY_MS));
+  timers.push(setInterval(tick, TICK_MS));
+}
+
+export function _resetAutoRefreshForTests(): void {
+  for (const t of timers) clearTimeout(t as NodeJS.Timeout);
+  timers = [];
+  started = false;
+  inFlight = false;
+}
