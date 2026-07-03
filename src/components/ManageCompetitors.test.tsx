@@ -31,8 +31,10 @@ afterEach(() => {
   reloadMock.mockReset();
 });
 
-function renderPanel() {
-  return render(<ManageCompetitors productId="p1" competitors={COMPETITORS} />);
+type Competitor = (typeof COMPETITORS)[number];
+
+function renderPanel(competitors: Competitor[] = COMPETITORS) {
+  return render(<ManageCompetitors productId="p1" competitors={competitors} />);
 }
 
 describe("ManageCompetitors refresh states", () => {
@@ -91,5 +93,52 @@ describe("ManageCompetitors refresh states", () => {
     expect(screen.queryByRole("alert")).toBeNull();
     const busy = screen.getByRole("button", { name: "Refreshing…" }) as HTMLButtonElement;
     expect(busy.disabled).toBe(true);
+  });
+});
+
+const HOUR_MS = 60 * 60 * 1000;
+
+// 2h ago lands mid-bucket in relativeTime, so the label can't flip during the test run.
+function competitor(overrides: Partial<Competitor> = {}): Competitor {
+  return {
+    name: "MarketCo",
+    price: 1499,
+    url: "https://market.example/p/1",
+    lastObservedAt: new Date(Date.now() - 2 * HOUR_MS).toISOString(),
+    isStale: false,
+    ...overrides,
+  };
+}
+
+describe("ManageCompetitors status lines", () => {
+  it("empty: shows the import hint and no list", () => {
+    renderPanel([]);
+    expect(
+      screen.getByText("No competitor prices yet. Import a CSV from the dashboard."),
+    ).toBeTruthy();
+    expect(screen.queryByRole("list")).toBeNull();
+  });
+
+  it("fresh competitor: shows a 'confirmed 2h ago' line", () => {
+    renderPanel([competitor()]);
+    expect(screen.getByText("confirmed 2h ago")).toBeTruthy();
+  });
+
+  it("stale competitor: shows the stale warning instead of a confirmed line", () => {
+    renderPanel([competitor({ isStale: true })]);
+    expect(screen.getByText("⚠ stale")).toBeTruthy();
+    expect(screen.queryByText(/confirmed/)).toBeNull();
+  });
+
+  it("URL-less competitor: shows the auto-refresh hint", () => {
+    renderPanel([competitor({ url: "" })]);
+    expect(
+      screen.getByText(/no URL — add one via CSV to enable auto-refresh/),
+    ).toBeTruthy();
+  });
+
+  it("URL-bearing competitor: no auto-refresh hint", () => {
+    renderPanel([competitor()]);
+    expect(screen.queryByText(/no URL/)).toBeNull();
   });
 });
