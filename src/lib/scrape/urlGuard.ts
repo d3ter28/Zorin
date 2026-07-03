@@ -1,10 +1,6 @@
 import { isIP } from "node:net";
 
-/**
- * True if the IP must not be scraped: loopback, RFC1918, link-local (incl.
- * cloud metadata 169.254.169.254), CGNAT, unspecified, or IPv6 ULA. IPv4-mapped
- * IPv6 addresses are unwrapped and judged as their embedded IPv4.
- */
+// Returns true for any IP that must not be fetched (loopback, RFC1918, link-local, ULA, CGNAT).
 export function isPrivateIp(ip: string): boolean {
   const version = isIP(ip);
   if (version === 4) return isPrivateV4(ip);
@@ -27,6 +23,14 @@ function isPrivateV6(ip: string): boolean {
   // IPv4-mapped (::ffff:a.b.c.d) — judge the embedded IPv4
   const mapped = lower.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/);
   if (mapped) return isPrivateV4(mapped[1]);
+  // hex form: ::ffff:xxxx:xxxx (each group is 16 bits)
+  const hexMapped = lower.match(/^::ffff:([0-9a-f]{1,4}):([0-9a-f]{1,4})$/);
+  if (hexMapped) {
+    const hi = parseInt(hexMapped[1], 16);
+    const lo = parseInt(hexMapped[2], 16);
+    const dotted = `${(hi >> 8) & 0xff}.${hi & 0xff}.${(lo >> 8) & 0xff}.${lo & 0xff}`;
+    return isPrivateV4(dotted);
+  }
   if (lower === "::" || lower === "::1") return true;
   if (lower.startsWith("fc") || lower.startsWith("fd")) return true; // ULA fc00::/7
   if (/^fe[89ab]/.test(lower)) return true; // link-local fe80::/10

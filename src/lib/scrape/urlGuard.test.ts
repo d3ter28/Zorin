@@ -14,6 +14,8 @@ describe("isPrivateIp", () => {
     "fc00::1", "fdff::1",                // v6 ULA
     "fe80::1",                           // v6 link-local
     "::ffff:127.0.0.1", "::ffff:10.0.0.1", // v4-mapped v6
+    "::ffff:7f00:1",    // hex-form ::ffff:127.0.0.1 — private
+    "::ffff:0a00:0001", // hex-form ::ffff:10.0.0.1 — private
     "::",                                // unspecified
   ])("classifies %s as private", (ip) => {
     expect(isPrivateIp(ip)).toBe(true);
@@ -24,6 +26,7 @@ describe("isPrivateIp", () => {
     "172.15.255.255", "172.32.0.1",        // just outside 172.16/12
     "2606:4700::1111",                      // public v6
     "::ffff:8.8.8.8",                       // v4-mapped public
+    "::ffff:0808:0808", // hex-form ::ffff:8.8.8.8 — public
   ])("classifies %s as public", (ip) => {
     expect(isPrivateIp(ip)).toBe(false);
   });
