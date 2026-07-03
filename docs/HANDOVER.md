@@ -3,7 +3,7 @@
 **Date:** 2026-07-03
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **designed and planned — implementation not yet started**. **193 tests passing.** Working tree clean.
+**Status:** Phase B (scheduled auto-refresh) **implemented, live-verified, merged**. UI refresh-state tests **done** (jsdom `ui` Vitest project added). Broader UI coverage **implemented and merged** (status lines, load states, selection/apply flow). **207 tests passing.** Working tree clean.
 
 ---
 
