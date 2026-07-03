@@ -158,7 +158,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 From `C:\Users\pohde\projects\priceiq` (prefix Bash cmds with `cd /c/Users/pohde/projects/priceiq &&`):
 ```bash
-npm test            # expect 168 passing
+npm test            # expect 181 passing
 npx prisma db push  # should say "already in sync"
 npm run seed        # reseed 13 products (STOP dev server first — SQLite lock)
 npm run dev         # background it; http://localhost:3000
