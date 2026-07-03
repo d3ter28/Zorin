@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { PrivateIpError, isPrivateIpError } from "./pinnedAgent";
+import { PrivateIpError, isPrivateIpError, makeGuardedLookup } from "./pinnedAgent";
+import type { LookupFn } from "./pinnedAgent";
 
 describe("isPrivateIpError", () => {
   it("detects a direct PrivateIpError", () => {
@@ -32,5 +33,73 @@ describe("isPrivateIpError", () => {
     expect(err.message).toContain("internal.example");
     expect(err.message).toContain("10.0.0.5");
     expect(err.name).toBe("PrivateIpError");
+  });
+});
+
+// Promisify a guarded lookup call for assertions.
+function callLookup(
+  lookup: LookupFn,
+  hostname: string,
+  options: Record<string, unknown> = {},
+): Promise<{ err: unknown; result: unknown; family: unknown }> {
+  return new Promise((resolve) => {
+    (lookup as (h: string, o: object, cb: (...args: unknown[]) => void) => void)(
+      hostname,
+      options,
+      (err, result, family) => resolve({ err, result, family }),
+    );
+  });
+}
+
+// Base lookup stub answering with a single (address, family) pair.
+function baseSingle(address: string): LookupFn {
+  return ((_h: string, _o: object, cb: (...args: unknown[]) => void) =>
+    cb(null, address, 4)) as unknown as LookupFn;
+}
+
+// Base lookup stub answering with an all:true style address array.
+function baseAll(addresses: string[]): LookupFn {
+  return ((_h: string, _o: object, cb: (...args: unknown[]) => void) =>
+    cb(null, addresses.map((address) => ({ address, family: 4 })))) as unknown as LookupFn;
+}
+
+describe("makeGuardedLookup", () => {
+  it("passes a public single address through unchanged", async () => {
+    const lookup = makeGuardedLookup(baseSingle("93.184.216.34"));
+    const { err, result, family } = await callLookup(lookup, "shop.example");
+    expect(err).toBeNull();
+    expect(result).toBe("93.184.216.34");
+    expect(family).toBe(4);
+  });
+
+  it("fails with PrivateIpError for a private single address", async () => {
+    const lookup = makeGuardedLookup(baseSingle("10.0.0.5"));
+    const { err } = await callLookup(lookup, "internal.example");
+    expect(isPrivateIpError(err)).toBe(true);
+  });
+
+  it("passes an all-public address array through unchanged", async () => {
+    const lookup = makeGuardedLookup(baseAll(["93.184.216.34", "1.1.1.1"]));
+    const { err, result } = await callLookup(lookup, "shop.example", { all: true });
+    expect(err).toBeNull();
+    expect(result).toEqual([
+      { address: "93.184.216.34", family: 4 },
+      { address: "1.1.1.1", family: 4 },
+    ]);
+  });
+
+  it("fails when any address in a mixed array is private", async () => {
+    const lookup = makeGuardedLookup(baseAll(["93.184.216.34", "192.168.1.7"]));
+    const { err } = await callLookup(lookup, "rebind.example", { all: true });
+    expect(isPrivateIpError(err)).toBe(true);
+  });
+
+  it("propagates base lookup errors untouched", async () => {
+    const boom = new Error("ENOTFOUND");
+    const failing = ((_h: string, _o: object, cb: (...args: unknown[]) => void) =>
+      cb(boom)) as unknown as LookupFn;
+    const lookup = makeGuardedLookup(failing);
+    const { err } = await callLookup(lookup, "missing.example");
+    expect(err).toBe(boom);
   });
 });

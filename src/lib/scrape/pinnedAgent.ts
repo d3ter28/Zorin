@@ -1,3 +1,6 @@
+import { lookup as dnsLookup } from "node:dns";
+import { isPrivateIp } from "./urlGuard";
+
 // Thrown by the pinned connection layer when a socket would target a private IP.
 export class PrivateIpError extends Error {
   constructor(hostname: string, address: string) {
@@ -15,4 +18,29 @@ export function isPrivateIpError(err: unknown): boolean {
     current = current.cause;
   }
   return false;
+}
+
+export type LookupFn = typeof dnsLookup;
+
+// dns.lookup wrapper that rejects private results at connect time. Because this
+// is the lookup the socket actually uses, the checked IP IS the connected IP —
+// no TOCTOU window. Results pass through unchanged when all addresses are public.
+export function makeGuardedLookup(base: LookupFn = dnsLookup): LookupFn {
+  const guarded = (
+    hostname: string,
+    options: object,
+    callback: (...args: unknown[]) => void,
+  ) => {
+    (base as unknown as typeof guarded)(hostname, options, (...args: unknown[]) => {
+      const [err, result] = args;
+      if (err) return callback(err);
+      const addresses = Array.isArray(result)
+        ? result.map((r) => (typeof r === "string" ? r : (r as { address: string }).address))
+        : [result as string];
+      const bad = addresses.find((a) => isPrivateIp(a));
+      if (bad !== undefined) return callback(new PrivateIpError(hostname, bad));
+      callback(...args);
+    });
+  };
+  return guarded as unknown as LookupFn;
 }
