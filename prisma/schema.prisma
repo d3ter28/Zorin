@@ -12,7 +12,7 @@ model Merchant {
   storeUrl  String
   createdAt DateTime  @default(now())
   products  Product[]
-  users     User[]
+  user     User?
 }
 
 model Product {
