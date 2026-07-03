@@ -5,7 +5,8 @@ export type ScrapeFailureReason =
   | `http_${number}`
   | "timeout"
   | "no_price_found"
-  | "implausible";
+  | "implausible"
+  | "blocked_url";
 
 export type ScrapeResult =
   | { ok: true; priceCents: number }
@@ -38,6 +39,7 @@ export async function scrapeOne(
 ): Promise<ScrapeResult> {
   const res = await deps.fetchPage(url);
   if (!res.ok) {
+    if (res.blocked) return { ok: false, reason: "blocked_url" };
     return { ok: false, reason: res.status === 0 ? "timeout" : `http_${res.status}` };
   }
   const priceCents = extractPrice(res.html);

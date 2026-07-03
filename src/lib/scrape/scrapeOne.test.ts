@@ -42,4 +42,11 @@ describe("scrapeOne", () => {
     const res = await scrapeOne("https://x/p", null, { fetchPage });
     expect(res.ok).toBe(true);
   });
+
+  it("maps a guard-blocked fetch to reason blocked_url", async () => {
+    const res = await scrapeOne("http://169.254.169.254/", null, {
+      fetchPage: async () => ({ ok: false, status: 0, html: "", blocked: true }),
+    });
+    expect(res).toEqual({ ok: false, reason: "blocked_url" });
+  });
 });
