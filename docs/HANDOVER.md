@@ -173,8 +173,7 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 ## 6. Next steps
 
 1. **DNS-rebinding TOCTOU** — accepted residual SSRF risk; fix = connection-level IP pinning via custom undici dispatcher. Low urgency for single-tenant MVP.
-2. Optional: **Remaining untested components** (not yet designed): `RecommendationCard`, `WhatIfSlider`. Lower priority; all critical-path components covered.
-3. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~broader UI coverage~~ (`e1753f6`), ~~CogsInput tests~~ (`616e8fa`), ~~demo helpers~~ (`5caf3ca`), ~~Dashboard/ProductUpload/IngestUpload tests~~ (this session).
+2. Completed earlier: ~~SSRF hardening~~ (`3d747c3`), ~~Phase B scheduled refresh~~ (`998a73d`), ~~UI refresh-state tests~~ (`390206c`), ~~broader UI coverage~~ (`e1753f6`), ~~CogsInput tests~~ (`616e8fa`), ~~demo helpers~~ (`5caf3ca`), ~~Dashboard/ProductUpload/IngestUpload/RecommendationCard/WhatIfSlider tests~~ (this session).
 
 ---
 
