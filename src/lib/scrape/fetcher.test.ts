@@ -1,5 +1,11 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+import type { GuardDeps } from "./urlGuard";
 import { fetchPage } from "./fetcher";
+
+// Helper: lookup stub resolving every hostname to the given address.
+function lookupAll(address: string): GuardDeps["lookup"] {
+  return async () => [{ address, family: 4 }];
+}
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -35,5 +41,79 @@ describe("fetchPage", () => {
     const res = await fetchPage("https://shop.example/down");
     expect(res.ok).toBe(false);
     expect(res.status).toBe(0);
+  });
+
+  it("blocks a private-IP URL without calling fetch", async () => {
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+    const res = await fetchPage("http://169.254.169.254/latest/meta-data/", {
+      guardDeps: { lookup: lookupAll("169.254.169.254") },
+      allowPrivate: false,
+    });
+    expect(res).toMatchObject({ ok: false, status: 0, blocked: true });
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it("blocks a hostname resolving to a private IP", async () => {
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+    const res = await fetchPage("https://internal.example/", {
+      guardDeps: { lookup: lookupAll("10.0.0.5") },
+      allowPrivate: false,
+    });
+    expect(res).toMatchObject({ ok: false, blocked: true });
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it("follows a public→public redirect and returns the final page", async () => {
+    const fetchSpy = vi
+      .fn()
+      .mockResolvedValueOnce(
+        new Response(null, { status: 301, headers: { Location: "https://shop.example/final" } }),
+      )
+      .mockResolvedValueOnce(new Response("<html>final</html>", { status: 200 }));
+    vi.stubGlobal("fetch", fetchSpy);
+    const res = await fetchPage("https://shop.example/start", {
+      guardDeps: { lookup: lookupAll("93.184.216.34") },
+      allowPrivate: false,
+    });
+    expect(res).toMatchObject({ ok: true, status: 200, html: "<html>final</html>" });
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+    expect(fetchSpy.mock.calls[1][0]).toBe("https://shop.example/final");
+  });
+
+  it("blocks a redirect hop that targets a private address", async () => {
+    const fetchSpy = vi.fn().mockResolvedValueOnce(
+      new Response(null, { status: 302, headers: { Location: "http://127.0.0.1:8080/admin" } }),
+    );
+    vi.stubGlobal("fetch", fetchSpy);
+    const res = await fetchPage("https://shop.example/start", {
+      guardDeps: { lookup: lookupAll("93.184.216.34") },
+      allowPrivate: false,
+    });
+    expect(res).toMatchObject({ ok: false, blocked: true });
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("gives up after too many redirects", async () => {
+    const fetchSpy = vi.fn(async () =>
+      new Response(null, { status: 302, headers: { Location: "https://shop.example/loop" } }),
+    );
+    vi.stubGlobal("fetch", fetchSpy);
+    const res = await fetchPage("https://shop.example/loop", {
+      guardDeps: { lookup: lookupAll("93.184.216.34") },
+      allowPrivate: false,
+    });
+    expect(res.ok).toBe(false);
+    expect(fetchSpy.mock.calls.length).toBeLessThanOrEqual(6);
+  });
+
+  it("allows localhost when allowPrivate is true (demo mode)", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => new Response("<html>demo</html>", { status: 200 })));
+    const res = await fetchPage("http://localhost:3000/demo-competitor.html", {
+      guardDeps: { lookup: lookupAll("127.0.0.1") },
+      allowPrivate: true,
+    });
+    expect(res).toMatchObject({ ok: true, html: "<html>demo</html>" });
   });
 });
