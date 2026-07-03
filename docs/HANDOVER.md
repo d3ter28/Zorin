@@ -22,7 +22,7 @@ Email + password authentication with full merchant isolation. Built via subagent
 ### Auth library (`src/lib/auth/`)
 
 - **`password.ts`** — `hashPassword` / `verifyPassword` using argon2id. Dev/CI fall back to bcrypt-compatible stubs when native bindings unavailable.
-- **`session.ts`** — opaque token sessions stored in the `Session` table. `createSession(prisma, userId)` mints a 32-byte hex token with a 30-day expiry. `getSessionUser(prisma, token)` validates token + expiry, returns `SessionUser {id, merchantId}`. `setSessionCookie` / `clearSessionCookie` write/clear an httpOnly, sameSite=strict cookie (`priceiq_session`). `SESSION_COOKIE` constant.
+- **`session.ts`** — opaque token sessions stored in the `Session` table. `createSession(prisma, userId)` mints a 32-byte hex token with a 30-day expiry. `getSessionUser(prisma, token)` validates token + expiry, returns `SessionUser {id, merchantId}`. `setSessionCookie(res, token, expiresAt)` writes an httpOnly, sameSite=lax cookie (`priceiq_session`); logout clears it inline. `SESSION_COOKIE` constant.
 - **`requireSession.ts`** — `getSession()` reads the cookie and calls `getSessionUser`; returns `SessionInfo {user, merchantId} | null`. `requireSessionApi()` throws `HttpError(401)` if no session (caught by `withErrorHandling`). `requireSessionPage()` calls `redirect("/login")` for server components.
 
 ### Auth API routes
@@ -184,7 +184,7 @@ c3552b5 feat: manage-competitors UI + refresh buttons + CSV url column
 - **Stack:** Next.js **16.2.9** (App Router, **Turbopack**), TypeScript, Prisma **7** + `@prisma/adapter-better-sqlite3` (SQLite `dev.db`), Vitest **4**, Tailwind **v4** (OKLCH tokens). Path alias `@/` → `src/`.
 - **AGENTS.md/CLAUDE.md:** this Next.js has breaking changes vs training data. **Read `node_modules/next/dist/docs/` before writing Next code.** Async route `params` is `Promise<{id}>` — must be awaited; client components use `use(params)`.
 - **Windows working-dir drift (Bash tool):** commands run from `C:\Users\pohde` (home), not the project. **Always prefix git/npm/tsx with `cd /c/Users/pohde/projects/priceiq &&`** or they fail "not a git repository".
-- **Tests:** Vitest projects — unit (node, src/**/*.test.ts) + ui (jsdom, src/**/*.test.tsx via @testing-library/react). UI tests cover refresh states, status lines, load states, the selection/apply flow of ManageCompetitors/ProductsTable, CogsInput, and Dashboard wiring. **265 passing — all UI components tested.**
+- **Tests:** Vitest projects — unit (node, src/**/*.test.ts) + ui (jsdom, src/**/*.test.tsx via @testing-library/react). UI tests cover refresh states, status lines, load states, the selection/apply flow of ManageCompetitors/ProductsTable, CogsInput, and Dashboard wiring. **300 passing — all UI components tested.**
 - **DB:** no migrations. `npx prisma db push` to sync; `npm run seed` (13 products; **stop the dev server first — SQLite lock**).
 - **Dev server:** background it (`run_in_background: true`); http://localhost:3000.
 - **Money:** integer cents. `formatCents` / `dollarsToCents` in `src/lib/money.ts`.
