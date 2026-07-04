@@ -2,6 +2,7 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
+import { SalesHistoryUpload } from "@/components/SalesHistoryUpload";
 import { formatCents } from "@/lib/money";
 
 interface Detail {
@@ -85,6 +86,8 @@ export default function ProductPage({
         compMedian={null}
         suggestedPrice={null}
       />
+
+      <SalesHistoryUpload />
     </main>
   );
 }
