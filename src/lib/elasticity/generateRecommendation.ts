@@ -79,7 +79,7 @@ export function generateRecommendation(
   const reasoning = action === "hold"
     ? `Demand elasticity is ${model.elasticity.toFixed(2)}. Current price is already near the profit-maximizing point.`
     : `Demand is ${elasticLabel} (elasticity = ${model.elasticity.toFixed(2)}). ` +
-      `${action === "raise" ? "Raising" : "Lowering"} price ${pricePctStr} reduces units by ~${Math.abs(unitChangePct).toFixed(0)}% ` +
+      `${action === "raise" ? "Raising" : "Lowering"} price ${pricePctStr} ${unitChangePct >= 0 ? "increases" : "reduces"} units by ~${Math.abs(unitChangePct).toFixed(0)}% ` +
       `but ${parseFloat(profitChangePct) >= 0 ? "grows" : "reduces"} gross profit by ~${Math.abs(parseFloat(profitChangePct))}%.`;
 
   return { action, suggestedPriceCents: bestPriceCents, deltaPct, reasoning, expectedProfitLiftPct };

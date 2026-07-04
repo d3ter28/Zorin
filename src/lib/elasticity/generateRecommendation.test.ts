@@ -11,12 +11,13 @@ describe("generateRecommendation", () => {
     expect(rec.suggestedPriceCents).toBeGreaterThan(1000);
   });
 
-  it("returns hold when no candidate beats current by >1%", () => {
-    // Force a model where every move hurts — very elastic
-    const elasticModel = { ...model, elasticity: -3.0 };
-    const rec = generateRecommendation(elasticModel, 1000, 400, 0.0);
-    // Either raise/lower, but within some tolerance — just test it returns a valid action
-    expect(["raise", "lower", "hold"]).toContain(rec.action);
+  it("returns hold when current price is already profit-maximizing", () => {
+    // For the log-linear model Q = exp(a + e*ln(P)), profit = Q*(P-C).
+    // The first-order condition gives optimal P = C * e/(e+1).
+    // With e=-2, C=500: optimal P = 500*(-2)/(-2+1) = 1000.
+    const elasticModel = { ...model, elasticity: -2.0 };
+    const rec = generateRecommendation(elasticModel, 1000, 500, 0.0);
+    expect(rec.action).toBe("hold");
   });
 
   it("reasoning contains elasticity value", () => {
