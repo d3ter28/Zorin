@@ -27,8 +27,8 @@ const DEFAULT_PROPS = {
   productId: "p1",
   currentPrice: 1500,
   cogs: 600,
-  compMedian: 1400,
   suggestedPrice: 1600,
+  expectedProfitLiftPct: 0.05,
 };
 
 function renderSlider(props: Partial<typeof DEFAULT_PROPS> = {}) {
@@ -85,6 +85,20 @@ describe("WhatIfSlider", () => {
     // Move to 2000: (2000-600)/2000=70%
     fireEvent.change(slider, { target: { value: "2000" } });
     expect(screen.getByText("70.0%")).toBeTruthy();
+  });
+
+  it("profit lift: shows expected profit lift when available", () => {
+    stubFetch();
+    renderSlider({ expectedProfitLiftPct: 0.05 });
+    expect(screen.getByText("5.0%")).toBeTruthy();
+  });
+
+  it("profit lift: shows dash when null", () => {
+    stubFetch();
+    renderSlider({ expectedProfitLiftPct: null as unknown as number });
+    // The "—" dash should appear for profit lift
+    const profitLiftSpans = screen.getAllByText("—");
+    expect(profitLiftSpans.length).toBeGreaterThanOrEqual(1);
   });
 
   it("Apply disabled and hint shown when price equals current price", () => {

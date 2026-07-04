@@ -7,14 +7,14 @@ export function WhatIfSlider({
   productId,
   currentPrice,
   cogs,
-  compMedian,
   suggestedPrice,
+  expectedProfitLiftPct,
 }: {
   productId: string;
   currentPrice: number;
   cogs: number | null;
-  compMedian: number | null;
   suggestedPrice: number | null;
+  expectedProfitLiftPct: number | null;
 }) {
   // Open the range wide enough to span both the current and suggested prices.
   const lo = Math.min(currentPrice, suggestedPrice ?? currentPrice);
@@ -46,8 +46,6 @@ export function WhatIfSlider({
   }
 
   const margin = marginPct(price, cogs);
-  const vsMedian =
-    compMedian && compMedian > 0 ? (price - compMedian) / compMedian : null;
 
   async function apply() {
     setApplying(true);
@@ -111,9 +109,9 @@ export function WhatIfSlider({
           </span>
         </span>
         <span>
-          vs median:{" "}
+          Profit lift:{" "}
           <span className="tabular text-ink">
-            {vsMedian === null ? "—" : pct(vsMedian)}
+            {expectedProfitLiftPct === null ? "—" : pct(expectedProfitLiftPct)}
           </span>
         </span>
       </div>

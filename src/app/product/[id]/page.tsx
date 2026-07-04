@@ -2,6 +2,8 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
+import { RecommendationCard } from "@/components/RecommendationCard";
+import type { MLRecView } from "@/components/RecommendationCard";
 import { SalesHistoryUpload } from "@/components/SalesHistoryUpload";
 import { formatCents } from "@/lib/money";
 
@@ -12,6 +14,101 @@ interface Detail {
   cogs: number | null;
 }
 
+interface RecData {
+  action: "raise" | "lower" | "hold";
+  phrasing: string;
+  rulesJson: string;
+}
+
+function parseRecView(rec: RecData): MLRecView {
+  const rules = JSON.parse(rec.rulesJson) as {
+    suggestedPriceCents: number;
+    expectedProfitLiftPct: number;
+    r2: number;
+    dataPoints: number;
+  };
+  return {
+    action: rec.action,
+    suggestedPriceCents: rules.suggestedPriceCents,
+    reasoning: rec.phrasing,
+    r2: rules.r2,
+    dataPoints: rules.dataPoints,
+    expectedProfitLiftPct: rules.expectedProfitLiftPct,
+  };
+}
+
+function MLActionButtons({
+  productId,
+  onComplete,
+}: {
+  productId: string;
+  onComplete: () => void;
+}) {
+  const [fitting, setFitting] = useState(false);
+  const [recommending, setRecommending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function fitModel() {
+    setFitting(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/products/${productId}/fit-model`, {
+        method: "POST",
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({ error: "Fit model failed" }));
+        throw new Error(body.error ?? "Fit model failed");
+      }
+      onComplete();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Fit model failed");
+      setFitting(false);
+    }
+  }
+
+  async function getRecommendation() {
+    setRecommending(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/products/${productId}/recommend`, {
+        method: "POST",
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({ error: "Get recommendation failed" }));
+        throw new Error(body.error ?? "Get recommendation failed");
+      }
+      onComplete();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Get recommendation failed");
+      setRecommending(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <button
+        className="btn btn-secondary"
+        disabled={fitting}
+        onClick={fitModel}
+      >
+        {fitting ? "Fitting…" : "Fit Model"}
+      </button>
+      <button
+        className="btn btn-secondary"
+        disabled={recommending}
+        onClick={getRecommendation}
+      >
+        {recommending ? "Generating…" : "Get Recommendation"}
+      </button>
+      {error && (
+        <span className="text-xs text-danger" role="alert">
+          {error}
+        </span>
+      )}
+    </div>
+  );
+}
+
 export default function ProductPage({
   params,
 }: {
@@ -19,9 +116,10 @@ export default function ProductPage({
 }) {
   const { id } = use(params);
   const [d, setD] = useState<Detail | null>(null);
+  const [rec, setRec] = useState<RecData | null>(null);
   const [failed, setFailed] = useState(false);
 
-  useEffect(() => {
+  function loadData() {
     let active = true;
     fetch(`/api/products/${id}`)
       .then((r) => {
@@ -34,10 +132,18 @@ export default function ProductPage({
       })
       .then((data) => data && active && setD(data))
       .catch(() => active && setFailed(true));
+
+    fetch(`/api/products/${id}/recommendation`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => data && active && setRec(data))
+      .catch(() => {});
+
     return () => {
       active = false;
     };
-  }, [id]);
+  }
+
+  useEffect(loadData, [id]);
 
   if (failed) {
     return (
@@ -63,6 +169,8 @@ export default function ProductPage({
     );
   }
 
+  const mlRec = rec ? parseRecView(rec) : null;
+
   return (
     <main className="mx-auto max-w-3xl space-y-8 px-6 py-10">
       <Link className="text-sm text-muted hover:text-accent" href="/">
@@ -79,12 +187,19 @@ export default function ProductPage({
         </p>
       </header>
 
+      <RecommendationCard rec={mlRec} />
+
       <WhatIfSlider
         productId={d.id}
         currentPrice={d.currentPrice}
         cogs={d.cogs}
-        compMedian={null}
-        suggestedPrice={null}
+        suggestedPrice={mlRec?.suggestedPriceCents ?? null}
+        expectedProfitLiftPct={mlRec?.expectedProfitLiftPct ?? null}
+      />
+
+      <MLActionButtons
+        productId={d.id}
+        onComplete={() => window.location.reload()}
       />
 
       <SalesHistoryUpload />
