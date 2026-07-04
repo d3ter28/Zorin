@@ -3,7 +3,7 @@
 **Date:** 2026-07-04
 **Project root:** `C:\Users\pohde\projects\priceiq`
 **Current branch:** `master`
-**Status:** Auth + multi-tenant **implemented, live smoke-tested, merged**. Phase B (scheduled auto-refresh) complete. All UI components tested. **300 tests passing.** Working tree clean.
+**Status:** Competitor Discovery **implemented, verified live, merged**. Auth + multi-tenant complete. Phase B (scheduled auto-refresh) complete. All UI components tested. **353 tests passing.** Working tree clean.
 
 ---
 
@@ -15,7 +15,65 @@ Decision engine is rules-based (`src/lib/recommendation.ts`); an LLM only phrase
 
 ---
 
-## 2. Most recent work (2026-07-04) — Auth + multi-tenant
+## 2. Most recent work (2026-07-04) — Competitor Discovery
+
+Merchants can now discover competitor product URLs automatically instead of manually entering them in CSVs. Built via subagent-driven development (13-task TDD plan, fresh implementer + two-stage review per task), then merged fast-forward to `master`. **All 300 tests passing. Working tree clean.**
+
+### Discovery flow (end-to-end)
+
+1. **Settings page** (`/settings`): Save a list of competitor domains (e.g. `walmart.com`, `target.com`) used for targeted search.
+2. **Product page → "Find competitors" button**: Choose mode (saved list search / web search / both), run discovery.
+3. **Review candidates**: Each candidate is scrape-verified with a live price shown inline. Price sanity-band: 10%–10× of merchant's own price (rejects outliers).
+4. **Confirm selection**: Merchant reviews and selects which candidates to add. Confirmed competitors flow into the existing hourly auto-refresh pipeline (Phase B).
+
+### Architecture
+
+- **`src/lib/discovery/`** — orchestration and provider abstraction:
+  - `SearchProvider` interface: `search(query, context?) → {url, title, snippet}[]`
+  - `braveProvider.ts` — Brave Search API client (requires `BRAVE_SEARCH_API_KEY`; free tier: 2,000 queries/month)
+  - `fixtureProvider.ts` — canned fixture results, returns URLs pointing at `public/demo-competitor.html` for local demo without a key
+  - `discoverCompetitors(query, options) → {candidates[], hasMore}` — orchestrator: searches via configured provider, scrapes each URL for live price, filters by sanity band (10%–10× of `merchantPrice`), dedupes by domain
+- **`src/app/api/settings/competitors/`** — saved domains per merchant:
+  - `GET` — returns `{domains: string[]}`
+  - `PUT` — body `{domains}`, persists via `CompetitorDomain` model (Prisma upsert per-merchant)
+- **`src/app/api/products/[id]/discover/`** — discovery run endpoint:
+  - `POST` — body `{query, mode, merchantPrice}` → calls `discoverCompetitors`, returns `{candidates[]}`
+- **`src/app/api/products/[id]/competitors/`** — confirm endpoint:
+  - `POST` — body `{urls}` → writes via `recordObservation` with `source="discovery"` (flow into existing refresh pipeline)
+- **`src/components/DiscoverCompetitors.tsx`** — product page modal: query input, mode selector, results table with live prices, selection checkboxes, confirm button.
+- **`src/components/CompetitorSettings.tsx`** — settings page: domain list input, save/clear/validate, error handling.
+
+### Configuration
+
+- **`BRAVE_SEARCH_API_KEY`** — enables real web search via Brave Search API (free tier: 2,000 queries/month).
+- **`SEARCH_PROVIDER=fixture`** — uses canned fixture results (no key needed) pointing at `public/demo-competitor.html` for local demo.
+
+### Key design decisions
+
+- **Search API called only at discovery time.** Confirmed URLs are scraped directly by the existing Phase A pipeline (zero ongoing API cost beyond the upfront search calls).
+- **All candidates are scrape-verified with a live price before shown to merchant.** Sanity band: 10%–10× of merchant's own price. Rejects outliers and bad-scrape cases.
+- **Candidates are never auto-added.** Merchant reviews and confirms selection; discovery is opt-in per product.
+- **Source tracking.** Confirmed URLs are recorded with `source="discovery"` so the system can distinguish discovery-added competitors from CSV-uploaded ones.
+
+### Commit range (oldest → newest)
+```
+850b07c feat: allow 'discovery' as an observation source
+8c6c337 feat: CompetitorDomain schema for saved competitor lists
+0de4788 feat: normalizeDomain for competitor domain input
+269bd3a feat: SearchProvider interface + provider selection
+86bfbe7 feat: fixture search provider for keyless demo
+02f12d4 feat: Brave Search provider
+e45f6b0 feat: discoverCompetitors orchestrator (search, filter, scrape-verify)
+f2ad8f5 feat: GET/PUT /api/settings/competitors
+360553e feat: discovery API route
+811d4a4 feat: confirm competitors route
+fd9a93e feat: DiscoverCompetitors component + mount on product page
+212eb4f feat: CompetitorSettings component, /settings page, dashboard link
+```
+
+---
+
+## 2a. Prior work (2026-07-04) — Auth + multi-tenant
 
 Email + password authentication with full merchant isolation. Built via subagent-driven development; smoke-tested live with curl.
 
@@ -114,7 +172,13 @@ Phase B design docs: spec at `docs/superpowers/specs/2026-07-03-scheduled-refres
 
 ---
 
-## 3. Phase A — Competitor Price Scraping (merged)
+## 3. Phase B — Scheduled Auto-Refresh (merged)
+
+See section 2a below.
+
+---
+
+## 3a. Phase A — Competitor Price Scraping (merged)
 
 **Goal:** merchants supply competitor product URLs once (via a CSV `competitor_url` column); the system re-scrapes those URLs **on demand** to keep competitor prices — and therefore recommendations — current, removing manual CSV re-uploads.
 
@@ -200,9 +264,9 @@ A long-running Turbopack dev server can end up 404-ing nested `[id]/*` routes (r
 
 Remaining product work (in rough priority order):
 
-1. **Real competitor discovery** — currently merchants must supply competitor URLs manually in the CSV. A discovery layer (search-based or catalog-matching) would remove that friction.
-2. **Price-change alerts** — notify merchants (email / webhook) when a competitor price moves significantly or a recommendation changes.
-3. **Shopify OAuth** — replace the CSV upload flow with a Shopify app that pulls product catalog and pushes applied prices directly.
+1. **Price-change alerts** — notify merchants (email / webhook) when a competitor price moves significantly or a recommendation changes.
+2. **Shopify OAuth** — replace the CSV upload flow with a Shopify app that pulls product catalog and pushes applied prices directly.
+3. **Enhanced discovery** — extend the discovery layer with catalog-matching (e.g. "find similar products on Amazon by category") or more sophisticated domain-based targeting.
 
 Auth hardening deferred from this phase:
 - **Rate limiting** on `/api/auth/login` and `/api/auth/signup` (brute-force protection).
