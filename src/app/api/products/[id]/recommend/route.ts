@@ -29,6 +29,14 @@ export const POST = withErrorHandling(
       product.cogs,
     );
 
+    const rulesJson = JSON.stringify({
+      suggestedPriceCents: rec.suggestedPriceCents,
+      expectedProfitLiftPct: rec.expectedProfitLiftPct,
+      elasticity: product.elasticityModel.elasticity,
+      r2: product.elasticityModel.r2,
+      dataPoints: product.elasticityModel.dataPoints,
+    });
+
     await prisma.recommendation.upsert({
       where: { productId: id },
       create: {
@@ -36,25 +44,13 @@ export const POST = withErrorHandling(
         action: rec.action,
         deltaPct: rec.deltaPct,
         phrasing: rec.reasoning,
-        rulesJson: JSON.stringify({
-          suggestedPriceCents: rec.suggestedPriceCents,
-          expectedProfitLiftPct: rec.expectedProfitLiftPct,
-          elasticity: product.elasticityModel.elasticity,
-          r2: product.elasticityModel.r2,
-          dataPoints: product.elasticityModel.dataPoints,
-        }),
+        rulesJson,
       },
       update: {
         action: rec.action,
         deltaPct: rec.deltaPct,
         phrasing: rec.reasoning,
-        rulesJson: JSON.stringify({
-          suggestedPriceCents: rec.suggestedPriceCents,
-          expectedProfitLiftPct: rec.expectedProfitLiftPct,
-          elasticity: product.elasticityModel.elasticity,
-          r2: product.elasticityModel.r2,
-          dataPoints: product.elasticityModel.dataPoints,
-        }),
+        rulesJson,
         generatedAt: new Date(),
       },
     });

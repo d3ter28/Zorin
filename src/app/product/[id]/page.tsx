@@ -20,21 +20,25 @@ interface RecData {
   rulesJson: string;
 }
 
-function parseRecView(rec: RecData): MLRecView {
-  const rules = JSON.parse(rec.rulesJson) as {
-    suggestedPriceCents: number;
-    expectedProfitLiftPct: number;
-    r2: number;
-    dataPoints: number;
-  };
-  return {
-    action: rec.action,
-    suggestedPriceCents: rules.suggestedPriceCents,
-    reasoning: rec.phrasing,
-    r2: rules.r2,
-    dataPoints: rules.dataPoints,
-    expectedProfitLiftPct: rules.expectedProfitLiftPct,
-  };
+function parseRecView(rec: RecData): MLRecView | null {
+  try {
+    const rules = JSON.parse(rec.rulesJson) as {
+      suggestedPriceCents: number;
+      expectedProfitLiftPct: number;
+      r2: number;
+      dataPoints: number;
+    };
+    return {
+      action: rec.action,
+      suggestedPriceCents: rules.suggestedPriceCents,
+      reasoning: rec.phrasing,
+      r2: rules.r2,
+      dataPoints: rules.dataPoints,
+      expectedProfitLiftPct: rules.expectedProfitLiftPct,
+    };
+  } catch {
+    return null;
+  }
 }
 
 function MLActionButtons({
@@ -59,6 +63,7 @@ function MLActionButtons({
         const body = await res.json().catch(() => ({ error: "Fit model failed" }));
         throw new Error(body.error ?? "Fit model failed");
       }
+      setFitting(false);
       onComplete();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Fit model failed");
@@ -77,6 +82,7 @@ function MLActionButtons({
         const body = await res.json().catch(() => ({ error: "Get recommendation failed" }));
         throw new Error(body.error ?? "Get recommendation failed");
       }
+      setRecommending(false);
       onComplete();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Get recommendation failed");
@@ -199,10 +205,10 @@ export default function ProductPage({
 
       <MLActionButtons
         productId={d.id}
-        onComplete={() => window.location.reload()}
+        onComplete={loadData}
       />
 
-      <SalesHistoryUpload />
+      <SalesHistoryUpload onSuccess={loadData} />
     </main>
   );
 }
