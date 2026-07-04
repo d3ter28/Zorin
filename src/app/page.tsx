@@ -16,7 +16,10 @@ export default async function Home() {
             Competitor-aware pricing recommendations · {merchant?.name ?? "Your store"}
           </p>
         </div>
-        <LogoutButton />
+        <div className="flex items-center gap-4">
+          <a href="/settings" className="text-sm text-muted hover:text-ink">Settings</a>
+          <LogoutButton />
+        </div>
       </header>
       <Dashboard />
     </main>
