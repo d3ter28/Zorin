@@ -16,17 +16,19 @@ model Merchant {
 }
 
 model Product {
-  id             String          @id @default(cuid())
-  merchantId     String
-  merchant       Merchant        @relation(fields: [merchantId], references: [id])
-  title          String
-  sku            String
-  currentPrice   Int
-  cogs           Int?
-  category       String
-  estUnits       Int?
-  createdAt      DateTime        @default(now())
-  recommendation Recommendation?
+  id              String           @id @default(cuid())
+  merchantId      String
+  merchant        Merchant         @relation(fields: [merchantId], references: [id])
+  title           String
+  sku             String
+  currentPrice    Int
+  cogs            Int?
+  category        String
+  estUnits        Int?
+  createdAt       DateTime         @default(now())
+  recommendation  Recommendation?
+  salesRecords    SalesRecord[]
+  elasticityModel ElasticityModel?
 }
 
 model Recommendation {
@@ -38,6 +40,31 @@ model Recommendation {
   rulesJson   String
   phrasing    String
   generatedAt DateTime @default(now())
+}
+
+model SalesRecord {
+  id            String   @id @default(cuid())
+  productId     String
+  merchantId    String
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  date          DateTime
+  unitsSold     Int
+  priceCents    Int
+  promotionFlag Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  @@unique([productId, date])
+}
+
+model ElasticityModel {
+  id         String   @id @default(cuid())
+  productId  String   @unique
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  elasticity Float
+  intercept  Float
+  r2         Float
+  dataPoints Int
+  fittedAt   DateTime @default(now())
 }
 
 model User {
