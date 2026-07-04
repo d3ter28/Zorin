@@ -11,52 +11,22 @@ model Merchant {
   name      String
   storeUrl  String
   createdAt DateTime  @default(now())
-  products          Product[]
-  user              User?
-  competitorDomains CompetitorDomain[]
+  products  Product[]
+  user      User?
 }
 
 model Product {
-  id           String            @id @default(cuid())
-  merchantId   String
-  merchant     Merchant          @relation(fields: [merchantId], references: [id])
-  title        String
-  sku          String
-  currentPrice Int
-  cogs         Int?
-  category     String
-  estUnits     Int?
-  createdAt    DateTime          @default(now())
-  competitors  CompetitorPrice[]
-  observations CompetitorPriceObservation[]
+  id             String          @id @default(cuid())
+  merchantId     String
+  merchant       Merchant        @relation(fields: [merchantId], references: [id])
+  title          String
+  sku            String
+  currentPrice   Int
+  cogs           Int?
+  category       String
+  estUnits       Int?
+  createdAt      DateTime        @default(now())
   recommendation Recommendation?
-}
-
-model CompetitorPrice {
-  id             String   @id @default(cuid())
-  productId      String
-  product        Product  @relation(fields: [productId], references: [id])
-  competitorName String
-  competitorUrl  String?
-  price          Int
-  observedAt     DateTime @default(now())
-  lastObservedAt DateTime @default(now()) // last SUCCESSFUL confirmation; default keeps migration safe for existing rows
-  isStale        Boolean  @default(false)
-
-  @@unique([productId, competitorName])
-}
-
-model CompetitorPriceObservation {
-  id             String   @id @default(cuid())
-  productId      String
-  product        Product  @relation(fields: [productId], references: [id])
-  competitorName String
-  competitorUrl  String
-  price          Int      // integer cents
-  source         String   // "csv" | "scrape"
-  observedAt     DateTime @default(now())
-
-  @@index([productId, competitorName, observedAt])
 }
 
 model Recommendation {
@@ -78,16 +48,6 @@ model User {
   merchant     Merchant  @relation(fields: [merchantId], references: [id])
   createdAt    DateTime  @default(now())
   sessions     Session[]
-}
-
-model CompetitorDomain {
-  id         String   @id @default(cuid())
-  merchantId String
-  merchant   Merchant @relation(fields: [merchantId], references: [id])
-  domain     String   // normalized, e.g. "walmart.com"
-  createdAt  DateTime @default(now())
-
-  @@unique([merchantId, domain])
 }
 
 model Session {

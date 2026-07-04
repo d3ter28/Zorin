@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { ProductUpload } from "./ProductUpload";
-import { IngestUpload } from "./IngestUpload";
 import { ProductsTable } from "./ProductsTable";
 
 /**
@@ -15,7 +14,6 @@ export function Dashboard() {
   return (
     <>
       <ProductUpload onImported={() => setRefreshToken((n) => n + 1)} />
-      <IngestUpload onIngested={() => setRefreshToken((n) => n + 1)} />
       <ProductsTable refreshToken={refreshToken} />
     </>
   );
