@@ -3,6 +3,7 @@ import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
 import { ManageCompetitors } from "@/components/ManageCompetitors";
+import { DiscoverCompetitors } from "@/components/DiscoverCompetitors";
 import { RecommendationCard, type RecView } from "@/components/RecommendationCard";
 import { formatCents } from "@/lib/money";
 
@@ -134,6 +135,7 @@ export default function ProductPage({
       )}
 
       <ManageCompetitors productId={d.id} competitors={d.competitors} />
+      <DiscoverCompetitors productId={d.id} currentPriceCents={d.currentPrice} />
     </main>
   );
 }
