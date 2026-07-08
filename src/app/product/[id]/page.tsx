@@ -1,11 +1,14 @@
 "use client";
 import { use, useEffect, useState } from "react";
-import Link from "next/link";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
+import { DemandCurve } from "@/components/DemandCurve";
+import { PriceHistory } from "@/components/PriceHistory";
+import { PromotionFlags } from "@/components/PromotionFlags";
 import { RecommendationCard } from "@/components/RecommendationCard";
 import type { MLRecView } from "@/components/RecommendationCard";
 import { SalesHistoryUpload } from "@/components/SalesHistoryUpload";
 import { formatCents } from "@/lib/money";
+import { AppShell } from "@/components/AppShell";
 
 interface Detail {
   id: string;
@@ -153,62 +156,68 @@ export default function ProductPage({
 
   if (failed) {
     return (
-      <main className="mx-auto max-w-3xl px-6 py-10">
-        <Link className="text-sm text-muted hover:text-accent" href="/">
-          ← Back to dashboard
-        </Link>
-        <div className="mt-8 rounded-xl border border-line bg-surface p-8 text-center">
-          <p className="text-sm font-medium text-danger">
-            This product couldn&apos;t be loaded.
-          </p>
-          <p className="mt-1 text-sm text-muted">
-            It may have been removed. Head back to the dashboard.
-          </p>
-        </div>
-      </main>
+      <AppShell>
+        <main className="mx-auto max-w-3xl px-6 py-10">
+          <div className="mt-8 rounded-xl border border-line bg-surface p-8 text-center">
+            <p className="text-sm font-medium text-danger">
+              This product couldn&apos;t be loaded.
+            </p>
+            <p className="mt-1 text-sm text-muted">
+              It may have been removed. Head back to the dashboard.
+            </p>
+          </div>
+        </main>
+      </AppShell>
     );
   }
 
   if (!d) {
     return (
-      <main className="mx-auto max-w-3xl px-6 py-10 text-sm text-muted">Loading…</main>
+      <AppShell>
+        <main className="mx-auto max-w-3xl px-6 py-10 text-sm text-muted">Loading…</main>
+      </AppShell>
     );
   }
 
   const mlRec = rec ? parseRecView(rec) : null;
 
   return (
-    <main className="mx-auto max-w-3xl space-y-8 px-6 py-10">
-      <Link className="text-sm text-muted hover:text-accent" href="/">
-        ← Back to dashboard
-      </Link>
+    <AppShell>
+      <main className="mx-auto max-w-3xl space-y-8 px-6 py-10">
+        <header>
+          <h1 className="text-2xl font-semibold tracking-tight text-ink">{d.title}</h1>
+          <p className="mt-1 text-sm text-muted">
+            Current price{" "}
+            <span className="font-medium tabular text-ink">
+              {formatCents(d.currentPrice)}
+            </span>
+          </p>
+        </header>
 
-      <header>
-        <h1 className="text-2xl font-semibold tracking-tight text-ink">{d.title}</h1>
-        <p className="mt-1 text-sm text-muted">
-          Current price{" "}
-          <span className="font-medium tabular text-ink">
-            {formatCents(d.currentPrice)}
-          </span>
-        </p>
-      </header>
+        <SalesHistoryUpload onSuccess={loadData} />
 
-      <RecommendationCard rec={mlRec} />
+        <div className="space-y-4">
+          <RecommendationCard rec={mlRec} />
+          <MLActionButtons productId={d.id} onComplete={loadData} />
+        </div>
 
-      <WhatIfSlider
-        productId={d.id}
-        currentPrice={d.currentPrice}
-        cogs={d.cogs}
-        suggestedPrice={mlRec?.suggestedPriceCents ?? null}
-        expectedProfitLiftPct={mlRec?.expectedProfitLiftPct ?? null}
-      />
+        <DemandCurve
+          productId={d.id}
+          suggestedPriceCents={mlRec?.suggestedPriceCents ?? null}
+        />
 
-      <MLActionButtons
-        productId={d.id}
-        onComplete={loadData}
-      />
+        <WhatIfSlider
+          productId={d.id}
+          currentPrice={d.currentPrice}
+          cogs={d.cogs}
+          suggestedPrice={mlRec?.suggestedPriceCents ?? null}
+          expectedProfitLiftPct={mlRec?.expectedProfitLiftPct ?? null}
+        />
 
-      <SalesHistoryUpload onSuccess={loadData} />
-    </main>
+        <PriceHistory productId={d.id} />
+
+        <PromotionFlags productId={d.id} hasModel={mlRec !== null} />
+      </main>
+    </AppShell>
   );
 }
