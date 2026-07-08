@@ -1,5 +1,7 @@
 "use client";
 
+import { ModelHealthBadge } from "./ModelHealthBadge";
+
 export interface MLRecView {
   action: "raise" | "lower" | "hold";
   suggestedPriceCents: number;
@@ -7,6 +9,7 @@ export interface MLRecView {
   r2: number;
   dataPoints: number;
   expectedProfitLiftPct: number;
+  confidenceScore?: number | null;
 }
 
 /**
@@ -17,10 +20,14 @@ export interface MLRecView {
 export function RecommendationCard({ rec }: { rec: MLRecView | null }) {
   if (!rec) {
     return (
-      <div className="rounded-xl border border-line bg-surface p-5">
-        <div className="h-3.5 w-32 animate-pulse rounded bg-panel" />
-        <div className="mt-3 h-4 w-full animate-pulse rounded bg-panel" />
-        <p className="mt-2 text-xs text-muted">Upload sales history to generate a recommendation.</p>
+      <div className="rounded-xl border border-dashed border-line bg-surface p-5">
+        <div className="animate-pulse space-y-2">
+          <div className="h-3 w-24 rounded bg-panel" />
+          <div className="h-3 w-48 rounded bg-panel" />
+        </div>
+        <p className="mt-3 text-sm text-muted">
+          Upload sales history to generate a recommendation.
+        </p>
       </div>
     );
   }
@@ -46,9 +53,9 @@ export function RecommendationCard({ rec }: { rec: MLRecView | null }) {
         <span className="text-xs text-faint">{liftLabel}</span>
       </div>
       <p className="mt-2 text-ink">{rec.reasoning}</p>
-      <p className="mt-2 text-xs text-muted">
-        Model quality: R²={rec.r2.toFixed(2)}, {rec.dataPoints} data points
-      </p>
+      <div className="mt-3">
+        <ModelHealthBadge r2={rec.r2} dataPoints={rec.dataPoints} confidenceScore={rec.confidenceScore ?? null} />
+      </div>
     </div>
   );
 }

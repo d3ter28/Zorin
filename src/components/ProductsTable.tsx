@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { ModelHealthBadge } from "./ModelHealthBadge";
 import { useCallback, useEffect, useState } from "react";
 import { CogsInput } from "./CogsInput";
 import { formatCents, pct } from "@/lib/money";
@@ -13,13 +14,14 @@ interface Row {
   category: string;
   estUnits: number | null;
   margin: number | null;
-  comparison: {
+  comparison?: {
     compMedian: number | null;
     pctVsMedian: number | null;
     competitorCount: number;
-  };
-  recommendedAction: "raise" | "lower" | "hold";
-  suggestedPrice: number;
+  } | null;
+  recommendedAction: "raise" | "lower" | "hold" | null;
+  suggestedPrice: number | null;
+  modelHealth: { r2: number; dataPoints: number; confidenceScore: number } | null;
 }
 
 const FLOOR = 0.15;
@@ -49,7 +51,7 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
       setRows(data);
       // Pre-select every product with an actionable (non-hold) recommendation.
       setSelected(
-        new Set(data.filter((r) => r.recommendedAction !== "hold").map((r) => r.id)),
+        new Set(data.filter((r) => r.recommendedAction === "raise" || r.recommendedAction === "lower").map((r) => r.id)),
       );
       setLoadError(false);
     } catch {
@@ -82,7 +84,6 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
         body: JSON.stringify({ productIds: [...selected] }),
       });
       if (!res.ok) throw new Error("bulk apply failed");
-      // Refresh in place; applied rows become "hold" so the bar clears itself.
       await load();
     } catch {
       setError("Couldn't apply changes — try again.");
@@ -95,23 +96,15 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
     setRefreshing(true);
     setRefreshMsg(null);
     try {
-      const res = await fetch("/api/refresh", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productIds: rows.map((r) => r.id) }),
-      });
+      const res = await fetch("/api/refresh", { method: "POST" });
       if (!res.ok) throw new Error("refresh failed");
-      const { refreshed, failed } = (await res.json()) as {
-        refreshed: number;
-        failed: number;
-      };
-      setRefreshMsg(
-        `Refreshed ${refreshed} price${refreshed === 1 ? "" : "s"}${
-          failed ? `, ${failed} failed` : ""
-        }.`,
-      );
-      // Prices may have moved, so recommendations can change — re-fetch the table.
+      const { refreshed, failed } = await res.json() as { refreshed: number; failed: number };
       await load();
+      if (failed > 0) {
+        setRefreshMsg(`Refreshed ${refreshed} price${refreshed === 1 ? "" : "s"}, ${failed} failed.`);
+      } else {
+        setRefreshMsg(`Refreshed ${refreshed} price${refreshed === 1 ? "" : "s"}.`);
+      }
     } catch {
       setRefreshMsg("Couldn't refresh prices — try again.");
     } finally {
@@ -204,6 +197,9 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
               >
                 Est. impact
               </th>
+              <th scope="col" className="py-3 pr-3 font-medium">
+                Model
+              </th>
               <th scope="col" className="py-3 pr-4 text-right font-medium">
                 Recommendation
               </th>
@@ -213,10 +209,10 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
             {rows.map((r) => {
               const belowFloor = r.margin !== null && r.margin < FLOOR;
               const impact =
-                r.estUnits !== null && r.comparison.compMedian !== null
+                r.estUnits !== null && r.comparison?.compMedian != null
                   ? (r.comparison.compMedian - r.currentPrice) * r.estUnits
                   : null;
-              const actionable = r.recommendedAction !== "hold";
+              const actionable = r.recommendedAction === "raise" || r.recommendedAction === "lower";
               return (
                 <tr
                   key={r.id}
@@ -262,20 +258,28 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
                     {belowFloor ? " ⚠" : ""}
                   </td>
                   <td className="py-3 pr-3 text-right tabular text-muted">
-                    {r.comparison.compMedian === null
+                    {r.comparison?.compMedian == null
                       ? "—"
                       : formatCents(r.comparison.compMedian)}
                   </td>
                   <td className="py-3 pr-3">
-                    <Position pctVsMedian={r.comparison.pctVsMedian} />
+                    <Position pctVsMedian={r.comparison?.pctVsMedian ?? null} />
                   </td>
                   <td className="py-3 pr-3 text-right tabular text-muted">
                     {impact === null
                       ? "—"
                       : `${impact >= 0 ? "+" : "−"}${formatCents(Math.abs(impact))}`}
                   </td>
+                  <td className="py-3 pr-3">
+                    <ModelHealthBadge
+                      r2={r.modelHealth?.r2 ?? null}
+                      dataPoints={r.modelHealth?.dataPoints ?? null}
+                      confidenceScore={r.modelHealth?.confidenceScore ?? null}
+                      size="sm"
+                    />
+                  </td>
                   <td className="py-3 pr-4 text-right tabular">
-                    {actionable ? (
+                    {actionable && r.suggestedPrice != null ? (
                       <span
                         className={`font-medium ${
                           r.recommendedAction === "raise"
@@ -286,8 +290,10 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
                         {r.recommendedAction === "raise" ? "↑" : "↓"}{" "}
                         {formatCents(r.suggestedPrice)}
                       </span>
-                    ) : (
+                    ) : r.recommendedAction === "hold" ? (
                       <span className="text-faint">Hold</span>
+                    ) : (
+                      <span className="text-faint">—</span>
                     )}
                   </td>
                 </tr>

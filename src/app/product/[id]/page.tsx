@@ -30,6 +30,7 @@ function parseRecView(rec: RecData): MLRecView | null {
       expectedProfitLiftPct: number;
       r2: number;
       dataPoints: number;
+      confidenceScore?: number;
     };
     return {
       action: rec.action,
@@ -38,6 +39,7 @@ function parseRecView(rec: RecData): MLRecView | null {
       r2: rules.r2,
       dataPoints: rules.dataPoints,
       expectedProfitLiftPct: rules.expectedProfitLiftPct,
+      confidenceScore: rules.confidenceScore ?? null,
     };
   } catch {
     return null;
