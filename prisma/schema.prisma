@@ -29,6 +29,7 @@ model Product {
   recommendation  Recommendation?
   salesRecords    SalesRecord[]
   elasticityModel ElasticityModel?
+  priceChanges    PriceChange[]
 }
 
 model Recommendation {
@@ -57,14 +58,28 @@ model SalesRecord {
 }
 
 model ElasticityModel {
+  id                  String   @id @default(cuid())
+  productId           String   @unique
+  product             Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  elasticity          Float
+  intercept           Float
+  r2                  Float
+  dataPoints          Int
+  minPriceCents       Int      @default(0)
+  maxPriceCents       Int      @default(0)
+  effectiveSampleSize Float    @default(0)
+  confidenceScore     Float    @default(0)
+  priorApplied        Boolean  @default(false)
+  fittedAt            DateTime @default(now())
+}
+
+model PriceChange {
   id         String   @id @default(cuid())
-  productId  String   @unique
+  productId  String
   product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  elasticity Float
-  intercept  Float
-  r2         Float
-  dataPoints Int
-  fittedAt   DateTime @default(now())
+  fromCents  Int
+  toCents    Int
+  appliedAt  DateTime @default(now())
 }
 
 model User {

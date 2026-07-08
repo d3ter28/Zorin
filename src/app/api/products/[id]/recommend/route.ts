@@ -13,20 +13,18 @@ export const POST = withErrorHandling(
       where: { id, merchantId },
       include: { elasticityModel: true },
     });
-    if (!product) {
-      throw new HttpError(404, "Not found");
-    }
-    if (!product.elasticityModel) {
-      throw new HttpError(400, "No elasticity model — fit model first");
-    }
-    if (product.cogs === null) {
-      throw new HttpError(400, "COGS required to generate recommendation");
-    }
+    if (!product) throw new HttpError(404, "Not found");
+    if (!product.elasticityModel) throw new HttpError(400, "No elasticity model — fit model first");
+    if (product.cogs === null) throw new HttpError(400, "COGS required to generate recommendation");
+
+    const confidenceScore = product.elasticityModel.confidenceScore ?? 1.0;
 
     const rec = generateRecommendation(
       product.elasticityModel,
       product.currentPrice,
       product.cogs,
+      0.10,
+      confidenceScore
     );
 
     const rulesJson = JSON.stringify({
@@ -35,26 +33,15 @@ export const POST = withErrorHandling(
       elasticity: product.elasticityModel.elasticity,
       r2: product.elasticityModel.r2,
       dataPoints: product.elasticityModel.dataPoints,
+      confidenceScore,
     });
 
     await prisma.recommendation.upsert({
       where: { productId: id },
-      create: {
-        productId: id,
-        action: rec.action,
-        deltaPct: rec.deltaPct,
-        phrasing: rec.reasoning,
-        rulesJson,
-      },
-      update: {
-        action: rec.action,
-        deltaPct: rec.deltaPct,
-        phrasing: rec.reasoning,
-        rulesJson,
-        generatedAt: new Date(),
-      },
+      create: { productId: id, action: rec.action, deltaPct: rec.deltaPct, phrasing: rec.reasoning, rulesJson },
+      update: { action: rec.action, deltaPct: rec.deltaPct, phrasing: rec.reasoning, rulesJson, generatedAt: new Date() },
     });
 
     return NextResponse.json(rec);
-  },
+  }
 );

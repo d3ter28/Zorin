@@ -36,9 +36,9 @@ describe("POST /api/products/[id]/fit-model", () => {
   it("fits and upserts model when sufficient records exist", async () => {
     findFirst.mockResolvedValue({ id: "p1", merchantId: "m1" });
     findMany.mockResolvedValue([
-      { priceCents: 1000, unitsSold: 50 },
-      { priceCents: 1200, unitsSold: 40 },
-      { priceCents: 800, unitsSold: 70 },
+      { priceCents: 1000, unitsSold: 50, date: new Date("2024-01-01") },
+      { priceCents: 1200, unitsSold: 40, date: new Date("2024-01-02") },
+      { priceCents: 800, unitsSold: 70, date: new Date("2024-01-03") },
     ]);
     upsert.mockResolvedValue({});
 
@@ -53,7 +53,7 @@ describe("POST /api/products/[id]/fit-model", () => {
 
     expect(findMany).toHaveBeenCalledWith({
       where: { productId: "p1", promotionFlag: false },
-      select: { priceCents: true, unitsSold: true },
+      select: { priceCents: true, unitsSold: true, date: true },
     });
 
     expect(upsert).toHaveBeenCalledWith(

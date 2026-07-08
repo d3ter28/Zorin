@@ -36,4 +36,31 @@ describe("generateRecommendation", () => {
     const expectedDelta = (rec.suggestedPriceCents - 1000) / 1000;
     expect(rec.deltaPct).toBeCloseTo(expectedDelta, 3);
   });
+
+  it("uses narrower scan range at low confidence", () => {
+    // With confidence=0, scan is ±10%. With confidence=1, scan is ±30%.
+    // At current price 1000 with confidence=0, suggestedPrice should stay within ±10%.
+    const highlyElastic = { elasticity: -3.0, intercept: 15, r2: 0.9, dataPoints: 5 };
+    const recLowConf  = generateRecommendation(highlyElastic, 1000, 200, 0.1, 0.0);
+    const recHighConf = generateRecommendation(highlyElastic, 1000, 200, 0.1, 1.0);
+
+    // Low confidence: suggested price within ±10% of 1000
+    expect(recLowConf.suggestedPriceCents).toBeGreaterThanOrEqual(900);
+    expect(recLowConf.suggestedPriceCents).toBeLessThanOrEqual(1100);
+
+    // High confidence: can suggest up to ±30% — delta magnitude should be larger (or equal)
+    expect(Math.abs(recHighConf.deltaPct)).toBeGreaterThanOrEqual(Math.abs(recLowConf.deltaPct));
+  });
+
+  it("appends low-confidence note to reasoning when confidenceScore < 0.4", () => {
+    const model = { elasticity: -0.5, intercept: 10.0, r2: 0.85, dataPoints: 12 };
+    const rec = generateRecommendation(model, 1000, 400, 0.1, 0.2);
+    expect(rec.reasoning).toMatch(/limited data/i);
+  });
+
+  it("does not append confidence note at high confidence", () => {
+    const model = { elasticity: -0.5, intercept: 10.0, r2: 0.85, dataPoints: 12 };
+    const rec = generateRecommendation(model, 1000, 400, 0.1, 0.9);
+    expect(rec.reasoning).not.toMatch(/limited data/i);
+  });
 });

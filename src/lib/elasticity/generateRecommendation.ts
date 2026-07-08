@@ -5,6 +5,9 @@ export interface ElasticityModelParams {
   intercept: number;
   r2: number;
   dataPoints: number;
+  minPriceCents?: number | null;
+  maxPriceCents?: number | null;
+  confidenceScore?: number | null;
 }
 
 export interface PricingRecommendation {
@@ -19,16 +22,21 @@ export function generateRecommendation(
   model: ElasticityModelParams,
   currentPriceCents: number,
   cogsCents: number,
-  marginFloorPct = 0.10
+  marginFloorPct = 0.10,
+  confidenceScore = 1.0
 ): PricingRecommendation {
-  // Minimum price to maintain margin floor
   const minPriceCents = cogsCents / (1 - marginFloorPct);
 
-  // Scan candidate prices: ±50% of current in 2% steps
+  // Confidence-adjusted scan: ±10% at confidence=0, ±30% at confidence=1
+  const clampedConf = Math.max(0, Math.min(1, confidenceScore));
+  const scanWidth = 0.10 + 0.20 * clampedConf;
   const steps = 50;
-  const range = 0.5;
-  const lo = Math.round(currentPriceCents * (1 - range));
-  const hi = Math.round(currentPriceCents * (1 + range));
+  const scanLo = Math.round(currentPriceCents * (1 - scanWidth));
+  const scanHi = Math.round(currentPriceCents * (1 + scanWidth));
+  const trainLo = model.minPriceCents ? Math.round(model.minPriceCents * 0.8) : scanLo;
+  const trainHi = model.maxPriceCents ? Math.round(model.maxPriceCents * 1.2) : scanHi;
+  const lo = Math.max(scanLo, trainLo);
+  const hi = Math.min(scanHi, trainHi);
   const step = Math.round((hi - lo) / steps);
 
   let bestPriceCents = currentPriceCents;
@@ -75,12 +83,21 @@ export function generateRecommendation(
   const pricePctStr = `${(Math.abs(deltaPct) * 100).toFixed(0)}%`;
   const unitChangePct = (Math.exp(model.elasticity * Math.log(1 + deltaPct)) - 1) * 100;
   const profitChangePct = (expectedProfitLiftPct * 100).toFixed(0);
+  const confidenceNote = clampedConf < 0.4
+    ? " Limited data — re-fit after collecting more sales records for a stronger signal."
+    : "";
 
   const reasoning = action === "hold"
-    ? `Demand elasticity is ${model.elasticity.toFixed(2)}. Current price is already near the profit-maximizing point.`
+    ? `Demand elasticity is ${model.elasticity.toFixed(2)}. Current price is already near the profit-maximizing point.${confidenceNote}`
     : `Demand is ${elasticLabel} (elasticity = ${model.elasticity.toFixed(2)}). ` +
       `${action === "raise" ? "Raising" : "Lowering"} price ${pricePctStr} ${unitChangePct >= 0 ? "increases" : "reduces"} units by ~${Math.abs(unitChangePct).toFixed(0)}% ` +
-      `but ${parseFloat(profitChangePct) >= 0 ? "grows" : "reduces"} gross profit by ~${Math.abs(parseFloat(profitChangePct))}%.`;
+      `but ${parseFloat(profitChangePct) >= 0 ? "grows" : "reduces"} gross profit by ~${Math.abs(parseFloat(profitChangePct))}%.${confidenceNote}`;
 
-  return { action, suggestedPriceCents: bestPriceCents, deltaPct, reasoning, expectedProfitLiftPct };
+  return {
+    action,
+    suggestedPriceCents: action === "hold" ? currentPriceCents : bestPriceCents,
+    deltaPct,
+    reasoning,
+    expectedProfitLiftPct,
+  };
 }
