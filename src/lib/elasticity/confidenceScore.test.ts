@@ -25,4 +25,8 @@ describe("computeConfidenceScore", () => {
     expect(computeConfidenceScore(1.5, 100)).toBe(1.0); // clamp above 1
     expect(computeConfidenceScore(-0.1, 5)).toBe(0);    // clamp below 0
   });
+
+  it("returns 0 when effectiveSampleSize is negative", () => {
+    expect(computeConfidenceScore(0.9, -5)).toBe(0);
+  });
 });

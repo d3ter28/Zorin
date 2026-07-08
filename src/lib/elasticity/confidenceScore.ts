@@ -11,6 +11,6 @@
  */
 export function computeConfidenceScore(r2: number, effectiveSampleSize: number): number {
   const clampedR2 = Math.max(0, Math.min(1, r2));
-  const dataSufficiency = Math.min(1, effectiveSampleSize / 20);
-  return Math.round(clampedR2 * dataSufficiency * 100) / 100;
+  const dataSufficiency = Math.max(0, Math.min(1, effectiveSampleSize / 20));
+  return Math.max(0, Math.min(1, clampedR2 * dataSufficiency));
 }
