@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SquaresFour, Gear, SignOut } from "@phosphor-icons/react";
+import { LogoutButton } from "./LogoutButton";
 
 const SIDEBAR_BG = "oklch(0.18 0.012 265)";
 const ITEM_TEXT = "oklch(0.62 0.010 265)";
@@ -56,11 +57,6 @@ function NavItem({
 export function Sidebar({ merchantName }: { merchantName?: string }) {
   const pathname = usePathname();
 
-  async function logout() {
-    await fetch("/api/auth/logout", { method: "POST" });
-    window.location.href = "/login";
-  }
-
   return (
     <aside
       className="w-56 shrink-0 flex flex-col sticky top-0 h-screen overflow-y-auto"
@@ -93,9 +89,9 @@ export function Sidebar({ merchantName }: { merchantName?: string }) {
 
       {/* Logout */}
       <div className="px-3 pb-5 pt-3" style={{ borderTop: `1px solid ${DIVIDER}` }}>
-        <button
-          onClick={logout}
+        <LogoutButton
           className="flex w-full items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors"
+          icon={<SignOut size={16} />}
           style={{ color: ITEM_TEXT }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.backgroundColor = ITEM_HOVER_BG;
@@ -105,10 +101,7 @@ export function Sidebar({ merchantName }: { merchantName?: string }) {
             (e.currentTarget as HTMLElement).style.backgroundColor = "";
             (e.currentTarget as HTMLElement).style.color = ITEM_TEXT;
           }}
-        >
-          <SignOut size={16} />
-          Log out
-        </button>
+        />
       </div>
     </aside>
   );

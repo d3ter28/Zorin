@@ -154,10 +154,12 @@ export default function ProductPage({
 
   useEffect(loadData, [id]);
 
-  if (failed) {
-    return (
-      <AppShell>
-        <main className="mx-auto max-w-3xl px-6 py-10">
+  const mlRec = d && rec ? parseRecView(rec) : null;
+
+  return (
+    <AppShell>
+      <main className="mx-auto max-w-3xl px-6 py-10">
+        {failed ? (
           <div className="mt-8 rounded-xl border border-line bg-surface p-8 text-center">
             <p className="text-sm font-medium text-danger">
               This product couldn&apos;t be loaded.
@@ -166,57 +168,45 @@ export default function ProductPage({
               It may have been removed. Head back to the dashboard.
             </p>
           </div>
-        </main>
-      </AppShell>
-    );
-  }
+        ) : !d ? (
+          <p className="text-sm text-muted">Loading…</p>
+        ) : (
+          <div className="space-y-8">
+            <header>
+              <h1 className="text-2xl font-semibold tracking-tight text-ink">{d.title}</h1>
+              <p className="mt-1 text-sm text-muted">
+                Current price{" "}
+                <span className="font-medium tabular text-ink">
+                  {formatCents(d.currentPrice)}
+                </span>
+              </p>
+            </header>
 
-  if (!d) {
-    return (
-      <AppShell>
-        <main className="mx-auto max-w-3xl px-6 py-10 text-sm text-muted">Loading…</main>
-      </AppShell>
-    );
-  }
+            <SalesHistoryUpload onSuccess={loadData} />
 
-  const mlRec = rec ? parseRecView(rec) : null;
+            <div className="space-y-4">
+              <RecommendationCard rec={mlRec} />
+              <MLActionButtons productId={d.id} onComplete={loadData} />
+            </div>
 
-  return (
-    <AppShell>
-      <main className="mx-auto max-w-3xl space-y-8 px-6 py-10">
-        <header>
-          <h1 className="text-2xl font-semibold tracking-tight text-ink">{d.title}</h1>
-          <p className="mt-1 text-sm text-muted">
-            Current price{" "}
-            <span className="font-medium tabular text-ink">
-              {formatCents(d.currentPrice)}
-            </span>
-          </p>
-        </header>
+            <DemandCurve
+              productId={d.id}
+              suggestedPriceCents={mlRec?.suggestedPriceCents ?? null}
+            />
 
-        <SalesHistoryUpload onSuccess={loadData} />
+            <WhatIfSlider
+              productId={d.id}
+              currentPrice={d.currentPrice}
+              cogs={d.cogs}
+              suggestedPrice={mlRec?.suggestedPriceCents ?? null}
+              expectedProfitLiftPct={mlRec?.expectedProfitLiftPct ?? null}
+            />
 
-        <div className="space-y-4">
-          <RecommendationCard rec={mlRec} />
-          <MLActionButtons productId={d.id} onComplete={loadData} />
-        </div>
+            <PriceHistory productId={d.id} />
 
-        <DemandCurve
-          productId={d.id}
-          suggestedPriceCents={mlRec?.suggestedPriceCents ?? null}
-        />
-
-        <WhatIfSlider
-          productId={d.id}
-          currentPrice={d.currentPrice}
-          cogs={d.cogs}
-          suggestedPrice={mlRec?.suggestedPriceCents ?? null}
-          expectedProfitLiftPct={mlRec?.expectedProfitLiftPct ?? null}
-        />
-
-        <PriceHistory productId={d.id} />
-
-        <PromotionFlags productId={d.id} hasModel={mlRec !== null} />
+            <PromotionFlags productId={d.id} hasModel={mlRec !== null} />
+          </div>
+        )}
       </main>
     </AppShell>
   );

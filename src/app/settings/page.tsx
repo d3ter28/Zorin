@@ -1,8 +1,16 @@
+import { requireSessionPage } from "@/lib/auth/requireSession";
+import { prisma } from "@/lib/db";
 import { AppShell } from "@/components/AppShell";
 
-export default function SettingsPage() {
+export default async function SettingsPage() {
+  const user = await requireSessionPage();
+  const merchant = await prisma.merchant.findFirst({
+    where: { id: user.merchantId },
+    select: { name: true },
+  });
+
   return (
-    <AppShell>
+    <AppShell merchantName={merchant?.name ?? undefined}>
       <main className="max-w-2xl mx-auto p-8">
         <h1 className="text-2xl font-bold mb-6">Settings</h1>
         <p className="text-sm text-muted">Settings coming soon.</p>
