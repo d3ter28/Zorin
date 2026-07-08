@@ -7,6 +7,7 @@ export interface ElasticityModelParams {
   dataPoints: number;
   minPriceCents?: number | null;
   maxPriceCents?: number | null;
+  /** Not used by generateRecommendation — pass confidenceScore as the explicit 5th arg. */
   confidenceScore?: number | null;
 }
 
