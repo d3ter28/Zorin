@@ -12,7 +12,7 @@ interface OpportunityRow {
   id: string;
   title: string;
   sku: string;
-  recommendedAction: "raise" | "lower" | null;
+  recommendedAction: "raise" | "lower" | "hold" | null;
   suggestedPrice: number | null;
   currentPrice: number;
 }
