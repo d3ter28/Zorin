@@ -54,7 +54,7 @@ export function ModelHealthBadge({ r2, dataPoints, confidenceScore, size = "md" 
   return (
     <span title={title} className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium ${cfg.text} ${cfg.bg}`}>
       <span className={`h-2 w-2 rounded-full ${cfg.dot}`} />
-      {cfg.label} fit
+      {cfg.label}{tier !== "none" && " fit"}
       {tier !== "none" && (
         <span className="ml-0.5 font-normal opacity-70">
           {confidenceScore != null

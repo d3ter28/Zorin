@@ -20,7 +20,10 @@ export const GET = withErrorHandling(async () => {
       try {
         const rules = JSON.parse(p.recommendation.rulesJson) as { suggestedPriceCents: number };
         suggestedPrice = rules.suggestedPriceCents ?? null;
-      } catch {}
+      } catch {
+        console.error(`[products] Failed to parse rulesJson for product ${p.id}`);
+        recommendedAction = null;
+      }
     }
     return {
       id: p.id,
