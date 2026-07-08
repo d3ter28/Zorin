@@ -21,19 +21,26 @@ export const POST = withErrorHandling(
       select: { priceCents: true, unitsSold: true },
     });
 
-    const result = fitElasticityModel(records);
-    if (!result) {
+    const raw = fitElasticityModel(records);
+    if (!raw) {
       throw new HttpError(
         400,
         "Insufficient data: need at least 3 non-promotional sales records with positive price and units",
       );
     }
 
+    // Destructure only the fields that exist in the current DB schema.
+    // effectiveSampleSize (added in Task 1) and confidenceScore/priorApplied
+    // (Task 3) are intentionally excluded until the schema migration in Task 3.
+    const { elasticity, intercept, r2, dataPoints, minPriceCents, maxPriceCents } = raw;
+
     await prisma.elasticityModel.upsert({
       where: { productId: id },
-      create: { productId: id, ...result, fittedAt: new Date() },
-      update: { ...result, fittedAt: new Date() },
+      create: { productId: id, elasticity, intercept, r2, dataPoints, minPriceCents, maxPriceCents, fittedAt: new Date() },
+      update: { elasticity, intercept, r2, dataPoints, minPriceCents, maxPriceCents, fittedAt: new Date() },
     });
+
+    const result = raw;
 
     return NextResponse.json(result);
   },
