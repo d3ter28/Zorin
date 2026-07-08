@@ -5,6 +5,7 @@ import { PortfolioStats } from "./PortfolioStats";
 import { ProductsTable } from "./ProductsTable";
 import { ProductUpload } from "./ProductUpload";
 import { formatCents } from "@/lib/money";
+import { PortfolioTrendChart } from "./PortfolioTrendChart";
 
 type Tab = "overview" | "products";
 
@@ -114,14 +115,7 @@ export function Dashboard() {
         <div className="space-y-6">
           <PortfolioStats refreshToken={refreshToken} />
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {/* Chart placeholder — replaced in Task 3 */}
-            <div
-              className="rounded-xl border border-line bg-surface p-5 flex items-center justify-center"
-              style={{ minHeight: 280 }}
-              data-slot="trend-chart"
-            >
-              <p className="text-sm text-muted">Sales trend chart loading…</p>
-            </div>
+            <PortfolioTrendChart />
             <TopOpportunities rows={rows} />
           </div>
         </div>
