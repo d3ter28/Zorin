@@ -1,40 +1,72 @@
 export interface ElasticityResult {
-  elasticity: number; // price elasticity of demand (typically negative)
-  intercept: number; // ln-space intercept
-  r2: number; // coefficient of determination
-  dataPoints: number; // number of valid records used
+  elasticity: number;
+  intercept: number;
+  r2: number;
+  dataPoints: number;
+  /** Sum of time-decay weights. Equals dataPoints when no dates are supplied. */
+  effectiveSampleSize: number;
+  minPriceCents: number;
+  maxPriceCents: number;
+}
+
+export interface FitOptions {
+  /** Exponential half-life in days. Default 90. Use Infinity to disable decay. */
+  halfLifeDays?: number;
+  /** Reference date for computing daysAgo. Default: now. */
+  referenceDate?: Date;
 }
 
 export function fitElasticityModel(
-  records: { priceCents: number; unitsSold: number }[]
+  records: { priceCents: number; unitsSold: number; date?: Date | null }[],
+  options: FitOptions = {}
 ): ElasticityResult | null {
+  const { halfLifeDays = 90, referenceDate = new Date() } = options;
   const valid = records.filter((r) => r.priceCents > 0 && r.unitsSold > 0);
   if (valid.length < 3) return null;
 
-  // Transform to log space: x = ln(price), y = ln(units)
+  const refMs = referenceDate.getTime();
+  const msPerDay = 86_400_000;
+
   const xs = valid.map((r) => Math.log(r.priceCents));
   const ys = valid.map((r) => Math.log(r.unitsSold));
-  const n = valid.length;
+  const ws = valid.map((r) => {
+    if (!r.date) return 1;
+    const daysAgo = (refMs - new Date(r.date).getTime()) / msPerDay;
+    return halfLifeDays === Infinity ? 1 : Math.pow(2, -daysAgo / halfLifeDays);
+  });
 
-  const sumX = xs.reduce((a, b) => a + b, 0);
-  const sumY = ys.reduce((a, b) => a + b, 0);
-  const sumXY = xs.reduce((a, x, i) => a + x * ys[i], 0);
-  const sumX2 = xs.reduce((a, x) => a + x * x, 0);
+  // Weighted least squares
+  const W   = ws.reduce((a, w) => a + w, 0);
+  const Wx  = ws.reduce((a, w, i) => a + w * xs[i], 0);
+  const Wy  = ws.reduce((a, w, i) => a + w * ys[i], 0);
+  const Wxx = ws.reduce((a, w, i) => a + w * xs[i] * xs[i], 0);
+  const Wxy = ws.reduce((a, w, i) => a + w * xs[i] * ys[i], 0);
 
-  const denom = n * sumX2 - sumX * sumX;
+  const denom = W * Wxx - Wx * Wx;
   if (denom === 0) return null;
 
-  const elasticity = (n * sumXY - sumX * sumY) / denom;
-  const intercept = (sumY - elasticity * sumX) / n;
+  const elasticity = (W * Wxy - Wx * Wy) / denom;
+  const intercept  = (Wy - elasticity * Wx) / W;
 
-  // R² calculation
-  const yMean = sumY / n;
-  const ssTot = ys.reduce((a, y) => a + (y - yMean) ** 2, 0);
-  const ssRes = ys.reduce((a, y, i) => {
+  // Weighted R²
+  const yMean = Wy / W;
+  const ssTot = ws.reduce((a, w, i) => a + w * (ys[i] - yMean) ** 2, 0);
+  const ssRes = ws.reduce((a, w, i) => {
     const yHat = intercept + elasticity * xs[i];
-    return a + (y - yHat) ** 2;
+    return a + w * (ys[i] - yHat) ** 2;
   }, 0);
   const r2 = ssTot === 0 ? 0 : Math.max(0, 1 - ssRes / ssTot);
 
-  return { elasticity, intercept, r2, dataPoints: n };
+  const minPriceCents = Math.min(...valid.map((r) => r.priceCents));
+  const maxPriceCents = Math.max(...valid.map((r) => r.priceCents));
+
+  return {
+    elasticity,
+    intercept,
+    r2,
+    dataPoints: valid.length,
+    effectiveSampleSize: W,
+    minPriceCents,
+    maxPriceCents,
+  };
 }
