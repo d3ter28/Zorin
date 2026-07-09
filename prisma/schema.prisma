@@ -7,29 +7,31 @@ datasource db {
 }
 
 model Merchant {
-  id        String    @id @default(cuid())
-  name      String
-  storeUrl  String
-  createdAt DateTime  @default(now())
-  products  Product[]
-  user      User?
+  id                 String              @id @default(cuid())
+  name               String
+  storeUrl           String
+  createdAt          DateTime            @default(now())
+  products           Product[]
+  user               User?
+  shopifyConnection  ShopifyConnection?
 }
 
 model Product {
-  id              String           @id @default(cuid())
-  merchantId      String
-  merchant        Merchant         @relation(fields: [merchantId], references: [id])
-  title           String
-  sku             String
-  currentPrice    Int
-  cogs            Int?
-  category        String
-  estUnits        Int?
-  createdAt       DateTime         @default(now())
-  recommendation  Recommendation?
-  salesRecords    SalesRecord[]
-  elasticityModel ElasticityModel?
-  priceChanges    PriceChange[]
+  id               String           @id @default(cuid())
+  merchantId       String
+  merchant         Merchant         @relation(fields: [merchantId], references: [id])
+  title            String
+  sku              String
+  currentPrice     Int
+  cogs             Int?
+  category         String
+  estUnits         Int?
+  shopifyVariantId String?
+  createdAt        DateTime         @default(now())
+  recommendation   Recommendation?
+  salesRecords     SalesRecord[]
+  elasticityModel  ElasticityModel?
+  priceChanges     PriceChange[]
 }
 
 model Recommendation {
@@ -99,4 +101,15 @@ model Session {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   expiresAt DateTime
   createdAt DateTime @default(now())
+}
+
+model ShopifyConnection {
+  id             String    @id @default(cuid())
+  merchantId     String    @unique
+  merchant       Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  shopDomain     String
+  encryptedToken String
+  lastSyncedAt   DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }
