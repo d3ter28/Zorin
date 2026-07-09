@@ -80,10 +80,23 @@ describe("POST /api/shopify/connect", () => {
     expect(call.create.shopDomain).toBe("mystore.myshopify.com");
   });
 
-  it("returns 401 when verifyConnection throws", async () => {
+  it("returns 400 when shopDomain is whitespace-only", async () => {
+    const res = await POST(req({ shopDomain: "   ", accessToken: "tok" }));
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error).toMatch(/shopDomain/i);
+  });
+
+  it("returns 401 when verifyConnection throws a 4xx error", async () => {
     mockVerifyConnection.mockRejectedValueOnce(new Error("401: [API] Invalid API key or access token"));
     const res = await POST(req({ shopDomain: "mystore.myshopify.com", accessToken: "bad" }));
     expect(res.status).toBe(401);
+  });
+
+  it("returns 500 (not 401) when verifyConnection throws a network/5xx error", async () => {
+    mockVerifyConnection.mockRejectedValueOnce(new Error("fetch failed: ECONNREFUSED"));
+    const res = await POST(req({ shopDomain: "mystore.myshopify.com", accessToken: "tok" }));
+    expect(res.status).toBe(500);
   });
 
   it("returns { success: true, shopName } on success and upserts", async () => {

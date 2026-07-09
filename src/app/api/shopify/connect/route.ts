@@ -7,6 +7,7 @@ import { ShopifyClient } from "@/lib/shopify/client";
 
 function normalizeDomain(raw: string): string {
   let domain = raw.trim().toLowerCase();
+  if (domain.length === 0) throw new HttpError(400, "shopDomain is required");
   domain = domain.replace(/^https?:\/\//, ""); // strip scheme
   domain = domain.split("/")[0]; // strip path
   if (!domain.endsWith(".myshopify.com")) {
@@ -36,8 +37,10 @@ export const POST = withErrorHandling(async (req: Request) => {
   try {
     const result = await client.verifyConnection();
     shopName = result.shopName;
-  } catch {
-    throw new HttpError(401, "Invalid Shopify credentials");
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (/4\d\d/.test(msg)) throw new HttpError(401, "Invalid Shopify credentials or domain");
+    throw err; // let withErrorHandling produce the 500
   }
 
   const encryptedToken = encryptToken(accessToken);
