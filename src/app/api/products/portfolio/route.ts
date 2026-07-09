@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { withErrorHandling } from "@/lib/api/errors";
 import { marginPct } from "@/lib/margin";
+import { simulateProfit } from "@/lib/elasticity/simulateProfit";
 
 export const GET = withErrorHandling(async () => {
   const { merchantId } = await requireSessionApi();
@@ -73,6 +74,29 @@ export const GET = withErrorHandling(async () => {
   const hasModels = products.some((p) => p.elasticityModel !== null);
   const hasAppliedPrice = products.some((p) => p.priceChanges.length > 0);
 
+  let profitOpportunityCents = 0;
+  for (const p of products) {
+    if (!p.elasticityModel || !p.recommendation || p.cogs === null) continue;
+    if (p.recommendation.action === "hold") continue;
+    let expectedProfitLiftPct: number;
+    try {
+      const rules = JSON.parse(p.recommendation.rulesJson) as { expectedProfitLiftPct: number };
+      if (typeof rules.expectedProfitLiftPct !== "number") continue;
+      expectedProfitLiftPct = rules.expectedProfitLiftPct;
+    } catch {
+      continue;
+    }
+    const sim = simulateProfit({
+      elasticity: p.elasticityModel.elasticity,
+      intercept: p.elasticityModel.intercept,
+      currentPriceCents: p.currentPrice,
+      candidatePriceCents: p.currentPrice,
+      cogsCents: p.cogs,
+    });
+    if (sim.predictedGrossProfitCents <= 0) continue;
+    profitOpportunityCents += sim.predictedGrossProfitCents * expectedProfitLiftPct;
+  }
+
   return NextResponse.json({
     totalProducts,
     avgMargin,
@@ -82,5 +106,6 @@ export const GET = withErrorHandling(async () => {
     actions: { raise: actionsRaise, lower: actionsLower, hold: actionsHold },
     hasModels,
     hasAppliedPrice,
+    profitOpportunityCents,
   });
 });
