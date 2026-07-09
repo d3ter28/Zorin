@@ -35,4 +35,18 @@ describe("encryptToken / decryptToken", () => {
     expect(() => encryptToken("test")).toThrow(/SHOPIFY_ENCRYPTION_KEY/);
     process.env.SHOPIFY_ENCRYPTION_KEY = saved;
   });
+
+  it("throws if SHOPIFY_ENCRYPTION_KEY has wrong length", () => {
+    const saved = process.env.SHOPIFY_ENCRYPTION_KEY;
+    process.env.SHOPIFY_ENCRYPTION_KEY = "a1b2c3d4".repeat(4); // 32 hex chars, not 64
+    expect(() => encryptToken("test")).toThrow(/SHOPIFY_ENCRYPTION_KEY/);
+    process.env.SHOPIFY_ENCRYPTION_KEY = saved;
+  });
+
+  it("throws if SHOPIFY_ENCRYPTION_KEY contains non-hex characters", () => {
+    const saved = process.env.SHOPIFY_ENCRYPTION_KEY;
+    process.env.SHOPIFY_ENCRYPTION_KEY = "zz".repeat(32); // 64 chars but not valid hex
+    expect(() => encryptToken("test")).toThrow(/SHOPIFY_ENCRYPTION_KEY/);
+    process.env.SHOPIFY_ENCRYPTION_KEY = saved;
+  });
 });
