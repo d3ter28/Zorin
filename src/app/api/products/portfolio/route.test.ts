@@ -63,7 +63,7 @@ describe("GET /api/products/portfolio — profitOpportunityCents", () => {
 
     expect(res.status).toBe(200);
     expect(typeof body.profitOpportunityCents).toBe("number");
-    expect(body.profitOpportunityCents).toBeGreaterThan(0);
+    expect(body.profitOpportunityCents).toBeCloseTo(1.79, 1);
   });
 
   it("returns 0 when product has null cogs", async () => {

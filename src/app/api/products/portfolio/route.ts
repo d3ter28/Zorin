@@ -84,6 +84,7 @@ export const GET = withErrorHandling(async () => {
       if (typeof rules.expectedProfitLiftPct !== "number") continue;
       expectedProfitLiftPct = rules.expectedProfitLiftPct;
     } catch {
+      console.warn("portfolio: failed to parse rulesJson for opportunity calc", p.id);
       continue;
     }
     const sim = simulateProfit({
