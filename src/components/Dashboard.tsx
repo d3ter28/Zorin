@@ -6,6 +6,7 @@ import { ProductsTable } from "./ProductsTable";
 import { ProductUpload } from "./ProductUpload";
 import { formatCents } from "@/lib/money";
 import { PortfolioTrendChart } from "./PortfolioTrendChart";
+import { OnboardingChecklist } from "./OnboardingChecklist";
 
 type Tab = "overview" | "products";
 
@@ -76,10 +77,18 @@ function TopOpportunities({ rows }: { rows: OpportunityRow[] }) {
   );
 }
 
+interface PortfolioData {
+  totalProducts: number;
+  hasModels: boolean;
+  hasAppliedPrice: boolean;
+}
+
 export function Dashboard() {
   const [tab, setTab] = useState<Tab>("overview");
   const [refreshToken, setRefreshToken] = useState(0);
   const [rows, setRows] = useState<OpportunityRow[]>([]);
+  const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
+  const [showChecklist, setShowChecklist] = useState(true);
 
   useEffect(() => {
     fetch("/api/products")
@@ -88,12 +97,43 @@ export function Dashboard() {
       .catch(() => {});
   }, [refreshToken]);
 
+  useEffect(() => {
+    fetch("/api/products/portfolio")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: PortfolioData | null) => { if (data) setPortfolio(data); })
+      .catch(() => {});
+  }, [refreshToken]);
+
   function refresh() {
     setRefreshToken((t) => t + 1);
   }
 
+  const hasProducts = (portfolio?.totalProducts ?? 0) > 0;
+  const hasModels = portfolio?.hasModels ?? false;
+  const hasAppliedPrice = portfolio?.hasAppliedPrice ?? false;
+  const allDone = hasProducts && hasModels && hasAppliedPrice;
+
+  const firstProductWithoutModel = rows.find(
+    (r) => r.recommendedAction === null
+  )?.id ?? rows[0]?.id;
+
+  const firstProductWithRecommendation = rows.find(
+    (r) => r.recommendedAction === "raise" || r.recommendedAction === "lower"
+  )?.id;
+
   return (
     <div>
+      {portfolio && !allDone && showChecklist && (
+        <OnboardingChecklist
+          hasProducts={hasProducts}
+          hasModels={hasModels}
+          hasAppliedPrice={hasAppliedPrice}
+          onDismiss={() => setShowChecklist(false)}
+          onGoToProducts={() => setTab("products")}
+          firstProductWithoutModel={firstProductWithoutModel}
+          firstProductWithRecommendation={firstProductWithRecommendation}
+        />
+      )}
       {/* Tab bar */}
       <div className="flex gap-6 border-b border-line mb-8">
         {(["overview", "products"] as Tab[]).map((t) => (
