@@ -23,10 +23,10 @@ export function ShopifyConnectionCard() {
   const [error, setError] = useState<string | null>(null);
   const [syncResult, setSyncResult] = useState<SyncResult | null>(null);
 
-  async function fetchStatus() {
+  async function fetchStatus(signal?: AbortSignal) {
     setError(null);
     try {
-      const res = await fetch("/api/shopify/status");
+      const res = await fetch("/api/shopify/status", { signal });
       if (!res.ok) throw new Error("Failed to fetch Shopify status.");
       const data: ShopifyStatus = await res.json();
       if (data.connected) {
@@ -37,14 +37,16 @@ export function ShopifyConnectionCard() {
         setUiState("disconnected");
       }
     } catch (err) {
+      if ((err as { name?: string }).name === "AbortError") return;
       setError(err instanceof Error ? err.message : "Failed to load Shopify status.");
       setUiState("disconnected");
     }
   }
 
   useEffect(() => {
-    fetchStatus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const controller = new AbortController();
+    fetchStatus(controller.signal);
+    return () => controller.abort();
   }, []);
 
   async function handleConnect(e: React.FormEvent) {
@@ -110,13 +112,10 @@ export function ShopifyConnectionCard() {
     }
   }
 
-  function formatDate(iso: string | null | undefined): string {
+  function formatDate(iso?: string | null): string {
     if (!iso) return "Never";
-    try {
-      return new Date(iso).toLocaleString();
-    } catch {
-      return "Never";
-    }
+    const d = new Date(iso);
+    return isNaN(d.getTime()) ? "Never" : d.toLocaleString();
   }
 
   return (
