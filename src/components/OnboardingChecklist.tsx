@@ -78,7 +78,7 @@ export function OnboardingChecklist({
               <div key={i} className={`flex items-start gap-3 ${isFuture ? "opacity-40" : ""}`}>
                 {/* Icon */}
                 {step.done ? (
-                  <CheckCircle size={18} weight="fill" className="text-emerald-500 shrink-0 mt-0.5" />
+                  <CheckCircle size={18} weight="fill" className="text-positive shrink-0 mt-0.5" />
                 ) : (
                   <Circle
                     size={18}
@@ -121,12 +121,14 @@ export function OnboardingChecklist({
       )}
 
       {/* Progress bar */}
-      <div className="mt-4 h-1 rounded-full bg-panel overflow-hidden">
-        <div
-          className="h-full rounded-full bg-blue-500 transition-all duration-500"
-          style={{ width: `${(completedCount / 3) * 100}%` }}
-        />
-      </div>
+      {!allDone && (
+        <div className="mt-4 h-1 rounded-full bg-panel overflow-hidden">
+          <div
+            className="h-full rounded-full bg-blue-500 transition-all duration-500"
+            style={{ width: `${(completedCount / 3) * 100}%` }}
+          />
+        </div>
+      )}
     </div>
   )
 }
