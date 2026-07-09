@@ -88,7 +88,13 @@ export function Dashboard() {
   const [refreshToken, setRefreshToken] = useState(0);
   const [rows, setRows] = useState<OpportunityRow[]>([]);
   const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
-  const [showChecklist, setShowChecklist] = useState(true);
+  const [showChecklist, setShowChecklist] = useState(() => {
+    try {
+      return sessionStorage.getItem("priceiq_checklist_dismissed") !== "true";
+    } catch {
+      return true;
+    }
+  });
 
   useEffect(() => {
     fetch("/api/products")
@@ -100,8 +106,8 @@ export function Dashboard() {
   useEffect(() => {
     fetch("/api/products/portfolio")
       .then((r) => (r.ok ? r.json() : null))
-      .then((data: PortfolioData | null) => { if (data) setPortfolio(data); })
-      .catch(() => {});
+      .then((data: PortfolioData | null) => setPortfolio(data))
+      .catch(() => setPortfolio(null));
   }, [refreshToken]);
 
   function refresh() {
@@ -113,9 +119,7 @@ export function Dashboard() {
   const hasAppliedPrice = portfolio?.hasAppliedPrice ?? false;
   const allDone = hasProducts && hasModels && hasAppliedPrice;
 
-  const firstProductWithoutModel = rows.find(
-    (r) => r.recommendedAction === null
-  )?.id ?? rows[0]?.id;
+  const firstProductWithoutModel = rows[0]?.id;
 
   const firstProductWithRecommendation = rows.find(
     (r) => r.recommendedAction === "raise" || r.recommendedAction === "lower"
@@ -128,7 +132,10 @@ export function Dashboard() {
           hasProducts={hasProducts}
           hasModels={hasModels}
           hasAppliedPrice={hasAppliedPrice}
-          onDismiss={() => setShowChecklist(false)}
+          onDismiss={() => {
+            try { sessionStorage.setItem("priceiq_checklist_dismissed", "true"); } catch {}
+            setShowChecklist(false);
+          }}
           onGoToProducts={() => setTab("products")}
           firstProductWithoutModel={firstProductWithoutModel}
           firstProductWithRecommendation={firstProductWithRecommendation}
