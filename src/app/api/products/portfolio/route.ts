@@ -57,7 +57,9 @@ export const GET = withErrorHandling(async () => {
         totalLiftPct += rules.expectedProfitLiftPct;
         liftCount++;
       }
-    } catch {}
+    } catch (e) {
+      console.warn("portfolio: failed to parse rulesJson for recommendation", e);
+    }
   }
 
   const avgProfitLiftPct = liftCount > 0 ? totalLiftPct / liftCount : null;
