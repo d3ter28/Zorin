@@ -1,5 +1,6 @@
 "use client"
 import { useEffect } from "react"
+import Link from "next/link"
 import { CheckCircle, Circle, X } from "@phosphor-icons/react"
 
 interface OnboardingChecklistProps {
@@ -54,11 +55,11 @@ export function OnboardingChecklist({
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <span className="text-blue-600">◆</span>
+          <span className="text-accent">◆</span>
           <span className="text-sm font-semibold text-ink">Get started with PriceIQ</span>
-          <span className="text-xs text-muted ml-1">{completedCount} of 3</span>
+          <span className="text-xs text-muted ml-1">{completedCount} of {steps.length}</span>
         </div>
-        <button onClick={onDismiss} className="text-faint hover:text-ink transition-colors">
+        <button onClick={onDismiss} aria-label="Dismiss onboarding checklist" className="text-faint hover:text-ink transition-colors">
           <X size={16} />
         </button>
       </div>
@@ -82,7 +83,7 @@ export function OnboardingChecklist({
                 ) : (
                   <Circle
                     size={18}
-                    className={`${isCurrent ? "text-blue-500" : "text-faint"} shrink-0 mt-0.5`}
+                    className={`${isCurrent ? "text-accent" : "text-faint"} shrink-0 mt-0.5`}
                   />
                 )}
                 {/* Text */}
@@ -102,14 +103,14 @@ export function OnboardingChecklist({
                         </button>
                       )}
                       {i === 1 && firstProductWithoutModel && (
-                        <a href={`/product/${firstProductWithoutModel}`} className="btn btn-ghost text-xs px-3 py-1">
+                        <Link href={`/product/${firstProductWithoutModel}`} className="btn btn-ghost text-xs px-3 py-1">
                           Open a product →
-                        </a>
+                        </Link>
                       )}
                       {i === 2 && firstProductWithRecommendation && (
-                        <a href={`/product/${firstProductWithRecommendation}`} className="btn btn-ghost text-xs px-3 py-1">
+                        <Link href={`/product/${firstProductWithRecommendation}`} className="btn btn-ghost text-xs px-3 py-1">
                           View recommendation →
-                        </a>
+                        </Link>
                       )}
                     </div>
                   )}
@@ -124,7 +125,7 @@ export function OnboardingChecklist({
       {!allDone && (
         <div className="mt-4 h-1 rounded-full bg-panel overflow-hidden">
           <div
-            className="h-full rounded-full bg-blue-500 transition-all duration-500"
+            className="h-full rounded-full bg-accent transition-all duration-500"
             style={{ width: `${(completedCount / 3) * 100}%` }}
           />
         </div>
