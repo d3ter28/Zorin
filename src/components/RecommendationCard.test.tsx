@@ -18,13 +18,12 @@ function rec(overrides: Partial<MLRecView> = {}): MLRecView {
 }
 
 describe("RecommendationCard", () => {
-  it("loading: renders skeleton and upload prompt", () => {
+  it("loading: renders empty state when rec is null", () => {
     render(<RecommendationCard rec={null} />);
-    expect(document.querySelector(".animate-pulse")).toBeTruthy();
+    expect(screen.getByText("No recommendation yet")).toBeTruthy();
     expect(screen.queryByText("raise")).toBeNull();
     expect(screen.queryByText("lower")).toBeNull();
     expect(screen.queryByText("hold")).toBeNull();
-    expect(screen.getByText("Upload sales history to generate a recommendation.")).toBeTruthy();
   });
 
   it("raise: badge text and text-positive class", () => {
@@ -55,9 +54,10 @@ describe("RecommendationCard", () => {
     expect(screen.getByText("-3.0% expected profit change")).toBeTruthy();
   });
 
-  it("model quality line: shows R² and data points", () => {
+  it("model health badge: shows tier label and raw stats in title", () => {
     render(<RecommendationCard rec={rec({ r2: 0.82, dataPoints: 12 })} />);
-    expect(screen.getByText("Model quality: R²=0.82, 12 data points")).toBeTruthy();
+    expect(screen.getByText(/Fair fit/)).toBeTruthy();
+    expect(screen.getByTitle("R²=0.82, 12 data points")).toBeTruthy();
   });
 
   it("reasoning text is rendered", () => {

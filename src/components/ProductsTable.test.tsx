@@ -51,8 +51,8 @@ function stubApi(handlers: ApiHandlers = {}) {
     if (url === "/api/refresh" && init?.method === "POST") {
       return (handlers.onRefresh ?? (async () => json({ refreshed: 0, failed: 0 })))();
     }
-    if (url === "/api/apply/bulk" && init?.method === "POST") {
-      return (handlers.onApply ?? (async () => json({})))();
+    if (url === "/api/products/bulk-apply" && init?.method === "POST") {
+      return (handlers.onApply ?? (async () => json({ applied: 0, failed: [] })))();
     }
     throw new Error(`unexpected fetch: ${url}`);
   });
@@ -216,13 +216,13 @@ describe("ProductsTable selection and apply", () => {
   });
 
   it("success: POSTs the selected ids and re-fetches the table", async () => {
-    const fetchMock = await renderActionable({ onApply: async () => json({}) });
+    const fetchMock = await renderActionable({ onApply: async () => json({ applied: 2, failed: [] }) });
     await userEvent.click(screen.getByRole("button", { name: "Apply 2 changes" }));
     await waitFor(() => {
       const productLoads = fetchMock.mock.calls.filter(([u]) => String(u) === "/api/products");
       expect(productLoads.length).toBe(2); // initial load + post-apply reload
     });
-    const applyCall = fetchMock.mock.calls.find(([u]) => String(u) === "/api/apply/bulk");
+    const applyCall = fetchMock.mock.calls.find(([u]) => String(u) === "/api/products/bulk-apply");
     expect(applyCall).toBeTruthy();
     expect(JSON.parse(String(applyCall![1]?.body))).toEqual({ productIds: ["p1", "p2"] });
   });
