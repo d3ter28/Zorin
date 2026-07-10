@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db";
-import { decryptToken } from "@/lib/shopify/crypto";
-import { ShopifyClient } from "@/lib/shopify/client";
+import { decryptToken } from "./crypto";
+import { ShopifyClient } from "./client";
 import { centsToDollars } from "@/lib/money";
 
 export async function pushPriceToShopify(
