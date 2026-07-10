@@ -8,7 +8,14 @@ interface Summary {
   errors: { line: number; reason: string }[];
 }
 
+const SAMPLE_CSV =
+  "sku,title,current_price,category,cogs,est_units\n" +
+  "SKU-001,Wireless Headphones,79.99,Electronics,28.00,120\n" +
+  "SKU-002,Leather Wallet,34.99,Accessories,9.00,200\n" +
+  "SKU-003,Yoga Mat,42.99,Fitness,13.50,95\n";
+
 export function ProductUpload({ onImported }: { onImported: () => void }) {
+  const sampleCsvUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(SAMPLE_CSV);
   const [summary, setSummary] = useState<Summary | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,13 +39,12 @@ export function ProductUpload({ onImported }: { onImported: () => void }) {
       }
       const data: Summary = await res.json();
       setSummary(data);
-      // Refresh the table in place; the summary below stays visible.
       onImported();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Import failed — try again.");
     } finally {
       setBusy(false);
-      e.target.value = ""; // allow re-uploading the same file
+      e.target.value = "";
     }
   }
 
@@ -52,16 +58,25 @@ export function ProductUpload({ onImported }: { onImported: () => void }) {
             <span className="font-mono">sku, title, current_price, category, cogs, est_units</span>
           </p>
         </div>
-        <label className="btn btn-ghost cursor-pointer">
-          <input
-            type="file"
-            accept=".csv,text/csv"
-            onChange={onFile}
-            disabled={busy}
-            className="sr-only"
-          />
-          {busy ? "Importing…" : "Choose CSV"}
-        </label>
+        <div className="flex items-center gap-3">
+          <a
+            href={sampleCsvUrl}
+            download="product_catalog_template.csv"
+            className="text-xs text-accent hover:underline"
+          >
+            Download template
+          </a>
+          <label className="btn btn-ghost cursor-pointer">
+            <input
+              type="file"
+              accept=".csv,text/csv"
+              onChange={onFile}
+              disabled={busy}
+              className="sr-only"
+            />
+            {busy ? "Importing…" : "Choose CSV"}
+          </label>
+        </div>
       </div>
 
       {error && (

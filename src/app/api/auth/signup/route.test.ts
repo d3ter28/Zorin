@@ -66,7 +66,7 @@ describe("POST /api/auth/signup", () => {
       data: { email: "new@shop.example", passwordHash: "hashed", merchantId: "m-new" },
     });
     expect(createSession.mock.calls[0][1]).toBe("u-new");
-    expect(res.headers.get("set-cookie")).toContain("priceiq_session=tok123");
+    expect(res.headers.get("set-cookie")).toContain("zorin_session=tok123");
     expect(res.headers.get("set-cookie")).toContain("HttpOnly");
   });
 

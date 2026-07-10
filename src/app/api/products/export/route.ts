@@ -54,7 +54,7 @@ export const GET = withErrorHandling(async (_req: Request) => {
   return new NextResponse(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": 'attachment; filename="priceiq-products.csv"',
+      "Content-Disposition": 'attachment; filename="zorin-products.csv"',
     },
   });
 });

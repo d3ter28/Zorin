@@ -12,7 +12,7 @@ vi.mock("@/lib/salesHistory/bulkML", () => ({ runBulkML }));
 vi.mock("@/lib/auth/requireSession", () => ({
   requireSessionApi: vi.fn(async () => ({
     merchantId: "m1",
-    user: { id: "u1", email: "demo@priceiq.example", merchantId: "m1" },
+    user: { id: "u1", email: "demo@zorin.example", merchantId: "m1" },
   })),
 }));
 

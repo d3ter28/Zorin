@@ -20,7 +20,7 @@ export default async function DashboardPage() {
           </div>
           <a
             href="/api/products/export"
-            download="priceiq-products.csv"
+            download="zorin-products.csv"
             className="btn btn-ghost text-sm flex items-center gap-1.5"
           >
             ↓ Export CSV

@@ -65,7 +65,7 @@ export function Sidebar({ merchantName }: { merchantName?: string }) {
       {/* Brand */}
       <div className="px-5 pt-5 pb-6">
         <span className="text-sm font-semibold tracking-tight" style={{ color: BRAND_TEXT }}>
-          PriceIQ
+          Zorin
         </span>
         {merchantName && (
           <p className="text-xs mt-0.5 truncate" style={{ color: MERCHANT_TEXT }}>

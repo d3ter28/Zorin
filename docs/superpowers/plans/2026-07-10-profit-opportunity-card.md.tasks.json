@@ -1,0 +1,19 @@
+{
+  "planPath": "docs/superpowers/plans/2026-07-10-profit-opportunity-card.md",
+  "tasks": [
+    {
+      "id": 4,
+      "subject": "Task 1: Add profitOpportunityCents to portfolio API",
+      "status": "completed",
+      "description": "**Goal:** The GET `/api/products/portfolio` response includes `profitOpportunityCents: number`.\n\n```json:metadata\n{\"files\": [\"src/app/api/products/portfolio/route.ts\", \"src/app/api/products/portfolio/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/products/portfolio/route.test.ts\", \"acceptanceCriteria\": [\"profitOpportunityCents present in response as number\", \"null cogs skipped\", \"hold action skipped\", \"unparseable rulesJson skipped without throw\", \"zero when no products qualify\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 2: Render Profit Opportunity stat card",
+      "status": "completed",
+      "blockedBy": [4],
+      "description": "**Goal:** PortfolioStats renders a fifth stat card showing profit opportunity or a prompt.\n\n```json:metadata\n{\"files\": [\"src/components/PortfolioStats.tsx\", \"src/components/Dashboard.tsx\"], \"verifyCommand\": \"npx tsc --noEmit\", \"acceptanceCriteria\": [\"fifth card shows +$X.XX in green when profitOpportunityCents > 0\", \"fifth card shows prompt with Go to Products link when zero\", \"clicking Go to Products switches to Products tab\", \"no TypeScript errors\"], \"modelTier\": \"mechanical\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-07-10T00:00:00.000Z"
+}

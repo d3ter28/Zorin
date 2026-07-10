@@ -37,9 +37,15 @@ export const POST = withErrorHandling(
     );
     const confidenceScore = computeConfidenceScore(raw.r2, raw.effectiveSampleSize);
 
+    // Recompute intercept so the shrunk model still passes through the data centroid.
+    // Original: intercept_raw = ȳ - elasticity_raw * x̄
+    // Adjusted: intercept_adj = ȳ - elasticity_shrunk * x̄
+    const adjustedIntercept =
+      raw.weightedMeanLogUnits - shrunkElasticity * raw.weightedMeanLogPrice;
+
     const result = {
       elasticity: shrunkElasticity,
-      intercept: raw.intercept,
+      intercept: adjustedIntercept,
       r2: raw.r2,
       dataPoints: raw.dataPoints,
       effectiveSampleSize: raw.effectiveSampleSize,

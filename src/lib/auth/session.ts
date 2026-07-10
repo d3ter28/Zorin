@@ -3,7 +3,7 @@ import type { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
-export const SESSION_COOKIE = "priceiq_session";
+export const SESSION_COOKIE = "zorin_session";
 
 export interface SessionUser {
   id: string;
@@ -17,6 +17,10 @@ export async function createSession(
 ): Promise<{ token: string; expiresAt: Date }> {
   const token = randomBytes(32).toString("hex");
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS);
+  // Prune expired sessions for this user before creating a new one.
+  await prisma.session.deleteMany({
+    where: { userId, expiresAt: { lt: new Date() } },
+  });
   await prisma.session.create({ data: { token, userId, expiresAt } });
   return { token, expiresAt };
 }

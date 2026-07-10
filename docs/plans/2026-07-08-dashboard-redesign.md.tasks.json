@@ -1,0 +1,33 @@
+{
+  "planPath": "docs/plans/2026-07-08-dashboard-redesign.md",
+  "tasks": [
+    {
+      "id": 1,
+      "subject": "Task 1: AppShell + Sidebar Navigation",
+      "status": "pending",
+      "description": "**Goal:** Add a persistent dark left sidebar replacing per-page headers.\n\n**Files:** src/components/AppShell.tsx (create), src/components/Sidebar.tsx (create), src/app/dashboard/page.tsx (modify), src/app/product/[id]/page.tsx (modify), src/app/settings/page.tsx (modify)\n\n**Acceptance Criteria:**\n- Sidebar visible on all authenticated pages\n- Active nav item highlighted based on route\n- Logout works from sidebar\n- Content area scrolls independently\n\n**Verify:** Navigate to /dashboard, /product/:id, /settings — dark sidebar present with correct active state.\n\n```json:metadata\n{\"files\": [\"src/components/AppShell.tsx\", \"src/components/Sidebar.tsx\"], \"verifyCommand\": \"npm run dev\", \"acceptanceCriteria\": [\"Sidebar on all pages\", \"Active state correct\", \"Logout works\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Dashboard Tabs + Top Opportunities Panel",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Split dashboard into Overview/Products tabs with Top Opportunities panel.\n\n**Files:** src/components/Dashboard.tsx (modify)\n\n**Acceptance Criteria:**\n- Two tabs: Overview and Products\n- Overview: PortfolioStats + two-column grid (chart + opportunities)\n- Top Opportunities shows raise/lower products sorted by delta\n- Products tab unchanged\n\n**Verify:** Switch tabs on /dashboard — both render correctly, no console errors.\n\n```json:metadata\n{\"files\": [\"src/components/Dashboard.tsx\"], \"verifyCommand\": \"npm run dev\", \"acceptanceCriteria\": [\"Both tabs render\", \"Opportunities panel shows\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: Portfolio Sales Trend Chart",
+      "status": "pending",
+      "blockedBy": [2],
+      "description": "**Goal:** Line chart of monthly avg price from SalesRecord data.\n\n**Files:** src/app/api/products/portfolio/trend/route.ts (create), src/components/PortfolioTrendChart.tsx (create), src/components/Dashboard.tsx (modify)\n\n**Acceptance Criteria:**\n- API returns monthly buckets from SalesRecord\n- Chart renders with month/price labels\n- Empty state when < 2 data points\n\n**Verify:** Upload CSV, view Overview tab — line chart renders.\n\n```json:metadata\n{\"files\": [\"src/app/api/products/portfolio/trend/route.ts\", \"src/components/PortfolioTrendChart.tsx\"], \"verifyCommand\": \"npm run dev — upload CSV and check chart\", \"acceptanceCriteria\": [\"Chart renders\", \"Empty state works\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: Export CSV",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Export all products as CSV from dashboard header.\n\n**Files:** src/app/api/products/export/route.ts (create), src/app/dashboard/page.tsx (modify)\n\n**Acceptance Criteria:**\n- GET /api/products/export returns text/csv\n- Export button in dashboard header downloads file\n- Columns: sku, title, current_price, cogs, margin_pct, recommended_action, suggested_price\n\n**Verify:** Click Export CSV — browser downloads priceiq-products.csv with correct data.\n\n```json:metadata\n{\"files\": [\"src/app/api/products/export/route.ts\"], \"verifyCommand\": \"Click Export CSV button\", \"acceptanceCriteria\": [\"File downloads\", \"Correct columns\"], \"modelTier\": \"mechanical\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-07-08"
+}

@@ -9,7 +9,6 @@ export const GET = withErrorHandling(
     const { id } = await params;
     const p = await prisma.product.findFirst({
       where: { id, merchantId },
-      include: { competitors: true },
     });
     if (!p) throw new HttpError(404, "Not found");
     return NextResponse.json({
@@ -17,14 +16,6 @@ export const GET = withErrorHandling(
       title: p.title,
       currentPrice: p.currentPrice,
       cogs: p.cogs,
-      competitors: p.competitors.map((c) => ({
-        name: c.competitorName,
-        price: c.price,
-        observedAt: c.observedAt.toISOString(),
-        url: c.competitorUrl ?? "",
-        lastObservedAt: c.lastObservedAt.toISOString(),
-        isStale: c.isStale,
-      })),
     });
   },
 );

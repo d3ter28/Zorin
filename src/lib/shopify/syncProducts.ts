@@ -13,7 +13,7 @@ export interface SyncProductsResult {
 type PrismaSurface = Pick<PrismaClient, "product" | "recommendation">;
 
 /**
- * Sync Shopify variants into the PriceIQ product catalog for a merchant.
+ * Sync Shopify variants into the Zorin product catalog for a merchant.
  * Matches existing products by SKU (case-insensitive) first, so CSV-imported
  * products link up with Shopify variants. Creates new products for unmatched
  * variants. Skips variants with empty SKU.

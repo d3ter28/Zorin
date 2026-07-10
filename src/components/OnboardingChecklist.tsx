@@ -56,7 +56,7 @@ export function OnboardingChecklist({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <span className="text-accent">◆</span>
-          <span className="text-sm font-semibold text-ink">Get started with PriceIQ</span>
+          <span className="text-sm font-semibold text-ink">Get started with Zorin</span>
           <span className="text-xs text-muted ml-1">{completedCount} of {steps.length}</span>
         </div>
         <button onClick={onDismiss} aria-label="Dismiss onboarding checklist" className="text-faint hover:text-ink transition-colors">

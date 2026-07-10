@@ -7,6 +7,10 @@ export interface ElasticityResult {
   effectiveSampleSize: number;
   minPriceCents: number;
   maxPriceCents: number;
+  /** Weighted mean of log(priceCents) — used to recompute intercept after elasticity shrinkage. */
+  weightedMeanLogPrice: number;
+  /** Weighted mean of log(unitsSold) — used to recompute intercept after elasticity shrinkage. */
+  weightedMeanLogUnits: number;
 }
 
 export interface FitOptions {
@@ -59,6 +63,8 @@ export function fitElasticityModel(
 
   const minPriceCents = Math.min(...valid.map((r) => r.priceCents));
   const maxPriceCents = Math.max(...valid.map((r) => r.priceCents));
+  const weightedMeanLogPrice = Wx / W;
+  const weightedMeanLogUnits = Wy / W;
 
   return {
     elasticity,
@@ -68,5 +74,7 @@ export function fitElasticityModel(
     effectiveSampleSize: W,
     minPriceCents,
     maxPriceCents,
+    weightedMeanLogPrice,
+    weightedMeanLogUnits,
   };
 }

@@ -26,7 +26,7 @@ describe("POST /api/auth/logout", () => {
 
     expect(res.status).toBe(200);
     expect(destroySession.mock.calls[0][1]).toBe("tok");
-    expect(res.headers.get("set-cookie")).toContain("priceiq_session=;");
+    expect(res.headers.get("set-cookie")).toContain("zorin_session=;");
   });
 
   it("succeeds even with no cookie", async () => {

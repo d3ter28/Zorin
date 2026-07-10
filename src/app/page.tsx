@@ -1,27 +1,37 @@
-import { Dashboard } from "@/components/Dashboard";
-import { LogoutButton } from "@/components/LogoutButton";
-import { requireSessionPage } from "@/lib/auth/requireSession";
-import { prisma } from "@/lib/db";
+import { Navbar } from "@/components/marketing/Navbar";
+import { Hero } from "@/components/marketing/Hero";
+import { MetricsStrip } from "@/components/marketing/MetricsStrip";
+import { LogoWall } from "@/components/marketing/LogoWall";
+import { WhyZorin } from "@/components/marketing/WhyZorin";
+import { HowItWorks } from "@/components/marketing/HowItWorks";
+import { Features } from "@/components/marketing/Features";
+import { Blog } from "@/components/marketing/Blog";
+import { FAQ } from "@/components/marketing/FAQ";
+import { EarlyAccess } from "@/components/marketing/EarlyAccess";
+import { Footer } from "@/components/marketing/Footer";
 
-export default async function Home() {
-  const { merchantId } = await requireSessionPage();
-  const merchant = await prisma.merchant.findUnique({ where: { id: merchantId } });
+export const metadata = {
+  title: "Zorin - ML-powered pricing intelligence for online merchants",
+  description:
+    "Turn your sales history into profit-maximizing price recommendations. Upload, model, optimize.",
+};
 
+export default function LandingPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10 pb-28">
-      <header className="mb-8 flex items-start justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-ink">PriceIQ</h1>
-          <p className="mt-1 text-sm text-muted">
-            Competitor-aware pricing recommendations · {merchant?.name ?? "Your store"}
-          </p>
-        </div>
-        <div className="flex items-center gap-4">
-          <a href="/settings" className="text-sm text-muted hover:text-ink">Settings</a>
-          <LogoutButton />
-        </div>
-      </header>
-      <Dashboard />
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <MetricsStrip />
+        <LogoWall />
+        <WhyZorin />
+        <HowItWorks />
+        <Features />
+        <Blog />
+        <FAQ />
+        <EarlyAccess />
+      </main>
+      <Footer />
+    </>
   );
 }

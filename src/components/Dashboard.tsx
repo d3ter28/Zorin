@@ -91,7 +91,7 @@ export function Dashboard() {
   const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
   const [showChecklist, setShowChecklist] = useState(() => {
     try {
-      return sessionStorage.getItem("priceiq_checklist_dismissed") !== "true";
+      return sessionStorage.getItem("zorin_checklist_dismissed") !== "true";
     } catch {
       return true;
     }
@@ -134,7 +134,7 @@ export function Dashboard() {
           hasModels={hasModels}
           hasAppliedPrice={hasAppliedPrice}
           onDismiss={() => {
-            try { sessionStorage.setItem("priceiq_checklist_dismissed", "true"); } catch {}
+            try { sessionStorage.setItem("zorin_checklist_dismissed", "true"); } catch {}
             setShowChecklist(false);
           }}
           onGoToProducts={() => setTab("products")}

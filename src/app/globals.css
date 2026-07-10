@@ -140,6 +140,23 @@ body {
   cursor: not-allowed;
 }
 
+/* Blog post body typography */
+.prose-content {
+  color: oklch(0.3 0.012 265);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.prose-content p {
+  margin-bottom: 1.25rem;
+}
+.prose-content h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: oklch(0.24 0.012 265);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn,
   .field {

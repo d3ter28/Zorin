@@ -1,0 +1,16 @@
+sku,title,current_price,category,cogs,est_units
+SKU-001,Wireless Noise-Cancelling Headphones,79.99,Electronics,28.00,120
+SKU-002,USB-C Fast Charger 65W,24.99,Electronics,7.50,300
+SKU-003,Portable Bluetooth Speaker,49.99,Electronics,16.00,85
+SKU-004,Laptop Stand Aluminium,39.99,Electronics,12.00,150
+SKU-005,Mechanical Keyboard TKL,89.99,Electronics,32.00,60
+SKU-006,Leather Bifold Wallet,34.99,Accessories,9.00,200
+SKU-007,Canvas Weekender Bag,64.99,Accessories,22.00,75
+SKU-008,Stainless Steel Water Bottle 1L,29.99,Kitchen,8.50,250
+SKU-009,Bamboo Cutting Board Set,44.99,Kitchen,14.00,110
+SKU-010,Pour-Over Coffee Dripper,27.99,Kitchen,8.00,180
+SKU-011,Ceramic Mug Set of 4,36.99,Kitchen,11.00,140
+SKU-012,Foam Yoga Mat 6mm,42.99,Fitness,13.50,95
+SKU-013,Resistance Band Set,19.99,Fitness,5.50,320
+SKU-014,Jump Rope Speed Cable,14.99,Fitness,4.00,400
+SKU-015,Adjustable Dumbbell 20kg,119.99,Fitness,48.00,40

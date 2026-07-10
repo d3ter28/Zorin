@@ -21,13 +21,26 @@ export function RecommendationCard({ rec }: { rec: MLRecView | null }) {
   if (!rec) {
     return (
       <div className="rounded-xl border border-dashed border-line bg-surface p-5">
-        <div className="animate-pulse space-y-2">
-          <div className="h-3 w-24 rounded bg-panel" />
-          <div className="h-3 w-48 rounded bg-panel" />
-        </div>
-        <p className="mt-3 text-sm text-muted">
-          Upload sales history to generate a recommendation.
+        <p className="text-xs font-semibold uppercase tracking-wide text-faint">Recommendation</p>
+        <p className="mt-2 text-sm font-medium text-muted">No recommendation yet</p>
+        <p className="mt-1 text-xs text-faint leading-relaxed">
+          Upload your sales history and click <span className="font-medium text-ink">Fit Model</span>, then{" "}
+          <span className="font-medium text-ink">Get Recommendation</span> to see a data-backed price suggestion.
         </p>
+        <div className="mt-4 flex gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-panel px-2.5 py-1 text-xs text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-line" />
+            Upload sales data
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-panel px-2.5 py-1 text-xs text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-line" />
+            Fit model
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-panel px-2.5 py-1 text-xs text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-line" />
+            Get recommendation
+          </span>
+        </div>
       </div>
     );
   }

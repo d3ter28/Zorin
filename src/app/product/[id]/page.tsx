@@ -1,5 +1,6 @@
 "use client";
 import { use, useEffect, useState } from "react";
+import Link from "next/link";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
 import { DemandCurve } from "@/components/DemandCurve";
 import { PriceHistory } from "@/components/PriceHistory";
@@ -98,14 +99,14 @@ function MLActionButtons({
   return (
     <div className="flex flex-wrap items-center gap-3">
       <button
-        className="btn btn-secondary"
+        className="btn btn-primary"
         disabled={fitting}
         onClick={fitModel}
       >
         {fitting ? "Fitting…" : "Fit Model"}
       </button>
       <button
-        className="btn btn-secondary"
+        className="btn btn-primary"
         disabled={recommending}
         onClick={getRecommendation}
       >
@@ -175,6 +176,15 @@ export default function ProductPage({
         ) : (
           <div className="space-y-8">
             <header>
+              <Link
+                href="/dashboard"
+                className="mb-4 inline-flex items-center gap-1.5 text-xs text-muted hover:text-ink"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M9 11L5 7l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Back to dashboard
+              </Link>
               <h1 className="text-2xl font-semibold tracking-tight text-ink">{d.title}</h1>
               <p className="mt-1 text-sm text-muted">
                 Current price{" "}

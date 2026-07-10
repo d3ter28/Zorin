@@ -38,7 +38,7 @@ export function AuthForm({
         setBusy(false);
         return;
       }
-      window.location.href = "/";
+      window.location.href = "/dashboard";
     } catch {
       setError("Network error — please try again");
       setBusy(false);

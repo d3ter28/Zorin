@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PriceIQ",
+  title: "Zorin",
   description: "Competitor-aware pricing recommendations for your store.",
 };
 
