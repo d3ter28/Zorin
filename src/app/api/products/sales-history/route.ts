@@ -4,6 +4,7 @@ import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseSalesHistoryCsv } from "@/lib/salesHistory/parseSalesHistoryCsv";
 import { importSalesHistory } from "@/lib/salesHistory/importSalesHistory";
 import { requireSessionApi } from "@/lib/auth/requireSession";
+import { runBulkML } from "@/lib/salesHistory/bulkML";
 
 export const POST = withErrorHandling(async (req: Request) => {
   const { merchantId } = await requireSessionApi();
@@ -21,12 +22,26 @@ export const POST = withErrorHandling(async (req: Request) => {
     return NextResponse.json({ error: "no valid rows", errors }, { status: 400 });
   }
 
-  const { imported, unknownSkus } = await importSalesHistory(prisma, merchantId, rows);
+  const result = await importSalesHistory(prisma, merchantId, rows);
+
+  const url = new URL(req.url);
+  const autoML = url.searchParams.get("autoML") === "true";
+
+  let mlResult = null;
+  if (autoML && result.importedProductIds.length > 0) {
+    mlResult = await runBulkML(prisma, result.importedProductIds);
+  }
 
   return NextResponse.json({
-    imported,
-    skipped: unknownSkus.length,
+    imported: result.imported,
+    skipped: result.unknownSkus.length,
     errors,
-    unknownSkus,
+    unknownSkus: result.unknownSkus,
+    ...(mlResult && {
+      fitted: mlResult.fitted,
+      recommended: mlResult.recommended,
+      fitSkipped: mlResult.fitSkipped,
+      recommendSkipped: mlResult.recommendSkipped,
+    }),
   });
 });

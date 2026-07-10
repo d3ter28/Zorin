@@ -45,6 +45,7 @@ describe("importSalesHistory", () => {
     });
     expect(result.imported).toBe(1);
     expect(result.unknownSkus).toEqual([]);
+    expect(result.importedProductIds).toEqual(["p1"]);
   });
 
   it("collects unknown SKUs without throwing", async () => {
@@ -55,6 +56,7 @@ describe("importSalesHistory", () => {
 
     expect(result.imported).toBe(0);
     expect(result.unknownSkus).toEqual(["UNKNOWN-1"]);
+    expect(result.importedProductIds).toEqual([]);
     expect(prisma.salesRecord.upsert).not.toHaveBeenCalled();
   });
 
@@ -66,6 +68,7 @@ describe("importSalesHistory", () => {
     ]);
 
     expect(result.unknownSkus).toEqual(["UNKNOWN-1"]);
+    expect(result.importedProductIds).toEqual([]);
   });
 
   it("upserts on duplicate (productId, date) by calling upsert once per row", async () => {
@@ -92,6 +95,7 @@ describe("importSalesHistory", () => {
     const result = await importSalesHistory(prisma as never, "m1", []);
     expect(result.imported).toBe(0);
     expect(result.unknownSkus).toEqual([]);
+    expect(result.importedProductIds).toEqual([]);
     expect(prisma.product.findMany).toHaveBeenCalledWith({
       where: { merchantId: "m1" },
       select: { id: true, sku: true },

@@ -4,6 +4,7 @@ import type { ParsedSalesRow } from "./parseSalesHistoryCsv";
 export interface ImportResult {
   imported: number;
   unknownSkus: string[];
+  importedProductIds: string[];
 }
 
 /** Minimal Prisma surface this function needs (real client is assignable). */
@@ -27,6 +28,7 @@ export async function importSalesHistory(
   const skuToId = new Map(products.map((p) => [p.sku, p.id]));
 
   const unknownSkus: string[] = [];
+  const importedIds = new Set<string>();
   let imported = 0;
 
   for (const row of rows) {
@@ -49,8 +51,9 @@ export async function importSalesHistory(
         priceCents: row.priceCents,
       },
     });
+    importedIds.add(productId);
     imported++;
   }
 
-  return { imported, unknownSkus };
+  return { imported, unknownSkus, importedProductIds: [...importedIds] };
 }
