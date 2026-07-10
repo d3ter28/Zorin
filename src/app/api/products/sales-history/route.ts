@@ -24,8 +24,12 @@ export const POST = withErrorHandling(async (req: Request) => {
 
   const result = await importSalesHistory(prisma, merchantId, rows);
 
-  const url = new URL(req.url);
-  const autoML = url.searchParams.get("autoML") === "true";
+  let autoML = false;
+  try {
+    autoML = new URL(req.url).searchParams.get("autoML") === "true";
+  } catch {
+    // req.url is relative or missing; treat as no autoML
+  }
 
   let mlResult = null;
   if (autoML && result.importedProductIds.length > 0) {
