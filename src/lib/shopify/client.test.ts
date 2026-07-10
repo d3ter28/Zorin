@@ -341,6 +341,22 @@ describe('ShopifyClient', () => {
       // 1 original + 3 retries = 4 total calls
       expect(fetch).toHaveBeenCalledTimes(4);
     });
+
+    it('retries updateVariantPrice after 429', async () => {
+      vi.mocked(fetch)
+        .mockResolvedValueOnce(
+          mockResponse({ errors: 'Too Many Requests' }, 429, { 'retry-after': '1' }),
+        )
+        .mockResolvedValueOnce(
+          mockResponse({ variant: { id: 12345, price: '29.99' } }),
+        );
+
+      const promise = client.updateVariantPrice('12345', '29.99');
+      await vi.runAllTimersAsync();
+      await promise;
+
+      expect(fetch).toHaveBeenCalledTimes(2);
+    });
   });
 
   // ─── updateVariantPrice ──────────────────────────────────────────────────
