@@ -1,0 +1,40 @@
+{
+  "planPath": "docs/superpowers/plans/2026-07-10-shopify-price-writeback.md",
+  "tasks": [
+    {
+      "id": 6,
+      "subject": "Task 1: Extend ShopifyClient with updateVariantPrice",
+      "status": "pending",
+      "description": "**Goal:** `ShopifyClient` can update a Shopify variant's price via `PUT /admin/api/2024-01/variants/{id}.json`, and `centsToDollars` is available in `src/lib/money.ts`.\n\n**Files:**\n- Modify: `src/lib/money.ts`\n- Modify: `src/lib/shopify/client.ts`\n- Modify: `src/lib/shopify/client.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `centsToDollars(1999)` returns `\"19.99\"`, `centsToDollars(500)` returns `\"5.00\"`, `centsToDollars(10)` returns `\"0.10\"`\n- [ ] `ShopifyClient.request()` accepts optional `{ method, body }` — all existing callers unchanged\n- [ ] `updateVariantPrice(\"12345\", \"29.99\")` calls `PUT /admin/api/2024-01/variants/12345.json` with body `{ variant: { id: 12345, price: \"29.99\" } }`\n- [ ] 404 from Shopify throws an error containing \"404\"\n- [ ] 429 triggers the existing retry logic\n- [ ] All existing tests still pass (no regressions from the `request()` signature change)\n\n**Verify:** `npx vitest run src/lib/shopify/client.test.ts src/lib/money.test.ts` → all passed\n\n```json:metadata\n{\"files\": [\"src/lib/money.ts\", \"src/lib/shopify/client.ts\", \"src/lib/shopify/client.test.ts\"], \"verifyCommand\": \"npx vitest run src/lib/shopify/client.test.ts src/lib/money.test.ts\", \"acceptanceCriteria\": [\"centsToDollars converts correctly\", \"request() accepts optional method/body\", \"updateVariantPrice sends PUT with correct URL and body\", \"404 throws\", \"429 retries\", \"existing tests pass\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 7,
+      "subject": "Task 2: Create pushPriceToShopify service function",
+      "status": "pending",
+      "blockedBy": [6],
+      "description": "**Goal:** A `pushPriceToShopify(merchantId, shopifyVariantId, newPriceCents)` function that loads the merchant's Shopify connection, decrypts the token, and calls `updateVariantPrice`. Returns silently if no Shopify connection exists. Throws if the Shopify API call fails.\n\n**Files:**\n- Create: `src/lib/shopify/pushPrice.ts`\n- Create: `src/lib/shopify/pushPrice.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Happy path: decrypts token, constructs client, calls `updateVariantPrice` with `centsToDollars(newPriceCents)`\n- [ ] No connection for merchant: returns without error (silent skip)\n- [ ] Shopify API error: propagates the error to caller\n\n**Verify:** `npx vitest run src/lib/shopify/pushPrice.test.ts` → 3 passed\n\n```json:metadata\n{\"files\": [\"src/lib/shopify/pushPrice.ts\", \"src/lib/shopify/pushPrice.test.ts\"], \"verifyCommand\": \"npx vitest run src/lib/shopify/pushPrice.test.ts\", \"acceptanceCriteria\": [\"happy path decrypts and calls updateVariantPrice\", \"no connection returns silently\", \"Shopify API error propagates\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 8,
+      "subject": "Task 3: Wire Shopify push into single apply route",
+      "status": "pending",
+      "blockedBy": [7],
+      "description": "**Goal:** `POST /api/products/[id]/apply` calls `pushPriceToShopify` before the DB transaction when the product has a `shopifyVariantId`. If Shopify fails, the route returns an error and the local DB is unchanged.\n\n**Files:**\n- Modify: `src/app/api/products/[id]/apply/route.ts`\n- Create: `src/app/api/products/[id]/apply/route.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Product with `shopifyVariantId`: calls `pushPriceToShopify` before DB transaction\n- [ ] Shopify push succeeds: DB transaction commits, returns `{ ok: true }`\n- [ ] Shopify push fails: returns HTTP 502 with error message, DB unchanged\n- [ ] Product without `shopifyVariantId`: applies locally only (no Shopify call), returns `{ ok: true }`\n- [ ] Existing validation (same price, non-positive price) still works\n\n**Verify:** `npx vitest run src/app/api/products/[id]/apply/route.test.ts` → all passed\n\n```json:metadata\n{\"files\": [\"src/app/api/products/[id]/apply/route.ts\", \"src/app/api/products/[id]/apply/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/products/[id]/apply/route.test.ts\", \"acceptanceCriteria\": [\"calls pushPriceToShopify when shopifyVariantId present\", \"Shopify success commits DB\", \"Shopify failure returns 502 no DB change\", \"no variantId applies locally only\", \"existing validation unchanged\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 9,
+      "subject": "Task 4: Wire Shopify push into bulk apply route",
+      "status": "pending",
+      "blockedBy": [7],
+      "description": "**Goal:** `POST /api/products/bulk-apply` calls `pushPriceToShopify` per product before each local DB transaction. Products that fail the Shopify push are collected in a `failed` array. Response includes `{ applied, skipped, failed }`.\n\n**Files:**\n- Modify: `src/app/api/products/bulk-apply/route.ts`\n- Create: `src/app/api/products/bulk-apply/route.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Products with `shopifyVariantId`: Shopify push attempted before local transaction\n- [ ] Shopify push succeeds: local transaction commits, counted as `applied`\n- [ ] Shopify push fails: local transaction skipped, added to `failed` array with `{ id, title, reason }`\n- [ ] Products without `shopifyVariantId`: local-only apply (counted as `applied`)\n- [ ] Products without recommendation: counted as `skipped` (unchanged)\n- [ ] Response shape: `{ applied: number, skipped: number, failed: { id: string, title: string, reason: string }[] }`\n\n**Verify:** `npx vitest run src/app/api/products/bulk-apply/route.test.ts` → all passed\n\n```json:metadata\n{\"files\": [\"src/app/api/products/bulk-apply/route.ts\", \"src/app/api/products/bulk-apply/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/products/bulk-apply/route.test.ts\", \"acceptanceCriteria\": [\"Shopify push before local transaction\", \"success commits locally\", \"failure adds to failed array\", \"no variantId applies locally\", \"no recommendation skipped\", \"response shape correct\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 10,
+      "subject": "Task 5: Update ProductsTable UI for partial Shopify failures",
+      "status": "pending",
+      "blockedBy": [9],
+      "description": "**Goal:** The bulk apply UI in `ProductsTable` shows per-product failure detail when some Shopify pushes fail, instead of a generic error toast.\n\n**Files:**\n- Modify: `src/components/ProductsTable.tsx`\n\n**Acceptance Criteria:**\n- [ ] All succeed: existing success behavior (clears selection, reloads table)\n- [ ] Some fail: shows \"Applied X. Y failed to sync to Shopify.\" with each failed product's title and reason\n- [ ] All fail (Shopify errors for every product): shows error with all failed product details\n- [ ] No TypeScript errors: `npx tsc --noEmit`\n\n**Verify:** `npx tsc --noEmit` → no errors. Visual check on dev server.\n\n```json:metadata\n{\"files\": [\"src/components/ProductsTable.tsx\"], \"verifyCommand\": \"npx tsc --noEmit\", \"acceptanceCriteria\": [\"all succeed clears selection and reloads\", \"partial failure shows per-product detail\", \"all fail shows all failures\", \"no TypeScript errors\"], \"modelTier\": \"mechanical\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-07-10T00:00:00.000Z"
+}
