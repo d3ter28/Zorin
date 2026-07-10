@@ -74,7 +74,6 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
       if (!res.ok) throw new Error("bulk apply failed");
       const data = (await res.json()) as {
         applied: number;
-        skipped: number;
         failed: { id: string; title: string; reason: string }[];
       };
       if (data.failed.length > 0) {
@@ -84,8 +83,9 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
             ? `Applied ${data.applied} price${data.applied === 1 ? "" : "s"}. ${data.failed.length} failed to sync to Shopify:\n${failList}`
             : `Failed to sync to Shopify:\n${failList}`,
         );
+      } else {
+        setSelected(new Set());
       }
-      setSelected(new Set());
       await load();
     } catch {
       setError("Couldn't apply changes — try again.");
