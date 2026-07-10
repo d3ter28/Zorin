@@ -14,24 +14,12 @@ interface Row {
   category: string;
   estUnits: number | null;
   margin: number | null;
-  comparison?: {
-    compMedian: number | null;
-    pctVsMedian: number | null;
-    competitorCount: number;
-  } | null;
   recommendedAction: "raise" | "lower" | "hold" | null;
   suggestedPrice: number | null;
   modelHealth: { r2: number; dataPoints: number; confidenceScore: number } | null;
 }
 
 const FLOOR = 0.15;
-
-function Position({ pctVsMedian }: { pctVsMedian: number | null }) {
-  if (pctVsMedian === null) return <span className="text-faint">—</span>;
-  if (pctVsMedian > 0.1) return <span className="text-warning">Above market</span>;
-  if (pctVsMedian < -0.1) return <span className="text-accent">Below market</span>;
-  return <span className="text-muted">At market</span>;
-}
 
 export function ProductsTable({ refreshToken }: { refreshToken: number }) {
   const [rows, setRows] = useState<Row[]>([]);
@@ -78,12 +66,26 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
     setApplying(true);
     setError(null);
     try {
-      const res = await fetch("/api/apply/bulk", {
+      const res = await fetch("/api/products/bulk-apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productIds: [...selected] }),
       });
       if (!res.ok) throw new Error("bulk apply failed");
+      const data = (await res.json()) as {
+        applied: number;
+        skipped: number;
+        failed: { id: string; title: string; reason: string }[];
+      };
+      if (data.failed.length > 0) {
+        const failList = data.failed.map((f) => `${f.title}: ${f.reason}`).join("\n");
+        setError(
+          data.applied > 0
+            ? `Applied ${data.applied} price${data.applied === 1 ? "" : "s"}. ${data.failed.length} failed to sync to Shopify:\n${failList}`
+            : `Failed to sync to Shopify:\n${failList}`,
+        );
+      }
+      setSelected(new Set());
       await load();
     } catch {
       setError("Couldn't apply changes — try again.");
@@ -184,19 +186,6 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
               <th scope="col" className="py-3 pr-3 text-right font-medium">
                 Margin
               </th>
-              <th scope="col" className="py-3 pr-3 text-right font-medium">
-                Comp. median
-              </th>
-              <th scope="col" className="py-3 pr-3 font-medium">
-                Position
-              </th>
-              <th
-                scope="col"
-                className="py-3 pr-3 text-right font-medium"
-                title="Estimated revenue change if priced at the competitor median, across estimated unit volume."
-              >
-                Est. impact
-              </th>
               <th scope="col" className="py-3 pr-3 font-medium">
                 Model
               </th>
@@ -208,10 +197,6 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
           <tbody>
             {rows.map((r) => {
               const belowFloor = r.margin !== null && r.margin < FLOOR;
-              const impact =
-                r.estUnits !== null && r.comparison?.compMedian != null
-                  ? (r.comparison.compMedian - r.currentPrice) * r.estUnits
-                  : null;
               const actionable = r.recommendedAction === "raise" || r.recommendedAction === "lower";
               return (
                 <tr
@@ -257,19 +242,6 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
                     {r.margin === null ? "—" : pct(r.margin)}
                     {belowFloor ? " ⚠" : ""}
                   </td>
-                  <td className="py-3 pr-3 text-right tabular text-muted">
-                    {r.comparison?.compMedian == null
-                      ? "—"
-                      : formatCents(r.comparison.compMedian)}
-                  </td>
-                  <td className="py-3 pr-3">
-                    <Position pctVsMedian={r.comparison?.pctVsMedian ?? null} />
-                  </td>
-                  <td className="py-3 pr-3 text-right tabular text-muted">
-                    {impact === null
-                      ? "—"
-                      : `${impact >= 0 ? "+" : "−"}${formatCents(Math.abs(impact))}`}
-                  </td>
                   <td className="py-3 pr-3">
                     <ModelHealthBadge
                       r2={r.modelHealth?.r2 ?? null}
@@ -308,7 +280,7 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
           <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
             <div aria-live="polite">
               {error ? (
-                <span className="text-sm text-danger">{error}</span>
+                <span className="whitespace-pre-line text-sm text-danger">{error}</span>
               ) : (
                 <span className="text-sm text-muted">
                   {selected.size} change{selected.size === 1 ? "" : "s"} selected
