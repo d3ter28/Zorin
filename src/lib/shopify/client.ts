@@ -54,11 +54,18 @@ export class ShopifyClient {
 
   // ─── Core request helper ──────────────────────────────────────────────────
 
-  private async request(url: string): Promise<{ data: unknown; linkHeader: string | null }> {
+  private async request(
+    url: string,
+    options?: { method?: string; body?: unknown },
+  ): Promise<{ data: unknown; linkHeader: string | null }> {
     let lastError: Error | null = null;
 
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-      const res = await fetch(url, { headers: this.headers });
+      const res = await fetch(url, {
+        method: options?.method ?? "GET",
+        headers: this.headers,
+        ...(options?.body !== undefined && { body: JSON.stringify(options.body) }),
+      });
 
       if (res.status === 429) {
         if (attempt === MAX_RETRIES) {
@@ -140,6 +147,15 @@ export class ShopifyClient {
       yield variants;
       url = this.parseNextLink(linkHeader);
     }
+  }
+
+  // ─── updateVariantPrice ─────────────────────────────────────────────────
+
+  async updateVariantPrice(variantId: string, priceDollars: string): Promise<void> {
+    await this.request(`${this.baseUrl}/variants/${variantId}.json`, {
+      method: "PUT",
+      body: { variant: { id: Number(variantId), price: priceDollars } },
+    });
   }
 
   // ─── fetchOrders ──────────────────────────────────────────────────────────

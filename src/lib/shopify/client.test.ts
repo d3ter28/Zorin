@@ -343,6 +343,45 @@ describe('ShopifyClient', () => {
     });
   });
 
+  // ─── updateVariantPrice ──────────────────────────────────────────────────
+
+  describe("updateVariantPrice()", () => {
+    it("sends PUT with correct URL and body", async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse({ variant: { id: 12345, price: "29.99" } }),
+      );
+
+      await client.updateVariantPrice("12345", "29.99");
+
+      expect(fetch).toHaveBeenCalledWith(
+        `https://${shopDomain}/admin/api/2024-01/variants/12345.json`,
+        expect.objectContaining({
+          method: "PUT",
+          headers: expect.objectContaining({
+            "X-Shopify-Access-Token": accessToken,
+          }),
+          body: JSON.stringify({ variant: { id: 12345, price: "29.99" } }),
+        }),
+      );
+    });
+
+    it("throws on 404 (variant not found in Shopify)", async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse({ errors: "Not Found" }, 404),
+      );
+
+      await expect(client.updateVariantPrice("99999", "10.00")).rejects.toThrow("404");
+    });
+
+    it("throws on 422 (validation error)", async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse({ errors: "Price must be a number" }, 422),
+      );
+
+      await expect(client.updateVariantPrice("12345", "abc")).rejects.toThrow("422");
+    });
+  });
+
   // ─── Non-429 error handling ───────────────────────────────────────────────
 
   describe('error handling', () => {

@@ -9,6 +9,11 @@ export function pct(ratio: number): string {
   return `${(ratio * 100).toFixed(1)}%`;
 }
 
+/** Convert integer cents to a dollar string (e.g. 1999 → "19.99"). */
+export function centsToDollars(cents: number): string {
+  return (cents / 100).toFixed(2);
+}
+
 /** Parse a dollar amount (string or number) to integer cents. Null if invalid or negative. */
 export function dollarsToCents(value: string | number): number | null {
   if (typeof value === "string" && value.trim() === "") return null;
