@@ -81,7 +81,7 @@ export function SalesHistoryUpload({ onSuccess, autoML = true }: { onSuccess?: (
             ✓ Imported {result.imported} record{result.imported !== 1 ? "s" : ""}
             {result.skipped > 0 && `, skipped ${result.skipped} unknown SKU${result.skipped !== 1 ? "s" : ""}`}
           </p>
-          {result.fitted != null && (
+          {result.fitted != null && result.recommended != null && (
             <p className="text-positive font-medium">
               Fitted {result.fitted} model{result.fitted !== 1 ? "s" : ""}, generated {result.recommended} recommendation{result.recommended !== 1 ? "s" : ""}
             </p>
@@ -92,7 +92,7 @@ export function SalesHistoryUpload({ onSuccess, autoML = true }: { onSuccess?: (
                 {result.fitSkipped.length} product{result.fitSkipped.length !== 1 ? "s" : ""} need more data
               </summary>
               <ul className="ml-4 mt-1 text-muted">
-                {result.fitSkipped.map((t) => <li key={t}>{t}</li>)}
+                {result.fitSkipped.map((t, i) => <li key={i}>{t}</li>)}
               </ul>
             </details>
           )}
@@ -102,7 +102,7 @@ export function SalesHistoryUpload({ onSuccess, autoML = true }: { onSuccess?: (
                 {result.recommendSkipped.length} product{result.recommendSkipped.length !== 1 ? "s" : ""} need COGS for recommendations
               </summary>
               <ul className="ml-4 mt-1 text-muted">
-                {result.recommendSkipped.map((t) => <li key={t}>{t}</li>)}
+                {result.recommendSkipped.map((t, i) => <li key={i}>{t}</li>)}
               </ul>
             </details>
           )}

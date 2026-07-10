@@ -46,8 +46,8 @@ describe("SalesHistoryUpload", () => {
 
     await waitFor(() => {
       expect(screen.getByText(/Fitted 3 models, generated 2 recommendations/i)).toBeDefined();
+      expect(screen.getByText(/1 product.*need more data/i)).toBeDefined();
     });
-    expect(screen.getByText(/1 product.*need more data/i)).toBeDefined();
   });
 
   it("shows recommendSkipped products needing COGS", async () => {
@@ -96,5 +96,17 @@ describe("SalesHistoryUpload", () => {
         expect.objectContaining({ method: "POST" })
       );
     });
+  });
+
+  it("does not show ML summary when API returns no ML fields", async () => {
+    stubFetch({ imported: 5, skipped: 0, errors: [], unknownSkus: [] });
+
+    const { container } = render(<SalesHistoryUpload autoML={false} />);
+    triggerUpload(container);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Imported 5 records/i)).toBeDefined();
+    });
+    expect(screen.queryByText(/Fitted/i)).toBeNull();
   });
 });
