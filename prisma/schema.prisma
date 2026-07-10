@@ -3,17 +3,18 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Merchant {
-  id                 String              @id @default(cuid())
-  name               String
-  storeUrl           String
-  createdAt          DateTime            @default(now())
-  products           Product[]
-  user               User?
-  shopifyConnection  ShopifyConnection?
+  id                String             @id @default(cuid())
+  name              String
+  storeUrl          String
+  createdAt         DateTime           @default(now())
+  products          Product[]
+  user              User?
+  shopifyConnection ShopifyConnection?
 }
 
 model Product {
@@ -76,12 +77,12 @@ model ElasticityModel {
 }
 
 model PriceChange {
-  id         String   @id @default(cuid())
-  productId  String
-  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  fromCents  Int
-  toCents    Int
-  appliedAt  DateTime @default(now())
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  fromCents Int
+  toCents   Int
+  appliedAt DateTime @default(now())
 }
 
 model User {
@@ -112,4 +113,13 @@ model ShopifyConnection {
   lastSyncedAt   DateTime?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
+}
+
+model EarlyAccessInterest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  storeUrl  String?
+  message   String?
+  createdAt DateTime @default(now())
 }

@@ -8,14 +8,20 @@
     "start": "next start",
     "test": "vitest run",
     "test:watch": "vitest",
-    "seed": "tsx prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts",
+    "postinstall": "prisma generate",
+    "vercel-build": "prisma generate && prisma db push && next build"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.106.0",
+    "@neondatabase/serverless": "^1.1.0",
     "@node-rs/argon2": "^2.0.2",
+    "@phosphor-icons/react": "^2.1.10",
     "@prisma/adapter-better-sqlite3": "^7.8.0",
+    "@prisma/adapter-neon": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "cheerio": "^1.2.0",
+    "motion": "^12.42.2",
     "next": "16.2.9",
     "prisma": "^7.8.0",
     "react": "19.2.4",
