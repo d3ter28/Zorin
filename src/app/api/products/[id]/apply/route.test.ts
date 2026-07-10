@@ -88,7 +88,7 @@ describe("POST /api/products/[id]/apply — Shopify integration", () => {
     const body = await res.json();
 
     expect(res.status).toBe(502);
-    expect(body.error).toContain("Shopify");
+    expect(body.error).toContain("Shopify sync failed:");
     expect(mockTransaction).not.toHaveBeenCalled();
   });
 
@@ -106,5 +106,36 @@ describe("POST /api/products/[id]/apply — Shopify integration", () => {
     expect(body.ok).toBe(true);
     expect(mockPushPrice).not.toHaveBeenCalled();
     expect(mockTransaction).toHaveBeenCalled();
+  });
+
+  it("returns 400 when new price is the same as current price", async () => {
+    findUniqueOrThrow.mockResolvedValue({
+      id: "p1",
+      currentPrice: 1500,
+      shopifyVariantId: null,
+    });
+
+    const res = await POST(makeReq({ price: 1500 }), ctx);
+    const body = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(body.error).toContain("same");
+    expect(mockPushPrice).not.toHaveBeenCalled();
+    expect(mockTransaction).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when price is not a positive number", async () => {
+    findUniqueOrThrow.mockResolvedValue({
+      id: "p1",
+      currentPrice: 1000,
+      shopifyVariantId: null,
+    });
+
+    const res = await POST(makeReq({ price: -50 }), ctx);
+    const body = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(mockPushPrice).not.toHaveBeenCalled();
+    expect(mockTransaction).not.toHaveBeenCalled();
   });
 });
