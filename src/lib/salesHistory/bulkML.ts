@@ -26,6 +26,7 @@ export async function runBulkML(
   });
 
   for (const product of products) {
+    // Sequential per-product query — acceptable for typical batch sizes (<100 products)
     const records = await prisma.salesRecord.findMany({
       where: { productId: product.id, promotionFlag: false },
       select: { priceCents: true, unitsSold: true, date: true },
@@ -61,13 +62,13 @@ export async function runBulkML(
     });
     result.fitted++;
 
-    if (product.cogs === null) {
+    if (product.cogs == null) {
       result.recommendSkipped.push(product.title);
       continue;
     }
 
     const rec = generateRecommendation(
-      { ...modelData, minPriceCents: raw.minPriceCents, maxPriceCents: raw.maxPriceCents },
+      modelData,
       product.currentPrice,
       product.cogs,
       0.10,

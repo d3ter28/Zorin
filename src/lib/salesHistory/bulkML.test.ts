@@ -34,7 +34,7 @@ const fakePrisma = {
 } as any;
 
 beforeEach(() => {
-  vi.clearAllMocks();
+  vi.resetAllMocks();
 });
 
 const rawFit = {
@@ -79,6 +79,11 @@ describe("runBulkML", () => {
       recommended: 1,
       fitSkipped: [],
       recommendSkipped: [],
+    });
+
+    expect(mocks.salesRecordFindMany).toHaveBeenCalledWith({
+      where: { productId: "p1", promotionFlag: false },
+      select: { priceCents: true, unitsSold: true, date: true },
     });
 
     expect(mocks.elasticityModelUpsert).toHaveBeenCalledWith(
@@ -142,6 +147,37 @@ describe("runBulkML", () => {
     expect(mocks.elasticityModelUpsert).toHaveBeenCalled();
     expect(mocks.generateRecommendation).not.toHaveBeenCalled();
     expect(mocks.recommendationUpsert).not.toHaveBeenCalled();
+  });
+
+  it("handles two products: fits both, recommends only the one with COGS", async () => {
+    mocks.productFindMany.mockResolvedValue([
+      { id: "p1", title: "Widget With COGS", currentPrice: 1500, cogs: 800 },
+      { id: "p2", title: "Widget No COGS", currentPrice: 1200, cogs: null },
+    ]);
+    mocks.salesRecordFindMany.mockResolvedValue([
+      { priceCents: 1000, unitsSold: 10, date: new Date() },
+      { priceCents: 1200, unitsSold: 8, date: new Date() },
+      { priceCents: 1500, unitsSold: 5, date: new Date() },
+    ]);
+    mocks.fitElasticityModel.mockReturnValue(rawFit);
+    mocks.bayesianShrinkage.mockReturnValue({ shrunkElasticity: -1.4, priorApplied: false });
+    mocks.computeConfidenceScore.mockReturnValue(0.6);
+    mocks.generateRecommendation.mockReturnValue({
+      action: "raise",
+      suggestedPriceCents: 1600,
+      deltaPct: 0.0667,
+      reasoning: "some reasoning",
+      expectedProfitLiftPct: 0.05,
+    });
+    mocks.elasticityModelUpsert.mockResolvedValue({});
+    mocks.recommendationUpsert.mockResolvedValue({});
+
+    const result = await runBulkML(fakePrisma, ["p1", "p2"]);
+
+    expect(result.fitted).toBe(2);
+    expect(result.recommended).toBe(1);
+    expect(result.fitSkipped).toEqual([]);
+    expect(result.recommendSkipped).toContain("Widget No COGS");
   });
 
   it("returns all zeros and makes no DB calls when productIds is empty", async () => {
