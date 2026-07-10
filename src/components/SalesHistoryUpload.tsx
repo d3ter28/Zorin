@@ -6,9 +6,13 @@ interface UploadResult {
   skipped: number;
   errors: { line: number; reason: string }[];
   unknownSkus: string[];
+  fitted?: number;
+  recommended?: number;
+  fitSkipped?: string[];
+  recommendSkipped?: string[];
 }
 
-export function SalesHistoryUpload({ onSuccess }: { onSuccess?: () => void }) {
+export function SalesHistoryUpload({ onSuccess, autoML = true }: { onSuccess?: () => void; autoML?: boolean }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [state, setState] = useState<"idle" | "uploading" | "done" | "error">("idle");
   const [result, setResult] = useState<UploadResult | null>(null);
@@ -21,7 +25,8 @@ export function SalesHistoryUpload({ onSuccess }: { onSuccess?: () => void }) {
     const form = new FormData();
     form.append("file", file);
     try {
-      const res = await fetch("/api/products/sales-history", { method: "POST", body: form });
+      const url = autoML ? "/api/products/sales-history?autoML=true" : "/api/products/sales-history";
+      const res = await fetch(url, { method: "POST", body: form });
       const json = await res.json();
       if (!res.ok) {
         setFatalError(json.error ?? "Upload failed");
@@ -63,7 +68,7 @@ export function SalesHistoryUpload({ onSuccess }: { onSuccess?: () => void }) {
           }}
         />
         <button
-          className="btn btn-secondary"
+          className="btn btn-primary"
           disabled={state === "uploading"}
           onClick={() => inputRef.current?.click()}
         >
@@ -76,6 +81,31 @@ export function SalesHistoryUpload({ onSuccess }: { onSuccess?: () => void }) {
             ✓ Imported {result.imported} record{result.imported !== 1 ? "s" : ""}
             {result.skipped > 0 && `, skipped ${result.skipped} unknown SKU${result.skipped !== 1 ? "s" : ""}`}
           </p>
+          {result.fitted != null && (
+            <p className="text-positive font-medium">
+              Fitted {result.fitted} model{result.fitted !== 1 ? "s" : ""}, generated {result.recommended} recommendation{result.recommended !== 1 ? "s" : ""}
+            </p>
+          )}
+          {result.fitSkipped && result.fitSkipped.length > 0 && (
+            <details className="mt-1">
+              <summary className="cursor-pointer text-warning">
+                {result.fitSkipped.length} product{result.fitSkipped.length !== 1 ? "s" : ""} need more data
+              </summary>
+              <ul className="ml-4 mt-1 text-muted">
+                {result.fitSkipped.map((t) => <li key={t}>{t}</li>)}
+              </ul>
+            </details>
+          )}
+          {result.recommendSkipped && result.recommendSkipped.length > 0 && (
+            <details className="mt-1">
+              <summary className="cursor-pointer text-warning">
+                {result.recommendSkipped.length} product{result.recommendSkipped.length !== 1 ? "s" : ""} need COGS for recommendations
+              </summary>
+              <ul className="ml-4 mt-1 text-muted">
+                {result.recommendSkipped.map((t) => <li key={t}>{t}</li>)}
+              </ul>
+            </details>
+          )}
           {result.unknownSkus.length > 0 && (
             <p className="mt-1 text-warning">Unknown SKUs: {result.unknownSkus.join(", ")}</p>
           )}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PortfolioStats } from "./PortfolioStats";
 import { ProductsTable } from "./ProductsTable";
 import { ProductUpload } from "./ProductUpload";
+import { SalesHistoryUpload } from "./SalesHistoryUpload";
 import { formatCents } from "@/lib/money";
 import { PortfolioTrendChart } from "./PortfolioTrendChart";
 import { OnboardingChecklist } from "./OnboardingChecklist";
@@ -171,6 +172,7 @@ export function Dashboard() {
       {tab === "products" && (
         <div className="space-y-6">
           <ProductUpload onImported={refresh} />
+          <SalesHistoryUpload autoML onSuccess={refresh} />
           <ProductsTable refreshToken={refreshToken} />
         </div>
       )}
