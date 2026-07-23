@@ -140,14 +140,14 @@ Derived values:
 effectivePrice = price * (1 - discountPct)
 keptUnits = monthlyUnits * (1 - returnRatePct)
 revenue = effectivePrice * keptUnits
-variableCost = (unitCostTotal + adCostPerSale + effectivePrice * feePct) * monthlyUnits
-grossProfit = revenue - variableCost
+variableCostPerOrderedUnit = unitCostTotal + adCostPerSale + effectivePrice * feePct
+contributionPerUnit = effectivePrice * (1 - returnRatePct) - variableCostPerOrderedUnit
+grossProfit = contributionPerUnit * monthlyUnits
 netProfit = grossProfit - fixedMonthlyCosts
-contributionPerUnit = effectivePrice - unitCostTotal - adCostPerSale - effectivePrice * feePct
 breakEvenUnits = ceil(fixedMonthlyCosts / contributionPerUnit)
 ```
 
-If `contributionPerUnit <= 0`, break-even units is `null` and the UI shows that each sale loses money.
+`contributionPerUnit` is contribution per ordered unit after expected returns. If `contributionPerUnit <= 0`, break-even units is `null` and the UI shows that each sale loses money.
 
 Outputs:
 

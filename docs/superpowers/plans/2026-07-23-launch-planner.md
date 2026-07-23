@@ -356,7 +356,11 @@ describe("simulateLaunchScenario", () => {
 
     expect(result.effectivePriceCents).toBe(3600);
     expect(result.revenueCents).toBe(288000);
-    expect(result.netProfitCents).toBeLessThan(130000);
+    expect(result.contributionPerUnitCents).toBe(700);
+    expect(result.grossProfitCents).toBe(70000);
+    expect(result.netProfitCents).toBe(20000);
+    expect(result.breakEvenUnits).toBe(72);
+    expect(result.marginPct).toBeCloseTo(700 / 3600);
   });
 
   it("reports no break-even point when each sale loses money", () => {
@@ -364,6 +368,17 @@ describe("simulateLaunchScenario", () => {
       ...baseInput,
       priceCents: 1800,
       adCostPerSaleCents: 1000,
+    });
+
+    expect(result.contributionPerUnitCents).toBeLessThanOrEqual(0);
+    expect(result.breakEvenUnits).toBeNull();
+    expect(result.warnings.join(" ")).toMatch(/loses money/i);
+  });
+
+  it("reports no break-even point when expected returns erase contribution", () => {
+    const result = simulateLaunchScenario({
+      ...baseInput,
+      returnRatePct: 0.95,
     });
 
     expect(result.contributionPerUnitCents).toBeLessThanOrEqual(0);
@@ -420,13 +435,12 @@ export function simulateLaunchScenario(input: LaunchScenarioInput): LaunchScenar
   const keptUnits = input.monthlyUnits * (1 - input.returnRatePct);
   const revenueCents = Math.round(effectivePriceCents * keptUnits);
   const perUnitFees = effectivePriceCents * feePct;
+  const revenuePerOrderedUnit = effectivePriceCents * (1 - input.returnRatePct);
+  const variableCostPerOrderedUnit = unitCostTotal + input.adCostPerSaleCents + perUnitFees;
   const contributionPerUnitCents = Math.round(
-    effectivePriceCents - unitCostTotal - input.adCostPerSaleCents - perUnitFees
+    revenuePerOrderedUnit - variableCostPerOrderedUnit
   );
-  const variableCostCents = Math.round(
-    (unitCostTotal + input.adCostPerSaleCents + perUnitFees) * input.monthlyUnits
-  );
-  const grossProfitCents = revenueCents - variableCostCents;
+  const grossProfitCents = Math.round(contributionPerUnitCents * input.monthlyUnits);
   const netProfitCents = grossProfitCents - input.fixedMonthlyCostsCents;
   const breakEvenUnits =
     contributionPerUnitCents > 0
