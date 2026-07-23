@@ -154,8 +154,8 @@ function percentile(sortedPrices: number[], pct: number): number {
 }
 
 function marketTargetForPositioning(stats: LaunchMarketStats, positioning: LaunchPositioning): number {
-  if (positioning === "budget") return stats.q1Cents;
-  if (positioning === "premium") return stats.q3Cents;
+  if (positioning === "budget") return (stats.minCents + stats.medianCents) / 2;
+  if (positioning === "premium") return (stats.medianCents + stats.maxCents) / 2;
   return stats.medianCents;
 }
 

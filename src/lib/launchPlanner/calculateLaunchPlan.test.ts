@@ -64,6 +64,36 @@ describe("calculateLaunchPlan", () => {
     expect(result.confidence).toBe("medium");
   });
 
+  it("targets the midpoint between market low and median for budget positioning", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      positioning: "budget",
+      competitorPricesCents: [3000, 7000, 8000, 9000, 10000],
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.marketStats?.minCents).toBe(3000);
+    expect(result.marketStats?.medianCents).toBe(8000);
+    expect(result.marketStats?.q1Cents).toBe(7000);
+    expect(result.recommendedPriceCents).toBe(5599);
+  });
+
+  it("targets the midpoint between median and market high for premium positioning", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      positioning: "premium",
+      competitorPricesCents: [3000, 4000, 5000, 6000, 10000],
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.marketStats?.medianCents).toBe(5000);
+    expect(result.marketStats?.maxCents).toBe(10000);
+    expect(result.marketStats?.q3Cents).toBe(6000);
+    expect(result.recommendedPriceCents).toBe(7599);
+  });
+
   it("keeps confidence low until at least three valid competitor prices exist", () => {
     const result = calculateLaunchPlan({
       ...baseInput,
