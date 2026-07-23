@@ -140,6 +140,21 @@ describe("calculateLaunchPlan", () => {
     expect(result.warnings.join(" ")).toMatch(/market/i);
   });
 
+  it("warns when protecting the margin floor pushes the recommendation above market high", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      unitCostCents: 5000,
+      shippingCents: 500,
+      packagingCents: 0,
+      competitorPricesCents: [2900, 3100, 3300],
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.recommendedPriceCents).toBeGreaterThan(result.marketStats!.maxCents);
+    expect(result.warnings.join(" ")).toMatch(/above your upper market reference/i);
+  });
+
   it("returns stretch and discount-safe prices above the recommended and floor anchors", () => {
     const result = calculateLaunchPlan(baseInput);
 

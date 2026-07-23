@@ -69,4 +69,14 @@ describe("LaunchPlanner", () => {
     expect(screen.getByText("$170.00")).toBeTruthy();
     expect(screen.queryByText("-$1,699.50")).toBeNull();
   });
+
+  it("warns when the scenario discount breaks the margin floor", async () => {
+    render(<LaunchPlanner />);
+
+    const discount = screen.getByRole("spinbutton", { name: "Discount percent" });
+    await userEvent.clear(discount);
+    await userEvent.type(discount, "30");
+
+    expect(screen.getByText(/below your minimum viable price/i)).toBeTruthy();
+  });
 });

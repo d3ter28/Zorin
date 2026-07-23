@@ -120,6 +120,10 @@ export function LaunchPlanner() {
     returnRatePct: percentToRatio(returnRate),
     discountPct: percentToRatio(discount),
   });
+  const scenarioWarnings = [...scenario.warnings];
+  if (plan.ok && scenario.effectivePriceCents < plan.minimumViablePriceCents) {
+    scenarioWarnings.push("Discounted scenario price is below your minimum viable price.");
+  }
 
   return (
     <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)]">
@@ -260,8 +264,12 @@ export function LaunchPlanner() {
           <Stat label="Margin" value={pct(scenario.marginPct)} />
         </div>
 
-        {scenario.warnings.length > 0 ? (
-          <p className="mt-4 rounded-lg bg-danger-soft px-3 py-2 text-sm text-danger">{scenario.warnings[0]}</p>
+        {scenarioWarnings.length > 0 ? (
+          <div className="mt-4 space-y-1 rounded-lg bg-danger-soft px-3 py-2 text-sm text-danger">
+            {scenarioWarnings.map((warning) => (
+              <p key={warning}>{warning}</p>
+            ))}
+          </div>
         ) : null}
       </section>
     </div>

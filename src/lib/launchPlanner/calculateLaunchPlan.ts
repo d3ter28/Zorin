@@ -85,6 +85,9 @@ export function calculateLaunchPlan(input: CalculateLaunchPlanInput): CalculateL
     minimumViablePriceCents,
     input.roundingMode ?? "ninety-nine"
   );
+  if (marketStats && recommendedPriceCents > marketStats.maxCents) {
+    warnings.push("Recommended price is above your upper market reference.");
+  }
   const stretchPriceCents = roundPriceUp(
     marketStats
       ? Math.max(recommendedPriceCents * 1.12, marketStats.maxCents)
