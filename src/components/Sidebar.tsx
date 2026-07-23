@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SquaresFour, Gear, SignOut } from "@phosphor-icons/react";
+import { SquaresFour, RocketLaunch, Gear, SignOut } from "@phosphor-icons/react";
 import { LogoutButton } from "./LogoutButton";
 
 const SIDEBAR_BG = "oklch(0.18 0.012 265)";
@@ -14,6 +14,7 @@ const MERCHANT_TEXT = "oklch(0.50 0.010 265)";
 
 const NAV = [
   { href: "/dashboard", icon: SquaresFour, label: "Dashboard", matchPrefix: ["/dashboard", "/product"] },
+  { href: "/launch-planner", icon: RocketLaunch, label: "Launch Planner", matchPrefix: ["/launch-planner"] },
   { href: "/settings", icon: Gear, label: "Settings", matchPrefix: ["/settings"] },
 ];
 
