@@ -58,4 +58,15 @@ describe("LaunchPlanner", () => {
 
     expect(screen.getByRole("alert").textContent).toMatch(/margin and fee/i);
   });
+
+  it("clamps discount percent before simulating revenue", async () => {
+    render(<LaunchPlanner />);
+
+    const discount = screen.getByRole("spinbutton", { name: "Discount percent" });
+    await userEvent.clear(discount);
+    await userEvent.type(discount, "150");
+
+    expect(screen.getByText("$170.00")).toBeTruthy();
+    expect(screen.queryByText("-$1,699.50")).toBeNull();
+  });
 });

@@ -16,7 +16,7 @@ function currencyToCents(value: string): number {
 function percentToRatio(value: string): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) return 0;
-  return Math.max(0, parsed) / 100;
+  return Math.min(95, Math.max(0, parsed)) / 100;
 }
 
 function numericValue(value: string): number {
