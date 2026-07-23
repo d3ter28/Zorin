@@ -24,6 +24,7 @@ describe("calculateLaunchPlan", () => {
     });
 
     expect(result.ok).toBe(false);
+    if (result.ok) throw new Error("Expected launch plan calculation to fail");
     expect(result.error).toMatch(/margin and fee/i);
   });
 
