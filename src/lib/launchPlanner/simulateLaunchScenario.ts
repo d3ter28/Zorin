@@ -27,6 +27,7 @@ export interface SimulateLaunchScenarioResult {
 export function simulateLaunchScenario(input: SimulateLaunchScenarioInput): SimulateLaunchScenarioResult {
   const effectivePriceCents = Math.round(input.priceCents * (1 - input.discountPct));
   const keptUnits = input.monthlyUnits * (1 - input.returnRatePct);
+  const revenuePerOrderedUnitCents = effectivePriceCents * (1 - input.returnRatePct);
   const feeCents = Math.round(effectivePriceCents * (input.paymentFeePct + input.platformFeePct));
   const variableCostPerUnitCents =
     input.unitCostCents +
@@ -35,10 +36,9 @@ export function simulateLaunchScenario(input: SimulateLaunchScenarioInput): Simu
     input.otherUnitCostsCents +
     input.adCostPerSaleCents +
     feeCents;
-  const contributionPerUnitCents = effectivePriceCents - variableCostPerUnitCents;
+  const contributionPerUnitCents = Math.round(revenuePerOrderedUnitCents - variableCostPerUnitCents);
   const revenueCents = Math.round(effectivePriceCents * keptUnits);
-  const variableCostCents = Math.round(variableCostPerUnitCents * input.monthlyUnits);
-  const grossProfitCents = revenueCents - variableCostCents;
+  const grossProfitCents = Math.round(contributionPerUnitCents * input.monthlyUnits);
   const netProfitCents = grossProfitCents - input.fixedMonthlyCostsCents;
   const warnings: string[] = [];
 
@@ -52,7 +52,7 @@ export function simulateLaunchScenario(input: SimulateLaunchScenarioInput): Simu
     contributionPerUnitCents,
     grossProfitCents,
     netProfitCents,
-    marginPct: revenueCents === 0 ? 0 : grossProfitCents / revenueCents,
+    marginPct: effectivePriceCents === 0 ? 0 : contributionPerUnitCents / effectivePriceCents,
     breakEvenUnits:
       contributionPerUnitCents <= 0 ? null : Math.ceil(input.fixedMonthlyCostsCents / contributionPerUnitCents),
     warnings,

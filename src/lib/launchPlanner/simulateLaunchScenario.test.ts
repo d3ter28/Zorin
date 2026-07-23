@@ -38,8 +38,22 @@ describe("simulateLaunchScenario", () => {
 
     expect(result.effectivePriceCents).toBe(3600);
     expect(result.revenueCents).toBe(288000);
+    expect(result.contributionPerUnitCents).toBe(700);
     expect(result.grossProfitCents).toBe(70000);
     expect(result.netProfitCents).toBe(20000);
+    expect(result.breakEvenUnits).toBe(72);
+    expect(result.marginPct).toBeCloseTo(700 / 3600);
+  });
+
+  it("reports no break-even point when returns erase ordered-unit contribution", () => {
+    const result = simulateLaunchScenario({
+      ...baseInput,
+      returnRatePct: 0.6,
+    });
+
+    expect(result.contributionPerUnitCents).toBeLessThanOrEqual(0);
+    expect(result.breakEvenUnits).toBeNull();
+    expect(result.warnings.join(" ")).toMatch(/loses money/i);
   });
 
   it("reports no break-even point when each sale loses money", () => {
