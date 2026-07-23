@@ -1,6 +1,6 @@
 export type LaunchPositioning = "budget" | "mid-market" | "premium";
-export type LaunchRoundingMode = "ninety-nine" | "nearest-dollar" | "none";
-export type LaunchPlanConfidence = "low" | "medium" | "high";
+export type LaunchRoundingMode = "whole" | "ninety-nine";
+export type LaunchPlanConfidence = "low" | "medium";
 
 export interface CalculateLaunchPlanInput {
   unitCostCents: number;
@@ -30,6 +30,7 @@ export type CalculateLaunchPlanResult =
       recommendedPriceCents: number;
       stretchPriceCents: number;
       discountFloorPriceCents: number;
+      feePct: number;
       grossMarginPct: number;
       confidence: LaunchPlanConfidence;
       warnings: string[];
@@ -43,7 +44,7 @@ export type CalculateLaunchPlanResult =
     };
 
 const COST_ONLY_MARKUPS: Record<LaunchPositioning, number> = {
-  budget: 1.12,
+  budget: 1.10,
   "mid-market": 1.25,
   premium: 1.45,
 };
@@ -85,7 +86,9 @@ export function calculateLaunchPlan(input: CalculateLaunchPlanInput): CalculateL
     input.roundingMode ?? "ninety-nine"
   );
   const stretchPriceCents = roundPriceUp(
-    Math.max(recommendedPriceCents + 1, recommendedPriceCents * 1.15),
+    marketStats
+      ? Math.max(recommendedPriceCents * 1.12, marketStats.maxCents)
+      : recommendedPriceCents * 1.15,
     recommendedPriceCents + 1,
     input.roundingMode ?? "ninety-nine"
   );
@@ -111,6 +114,7 @@ export function calculateLaunchPlan(input: CalculateLaunchPlanInput): CalculateL
     recommendedPriceCents,
     stretchPriceCents,
     discountFloorPriceCents,
+    feePct,
     grossMarginPct,
     confidence,
     warnings,
@@ -156,11 +160,7 @@ function marketTargetForPositioning(stats: LaunchMarketStats, positioning: Launc
 }
 
 function roundPriceUp(priceCents: number, floorCents: number, mode: LaunchRoundingMode): number {
-  if (mode === "none") {
-    return Math.ceil(Math.max(priceCents, floorCents));
-  }
-
-  if (mode === "nearest-dollar") {
+  if (mode === "whole") {
     return Math.ceil(Math.max(priceCents, floorCents) / 100) * 100;
   }
 
@@ -176,9 +176,7 @@ function roundPriceUp(priceCents: number, floorCents: number, mode: LaunchRoundi
 }
 
 function confidenceForMarketCount(count: number): LaunchPlanConfidence {
-  if (count === 0) return "low";
-  if (count >= 8) return "high";
-  return "medium";
+  return count >= 3 ? "medium" : "low";
 }
 
 function buildExplanation(input: {

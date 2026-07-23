@@ -32,10 +32,23 @@ describe("calculateLaunchPlan", () => {
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
+    expect(result.feePct).toBe(0.05);
     expect(result.minimumViablePriceCents).toBe(2667);
     expect(result.recommendedPriceCents).toBe(3399);
     expect(result.confidence).toBe("low");
     expect(result.marketStats).toBeNull();
+  });
+
+  it("uses the budget cost-only fallback markup", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      unitCostCents: 1208,
+      positioning: "budget",
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.recommendedPriceCents).toBe(2999);
   });
 
   it("uses the market median for mid-market positioning and respects the floor", () => {
@@ -49,6 +62,39 @@ describe("calculateLaunchPlan", () => {
     expect(result.marketStats?.medianCents).toBe(3900);
     expect(result.recommendedPriceCents).toBe(3999);
     expect(result.confidence).toBe("medium");
+  });
+
+  it("keeps confidence low until at least three valid competitor prices exist", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      competitorPricesCents: [0, -100, 3200, 3600],
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.confidence).toBe("low");
+  });
+
+  it("does not return a high confidence state for larger market sets", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      competitorPricesCents: [2900, 3100, 3300, 3500, 3700, 3900, 4100, 4300],
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.confidence).toBe("medium");
+  });
+
+  it("uses market high as the market-data stretch anchor when it exceeds the percentage stretch", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      competitorPricesCents: [2900, 3500, 3900, 4200, 4900],
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.stretchPriceCents).toBe(4999);
   });
 
   it("lifts a market target up when competitor prices sit below the margin floor", () => {
@@ -71,5 +117,17 @@ describe("calculateLaunchPlan", () => {
     expect(result.stretchPriceCents).toBeGreaterThan(result.recommendedPriceCents);
     expect(Math.round(result.discountFloorPriceCents * 0.85)).toBeGreaterThanOrEqual(result.minimumViablePriceCents);
     expect(result.explanation.length).toBeGreaterThan(20);
+  });
+
+  it("supports whole-dollar upward rounding", () => {
+    const result = calculateLaunchPlan({
+      ...baseInput,
+      positioning: "budget",
+      roundingMode: "whole",
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.recommendedPriceCents).toBe(3000);
   });
 });
