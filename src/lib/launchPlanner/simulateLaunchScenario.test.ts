@@ -38,7 +38,8 @@ describe("simulateLaunchScenario", () => {
 
     expect(result.effectivePriceCents).toBe(3600);
     expect(result.revenueCents).toBe(288000);
-    expect(result.netProfitCents).toBeLessThan(130000);
+    expect(result.grossProfitCents).toBe(70000);
+    expect(result.netProfitCents).toBe(20000);
   });
 
   it("reports no break-even point when each sale loses money", () => {

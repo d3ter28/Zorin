@@ -28,16 +28,17 @@ export function simulateLaunchScenario(input: SimulateLaunchScenarioInput): Simu
   const effectivePriceCents = Math.round(input.priceCents * (1 - input.discountPct));
   const keptUnits = input.monthlyUnits * (1 - input.returnRatePct);
   const feeCents = Math.round(effectivePriceCents * (input.paymentFeePct + input.platformFeePct));
-  const variableCostCents =
+  const variableCostPerUnitCents =
     input.unitCostCents +
     input.shippingCents +
     input.packagingCents +
     input.otherUnitCostsCents +
     input.adCostPerSaleCents +
     feeCents;
-  const contributionPerUnitCents = effectivePriceCents - variableCostCents;
+  const contributionPerUnitCents = effectivePriceCents - variableCostPerUnitCents;
   const revenueCents = Math.round(effectivePriceCents * keptUnits);
-  const grossProfitCents = Math.round(contributionPerUnitCents * keptUnits);
+  const variableCostCents = Math.round(variableCostPerUnitCents * input.monthlyUnits);
+  const grossProfitCents = revenueCents - variableCostCents;
   const netProfitCents = grossProfitCents - input.fixedMonthlyCostsCents;
   const warnings: string[] = [];
 
