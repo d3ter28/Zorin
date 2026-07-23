@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseJsonBody } from "@/lib/api/validation";
@@ -9,7 +9,7 @@ import { checkRateLimit, clearRateLimit } from "@/lib/auth/rateLimit";
 // Constant-time sentinel: keeps response time equal whether the email exists or not.
 const DUMMY_HASH = "$argon2id$v=19$m=65536,t=3,p=4$AAAAAAAAAAAAAAAAAAAAAA$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-export const POST = withErrorHandling(async (req: NextRequest) => {
+export const POST = withErrorHandling(async (req: Request) => {
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     req.headers.get("x-real-ip") ??
