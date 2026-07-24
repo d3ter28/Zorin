@@ -37,9 +37,14 @@ export interface BreakEvenPlanResult {
 
 export function calculateBreakEvenPlan(input: BreakEvenPlanInput): BreakEvenPlanResult {
   const normalized = normalizeInput(input);
-  const contributionBeforeAdsCents = contributionBeforeAds(normalized);
-  const contributionPerUnitCents = contributionAfterAds(normalized);
-  const revenueCents = normalized.effectivePriceCents * normalized.monthlyUnits;
+  const contributionBeforeAdsCents = contributionFor({
+    ...normalized,
+    adCostPerSaleCents: 0,
+  });
+  const contributionPerUnitCents = contributionFor(normalized);
+  const revenueCents = Math.round(
+    normalized.effectivePriceCents * normalized.monthlyUnits * (1 - normalized.returnRatePct)
+  );
   const netProfitCents = contributionPerUnitCents * normalized.monthlyUnits - normalized.fixedMonthlyCostsCents;
   const breakEvenUnits =
     contributionPerUnitCents <= 0 ? null : Math.ceil(normalized.fixedMonthlyCostsCents / contributionPerUnitCents);
@@ -84,14 +89,16 @@ function normalizeInput(input: BreakEvenPlanInput): BreakEvenPlanInput {
   };
 }
 
-function contributionBeforeAds(input: Pick<BreakEvenPlanInput, "effectivePriceCents" | "unitCostTotalCents" | "feePct">): number {
-  return Math.round(input.effectivePriceCents - input.unitCostTotalCents - Math.round(input.effectivePriceCents * input.feePct));
-}
-
-function contributionAfterAds(
-  input: Pick<BreakEvenPlanInput, "effectivePriceCents" | "unitCostTotalCents" | "feePct" | "adCostPerSaleCents">
+function contributionFor(
+  input: Pick<
+    BreakEvenPlanInput,
+    "effectivePriceCents" | "returnRatePct" | "unitCostTotalCents" | "feePct" | "adCostPerSaleCents"
+  >
 ): number {
-  return contributionBeforeAds(input) - input.adCostPerSaleCents;
+  const revenuePerOrderedUnitCents = input.effectivePriceCents * (1 - input.returnRatePct);
+  const feeCents = Math.round(input.effectivePriceCents * input.feePct);
+
+  return Math.round(revenuePerOrderedUnitCents - input.unitCostTotalCents - feeCents - input.adCostPerSaleCents);
 }
 
 function calculateDiscountSafePrice(input: BreakEvenPlanInput): number {
@@ -105,18 +112,20 @@ function calculateDiscountSafePrice(input: BreakEvenPlanInput): number {
 
 function stressReturnRate(input: BreakEvenPlanInput): BreakEvenPlanResult["returnRateStress"] {
   const testedReturnRatePct = Math.min(0.95, input.returnRatePct + 0.1);
-  const effectivePriceCents = Math.round(input.effectivePriceCents * (1 - testedReturnRatePct));
-  const contribution = Math.round(
-    effectivePriceCents - input.unitCostTotalCents - Math.round(effectivePriceCents * input.feePct) - input.adCostPerSaleCents
-  );
+  const contribution = contributionFor({
+    ...input,
+    returnRatePct: testedReturnRatePct,
+  });
   const netProfitCents = contribution * input.monthlyUnits - input.fixedMonthlyCostsCents;
+  const revenueCents = Math.round(input.effectivePriceCents * input.monthlyUnits * (1 - testedReturnRatePct));
+
   return {
     testedReturnRatePct,
     netProfitCents,
     risk: riskFor({
       contributionPerUnitCents: contribution,
       netProfitCents,
-      revenueCents: effectivePriceCents * input.monthlyUnits,
+      revenueCents,
     }),
   };
 }
@@ -124,17 +133,20 @@ function stressReturnRate(input: BreakEvenPlanInput): BreakEvenPlanResult["retur
 function stressDiscount(input: BreakEvenPlanInput): BreakEvenPlanResult["discountStress"] {
   const testedDiscountPct = Math.min(0.95, input.discountPct + 0.1);
   const effectivePriceCents = Math.round(input.recommendedPriceCents * (1 - testedDiscountPct));
-  const contribution = Math.round(
-    effectivePriceCents - input.unitCostTotalCents - Math.round(effectivePriceCents * input.feePct) - input.adCostPerSaleCents
-  );
+  const contribution = contributionFor({
+    ...input,
+    effectivePriceCents,
+  });
   const netProfitCents = contribution * input.monthlyUnits - input.fixedMonthlyCostsCents;
+  const revenueCents = Math.round(effectivePriceCents * input.monthlyUnits * (1 - input.returnRatePct));
+
   return {
     testedDiscountPct,
     netProfitCents,
     risk: riskFor({
       contributionPerUnitCents: contribution,
       netProfitCents,
-      revenueCents: effectivePriceCents * input.monthlyUnits,
+      revenueCents,
     }),
   };
 }

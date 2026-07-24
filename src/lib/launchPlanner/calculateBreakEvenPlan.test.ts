@@ -18,11 +18,26 @@ describe("calculateBreakEvenPlan", () => {
   it("returns break-even units and max safe ad spend when contribution is positive", () => {
     const result = calculateBreakEvenPlan(profitableInput);
 
-    expect(result.breakEvenUnits).toBe(28);
-    expect(result.maxSafeAdSpendCents).toBe(2199);
+    expect(result.breakEvenUnits).toBe(32);
+    expect(result.maxSafeAdSpendCents).toBe(1999);
     expect(result.discountSafePriceCents).toBe(2870);
     expect(result.viability.risk).toBe("low");
     expect(result.warnings).toEqual([]);
+  });
+
+  it("applies returns to baseline economics and return stress", () => {
+    const withoutReturns = calculateBreakEvenPlan({
+      ...profitableInput,
+      returnRatePct: 0,
+    });
+    const withReturns = calculateBreakEvenPlan(profitableInput);
+
+    expect(withReturns.breakEvenUnits).toBe(32);
+    expect(withReturns.maxSafeAdSpendCents).toBe(1999);
+    expect(withReturns.breakEvenUnits).toBeGreaterThan(withoutReturns.breakEvenUnits ?? 0);
+    expect(withReturns.maxSafeAdSpendCents).toBeLessThan(withoutReturns.maxSafeAdSpendCents ?? Infinity);
+    expect(withReturns.returnRateStress.testedReturnRatePct).toBeCloseTo(0.15);
+    expect(withReturns.returnRateStress.netProfitCents).toBe(69900);
   });
 
   it("returns null max safe ad spend when launch loses money before ads", () => {
