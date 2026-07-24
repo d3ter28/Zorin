@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it } from "vitest";
 import { LaunchPlanner } from "./LaunchPlanner";
@@ -13,7 +13,7 @@ describe("LaunchPlanner", () => {
     expect(screen.getByText("Recommended launch price")).toBeTruthy();
     expect(screen.getByText("$33.99")).toBeTruthy();
     expect(screen.getByText("Minimum viable price")).toBeTruthy();
-    expect(screen.getByText("$26.67")).toBeTruthy();
+    expect(screen.getAllByText("$26.67").length).toBeGreaterThan(0);
     expect(screen.getByText("Stretch price")).toBeTruthy();
     expect(screen.getByText("$39.99")).toBeTruthy();
     expect(screen.getByText("Net profit")).toBeTruthy();
@@ -78,5 +78,76 @@ describe("LaunchPlanner", () => {
     await userEvent.type(discount, "30");
 
     expect(screen.getByText(/below your minimum viable price/i)).toBeTruthy();
+  });
+
+  it("renders Launch Readiness in Launch Mode by default", () => {
+    render(<LaunchPlanner />);
+
+    expect(screen.getByRole("heading", { name: "Launch Readiness" })).toBeTruthy();
+    expect(screen.getByText("Launch Mode")).toBeTruthy();
+    expect(screen.getByText(/does not have enough sales history/i)).toBeTruthy();
+  });
+
+  it("changes readiness to Optimization Mode at 30 sales data points", async () => {
+    const user = userEvent.setup();
+    render(<LaunchPlanner />);
+
+    const salesInput = screen.getByLabelText("Sales data points");
+    await user.clear(salesInput);
+    await user.type(salesInput, "30");
+
+    expect(screen.getByText("Optimization Mode")).toBeTruthy();
+    expect(screen.getByText(/demand-aware price optimization/i)).toBeTruthy();
+  });
+
+  it("updates Why this price copy when competitor prices are added", async () => {
+    const user = userEvent.setup();
+    render(<LaunchPlanner />);
+
+    expect(screen.getByRole("heading", { name: "Why this price?" })).toBeTruthy();
+    expect(screen.getByText(/no market references/i)).toBeTruthy();
+
+    await user.type(screen.getByLabelText("Competitor prices"), "29, 35, 39, 42");
+
+    expect(screen.getByText(/you supplied 4 competitor prices/i)).toBeTruthy();
+    expect(screen.getByText(/the market median is/i)).toBeTruthy();
+  });
+
+  it("saves and removes a scenario in the comparison table", async () => {
+    const user = userEvent.setup();
+    render(<LaunchPlanner />);
+
+    expect(screen.getByText("Save a scenario to compare launch assumptions.")).toBeTruthy();
+    await user.click(screen.getByRole("button", { name: "Save Scenario" }));
+
+    const table = screen.getByRole("table", { name: "Saved launch scenarios" });
+    expect(within(table).getByText("Conservative launch")).toBeTruthy();
+
+    await user.click(screen.getByRole("button", { name: "Remove Conservative launch" }));
+    expect(screen.getByText("Save a scenario to compare launch assumptions.")).toBeTruthy();
+  });
+
+  it("limits saved scenarios to three", async () => {
+    const user = userEvent.setup();
+    render(<LaunchPlanner />);
+
+    await user.click(screen.getByRole("button", { name: "Save Scenario" }));
+    await user.click(screen.getByRole("button", { name: "Save Scenario" }));
+    await user.click(screen.getByRole("button", { name: "Save Scenario" }));
+    await user.click(screen.getByRole("button", { name: "Save Scenario" }));
+
+    expect(screen.getByText("Compare up to 3 scenarios at a time. Remove one to save another.")).toBeTruthy();
+    expect(screen.getAllByRole("row")).toHaveLength(4);
+  });
+
+  it("shows non-misleading labels for a losing scenario", async () => {
+    const user = userEvent.setup();
+    render(<LaunchPlanner />);
+
+    await user.clear(screen.getByLabelText("Scenario price"));
+    await user.type(screen.getByLabelText("Scenario price"), "1");
+
+    expect(screen.getByText("Not reachable")).toBeTruthy();
+    expect(screen.getByText("No paid ads room")).toBeTruthy();
   });
 });
