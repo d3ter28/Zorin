@@ -47,3 +47,6 @@ next-env.d.ts
 
 # local git worktrees
 /.worktrees/
+
+# local Superpowers execution artifacts
+.superpowers/sdd/
