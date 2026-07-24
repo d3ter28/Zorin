@@ -3,7 +3,6 @@ import type {
   LaunchPlanConfidence,
   LaunchPositioning,
 } from "./calculateLaunchPlan";
-import type { PriceReadinessMode } from "./calculateReadiness";
 
 export interface ExplainLaunchPriceInput {
   minimumViablePriceCents: number;
@@ -12,7 +11,7 @@ export interface ExplainLaunchPriceInput {
   competitorPriceCount: number;
   marketStats: LaunchMarketStats | null;
   confidence: LaunchPlanConfidence;
-  readinessMode: PriceReadinessMode;
+  readinessMode: "launch" | "learning" | "optimization";
 }
 
 export interface PriceExplanation {
@@ -28,7 +27,6 @@ export function explainLaunchPrice(input: ExplainLaunchPriceInput): PriceExplana
         `Your minimum viable price is ${formatCents(input.minimumViablePriceCents)}.`,
         "The recommendation adds a launch markup for your chosen positioning.",
         "Add competitor prices to improve confidence before committing inventory or ad spend.",
-        readinessBullet(input.readinessMode),
       ],
     };
   }
@@ -39,21 +37,8 @@ export function explainLaunchPrice(input: ExplainLaunchPriceInput): PriceExplana
       `Your minimum viable price is ${formatCents(input.minimumViablePriceCents)} after product cost, fulfillment, and fees.`,
       `You supplied ${input.competitorPriceCount} competitor prices, giving this launch a ${input.confidence}-confidence market reference.`,
       `The market median is ${formatCents(input.marketStats.medianCents)}, with a range from ${formatCents(input.marketStats.minCents)} to ${formatCents(input.marketStats.maxCents)}.`,
-      readinessBullet(input.readinessMode),
     ],
   };
-}
-
-function readinessBullet(mode: PriceReadinessMode): string {
-  if (mode === "optimization") {
-    return "This product has enough sales history for demand-aware recommendations, so treat Launch Planner as a margin guardrail.";
-  }
-
-  if (mode === "learning") {
-    return "This product has early sales evidence, so keep checking launch assumptions against real demand.";
-  }
-
-  return "This product is still in Launch Mode, so the recommendation is based on assumptions rather than proven demand.";
 }
 
 function formatCents(cents: number): string {

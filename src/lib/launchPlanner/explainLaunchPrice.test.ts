@@ -28,6 +28,7 @@ describe("explainLaunchPrice", () => {
       "You supplied 4 competitor prices, giving this launch a medium-confidence market reference."
     );
     expect(result.bullets.join(" ")).toContain("market median");
+    expect(result.bullets).toHaveLength(3);
   });
 
   it("asks for competitor prices when none exist", () => {
@@ -45,9 +46,10 @@ describe("explainLaunchPrice", () => {
     expect(result.bullets).toContain(
       "Add competitor prices to improve confidence before committing inventory or ad spend."
     );
+    expect(result.bullets).toHaveLength(3);
   });
 
-  it("mentions historical optimization when readiness mode is optimization", () => {
+  it("caps optimization copy at three bullets", () => {
     const result = explainLaunchPrice({
       minimumViablePriceCents: 2870,
       recommendedPriceCents: 3999,
@@ -64,8 +66,6 @@ describe("explainLaunchPrice", () => {
       readinessMode: "optimization",
     });
 
-    expect(result.bullets).toContain(
-      "This product has enough sales history for demand-aware recommendations, so treat Launch Planner as a margin guardrail."
-    );
+    expect(result.bullets).toHaveLength(3);
   });
 });

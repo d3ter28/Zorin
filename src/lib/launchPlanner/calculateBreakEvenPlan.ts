@@ -48,7 +48,7 @@ export function calculateBreakEvenPlan(input: BreakEvenPlanInput): BreakEvenPlan
   const netProfitCents = contributionPerUnitCents * normalized.monthlyUnits - normalized.fixedMonthlyCostsCents;
   const breakEvenUnits =
     contributionPerUnitCents <= 0 ? null : Math.ceil(normalized.fixedMonthlyCostsCents / contributionPerUnitCents);
-  const maxSafeAdSpendCents = contributionBeforeAdsCents <= 0 ? null : contributionBeforeAdsCents;
+  const maxSafeAdSpendCents = contributionBeforeAdsCents <= 0 ? null : contributionBeforeAdsCents - 1;
   const discountSafePriceCents = calculateDiscountSafePrice(normalized);
   const returnRateStress = stressReturnRate(normalized);
   const discountStress = stressDiscount(normalized);
@@ -132,7 +132,11 @@ function stressReturnRate(input: BreakEvenPlanInput): BreakEvenPlanResult["retur
 
 function stressDiscount(input: BreakEvenPlanInput): BreakEvenPlanResult["discountStress"] {
   const testedDiscountPct = Math.min(0.95, input.discountPct + 0.1);
-  const effectivePriceCents = Math.round(input.recommendedPriceCents * (1 - testedDiscountPct));
+  const effectivePriceCents = stressedEffectivePriceCents(
+    input.effectivePriceCents,
+    input.discountPct,
+    testedDiscountPct
+  );
   const contribution = contributionFor({
     ...input,
     effectivePriceCents,
@@ -149,6 +153,19 @@ function stressDiscount(input: BreakEvenPlanInput): BreakEvenPlanResult["discoun
       revenueCents,
     }),
   };
+}
+
+function stressedEffectivePriceCents(
+  currentEffectivePriceCents: number,
+  currentDiscountPct: number,
+  testedDiscountPct: number
+): number {
+  const currentMultiplier = 1 - currentDiscountPct;
+  if (currentMultiplier <= 0) {
+    return 0;
+  }
+
+  return Math.round((currentEffectivePriceCents * (1 - testedDiscountPct)) / currentMultiplier);
 }
 
 function riskFor(input: { contributionPerUnitCents: number; netProfitCents: number; revenueCents: number }): LaunchRiskLevel {
