@@ -309,10 +309,12 @@ export function LaunchPlanner() {
               <p className="text-xs text-muted">score</p>
             </div>
           </div>
-          <div className="mt-3 grid gap-3 sm:grid-cols-[1fr_auto]">
-            <p className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent">
+          <div className="mt-3 flex items-center gap-2">
+            <span className="inline-flex rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent">
               {readiness.label}
-            </p>
+            </span>
+          </div>
+          <div className="mt-3">
             <Field label="Sales data points" value={salesDataPoints} onChange={setSalesDataPoints} />
           </div>
           <p className="mt-3 text-xs leading-relaxed text-muted">{readiness.nextStep}</p>
@@ -456,7 +458,7 @@ export function LaunchPlanner() {
               <h2 className="text-sm font-semibold text-ink">Saved Scenarios</h2>
               <p className="mt-1 text-xs text-muted">Compare up to three launch assumptions locally.</p>
             </div>
-            <button type="button" onClick={saveScenario} className="btn-primary text-sm">
+            <button type="button" onClick={saveScenario} className="btn btn-primary text-sm">
               Save Scenario
             </button>
           </div>

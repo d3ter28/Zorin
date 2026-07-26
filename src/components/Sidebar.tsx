@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SquaresFour, RocketLaunch, Gear, SignOut } from "@phosphor-icons/react";
+import { useState } from "react";
+import { SquaresFour, RocketLaunch, Gear, SignOut, ChatTeardrop, BookOpen } from "@phosphor-icons/react";
 import { LogoutButton } from "./LogoutButton";
+import { FeedbackModal } from "./FeedbackModal";
 
 const SIDEBAR_BG = "oklch(0.18 0.012 265)";
 const ITEM_TEXT = "oklch(0.62 0.010 265)";
@@ -15,6 +17,7 @@ const MERCHANT_TEXT = "oklch(0.50 0.010 265)";
 const NAV = [
   { href: "/dashboard", icon: SquaresFour, label: "Dashboard", matchPrefix: ["/dashboard", "/product"] },
   { href: "/launch-planner", icon: RocketLaunch, label: "Launch Planner", matchPrefix: ["/launch-planner"] },
+  { href: "/guide", icon: BookOpen, label: "Guide", matchPrefix: ["/guide"] },
   { href: "/settings", icon: Gear, label: "Settings", matchPrefix: ["/settings"] },
 ];
 
@@ -57,6 +60,7 @@ function NavItem({
 
 export function Sidebar({ merchantName }: { merchantName?: string }) {
   const pathname = usePathname();
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   return (
     <aside
@@ -88,8 +92,24 @@ export function Sidebar({ merchantName }: { merchantName?: string }) {
         ))}
       </nav>
 
-      {/* Logout */}
-      <div className="px-3 pb-5 pt-3" style={{ borderTop: `1px solid ${DIVIDER}` }}>
+      {/* Feedback + Logout */}
+      <div className="px-3 pb-5 pt-3 space-y-0.5" style={{ borderTop: `1px solid ${DIVIDER}` }}>
+        <button
+          onClick={() => setFeedbackOpen(true)}
+          className="flex w-full items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors"
+          style={{ color: ITEM_TEXT }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.backgroundColor = ITEM_HOVER_BG;
+            (e.currentTarget as HTMLElement).style.color = ITEM_HOVER_TEXT;
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.backgroundColor = "";
+            (e.currentTarget as HTMLElement).style.color = ITEM_TEXT;
+          }}
+        >
+          <ChatTeardrop size={16} />
+          Feedback
+        </button>
         <LogoutButton
           className="flex w-full items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors"
           icon={<SignOut size={16} />}
@@ -104,6 +124,8 @@ export function Sidebar({ merchantName }: { merchantName?: string }) {
           }}
         />
       </div>
+
+      {feedbackOpen && <FeedbackModal onClose={() => setFeedbackOpen(false)} />}
     </aside>
   );
 }

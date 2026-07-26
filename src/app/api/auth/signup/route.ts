@@ -4,10 +4,22 @@ import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseJsonBody } from "@/lib/api/validation";
 import { hashPassword } from "@/lib/auth/password";
 import { createSession, setSessionCookie } from "@/lib/auth/session";
+import { checkRateLimit } from "@/lib/auth/rateLimit";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
 export const POST = withErrorHandling(async (req: Request) => {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+
+  const { allowed, retryAfterMs } = await checkRateLimit(ip);
+  if (!allowed) {
+    const retryAfterSec = Math.ceil(retryAfterMs / 1000);
+    throw new HttpError(429, `Too many attempts. Try again in ${Math.ceil(retryAfterSec / 60)} minutes.`);
+  }
+
   const body = await parseJsonBody(req);
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const password = typeof body.password === "string" ? body.password : "";

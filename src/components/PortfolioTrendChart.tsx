@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { ArrowClockwise } from "@phosphor-icons/react";
 import { formatCents } from "@/lib/money";
 
 interface TrendPoint {
@@ -23,13 +24,18 @@ function monthLabel(m: string) {
 
 export function PortfolioTrendChart() {
   const [data, setData] = useState<TrendPoint[] | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
+  const load = useCallback((showSpinner = false) => {
+    if (showSpinner) setRefreshing(true);
     fetch("/api/products/portfolio/trend")
       .then((r) => (r.ok ? r.json() : []))
       .then((d: TrendPoint[]) => setData(d))
-      .catch(() => setData([]));
+      .catch(() => setData([]))
+      .finally(() => setRefreshing(false));
   }, []);
+
+  useEffect(() => { load(); }, [load]);
 
   if (data === null) {
     return (
@@ -41,8 +47,24 @@ export function PortfolioTrendChart() {
 
   if (data.length < 2) {
     return (
-      <div className="rounded-xl border border-line bg-surface p-5 flex items-center justify-center" style={{ minHeight: 280 }}>
-        <p className="text-sm text-muted">Upload sales history to see price trends.</p>
+      <div className="rounded-xl border border-line bg-surface p-5" style={{ minHeight: 280 }}>
+        <div className="flex items-start justify-between mb-3">
+          <div>
+            <h2 className="text-sm font-semibold text-ink">Avg Price Trend</h2>
+            <p className="text-xs text-muted mt-0.5">Monthly average across all products</p>
+          </div>
+          <button
+            onClick={() => load(true)}
+            disabled={refreshing}
+            className="text-muted hover:text-ink transition-colors disabled:opacity-40"
+            title="Refresh"
+          >
+            <ArrowClockwise size={14} className={refreshing ? "animate-spin" : ""} />
+          </button>
+        </div>
+        <div className="flex items-center justify-center h-48">
+          <p className="text-sm text-muted">Upload sales history to see price trends.</p>
+        </div>
       </div>
     );
   }
@@ -73,9 +95,19 @@ export function PortfolioTrendChart() {
 
   return (
     <div className="rounded-xl border border-line bg-surface p-5">
-      <div className="mb-3">
-        <h2 className="text-sm font-semibold text-ink">Avg Price Trend</h2>
-        <p className="text-xs text-muted mt-0.5">Monthly average across all products</p>
+      <div className="mb-3 flex items-start justify-between">
+        <div>
+          <h2 className="text-sm font-semibold text-ink">Avg Price Trend</h2>
+          <p className="text-xs text-muted mt-0.5">Monthly average across all products</p>
+        </div>
+        <button
+          onClick={() => load(true)}
+          disabled={refreshing}
+          className="text-muted hover:text-ink transition-colors disabled:opacity-40"
+          title="Refresh"
+        >
+          <ArrowClockwise size={14} className={refreshing ? "animate-spin" : ""} />
+        </button>
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ fontFamily: "var(--font-mono, monospace)" }}>
         {yTicks.map((p) => (

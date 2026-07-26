@@ -29,7 +29,7 @@ export function MetricsStrip() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <dt className="font-mono text-3xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
+              <dt className="font-mono text-3xl font-bold tracking-tight text-indigo-600 dark:text-indigo-400">
                 {s.value}
               </dt>
               <dd className="text-sm leading-snug text-zinc-500 dark:text-zinc-400">

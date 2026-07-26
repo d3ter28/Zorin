@@ -81,11 +81,11 @@ function PriceMarker({
   return (
     <g>
       <line x1={x} y1={PAD.top} x2={x} y2={PAD.top + PLOT_H} stroke={color} strokeWidth="1" strokeDasharray="3 3" opacity="0.7" />
-      <text x={x} y={PAD.top - 4} textAnchor="middle" fontSize="9" fill={color} fontFamily="var(--font-geist-mono, monospace)">
+      <text x={x} y={PAD.top - 14} textAnchor="middle" fontSize="9" fill={color} fontFamily="var(--font-geist-mono, monospace)">
         {label}
       </text>
-      <text x={x} y={PAD.top + PLOT_H + 28} textAnchor="middle" fontSize="8" fill={color} fontFamily="var(--font-geist-mono, monospace)">
-        ~{Math.round(units)} units
+      <text x={x} y={PAD.top - 4} textAnchor="middle" fontSize="8" fill={color} opacity="0.75" fontFamily="var(--font-geist-mono, monospace)">
+        ~{Math.round(units)}u
       </text>
     </g>
   );

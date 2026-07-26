@@ -129,7 +129,15 @@ export function ShopifyConnectionCard() {
       {(uiState === "disconnected" || uiState === "connecting") && (
         <form onSubmit={handleConnect} className="mt-4 space-y-3">
           <p className="text-xs text-muted">
-            Connect your Shopify store to sync products and orders.
+            Connect your Shopify store to sync products and orders.{" "}
+            <a
+              href="https://help.shopify.com/en/manual/apps/app-types/custom-apps"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent underline-offset-2 hover:underline"
+            >
+              Where do I find these?
+            </a>
           </p>
           <div>
             <label htmlFor="shopDomain" className="block text-xs font-medium text-ink mb-1">

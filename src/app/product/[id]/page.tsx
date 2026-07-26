@@ -196,10 +196,15 @@ export default function ProductPage({
 
             <SalesHistoryUpload onSuccess={loadData} />
 
-            <div className="space-y-4">
-              <RecommendationCard rec={mlRec} />
+            <div className="rounded-xl border border-line bg-surface p-5">
+              <h2 className="text-sm font-semibold text-ink">Analyse Pricing</h2>
+              <p className="mt-0.5 mb-4 text-xs text-muted">
+                Fit the elasticity model on your sales data, then generate a recommendation.
+              </p>
               <MLActionButtons productId={d.id} onComplete={loadData} />
             </div>
+
+            <RecommendationCard rec={mlRec} />
 
             <DemandCurve
               productId={d.id}

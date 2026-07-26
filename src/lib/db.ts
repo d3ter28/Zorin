@@ -1,11 +1,19 @@
-import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
-const connectionString =
-  process.env.DATABASE_URL ?? "postgres://user:password@localhost:5432/zorin";
-const adapter = new PrismaPg({ connectionString });
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
+function makeClient(): PrismaClient {
+  const url = process.env.DATABASE_URL ?? "";
+  if (url.startsWith("postgres")) {
+    // Production (Supabase / Vercel): standard PrismaClient, no adapter needed.
+    return new PrismaClient();
+  }
+  // Local dev: SQLite via BetterSqlite3 adapter.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { PrismaBetterSqlite3 } = require("@prisma/adapter-better-sqlite3");
+  const adapter = new PrismaBetterSqlite3({ url: url || "file:./dev.db" });
+  return new PrismaClient({ adapter });
+}
 
+export const prisma = globalForPrisma.prisma ?? makeClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;

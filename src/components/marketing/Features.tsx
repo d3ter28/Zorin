@@ -36,7 +36,7 @@ export function Features() {
     {
       icon: MathOperations,
       title: "Elasticity modeling",
-      body: "Log-log regression learns how demand shifts with price for every SKU in your catalog.",
+      body: "Our statistical model learns how demand shifts with price for every SKU in your catalog.",
       span: "md:col-span-1",
       visual: (
         <div className="mt-6 grid grid-cols-2 gap-3">

@@ -14,7 +14,7 @@ export const GET = withErrorHandling(async () => {
   const { merchantId } = await requireSessionApi();
 
   const cutoff = new Date();
-  cutoff.setMonth(cutoff.getMonth() - 12);
+  cutoff.setMonth(cutoff.getMonth() - 24);
 
   const records = await prisma.salesRecord.findMany({
     where: {

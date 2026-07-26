@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
+import { checkRateLimit } from "@/lib/auth/rateLimit";
 
-export const POST = withErrorHandling(async (req) => {
+export const POST = withErrorHandling(async (req: Request) => {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+
+  const { allowed } = await checkRateLimit(`early-access:${ip}`);
+  if (!allowed) throw new HttpError(429, "Too many requests. Please try again later.");
+
   const body = await req.json();
   const { name, email, storeUrl, message } = body as {
     name?: string;

@@ -4,7 +4,7 @@ import { defineConfig } from "prisma/config";
 const datasourceUrl =
   process.env.DIRECT_URL ??
   process.env.DATABASE_URL ??
-  "postgres://user:password@localhost:5432/zorin";
+  "file:./dev.db";
 
 export default defineConfig({
   schema: path.join("prisma", "schema.prisma"),

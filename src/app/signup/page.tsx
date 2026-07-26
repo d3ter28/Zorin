@@ -180,7 +180,7 @@ export default function SignupPage() {
       <div className="flex w-full flex-col justify-between overflow-y-auto px-8 py-10 sm:px-12 md:w-[42%] lg:px-16">
         <a href="/" className="flex items-center gap-2 font-semibold text-zinc-900">
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-xs font-bold text-white">
-            P
+            Z
           </span>
           Zorin
         </a>

@@ -15,7 +15,7 @@ export const POST = withErrorHandling(async (req: Request) => {
     req.headers.get("x-real-ip") ??
     "unknown";
 
-  const { allowed, retryAfterMs } = checkRateLimit(ip);
+  const { allowed, retryAfterMs } = await checkRateLimit(ip);
   if (!allowed) {
     const retryAfterSec = Math.ceil(retryAfterMs / 1000);
     throw new HttpError(

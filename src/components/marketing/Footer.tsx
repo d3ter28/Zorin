@@ -6,7 +6,7 @@ export function Footer() {
           <div>
             <a href="/" className="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
               <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-xs font-bold text-white">
-                P
+                Z
               </span>
               Zorin
             </a>

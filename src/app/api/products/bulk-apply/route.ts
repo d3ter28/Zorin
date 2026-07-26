@@ -12,8 +12,8 @@ export const POST = withErrorHandling(async (req: Request) => {
   const { merchantId } = await requireSessionApi();
   const body = await parseJsonBody(req);
 
-  if (!Array.isArray(body.productIds) || body.productIds.length === 0) {
-    throw new HttpError(400, "productIds must be a non-empty array");
+  if (!Array.isArray(body.productIds) || body.productIds.length === 0 || body.productIds.length > 100) {
+    throw new HttpError(400, "productIds must be a non-empty array of 1–100 items");
   }
 
   const productIds: string[] = body.productIds;

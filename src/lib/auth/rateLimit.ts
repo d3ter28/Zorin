@@ -1,11 +1,29 @@
-/**
- * In-memory sliding-window rate limiter for login attempts.
- * Keyed by IP address. Resets on process restart (acceptable for a
- * single-instance SMB deployment; swap for Redis in multi-instance setups).
- */
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
-const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-const MAX_ATTEMPTS = 10; // per IP per window
+const WINDOW_MS = 15 * 60 * 1000;
+const MAX_ATTEMPTS = 10;
+
+// ---------------------------------------------------------------------------
+// Redis-backed limiter (Upstash) — used when env vars are present
+// ---------------------------------------------------------------------------
+
+let redisLimiter: Ratelimit | null = null;
+
+if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  redisLimiter = new Ratelimit({
+    redis: new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL,
+      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+    }),
+    limiter: Ratelimit.slidingWindow(MAX_ATTEMPTS, "15 m"),
+    prefix: "zorin:rl",
+  });
+}
+
+// ---------------------------------------------------------------------------
+// In-memory fallback — single process only, resets on restart
+// ---------------------------------------------------------------------------
 
 interface Entry {
   attempts: number;
@@ -14,7 +32,6 @@ interface Entry {
 
 const store = new Map<string, Entry>();
 
-// Prune stale entries every 10 minutes to prevent unbounded memory growth.
 setInterval(() => {
   const now = Date.now();
   for (const [key, entry] of store) {
@@ -22,7 +39,7 @@ setInterval(() => {
   }
 }, 10 * 60 * 1000);
 
-export function checkRateLimit(ip: string): { allowed: boolean; retryAfterMs: number } {
+function checkInMemory(ip: string): { allowed: boolean; retryAfterMs: number } {
   const now = Date.now();
   const entry = store.get(ip);
 
@@ -34,11 +51,22 @@ export function checkRateLimit(ip: string): { allowed: boolean; retryAfterMs: nu
   entry.attempts += 1;
 
   if (entry.attempts > MAX_ATTEMPTS) {
-    const retryAfterMs = WINDOW_MS - (now - entry.windowStart);
-    return { allowed: false, retryAfterMs };
+    return { allowed: false, retryAfterMs: WINDOW_MS - (now - entry.windowStart) };
   }
 
   return { allowed: true, retryAfterMs: 0 };
+}
+
+// ---------------------------------------------------------------------------
+// Public API
+// ---------------------------------------------------------------------------
+
+export async function checkRateLimit(ip: string): Promise<{ allowed: boolean; retryAfterMs: number }> {
+  if (redisLimiter) {
+    const { success, reset } = await redisLimiter.limit(ip);
+    return { allowed: success, retryAfterMs: success ? 0 : reset - Date.now() };
+  }
+  return checkInMemory(ip);
 }
 
 export function clearRateLimit(ip: string): void {

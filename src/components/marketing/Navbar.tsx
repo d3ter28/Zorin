@@ -18,7 +18,7 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
         <a href="/" className="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-xs font-bold text-white">
-            P
+            Z
           </span>
           Zorin
         </a>

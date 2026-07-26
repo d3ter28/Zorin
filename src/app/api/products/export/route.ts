@@ -5,7 +5,9 @@ import { requireSessionApi } from "@/lib/auth/requireSession";
 
 function csvField(value: string | number | null | undefined): string {
   if (value === null || value === undefined) return "";
-  const s = String(value);
+  let s = String(value);
+  // Prefix formula-injection triggers so Excel/Sheets won't eval them.
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
   return s.includes(",") || s.includes('"') || s.includes("\n")
     ? `"${s.replace(/"/g, '""')}"`
     : s;
