@@ -112,7 +112,7 @@ describe("POST /api/woocommerce/sync", () => {
     await POST(new Request("http://localhost/api/woocommerce/sync", { method: "POST" }));
     const after = Date.now();
     const sinceDate: Date = mockFetchOrders.mock.calls[0][0];
-    const expectedMs = 1000 * 60 * 60 * 24 * 30 * 24;
+    const expectedMs = 365 * 2 * 24 * 60 * 60 * 1000;
     expect(sinceDate.getTime()).toBeGreaterThanOrEqual(before - expectedMs - 200);
     expect(sinceDate.getTime()).toBeLessThanOrEqual(after - expectedMs + 200);
   });

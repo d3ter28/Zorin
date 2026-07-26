@@ -20,7 +20,7 @@ export const POST = withErrorHandling(async () => {
 
   const sinceDate = connection.lastSyncedAt
     ? new Date(connection.lastSyncedAt)
-    : new Date(Date.now() - 1000 * 60 * 60 * 24 * 30 * 24); // 24 months ago
+    : new Date(Date.now() - 365 * 2 * 24 * 60 * 60 * 1000); // 730 days ≈ 24 months
 
   // Collect all product pages
   const allProducts: WooNormalizedProduct[] = [];
