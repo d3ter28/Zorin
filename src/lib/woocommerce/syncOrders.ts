@@ -50,7 +50,7 @@ export async function syncWooOrders(
     const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
     const dateISO = date.toISOString();
 
-    for (const item of ord.line_items) {
+    for (const item of ord.line_items ?? []) {
       // variation_id > 0 means it's a variation; 0 means simple product
       const lookupId =
         item.variation_id > 0
