@@ -82,7 +82,14 @@ export class WooCommerceClient {
       }
 
       if (!res.ok) {
-        throw new Error(`WooCommerce API error ${res.status}`);
+        let errorMessage: string;
+        try {
+          const body = (await res.json()) as { message?: string; code?: string };
+          errorMessage = body.message || `WooCommerce API error ${res.status}`;
+        } catch {
+          errorMessage = `WooCommerce API error ${res.status}`;
+        }
+        throw new Error(`${res.status}: ${errorMessage}`);
       }
 
       const data = await res.json();
