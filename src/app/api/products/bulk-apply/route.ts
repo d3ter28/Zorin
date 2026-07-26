@@ -28,7 +28,8 @@ export const POST = withErrorHandling(async (req: Request) => {
   const failed: { id: string; title: string; reason: string }[] = [];
   const woocommerceResults: { productId: string; pushed: boolean; error?: string }[] = [];
 
-  const wooClient = await getWooClient(merchantId);
+  const needsWoo = products.some(p => p.woocommerceVariantId);
+  const wooClient = needsWoo ? await getWooClient(merchantId) : null;
 
   for (const p of products) {
     if (!p.recommendation) { skipped++; continue; }

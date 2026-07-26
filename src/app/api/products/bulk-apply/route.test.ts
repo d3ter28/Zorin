@@ -27,6 +27,16 @@ vi.mock("@/lib/shopify/pushPrice", () => ({
   pushPriceToShopify: mockPushPrice,
 }));
 
+const mockGetWooClient = vi.hoisted(() => vi.fn());
+vi.mock("@/lib/woocommerce/getClient", () => ({
+  getWooClient: mockGetWooClient,
+}));
+
+const mockPushPriceToWooCommerce = vi.hoisted(() => vi.fn());
+vi.mock("@/lib/woocommerce/pushPrice", () => ({
+  pushPriceToWooCommerce: mockPushPriceToWooCommerce,
+}));
+
 import { POST } from "./route";
 
 function makeReq(body: unknown): Request {
@@ -40,6 +50,8 @@ beforeEach(() => {
   findMany.mockReset();
   mockTransaction.mockReset();
   mockPushPrice.mockReset();
+  mockGetWooClient.mockReset();
+  mockPushPriceToWooCommerce.mockReset();
   mockTransaction.mockResolvedValue(undefined);
 });
 
@@ -148,5 +160,40 @@ describe("POST /api/products/bulk-apply — Shopify integration", () => {
     expect(body.applied).toBe(0);
     expect(body.failed).toHaveLength(0);
     expect(mockPushPrice).not.toHaveBeenCalled();
+  });
+});
+
+describe("POST /api/products/bulk-apply — WooCommerce integration", () => {
+  it("includes woocommerceResults for WC-linked products", async () => {
+    const mockClient = {};
+    const productWithWoo = {
+      id: "p5",
+      title: "WooWidget",
+      merchantId: "m1",
+      currentPrice: 1000,
+      shopifyVariantId: null,
+      woocommerceVariantId: "wc-55",
+      recommendation: {
+        action: "raise",
+        rulesJson: JSON.stringify({ suggestedPriceCents: 1500 }),
+      },
+    };
+
+    findMany.mockResolvedValue([productWithWoo]);
+    mockGetWooClient.mockResolvedValue(mockClient);
+    mockPushPriceToWooCommerce.mockResolvedValue({ ok: true });
+
+    const res = await POST(makeReq({ productIds: ["p5"] }));
+    const body = await res.json();
+
+    expect(body.applied).toBe(1);
+    expect(body.woocommerceResults).toEqual([{ productId: "p5", pushed: true }]);
+    expect(mockGetWooClient).toHaveBeenCalledWith("m1");
+    expect(mockPushPriceToWooCommerce).toHaveBeenCalledWith(
+      expect.anything(),
+      mockClient,
+      "p5",
+      "15.00",
+    );
   });
 });

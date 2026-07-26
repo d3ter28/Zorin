@@ -40,6 +40,16 @@ vi.mock("@/lib/shopify/pushPrice", () => ({
   pushPriceToShopify: mockPushPrice,
 }));
 
+const mockGetWooClient = vi.hoisted(() => vi.fn());
+vi.mock("@/lib/woocommerce/getClient", () => ({
+  getWooClient: mockGetWooClient,
+}));
+
+const mockPushPriceToWooCommerce = vi.hoisted(() => vi.fn());
+vi.mock("@/lib/woocommerce/pushPrice", () => ({
+  pushPriceToWooCommerce: mockPushPriceToWooCommerce,
+}));
+
 import { POST } from "./route";
 
 function makeReq(body: unknown): Request {
@@ -55,6 +65,8 @@ beforeEach(() => {
   findUniqueOrThrow.mockReset();
   mockTransaction.mockReset();
   mockPushPrice.mockReset();
+  mockGetWooClient.mockReset();
+  mockPushPriceToWooCommerce.mockReset();
   mockTransaction.mockResolvedValue(undefined);
 });
 
@@ -137,5 +149,56 @@ describe("POST /api/products/[id]/apply — Shopify integration", () => {
     expect(res.status).toBe(400);
     expect(mockPushPrice).not.toHaveBeenCalled();
     expect(mockTransaction).not.toHaveBeenCalled();
+  });
+});
+
+describe("POST /api/products/[id]/apply — WooCommerce integration", () => {
+  it("returns woocommercePushed: true when WC push succeeds", async () => {
+    const mockClient = {};
+    findUniqueOrThrow.mockResolvedValue({
+      id: "p1",
+      currentPrice: 1000,
+      shopifyVariantId: null,
+      woocommerceVariantId: "wc-99",
+    });
+    mockGetWooClient.mockResolvedValue(mockClient);
+    mockPushPriceToWooCommerce.mockResolvedValue({ ok: true });
+
+    const res = await POST(makeReq({ price: 1500 }), ctx);
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.ok).toBe(true);
+    expect(body.woocommercePushed).toBe(true);
+    expect(body.woocommerceError).toBeUndefined();
+    expect(mockGetWooClient).toHaveBeenCalledWith("m1");
+    expect(mockPushPriceToWooCommerce).toHaveBeenCalledWith(
+      expect.anything(),
+      mockClient,
+      "p1",
+      "15.00",
+    );
+    expect(mockTransaction).toHaveBeenCalled();
+  });
+
+  it("returns woocommercePushed: false with error when WC push fails", async () => {
+    const mockClient = {};
+    findUniqueOrThrow.mockResolvedValue({
+      id: "p1",
+      currentPrice: 1000,
+      shopifyVariantId: null,
+      woocommerceVariantId: "wc-99",
+    });
+    mockGetWooClient.mockResolvedValue(mockClient);
+    mockPushPriceToWooCommerce.mockResolvedValue({ ok: false, error: "timeout" });
+
+    const res = await POST(makeReq({ price: 1500 }), ctx);
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.ok).toBe(true);
+    expect(body.woocommercePushed).toBe(false);
+    expect(body.woocommerceError).toBe("timeout");
+    expect(mockTransaction).toHaveBeenCalled();
   });
 });

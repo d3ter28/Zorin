@@ -47,14 +47,16 @@ export const POST = withErrorHandling(
     ]);
 
     let woocommercePushed = false;
+    let woocommerceError: string | undefined;
     if (product.woocommerceVariantId) {
       const wooClient = await getWooClient(merchantId);
       if (wooClient) {
         const result = await pushPriceToWooCommerce(prisma, wooClient, id, centsToDollars(newPrice));
         woocommercePushed = result.ok;
+        woocommerceError = result.error;
       }
     }
 
-    return NextResponse.json({ ok: true, woocommercePushed });
+    return NextResponse.json({ ok: true, woocommercePushed, ...(woocommerceError && { woocommerceError }) });
   },
 );
