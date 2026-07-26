@@ -61,11 +61,15 @@ export function WooCommerceConnectionCard() {
     e.preventDefault();
     setUiState("connecting");
     setError(null);
+    // Normalize storeUrl: prepend https:// if no protocol present
+    const normalizedUrl = storeUrl.startsWith("http://") || storeUrl.startsWith("https://")
+      ? storeUrl
+      : `https://${storeUrl}`;
     try {
       const res = await fetch("/api/woocommerce/connect", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ storeUrl, consumerKey, consumerSecret }),
+        body: JSON.stringify({ storeUrl: normalizedUrl, consumerKey, consumerSecret }),
       });
       if (!res.ok) {
         const body = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -75,6 +79,7 @@ export function WooCommerceConnectionCard() {
       setStoreUrl("");
       setConsumerKey("");
       setConsumerSecret("");
+      setShowHelp(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Connection failed — try again.");
       setUiState("disconnected");
@@ -97,6 +102,7 @@ export function WooCommerceConnectionCard() {
       await fetchStatus();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Disconnect failed — try again.");
+      setUiState("connected");
     }
   }
 
