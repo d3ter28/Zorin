@@ -5,6 +5,9 @@ import { parseJsonBody } from "@/lib/api/validation";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { assertProductOwned } from "@/lib/auth/ownership";
 import { pushPriceToShopify } from "@/lib/shopify/pushPrice";
+import { getWooClient } from "@/lib/woocommerce/getClient";
+import { pushPriceToWooCommerce } from "@/lib/woocommerce/pushPrice";
+import { centsToDollars } from "@/lib/money";
 
 export const POST = withErrorHandling(
   async (req: Request, { params }: { params: Promise<{ id: string }> }) => {
@@ -43,6 +46,15 @@ export const POST = withErrorHandling(
       prisma.recommendation.deleteMany({ where: { productId: id } }),
     ]);
 
-    return NextResponse.json({ ok: true });
+    let woocommercePushed = false;
+    if (product.woocommerceVariantId) {
+      const wooClient = await getWooClient(merchantId);
+      if (wooClient) {
+        const result = await pushPriceToWooCommerce(prisma, wooClient, id, centsToDollars(newPrice));
+        woocommercePushed = result.ok;
+      }
+    }
+
+    return NextResponse.json({ ok: true, woocommercePushed });
   },
 );

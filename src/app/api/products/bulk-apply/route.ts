@@ -4,6 +4,9 @@ import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseJsonBody } from "@/lib/api/validation";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { pushPriceToShopify } from "@/lib/shopify/pushPrice";
+import { getWooClient } from "@/lib/woocommerce/getClient";
+import { pushPriceToWooCommerce } from "@/lib/woocommerce/pushPrice";
+import { centsToDollars } from "@/lib/money";
 
 export const POST = withErrorHandling(async (req: Request) => {
   const { merchantId } = await requireSessionApi();
@@ -23,6 +26,9 @@ export const POST = withErrorHandling(async (req: Request) => {
   let applied = 0;
   let skipped = 0;
   const failed: { id: string; title: string; reason: string }[] = [];
+  const woocommerceResults: { productId: string; pushed: boolean; error?: string }[] = [];
+
+  const wooClient = await getWooClient(merchantId);
 
   for (const p of products) {
     if (!p.recommendation) { skipped++; continue; }
@@ -53,7 +59,12 @@ export const POST = withErrorHandling(async (req: Request) => {
       prisma.recommendation.deleteMany({ where: { productId: p.id } }),
     ]);
     applied++;
+
+    if (p.woocommerceVariantId && wooClient) {
+      const result = await pushPriceToWooCommerce(prisma, wooClient, p.id, centsToDollars(suggestedPriceCents));
+      woocommerceResults.push({ productId: p.id, pushed: result.ok, ...(result.error && { error: result.error }) });
+    }
   }
 
-  return NextResponse.json({ applied, skipped, failed });
+  return NextResponse.json({ applied, skipped, failed, woocommerceResults });
 });
