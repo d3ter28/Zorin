@@ -22,6 +22,8 @@ export const POST = withErrorHandling(async () => {
     ? new Date(connection.lastSyncedAt)
     : new Date(Date.now() - 365 * 2 * 24 * 60 * 60 * 1000); // 730 days ≈ 24 months
 
+  // Products are always full-refresh: we need to discover newly added products
+  // and WooCommerce's modified_after filter isn't reliable for all store configs.
   // Collect all product pages
   const allProducts: WooNormalizedProduct[] = [];
   for await (const page of client.fetchAllProducts()) {
@@ -39,6 +41,9 @@ export const POST = withErrorHandling(async () => {
     syncWooOrders(prisma, merchantId, allOrders),
   ]);
 
+  // Not transactional with the syncs above: if syncWooOrders throws mid-way,
+  // lastSyncedAt stays unset and the next sync will re-process from the old date.
+  // syncWooOrders uses additive upserts so re-running the same period is safe.
   await prisma.wooCommerceConnection.update({
     where: { merchantId },
     data: { lastSyncedAt: new Date() },
