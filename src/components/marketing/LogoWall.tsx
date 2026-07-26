@@ -12,32 +12,43 @@ export function LogoWall() {
           Works with the platforms you already use
         </p>
         <div className="flex flex-col items-center gap-4">
-          <motion.div
-            className="group flex cursor-default items-center gap-3"
-            initial={reduce ? false : { opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <img
-              src="https://cdn.simpleicons.org/shopify/95BF47"
-              alt="Shopify"
-              width={24}
-              height={24}
-              className="h-6 w-6 grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:[filter:drop-shadow(0_0_10px_#95BF47)]"
-            />
-            <span className="text-sm font-medium text-zinc-400 transition-colors duration-300 group-hover:text-zinc-600 dark:text-zinc-500 dark:group-hover:text-zinc-300">
-              Shopify
-            </span>
-          </motion.div>
+          <div className="flex flex-wrap items-center justify-center gap-8">
+            {[
+              { name: "Shopify", icon: "https://cdn.simpleicons.org/shopify/95BF47", glow: "#95BF47" },
+              { name: "WooCommerce", icon: "https://cdn.simpleicons.org/woocommerce/7F54B3", glow: "#7F54B3" },
+            ].map(({ name, icon, glow }, i) => (
+              <motion.div
+                key={name}
+                className="group flex cursor-default items-center gap-3"
+                initial={reduce ? false : { opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.4, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <img
+                  src={icon}
+                  alt={name}
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  style={{ ["--glow" as string]: glow }}
+                  onMouseEnter={e => (e.currentTarget.style.filter = `drop-shadow(0 0 10px ${glow})`)}
+                  onMouseLeave={e => (e.currentTarget.style.filter = "")}
+                />
+                <span className="text-sm font-medium text-zinc-400 transition-colors duration-300 group-hover:text-zinc-600 dark:text-zinc-500 dark:group-hover:text-zinc-300">
+                  {name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
           <motion.p
             className="text-xs text-zinc-400 dark:text-zinc-500"
             initial={reduce ? false : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            More integrations coming: WooCommerce, BigCommerce, and others.
+            More integrations coming: BigCommerce, and others.
           </motion.p>
         </div>
       </div>
