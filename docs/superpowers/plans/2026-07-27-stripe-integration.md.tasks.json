@@ -1,0 +1,74 @@
+{
+  "planPath": "docs/superpowers/plans/2026-07-27-stripe-integration.md",
+  "tasks": [
+    {
+      "id": 23,
+      "subject": "Task 1: Install Stripe SDK and add billing fields to schema",
+      "status": "pending",
+      "description": "**Goal:** The `stripe` package is installed and `Merchant` has the fields needed to track subscription state, in both the dev (SQLite) and production (Postgres) schemas.\n\n**Files:**\n- Modify: `package.json` (via `npm install stripe`)\n- Modify: `prisma/schema.prisma`\n- Modify: `prisma/schema.production.prisma`\n- Modify: `.env.example`\n\n**Acceptance Criteria:**\n- [ ] `stripe` is a dependency in `package.json`\n- [ ] `Merchant` has `stripeCustomerId`, `stripeSubscriptionId`, `subscriptionStatus`, `planTier`, `trialEndsAt` in both schema files\n- [ ] `npx prisma generate` succeeds\n- [ ] `npx prisma db push` succeeds against the local SQLite dev database\n- [ ] `.env.example` documents the 5 new Stripe env vars\n\n**Verify:** `npx prisma generate && npx prisma db push` → both commands exit 0, no errors\n\n```json:metadata\n{\"files\": [\"package.json\", \"prisma/schema.prisma\", \"prisma/schema.production.prisma\", \".env.example\"], \"verifyCommand\": \"npx prisma generate && npx prisma db push\", \"acceptanceCriteria\": [\"stripe is a dependency in package.json\", \"Merchant has stripeCustomerId, stripeSubscriptionId, subscriptionStatus, planTier, trialEndsAt in both schema files\", \"npx prisma generate succeeds\", \"npx prisma db push succeeds\", \".env.example documents the 5 new Stripe env vars\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 24,
+      "subject": "Task 2: Stripe client singleton and plan tier mapping",
+      "status": "pending",
+      "blockedBy": [23],
+      "description": "**Goal:** A reusable Stripe SDK client and a typed mapping from plan tier strings to Stripe Price IDs, with tests for the mapping/validation logic.\n\n**Files:**\n- Create: `src/lib/stripe/client.ts`\n- Create: `src/lib/stripe/plans.ts`\n- Test: `src/lib/stripe/plans.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `stripe` singleton client exported from `src/lib/stripe/client.ts`\n- [ ] `PLAN_TIERS` array and `isValidPlanTier` type guard exported from `src/lib/stripe/plans.ts`\n- [ ] `priceIdForTier` throws a clear error if the corresponding env var is missing\n- [ ] All tests pass\n\n**Verify:** `npx vitest run src/lib/stripe/plans.test.ts` → all tests pass\n\n```json:metadata\n{\"files\": [\"src/lib/stripe/client.ts\", \"src/lib/stripe/plans.ts\", \"src/lib/stripe/plans.test.ts\"], \"verifyCommand\": \"npx vitest run src/lib/stripe/plans.test.ts\", \"acceptanceCriteria\": [\"stripe singleton client exported\", \"PLAN_TIERS and isValidPlanTier exported\", \"priceIdForTier throws on missing env var\", \"all tests pass\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 25,
+      "subject": "Task 3: Subscription gate helper",
+      "status": "pending",
+      "description": "**Goal:** A single, tested function that decides whether a subscription status grants dashboard access.\n\n**Files:**\n- Create: `src/lib/billing/subscriptionGate.ts`\n- Test: `src/lib/billing/subscriptionGate.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `hasActiveSubscription(\"trialing\")` and `hasActiveSubscription(\"active\")` return `true`\n- [ ] `hasActiveSubscription(\"past_due\")`, `hasActiveSubscription(\"canceled\")`, `hasActiveSubscription(null)` all return `false`\n- [ ] All tests pass\n\n**Verify:** `npx vitest run src/lib/billing/subscriptionGate.test.ts` → all tests pass\n\n```json:metadata\n{\"files\": [\"src/lib/billing/subscriptionGate.ts\", \"src/lib/billing/subscriptionGate.test.ts\"], \"verifyCommand\": \"npx vitest run src/lib/billing/subscriptionGate.test.ts\", \"acceptanceCriteria\": [\"trialing and active return true\", \"past_due, canceled, null return false\", \"all tests pass\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 26,
+      "subject": "Task 4: Checkout API route",
+      "status": "pending",
+      "blockedBy": [23, 24],
+      "description": "**Goal:** `POST /api/billing/checkout` creates (or reuses) a Stripe Customer for the merchant and returns a Stripe Checkout Session URL for a 14-day, card-required trial.\n\n**Files:**\n- Create: `src/app/api/billing/checkout/route.ts`\n- Test: `src/app/api/billing/checkout/route.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Returns 401 when there's no session\n- [ ] Returns 400 when `plan` is missing or not one of `starter`/`growth`/`scale`\n- [ ] Creates a Stripe Customer and saves `stripeCustomerId` when one doesn't exist yet\n- [ ] Reuses the existing `stripeCustomerId` on subsequent calls\n- [ ] Creates a Checkout Session with `mode: \"subscription\"`, `trial_period_days: 14`, `payment_method_collection: \"always\"`, and the correct price ID\n- [ ] Returns `{ url: <checkout session url> }` on success\n\n**Verify:** `npx vitest run src/app/api/billing/checkout/route.test.ts` → all tests pass\n\n```json:metadata\n{\"files\": [\"src/app/api/billing/checkout/route.ts\", \"src/app/api/billing/checkout/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/billing/checkout/route.test.ts\", \"acceptanceCriteria\": [\"401 no session\", \"400 invalid plan\", \"creates customer if missing\", \"reuses existing customer\", \"checkout session has trial + card required\", \"returns url\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 27,
+      "subject": "Task 5: Stripe webhook endpoint",
+      "status": "pending",
+      "blockedBy": [23, 24],
+      "description": "**Goal:** `POST /api/webhooks/stripe` verifies Stripe's signature and keeps `Merchant.subscriptionStatus`/`planTier`/`trialEndsAt`/`stripeSubscriptionId` in sync as the source of truth for billing state.\n\n**Files:**\n- Create: `src/app/api/webhooks/stripe/route.ts`\n- Test: `src/app/api/webhooks/stripe/route.test.ts`\n- Modify: `src/proxy.ts`\n\n**Acceptance Criteria:**\n- [ ] Returns 400 on missing/invalid signature, no db write\n- [ ] `checkout.session.completed` sets subscriptionId/planTier/trialing/trialEndsAt\n- [ ] `customer.subscription.updated` syncs status and plan\n- [ ] `customer.subscription.deleted` sets canceled\n- [ ] Unknown event returns 200 no-op\n- [ ] Idempotent on duplicate delivery\n- [ ] webhook path in CSRF_EXEMPT\n\n**Verify:** `npx vitest run src/app/api/webhooks/stripe/route.test.ts` → all tests pass\n\n```json:metadata\n{\"files\": [\"src/app/api/webhooks/stripe/route.ts\", \"src/app/api/webhooks/stripe/route.test.ts\", \"src/proxy.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/webhooks/stripe/route.test.ts\", \"acceptanceCriteria\": [\"400 on bad signature\", \"checkout.session.completed sets trialing\", \"subscription.updated syncs status/plan\", \"subscription.deleted sets canceled\", \"unknown event no-op 200\", \"idempotent\", \"CSRF exempt\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 28,
+      "subject": "Task 6: Billing portal API route",
+      "status": "pending",
+      "blockedBy": [23, 24],
+      "description": "**Goal:** `POST /api/billing/portal` creates a Stripe Customer Portal session so merchants can self-serve update their card, change plans, cancel, and view invoices.\n\n**Files:**\n- Create: `src/app/api/billing/portal/route.ts`\n- Test: `src/app/api/billing/portal/route.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Returns 401 when there's no session\n- [ ] Returns 400 when the merchant has no `stripeCustomerId`\n- [ ] Creates a portal session with `return_url` pointing at `/settings`\n- [ ] Returns `{ url: <portal session url> }` on success\n\n**Verify:** `npx vitest run src/app/api/billing/portal/route.test.ts` → all tests pass\n\n```json:metadata\n{\"files\": [\"src/app/api/billing/portal/route.ts\", \"src/app/api/billing/portal/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/billing/portal/route.test.ts\", \"acceptanceCriteria\": [\"401 no session\", \"400 no stripeCustomerId\", \"creates portal session with return_url /settings\", \"returns url\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 29,
+      "subject": "Task 7: Gate dashboard pages on subscription status",
+      "status": "pending",
+      "blockedBy": [23, 25],
+      "description": "**Goal:** `requireSessionPage` redirects to `/billing/reactivate` when the merchant doesn't have an active/trialing subscription, protecting every page that calls it with one change.\n\n**Files:**\n- Modify: `src/lib/auth/requireSession.ts`\n- Modify: `src/lib/auth/requireSession.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Redirects to `/login` when there's no session (unchanged)\n- [ ] Redirects to `/billing/reactivate` when subscriptionStatus is not trialing/active\n- [ ] Renders normally when trialing or active\n- [ ] `requireSessionApi` unchanged\n- [ ] All tests pass\n\n**Verify:** `npx vitest run src/lib/auth/requireSession.test.ts` → all tests pass\n\n```json:metadata\n{\"files\": [\"src/lib/auth/requireSession.ts\", \"src/lib/auth/requireSession.test.ts\"], \"verifyCommand\": \"npx vitest run src/lib/auth/requireSession.test.ts\", \"acceptanceCriteria\": [\"redirects /login no session\", \"redirects /billing/reactivate when not active\", \"renders when trialing/active\", \"requireSessionApi unchanged\", \"all tests pass\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 30,
+      "subject": "Task 8: Reactivate page with plan picker",
+      "status": "pending",
+      "blockedBy": [26],
+      "description": "**Goal:** A page at `/billing/reactivate` that merchants without an active subscription land on — explains why, and lets them pick a plan to start checkout again.\n\n**Files:**\n- Create: `src/app/billing/reactivate/page.tsx`\n- Create: `src/components/ReactivatePlanPicker.tsx`\n\n**Acceptance Criteria:**\n- [ ] Requires session but not active subscription\n- [ ] Shows trial ended message\n- [ ] Shows 3 plans with buttons\n- [ ] Button click calls checkout and redirects\n- [ ] Inline error on failure\n\n**Verify:** Manual — exercised end-to-end as part of Task 9's verification step\n\n```json:metadata\n{\"files\": [\"src/app/billing/reactivate/page.tsx\", \"src/components/ReactivatePlanPicker.tsx\"], \"verifyCommand\": \"manual — see Task 9 end-to-end verification\", \"acceptanceCriteria\": [\"requires session not active sub\", \"shows trial ended message\", \"shows 3 plans\", \"button calls checkout\", \"inline error on failure\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 31,
+      "subject": "Task 9: Wire signup flow into Stripe checkout",
+      "status": "pending",
+      "blockedBy": [26, 29, 30],
+      "description": "**Goal:** Marketing pricing links carry the chosen plan through signup, and a successful signup redirects into Stripe Checkout instead of straight to the dashboard.\n\n**Files:**\n- Modify: `src/components/marketing/Pricing.tsx`\n- Modify: `src/components/AuthForm.tsx`\n- Modify: `src/app/signup/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] Pricing CTAs link with `?plan=` query param\n- [ ] `AuthForm` `onSuccess` prop overrides default redirect\n- [ ] Signup reads plan param, defaults to growth\n- [ ] Successful signup redirects to Stripe checkout url\n- [ ] Failed checkout creation falls back to `/dashboard` (bounces to reactivate)\n\n**Verify:** Manual end-to-end — full flow documented in plan Task 9 Step 5 (requires Stripe test-mode keys and `stripe listen`)\n\n```json:metadata\n{\"files\": [\"src/components/marketing/Pricing.tsx\", \"src/components/AuthForm.tsx\", \"src/app/signup/page.tsx\"], \"verifyCommand\": \"manual — Stripe test mode signup-to-checkout flow, see plan Task 9 Step 5\", \"acceptanceCriteria\": [\"pricing CTAs have ?plan=\", \"onSuccess overrides redirect\", \"signup reads plan defaulting to growth\", \"redirects to checkout url\", \"failure falls back to dashboard->reactivate\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 32,
+      "subject": "Task 10: Manage billing in Settings",
+      "status": "pending",
+      "blockedBy": [28],
+      "description": "**Goal:** The Settings page shows the merchant's current plan/status and offers a \"Manage billing\" button that opens the Stripe Customer Portal.\n\n**Files:**\n- Create: `src/components/BillingCard.tsx`\n- Modify: `src/app/settings/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] Settings shows planTier and subscriptionStatus\n- [ ] Manage billing button calls portal API and redirects\n- [ ] Inline error on failure\n\n**Verify:** Manual — click \"Manage billing\" on `/settings` while signed in with an active trial and confirm redirect to a `billing.stripe.com` URL\n\n```json:metadata\n{\"files\": [\"src/components/BillingCard.tsx\", \"src/app/settings/page.tsx\"], \"verifyCommand\": \"manual — click Manage billing on /settings, confirm redirect to billing.stripe.com\", \"acceptanceCriteria\": [\"settings shows planTier/status\", \"button redirects to portal url\", \"inline error on failure\"], \"modelTier\": \"mechanical\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-07-27T00:00:00Z"
+}
