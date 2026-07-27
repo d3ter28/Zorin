@@ -5,6 +5,7 @@ import { LogoWall } from "@/components/marketing/LogoWall";
 import { WhyZorin } from "@/components/marketing/WhyZorin";
 import { HowItWorks } from "@/components/marketing/HowItWorks";
 import { Features } from "@/components/marketing/Features";
+import { Pricing } from "@/components/marketing/Pricing";
 import { Blog } from "@/components/marketing/Blog";
 import { FAQ } from "@/components/marketing/FAQ";
 import { EarlyAccess } from "@/components/marketing/EarlyAccess";
@@ -27,6 +28,7 @@ export default function LandingPage() {
         <WhyZorin />
         <HowItWorks />
         <Features />
+        <Pricing />
         <Blog />
         <FAQ />
         <EarlyAccess />
