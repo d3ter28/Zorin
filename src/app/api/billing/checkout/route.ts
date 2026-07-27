@@ -22,6 +22,11 @@ export const POST = withErrorHandling(async (req: Request) => {
 
   let customerId = merchant.stripeCustomerId;
   if (!customerId) {
+    // Not transactional: if the Prisma write below fails after this Stripe
+    // call succeeds, the merchant gets a second Stripe customer on their next
+    // checkout attempt (stripeCustomerId is still null). Acceptable risk for
+    // now — the webhook handler is the natural place to add reconciliation
+    // if this ever shows up as duplicate customers in practice.
     const customer = await stripe.customers.create({ email: user.email });
     customerId = customer.id;
     await prisma.merchant.update({
