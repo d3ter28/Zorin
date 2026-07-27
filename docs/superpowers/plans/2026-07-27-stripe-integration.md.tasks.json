@@ -35,7 +35,7 @@
     {
       "id": 27,
       "subject": "Task 5: Stripe webhook endpoint",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [
         23,
         24
