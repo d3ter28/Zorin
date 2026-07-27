@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { HttpError } from "@/lib/api/errors";
+import { hasActiveSubscription } from "@/lib/billing/subscriptionGate";
 import { getSessionUser, SESSION_COOKIE, type SessionUser } from "./session";
 
 export interface SessionInfo {
@@ -25,9 +26,24 @@ export async function requireSessionApi(): Promise<SessionInfo> {
   return session;
 }
 
-// For server components: unauthenticated visitors land on the login page.
+// For server components: unauthenticated visitors land on the login page,
+// and merchants without an active/trialing subscription land on the
+// reactivate page instead of rendering the protected page.
 export async function requireSessionPage(): Promise<SessionInfo> {
   const session = await getSession();
   if (!session) redirect("/login");
+
+  // Separate round-trip rather than folding into getSession()/getSessionUser
+  // — subscription status is a page-gating concern, not a core session
+  // concept, and requireSessionApi (which shares getSession) deliberately
+  // doesn't check it for this pass. Keep the boundary explicit.
+  const merchant = await prisma.merchant.findUnique({
+    where: { id: session.merchantId },
+    select: { subscriptionStatus: true },
+  });
+  if (!hasActiveSubscription(merchant?.subscriptionStatus ?? null)) {
+    redirect("/billing/reactivate");
+  }
+
   return session;
 }

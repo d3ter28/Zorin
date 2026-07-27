@@ -13,10 +13,12 @@ export function AuthForm({
   fields,
   submitLabel,
   endpoint,
+  onSuccess,
 }: {
   fields: Field[];
   submitLabel: string;
   endpoint: string;
+  onSuccess?: () => void | Promise<void>;
 }) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [error, setError] = useState<string | null>(null);
@@ -38,7 +40,11 @@ export function AuthForm({
         setBusy(false);
         return;
       }
-      window.location.href = "/dashboard";
+      if (onSuccess) {
+        await onSuccess();
+      } else {
+        window.location.href = "/dashboard";
+      }
     } catch {
       setError("Network error — please try again");
       setBusy(false);

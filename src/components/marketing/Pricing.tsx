@@ -10,7 +10,7 @@ const plans = [
     period: "/mo",
     description: "For stores testing the waters with data-driven pricing.",
     cta: "Start free trial",
-    href: "/signup",
+    href: "/signup?plan=starter",
     highlight: false,
     features: [
       "Up to 25 products",
@@ -25,7 +25,7 @@ const plans = [
     period: "/mo",
     description: "For growing stores ready to optimize their full catalog.",
     cta: "Start free trial",
-    href: "/signup",
+    href: "/signup?plan=growth",
     highlight: true,
     features: [
       "Up to 150 products",
@@ -42,7 +42,7 @@ const plans = [
     period: "/mo",
     description: "For catalogs and multi-store operations that outgrow the basics.",
     cta: "Talk to us",
-    href: "/signup",
+    href: "/signup?plan=scale",
     highlight: false,
     features: [
       "Unlimited products",

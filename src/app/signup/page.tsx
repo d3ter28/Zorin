@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { AuthForm } from "@/components/AuthForm";
 
@@ -156,9 +157,35 @@ const captions = [
   "One click to apply a data-backed price change.",
 ];
 
-export default function SignupPage() {
+function SignupPageInner() {
   const [active, setActive] = useState(0);
   const [fading, setFading] = useState(false);
+
+  const searchParams = useSearchParams();
+  const rawPlan = searchParams.get("plan");
+  const plan = rawPlan === "starter" || rawPlan === "growth" || rawPlan === "scale" ? rawPlan : "growth";
+
+  async function startCheckout() {
+    try {
+      const res = await fetch("/api/billing/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan }),
+      });
+      if (!res.ok) {
+        window.location.href = "/dashboard";
+        return;
+      }
+      const data: { url?: unknown } = await res.json();
+      if (typeof data.url !== "string" || data.url === "") {
+        window.location.href = "/dashboard";
+        return;
+      }
+      window.location.href = data.url;
+    } catch {
+      window.location.href = "/dashboard";
+    }
+  }
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -187,12 +214,13 @@ export default function SignupPage() {
 
         <div className="mx-auto w-full max-w-sm py-10">
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900">Create your account</h1>
-          <p className="mt-1.5 text-sm text-zinc-500">Free while in early access. No credit card needed.</p>
+          <p className="mt-1.5 text-sm text-zinc-500">Start your 14-day free trial. Cancel anytime.</p>
 
           <div className="mt-8">
             <AuthForm
               endpoint="/api/auth/signup"
               submitLabel="Create account"
+              onSuccess={startCheckout}
               fields={[
                 { name: "email", label: "Email", type: "email", placeholder: "you@store.com" },
                 { name: "password", label: "Password (8+ characters)", type: "password" },
@@ -263,5 +291,13 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={null}>
+      <SignupPageInner />
+    </Suspense>
   );
 }

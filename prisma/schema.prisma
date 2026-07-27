@@ -7,34 +7,39 @@ datasource db {
 }
 
 model Merchant {
-  id                String             @id @default(cuid())
-  name              String
-  storeUrl          String
-  createdAt         DateTime           @default(now())
-  products               Product[]
-  user                   User?
-  shopifyConnection      ShopifyConnection?
-  wooCommerceConnection  WooCommerceConnection?
+  id                    String                 @id @default(cuid())
+  name                  String
+  storeUrl              String
+  createdAt             DateTime               @default(now())
+  stripeCustomerId      String?
+  stripeSubscriptionId  String?
+  subscriptionStatus    String?
+  planTier              String?
+  trialEndsAt           DateTime?
+  products              Product[]
+  user                  User?
+  shopifyConnection     ShopifyConnection?
+  wooCommerceConnection WooCommerceConnection?
 }
 
 model Product {
-  id               String           @id @default(cuid())
-  merchantId       String
-  merchant         Merchant         @relation(fields: [merchantId], references: [id])
-  title            String
-  sku              String
-  currentPrice     Int
-  cogs             Int?
-  category         String
-  estUnits         Int?
+  id                   String           @id @default(cuid())
+  merchantId           String
+  merchant             Merchant         @relation(fields: [merchantId], references: [id])
+  title                String
+  sku                  String
+  currentPrice         Int
+  cogs                 Int?
+  category             String
+  estUnits             Int?
   shopifyVariantId     String?
   woocommerceVariantId String?
   woocommerceParentId  String?
   createdAt            DateTime         @default(now())
-  recommendation   Recommendation?
-  salesRecords     SalesRecord[]
-  elasticityModel  ElasticityModel?
-  priceChanges     PriceChange[]
+  recommendation       Recommendation?
+  salesRecords         SalesRecord[]
+  elasticityModel      ElasticityModel?
+  priceChanges         PriceChange[]
 }
 
 model Recommendation {

@@ -6,6 +6,7 @@ const CSRF_EXEMPT = new Set([
   "/api/auth/login",
   "/api/auth/signup",
   "/api/early-access",
+  "/api/webhooks/stripe",
 ]);
 
 export function proxy(req: NextRequest) {

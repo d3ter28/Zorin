@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { getCookie } = vi.hoisted(() => ({ getCookie: vi.fn() }));
 const { getSessionUser } = vi.hoisted(() => ({ getSessionUser: vi.fn() }));
+const { findUnique } = vi.hoisted(() => ({ findUnique: vi.fn() }));
 const { redirect } = vi.hoisted(() => ({
   redirect: vi.fn((url: string) => {
     // Match next/navigation semantics: redirect throws.
@@ -13,7 +14,7 @@ vi.mock("next/headers", () => ({
   cookies: async () => ({ get: getCookie }),
 }));
 vi.mock("next/navigation", () => ({ redirect }));
-vi.mock("@/lib/db", () => ({ prisma: {} }));
+vi.mock("@/lib/db", () => ({ prisma: { merchant: { findUnique } } }));
 vi.mock("./session", async (importOriginal) => ({
   ...(await importOriginal<typeof import("./session")>()),
   getSessionUser,
@@ -27,6 +28,7 @@ const user = { id: "u1", email: "d@e.f", merchantId: "m1" };
 beforeEach(() => {
   getCookie.mockReset();
   getSessionUser.mockReset();
+  findUnique.mockReset();
   redirect.mockClear();
 });
 
@@ -71,5 +73,38 @@ describe("requireSessionPage", () => {
     getCookie.mockReturnValue(undefined);
     await expect(requireSessionPage()).rejects.toThrow("REDIRECT:/login");
     expect(redirect).toHaveBeenCalledWith("/login");
+  });
+
+  it("redirects to /billing/reactivate when subscription is not active", async () => {
+    getCookie.mockReturnValue({ value: "tok" });
+    getSessionUser.mockResolvedValue(user);
+    findUnique.mockResolvedValue({ subscriptionStatus: "past_due" });
+
+    await expect(requireSessionPage()).rejects.toThrow("REDIRECT:/billing/reactivate");
+    expect(redirect).toHaveBeenCalledWith("/billing/reactivate");
+  });
+
+  it("redirects to /billing/reactivate when subscriptionStatus is null", async () => {
+    getCookie.mockReturnValue({ value: "tok" });
+    getSessionUser.mockResolvedValue(user);
+    findUnique.mockResolvedValue({ subscriptionStatus: null });
+
+    await expect(requireSessionPage()).rejects.toThrow("REDIRECT:/billing/reactivate");
+  });
+
+  it("returns the session when subscription is trialing", async () => {
+    getCookie.mockReturnValue({ value: "tok" });
+    getSessionUser.mockResolvedValue(user);
+    findUnique.mockResolvedValue({ subscriptionStatus: "trialing" });
+
+    await expect(requireSessionPage()).resolves.toEqual({ user, merchantId: "m1" });
+  });
+
+  it("returns the session when subscription is active", async () => {
+    getCookie.mockReturnValue({ value: "tok" });
+    getSessionUser.mockResolvedValue(user);
+    findUnique.mockResolvedValue({ subscriptionStatus: "active" });
+
+    await expect(requireSessionPage()).resolves.toEqual({ user, merchantId: "m1" });
   });
 });
