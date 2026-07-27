@@ -33,6 +33,10 @@ export async function requireSessionPage(): Promise<SessionInfo> {
   const session = await getSession();
   if (!session) redirect("/login");
 
+  // Separate round-trip rather than folding into getSession()/getSessionUser
+  // — subscription status is a page-gating concern, not a core session
+  // concept, and requireSessionApi (which shares getSession) deliberately
+  // doesn't check it for this pass. Keep the boundary explicit.
   const merchant = await prisma.merchant.findUnique({
     where: { id: session.merchantId },
     select: { subscriptionStatus: true },
