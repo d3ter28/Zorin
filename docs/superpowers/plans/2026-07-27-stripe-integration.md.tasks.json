@@ -19,7 +19,7 @@
     {
       "id": 25,
       "subject": "Task 3: Subscription gate helper",
-      "status": "pending",
+      "status": "completed",
       "description": "**Goal:** A single, tested function that decides whether a subscription status grants dashboard access.\n\n**Files:**\n- Create: `src/lib/billing/subscriptionGate.ts`\n- Test: `src/lib/billing/subscriptionGate.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `hasActiveSubscription(\"trialing\")` and `hasActiveSubscription(\"active\")` return `true`\n- [ ] `hasActiveSubscription(\"past_due\")`, `hasActiveSubscription(\"canceled\")`, `hasActiveSubscription(null)` all return `false`\n- [ ] All tests pass\n\n**Verify:** `npx vitest run src/lib/billing/subscriptionGate.test.ts` → all tests pass\n\n```json:metadata\n{\"files\": [\"src/lib/billing/subscriptionGate.ts\", \"src/lib/billing/subscriptionGate.test.ts\"], \"verifyCommand\": \"npx vitest run src/lib/billing/subscriptionGate.test.ts\", \"acceptanceCriteria\": [\"trialing and active return true\", \"past_due, canceled, null return false\", \"all tests pass\"], \"modelTier\": \"mechanical\"}\n```"
     },
     {
