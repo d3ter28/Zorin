@@ -15,6 +15,9 @@ export const POST = withErrorHandling(async (req: Request) => {
     throw new HttpError(400, "No billing account found for this merchant yet");
   }
 
+  // Requires the Customer Portal to be activated once in the Stripe
+  // Dashboard (Settings -> Billing -> Customer Portal) — otherwise this
+  // call throws a Stripe API error that surfaces here as an opaque 500.
   const origin = new URL(req.url).origin;
   const session = await stripe.billingPortal.sessions.create({
     customer: merchant.stripeCustomerId,
