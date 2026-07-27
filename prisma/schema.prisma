@@ -11,6 +11,11 @@ model Merchant {
   name              String
   storeUrl          String
   createdAt         DateTime           @default(now())
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  subscriptionStatus   String?
+  planTier             String?
+  trialEndsAt          DateTime?
   products               Product[]
   user                   User?
   shopifyConnection      ShopifyConnection?
