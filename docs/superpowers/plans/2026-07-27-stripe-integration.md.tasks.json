@@ -25,7 +25,7 @@
     {
       "id": 26,
       "subject": "Task 4: Checkout API route",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [
         23,
         24
