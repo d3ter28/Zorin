@@ -42,6 +42,10 @@ export const POST = withErrorHandling(async (req: Request) => {
     payment_method_collection: "always",
     line_items: [{ price: priceIdForTier(plan), quantity: 1 }],
     subscription_data: { trial_period_days: 14 },
+    // Round-trips through checkout.session.completed so the webhook can set
+    // Merchant.planTier without an extra Stripe API call — session.subscription
+    // on that event is just a string ID with no price info attached.
+    metadata: { planTier: plan },
     success_url: `${origin}/dashboard?checkout=success`,
     cancel_url: `${origin}/billing/reactivate?checkout=canceled`,
   });

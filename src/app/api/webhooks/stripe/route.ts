@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { prisma } from "@/lib/db";
 import { stripe } from "@/lib/stripe/client";
-import { PLAN_TIERS, type PlanTier } from "@/lib/stripe/plans";
+import { PLAN_TIERS, isValidPlanTier, type PlanTier } from "@/lib/stripe/plans";
 
 function planTierFromPriceId(priceId: string | undefined): PlanTier | null {
   if (!priceId) return null;
@@ -42,12 +42,21 @@ export async function POST(req: Request): Promise<NextResponse> {
       const customerId = session.customer as string;
       const subscriptionId = session.subscription as string;
       const trialEndsAt = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
+      // planTier round-trips via the metadata set when the session was
+      // created (see /api/billing/checkout) — the session itself carries no
+      // price info without an extra Stripe API call.
+      const metadataPlanTier = session.metadata?.planTier;
+      const planTier =
+        typeof metadataPlanTier === "string" && isValidPlanTier(metadataPlanTier)
+          ? metadataPlanTier
+          : null;
       await prisma.merchant.updateMany({
         where: { stripeCustomerId: customerId },
         data: {
           stripeSubscriptionId: subscriptionId,
           subscriptionStatus: "trialing",
           trialEndsAt,
+          ...(planTier ? { planTier } : {}),
         },
       });
       break;

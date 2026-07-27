@@ -111,6 +111,7 @@ describe("POST /api/billing/checkout", () => {
         payment_method_collection: "always",
         line_items: [{ price: "price_scale_123", quantity: 1 }],
         subscription_data: { trial_period_days: 14 },
+        metadata: { planTier: "scale" },
         success_url: expect.stringContaining("/dashboard"),
         cancel_url: expect.stringContaining("/billing/reactivate"),
       }),
