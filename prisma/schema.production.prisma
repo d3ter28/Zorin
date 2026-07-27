@@ -11,9 +11,10 @@ model Merchant {
   name              String
   storeUrl          String
   createdAt         DateTime           @default(now())
-  products          Product[]
-  user              User?
-  shopifyConnection ShopifyConnection?
+  products               Product[]
+  user                   User?
+  shopifyConnection      ShopifyConnection?
+  wooCommerceConnection  WooCommerceConnection?
 }
 
 model Product {
@@ -26,8 +27,10 @@ model Product {
   cogs             Int?
   category         String
   estUnits         Int?
-  shopifyVariantId String?
-  createdAt        DateTime         @default(now())
+  shopifyVariantId     String?
+  woocommerceVariantId String?
+  woocommerceParentId  String?
+  createdAt            DateTime         @default(now())
   recommendation   Recommendation?
   salesRecords     SalesRecord[]
   elasticityModel  ElasticityModel?
@@ -114,6 +117,13 @@ model ShopifyConnection {
   updatedAt      DateTime  @updatedAt
 }
 
+model Feedback {
+  id         String   @id @default(cuid())
+  merchantId String
+  message    String
+  createdAt  DateTime @default(now())
+}
+
 model EarlyAccessInterest {
   id        String   @id @default(cuid())
   name      String
@@ -121,4 +131,16 @@ model EarlyAccessInterest {
   storeUrl  String?
   message   String?
   createdAt DateTime @default(now())
+}
+
+model WooCommerceConnection {
+  id              String    @id @default(cuid())
+  merchantId      String    @unique
+  merchant        Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  storeUrl        String
+  encryptedKey    String
+  encryptedSecret String
+  lastSyncedAt    DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
