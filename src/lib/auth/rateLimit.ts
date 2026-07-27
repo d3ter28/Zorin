@@ -37,7 +37,7 @@ setInterval(() => {
   for (const [key, entry] of store) {
     if (now - entry.windowStart > WINDOW_MS) store.delete(key);
   }
-}, 10 * 60 * 1000);
+}, 10 * 60 * 1000).unref();
 
 function checkInMemory(ip: string): { allowed: boolean; retryAfterMs: number } {
   const now = Date.now();
