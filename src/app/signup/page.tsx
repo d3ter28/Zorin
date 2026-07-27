@@ -176,7 +176,11 @@ function SignupPageInner() {
         window.location.href = "/dashboard";
         return;
       }
-      const data: { url: string } = await res.json();
+      const data: { url?: unknown } = await res.json();
+      if (typeof data.url !== "string" || data.url === "") {
+        window.location.href = "/dashboard";
+        return;
+      }
       window.location.href = data.url;
     } catch {
       window.location.href = "/dashboard";

@@ -26,7 +26,12 @@ export function ReactivatePlanPicker() {
         setBusyTier(null);
         return;
       }
-      const data: { url: string } = await res.json();
+      const data: { url?: unknown } = await res.json();
+      if (typeof data.url !== "string" || data.url === "") {
+        setError("Something went wrong");
+        setBusyTier(null);
+        return;
+      }
       window.location.href = data.url;
     } catch {
       setError("Network error — please try again");
