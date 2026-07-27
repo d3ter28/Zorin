@@ -14,7 +14,7 @@ export function LogoWall() {
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-wrap items-center justify-center gap-8">
             {[
-              { name: "Shopify", icon: "https://cdn.simpleicons.org/shopify/95BF47", glow: "#95BF47" },
+              { name: "Shopify", icon: "/shopify-logo.svg", glow: "#95BF47" },
               { name: "WooCommerce", icon: "/woocommerce-logo.jpg", glow: "#7F54B3" },
             ].map(({ name, icon, glow }, i) => (
               <motion.div
