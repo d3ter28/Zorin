@@ -34,6 +34,7 @@ process.env.STRIPE_PRICE_SCALE = "price_scale_123";
 
 import { POST } from "./route";
 import { requireSessionApi } from "@/lib/auth/requireSession";
+import { HttpError } from "@/lib/api/errors";
 
 function req(body: unknown): Request {
   return {
@@ -51,6 +52,15 @@ beforeEach(() => {
 });
 
 describe("POST /api/billing/checkout", () => {
+  it("returns 401 when there's no session", async () => {
+    vi.mocked(requireSessionApi).mockRejectedValue(new HttpError(401, "unauthorized"));
+
+    const res = await POST(req({ plan: "growth" }));
+
+    expect(res.status).toBe(401);
+    expect(checkoutSessionsCreate).not.toHaveBeenCalled();
+  });
+
   it("returns 400 when plan is missing", async () => {
     const res = await POST(req({}));
     expect(res.status).toBe(400);
