@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zorin — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           oklch(1.00 0.000 0);
+      --surface:      oklch(1.00 0.000 0);
+      --panel:        oklch(0.97 0.012 155);
+      --accent:       oklch(0.22 0.065 155);
+      --accent-soft:  oklch(0.93 0.030 155);
+      --accent-dim:   oklch(0.14 0.045 155);
+      --accent-tint:  oklch(0.93 0.030 155);
+      --accent-fg:    oklch(1.00 0.000 0);
+      --ink:          oklch(0.10 0.000 0);
+      --muted:        oklch(0.42 0.000 0);
+      --faint:        oklch(0.60 0.000 0);
+      --line:         oklch(0.90 0.000 0);
+      --line-strong:  oklch(0.82 0.000 0);
+      --positive:     oklch(0.30 0.065 155);
+      --warning:      oklch(0.42 0.000 0);
+      --font-display: 'Crimson Pro', Georgia, serif;
+      --font-body:    'Onest', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --radius:       6px;
+      --sidebar-w:    224px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .sidebar-top { padding: 1.25rem 1.25rem 1.5rem; }
+    .logo {
+      display: flex; align-items: center; gap: 9px;
+      font-family: var(--font-body); font-size: 14.5px; font-weight: 600; color: var(--ink);
+    }
+    .logo-mark {
+      width: 26px; height: 26px;
+      border: 1.5px solid var(--accent); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .merchant-name { font-size: 12px; color: var(--faint); margin-top: 3px; padding-left: 35px; }
+
+    .nav { padding: 0 0.75rem; flex: 1; display: flex; flex-direction: column; gap: 1px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 9px;
+      padding: 8px 10px; border-radius: var(--radius);
+      font-size: 13.5px; font-weight: 500; color: var(--muted);
+      cursor: pointer; transition: background 120ms, color 120ms;
+    }
+    .nav-item:hover { background: var(--line); color: var(--ink); }
+    .nav-item.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .nav-item svg { flex-shrink: 0; }
+
+    .sidebar-bot {
+      padding: 0.875rem 0.75rem 1.25rem;
+      border-top: 1px solid var(--line);
+    }
+    .logout-btn {
+      display: flex; align-items: center; gap: 9px;
+      padding: 8px 10px; border-radius: var(--radius);
+      font-size: 13.5px; color: var(--faint); cursor: pointer;
+      background: transparent; border: none; width: 100%;
+      transition: background 120ms, color 120ms;
+    }
+    .logout-btn:hover { background: var(--line); color: var(--ink); }
+
+    /* ─── MAIN ─── */
+    .main {
+      flex: 1; overflow-y: auto;
+      padding: 2rem 2.5rem;
+      background: var(--bg);
+    }
+
+    /* Page header */
+    .page-header { margin-bottom: 1.75rem; }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 1.625rem; font-weight: 600;
+      color: var(--ink); text-wrap: balance;
+    }
+
+    /* Tab bar */
+    .tab-bar {
+      display: flex; gap: 1.5rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      padding-bottom: 0.75rem;
+      font-size: 13.5px; font-weight: 500;
+      color: var(--muted); background: none; border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px; cursor: pointer;
+      transition: color 120ms, border-color 120ms;
+    }
+    .tab-btn:hover { color: var(--ink); }
+    .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+    /* Stats row */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--line);
+      border-radius: 10px; overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: var(--surface);
+    }
+    .stat-cell {
+      padding: 1.25rem 1.375rem;
+      border-right: 1px solid var(--line);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-lbl {
+      font-size: 12px; color: var(--faint);
+      margin-bottom: 6px;
+    }
+    .stat-val {
+      font-family: var(--font-mono); font-size: 1.5rem;
+      font-weight: 500; letter-spacing: -0.03em; color: var(--ink);
+      line-height: 1;
+    }
+    .stat-val.accent { color: var(--accent); }
+    .stat-val.positive { color: var(--positive); }
+    .stat-sub { font-size: 11.5px; color: var(--faint); margin-top: 5px; }
+
+    /* 2-col grid */
+    .overview-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+
+    /* Card base */
+    .card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; overflow: hidden;
+    }
+    .card-head {
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--line);
+    }
+    .card-title { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+    .card-sub { font-size: 12px; color: var(--faint); margin-top: 2px; }
+
+    /* Trend chart */
+    .chart-body { padding: 1.25rem; }
+    .chart-area {
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: 6px; padding: 0.75rem;
+    }
+
+    /* Onboarding checklist */
+    .checklist-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .checklist-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.125rem;
+    }
+    .checklist-title { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+    .checklist-progress { font-family: var(--font-mono); font-size: 11.5px; color: var(--faint); }
+    .checklist-steps { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+    .step-row { display: flex; align-items: flex-start; gap: 10px; }
+    .step-circle {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      border: 1.5px solid var(--line-strong);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-circle.done { background: var(--positive); border-color: var(--positive); }
+    .step-text { font-size: 13px; }
+    .step-text.done { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--faint); }
+    .step-desc { font-size: 11.5px; color: var(--faint); margin-top: 1px; }
+    .progress-bar-track {
+      height: 3px; background: var(--line); border-radius: 2px; overflow: hidden;
+    }
+    .progress-bar-fill { height: 100%; width: 33%; background: var(--accent); border-radius: 2px; }
+
+    /* Opportunities */
+    .opp-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--line);
+      cursor: pointer; transition: background 100ms;
+    }
+    .opp-row:last-child { border-bottom: none; }
+    .opp-row:hover { background: var(--bg); }
+    .opp-num { font-size: 11px; color: var(--faint); width: 16px; font-family: var(--font-mono); }
+    .opp-info { flex: 1; min-width: 0; }
+    .opp-name { font-size: 13px; color: var(--ink); }
+    .opp-sku { font-size: 11.5px; color: var(--faint); font-family: var(--font-mono); }
+    .opp-action { text-align: right; flex-shrink: 0; }
+    .opp-tag {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .opp-tag.raise { color: var(--positive); }
+    .opp-tag.lower { color: var(--warning); }
+    .opp-price { font-size: 12px; color: var(--faint); font-family: var(--font-mono); margin-top: 2px; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div>
+    <div class="sidebar-top">
+      <div class="logo">
+        <div class="logo-mark">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <polyline points="4,4 12,4 4,12 12,12" stroke="var(--accent)" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </div>
+        Zorin
+      </div>
+      <div class="merchant-name">Demo Store</div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-item active">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+        Dashboard
+      </div>
+      <div class="nav-item">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 14V6l4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Launch Planner
+      </div>
+      <div class="nav-item">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Settings
+      </div>
+    </nav>
+  </div>
+
+  <div class="sidebar-bot">
+    <button class="logout-btn">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M11 11l3-3-3-3M14 8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Sign out
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <!-- Onboarding checklist -->
+  <div class="checklist-card">
+    <div class="checklist-head">
+      <span class="checklist-title">Get started with Zorin</span>
+      <span class="checklist-progress">1 of 3 complete</span>
+    </div>
+    <div class="checklist-steps">
+      <div class="step-row">
+        <div class="step-circle done">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="step-text done">Import your products</div>
+          <div class="step-desc">Upload a CSV of your catalog to get started.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-circle"></div>
+        <div>
+          <div class="step-text">Fit your first model</div>
+          <div class="step-desc">Run the elasticity model on a product.</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-circle"></div>
+        <div>
+          <div class="step-text">Apply your first price</div>
+          <div class="step-desc">Review a recommendation and apply it.</div>
+        </div>
+      </div>
+    </div>
+    <div class="progress-bar-track"><div class="progress-bar-fill"></div></div>
+  </div>
+
+  <!-- Tab bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active">Overview</button>
+    <button class="tab-btn">Products</button>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-lbl">Products</div>
+      <div class="stat-val">14</div>
+      <div class="stat-sub">in catalog</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-lbl">Recommendations</div>
+      <div class="stat-val accent">9</div>
+      <div class="stat-sub">ready to apply</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-lbl">Avg profit lift</div>
+      <div class="stat-val positive">+14.2%</div>
+      <div class="stat-sub">across modeled products</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-lbl">Opportunity</div>
+      <div class="stat-val">$4,200</div>
+      <div class="stat-sub">estimated monthly gain</div>
+    </div>
+  </div>
+
+  <!-- Overview 2-col -->
+  <div class="overview-grid">
+    <!-- Trend chart -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Portfolio trend</div>
+        <div class="card-sub">Revenue vs. profit · last 6 months</div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-area">
+          <svg viewBox="0 0 380 140" style="width:100%;height:auto" aria-label="Portfolio trend chart">
+            <!-- Gridlines -->
+            <line x1="0" y1="20" x2="380" y2="20" stroke="oklch(0.90 0.000 0)" stroke-width="0.75"/>
+            <line x1="0" y1="60" x2="380" y2="60" stroke="oklch(0.90 0.000 0)" stroke-width="0.75"/>
+            <line x1="0" y1="100" x2="380" y2="100" stroke="oklch(0.90 0.000 0)" stroke-width="0.75"/>
+            <!-- Revenue line -->
+            <polyline points="10,100 76,88 142,72 208,80 274,55 340,42" fill="none" stroke="oklch(0.82 0.000 0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Profit line (accent) -->
+            <polyline points="10,110 76,100 142,90 208,88 274,68 340,52" fill="none" stroke="oklch(0.10 0.000 0)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Month labels -->
+            <text x="10"  y="135" font-family="'JetBrains Mono',monospace" font-size="9" fill="oklch(0.60 0.000 0)">Feb</text>
+            <text x="76"  y="135" font-family="'JetBrains Mono',monospace" font-size="9" fill="oklch(0.60 0.000 0)">Mar</text>
+            <text x="142" y="135" font-family="'JetBrains Mono',monospace" font-size="9" fill="oklch(0.60 0.000 0)">Apr</text>
+            <text x="208" y="135" font-family="'JetBrains Mono',monospace" font-size="9" fill="oklch(0.60 0.000 0)">May</text>
+            <text x="274" y="135" font-family="'JetBrains Mono',monospace" font-size="9" fill="oklch(0.60 0.000 0)">Jun</text>
+            <text x="340" y="135" font-family="'JetBrains Mono',monospace" font-size="9" fill="oklch(0.60 0.000 0)">Jul</text>
+          </svg>
+          <div style="display:flex;gap:1.25rem;margin-top:0.5rem;font-size:11.5px;color:var(--faint);font-family:'JetBrains Mono',monospace">
+            <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:12px;height:2px;background:oklch(0.82 0.000 0);border-radius:1px"></span>Revenue</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:12px;height:2px;background:oklch(0.10 0.000 0);border-radius:1px"></span>Profit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top opportunities -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Top Opportunities</div>
+        <div class="card-sub">Products with active recommendations</div>
+      </div>
+      <div class="opp-row">
+        <span class="opp-num">1.</span>
+        <div class="opp-info">
+          <div class="opp-name">Wireless Earbuds Pro</div>
+          <div class="opp-sku">SKU-2841</div>
+        </div>
+        <div class="opp-action">
+          <div class="opp-tag raise">Raise</div>
+          <div class="opp-price">$59.99</div>
+        </div>
+      </div>
+      <div class="opp-row">
+        <span class="opp-num">2.</span>
+        <div class="opp-info">
+          <div class="opp-name">USB-C Hub 7-Port</div>
+          <div class="opp-sku">SKU-1102</div>
+        </div>
+        <div class="opp-action">
+          <div class="opp-tag raise">Raise</div>
+          <div class="opp-price">$44.99</div>
+        </div>
+      </div>
+      <div class="opp-row">
+        <span class="opp-num">3.</span>
+        <div class="opp-info">
+          <div class="opp-name">Mechanical Keyboard</div>
+          <div class="opp-sku">SKU-2201</div>
+        </div>
+        <div class="opp-action">
+          <div class="opp-tag lower">Lower</div>
+          <div class="opp-price">$89.99</div>
+        </div>
+      </div>
+      <div class="opp-row">
+        <span class="opp-num">4.</span>
+        <div class="opp-info">
+          <div class="opp-name">Leather Wallet Slim</div>
+          <div class="opp-sku">SKU-1193</div>
+        </div>
+        <div class="opp-action">
+          <div class="opp-tag raise">Raise</div>
+          <div class="opp-price">$89.99</div>
+        </div>
+      </div>
+      <div class="opp-row">
+        <span class="opp-num">5.</span>
+        <div class="opp-info">
+          <div class="opp-name">Bamboo Desk Set</div>
+          <div class="opp-sku">SKU-4490</div>
+        </div>
+        <div class="opp-action">
+          <div class="opp-tag raise">Raise</div>
+          <div class="opp-price">$72.99</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

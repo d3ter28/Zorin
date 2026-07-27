@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { checkRateLimit } from "@/lib/auth/rateLimit";
+import { notifyEarlyAccess } from "@/lib/email/notifyEarlyAccess";
 
 export const POST = withErrorHandling(async (req: Request) => {
   const ip =
@@ -23,13 +24,17 @@ export const POST = withErrorHandling(async (req: Request) => {
   if (!name || name.trim().length === 0) throw new HttpError(400, "Name is required");
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new HttpError(400, "Valid email is required");
 
-  await prisma.earlyAccessInterest.create({
-    data: {
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      storeUrl: storeUrl?.trim() || null,
-      message: message?.trim() || null,
-    },
+  const entry = {
+    name: name.trim(),
+    email: email.trim().toLowerCase(),
+    storeUrl: storeUrl?.trim() || null,
+    message: message?.trim() || null,
+  };
+
+  await prisma.earlyAccessInterest.create({ data: entry });
+
+  notifyEarlyAccess(entry).catch((err) => {
+    console.error("[early-access] notification email failed:", err);
   });
 
   return NextResponse.json({ ok: true }, { status: 201 });
