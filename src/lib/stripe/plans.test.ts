@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { PLAN_TIERS, isValidPlanTier, priceIdForTier } from "./plans";
+import { PLAN_TIERS, isValidPlanTier, priceIdForTier, tierForPriceId } from "./plans";
 
 const ORIGINAL_ENV = { ...process.env };
 
@@ -40,5 +40,19 @@ describe("priceIdForTier", () => {
   it("throws when the tier's env var is missing", () => {
     delete process.env.STRIPE_PRICE_SCALE;
     expect(() => priceIdForTier("scale")).toThrow(/STRIPE_PRICE_SCALE/);
+  });
+});
+
+describe("tierForPriceId", () => {
+  it("resolves a known price id back to its tier", () => {
+    expect(tierForPriceId("price_growth_123")).toBe("growth");
+  });
+
+  it("returns null for an unrecognized price id", () => {
+    expect(tierForPriceId("price_unknown")).toBeNull();
+  });
+
+  it("returns null for undefined", () => {
+    expect(tierForPriceId(undefined)).toBeNull();
   });
 });

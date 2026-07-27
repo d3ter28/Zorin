@@ -21,3 +21,12 @@ export function priceIdForTier(tier: PlanTier): string {
   }
   return priceId;
 }
+
+/** Inverse of priceIdForTier — resolve a Stripe Price ID back to its plan tier, if any. */
+export function tierForPriceId(priceId: string | undefined): PlanTier | null {
+  if (!priceId) return null;
+  for (const tier of PLAN_TIERS) {
+    if (process.env[ENV_VAR_BY_TIER[tier]] === priceId) return tier;
+  }
+  return null;
+}

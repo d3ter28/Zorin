@@ -2,20 +2,7 @@ import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { prisma } from "@/lib/db";
 import { stripe } from "@/lib/stripe/client";
-import { PLAN_TIERS, isValidPlanTier, type PlanTier } from "@/lib/stripe/plans";
-
-function planTierFromPriceId(priceId: string | undefined): PlanTier | null {
-  if (!priceId) return null;
-  const envVarByTier: Record<PlanTier, string | undefined> = {
-    starter: process.env.STRIPE_PRICE_STARTER,
-    growth: process.env.STRIPE_PRICE_GROWTH,
-    scale: process.env.STRIPE_PRICE_SCALE,
-  };
-  for (const tier of PLAN_TIERS) {
-    if (envVarByTier[tier] === priceId) return tier;
-  }
-  return null;
-}
+import { isValidPlanTier, tierForPriceId } from "@/lib/stripe/plans";
 
 export async function POST(req: Request): Promise<NextResponse> {
   const signature = req.headers.get("stripe-signature");
@@ -62,10 +49,13 @@ export async function POST(req: Request): Promise<NextResponse> {
       break;
     }
     case "customer.subscription.updated": {
+      // Unlike checkout.session.completed above, this event carries the
+      // subscription's line items directly, so planTier is derived from the
+      // price ID here rather than from metadata.
       const subscription = event.data.object as Stripe.Subscription;
       const customerId = subscription.customer as string;
       const priceId = subscription.items.data[0]?.price?.id;
-      const planTier = planTierFromPriceId(priceId);
+      const planTier = tierForPriceId(priceId);
       await prisma.merchant.updateMany({
         where: { stripeCustomerId: customerId },
         data: {
