@@ -25,9 +25,6 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: __dirname,
-  },
   // Prevent bundling native SQLite modules — they load from node_modules at
   // runtime on local dev only; the production build never reaches this path.
   serverExternalPackages: ["@prisma/adapter-better-sqlite3", "better-sqlite3"],
