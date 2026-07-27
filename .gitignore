@@ -49,4 +49,8 @@ next-env.d.ts
 /.worktrees/
 
 # local Superpowers execution artifacts
-.superpowers/sdd/
+.superpowers/
+
+# local dev server logs
+dev-server.err.log
+dev-server.out.log
