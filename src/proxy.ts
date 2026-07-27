@@ -8,7 +8,7 @@ const CSRF_EXEMPT = new Set([
   "/api/early-access",
 ]);
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (!STATE_CHANGING.has(req.method)) return NextResponse.next();
