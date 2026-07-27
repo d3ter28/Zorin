@@ -14,6 +14,7 @@ const { userFindUnique, txMerchantCreate, txUserCreate, transaction } = vi.hoist
 });
 const { createSession } = vi.hoisted(() => ({ createSession: vi.fn() }));
 const { hashPassword } = vi.hoisted(() => ({ hashPassword: vi.fn() }));
+const { checkRateLimit } = vi.hoisted(() => ({ checkRateLimit: vi.fn() }));
 
 vi.mock("@/lib/db", () => ({
   prisma: { user: { findUnique: userFindUnique }, $transaction: transaction },
@@ -23,11 +24,12 @@ vi.mock("@/lib/auth/session", async (importOriginal) => ({
   createSession,
 }));
 vi.mock("@/lib/auth/password", () => ({ hashPassword }));
+vi.mock("@/lib/auth/rateLimit", () => ({ checkRateLimit }));
 
 import { POST } from "./route";
 
 const req = (body: unknown) =>
-  ({ json: async () => body }) as unknown as Request;
+  ({ json: async () => body, headers: new Headers() }) as unknown as Request;
 
 const valid = {
   email: "new@shop.example",
@@ -43,6 +45,8 @@ beforeEach(() => {
   transaction.mockClear();
   createSession.mockReset();
   hashPassword.mockReset();
+  checkRateLimit.mockReset();
+  checkRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
 });
 
 describe("POST /api/auth/signup", () => {
