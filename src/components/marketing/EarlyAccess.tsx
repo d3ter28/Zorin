@@ -41,7 +41,7 @@ export function EarlyAccess() {
   }
 
   return (
-    <section id="early-access" className="scroll-mt-20 bg-zinc-50/50 dark:bg-zinc-900/30">
+    <section id="early-access" className="scroll-mt-20 bg-zinc-50/50">
       <div className="mx-auto max-w-[1400px] px-6 py-10 md:py-16">
         <div className="grid gap-16 md:grid-cols-2 md:items-start">
           <motion.div
@@ -50,14 +50,14 @@ export function EarlyAccess() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-400">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
               Early Access
             </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-zinc-50">
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
               Get early access
             </h2>
-            <p className="mt-4 max-w-[44ch] text-base leading-relaxed text-zinc-500 dark:text-zinc-400">
+            <p className="mt-4 max-w-[44ch] text-base leading-relaxed text-zinc-500">
               Zorin is in active development. Early access is free while we&apos;re in MVP, in exchange, we ask for honest feedback on what's working and what isn&apos;t.
             </p>
             <ul className="mt-8 flex flex-col gap-3">
@@ -67,13 +67,13 @@ export function EarlyAccess() {
                 "Shape the features we build next",
                 "Locked-in early adopter pricing when we launch",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-zinc-600 dark:text-zinc-400">
+                <li key={item} className="flex items-start gap-2.5 text-sm text-zinc-600">
                   <svg
                     className="mt-0.5 h-4 w-4 shrink-0 text-blue-500"
                     viewBox="0 0 16 16"
                     fill="none"
                   >
-                    <circle cx="8" cy="8" r="7" className="fill-blue-100 dark:fill-blue-950/50" />
+                    <circle cx="8" cy="8" r="7" className="fill-blue-100" />
                     <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   {item}
@@ -89,15 +89,15 @@ export function EarlyAccess() {
             transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             {state === "success" ? (
-              <div className="flex flex-col items-start gap-4 rounded-xl border border-blue-200 bg-blue-50 p-8 dark:border-blue-800 dark:bg-blue-950/20">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/50">
-                  <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+              <div className="flex flex-col items-start gap-4 rounded-xl border border-blue-200 bg-blue-50 p-8">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
+                  <svg className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-zinc-900 dark:text-zinc-50">You&apos;re on the list</p>
-                  <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                  <p className="font-semibold text-zinc-900">You&apos;re on the list</p>
+                  <p className="mt-1 text-sm text-zinc-500">
                     We&apos;ll be in touch shortly with access details.
                   </p>
                 </div>
@@ -105,10 +105,10 @@ export function EarlyAccess() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-5 rounded-xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+                className="flex flex-col gap-5 rounded-xl border border-zinc-200 bg-white p-8 shadow-sm"
               >
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="ea-name" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  <label htmlFor="ea-name" className="text-sm font-medium text-zinc-700">
                     Name
                   </label>
                   <input
@@ -117,12 +117,12 @@ export function EarlyAccess() {
                     type="text"
                     required
                     placeholder="Jane Smith"
-                    className="h-10 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-blue-400"
+                    className="h-10 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="ea-email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  <label htmlFor="ea-email" className="text-sm font-medium text-zinc-700">
                     Email
                   </label>
                   <input
@@ -131,12 +131,12 @@ export function EarlyAccess() {
                     type="email"
                     required
                     placeholder="jane@yourstore.com"
-                    className="h-10 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-blue-400"
+                    className="h-10 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="ea-store" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  <label htmlFor="ea-store" className="text-sm font-medium text-zinc-700">
                     Store URL <span className="font-normal text-zinc-400">(optional)</span>
                   </label>
                   <input
@@ -144,12 +144,12 @@ export function EarlyAccess() {
                     name="storeUrl"
                     type="url"
                     placeholder="https://yourstore.com"
-                    className="h-10 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-blue-400"
+                    className="h-10 rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="ea-message" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  <label htmlFor="ea-message" className="text-sm font-medium text-zinc-700">
                     Anything you want us to know? <span className="font-normal text-zinc-400">(optional)</span>
                   </label>
                   <textarea
@@ -157,7 +157,7 @@ export function EarlyAccess() {
                     name="message"
                     rows={3}
                     placeholder="Your store size, biggest pricing headache, platform you use..."
-                    className="resize-none rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-blue-400"
+                    className="resize-none rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                   />
                 </div>
 

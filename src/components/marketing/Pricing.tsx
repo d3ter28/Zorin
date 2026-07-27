@@ -62,10 +62,10 @@ export function Pricing() {
   return (
     <section id="pricing" className="scroll-mt-20">
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:py-32">
-        <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-zinc-50">
+        <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
           Simple, honest pricing
         </h2>
-        <p className="mt-3 max-w-[45ch] text-base leading-relaxed text-zinc-500 dark:text-zinc-400">
+        <p className="mt-3 max-w-[45ch] text-base leading-relaxed text-zinc-500">
           Start with a free trial. Upgrade as your catalog grows.
         </p>
 
@@ -75,8 +75,8 @@ export function Pricing() {
               key={plan.name}
               className={`relative flex flex-col rounded-xl border p-7 ${
                 plan.highlight
-                  ? "border-blue-300 bg-white shadow-lg shadow-blue-600/5 dark:border-blue-700 dark:bg-zinc-950 dark:shadow-blue-400/5"
-                  : "border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+                  ? "border-blue-300 bg-white shadow-lg shadow-blue-600/5"
+                  : "border-zinc-200 bg-white"
               }`}
               initial={reduce ? false : { opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -92,16 +92,16 @@ export function Pricing() {
                   Most popular
                 </span>
               )}
-              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{plan.name}</h3>
+              <h3 className="text-sm font-semibold text-zinc-900">{plan.name}</h3>
               <div className="mt-3 flex items-baseline gap-1">
-                <span className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                <span className="text-4xl font-bold tracking-tight text-zinc-900">
                   {plan.price}
                 </span>
                 {plan.period && (
-                  <span className="text-sm text-zinc-400 dark:text-zinc-500">{plan.period}</span>
+                  <span className="text-sm text-zinc-400">{plan.period}</span>
                 )}
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+              <p className="mt-3 text-sm leading-relaxed text-zinc-500">
                 {plan.description}
               </p>
 
@@ -111,9 +111,9 @@ export function Pricing() {
                     <Check
                       size={16}
                       weight="bold"
-                      className="mt-0.5 shrink-0 text-blue-500 dark:text-blue-400"
+                      className="mt-0.5 shrink-0 text-blue-500"
                     />
-                    <span className="text-sm text-zinc-600 dark:text-zinc-400">{f}</span>
+                    <span className="text-sm text-zinc-600">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -123,7 +123,7 @@ export function Pricing() {
                 className={`mt-auto inline-flex h-10 items-center justify-center rounded-lg text-sm font-semibold transition-all active:scale-[0.98] ${
                   plan.highlight
                     ? "bg-blue-600 text-white shadow-sm hover:bg-blue-700"
-                    : "border border-zinc-300 text-zinc-700 hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-900"
+                    : "border border-zinc-300 text-zinc-700 hover:border-zinc-400 hover:bg-zinc-50"
                 }`}
               >
                 {plan.cta}

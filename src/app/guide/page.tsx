@@ -269,13 +269,13 @@ function StepBlock({ number, title, children }: { number: number; title: string;
 function ScreenDiagram({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="mt-3 rounded-xl border border-line overflow-hidden">
-      <div className="bg-zinc-50 dark:bg-zinc-900 px-3 py-1.5 border-b border-line flex items-center gap-1.5">
+      <div className="bg-zinc-50 px-3 py-1.5 border-b border-line flex items-center gap-1.5">
         <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
         <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
         <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
         <span className="text-xs text-muted ml-2">{label}</span>
       </div>
-      <div className="bg-white dark:bg-zinc-950 p-4">
+      <div className="bg-white p-4">
         {children}
       </div>
     </div>

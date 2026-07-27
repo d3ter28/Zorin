@@ -15,9 +15,9 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/60 bg-white/80 backdrop-blur-xl dark:border-zinc-800/60 dark:bg-zinc-950/80">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/60 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
+        <a href="/" className="flex items-center gap-2 font-semibold text-zinc-900">
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-xs font-bold text-white">
             Z
           </span>
@@ -29,7 +29,7 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+              className="text-sm text-zinc-500 transition-colors hover:text-zinc-900"
             >
               {l.label}
             </a>
@@ -39,7 +39,7 @@ export function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <a
             href="/login"
-            className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+            className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
           >
             Log in
           </a>
@@ -53,7 +53,7 @@ export function Navbar() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-9 w-9 items-center justify-center rounded-md text-zinc-600 md:hidden dark:text-zinc-400"
+          className="flex h-9 w-9 items-center justify-center rounded-md text-zinc-600 md:hidden"
           aria-label="Toggle menu"
         >
           {open ? <X size={20} /> : <List size={20} />}
@@ -61,20 +61,20 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-zinc-200/60 bg-white px-6 py-4 md:hidden dark:border-zinc-800/60 dark:bg-zinc-950">
+        <div className="border-t border-zinc-200/60 bg-white px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="text-sm text-zinc-600 dark:text-zinc-400"
+                className="text-sm text-zinc-600"
               >
                 {l.label}
               </a>
             ))}
-            <hr className="border-zinc-200 dark:border-zinc-800" />
-            <a href="/login" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <hr className="border-zinc-200" />
+            <a href="/login" className="text-sm font-medium text-zinc-700">
               Log in
             </a>
             <a

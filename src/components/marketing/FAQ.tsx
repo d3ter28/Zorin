@@ -33,11 +33,11 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     q: "Why not just ask ChatGPT or Claude to analyze my pricing?",
     a: (
       <div className="flex flex-col gap-3">
-        <p><span className="font-medium text-zinc-700 dark:text-zinc-300">Their advice is generic.</span> LLMs can&apos;t see your sales data. They give pricing opinions based on general knowledge, not recommendations built from your actual demand curve.</p>
-        <p><span className="font-medium text-zinc-700 dark:text-zinc-300">The numbers are made up.</span> If you paste in a spreadsheet and ask for an elasticity number, they&apos;ll give you one confidently. It will be fabricated. Zorin fits a real statistical model to your data and shows you an R² score so you know exactly how much to trust it.</p>
-        <p><span className="font-medium text-zinc-700 dark:text-zinc-300">The answer changes every time.</span> Ask an LLM the same question twice and you get two different answers. Zorin is deterministic: same data, same result, every time.</p>
-        <p><span className="font-medium text-zinc-700 dark:text-zinc-300">They miss promotional spikes.</span> If you ran a sale last November, an LLM won&apos;t know to exclude those orders from the model. Zorin detects them automatically so they don&apos;t skew your recommendations.</p>
-        <p><span className="font-medium text-zinc-700 dark:text-zinc-300">The workflow doesn&apos;t scale.</span> You&apos;d need to export your data, paste it in, engineer a prompt, interpret the output, and repeat for every product every time. Zorin does it in one place for your whole catalog.</p>
+        <p><span className="font-medium text-zinc-700">Their advice is generic.</span> LLMs can&apos;t see your sales data. They give pricing opinions based on general knowledge, not recommendations built from your actual demand curve.</p>
+        <p><span className="font-medium text-zinc-700">The numbers are made up.</span> If you paste in a spreadsheet and ask for an elasticity number, they&apos;ll give you one confidently. It will be fabricated. Zorin fits a real statistical model to your data and shows you an R² score so you know exactly how much to trust it.</p>
+        <p><span className="font-medium text-zinc-700">The answer changes every time.</span> Ask an LLM the same question twice and you get two different answers. Zorin is deterministic: same data, same result, every time.</p>
+        <p><span className="font-medium text-zinc-700">They miss promotional spikes.</span> If you ran a sale last November, an LLM won&apos;t know to exclude those orders from the model. Zorin detects them automatically so they don&apos;t skew your recommendations.</p>
+        <p><span className="font-medium text-zinc-700">The workflow doesn&apos;t scale.</span> You&apos;d need to export your data, paste it in, engineer a prompt, interpret the output, and repeat for every product every time. Zorin does it in one place for your whole catalog.</p>
       </div>
     ),
   },
@@ -53,7 +53,7 @@ function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number
 
   return (
     <motion.div
-      className="border-b border-zinc-200 last:border-0 dark:border-zinc-800"
+      className="border-b border-zinc-200 last:border-0"
       initial={reduce ? false : { opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -63,8 +63,8 @@ function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number
         onClick={() => setOpen(!open)}
         className="flex w-full items-start justify-between gap-4 py-5 text-left"
       >
-        <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{q}</span>
-        <span className="mt-0.5 shrink-0 text-zinc-400 dark:text-zinc-500">
+        <span className="text-sm font-medium text-zinc-900">{q}</span>
+        <span className="mt-0.5 shrink-0 text-zinc-400">
           {open ? <Minus size={16} /> : <Plus size={16} />}
         </span>
       </button>
@@ -78,7 +78,7 @@ function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+            <div className="pb-5 text-sm leading-relaxed text-zinc-500">
               {a}
             </div>
           </motion.div>
@@ -90,14 +90,14 @@ function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number
 
 export function FAQ() {
   return (
-    <section className="scroll-mt-20 bg-zinc-50/50 dark:bg-zinc-900/30">
+    <section className="scroll-mt-20 bg-zinc-50/50">
       <div className="mx-auto max-w-[1400px] px-6 py-10 md:py-16">
         <div className="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-24">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-zinc-50">
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
               Common questions
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+            <p className="mt-4 text-sm leading-relaxed text-zinc-500">
               Still not sure? These are what merchants usually ask before signing up.
             </p>
             <a
@@ -107,7 +107,7 @@ export function FAQ() {
               Request early access
             </a>
           </div>
-          <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
+          <div className="divide-y divide-zinc-200">
             {faqs.map((faq, i) => (
               <FAQItem key={faq.q} q={faq.q} a={faq.a} index={i} />
             ))}

@@ -36,13 +36,13 @@ export function WhyZorin() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="inline-block rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-600 dark:bg-amber-950/40 dark:text-amber-400">
+          <span className="inline-block rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-600">
             The pricing problem
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-zinc-50">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
             Most merchants are leaving money on every sale, with no way to know how much.
           </h2>
-          <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-zinc-500 dark:text-zinc-400">
+          <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-zinc-500">
             Pricing feels like a guessing game because it is. Without a systematic way to read your own sales data, you're choosing numbers in the dark.
           </p>
         </motion.div>
@@ -54,17 +54,17 @@ export function WhyZorin() {
             return (
               <motion.div
                 key={p.title}
-                className="rounded-xl border border-zinc-200 bg-white p-7 dark:border-zinc-800 dark:bg-zinc-950"
+                className="rounded-xl border border-zinc-200 bg-white p-7"
                 initial={reduce ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-md bg-amber-50 text-amber-500 dark:bg-amber-950/40 dark:text-amber-400">
+                <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-md bg-amber-50 text-amber-500">
                   <Icon size={20} weight="duotone" />
                 </div>
-                <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">{p.body}</p>
+                <h3 className="text-base font-semibold text-zinc-900">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-500">{p.body}</p>
               </motion.div>
             );
           })}
@@ -72,7 +72,7 @@ export function WhyZorin() {
 
         {/* Solution callout */}
         <motion.div
-          className="mt-10 overflow-hidden rounded-2xl border border-blue-100 bg-blue-50 dark:border-blue-900/40 dark:bg-blue-950/20"
+          className="mt-10 overflow-hidden rounded-2xl border border-blue-100 bg-blue-50"
           initial={reduce ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -80,16 +80,16 @@ export function WhyZorin() {
         >
           <div className="grid gap-8 p-8 md:grid-cols-2 md:gap-16 md:p-12">
             <div>
-              <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-900/50 dark:text-blue-400">
+              <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-600">
                 The Zorin solution
               </span>
-              <h3 className="mt-4 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+              <h3 className="mt-4 text-2xl font-bold tracking-tight text-zinc-900">
                 Your sales data already holds the answer. You just can&apos;t read it yet.
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p className="mt-4 text-sm leading-relaxed text-zinc-600">
                 Every sale you&apos;ve ever made is a data point. When 100 customers bought at $49 but only 55 bought when you raised it to $59, that gap tells you exactly how price-sensitive your buyers are.
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600">
                 Zorin reads thousands of those signals across your entire catalog, calculates the price that would make you the most profit for each product, and tells you whether to raise, lower, or hold. No spreadsheets. No data science degree. No guessing.
               </p>
             </div>
@@ -109,14 +109,14 @@ export function WhyZorin() {
                   after: "\"Three products are under-priced. Zorin flagged them.\"",
                 },
               ].map((row, i) => (
-                <div key={i} className="flex items-start gap-3 rounded-xl bg-white/70 p-4 dark:bg-zinc-900/50">
+                <div key={i} className="flex items-start gap-3 rounded-xl bg-white/70 p-4">
                   <div className="flex flex-col gap-2 flex-1 min-w-0">
-                    <p className="text-xs leading-relaxed text-zinc-400 dark:text-zinc-500 line-through">
+                    <p className="text-xs leading-relaxed text-zinc-400 line-through">
                       {row.before}
                     </p>
                     <div className="flex items-start gap-2">
                       <ArrowRight size={14} className="mt-0.5 shrink-0 text-blue-500" />
-                      <p className="text-xs leading-relaxed font-medium text-zinc-700 dark:text-zinc-300">
+                      <p className="text-xs leading-relaxed font-medium text-zinc-700">
                         {row.after}
                       </p>
                     </div>

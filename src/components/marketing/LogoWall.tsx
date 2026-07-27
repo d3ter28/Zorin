@@ -6,9 +6,9 @@ export function LogoWall() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="border-y border-zinc-100 bg-zinc-50/50 dark:border-zinc-800/60 dark:bg-zinc-900/30">
+    <section className="border-y border-zinc-100 bg-zinc-50/50">
       <div className="mx-auto max-w-[1400px] px-6 py-8">
-        <p className="mb-8 text-center text-xs font-medium tracking-wide text-zinc-600 uppercase dark:text-zinc-300">
+        <p className="mb-8 text-center text-xs font-medium tracking-wide text-zinc-600 uppercase">
           Works with the platforms you already use
         </p>
         <div className="flex flex-col items-center gap-4">
@@ -35,14 +35,14 @@ export function LogoWall() {
                   onMouseEnter={e => (e.currentTarget.style.filter = `drop-shadow(0 0 10px ${glow})`)}
                   onMouseLeave={e => (e.currentTarget.style.filter = "")}
                 />
-                <span className="text-sm font-medium text-zinc-600 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-zinc-100">
+                <span className="text-sm font-medium text-zinc-600 transition-colors duration-300 group-hover:text-zinc-900">
                   {name}
                 </span>
               </motion.div>
             ))}
           </div>
           <motion.p
-            className="text-xs text-zinc-600 dark:text-zinc-300"
+            className="text-xs text-zinc-600"
             initial={reduce ? false : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.5 }}
