@@ -120,7 +120,7 @@ export function Pricing() {
 
               <a
                 href={plan.href}
-                className={`mt-8 inline-flex h-10 items-center justify-center rounded-lg text-sm font-semibold transition-all active:scale-[0.98] ${
+                className={`mt-auto inline-flex h-10 items-center justify-center rounded-lg text-sm font-semibold transition-all active:scale-[0.98] ${
                   plan.highlight
                     ? "bg-blue-600 text-white shadow-sm hover:bg-blue-700"
                     : "border border-zinc-300 text-zinc-700 hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-900"
