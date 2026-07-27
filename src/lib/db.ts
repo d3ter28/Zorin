@@ -5,8 +5,8 @@ const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 function makeClient(): PrismaClient {
   const url = process.env.DATABASE_URL ?? "";
   if (url.startsWith("postgres")) {
-    // Production (Supabase / Vercel): standard PrismaClient, no adapter needed.
-    return new PrismaClient();
+    // Production: pass URL explicitly — Prisma 7 no longer reads it from schema.prisma.
+    return new PrismaClient({ datasourceUrl: url });
   }
   // Local dev: SQLite via BetterSqlite3 adapter.
   // eslint-disable-next-line @typescript-eslint/no-require-imports
