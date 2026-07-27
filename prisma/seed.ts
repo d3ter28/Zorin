@@ -22,7 +22,15 @@ async function main() {
   await prisma.merchant.deleteMany();
 
   const merchant = await prisma.merchant.create({
-    data: { name: "Demo Store", storeUrl: "https://demo-store.example.com" },
+    // subscriptionStatus is set to "active" so the demo account isn't
+    // locked out by the billing gate in requireSessionPage — it never went
+    // through real Stripe checkout, so there's no stripeCustomerId to match.
+    data: {
+      name: "Demo Store",
+      storeUrl: "https://demo-store.example.com",
+      subscriptionStatus: "active",
+      planTier: "growth",
+    },
   });
 
   for (const p of PRODUCTS) {
