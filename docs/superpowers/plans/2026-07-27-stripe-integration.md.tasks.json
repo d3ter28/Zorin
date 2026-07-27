@@ -74,7 +74,7 @@
     {
       "id": 31,
       "subject": "Task 9: Wire signup flow into Stripe checkout",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [
         26,
         29,
