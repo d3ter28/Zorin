@@ -30,12 +30,12 @@ export function LogoWall() {
                   alt={name}
                   width={24}
                   height={24}
-                  className="h-6 w-6 grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  className="h-6 w-6 opacity-90 transition-all duration-300 group-hover:opacity-100"
                   style={{ ["--glow" as string]: glow }}
                   onMouseEnter={e => (e.currentTarget.style.filter = `drop-shadow(0 0 10px ${glow})`)}
                   onMouseLeave={e => (e.currentTarget.style.filter = "")}
                 />
-                <span className="text-sm font-medium text-zinc-400 transition-colors duration-300 group-hover:text-zinc-600 dark:text-zinc-500 dark:group-hover:text-zinc-300">
+                <span className="text-sm font-medium text-zinc-600 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-zinc-100">
                   {name}
                 </span>
               </motion.div>
