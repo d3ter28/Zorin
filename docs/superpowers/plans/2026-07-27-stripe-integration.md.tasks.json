@@ -45,7 +45,7 @@
     {
       "id": 28,
       "subject": "Task 6: Billing portal API route",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [
         23,
         24
