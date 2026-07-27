@@ -10,7 +10,7 @@
     {
       "id": 24,
       "subject": "Task 2: Stripe client singleton and plan tier mapping",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [
         23
       ],
