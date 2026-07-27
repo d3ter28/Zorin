@@ -27,7 +27,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // Prevent bundling native SQLite modules — they load from node_modules at
   // runtime on local dev only; the production build never reaches this path.
-  serverExternalPackages: ["@prisma/adapter-better-sqlite3", "better-sqlite3"],
+  serverExternalPackages: ["@prisma/adapter-better-sqlite3", "better-sqlite3", "@prisma/adapter-neon", "@neondatabase/serverless"],
   async headers() {
     return [
       {
