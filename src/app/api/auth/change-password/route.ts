@@ -26,6 +26,11 @@ export const POST = withErrorHandling(async (req: Request) => {
   await prisma.user.update({ where: { id: user.id }, data: { passwordHash } });
 
   const store = await cookies();
+  // requireSessionApi() above already confirmed this cookie is present and
+  // valid, so this should never actually be empty — the fallback exists so
+  // that if it somehow were, destroyOtherSessions never matches any real
+  // token and safely destroys every session (fail-safe toward more
+  // invalidation, not less) rather than crashing.
   const currentToken = store.get(SESSION_COOKIE)?.value ?? "";
   await destroyOtherSessions(prisma, user.id, currentToken);
 

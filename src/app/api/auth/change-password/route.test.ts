@@ -69,4 +69,18 @@ describe("POST /api/auth/change-password", () => {
     const res = await POST(req({ currentPassword: "x", newPassword: "newpassword1" }));
     expect(res.status).toBe(401);
   });
+
+  it("falls back to an empty token if the session cookie is unexpectedly missing (destroys all sessions as a fail-safe)", async () => {
+    requireSessionApi.mockResolvedValue({ user: { id: "u1", email: "demo@zorin.example", merchantId: "m1" }, merchantId: "m1" });
+    userFindUnique.mockResolvedValue({ id: "u1", passwordHash: "oldhash" });
+    verifyPassword.mockResolvedValue(true);
+    hashPassword.mockResolvedValue("newhash");
+    userUpdate.mockResolvedValue({});
+    cookies.mockResolvedValue({ get: () => undefined });
+
+    const res = await POST(req({ currentPassword: "oldpassword1", newPassword: "newpassword1" }));
+
+    expect(res.status).toBe(200);
+    expect(destroyOtherSessions).toHaveBeenCalledWith(expect.anything(), "u1", "");
+  });
 });
