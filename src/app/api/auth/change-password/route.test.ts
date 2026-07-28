@@ -5,6 +5,7 @@ const { userFindUnique, userUpdate } = vi.hoisted(() => ({ userFindUnique: vi.fn
 const { verifyPassword, hashPassword } = vi.hoisted(() => ({ verifyPassword: vi.fn(), hashPassword: vi.fn() }));
 const { destroyOtherSessions } = vi.hoisted(() => ({ destroyOtherSessions: vi.fn() }));
 const { cookies } = vi.hoisted(() => ({ cookies: vi.fn() }));
+const { checkRateLimit } = vi.hoisted(() => ({ checkRateLimit: vi.fn() }));
 
 vi.mock("@/lib/auth/requireSession", () => ({ requireSessionApi }));
 vi.mock("@/lib/db", () => ({ prisma: { user: { findUnique: userFindUnique, update: userUpdate } } }));
@@ -14,11 +15,14 @@ vi.mock("@/lib/auth/session", async (importOriginal) => ({
   destroyOtherSessions,
 }));
 vi.mock("next/headers", () => ({ cookies }));
+vi.mock("@/lib/auth/rateLimit", () => ({ checkRateLimit }));
 
 import { HttpError } from "@/lib/api/errors";
 import { POST } from "./route";
 
-const req = (body: unknown) => ({ json: async () => body }) as unknown as Request;
+const fakeHeaders = new Headers({ "x-forwarded-for": "127.0.0.1" });
+const req = (body: unknown) =>
+  ({ json: async () => body, headers: fakeHeaders }) as unknown as Request;
 
 beforeEach(() => {
   requireSessionApi.mockReset();
@@ -29,6 +33,8 @@ beforeEach(() => {
   destroyOtherSessions.mockReset();
   cookies.mockReset();
   cookies.mockResolvedValue({ get: () => ({ value: "current-session-token" }) });
+  checkRateLimit.mockReset();
+  checkRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
 });
 
 describe("POST /api/auth/change-password", () => {
@@ -82,5 +88,11 @@ describe("POST /api/auth/change-password", () => {
 
     expect(res.status).toBe(200);
     expect(destroyOtherSessions).toHaveBeenCalledWith(expect.anything(), "u1", "");
+  });
+
+  it("returns 429 when rate-limited", async () => {
+    checkRateLimit.mockResolvedValue({ allowed: false, retryAfterMs: 60_000 });
+    const res = await POST(req({ currentPassword: "oldpassword1", newPassword: "newpassword1" }));
+    expect(res.status).toBe(429);
   });
 });
