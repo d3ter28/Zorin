@@ -10,6 +10,465 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-much-should-i-trust-an-ai-pricing-recommendation",
+    title: "How Much Should I Trust an AI Pricing Recommendation?",
+    excerpt:
+      "Blind trust and blind rejection are both wrong. Here's how to actually evaluate an AI price recommendation before you act on it.",
+    date: "2026-07-29",
+    readingTime: "8 min read",
+    category: "Education",
+    content: `
+<p class="intro">You should trust an AI pricing recommendation exactly as much as its confidence score and stated reasoning support, no more and no less. A recommendation backed by strong data and a clear explanation deserves real weight. One with thin data and a vague justification deserves a test, not blind acceptance. The mistake most merchants make isn't trusting AI too much or too little in general, it's treating every recommendation with the same level of trust regardless of what's actually behind it.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Trust should scale with the confidence score and data behind a recommendation, not be applied uniformly to every output.</li>
+<li>Explainability matters: a recommendation with a stated reason is more trustworthy than a bare number, because you can sanity-check the logic yourself.</li>
+<li>Consumer research on AI trust consistently shows explainability outranks raw model sophistication as a trust factor.</li>
+<li>A what-if simulator and a review-before-apply step let you verify a recommendation before committing, rather than trusting or rejecting it blind.</li>
+<li>Guardrails (a hard margin ceiling on how far a price can move, review before bulk apply) matter more than how advanced the underlying model is.</li>
+</ul>
+</div>
+
+<h2>The Real Question Isn't "AI or Not," It's "How Much Evidence Is Behind This Call"</h2>
+<p>Framing this as a binary, trust AI or don't, misses what actually determines whether a recommendation is reliable. Two recommendations from the exact same model can deserve very different levels of trust if one is backed by a thousand data points across multiple price points and the other by a handful of sales at a single price that's never moved. The model isn't the variable that matters most. The evidence behind the specific recommendation is.</p>
+
+<h2>What "Explainable" Actually Looks Like</h2>
+<p>Research on AI trust in commercial contexts consistently finds that explainability outranks raw sophistication as a trust factor. People don't just want a recommendation, they want to know why it's being made. A bare instruction like "change this price to $24.99" gives you nothing to evaluate. A recommendation that states "your elasticity is -1.2, raising to $85 is projected to lift profit 14%, based on 1,247 data points with a strong model fit" gives you something you can actually check against your own knowledge of the product and its customers.</p>
+<p><strong>This is the difference between a black box and a reasoning partner.</strong> One asks for faith. The other shows its work, so you're evaluating the logic, not just accepting a conclusion.</p>
+
+<h2>Confidence Scores Exist Specifically So You Don't Trust Uniformly</h2>
+<p>A model health indicator (commonly labeled something like Strong, Fair, or Weak fit, alongside an R-squared value) tells you directly how much statistical support exists behind a given recommendation. A Strong-fit recommendation on a bestseller with months of price history deserves real weight. A Weak-fit recommendation on a product that's only ever had one price is closer to an educated hypothesis than a settled answer, and should be treated that way, tested rather than applied outright.</p>
+<table>
+  <thead>
+    <tr><th>Confidence level</th><th>What it means</th><th>How much to trust it</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Strong</td><td>High R-squared, substantial data points, real price variation in history</td><td>Reasonable to apply directly, especially for lower-risk changes</td></tr>
+    <tr><td>Fair</td><td>Moderate fit, some data, limited price variation</td><td>Worth testing with a what-if simulator before applying</td></tr>
+    <tr><td>Weak</td><td>Model exists but data is thin or has never varied in price</td><td>Treat as a starting hypothesis; gather more data before trusting fully</td></tr>
+  </tbody>
+</table>
+
+<h2>Where Real Skepticism Is Warranted</h2>
+<p>There's a real, ongoing conversation among regulators and researchers about algorithmic pricing more broadly, particularly around opaque systems that adjust prices in real time without clear limits or explanation. That skepticism is healthy and mostly applies to a different kind of system: fully automated repricers with no review step and no stated reasoning. A recommendation you review, understand, and choose to apply yourself is a fundamentally different risk profile than a black-box system silently changing prices on its own.</p>
+<p><strong>The practical guardrails worth insisting on from any pricing tool:</strong> a review-before-apply step, a stated reason for every recommendation, and a way to test a change before committing to it. Those three things do more for trustworthiness than any claim about how advanced the underlying model is.</p>
+
+<h2>How Zorin Is Built Around This</h2>
+<p>Every recommendation ships with the elasticity number, the R-squared fit, a confidence label, and the estimated profit lift, not a bare instruction. Nothing applies automatically. You review each raise, lower, or hold call and apply it yourself, one product at a time or in bulk, and a what-if simulator lets you preview a candidate price against your own demand curve before you commit to anything. The goal isn't to ask for blind trust. It's to make the reasoning visible enough that you can decide, case by case, how much a given recommendation deserves.</p>
+
+<h2>A Practical Test You Can Run Yourself</h2>
+<p>Pick one product with a Strong confidence score and one with a Weak one. Apply the Strong recommendation and watch the actual outcome against the projected lift. Test the Weak recommendation with the simulator first rather than applying it directly, and let more sales history accumulate before trusting it fully. This single comparison teaches you more about how much to trust the system than any general rule would. If you're ready to see your own numbers, <a href="/signup">connect your sales history</a> and start with a handful of products before trusting it with your whole catalog.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How much should I trust an AI pricing recommendation?</h3>
+<p>Trust it in proportion to its confidence score and the reasoning behind it. A strong-fit recommendation with a clear explanation deserves real weight; a weak-fit one deserves testing first.</p>
+</div>
+<div class="faq-item">
+<h3>What makes a pricing recommendation trustworthy?</h3>
+<p>A stated reason (the elasticity number and projected impact), a confidence level based on how much data supports it, and the ability to test it before applying it.</p>
+</div>
+<div class="faq-item">
+<h3>Should I ever apply a recommendation without checking it?</h3>
+<p>For a Strong-confidence recommendation on a low-risk change, applying directly is reasonable. For anything with thin data or a Weak fit, test it with a simulator first.</p>
+</div>
+<div class="faq-item">
+<h3>Is fully automated pricing risky?</h3>
+<p>Fully automated systems that change prices in real time with no review step and no stated reasoning carry more real risk, both for trust and for regulatory scrutiny, than a system where you review and apply each recommendation yourself.</p>
+</div>
+<div class="faq-item">
+<h3>Why does explainability matter more than model sophistication?</h3>
+<p>A stated reason lets you sanity-check a recommendation against your own knowledge of the product. A bare number asks you to trust the system blindly, regardless of how advanced it actually is.</p>
+</div>
+<div class="faq-item">
+<h3>What's a confidence score based on?</h3>
+<p>Typically the statistical fit of the underlying model (such as an R-squared value) and how much real price variation and data volume support the estimate.</p>
+</div>
+<div class="faq-item">
+<h3>Can I test a recommendation before committing to it?</h3>
+<p>Yes. A what-if simulator lets you preview the projected impact of a candidate price against your own demand curve before applying anything.</p>
+</div>
+</section>
+
+<p class="conclusion">The right amount of trust in an AI pricing recommendation isn't a fixed number, it's a function of the evidence behind that specific call. Look for a stated reason, a confidence score, and a chance to test before you apply, and you'll trust the right recommendations the right amount, not too much and not too little.</p>
+    `.trim(),
+  },
+  {
+    slug: "what-does-price-elasticity-actually-mean",
+    title: "What Does Price Elasticity Actually Mean?",
+    excerpt:
+      "It sounds like economics-class jargon that doesn't apply to a small store. It's actually the simplest, most useful number in your sales data.",
+    date: "2026-07-29",
+    readingTime: "7 min read",
+    category: "Education",
+    content: `
+<p class="intro">Price elasticity is just a number describing how much your sales volume changes when your price changes, calculated directly from your own sales history. A lot of merchants assume it's academic jargon that only applies to economists or huge retailers with data teams. In reality, it's one of the simplest, most directly useful numbers a small store can calculate, and you likely already have the raw data sitting in your order history.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elasticity measures how much demand shifts when price shifts, calculated from your own historical sales at different prices.</li>
+<li>Low elasticity (closer to 0) means customers barely notice a price change; high elasticity means they're very sensitive to it.</li>
+<li>The number, not intuition, tells you whether raising or lowering a specific product's price will increase total profit.</li>
+<li>You don't need an economics background to use it. A model can calculate it automatically from uploaded sales history.</li>
+<li>Promotional periods distort the calculation unless they're identified and excluded first.</li>
+</ul>
+</div>
+
+<h2>The Myth: Elasticity Is an Academic Concept for Big Retailers</h2>
+<p>It's easy to assume elasticity belongs in an economics textbook, not a small Shopify store's dashboard. That assumption comes from how it's usually taught, as an abstract curve with theoretical demand functions, rather than from what it actually requires: your own price and quantity history, nothing more exotic than that. Any store with some price variation in its sales history has what's needed to calculate it.</p>
+
+<h2>What the Number Actually Means</h2>
+<p>Elasticity is expressed as a single figure, typically negative, describing the percentage change in quantity sold for a percentage change in price. If 100 customers bought a product at $49 and only 55 bought it after you raised the price to $59, that gap is a direct, measurable read on how price-sensitive your buyers are for that specific product.</p>
+<table>
+  <thead>
+    <tr><th>Elasticity value</th><th>What it means</th><th>What it suggests</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>-0.4 (inelastic)</td><td>Demand barely moves when price moves</td><td>Raising price likely increases total profit</td></tr>
+    <tr><td>-1.0 (unit elastic)</td><td>Demand changes proportionally to price</td><td>Revenue stays roughly flat either direction</td></tr>
+    <tr><td>-1.8 (elastic)</td><td>Demand is very sensitive to price</td><td>Raising price risks losing more in volume than it gains in margin</td></tr>
+  </tbody>
+</table>
+
+<h2>Why This Beats Gut Feel or Copying a Competitor</h2>
+<p>Gut feel tells you nothing about whether $79 or $89 makes more money, because there's no data behind the instinct either way. Copying a competitor's price assumes your customers behave identically to theirs, which is rarely true since they arrived through different channels with different expectations. Elasticity is the only one of the three that's actually grounded in how your specific customers respond, because it's calculated from their actual past behavior, not a guess about it.</p>
+
+<h2>How the Calculation Actually Works</h2>
+<p>The underlying method is a log-log regression across your historical price and quantity data, which fits a line describing the relationship between the two on a percentage basis. You don't need to run this by hand. A model does the regression automatically from an uploaded sales history or a live Shopify or WooCommerce sync, and returns the elasticity coefficient alongside an R-squared score, which tells you how well the model actually fits your data, not just what the number is.</p>
+
+<h2>One Distortion Worth Knowing About: Promotions</h2>
+<p>Not every data point in your history is a clean read on normal buying behavior. A discount period shows a lot of units sold at an artificially low price, and that spike reflects the promotion, not how customers respond to your regular pricing. Left uncorrected, it pulls the whole elasticity estimate in the wrong direction. A well-built model automatically flags statistical outliers, most commonly promotional spikes, and excludes them so the baseline number reflects ordinary demand.</p>
+
+<h2>Why the Confidence Behind the Number Matters as Much as the Number</h2>
+<p>A product with one price its entire life gives almost no signal to calculate elasticity from. A product that's moved through several price points across meaningful sales history gives a real, trustworthy estimate. This is why elasticity should always come with a confidence indicator (Strong, Fair, Weak), so a data-thin estimate doesn't get treated with the same certainty as a well-supported one.</p>
+
+<h2>Putting the Number to Work</h2>
+<p>Once you have an elasticity estimate for a product, the profit-maximizing price follows directly from it, and a what-if simulator lets you preview the projected impact of specific candidate prices before you touch a live listing. If you want to see your own catalog's elasticity rather than a textbook example, <a href="/signup">upload your sales history</a> and the calculation runs automatically.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What does price elasticity actually mean?</h3>
+<p>It's a measure of how much your sales volume changes when your price changes, calculated from your own historical sales at different price points.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need an economics background to use elasticity?</h3>
+<p>No. A model can calculate it automatically from your sales history and return a plain recommendation, not a raw statistical output you need to interpret yourself.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between elastic and inelastic demand?</h3>
+<p>Inelastic demand means customers barely change their buying behavior when price moves. Elastic demand means they're very sensitive, and a price increase risks losing more in volume than it gains in margin.</p>
+</div>
+<div class="faq-item">
+<h3>How is elasticity actually calculated?</h3>
+<p>Typically through a log-log regression across historical price and quantity data, which produces a coefficient describing the percentage relationship between the two.</p>
+</div>
+<div class="faq-item">
+<h3>Can promotions distort an elasticity estimate?</h3>
+<p>Yes. A discount period inflates apparent demand at an artificially low price, which skews the estimate unless that period is identified and excluded from the calculation.</p>
+</div>
+<div class="faq-item">
+<h3>How much sales data do I need to calculate elasticity reliably?</h3>
+<p>More price variation and more data points produce a more reliable estimate. A confidence indicator tells you how much to trust a given product's number rather than assuming they're all equally certain.</p>
+</div>
+<div class="faq-item">
+<h3>Is elasticity only useful for large retailers?</h3>
+<p>No. Any store with some price history and variation has the raw material needed to calculate it, regardless of size.</p>
+</div>
+</section>
+
+<p class="conclusion">Elasticity isn't an abstract economics concept sitting outside the reach of a small store. It's a direct read on your own customers' behavior, calculated from data you're already generating with every sale. Once you know it, guessing what to charge stops being necessary.</p>
+    `.trim(),
+  },
+  {
+    slug: "how-do-i-price-a-new-product-with-no-sales-history",
+    title: "How Do I Price a New Product With No Sales History?",
+    excerpt:
+      "You can't calculate elasticity from data that doesn't exist yet. Here's what to actually do until it does.",
+    date: "2026-07-29",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">Without sales history, you can't yet calculate elasticity, so a new product's launch price should be set with value-based reasoning and a deliberate cost-plus floor, then corrected quickly once real sales data starts to accumulate. The honest answer is that a launch price is always a hypothesis, not a settled number, and the goal is getting to real data as fast as possible, not perfecting a guess.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A launch price without sales history is a starting hypothesis, not a final answer. There's no way to calculate elasticity before real data exists.</li>
+<li>Research suggests most new products are mispriced too low, not too high, often because underpricing feels safer at launch.</li>
+<li>Start from a cost-plus floor for safety, then anchor toward value-based reasoning about what the product is actually worth to the customer.</li>
+<li>Deliberate initial price variation (even small, planned tests) is what generates the data you'll need to calculate real elasticity soon after launch.</li>
+<li>Treat the first weeks of sales as the data-gathering phase, and revisit the price with real elasticity as soon as there's enough history to calculate it.</li>
+</ul>
+</div>
+
+<h2>Why This Is a Genuinely Different Problem From Repricing an Existing Product</h2>
+<p>Everything about pricing an established product starts from a demand signal: past sales at past prices. A brand-new product has none of that. There's no elasticity to calculate yet, no confidence score to lean on, nothing but a hypothesis about what customers will pay. That's not a flaw in the process, it's just the honest starting condition every new product launches from.</p>
+
+<h2>The Most Common Mistake: Underpricing to Feel Safe</h2>
+<p>Research on new-product pricing consistently finds that the majority of mispriced launches are priced too low, not too high. Underpricing feels safer in the moment, since a lower number seems less likely to scare off a first customer. The problem is that underpricing without a deliberate plan to raise the price later trains customers to expect the low number, and by the time you try to correct it, the product has already built a customer base anchored to a price it never should have kept.</p>
+<p><strong>The distinction that matters:</strong> a lower launch price used deliberately, with a planned path to test higher prices soon after, is a legitimate strategy. A lower launch price chosen simply because it feels less risky, with no plan to move it, usually locks in a margin problem.</p>
+
+<h2>Two Starting Points Worth Combining</h2>
+<h3>Value-based reasoning</h3>
+<p>Anchor your starting price in what the customer believes the product is worth, not just what it cost you to make. This requires actually thinking through the comparison the customer will make in their head, what alternative are they weighing this against, and what makes this specific product worth more or less than that alternative.</p>
+<h3>A cost-plus floor as a safety net</h3>
+<p>Regardless of the value story, calculate your true landed cost, including fees and fulfillment, and treat the resulting minimum margin as a floor no launch price should cross. This doesn't replace value-based thinking, it just prevents a value estimate from accidentally pricing you into a loss.</p>
+
+<h2>Competitive Benchmarking Has a Role, But a Limited One</h2>
+<p>Looking at comparable products can tell you the rough range customers already expect for something like yours. It's a reasonable starting anchor, especially with zero reviews or track record of your own yet. It's not a substitute for eventually reading your own customers' actual behavior, and pricing meaningfully below a comparable product's price risks starting a race to the bottom rather than establishing a fair starting point.</p>
+
+<h2>Deliberately Generating the Data You'll Need</h2>
+<p>The fastest way out of "no sales history" is a small, planned price test rather than picking one number and leaving it untouched indefinitely. Testing two or three price points early, even briefly, gives you the price-and-quantity variation elasticity actually needs to be calculated. Sitting at one unchanged price for months produces the exact blind spot: no variation means no signal, regardless of how much volume moves.</p>
+
+<h2>What Changes Once Real Data Exists</h2>
+<p>As soon as there's enough sales history with some price variation, an elasticity model can be fit for the product just like any established item in your catalog, with a confidence score reflecting how thin that early data still is. Early on, expect a Weak or Fair confidence label rather than Strong, and treat the resulting recommendation as directional rather than final until more history accumulates.</p>
+<table>
+  <thead>
+    <tr><th>Stage</th><th>What you have</th><th>What to do</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Pre-launch</td><td>No sales data, no elasticity</td><td>Value-based estimate, cost-plus floor, light competitive benchmarking</td></tr>
+    <tr><td>First few weeks</td><td>Limited data, likely no price variation yet</td><td>Test a second price point deliberately to generate real signal</td></tr>
+    <tr><td>After enough variation</td><td>Early elasticity estimate, Weak or Fair confidence</td><td>Treat as directional; revisit as more data accumulates</td></tr>
+    <tr><td>Established history</td><td>Strong-confidence elasticity estimate</td><td>Trust the recommendation with normal confidence, same as any mature product</td></tr>
+  </tbody>
+</table>
+
+<h2>A Practical Sequence for a New Product</h2>
+<ol>
+  <li><strong>Set a cost-plus floor</strong> first, so no launch price can accidentally sell at a loss.</li>
+  <li><strong>Anchor a value-based starting price</strong> above that floor, reasoning through what the customer is comparing it against.</li>
+  <li><strong>Avoid underpricing purely to feel safe</strong> without a deliberate plan to test higher soon after.</li>
+  <li><strong>Test a second price point</strong> within the first few weeks to generate real variation.</li>
+  <li><strong>Let a confidence-scored elasticity estimate take over</strong> once there's enough history, and stop relying on the initial guess.</li>
+</ol>
+<p>Once you have even a few weeks of sales at more than one price, <a href="/signup">upload that history</a> and see what the earliest elasticity read looks like, flagged with an honest confidence level rather than false certainty.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I price a new product with no sales history?</h3>
+<p>Start with a cost-plus floor for safety, anchor a value-based starting price above it, and plan to test a second price point soon after launch to generate the data needed for a real elasticity estimate.</p>
+</div>
+<div class="faq-item">
+<h3>Is it safer to underprice a new product at launch?</h3>
+<p>Not necessarily. Most mispriced new products are priced too low, and underpricing without a deliberate plan to raise the price later often locks in a lower margin permanently.</p>
+</div>
+<div class="faq-item">
+<h3>Should I just match a competitor's price for a new product?</h3>
+<p>Competitive benchmarking is a reasonable starting anchor with no track record of your own, but it shouldn't replace eventually pricing from your own customers' actual behavior.</p>
+</div>
+<div class="faq-item">
+<h3>How soon can I calculate real elasticity for a new product?</h3>
+<p>As soon as there's some sales history with real price variation, even a few weeks' worth, though the confidence level will start Weak or Fair until more data accumulates.</p>
+</div>
+<div class="faq-item">
+<h3>Should I test multiple prices right after launch?</h3>
+<p>Yes, deliberately. A single unchanged price produces no variation to learn from, while testing a second price point early generates the signal elasticity actually needs.</p>
+</div>
+<div class="faq-item">
+<h3>What's the biggest risk with a new product's launch price?</h3>
+<p>Picking a price by instinct and never revisiting it once real sales data exists, which turns a reasonable starting hypothesis into a permanent, unexamined mistake.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know when to stop trusting my initial guess?</h3>
+<p>As soon as a confidence-scored elasticity estimate exists for the product, that number should carry more weight than the original launch-day reasoning.</p>
+</div>
+</section>
+
+<p class="conclusion">A new product's price is always a hypothesis at launch, not a final answer. Set it deliberately, avoid underpricing purely out of caution, and move quickly toward real sales data so the hypothesis can be replaced by an actual, measurable read on what your customers will pay.</p>
+    `.trim(),
+  },
+  {
+    slug: "why-did-my-sales-drop-when-i-raised-my-price",
+    title: "Why Did My Sales Drop When I Raised My Price?",
+    excerpt:
+      "A volume drop after a price increase isn't automatically a mistake. Here's how to tell the difference from an actual problem.",
+    date: "2026-07-29",
+    readingTime: "8 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">Sales dropping after a price increase isn't automatically a sign the increase was wrong, it's often exactly what elasticity predicts, and the real question is whether the resulting profit went up or down, not whether unit volume did. A price increase that costs you 10% of your sales volume while raising your margin 20% usually leaves you more profitable overall, even though the drop in units feels like a bad outcome in the moment.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Some volume drop after a price increase is expected and doesn't necessarily mean profit fell, check total profit, not just units sold.</li>
+<li>How the increase was communicated and its size relative to your customers' usual expectations both affect how much volume actually drops.</li>
+<li>A history of discounting before the increase can make customers more resistant to the new, higher price than a comparable store without that history.</li>
+<li>Elasticity, calculated from your own sales data, predicts roughly how much volume drop to expect for a given price increase, so you can tell an expected result from a genuine problem.</li>
+<li>Changing multiple things at once (price, packaging, marketing) makes it hard to isolate what actually caused a sales change.</li>
+</ul>
+</div>
+
+<h2>The First Question: Did Profit Actually Fall, or Just Volume?</h2>
+<p>Revenue and unit volume are not the same signal as profit. If a price increase causes fewer units to sell but each unit now carries meaningfully more margin, total profit can rise even while the sales count on your dashboard looks worse. Before treating a volume drop as evidence the increase was a mistake, calculate what happened to total profit specifically, not just the more visible unit count.</p>
+
+<h2>Some Drop Is Expected, and Elasticity Tells You Roughly How Much</h2>
+<p>If your product's elasticity is -1.2, a 10% price increase predicting roughly a 12% drop in units isn't a surprise, it's the model working as expected. The real red flag isn't a drop matching what elasticity predicted. It's a drop meaningfully larger than what the number suggested should happen, which points to something else going on beyond ordinary price sensitivity.</p>
+
+<h2>Reasons the Drop Might Be Larger Than Expected</h2>
+
+<h3>The size and framing of the increase</h3>
+<p>A sudden, large jump (30% or more) can shock a customer base accustomed to a stable lower price in a way a smaller, more gradual increase wouldn't. How the change is communicated matters too. Explicitly warning customers a price increase is coming, without a clear reason attached, can itself suppress demand independent of the new price.</p>
+
+<h3>A history of prior discounting</h3>
+<p>If customers were previously trained to expect frequent discounts, raising the regular price can trigger more resistance than it would for a store with a stable pricing history. Discounting can lower perceived value in a customer's mind, making it harder to justify a higher price later, even if the higher price is entirely fair for the product.</p>
+
+<h3>Changing more than one thing at once</h3>
+<p>If the price change happened alongside a marketing shift, a packaging change, or a different acquisition channel mix, isolating the price as the actual cause becomes difficult. A drop that looks like a pricing problem might actually be a marketing or channel problem wearing a pricing costume.</p>
+
+<table>
+  <thead>
+    <tr><th>Observed drop vs. elasticity prediction</th><th>Likely explanation</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Roughly matches the predicted drop</td><td>Normal price sensitivity; check total profit before assuming it's a problem</td></tr>
+    <tr><td>Meaningfully larger than predicted</td><td>Something else at play: framing, discount history, or a confounding change made at the same time</td></tr>
+    <tr><td>Smaller than predicted</td><td>Demand may be less elastic than the model estimated, or a confidence-thin estimate needs more data</td></tr>
+  </tbody>
+</table>
+
+<h2>How to Actually Check This on Your Own Store</h2>
+<p>Compare your product's actual elasticity, calculated from its own price and quantity history, against the drop you observed after the increase. If the observed drop tracks closely with what the elasticity number predicted, the increase is behaving exactly as expected, and the profit outcome, not the volume outcome, is what determines whether it was the right call. If the drop is meaningfully larger, look for a confounding factor (framing, discount history, a simultaneous change elsewhere) before concluding the price itself was wrong.</p>
+
+<h2>What to Do Next</h2>
+<p>If profit rose despite the volume drop, the increase likely worked as intended, and reverting would give back real margin for no clear reason. If profit fell and the drop outpaced what elasticity predicted, consider whether the increase was framed poorly, came too soon after heavy discounting, or coincided with an unrelated change worth untangling before adjusting the price again. Either way, the decision should follow what the data shows happened, not just how the volume number felt in the moment.</p>
+<p>If you haven't calculated your own product's elasticity yet to make this comparison, <a href="/blog/how-do-i-know-what-to-price-my-products">here's how</a>, and if you want to check whether other products in your catalog have a similar gap between expected and actual performance, <a href="/signup">connect your sales history</a> and review the full picture.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Why did my sales drop when I raised my price?</h3>
+<p>Some drop is expected and predicted by your product's elasticity. Check whether total profit rose or fell, not just whether unit volume dropped, before concluding the increase was a mistake.</p>
+</div>
+<div class="faq-item">
+<h3>Is a sales drop after a price increase always bad?</h3>
+<p>No. If the resulting margin increase more than offsets the lost volume, total profit can rise even though the unit count looks worse.</p>
+</div>
+<div class="faq-item">
+<h3>How much of a drop should I expect from a price increase?</h3>
+<p>Roughly what your product's elasticity predicts. A 10% price increase on a product with -1.2 elasticity predicts around a 12% drop in units, for example.</p>
+</div>
+<div class="faq-item">
+<h3>What if the drop is bigger than elasticity predicted?</h3>
+<p>Look for a confounding factor: how the increase was framed to customers, a history of prior discounting that trained lower price expectations, or another change made around the same time.</p>
+</div>
+<div class="faq-item">
+<h3>Does prior discounting make future price increases harder?</h3>
+<p>Often, yes. Frequent past discounts can lower perceived value and anchor customers to a lower price, making a later increase feel like a bigger jump than the same increase would for a store without that history.</p>
+</div>
+<div class="faq-item">
+<h3>Should I revert a price increase if sales drop?</h3>
+<p>Only if total profit also fell and the drop can't be explained by expected elasticity. If profit rose despite fewer units, reverting usually gives back real margin unnecessarily.</p>
+</div>
+<div class="faq-item">
+<h3>How do I isolate the price as the actual cause of a sales change?</h3>
+<p>Avoid changing marketing, packaging, or channel mix at the same time as a price change, so any resulting shift in sales can be attributed to the price with more confidence.</p>
+</div>
+</section>
+
+<p class="conclusion">A drop in sales after a price increase is data, not automatically a verdict. Compare it against what your product's own elasticity predicted, check total profit rather than unit count, and only treat it as a real problem if the numbers actually say so.</p>
+    `.trim(),
+  },
+  {
+    slug: "how-often-should-i-change-my-prices",
+    title: "How Often Should I Change My Prices?",
+    excerpt:
+      "Not every week, and not never. Here's how to find the right cadence for your catalog instead of guessing.",
+    date: "2026-07-29",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">Most small catalogs are well served by reviewing pricing on a regular cadence, commonly monthly, rather than reacting to every minor fluctuation or leaving prices untouched for months at a time. The right frequency depends more on how fast your costs and demand actually shift than on a fixed rule, but the two failure modes to avoid are the same for almost everyone: changing too often to react to noise, or changing so rarely that a price quietly drifts out of alignment with reality.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A regular review cadence (commonly monthly for small catalogs) beats both constant reactive changes and leaving prices untouched indefinitely.</li>
+<li>Reacting to every minor competitor or demand fluctuation adds noise without adding real signal, since short-term swings often reverse on their own.</li>
+<li>Costs, product mix, and channel mix all shift over time, and a price that was correct when set can quietly become wrong without anything obviously breaking.</li>
+<li>A confidence score tells you which products can handle a longer review interval and which need closer attention due to thin data.</li>
+<li>Certain triggers (a cost change, a new competitor, a big swing in sales) warrant an off-cycle review regardless of your regular schedule.</li>
+</ul>
+</div>
+
+<h2>Two Failure Modes, Not One</h2>
+<p>Merchants tend to worry about only one direction: not changing prices often enough. The opposite mistake is just as real. Reacting to every small fluctuation, a competitor's temporary discount, a single slow week, treats noise as signal and can lead to price changes that don't reflect any real underlying shift in demand. The goal isn't maximum frequency, it's the right frequency for what's actually changing underneath.</p>
+
+<h2>Why a Fixed Cadence Beats Ad Hoc Reactions</h2>
+<p>A regular review, commonly monthly for a small catalog, forces a deliberate look at whether each price still reflects current elasticity and cost structure, rather than leaving that question to whenever something prompts you to think about it. Ad hoc reviews tend to happen only when something goes visibly wrong, which means the quiet, gradual drift, a price slowly falling out of alignment with actual demand, never gets caught until it's already cost meaningful profit.</p>
+
+<h2>What Actually Changes Between Reviews</h2>
+<ul>
+  <li><strong>Costs:</strong> supplier pricing, shipping rates, and platform fees shift over time, changing your true landed cost and therefore your margin floor.</li>
+  <li><strong>Customer mix:</strong> different acquisition channels can bring in buyers with different price sensitivity, shifting your effective elasticity even if nothing about the product changed.</li>
+  <li><strong>Seasonality and demand patterns:</strong> a product's demand curve can genuinely differ across the year, not just its volume.</li>
+</ul>
+<p>None of these show up as an alert. They show up as a slowly widening gap between your price and what your own sales data would now recommend, which only a deliberate review catches.</p>
+
+<h2>Let Confidence Scores Set the Pace Per Product</h2>
+<p>Not every product needs the same review frequency. A Strong-confidence product with a well-established elasticity estimate can be reviewed on your normal cadence without much concern. A Weak-confidence product, one with thin data or limited price history, benefits from more frequent attention, since each new data point meaningfully improves the estimate's reliability.</p>
+<table>
+  <thead>
+    <tr><th>Situation</th><th>Suggested review frequency</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Established product, Strong confidence</td><td>Standard cadence (e.g. monthly) is usually sufficient</td></tr>
+    <tr><td>New or thin-data product, Weak/Fair confidence</td><td>More frequent review as new sales data accumulates</td></tr>
+    <tr><td>Recent cost change (supplier, fees, shipping)</td><td>Off-cycle review triggered immediately, not on the next scheduled date</td></tr>
+    <tr><td>Post-promotion period</td><td>Review once the promo period is excluded from baseline data, not immediately during the post-sale dip</td></tr>
+  </tbody>
+</table>
+
+<h2>Triggers Worth an Off-Cycle Review</h2>
+<p>Regardless of your regular schedule, certain events are worth an immediate look rather than waiting for the next scheduled review: a real cost change (a supplier price increase, a new platform fee), a meaningful and sustained swing in sales that doesn't match a known promotion or seasonal pattern, or entering a new sales channel with its own distinct customer base.</p>
+
+<h2>What This Looks Like in Practice</h2>
+<p>Set a recurring monthly (or whatever cadence fits your catalog's pace of change) review across your full product list, using each product's confidence score to decide how much attention it needs that cycle. Layer in off-cycle checks whenever a real trigger occurs, rather than waiting for the scheduled date. This combination catches both the slow drift a fixed schedule alone would miss between cycles, and the noise a constantly-reactive approach would otherwise chase.</p>
+<p>If you're not sure how out of date your current prices already are, <a href="/blog/is-your-store-leaving-money-on-the-table">here's how to check</a>, and once you've set your cadence, <a href="/signup">connect your sales history</a> so each review is based on a current, automatically updated elasticity estimate rather than a stale one.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How often should I change my prices?</h3>
+<p>Most small catalogs are well served by a regular review, commonly monthly, rather than reacting to every fluctuation or leaving prices untouched for months.</p>
+</div>
+<div class="faq-item">
+<h3>Is it bad to change prices too often?</h3>
+<p>Yes, if the changes are reacting to short-term noise rather than a real underlying shift in cost or demand. Frequent reactive changes add confusion without adding real signal.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if I don't review prices often enough?</h3>
+<p>Costs, customer mix, and demand patterns shift gradually, and a price that was correct when set can quietly drift out of alignment without any obvious sign that it happened.</p>
+</div>
+<div class="faq-item">
+<h3>Should every product be reviewed on the same schedule?</h3>
+<p>Not necessarily. Products with thin data or a Weak confidence score benefit from more frequent attention, while well-established, Strong-confidence products are fine on a standard cadence.</p>
+</div>
+<div class="faq-item">
+<h3>What events should trigger an off-cycle price review?</h3>
+<p>A real cost change, a meaningful and sustained swing in sales unrelated to a known promotion, or entering a new sales channel are all worth reviewing immediately rather than waiting for the next scheduled date.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my current review cadence is right?</h3>
+<p>If you're regularly surprised by a margin gap you didn't catch sooner, your cadence is probably too infrequent. If you're constantly adjusting in response to minor swings, it's probably too frequent.</p>
+</div>
+<div class="faq-item">
+<h3>Does seasonality affect how often I should review prices?</h3>
+<p>Yes. Products with clear seasonal demand patterns may warrant a review timed around those shifts, in addition to your regular cadence.</p>
+</div>
+</section>
+
+<p class="conclusion">The right pricing cadence isn't a universal number, it's whatever catches real drift in your costs and demand without chasing every short-term fluctuation. A regular review, adjusted by confidence score per product and layered with off-cycle checks for real triggers, does that better than either extreme.</p>
+    `.trim(),
+  },
+  {
     slug: "how-do-i-know-what-to-price-my-products",
     title: "How Do I Know What to Price My Products?",
     excerpt:
