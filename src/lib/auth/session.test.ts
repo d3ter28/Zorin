@@ -1,6 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { PrismaClient } from "@prisma/client";
-import { createSession, destroySession, getSessionUser, SESSION_TTL_MS } from "./session";
+import {
+  createSession,
+  destroyAllSessions,
+  destroyOtherSessions,
+  destroySession,
+  getSessionUser,
+  SESSION_TTL_MS,
+} from "./session";
 
 const create = vi.fn();
 const findUnique = vi.fn();
@@ -76,5 +83,23 @@ describe("destroySession", () => {
     deleteMany.mockResolvedValue({ count: 0 });
     await destroySession(prisma, "t");
     expect(deleteMany).toHaveBeenCalledWith({ where: { token: "t" } });
+  });
+});
+
+describe("destroyAllSessions", () => {
+  it("deletes every session row for the given user", async () => {
+    deleteMany.mockResolvedValue({ count: 3 });
+    await destroyAllSessions(prisma, "u1");
+    expect(deleteMany).toHaveBeenCalledWith({ where: { userId: "u1" } });
+  });
+});
+
+describe("destroyOtherSessions", () => {
+  it("deletes every session row for the user except the kept token", async () => {
+    deleteMany.mockResolvedValue({ count: 2 });
+    await destroyOtherSessions(prisma, "u1", "keep-me");
+    expect(deleteMany).toHaveBeenCalledWith({
+      where: { userId: "u1", token: { not: "keep-me" } },
+    });
   });
 });
