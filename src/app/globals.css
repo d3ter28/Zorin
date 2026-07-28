@@ -150,11 +150,169 @@ body {
   margin-bottom: 1.25rem;
 }
 .prose-content h2 {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: oklch(0.24 0.012 265);
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #f4f4f5; /* zinc-100 */
+}
+.prose-content h2:first-child {
+  margin-top: 0;
+}
+.prose-content h3 {
+  font-size: 1.0625rem;
   font-weight: 600;
   color: oklch(0.24 0.012 265);
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.prose-content strong {
+  font-weight: 600;
+  color: #1d4ed8; /* blue-700 */
+}
+.prose-content a {
+  color: #2563eb; /* blue-600 */
+  text-decoration: underline;
+  text-decoration-color: #bfdbfe; /* blue-200 */
+  text-underline-offset: 2px;
+  transition: text-decoration-color 160ms ease;
+}
+.prose-content a:hover {
+  text-decoration-color: #2563eb;
+}
+.prose-content ul,
+.prose-content ol {
+  margin: 0 0 1.25rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+.prose-content ul li,
+.prose-content ol li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+}
+.prose-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.65rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 9999px;
+  background: #3b82f6; /* blue-500 */
+}
+.prose-content ol {
+  counter-reset: prose-ol;
+}
+.prose-content ol li::before {
+  counter-increment: prose-ol;
+  content: counter(prose-ol);
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 9999px;
+  background: #eff6ff; /* blue-50 */
+  color: #2563eb;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.15rem;
+  text-align: center;
+}
+
+/* Answer-first intro paragraph, rendered as a highlighted lead-in */
+.prose-content > p.intro {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: oklch(0.24 0.012 265);
+  background: #eff6ff; /* blue-50 */
+  border: 1px solid #dbeafe; /* blue-100 */
+  border-radius: 0.75rem;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* Comparison / data tables */
+.prose-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0 1.75rem;
+  font-size: 0.875rem;
+  border: 1px solid #e4e4e7; /* zinc-200 */
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.prose-content thead th {
+  background: #eff6ff; /* blue-50 */
+  color: #1d4ed8; /* blue-700 */
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e4e4e7;
+}
+.prose-content tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f4f4f5; /* zinc-100 */
+  color: oklch(0.3 0.012 265);
+  vertical-align: top;
+}
+.prose-content tbody tr:last-child td {
+  border-bottom: none;
+}
+.prose-content tbody tr:nth-child(even) {
+  background: #fafafa; /* zinc-50 */
+}
+
+/* FAQ section, rendered as a stack of bordered cards */
+.prose-content section.faq {
+  margin-top: 3rem;
+}
+.prose-content section.faq > h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.prose-content .faq-item {
+  border: 1px solid #e4e4e7; /* zinc-200 */
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 0.85rem;
+  transition: border-color 160ms ease;
+}
+.prose-content .faq-item:hover {
+  border-color: #bfdbfe; /* blue-200 */
+}
+.prose-content .faq-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+  color: oklch(0.24 0.012 265);
+}
+.prose-content .faq-item p {
+  margin-bottom: 0;
+  font-size: 0.9375rem;
+  color: oklch(0.42 0.014 265);
+  line-height: 1.65;
+}
+
+/* Closing summary paragraph */
+.prose-content p.conclusion {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f4f4f5; /* zinc-100 */
+  color: oklch(0.3 0.012 265);
+  font-size: 0.9375rem;
+  font-weight: 500;
 }
 
 @media (prefers-reduced-motion: reduce) {
