@@ -3,12 +3,24 @@ import { prisma } from "@/lib/db";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseJsonBody } from "@/lib/api/validation";
 import { hashPassword } from "@/lib/auth/password";
+import { checkRateLimit } from "@/lib/auth/rateLimit";
 import { consumePasswordResetToken } from "@/lib/auth/resetToken";
 import { destroyAllSessions } from "@/lib/auth/session";
 
 const GENERIC_TOKEN_ERROR = "This reset link is invalid or has expired";
 
 export const POST = withErrorHandling(async (req: Request) => {
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+
+  const { allowed, retryAfterMs } = await checkRateLimit(ip);
+  if (!allowed) {
+    const retryAfterSec = Math.ceil(retryAfterMs / 1000);
+    throw new HttpError(429, `Too many attempts. Try again in ${Math.ceil(retryAfterSec / 60)} minutes.`);
+  }
+
   const body = await parseJsonBody(req);
   const token = typeof body.token === "string" ? body.token : "";
   const newPassword = typeof body.newPassword === "string" ? body.newPassword : "";

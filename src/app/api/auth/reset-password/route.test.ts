@@ -4,6 +4,7 @@ const { userUpdate } = vi.hoisted(() => ({ userUpdate: vi.fn() }));
 const { consumePasswordResetToken } = vi.hoisted(() => ({ consumePasswordResetToken: vi.fn() }));
 const { hashPassword } = vi.hoisted(() => ({ hashPassword: vi.fn() }));
 const { destroyAllSessions } = vi.hoisted(() => ({ destroyAllSessions: vi.fn() }));
+const { checkRateLimit } = vi.hoisted(() => ({ checkRateLimit: vi.fn() }));
 
 vi.mock("@/lib/db", () => ({ prisma: { user: { update: userUpdate } } }));
 vi.mock("@/lib/auth/resetToken", () => ({ consumePasswordResetToken }));
@@ -12,16 +13,21 @@ vi.mock("@/lib/auth/session", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/auth/session")>()),
   destroyAllSessions,
 }));
+vi.mock("@/lib/auth/rateLimit", () => ({ checkRateLimit }));
 
 import { POST } from "./route";
 
-const req = (body: unknown) => ({ json: async () => body }) as unknown as Request;
+const fakeHeaders = new Headers({ "x-forwarded-for": "127.0.0.1" });
+const req = (body: unknown) =>
+  ({ json: async () => body, headers: fakeHeaders }) as unknown as Request;
 
 beforeEach(() => {
   userUpdate.mockReset();
   consumePasswordResetToken.mockReset();
   hashPassword.mockReset();
   destroyAllSessions.mockReset();
+  checkRateLimit.mockReset();
+  checkRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
 });
 
 describe("POST /api/auth/reset-password", () => {
@@ -55,5 +61,11 @@ describe("POST /api/auth/reset-password", () => {
   it("rejects a missing token with 400", async () => {
     const res = await POST(req({ newPassword: "newpassword1" }));
     expect(res.status).toBe(400);
+  });
+
+  it("returns 429 when rate-limited", async () => {
+    checkRateLimit.mockResolvedValue({ allowed: false, retryAfterMs: 60_000 });
+    const res = await POST(req({ token: "rawtoken", newPassword: "newpassword1" }));
+    expect(res.status).toBe(429);
   });
 });
