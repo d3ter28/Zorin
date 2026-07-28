@@ -10,336 +10,427 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-do-i-know-what-to-price-my-products",
+    title: "How Do I Know What to Price My Products?",
+    excerpt:
+      "Most merchants pick a price by gut feel or by copying a competitor. Here's the actual data-backed way to know.",
+    date: "2026-07-28",
+    readingTime: "8 min read",
+    category: "Education",
+    content: `
+<p class="intro">You know what to price your products by reading your own sales history: how many units sold at each price you've charged in the past tells you exactly how sensitive your customers are to price, a number called elasticity. From that single number, you can calculate the price that maximizes profit for that specific product, not a guess borrowed from a competitor or a gut feeling about what "feels right."</p>
+
+<h2>Why Gut Feel and Competitor Prices Don't Actually Answer the Question</h2>
+<p>Most merchants price a product once, at launch, using some mix of cost-plus math and a glance at what similar products sell for elsewhere. That's a reasonable starting point. The problem is that nothing about it tells you whether $79 or $89 makes you more money. You genuinely can't tell without data, and gathering that data by hand takes time most merchants don't have.</p>
+<p>Copying a competitor's price has the same blind spot in a different direction. Their customers found them through a different channel, in a different market, with a different brand relationship to that price point. Matching their number assumes your buyers behave identically to theirs. They usually don't, and the gap shows up as margin left on the table, not as an obvious red flag you'd notice.</p>
+
+<h2>The Actual Answer: Your Own Sales Data Already Has It</h2>
+<p>Every sale you've ever made at every price point is a data point about how your specific customers respond to price. If 100 customers bought a product at $49 but only 55 bought after you raised it to $59, that gap is a direct, measurable read on how price-sensitive your buyers are for that product. This relationship has a name: price elasticity of demand.</p>
+<p><strong>In plain terms:</strong> an elasticity of -0.4 means demand barely moves when price moves, customers are relatively insensitive, so raising price usually raises total profit. An elasticity of -1.8 means demand is very sensitive, and pushing price up costs you more in lost sales than it gains you in margin per unit. The number tells you which direction actually helps.</p>
+
+<h2>How Zorin Turns That Into a Number You Can Act On</h2>
+<p>This is the exact mechanism Zorin's model runs. You upload your sales history (a CSV export, or a live Shopify/WooCommerce sync), and it fits a log-log regression across your price and quantity history for each product. The output is an elasticity coefficient, an R-squared score that tells you how much to trust the fit, and a plain recommendation: raise, lower, or hold, with an estimated profit lift attached.</p>
+<table>
+  <thead>
+    <tr><th>What you see</th><th>What it means</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Elasticity: -1.47</td><td>Demand is elastic; customers are fairly price-sensitive for this product</td></tr>
+    <tr><td>R-squared: 0.91</td><td>Strong fit; the model explains 91% of the variation in your sales data</td></tr>
+    <tr><td>Model confidence: High</td><td>Enough data points to trust the recommendation with reasonable confidence</td></tr>
+    <tr><td>Recommendation: Raise, +18.3% lift</td><td>The estimated profit gain from moving to the recommended price</td></tr>
+  </tbody>
+</table>
+<p>No spreadsheet, no data science background, and no competitor scraping required. The model reads your data, not anyone else's.</p>
+
+<h2>What "Enough Data" Actually Means</h2>
+<p>Elasticity estimates get more reliable with more price variation and more data points to learn from. A product that's had one price its entire life gives the model almost nothing to work with; a product that's moved through several price points across enough sales history gives it a real signal. This is why Zorin shows a confidence score and a model health badge (Strong, Fair, Weak) alongside every recommendation, rather than presenting every output with equal certainty. A weak-data product still gets a number, but you should treat it as a starting hypothesis, not a settled answer, until more sales history accumulates.</p>
+
+<h2>One Real Pitfall: Promotions Distort the Signal</h2>
+<p>Not every price-and-quantity pair in your history is a clean signal. A period where you ran a discount or a promotion will show a lot of units sold at a low price, but that spike reflects the promotion, not your customers' normal price sensitivity. Left uncorrected, that data point can pull the whole elasticity estimate in the wrong direction. Zorin's model automatically flags statistical outliers in your sales history, most commonly promotional spikes, and excludes them from the fit so your baseline elasticity reflects normal buying behavior, not sale-week behavior.</p>
+
+<h2>Test Before You Commit</h2>
+<p>Once you have an elasticity estimate, you don't have to trust it blindly. A what-if simulator lets you drag through candidate prices and see the projected profit lift at each one before you touch your live listing. If the projected lift at $85 looks strong and the projected lift at $95 looks worse, you're seeing the shape of your own demand curve, not someone else's rule of thumb.</p>
+
+<h2>Putting It Together</h2>
+<p>Knowing what to price a product isn't about finding the "right" number in the abstract. It's about reading what your own sales history already tells you, correcting for anything that would distort the signal (like promotions), and checking the model's confidence before you act on it. That loop, upload data, fit elasticity, review confidence, test with a simulator, apply, is the entire mechanism, and it's specific to your store, not a category average or a competitor's storefront.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know what to price my products?</h3>
+<p>Read your own sales history at different price points to calculate price elasticity, then use that number to find the price that maximizes profit for that specific product.</p>
+</div>
+<div class="faq-item">
+<h3>What is price elasticity in simple terms?</h3>
+<p>It's a measure of how much your sales volume changes when your price changes. Low elasticity means customers barely notice a price change; high elasticity means they're very sensitive to it.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a data science background to use elasticity pricing?</h3>
+<p>No. A tool like Zorin runs the regression automatically from your uploaded sales history and gives you a plain raise, lower, or hold recommendation, not a raw statistical output you have to interpret yourself.</p>
+</div>
+<div class="faq-item">
+<h3>How much sales history do I need before elasticity is reliable?</h3>
+<p>More price variation and more data points produce a stronger fit. A model health badge (Strong, Fair, Weak) tells you how much to trust a given product's estimate rather than assuming every recommendation is equally certain.</p>
+</div>
+<div class="faq-item">
+<h3>Should I just match my competitor's price instead?</h3>
+<p>Not as a default. Their customers, channel, and cost structure differ from yours, so their price doesn't tell you what maximizes profit for your specific buyers.</p>
+</div>
+<div class="faq-item">
+<h3>Do promotions mess up my pricing data?</h3>
+<p>Yes, if they aren't excluded. A discount period shows inflated demand at an artificially low price, which can skew the elasticity estimate unless that period is flagged and removed from the model.</p>
+</div>
+<div class="faq-item">
+<h3>Can I test a new price before actually changing it?</h3>
+<p>Yes. A what-if simulator lets you preview the projected profit lift at different price points using your existing elasticity model before you apply anything.</p>
+</div>
+</section>
+
+<p class="conclusion">The answer to "what should I price this at" has been sitting in your own order history the entire time. Elasticity is just the name for reading it properly, and once it's calculated, the right price follows from the math rather than a guess.</p>
+    `.trim(),
+  },
+  {
+    slug: "is-your-store-leaving-money-on-the-table",
+    title: "Is Your Store Leaving Money on the Table?",
+    excerpt:
+      "Healthy sales can hide a pricing problem. Here are the actual signs your prices are wrong, and how to check.",
+    date: "2026-07-28",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">Your store is very likely leaving money on the table if you can't remember the last time you deliberately changed a price based on data, rather than a hunch, a competitor's move, or simply not touching it since launch. The signs are rarely dramatic. Healthy sales volume can sit right on top of a real pricing problem without anything obviously breaking.</p>
+
+<h2>Why "Sales Are Fine" Doesn't Mean Pricing Is Fine</h2>
+<p>Revenue and profit are not the same signal. A product can sell steadily at a price that's meaningfully below what your actual demand curve would support, and you'd never see it in your top-line numbers, because the sales are still happening. The only way to know if a specific price is leaving profit on the table is to compare it against what your own historical demand data says the profit-maximizing price would be, not against whether units are moving.</p>
+
+<h2>Four Signs Worth Checking</h2>
+
+<h3>You haven't changed a price in six months or more</h3>
+<p>Costs shift. Your product mix changes. Customer acquisition sources change, and different channels often bring in buyers with different price sensitivity. A price that was correct when you set it can quietly drift out of alignment with all of that, and nothing forces you to notice unless you're actively checking.</p>
+
+<h3>You set prices by copying a competitor</h3>
+<p>Matching a competitor's price assumes your buyers are identical to theirs. They found you through different marketing, in a possibly different market, expecting a possibly different value proposition. If your customers are actually less price-sensitive than a competitor's, matching their number means giving away margin you didn't need to give up.</p>
+
+<h3>You've never tested a different price point</h3>
+<p>Without price variation in your own history, there's no signal to read. If a product has had exactly one price its entire life, you have no data telling you whether $10 more would have cost you volume or simply added profit. This is the single biggest blind spot: no experiment means no evidence either way.</p>
+
+<h3>Some products convert well and others don't, with no clear pattern</h3>
+<p>Inconsistent conversion across similar products, with pricing set the same generic way for all of them, is often a sign that some are underpriced relative to what customers would actually pay, and others are overpriced relative to what the market will bear for that specific item.</p>
+
+<h2>What "Checking" Actually Looks Like</h2>
+<p>Checking isn't guessing harder. It's reading your own price-and-quantity history to calculate elasticity per product, the measurable relationship between a price change and the resulting change in demand. Zorin runs this calculation automatically from an uploaded sales history (or a live Shopify or WooCommerce sync) and returns a raise, lower, or hold recommendation for every SKU, along with an estimated profit lift and a confidence score based on how much reliable data supports it.</p>
+<table>
+  <thead>
+    <tr><th>What the old approach sounds like</th><th>What the data actually says</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>"I'll try $79 and see what happens."</td><td>"Your elasticity is -1.2. Raising to $85 lifts profit an estimated 14%."</td></tr>
+    <tr><td>"My competitor charges $89 so I'll charge $89."</td><td>"Your customers are less price-sensitive than that. You can likely charge $97."</td></tr>
+    <tr><td>"I haven't touched prices in six months."</td><td>"Three products are under-priced relative to their own demand curve."</td></tr>
+  </tbody>
+</table>
+
+<h2>Why This Is Easy to Miss Without a Systematic Check</h2>
+<p>Nobody gets an alert when a price is quietly leaving 10 to 15% of achievable profit on the table. There's no error message, no dip in sales, nothing that forces the question. The only way to catch it is to periodically compare your live prices against what your own demand data says the profit-optimal price would be, product by product, rather than assuming steady sales means the pricing decision was correct.</p>
+
+<h2>A Simple Way to Check Yourself</h2>
+<p>Pick your five best-selling products. For each one, ask honestly: when did I last change this price, and was that decision based on anything other than a guess or a competitor's number? If the honest answer is "I don't remember" for more than a couple of them, that's the practical version of the sign to watch for, before you ever look at a formal elasticity number.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know if I'm leaving money on the table with my prices?</h3>
+<p>Check whether you've ever deliberately tested a different price point for a product, backed by data. If a price has sat unchanged since launch or was copied from a competitor, there's a good chance it isn't optimized for your actual demand.</p>
+</div>
+<div class="faq-item">
+<h3>Can healthy sales volume hide a pricing problem?</h3>
+<p>Yes. Steady sales just mean the price is acceptable to enough customers, not that it's the price that maximizes profit. Those are different questions.</p>
+</div>
+<div class="faq-item">
+<h3>What are the clearest warning signs?</h3>
+<p>No price changes in six months or more, prices copied from competitors, no price testing history, and inconsistent conversion across similar products with no clear explanation.</p>
+</div>
+<div class="faq-item">
+<h3>How often should I check my pricing?</h3>
+<p>Often enough to catch cost or demand shifts, without reacting to every minor fluctuation. Reviewing your full catalog against fresh elasticity estimates on a regular cadence, such as monthly, is a reasonable default for most small catalogs.</p>
+</div>
+<div class="faq-item">
+<h3>What metrics actually show whether a price change worked?</h3>
+<p>Compare the estimated profit lift the model projected against what you actually observed in sales afterward, not just whether units sold. Volume alone doesn't tell you whether the change improved total profit.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a lot of historical sales data to check this?</h3>
+<p>More data and more price variation produce a more confident estimate, but even limited history gives a starting signal, flagged with a lower confidence score so you know to treat it cautiously.</p>
+</div>
+</section>
+
+<p class="conclusion">The honest test isn't whether your store is profitable today. It's whether you can point to a reason, grounded in your own sales data, that your current prices are the ones that maximize that profit. If the answer is a shrug, there's very likely money sitting on the table you haven't measured yet.</p>
+    `.trim(),
+  },
+  {
     slug: "should-you-price-differently-on-shopify-vs-amazon",
     title: "Should You Price Differently on Shopify vs Amazon?",
     excerpt:
-      "Amazon and Shopify have different fee structures. Here's why matching your price exactly across both usually costs you margin.",
-    date: "2026-07-27",
+      "Amazon and Shopify don't just have different fees, they often bring you genuinely different customers. Here's how to tell.",
+    date: "2026-07-28",
     readingTime: "8 min read",
     category: "Pricing Strategy",
     content: `
-<p class="intro">Yes, in most cases you should. The fee structures on Amazon and Shopify are different enough that matching your price exactly across both usually erodes your margin on whichever platform charges more. I've seen this catch sellers off guard more than once: they set one price, copy it everywhere, and only notice the margin problem when Amazon's cut takes a much bigger bite than expected. This isn't a minor rounding issue either. On a $30 product, a few extra percentage points in fees can be the entire difference between a healthy margin and barely breaking even. Zorin exists partly to catch that gap before it becomes a pattern you only discover at month-end.</p>
+<p class="intro">Often, yes, and not just because of fees. Customers who buy on Amazon and customers who buy on your own Shopify store frequently have different price sensitivity, because they arrived through different channels with different expectations. The only reliable way to know if that's true for your specific catalog is to look at your own sales history on each channel separately, not assume it either way.</p>
 
-<h2>The Fee Gap Is the Real Reason Prices Differ</h2>
-<p>Amazon's referral fee typically runs around 15%, and that's before factoring in FBA fulfillment and storage costs if you use it. Shopify's transaction fee, by comparison, sits closer to 2.9% (add source for current exact figures). That's not a small difference. If you charge the same retail price on both, your effective margin on Amazon is meaningfully thinner, sometimes thin enough to erase most of the profit you thought you had.</p>
-<p><strong>Here's a simplified way to see it side by side:</strong></p>
+<h2>Why Channels Can Have Genuinely Different Demand</h2>
+<p>An Amazon shopper is often comparison-shopping in the moment, price-anchored by whatever else shows up on the same search results page. A Shopify shopper who lands on your own site has frequently already decided they want your specific brand, through an ad, a referral, or direct search for you by name. Those are different buying contexts, and they can produce measurably different price elasticity, the degree to which demand shifts when price shifts, even for the exact same product.</p>
+<p>This isn't guaranteed to be true for every store. Some catalogs show similar elasticity across channels. The point is that you shouldn't assume either way. You should check.</p>
+
+<h2>How to Actually Check, Instead of Guessing</h2>
+<p>If your sales history separates orders by channel (Shopify direct sales vs. Amazon orders), you can fit an elasticity model per channel instead of one blended model across everything. This is exactly what a channel-aware pricing model does: it treats your Amazon sales history and your Shopify sales history as two separate demand signals, each with its own elasticity, R-squared fit, and recommendation.</p>
 <table>
   <thead>
-    <tr><th></th><th>Shopify</th><th>Amazon (FBA)</th></tr>
+    <tr><th>Signal</th><th>Shopify</th><th>Amazon</th></tr>
   </thead>
   <tbody>
-    <tr><td>Transaction/referral fee</td><td>~2.9%</td><td>~15% referral (add source for current rate)</td></tr>
-    <tr><td>Fulfillment cost</td><td>Your own shipping setup</td><td>FBA pick, pack, storage fees</td></tr>
-    <tr><td>Who controls the price page</td><td>You, fully</td><td>You, but constrained by marketplace price comparisons</td></tr>
-    <tr><td>Typical margin impact vs list price</td><td>Lower fee drag</td><td>Higher fee drag</td></tr>
+    <tr><td>Elasticity (illustrative)</td><td>-0.6 (less price-sensitive)</td><td>-1.9 (more price-sensitive)</td></tr>
+    <tr><td>What it suggests</td><td>Room to raise price without losing many sales</td><td>Price increases risk losing volume faster</td></tr>
+    <tr><td>Recommended action</td><td>Raise</td><td>Hold or small adjustment</td></tr>
   </tbody>
 </table>
-<p>This table is illustrative, not an exact quote of either platform's current fee schedule, since fee structures change and vary by category and fulfillment method.</p>
-<p><strong>This is the actual reason "different pricing" makes sense</strong>, not a branding inconsistency you should feel bad about. It's a direct response to a cost structure that isn't the same across platforms. I'd go further and say treating it as a branding problem is the mistake. A brand can be perfectly consistent in tone, packaging, and customer experience while still pricing a product differently on two platforms with two different economics underneath.</p>
+<p>These specific numbers are illustrative, not a claim about any particular store; the real values only come from your own channel-separated sales data.</p>
 
-<h2>Set a Margin Floor Per Channel, Not Just Per Product</h2>
-<p>Most sellers who set a margin floor set it per product. Fewer set it per channel, and that's the gap that causes trouble. The same product carries a different true cost depending on where it sells, so a single floor applied everywhere either overprotects your Shopify margin or underprotects your Amazon margin.</p>
-<p><strong>In practice, this means:</strong> your Amazon floor should already account for the referral fee and fulfillment cost before you ever compare to a competitor price. Your Shopify floor doesn't carry that same fee burden, so it can sit lower and still be just as profitable. Setting the floor per channel, once, removes the guesswork every time you touch a price after that.</p>
-<p>I'd add one more layer here: your Amazon floor should probably be revisited more often than your Shopify floor, simply because Amazon's fee categories and FBA costs shift more frequently than a standard payment processor's transaction rate does. A floor set a year ago on Amazon might already be stale in a way your Shopify floor isn't.</p>
-<p><strong>A few practical questions worth asking per channel:</strong></p>
-<ul>
-  <li>What's my true landed cost on this channel, including all fees, not just the referral percentage?</li>
-  <li>Does this channel's fulfillment method (self-ship vs FBA vs 3PL) change the cost enough to matter?</li>
-  <li>How often does this channel's fee structure actually change, and have I checked recently?</li>
-</ul>
+<h2>Fees Are Real, But They're a Separate Question From Elasticity</h2>
+<p>Amazon's referral fee and any FBA fulfillment costs are a genuine, separate reason your break-even price differs by channel; that's simple cost math, not a demand question. Elasticity tells you what customers are willing to pay. Fees tell you what you actually keep after the platform takes its cut. Both matter, but conflating them leads to the wrong conclusion: a channel can have low elasticity (customers would tolerate a higher price) while also having high fees (you need a higher price just to hit the same margin), and the right response addresses both, not just one.</p>
+<p><strong>A practical way to separate them:</strong> when you're comparing net profit per channel, use your realized price after fees as the number that feeds into your margin math. Use the raw customer-facing price as the number that feeds into elasticity, since that's what the customer actually reacted to.</p>
 
-<h2>Consistency vs Differentiation Isn't All-or-Nothing</h2>
-<p>Channel-based price segmentation lets you differentiate for margin while staying deliberate about it. Done well, this kind of segmentation can improve gross margin by a meaningful percentage without touching your cost of goods at all. The key word is deliberate. A price gap that exists because you calculated the fee difference is a different thing entirely from a price gap that exists because nobody checked in six months.</p>
-<p><strong>I'd frame it this way:</strong> differentiation is fine, drift isn't. One is a decision, the other is neglect.</p>
-<p>There's a middle failure mode worth naming too: differentiation that starts deliberate and slowly becomes drift. You set the Amazon price correctly six months ago, factoring in fees at the time. Since then, a competitor moved, your costs changed, and nobody revisited the gap. It's technically still "differentiated," but it's no longer based on anything current. This is exactly the kind of slow decay that's hard to notice product by product but adds up across a full catalog.</p>
+<h2>What This Looks Like in Practice</h2>
+<p>Say a product is priced at $79 on both channels. If Shopify sales history shows demand barely moves at $85, and Amazon sales history shows demand drops noticeably above $79, that's your own customers telling you two different things about the same product. Raising the Shopify price and holding the Amazon price isn't inconsistency, it's responding to two different, real demand signals with two different, correct answers.</p>
 
-<h2>What Happens When Channels Drift Out of Sync</h2>
-<p>Unmanaged drift, as opposed to deliberate segmentation, is where the real damage happens. A price that quietly falls out of step with a channel's actual costs doesn't usually announce itself. It shows up as a margin number that's lower than expected at the end of a reporting period, with no single obvious cause. By the time it's noticed, it's often been happening for weeks or months across more than one product.</p>
-<p>The fix isn't complicated, but it does require a system rather than memory: check each channel's price against that channel's own margin floor and competitor set on a regular basis, not just when you first list a product.</p>
+<h2>A Common Mistake: One Price Set From One Blended Number</h2>
+<p>If you calculate a single elasticity number across all channels combined, you're averaging two potentially different customer populations into one estimate that describes neither of them accurately. A store with a large, price-insensitive Shopify base and a smaller, price-sensitive Amazon presence could get a blended elasticity that undersells the Shopify opportunity and oversells the Amazon room to raise. Separating the signal by channel before fitting the model avoids that distortion entirely.</p>
 
-<h2>Do Customers Actually Notice?</h2>
-<p>They do, more than sellers sometimes assume. Survey data suggests a majority of shoppers report losing trust when prices vary between channels for the same product (add source for the full report). That doesn't mean channel pricing is off the table. It means the gap needs a reason you could explain out loud if a customer asked, not a shrug.</p>
-<p><strong>The practical takeaway:</strong> if someone screenshots your Amazon price next to your Shopify price, you should be able to explain the difference in one sentence, tied to fees or channel-specific costs, not silence.</p>
-<p>I think this is where a lot of sellers get nervous and overcorrect toward forcing identical prices everywhere, which just moves the problem instead of solving it. The goal isn't zero price variation. It's zero unexplained price variation.</p>
-
-<h2>How Zorin Handles Per-Channel Pricing</h2>
-<p>Zorin lets you set a margin floor per channel, not just per product, so the same item can carry a different floor on Amazon than it does on Shopify, reflecting the real fee gap instead of an arbitrary markup. Every channel's recommendation gets checked against that channel's own competitor median, and Zorin's reasoning states the fee-adjusted math directly: something like "this price still clears your Amazon floor after referral fees, even though it's below your Shopify price for the same product." Nothing changes automatically across channels. Each one gets reviewed and applied on its own terms, which matters most for sellers running a lean one-to-five-person operation with no separate team watching each platform.</p>
-<p>I've found this is the part that actually saves time day to day: not having to redo the fee math by hand every time a competitor shifts on one platform but not the other. When a competitor drops their Amazon price, Zorin checks that shift against your Amazon-specific floor and median, not your Shopify numbers, and tells you plainly whether reacting still leaves you profitable on that channel specifically.</p>
-
-<h2>Managing Margin Floors Per Channel in Practice</h2>
-<p>If you're setting this up for the first time, I'd suggest starting with your highest-fee channel, usually Amazon if you sell there, since that's where an unadjusted floor causes the most damage the fastest. Calculate the true landed cost including fees, set the floor from there, and only then compare against the competitor median on that channel. Repeat for each channel you sell on, and revisit each one on its own schedule rather than all at once, since fee changes rarely happen on the same calendar across platforms.</p>
+<h2>When Prices Genuinely Should Match</h2>
+<p>Not every product needs channel-specific pricing. If a product shows similar elasticity on both channels once you actually check, keeping the price aligned is simpler to manage and easier to explain if a customer ever compares the two. The goal isn't maximum differentiation for its own sake, it's letting the actual data decide, rather than assuming sameness or difference by default.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
 <h3>Should I price the same product differently on Shopify vs Amazon?</h3>
-<p>Usually yes. Amazon's fees are structurally higher than Shopify's, so matching prices exactly typically thins your margin on Amazon specifically.</p>
+<p>Often, yes, if your own sales history shows different price sensitivity between the two channels. Check the data per channel rather than assuming.</p>
 </div>
 <div class="faq-item">
-<h3>How do I keep pricing consistent across multiple storefronts?</h3>
-<p>Consistency doesn't mean identical prices. It means a defensible, fee-based reason for any gap, applied the same way every time rather than left to drift.</p>
+<h3>Why would the same product have different demand on different channels?</h3>
+<p>Shoppers arrive through different contexts. Amazon buyers are often actively comparison-shopping; direct Shopify buyers have frequently already chosen your brand, which can make them less price-sensitive.</p>
 </div>
 <div class="faq-item">
-<h3>What happens if my prices don't match across channels?</h3>
-<p>If the gap is deliberate and fee-driven, little happens beyond an occasional customer question you can answer plainly. If it's accidental drift, it usually shows up later as unexplained margin loss.</p>
+<h3>Is this just about Amazon's fees being higher?</h3>
+<p>No. Fees affect your break-even price and are a separate, real factor, but elasticity is about what customers are willing to pay, which is a different question entirely.</p>
 </div>
 <div class="faq-item">
-<h3>Do customers notice or care about cross-channel price differences?</h3>
-<p>Yes. Survey data shows a majority of shoppers lose some trust when prices vary between channels, so any gap should have a clear, statable reason.</p>
+<h3>How do I know if my channels actually have different elasticity?</h3>
+<p>Fit an elasticity model separately on each channel's own sales history rather than one blended model across all channels combined.</p>
 </div>
 <div class="faq-item">
-<h3>How do I manage margin floors separately per channel?</h3>
-<p>Set a distinct floor for each channel that accounts for that channel's real fees and costs, then let every price recommendation for that channel get checked against its own floor.</p>
+<h3>What happens if I use one blended price across channels with different elasticity?</h3>
+<p>You likely underprice on the less price-sensitive channel and risk losing volume on the more price-sensitive one, since one number can't correctly serve two different demand curves.</p>
 </div>
 <div class="faq-item">
-<h3>Why are Amazon fees higher than Shopify fees?</h3>
-<p>Amazon's referral fee (around 15%) plus optional FBA fulfillment and storage costs stack on top of the sale, while Shopify's transaction fee is closer to 2.9% (add source for current exact rates).</p>
+<h3>Do prices always need to differ across channels?</h3>
+<p>No. If the data shows similar elasticity on both, keeping prices aligned is simpler and just as correct. The decision should follow the data, not a default assumption either way.</p>
 </div>
 <div class="faq-item">
-<h3>Does price segmentation hurt customer trust?</h3>
-<p>Not inherently. Trust erosion tends to come from unexplained or inconsistent gaps, not from a clearly reasoned, fee-based price difference.</p>
-</div>
-<div class="faq-item">
-<h3>How do I calculate a fee-adjusted price for a marketplace?</h3>
-<p>Start with your margin floor, add back the marketplace's referral and fulfillment fees as a cost, then check the resulting price against that channel's competitor median before finalizing it.</p>
-</div>
-<div class="faq-item">
-<h3>How often should I revisit my per-channel pricing?</h3>
-<p>Often enough to catch fee changes and competitor shifts, but not so often you're reacting to noise. Marketplace fee categories in particular are worth rechecking whenever a platform announces a fee update, not just on a fixed schedule.</p>
-</div>
-<div class="faq-item">
-<h3>Is it normal for Amazon prices to be higher than a brand's own site?</h3>
-<p>Yes, this is common precisely because of the fee gap. A higher Amazon price with the same margin floor is a sign the system is working as intended, not a red flag.</p>
+<h3>How do I separate elasticity from fee-adjusted margin in my thinking?</h3>
+<p>Use the customer-facing price for elasticity (what customers actually reacted to), and use the fee-adjusted realized price for margin math (what you actually keep after the platform's cut).</p>
 </div>
 </section>
 
-<p class="conclusion">Pricing differently across channels isn't a compromise on consistency, it's a response to a cost structure that genuinely differs from one platform to the next. Set the floor per channel once, revisit it on its own schedule, and the rest of the pricing decisions get a lot easier to defend, to yourself and to any customer who happens to compare the two.</p>
+<p class="conclusion">Whether your prices should differ by channel isn't a branding question or a fee question alone, it's a demand question, and the answer is sitting in your own channel-separated sales history. Check it per channel before assuming either sameness or difference.</p>
     `.trim(),
   },
   {
     slug: "shopify-pricing-apps-what-to-look-for",
     title: "Shopify Pricing Apps: What to Look for Before You Buy",
     excerpt:
-      "Most pricing tools skip a margin floor, plain-English reasoning, or a review step. That gap is where merchants get burned.",
-    date: "2026-07-27",
+      "Most pricing apps guess or copy competitors. Here's what actually matters: your own data, a confidence score, and a review step.",
+    date: "2026-07-28",
     readingTime: "9 min read",
     category: "Product",
     content: `
-<p class="intro">If you're evaluating a Shopify pricing app, the short answer is this: look for a margin floor you control, plain-English reasoning behind every recommendation, and a review step before any price actually changes. Most pricing tools skip at least one of those three things, and that gap is usually where merchants get burned. I've spent enough time in pricing spreadsheets and app comparisons to know that "AI-powered" on a landing page tells you almost nothing about how the tool actually behaves with your catalog.</p>
+<p class="intro">If you're evaluating a Shopify pricing app, look for three things: does it learn from your own sales data instead of guessing or copying competitors, does it tell you how confident it is in a given recommendation, and does it let you review and test before anything actually changes. Most tools skip at least one of these, and that gap is usually where merchants get burned.</p>
 
-<p>This guide walks through what to check before you commit, how the category breaks down, what it typically costs, and how to test a tool safely before you touch your whole store. I'll also point out where a tool like Zorin, a pricing copilot built specifically for this problem, changes the calculation.</p>
-
-<h2>What a Shopify Pricing App Actually Does</h2>
-<p>"Pricing app" is a vague label that covers three genuinely different tools, and conflating them is the fastest way to pick the wrong one. Some tools only watch competitor prices and alert you. Others watch and then change your price automatically based on rules you set. A smaller third group watches, recommends a specific action, and explains the math, but leaves the final call to you.</p>
-<p>I think of it as a spectrum of how much decision-making the tool takes off your plate, and how much control it takes with it:</p>
+<h2>Three Genuinely Different Categories, Often Sold as One</h2>
+<p>"Pricing app" covers tools that behave very differently underneath, and conflating them is the fastest way to pick the wrong one.</p>
 <ul>
-  <li><strong>Price monitors:</strong> track competitor prices and notify you of changes. You still decide and manually update.</li>
-  <li><strong>Repricers:</strong> automatically adjust your price when a competitor moves, based on rules you configure in advance.</li>
-  <li><strong>Pricing copilots:</strong> analyze the market, recommend a raise, lower, or hold action with a stated reason, and wait for your approval before anything changes.</li>
+  <li><strong>Competitor repricers:</strong> track competitor prices and automatically match or undercut them based on rules you configure. They don't learn anything about your own customers.</li>
+  <li><strong>Rule-based discount tools:</strong> apply markdowns or markups based on fixed rules (inventory age, category, manual overrides). Useful for automation, but not grounded in demand data.</li>
+  <li><strong>Elasticity-based pricing tools:</strong> analyze your own historical sales at different price points to estimate demand sensitivity, then recommend a specific action with a stated confidence level.</li>
 </ul>
-<p>Zorin sits in that third category. It compares each product's price against the competitor median, checks the result against a margin floor you set, and gives you one of three plain recommendations per product. Nothing applies automatically. You review, then apply, one product at a time or in bulk.</p>
-<p>Knowing which category you're actually shopping in before you compare app names saves you from comparing a $39/month price alert tool against a $200/month automated repricer and wondering why the feature lists look so different.</p>
+<p>Zorin sits in that third category. It fits a demand model from your own sales history, not competitor data, and returns a raise, lower, or hold recommendation with an estimated profit lift and a confidence score, not a rule someone else's storefront determined for you.</p>
 
-<h2>Five Things to Evaluate in a Shopify Pricing App</h2>
-<p>Star ratings tell you whether other merchants had a good support experience, not whether the tool will protect your margin. I'd rather score a candidate tool against five specific criteria before installing anything.</p>
+<h2>Five Things to Evaluate</h2>
 
-<h3>Margin protection, not just competitor matching</h3>
-<p>Most pricing tools will happily show you that a competitor is cheaper. Far fewer will refuse to recommend a price that would put you at a loss. Ask directly: does this tool enforce a margin floor, or does it just show you the gap and leave the floor math to you? With Zorin, the floor is a hard constraint you set once. If a lower price would drop you below it, Zorin holds instead of suggesting it, no exceptions.</p>
+<h3>Does it use your own sales data, or someone else's price?</h3>
+<p>A tool that only watches competitors is telling you what someone else charges, not what your customers will actually pay. Ask directly: is the recommendation grounded in your own historical sales, or in an external number you have no control over?</p>
 
-<h3>Setup effort: CSV import vs. live sync</h3>
-<p>Some tools need a Shopify connection and nothing else. Others need you to export your catalog and competitor prices into a spreadsheet first. Neither is wrong, but you should know which one you're signing up for before you buy, especially if your catalog changes weekly. Zorin's current import is CSV-based, with direct Shopify sync and live competitor scraping on its roadmap. That's worth knowing upfront rather than discovering during onboarding.</p>
+<h3>Does it show you a confidence score, not just an answer?</h3>
+<p>A recommendation with no stated confidence level treats a product with thousands of data points the same as one with a handful. Look for a model health indicator (commonly labeled something like Strong, Fair, or Weak fit) so you know which recommendations to trust immediately and which need more data before you act.</p>
 
-<h3>Reasoning you can actually defend</h3>
-<p>A bare number ("lower to $24.99") isn't a recommendation, it's homework. You still have to check the competitor price yourself, check your margin yourself, and decide if it's actually a good idea. A tool that shows its work, something like "you're 18% above the market median, lowering still leaves a 42% margin," lets you make the call in seconds and explain it to a co-founder or partner without re-deriving the math.</p>
+<h3>Does it explain the number, not just state it?</h3>
+<p>A bare instruction ("change to $24.99") is homework, not a recommendation. A tool that shows the elasticity behind the call and the projected profit lift lets you sanity-check the logic instead of taking it on faith.</p>
 
-<h3>Catalog and competitor coverage</h3>
-<p>Free tiers commonly cap out fast. In this category, free plans are frequently capped around 5 to 50 SKUs and a small handful of tracked competitors, which is fine for testing but rarely enough for a full catalog. Know the cap before you build a workflow around a free plan you'll outgrow in a month.</p>
+<h3>Does it separate real demand signal from promotional noise?</h3>
+<p>If your sales history includes discount periods, those spikes reflect the promotion, not your customers' normal price sensitivity. A model that doesn't account for this will produce a skewed estimate. Look for automatic promotion detection that excludes flagged periods from the underlying fit.</p>
 
-<h3>Review-and-apply controls</h3>
-<p>Can you approve one product before touching your whole catalog? Can you override a recommendation with your own number? If a tool only offers "turn on auto-pricing for everything," that's a much bigger leap of faith than most merchants are comfortable taking on day one.</p>
-<p>A pricing app is worth evaluating on these five points specifically: margin enforcement, setup effort, reasoning transparency, coverage limits, and how much control you keep over the apply step.</p>
+<h3>Can you test before you commit?</h3>
+<p>Can you preview the projected impact of a price change before it goes live? A what-if simulator that lets you try candidate prices against your own demand curve is a meaningfully different experience than committing blind and checking results a month later.</p>
 
-<h2>Repricer vs. Pricing Copilot: The Real Difference</h2>
-<p>A repricer changes your price for you, automatically, based on rules you configured earlier. A pricing copilot recommends what to do and explains why, then waits for you to say yes. That's the entire distinction, and it matters more than the marketing copy on either category usually suggests.</p>
-<p>Here's a worked comparison using the same scenario: your product is priced at $30, and a competitor drops theirs to $26.</p>
+<h2>Repricer vs. Elasticity Model: A Worked Comparison</h2>
+<p>Say a competitor drops their price on a similar product from $30 to $26.</p>
 <table>
   <thead>
-    <tr><th></th><th>Repricer</th><th>Pricing Copilot (Zorin)</th></tr>
+    <tr><th></th><th>Competitor Repricer</th><th>Elasticity-Based Tool (Zorin)</th></tr>
   </thead>
   <tbody>
-    <tr><td>Response to competitor at $26</td><td>Auto-drops to $26 or slightly under, immediately</td><td>Checks $26 against your margin floor first</td></tr>
-    <tr><td>If $26 is below your floor</td><td>Often applies anyway unless you built floor logic into the rule yourself</td><td>Holds at $30, or recommends the lowest price that still clears your floor</td></tr>
-    <tr><td>Who decides</td><td>The rule, automatically</td><td>You, after seeing the number and the reason</td></tr>
+    <tr><td>What it reacts to</td><td>The competitor's price move</td><td>Your own historical demand curve, unaffected by a competitor's single move</td></tr>
+    <tr><td>Typical response</td><td>Auto-drops to $26 or slightly under</td><td>No automatic change; recommendation stays grounded in your own elasticity estimate</td></tr>
+    <tr><td>Risk</td><td>Can trigger a race-to-the-bottom price war with no regard for your own margin data</td><td>Recommendation reflects what your actual customers will pay, not a reaction to a rival</td></tr>
   </tbody>
 </table>
-<p>The practical risk with pure repricers is well documented in the space: automated repricing amplifies both good and bad decisions, and a misconfigured rule can push a price below the margin threshold within hours, sometimes triggering a race-to-the-bottom price war with a competitor doing the same thing (add source for current industry data). A copilot structurally can't do that, because the margin check happens before anything is ever suggested, not after the fact.</p>
-<p>If you want speed and don't mind rules doing the deciding, a repricer fits. If you want a specific recommendation with math attached and the final decision kept in your hands, that's the copilot category, and it's the gap Zorin is built to close.</p>
+<p>Neither approach is wrong for every use case, but they answer different questions. A repricer answers "what is the market doing." An elasticity tool answers "what will my customers actually pay."</p>
 
-<h2>Is a Pricing App Worth It for a Small Store</h2>
-<p>Whether a pricing app earns its cost depends much more on your catalog size and category than on your revenue number. A store with 200 comparable SKUs in a price-visible category has a very different math problem than a store with 8 custom, hard-to-compare products.</p>
-<p>A few honest scenarios:</p>
+<h2>Is a Pricing App Worth It for a Small Store?</h2>
+<p>This depends more on your catalog size and how much price variation exists in your history than on your revenue. A store with 50+ SKUs and enough sales history to show real price movement has plenty of signal to learn from. A brand-new store with a handful of products and no price history yet has very little for any model, elasticity-based or otherwise, to work with until more data accumulates.</p>
 <ul>
-  <li><strong>You sell 20+ products in a category where customers shop on price</strong> (electronics accessories, beauty, supplements, outdoor gear): worth it. Manually checking dozens of competitor prices weekly isn't a sustainable habit, and losing sales to a visible $2 gap is the kind of thing that's easy to miss until it's already cost you.</li>
-  <li><strong>You sell fewer than 10 products, or products that are hard to comparison-shop</strong> (custom, handmade, or highly differentiated items): probably not urgent yet. There's less competitive pricing pressure to track, and the tool's value shows up mainly once comparison shopping becomes a real factor in your sales.</li>
-  <li><strong>You've been burned by manually "just matching the market"</strong> and noticed your margin eroding without a clear trigger: worth it immediately, because that's precisely the blind spot a margin-floor tool is designed to catch.</li>
+  <li><strong>Established catalog, some price history:</strong> worth it immediately. You already have the signal, you're just not reading it systematically yet.</li>
+  <li><strong>Brand-new store, no price history:</strong> less urgent today, though setting up sales tracking now means you'll have usable elasticity data sooner rather than later.</li>
+  <li><strong>You've never once tested a different price point:</strong> worth prioritizing, since that's the exact blind spot elasticity modeling is built to close.</li>
 </ul>
-<p>I'd also flag a pattern worth watching for in yourself: merchants who reflexively match the lowest price in their category are often the ones who can least afford to keep doing it. A margin floor doesn't just protect you from a tool's mistake, it protects you from your own instinct to chase the market down.</p>
 
-<h2>What Repricing and Pricing Tools Typically Cost</h2>
-<p>Pricing for this category clusters into three rough tiers, and most comparison posts only quote the platform fee, so it's worth checking whether a transaction fee or SKU cap changes the real number for your catalog.</p>
-<ul>
-  <li><strong>Free tier:</strong> commonly capped at somewhere between 5 and 50 tracked SKUs and a handful of competitors. Fine for testing, rarely enough for a full catalog.</li>
-  <li><strong>Entry paid tier:</strong> roughly $39 to $99 per month for small to mid catalogs, usually with an increased SKU and competitor cap.</li>
-  <li><strong>Higher tiers:</strong> scale up from there based on catalog size, competitor count, or update frequency, sometimes running to $200+/month for larger operations or multi-channel tracking (add source for current category benchmarks).</li>
-</ul>
-<p>Two things I'd check before comparing prices across apps: whether the quoted number includes a per-transaction fee on top of the flat monthly rate, and whether the SKU cap actually covers your live catalog, not just your best sellers. A $49/month plan that caps at 50 SKUs isn't cheaper than a $79/month plan with no cap if you're running 150 products.</p>
-
-<h2>Testing Before You Roll Out to Your Whole Catalog</h2>
-<p>The safest way to evaluate any pricing tool is to run it on a small, price-visible subset of your catalog before you touch everything else. This isn't overcaution, it's the standard, sensible path merchants who've been burned by a black-box repricer or an enterprise platform built for someone with a dedicated analyst tend to take the second time around.</p>
+<h2>Testing Before You Trust It With Your Whole Catalog</h2>
 <ol>
-  <li><strong>Pick 10 to 20 products</strong> in your most price-competitive category, ones where you already know competitor prices move often.</li>
-  <li><strong>Set your margin floor</strong> for that subset before importing anything, so you're testing the tool's judgment against a real constraint, not just watching it in a vacuum.</li>
-  <li><strong>Review every recommendation individually</strong> for the first week or two. Check whether the reasoning holds up against prices you can verify yourself.</li>
-  <li><strong>Apply changes product by product</strong> at first, not in bulk, until you trust the pattern of recommendations you're seeing.</li>
-  <li><strong>Expand to the rest of your catalog</strong> once you've confirmed the tool respects your floor and the reasoning consistently makes sense.</li>
+  <li><strong>Upload your full sales history</strong> for a handful of your best-tracked products first, ones with real price variation in the past.</li>
+  <li><strong>Check the confidence score</strong> before acting on any recommendation, not just the raise/lower/hold call itself.</li>
+  <li><strong>Use the what-if simulator</strong> to sanity-check a recommendation against a price you'd expect to work, before applying it.</li>
+  <li><strong>Apply one product at a time</strong> initially, and watch whether the actual outcome tracks the projected lift.</li>
+  <li><strong>Expand to the rest of your catalog</strong> once you trust the pattern of recommendations against real results.</li>
 </ol>
-<p>Zorin is built around exactly this kind of cautious rollout. You can import a subset, review each raise, lower, or hold recommendation with its margin math attached, adjust anything with a slider or your own number, and apply changes one product at a time before ever touching a bulk apply. Nothing changes without your explicit approval at any point in that process.</p>
-<p>The trust-building step matters more than the feature list, especially with any AI-assisted tool. The value only holds up because you can review the output before it goes live, the same way you'd review a draft before publishing it. Tools that skip the review step ask for a kind of blind trust merchants have little reason to give an AI system on day one.</p>
+<p>The trust-building step matters more than any single feature. The value of an AI-assisted recommendation holds up because you can see the reasoning and test it before it goes live, not because you're asked to believe it on faith.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
 <h3>What should I look for in a Shopify pricing app?</h3>
-<p>Look for a margin floor you control, plain-English reasoning behind each recommendation, and a manual review step before any price change goes live. Tools that skip any of these three shift real risk back onto you.</p>
+<p>A tool that learns from your own sales data rather than copying competitors, shows a confidence score for each recommendation, and lets you review and test before anything changes live.</p>
 </div>
 <div class="faq-item">
 <h3>Are Shopify pricing apps worth it for a small store?</h3>
-<p>Usually yes if you sell 10 or more comparable products in a category where customers actively price-shop. Less urgent for small catalogs of highly differentiated or custom products.</p>
+<p>Usually yes if you have an established catalog with some price history to learn from. Less urgent for a brand-new store with no price variation yet, though it's worth setting up tracking early.</p>
 </div>
 <div class="faq-item">
-<h3>How much does a pricing or repricing tool typically cost for an SMB seller?</h3>
-<p>Free tiers commonly cap at 5 to 50 SKUs. Paid entry tiers typically run $39 to $99 per month for small to mid catalogs, scaling up from there based on SKU count and update frequency.</p>
-</div>
-<div class="faq-item">
-<h3>What's the difference between a repricer and a pricing copilot?</h3>
-<p>A repricer automatically changes your price based on rules you set in advance. A pricing copilot, like Zorin, recommends a specific action and margin reasoning and waits for your approval before anything changes.</p>
+<h3>What's the difference between a competitor repricer and an elasticity-based pricing tool?</h3>
+<p>A repricer reacts to what competitors charge. An elasticity-based tool, like Zorin, learns what your own customers are actually willing to pay from your own sales history.</p>
 </div>
 <div class="faq-item">
 <h3>Can I test a pricing tool on a few products before rolling it out to my whole catalog?</h3>
-<p>Yes. Most tools, including Zorin, support importing a small subset, reviewing recommendations individually, and applying changes product by product before a full bulk rollout.</p>
+<p>Yes. Most tools, including Zorin, support importing a subset, reviewing recommendations individually, and applying changes product by product before a full rollout.</p>
 </div>
 <div class="faq-item">
-<h3>Will a pricing app ever suggest a price that hurts my margin?</h3>
-<p>Not if it enforces a margin floor you set yourself. That constraint should be non-negotiable regardless of how aggressively a competitor is pricing.</p>
+<h3>Why does a confidence score matter?</h3>
+<p>It tells you how much historical data and price variation actually support a given recommendation, so you don't treat a data-thin estimate with the same certainty as a well-supported one.</p>
 </div>
 <div class="faq-item">
-<h3>How is a pricing copilot different from just watching competitor prices myself?</h3>
-<p>A copilot adds the margin math and a stated recommendation on top of raw competitor data, so you're not manually calculating the safe price for every SKU yourself.</p>
+<h3>Do promotions affect how these tools work?</h3>
+<p>They can, if not accounted for. A discount period inflates apparent demand at an artificially low price, so a well-built tool flags and excludes those spikes from the underlying model.</p>
 </div>
 <div class="faq-item">
-<h3>Do these tools require a pricing analyst to configure?</h3>
-<p>No. Closing that exact gap, giving lean teams pricing intelligence without a dedicated analyst, is the specific problem copilot-style tools like Zorin are built to solve.</p>
+<h3>Do these tools require a data science background to use?</h3>
+<p>No. The statistical modeling happens automatically behind the scenes; you see a plain recommendation with a stated reason, not a raw regression output.</p>
 </div>
 </section>
 
-<p class="conclusion">Getting a Shopify pricing app right isn't about picking the one with the most reviews. It's about matching the tool's mechanism, monitor, repricer, or copilot, to how much control you actually want to keep, then testing it on a handful of products before you trust it with everything. Start small, check the margin math, and expand once the recommendations hold up against prices you can verify yourself.</p>
+<p class="conclusion">Picking the right pricing app isn't about the one with the most reviews. It's about whether the recommendation is grounded in your own customers' actual behavior, comes with an honest confidence level, and lets you test before you trust it with your whole catalog.</p>
     `.trim(),
   },
   {
     slug: "how-to-run-a-sale-without-wrecking-your-margin",
     title: "How to Run a Sale Without Wrecking Your Margin",
     excerpt:
-      "Sales don't have to mean gambling with margin. Here's how to discount deliberately, not accidentally.",
-    date: "2026-07-27",
-    readingTime: "9 min read",
+      "Sales don't just risk your margin in the moment. Done wrong, they quietly corrupt the pricing data you rely on afterward.",
+    date: "2026-07-28",
+    readingTime: "8 min read",
     category: "Pricing Strategy",
     content: `
-<p class="intro">The safest way to run a sale without wrecking your margin is to keep your margin floor active during the promotion instead of suspending it. Every discount still gets checked against the minimum profit you're willing to accept, the same way it would on any ordinary day. I've watched sellers treat "sale season" as a different set of rules, and that's usually where the damage happens. Zorin builds around this exact idea: the floor doesn't take a break just because the calendar says it's Black Friday.</p>
+<p class="intro">The safest way to run a sale without wrecking your margin is to test the discount against your product's actual demand curve before applying it, and to make sure the promotional period gets excluded from your pricing data afterward so it doesn't distort future recommendations. Most of the damage from a bad sale isn't the discount itself, it's the corrupted signal that discount leaves behind in your sales history.</p>
 
-<h2>Your Margin Floor Doesn't Pause for a Sale</h2>
-<p>The single rule that prevents most sale-related margin loss is simple: the floor you set stays non-negotiable, promotion or not. A margin floor is the lowest profit percentage you're willing to accept on a product, and treating it as a suggestion rather than a hard limit is how a "successful" sale quietly turns into a loss once you look at the actual numbers. In practice, this means every discount gets the same check a regular price change would get: does this still clear the floor, or doesn't it. If it doesn't, the discount doesn't happen, no matter how good the sale looks on the surface.</p>
-<p>I've seen this play out with sellers who ran a storewide 30% off event without checking margin per SKU first. Some products could absorb it comfortably. Others went straight through the floor and sold at a loss, and nobody noticed until the month-end numbers came in low. A margin floor applied consistently would have flagged those products before the sale even launched.</p>
+<h2>A Sale's Real Cost Has Two Parts</h2>
+<p>The obvious cost of a sale is the margin given up during the discount window. The less obvious cost is what that promotional period does to your pricing data afterward. A spike in sales at a low price during a sale doesn't reflect how customers behave at your normal price. If that spike gets treated as ordinary sales history, it skews your elasticity estimate going forward, and future recommendations end up built on a distorted picture of customer behavior.</p>
 
-<h2>Three Common Sale Scenarios, Three Different Risks</h2>
-<p>Not every sale carries the same margin risk. A flash sale, a seasonal clearance, and a loyalty-only discount each behave differently, and treating them with one blanket rule usually means overprotecting one and underprotecting another.</p>
+<h2>Test the Discount Before You Apply It</h2>
+<p>Rather than picking a discount percentage that feels aggressive enough to move inventory, a what-if simulator lets you preview the projected profit impact of a specific sale price against your product's actual demand curve, using elasticity calculated from your own sales history. If your data suggests demand is fairly inelastic for a product, a deep discount may cost you more in margin than it gains in volume. If demand is highly elastic, a meaningful discount can genuinely lift total profit, not just total units sold.</p>
 <table>
   <thead>
-    <tr><th>Scenario</th><th>Typical Goal</th><th>Margin Risk</th><th>Reset Complexity</th></tr>
+    <tr><th>Elasticity signal</th><th>What it suggests for a sale</th></tr>
   </thead>
   <tbody>
-    <tr><td>Flash sale (short window, high urgency)</td><td>Quick volume spike</td><td>Moderate; short duration limits total exposure</td><td>Low; reverts quickly once the window closes</td></tr>
-    <tr><td>Seasonal clearance</td><td>Move slow inventory before it stales</td><td>Can be intentionally deeper on specific SKUs</td><td>Moderate; some products may not return to prior price at all</td></tr>
-    <tr><td>Loyalty-only discount</td><td>Reward returning customers without public discounting</td><td>Low; narrow audience limits exposure</td><td>Low; public list price never moved</td></tr>
+    <tr><td>Low elasticity (customers not very price-sensitive)</td><td>A deep discount likely costs more in margin than it gains in volume; a smaller discount may make more sense</td></tr>
+    <tr><td>High elasticity (customers very price-sensitive)</td><td>A meaningful discount can plausibly lift total profit through volume, worth testing with the simulator first</td></tr>
   </tbody>
 </table>
-<p>This framework is directional and meant to guide planning, not a guarantee for any specific catalog; actual risk depends on your own margin structure per SKU.</p>
+<p>Either way, the point is testing against your own data rather than picking a round number because it sounds generous.</p>
 
-<h3>The flash sale (short window, high urgency)</h3>
-<p>Short, capped windows create urgency without setting a predictable discount calendar customers wait for. Because the exposure window is short, the total margin given up tends to be lower than a longer-running promotion, even if the discount percentage looks steep in the moment.</p>
+<h2>Not Every Product Needs the Same Discount</h2>
+<p>Bestsellers already converting at full price rarely need a discount to move units, so discounting them mainly gives away margin you didn't need to give up. Slow-moving inventory has more room for a deeper cut, since unsold stock sitting in a warehouse often costs more over time than the margin given up to clear it. Treating every product in a catalog with one blanket discount percentage ignores this difference entirely.</p>
 
-<h3>The seasonal clearance (moving inventory before it stales)</h3>
-<p>Clearance pricing accepts a lower margin on specific slow-moving SKUs deliberately, not catalog-wide. The goal here isn't preserving margin on every product; it's avoiding the larger cost of unsold inventory sitting past season.</p>
+<h2>Flag the Promotional Period, Don't Let It Slip Into Your Baseline Data</h2>
+<p>This is the step most sellers skip, and it's the one with the longest tail of consequences. If a sale period isn't excluded from the data your future pricing decisions are built on, it teaches the model, and effectively teaches you, the wrong lesson about how price-sensitive your customers really are. Promotional elasticity is typically higher than baseline elasticity: customers respond more aggressively to a visible discount than they would to the same percentage change at your regular price, and treating that as your normal elasticity overstates how much a future price cut would actually help.</p>
+<p>Zorin's model automatically detects statistical outliers in your sales history, most commonly promotional spikes, and flags them for exclusion so your baseline elasticity estimate reflects ordinary buying behavior, not sale-week behavior. You can also manually confirm or override a flag if you know a spike had a different cause.</p>
 
-<h3>The loyalty-only discount (narrow audience, protected list price)</h3>
-<p>Discounting through an account role or returning-customer channel protects the public list price while still rewarding loyal buyers. Because it's not broadcast to every visitor, it carries less margin exposure and less risk of resetting customer expectations about your normal price.</p>
-
-<h2>Not Every Product Should Be Discounted the Same Way</h2>
-<p>Segmenting your catalog before a sale matters more than picking one blanket discount percentage. Retail pricing research generally groups products into categories like bestsellers, margin protectors, and slow movers, and each group has a different amount of room to give.</p>
-<ul>
-  <li><strong>Bestsellers usually don't need a discount.</strong> Products already selling well rarely need incentive pricing. Discounting them mainly gives away margin you didn't need to give up to move the units.</li>
-  <li><strong>Slow movers can absorb a steeper cut.</strong> Inventory that isn't moving has more room for a deeper discount, because unsold stock often costs more in the long run than the margin given up to clear it.</li>
-</ul>
-<p>I tend to think of this as triage, not a blanket policy. A 15% storewide discount treats a hot seller and a stale SKU identically, which almost never makes sense once you actually look at the two side by side.</p>
-
-<h2>Compare to the Competitor Median, Not Whoever's Cheapest This Week</h2>
-<p>During a sale season, competitors discount unevenly, some aggressively, some barely at all. Anchoring your own price to the single cheapest competitor you can find means you're calibrating against whatever their most extreme promotion happens to be, not the real market. The competitor median, the middle of that spread, gives a steadier read of where pricing actually sits during the sale window.</p>
-<p>This is where the mechanism Zorin uses becomes relevant. It compares your price against the competitor median, not a single rival's promo price, and checks the resulting gap against your margin floor. You get one of three calls per product: raise, lower, or hold, along with the exact math, something like "matching this promotion still leaves you a 38% margin." The reasoning is there so you can act on it without re-deriving the numbers yourself every time a competitor changes their price mid-sale.</p>
-
-<h2>Where Zorin Fits Across All Three Scenarios</h2>
-<p>Whether a merchant is running a 48-hour flash sale, clearing end-of-season inventory, or offering a loyalty-only discount, Zorin checks every recommendation against the same margin floor and the same competitor median, and returns a plain-English reason either way, such as "this discount still leaves a 30% margin" or "this would cross your floor, hold instead." The scenario changes; the underlying discipline doesn't, and nothing is applied automatically, since every call still goes through the merchant's review-and-apply step.</p>
-<p>This matters most for a lean team running a sale across a large chunk of the catalog at once. Reviewing every product by hand under a deadline is exactly when mistakes happen; having the floor and median check already run for you narrows the review down to the products that actually need a decision.</p>
+<h2>Watch for the Post-Sale Dip</h2>
+<p>A real pattern worth expecting: customers who stock up during a sale often reduce their normal purchasing for a period afterward, since they already bought what they needed at a discount. If you misread that natural dip as a sign your regular price is suddenly too high, you risk cutting a price that didn't actually need to change. Give the post-sale period a reasonable window before drawing conclusions from it.</p>
 
 <h2>Pricing Back Up When the Sale Ends</h2>
-<p>Ending a sale is its own pricing decision, not something that reverts on its own. I've seen sellers manually guess their way back to "whatever it used to be," which either leaves money on the table or reintroduces the same margin risk they just spent the sale avoiding. The better approach is running the same floor-and-median check used to start the sale, in reverse, rather than trusting memory. If the competitor median has shifted while your sale was running, which it often has, your post-sale price should reflect that, not just bounce back to an old number.</p>
-<p>Zorin's role here is the same reasoning applied in the other direction: comparing your reset price against the current median and your floor, rather than assuming last month's price is still the right one.</p>
+<p>Resetting to "whatever it was before" without checking anything is a missed opportunity in one direction and a real risk in the other. If your baseline demand data (properly excluding the promo period) suggests the pre-sale price was already below the profit-maximizing point, the reset is a chance to correct that, not just restore the status quo. Run the same check you'd run on any price decision: does the current elasticity estimate, cleaned of promotional noise, support this specific number.</p>
+
+<h2>A Simple Sequence for Running a Sale</h2>
+<ol>
+  <li><strong>Check elasticity before picking a discount</strong> instead of choosing a round percentage that feels right.</li>
+  <li><strong>Segment bestsellers from slow movers</strong> rather than applying one blanket discount catalog-wide.</li>
+  <li><strong>Use the simulator</strong> to preview projected impact at a specific sale price before it goes live.</li>
+  <li><strong>Let the promo period get flagged</strong> as an outlier once the sale runs, so it doesn't corrupt future recommendations.</li>
+  <li><strong>Give the post-sale period time</strong> before reading a temporary dip as a signal your regular price is wrong.</li>
+</ol>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
 <h3>How do I run a sale without wrecking my margin?</h3>
-<p>Keep your margin floor active during the promotion and check every discount against it before applying it, the same way you would on a normal day.</p>
-</div>
-<div class="faq-item">
-<h3>Should I match competitor discounts during a sale season?</h3>
-<p>Not automatically. Anchor to the competitor median across your category instead of matching whoever is running the deepest promotion, since that single price may be an outlier.</p>
+<p>Test the discount against your product's actual demand curve before applying it, and make sure the promotional period gets excluded from your pricing data afterward so it doesn't distort future recommendations.</p>
 </div>
 <div class="faq-item">
 <h3>How do I decide which products to discount and by how much?</h3>
-<p>Segment your catalog first. Bestsellers usually don't need a discount at all, while slow moving inventory can typically absorb a steeper one.</p>
+<p>Check elasticity per product rather than applying one blanket percentage. Bestsellers usually need little or no discount; slow-moving inventory can typically absorb more.</p>
 </div>
 <div class="faq-item">
-<h3>Does a margin floor still apply during promotions?</h3>
-<p>Yes. The floor is a hard limit, not something that gets suspended for a sale. Any discount that would cross it shouldn't go live.</p>
+<h3>Do promotions mess up my future pricing recommendations?</h3>
+<p>Yes, if the promotional sales spike isn't excluded from the data. It inflates apparent demand at an artificially low price and can distort your baseline elasticity estimate going forward.</p>
 </div>
 <div class="faq-item">
-<h3>How do I price back up after a seasonal sale ends?</h3>
-<p>Check your reset price against the current competitor median and your margin floor, rather than reverting to whatever the price was before the sale started.</p>
+<h3>How does a tool know a spike in sales was a promotion and not real demand?</h3>
+<p>Statistical outlier detection flags unusually high sales relative to the fitted model as likely promotional activity, which you can confirm or override manually.</p>
 </div>
 <div class="faq-item">
-<h3>Should I exclude bestsellers from a sale?</h3>
-<p>Generally yes. They're already converting, so discounting them mostly gives away margin without meaningfully increasing sales.</p>
+<h3>Why do sales sometimes dip right after a promotion ends?</h3>
+<p>Customers who stocked up during the discount often buy less than usual for a period afterward. That's a temporary pattern, not necessarily a sign your regular price is too high.</p>
 </div>
 <div class="faq-item">
-<h3>What's the difference between a seasonal discount and a permanent price cut?</h3>
-<p>A seasonal discount is temporary and tied to a specific window, with a planned reset afterward. A permanent price cut has no reset and should be treated as a full repricing decision, not a promotion.</p>
+<h3>How do I price back up after a sale ends?</h3>
+<p>Check your baseline elasticity, with the promotional period excluded, against your planned reset price rather than assuming the pre-sale price is automatically correct.</p>
 </div>
 <div class="faq-item">
-<h3>How do I know when a sale has run too long?</h3>
-<p>If a discount that started as a limited-time event starts looking like your everyday price, customers will treat it as the new normal, and reverting will feel like a price increase rather than a return to baseline.</p>
+<h3>Can I preview the impact of a discount before applying it?</h3>
+<p>Yes. A what-if simulator lets you test candidate sale prices against your product's demand curve and see the projected impact before anything goes live.</p>
 </div>
 </section>
 
-<p class="conclusion">Running a sale doesn't have to mean gambling with your margin. Set the floor once, segment your catalog honestly, match the median instead of the loudest discount you can find, and let the same discipline you'd use on any ordinary pricing day carry through the entire promotion, discount and reset both.</p>
+<p class="conclusion">A sale's biggest risk usually isn't the discount you can see, it's the corrupted signal it can leave behind if the promotional period bleeds into your regular pricing data. Test the discount against your own demand curve, flag the promo period afterward, and give the post-sale window time before drawing conclusions from it.</p>
     `.trim(),
   },
 ];
