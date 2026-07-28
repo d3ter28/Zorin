@@ -20,6 +20,17 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">You know what to price your products by reading your own sales history: how many units sold at each price you've charged in the past tells you exactly how sensitive your customers are to price, a number called elasticity. From that single number, you can calculate the price that maximizes profit for that specific product, not a guess borrowed from a competitor or a gut feeling about what "feels right."</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Your own sales history at different price points already tells you how price-sensitive your customers are, a number called elasticity.</li>
+<li>Copying a competitor's price or pricing by gut feel doesn't answer this question, since their customers and cost structure differ from yours.</li>
+<li>A confidence score (based on your model's fit and data volume) tells you how much to trust a given recommendation.</li>
+<li>Promotional periods can distort the signal unless they're flagged and excluded from the model.</li>
+<li>A what-if simulator lets you preview a price change's projected impact before you commit to it.</li>
+</ul>
+</div>
+
 <h2>Why Gut Feel and Competitor Prices Don't Actually Answer the Question</h2>
 <p>Most merchants price a product once, at launch, using some mix of cost-plus math and a glance at what similar products sell for elsewhere. That's a reasonable starting point. The problem is that nothing about it tells you whether $79 or $89 makes you more money. You genuinely can't tell without data, and gathering that data by hand takes time most merchants don't have.</p>
 <p>Copying a competitor's price has the same blind spot in a different direction. Their customers found them through a different channel, in a different market, with a different brand relationship to that price point. Matching their number assumes your buyers behave identically to theirs. They usually don't, and the gap shows up as margin left on the table, not as an obvious red flag you'd notice.</p>
@@ -54,6 +65,7 @@ export const posts: BlogPost[] = [
 
 <h2>Putting It Together</h2>
 <p>Knowing what to price a product isn't about finding the "right" number in the abstract. It's about reading what your own sales history already tells you, correcting for anything that would distort the signal (like promotions), and checking the model's confidence before you act on it. That loop, upload data, fit elasticity, review confidence, test with a simulator, apply, is the entire mechanism, and it's specific to your store, not a category average or a competitor's storefront.</p>
+<p>If you're not sure whether your current prices already reflect this, <a href="/blog/is-your-store-leaving-money-on-the-table">here's how to check</a>. And if you're comparing tools before committing to one, see <a href="/blog/shopify-pricing-apps-what-to-look-for">what actually matters in a Shopify pricing app</a>.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -101,6 +113,16 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Your store is very likely leaving money on the table if you can't remember the last time you deliberately changed a price based on data, rather than a hunch, a competitor's move, or simply not touching it since launch. The signs are rarely dramatic. Healthy sales volume can sit right on top of a real pricing problem without anything obviously breaking.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Steady sales volume doesn't mean your pricing is optimal, it only means enough customers accept the current price.</li>
+<li>No price changes in six months or more, competitor-copied prices, and no price-testing history are the clearest warning signs.</li>
+<li>Checking means comparing your live price against what your own historical demand data says the profit-maximizing price would be.</li>
+<li>There's no alert for quietly under-optimized pricing, so it has to be checked deliberately, not assumed away by healthy revenue.</li>
+</ul>
+</div>
+
 <h2>Why "Sales Are Fine" Doesn't Mean Pricing Is Fine</h2>
 <p>Revenue and profit are not the same signal. A product can sell steadily at a price that's meaningfully below what your actual demand curve would support, and you'd never see it in your top-line numbers, because the sales are still happening. The only way to know if a specific price is leaving profit on the table is to compare it against what your own historical demand data says the profit-maximizing price would be, not against whether units are moving.</p>
 
@@ -136,6 +158,7 @@ export const posts: BlogPost[] = [
 
 <h2>A Simple Way to Check Yourself</h2>
 <p>Pick your five best-selling products. For each one, ask honestly: when did I last change this price, and was that decision based on anything other than a guess or a competitor's number? If the honest answer is "I don't remember" for more than a couple of them, that's the practical version of the sign to watch for, before you ever look at a formal elasticity number.</p>
+<p>Once you've spotted a likely gap, <a href="/blog/how-do-i-know-what-to-price-my-products">here's how to actually calculate the right price</a> from your own sales data. And if a sale is part of the picture, <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">here's how to run one without corrupting that same data</a>.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -179,6 +202,16 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Often, yes, and not just because of fees. Customers who buy on Amazon and customers who buy on your own Shopify store frequently have different price sensitivity, because they arrived through different channels with different expectations. The only reliable way to know if that's true for your specific catalog is to look at your own sales history on each channel separately, not assume it either way.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Amazon and Shopify shoppers often arrive with different buying contexts, which can produce genuinely different price elasticity for the same product.</li>
+<li>Fitting elasticity per channel, instead of one blended model, avoids averaging two different customer populations into a misleading number.</li>
+<li>Platform fees are a separate, real factor from elasticity: fees affect your break-even price, elasticity tells you what customers will pay.</li>
+<li>Not every product needs channel-specific pricing. If the data shows similar elasticity on both, aligned pricing is simpler and just as correct.</li>
+</ul>
+</div>
+
 <h2>Why Channels Can Have Genuinely Different Demand</h2>
 <p>An Amazon shopper is often comparison-shopping in the moment, price-anchored by whatever else shows up on the same search results page. A Shopify shopper who lands on your own site has frequently already decided they want your specific brand, through an ad, a referral, or direct search for you by name. Those are different buying contexts, and they can produce measurably different price elasticity, the degree to which demand shifts when price shifts, even for the exact same product.</p>
 <p>This isn't guaranteed to be true for every store. Some catalogs show similar elasticity across channels. The point is that you shouldn't assume either way. You should check.</p>
@@ -209,6 +242,7 @@ export const posts: BlogPost[] = [
 
 <h2>When Prices Genuinely Should Match</h2>
 <p>Not every product needs channel-specific pricing. If a product shows similar elasticity on both channels once you actually check, keeping the price aligned is simpler to manage and easier to explain if a customer ever compares the two. The goal isn't maximum differentiation for its own sake, it's letting the actual data decide, rather than assuming sameness or difference by default.</p>
+<p>If you're still deciding which pricing tool can actually fit elasticity per channel for you, see <a href="/blog/shopify-pricing-apps-what-to-look-for">what to look for in a Shopify pricing app</a>. And if you haven't calculated a baseline elasticity for your catalog yet, start with <a href="/blog/how-do-i-know-what-to-price-my-products">how to know what to price your products</a>.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -255,6 +289,16 @@ export const posts: BlogPost[] = [
     category: "Product",
     content: `
 <p class="intro">If you're evaluating a Shopify pricing app, look for three things: does it learn from your own sales data instead of guessing or copying competitors, does it tell you how confident it is in a given recommendation, and does it let you review and test before anything actually changes. Most tools skip at least one of these, and that gap is usually where merchants get burned.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Pricing apps fall into three genuinely different categories: competitor repricers, rule-based discount tools, and elasticity-based tools that learn from your own sales data.</li>
+<li>A confidence score matters as much as the recommendation itself, since it tells you how much data actually supports a given call.</li>
+<li>A repricer answers "what is the market doing," while an elasticity tool answers "what will my customers actually pay."</li>
+<li>Test on a small subset of your catalog before trusting a tool with everything, and confirm the recommendations track real outcomes first.</li>
+</ul>
+</div>
 
 <h2>Three Genuinely Different Categories, Often Sold as One</h2>
 <p>"Pricing app" covers tools that behave very differently underneath, and conflating them is the fastest way to pick the wrong one.</p>
@@ -313,6 +357,7 @@ export const posts: BlogPost[] = [
   <li><strong>Expand to the rest of your catalog</strong> once you trust the pattern of recommendations against real results.</li>
 </ol>
 <p>The trust-building step matters more than any single feature. The value of an AI-assisted recommendation holds up because you can see the reasoning and test it before it goes live, not because you're asked to believe it on faith.</p>
+<p>Once you've picked a tool, <a href="/blog/is-your-store-leaving-money-on-the-table">check whether your current prices are already leaving profit on the table</a>. If a sale is coming up, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to discount without corrupting your pricing data</a>.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -360,6 +405,16 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">The safest way to run a sale without wrecking your margin is to test the discount against your product's actual demand curve before applying it, and to make sure the promotional period gets excluded from your pricing data afterward so it doesn't distort future recommendations. Most of the damage from a bad sale isn't the discount itself, it's the corrupted signal that discount leaves behind in your sales history.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A sale's biggest risk often isn't the discount itself, it's the corrupted pricing signal it leaves behind if the promo period isn't excluded from future data.</li>
+<li>Test a discount against your product's own demand curve before applying it, rather than picking a round percentage that feels generous.</li>
+<li>Promotional sales spikes should be flagged and excluded from your baseline elasticity, since customers respond more aggressively to visible discounts than to normal price changes.</li>
+<li>A post-sale dip in demand is often temporary (customers who stocked up buying less afterward), not a sign your regular price is wrong.</li>
+</ul>
+</div>
+
 <h2>A Sale's Real Cost Has Two Parts</h2>
 <p>The obvious cost of a sale is the margin given up during the discount window. The less obvious cost is what that promotional period does to your pricing data afterward. A spike in sales at a low price during a sale doesn't reflect how customers behave at your normal price. If that spike gets treated as ordinary sales history, it skews your elasticity estimate going forward, and future recommendations end up built on a distorted picture of customer behavior.</p>
 
@@ -397,6 +452,7 @@ export const posts: BlogPost[] = [
   <li><strong>Let the promo period get flagged</strong> as an outlier once the sale runs, so it doesn't corrupt future recommendations.</li>
   <li><strong>Give the post-sale period time</strong> before reading a temporary dip as a signal your regular price is wrong.</li>
 </ol>
+<p>If you're pricing across more than one storefront, the same discipline applies per channel, see <a href="/blog/should-you-price-differently-on-shopify-vs-amazon">should you price differently on Shopify vs Amazon</a>. And if you haven't checked your baseline elasticity recently, start with <a href="/blog/how-do-i-know-what-to-price-my-products">how to know what to price your products</a>.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>

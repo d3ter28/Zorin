@@ -238,6 +238,32 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Key Takeaways summary block */
+.prose-content .key-takeaways {
+  border: 1px solid #e4e4e7; /* zinc-200 */
+  border-radius: 0.75rem;
+  background: #fafafa; /* zinc-50 */
+  padding: 1.1rem 1.25rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.prose-content .key-takeaways p.kt-label {
+  margin: 0 0 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #52525b; /* zinc-600 */
+}
+.prose-content .key-takeaways ul {
+  margin-bottom: 0;
+}
+.prose-content .key-takeaways ul li {
+  margin-bottom: 0.45rem;
+}
+.prose-content .key-takeaways ul li:last-child {
+  margin-bottom: 0;
+}
+
 /* Comparison / data tables */
 .prose-content table {
   width: 100%;
