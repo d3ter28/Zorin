@@ -20,6 +20,7 @@ beforeEach(() => {
   userFindUnique.mockReset();
   createPasswordResetToken.mockReset();
   sendPasswordResetEmail.mockReset();
+  sendPasswordResetEmail.mockResolvedValue(undefined);
   checkRateLimit.mockReset();
   checkRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
 });

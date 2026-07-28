@@ -29,7 +29,9 @@ export const POST = withErrorHandling(async (req: Request) => {
       const token = await createPasswordResetToken(prisma, user.id);
       const origin = new URL(req.url).origin;
       const resetUrl = `${origin}/reset-password?token=${token}`;
-      await sendPasswordResetEmail(email, resetUrl);
+      sendPasswordResetEmail(email, resetUrl).catch((err) => {
+        console.error("Failed to send password reset email:", err);
+      });
     }
   }
 
