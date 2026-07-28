@@ -15,7 +15,7 @@ export function Hero() {
         >
           <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
             <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-            Early Access, free while in MVP
+            14-day free trial — early access
           </span>
           <h1 className="mt-5 text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl">
             Stop guessing your prices.{" "}

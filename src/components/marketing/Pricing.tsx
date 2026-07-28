@@ -66,7 +66,7 @@ export function Pricing() {
           Simple, honest pricing
         </h2>
         <p className="mt-3 max-w-[45ch] text-base leading-relaxed text-zinc-500">
-          Start with a free trial. Upgrade as your catalog grows.
+          Start with a 14-day free trial — available while we&apos;re in beta. Upgrade as your catalog grows.
         </p>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">

@@ -42,8 +42,8 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "Is it free right now?",
-    a: "Yes. Zorin is free for all early access users while we're in MVP. In exchange, we ask for honest feedback on what's working and what isn't. Early access users get locked-in pricing when we launch paid plans.",
+    q: "Is there a free trial?",
+    a: "Yes — every plan includes a 14-day free trial before we start charging. This trial is only available while Zorin is in beta; once beta ends, new signups start billing immediately with no trial period. Early access users also get locked-in pricing when we launch paid plans.",
   },
 ];
 
