@@ -61,20 +61,22 @@ function ResetPasswordInner() {
   return (
     <form onSubmit={submit} className="space-y-4">
       <label className="block">
-        <span className="text-sm text-zinc-500">New password (8+ characters)</span>
+        <span className="text-sm text-muted">New password (8+ characters)</span>
         <input
           type="password"
           required
+          autoComplete="new-password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           className="mt-1 w-full rounded-md border border-black/10 px-3 py-2 text-sm"
         />
       </label>
       <label className="block">
-        <span className="text-sm text-zinc-500">Confirm new password</span>
+        <span className="text-sm text-muted">Confirm new password</span>
         <input
           type="password"
           required
+          autoComplete="new-password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           className="mt-1 w-full rounded-md border border-black/10 px-3 py-2 text-sm"
@@ -84,7 +86,7 @@ function ResetPasswordInner() {
       <button
         type="submit"
         disabled={busy}
-        className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+        className="w-full rounded-md bg-ink px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
       >
         {busy ? "Please wait…" : "Reset password"}
       </button>
