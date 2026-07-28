@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { AuthForm } from "@/components/AuthForm";
 
@@ -183,9 +184,12 @@ const captions = [
   "One click to apply a data-backed price change.",
 ];
 
-export default function LoginPage() {
+function LoginPageInner() {
   const [active, setActive] = useState(0);
   const [fading, setFading] = useState(false);
+
+  const searchParams = useSearchParams();
+  const resetSuccess = searchParams.get("reset") === "success";
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -219,6 +223,12 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900">Welcome back</h1>
           <p className="mt-1.5 text-sm text-zinc-500">Log in to your Zorin account.</p>
 
+          {resetSuccess && (
+            <p className="mt-3 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+              Your password has been reset. Log in with your new password.
+            </p>
+          )}
+
           <div className="mt-8">
             <AuthForm
               endpoint="/api/auth/login"
@@ -229,6 +239,12 @@ export default function LoginPage() {
               ]}
             />
           </div>
+
+          <p className="mt-3 text-sm text-zinc-500">
+            <Link href="/forgot-password" className="font-medium text-zinc-900 underline underline-offset-4">
+              Forgot password?
+            </Link>
+          </p>
 
           <p className="mt-5 text-sm text-zinc-500">
             No account?{" "}
@@ -298,5 +314,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginPageInner />
+    </Suspense>
   );
 }

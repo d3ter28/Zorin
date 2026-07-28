@@ -4,6 +4,7 @@ import { AppShell } from "@/components/AppShell";
 import { ShopifyConnectionCard } from "@/components/ShopifyConnectionCard";
 import { WooCommerceConnectionCard } from "@/components/WooCommerceConnectionCard";
 import { BillingCard } from "@/components/BillingCard";
+import { ChangePasswordCard } from "@/components/ChangePasswordCard";
 
 export default async function SettingsPage() {
   const user = await requireSessionPage();
@@ -21,6 +22,7 @@ export default async function SettingsPage() {
             planTier={merchant?.planTier ?? null}
             subscriptionStatus={merchant?.subscriptionStatus ?? null}
           />
+          <ChangePasswordCard />
           <ShopifyConnectionCard />
           <WooCommerceConnectionCard />
         </div>

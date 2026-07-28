@@ -48,6 +48,18 @@ export async function destroySession(prisma: PrismaClient, token: string): Promi
   await prisma.session.deleteMany({ where: { token } });
 }
 
+export async function destroyAllSessions(prisma: PrismaClient, userId: string): Promise<void> {
+  await prisma.session.deleteMany({ where: { userId } });
+}
+
+export async function destroyOtherSessions(
+  prisma: PrismaClient,
+  userId: string,
+  keepToken: string,
+): Promise<void> {
+  await prisma.session.deleteMany({ where: { userId, token: { not: keepToken } } });
+}
+
 export function setSessionCookie(res: NextResponse, token: string, expiresAt: Date): void {
   res.cookies.set(SESSION_COOKIE, token, {
     httpOnly: true,
