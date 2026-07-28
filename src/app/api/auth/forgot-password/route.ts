@@ -21,8 +21,15 @@ export const POST = withErrorHandling(async (req: Request) => {
   const body = await parseJsonBody(req);
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
 
-  // Always the same response shape regardless of whether the email exists —
-  // no account-enumeration oracle, same principle as the login route.
+  // Always the same response shape ({ ok: true }) regardless of whether the
+  // email exists — an attacker inspecting the response body can't tell which
+  // case occurred. Note this is weaker than login's protection: login also
+  // equalizes response TIMING (always running verifyPassword against a real
+  // or dummy hash), but this route does extra work (token creation + email
+  // dispatch) only for known emails, so response latency here could still
+  // leak account existence to a sufficiently precise timing attack. Rate
+  // limiting bounds how many times an attacker can probe this at all, which
+  // mitigates but doesn't eliminate that gap.
   if (email !== "") {
     const user = await prisma.user.findUnique({ where: { email } });
     if (user) {
