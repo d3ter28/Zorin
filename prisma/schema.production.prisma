@@ -32,6 +32,7 @@ model Product {
   cogs                 Int?
   category             String
   estUnits             Int?
+  imageUrl             String?
   shopifyVariantId     String?
   woocommerceVariantId String?
   woocommerceParentId  String?
