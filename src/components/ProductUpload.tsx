@@ -9,10 +9,10 @@ interface Summary {
 }
 
 const SAMPLE_CSV =
-  "sku,title,current_price,category,cogs,est_units\n" +
-  "SKU-001,Wireless Headphones,79.99,Electronics,28.00,120\n" +
-  "SKU-002,Leather Wallet,34.99,Accessories,9.00,200\n" +
-  "SKU-003,Yoga Mat,42.99,Fitness,13.50,95\n";
+  "sku,title,current_price,category,cogs,est_units,image_url\n" +
+  "SKU-001,Wireless Headphones,79.99,Electronics,28.00,120,https://picsum.photos/seed/headphones/400\n" +
+  "SKU-002,Leather Wallet,34.99,Accessories,9.00,200,\n" +
+  "SKU-003,Yoga Mat,42.99,Fitness,13.50,95,\n";
 
 export function ProductUpload({ onImported }: { onImported: () => void }) {
   const sampleCsvUrl = "data:text/csv;charset=utf-8," + encodeURIComponent(SAMPLE_CSV);
@@ -55,7 +55,7 @@ export function ProductUpload({ onImported }: { onImported: () => void }) {
           <h2 className="text-sm font-semibold text-ink">Import product catalog</h2>
           <p className="mt-0.5 text-xs text-muted">
             CSV columns:{" "}
-            <span className="font-mono">sku, title, current_price, category, cogs, est_units</span>
+            <span className="font-mono">sku, title, current_price, category, cogs, est_units, image_url</span>
           </p>
         </div>
         <div className="flex items-center gap-3">
