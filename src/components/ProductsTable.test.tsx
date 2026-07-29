@@ -14,6 +14,7 @@ const ROWS = [
     category: "kitchen",
     estUnits: 100,
     margin: 0.6,
+    imageUrl: "https://example.com/mug.jpg",
     comparison: { compMedian: 1400, pctVsMedian: 0.07, competitorCount: 3 },
     recommendedAction: "hold" as const,
     suggestedPrice: 1500,
@@ -27,6 +28,7 @@ const ROWS = [
     category: "kitchen",
     estUnits: 50,
     margin: 0.59,
+    imageUrl: null,
     comparison: { compMedian: 2250, pctVsMedian: -0.02, competitorCount: 2 },
     recommendedAction: "hold" as const,
     suggestedPrice: 2200,
@@ -83,6 +85,13 @@ describe("ProductsTable refresh states", () => {
     const button = await renderLoaded();
     expect((button as HTMLButtonElement).disabled).toBe(false);
     expect(screen.getByText("Ceramic Mug")).toBeTruthy();
+  });
+
+  it("shows a product thumbnail when imageUrl is present, and the fallback tile when it's null", async () => {
+    stubFetch(async () => json({ refreshed: 0, failed: 0 }));
+    await renderLoaded();
+    expect(screen.getByRole("img", { name: "Ceramic Mug" })).toBeTruthy();
+    expect(screen.queryByRole("img", { name: "Steel Bottle" })).toBeNull();
   });
 
   it("busy: disables the button and shows 'Refreshing…' while the POST is pending", async () => {
@@ -171,6 +180,7 @@ const ACTIONABLE_ROWS = [
     category: "office",
     estUnits: 20,
     margin: 0.6,
+    imageUrl: null,
     comparison: { compMedian: 3450, pctVsMedian: 0.01, competitorCount: 2 },
     recommendedAction: "hold" as const,
     suggestedPrice: 3500,
