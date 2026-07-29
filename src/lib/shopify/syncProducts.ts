@@ -71,6 +71,7 @@ export async function syncProducts(
           title,
           currentPrice: priceCents,
           shopifyVariantId,
+          imageUrl: v.imageUrl,
         },
       });
       touchedIds.push(existingId);
@@ -83,6 +84,7 @@ export async function syncProducts(
           title,
           currentPrice: priceCents,
           shopifyVariantId,
+          imageUrl: v.imageUrl,
           category: "Shopify",
         },
       });
