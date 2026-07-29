@@ -4,6 +4,7 @@ export interface WooNormalizedProduct {
   name: string;
   sku: string;
   regularPriceDollars: string;
+  imageUrl: string | null;
 }
 
 export interface WooOrder {
@@ -26,6 +27,7 @@ interface RawProduct {
   name: string;
   sku: string;
   regular_price: string;
+  images?: Array<{ src: string }>;
 }
 
 interface RawVariation {
@@ -33,6 +35,7 @@ interface RawVariation {
   sku: string;
   regular_price: string;
   attributes: Array<{ name: string; option: string }>;
+  images?: Array<{ src: string }>;
 }
 
 const MAX_RETRIES = 3;
@@ -146,8 +149,11 @@ export class WooCommerceClient {
             name: product.name,
             sku: product.sku,
             regularPriceDollars: product.regular_price,
+            imageUrl: product.images?.[0]?.src ?? null,
           });
         } else if (product.type === "variable") {
+          const parentImageUrl = product.images?.[0]?.src ?? null;
+
           // Fetch all variation pages for this variable product
           let varUrl: string | null =
             `${this.baseUrl}/products/${product.id}/variations?per_page=100`;
@@ -169,6 +175,7 @@ export class WooCommerceClient {
                   : product.name,
                 sku: variation.sku,
                 regularPriceDollars: variation.regular_price,
+                imageUrl: variation.images?.[0]?.src ?? parentImageUrl,
               });
             }
 

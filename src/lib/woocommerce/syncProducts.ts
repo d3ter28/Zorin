@@ -49,7 +49,13 @@ export async function syncWooProducts(
     if (existingId) {
       await prisma.product.update({
         where: { id: existingId },
-        data: { title: p.name, currentPrice, woocommerceVariantId, woocommerceParentId },
+        data: {
+          title: p.name,
+          currentPrice,
+          woocommerceVariantId,
+          woocommerceParentId,
+          imageUrl: p.imageUrl,
+        },
       });
       touchedIds.push(existingId);
       updated++;
@@ -62,6 +68,7 @@ export async function syncWooProducts(
           currentPrice,
           woocommerceVariantId,
           woocommerceParentId,
+          imageUrl: p.imageUrl,
           category: "WooCommerce",
         },
       });
