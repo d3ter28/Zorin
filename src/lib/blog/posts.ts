@@ -10,6 +10,462 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies",
+    title: "Why Do My Bestsellers and Slow Sellers Need Different Pricing Strategies?",
+    excerpt:
+      "Treating your whole catalog with one pricing rule ignores that a hot seller and a stale SKU are answering completely different questions.",
+    date: "2026-07-30",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">Bestsellers and slow sellers need different pricing strategies because they're solving different problems: a bestseller's question is how much more profit you can extract from demand that's already proven, while a slow seller's question is whether the price itself, not the product, is the reason it isn't moving. Applying one blanket pricing rule across a catalog treats both as if they were the same problem, and that's usually where margin gets left on the table or dead stock quietly piles up.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A bestseller has proven demand, so the pricing question is usually whether you can raise price without meaningfully denting that demand.</li>
+<li>A slow seller's pricing question is different: is a lower price the thing that would actually move it, or is the problem elsewhere (visibility, positioning, fit)?</li>
+<li>Elasticity, calculated separately per product, naturally reflects this difference rather than requiring you to guess which category a product falls into.</li>
+<li>A single catalog-wide discount or markup ignores this split and usually overcorrects one group while undercorrecting the other.</li>
+<li>Reviewing your catalog by segment (proven sellers vs. thin performers) is more useful than reviewing it as one undifferentiated list.</li>
+</ul>
+</div>
+
+<h2>Two Different Questions Wearing the Same Label</h2>
+<p>"What should I price this at" sounds like one question, but it means something different depending on the product. For a bestseller, demand at the current price is already proven, so the real question is whether that price is leaving profit on the table, whether a modest increase would barely dent volume while meaningfully raising margin. For a slow seller, demand hasn't been proven at all, and the question is whether price is even the actual obstacle, or whether the product simply isn't reaching the right customers.</p>
+
+<h2>Why a Bestseller's Elasticity Often Supports a Higher Price Than You'd Guess</h2>
+<p>A product selling consistently at its current price doesn't automatically mean the current price is optimal, it means the price is acceptable to enough customers to generate steady volume. If the elasticity estimate for that product is low (customers not very price-sensitive), there's often real room to raise price without losing much volume, and the resulting margin gain applies to every unit you're already selling. This is easy to miss precisely because nothing about steady sales signals a problem.</p>
+
+<h2>Why a Slow Seller's Problem Might Not Be Price at All</h2>
+<p>It's tempting to assume a slow-moving product just needs a discount to move. Sometimes that's true. Often, the real issue is visibility, positioning, or simply weaker product-market fit, none of which a lower price actually fixes. Elasticity can help here too: if a product's estimated elasticity is high (very price-sensitive) and it's still not moving even at a reasonable price, that's a signal worth investigating beyond pricing. If elasticity is low and it's still not moving, a discount is unlikely to be the fix, since customers weren't especially price-sensitive to begin with.</p>
+
+<table>
+  <thead>
+    <tr><th>Segment</th><th>Typical question</th><th>What elasticity often shows</th><th>Likely lever</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Bestseller</td><td>Am I leaving margin on the table?</td><td>Often lower elasticity; demand already proven</td><td>Test a modest price increase</td></tr>
+    <tr><td>Steady mid-performer</td><td>Is this priced about right?</td><td>Moderate elasticity, reasonable confidence</td><td>Standard review cadence, minor adjustments</td></tr>
+    <tr><td>Slow seller</td><td>Is price actually the obstacle?</td><td>Varies; low elasticity suggests price isn't the fix</td><td>Investigate visibility/fit before discounting</td></tr>
+  </tbody>
+</table>
+
+<h2>Why One Blanket Rule Overcorrects Both Groups</h2>
+<p>A catalog-wide discount treats a bestseller and a slow seller identically, giving away margin on the bestseller that didn't need to be given up, while possibly still not being enough to move the slow seller if price wasn't the real obstacle. A catalog-wide price increase has the mirror problem: it might work fine on inelastic bestsellers but push an already-struggling slow seller further from moving at all. Segmenting the catalog before applying any blanket rule avoids both mistakes at once.</p>
+
+<h2>How to Actually Segment Your Catalog</h2>
+<p>Rather than manually deciding which products count as "bestsellers" and which count as "slow," let each product's own sales history and calculated elasticity do that sorting for you. A product with strong, consistent volume and low price sensitivity behaves like a bestseller regardless of what category you'd have put it in by instinct. A product with thin data or weak demand at any price tested behaves like a genuine slow seller, and deserves a different conversation than a pricing tweak.</p>
+
+<h2>A Practical Way to Review a Mixed Catalog</h2>
+<ol>
+  <li><strong>Sort by confidence and elasticity</strong> rather than by gut-feel category labels.</li>
+  <li><strong>Test a modest price increase</strong> on low-elasticity, high-confidence bestsellers first, where the upside is clearest.</li>
+  <li><strong>Investigate slow sellers beyond price</strong> before assuming a discount is the fix, especially if elasticity is already low.</li>
+  <li><strong>Avoid one blanket rule</strong> across the whole catalog for either a sale or a general price adjustment.</li>
+</ol>
+<p>If you want to see this split for your own catalog rather than guessing which products fall into which group, <a href="/signup">upload your sales history</a> and review each product's own elasticity and confidence score.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Why do bestsellers and slow sellers need different pricing strategies?</h3>
+<p>A bestseller's question is whether you can raise price without losing much proven demand. A slow seller's question is whether price is even the actual obstacle, which a discount doesn't necessarily fix.</p>
+</div>
+<div class="faq-item">
+<h3>Should I ever raise the price of my bestselling product?</h3>
+<p>If its elasticity is low, meaning customers aren't very price-sensitive, a modest increase can often raise margin without meaningfully denting volume.</p>
+</div>
+<div class="faq-item">
+<h3>Will discounting a slow-moving product always help it sell?</h3>
+<p>Not necessarily. If the product's elasticity is low, price isn't the main driver of its performance, and a discount may not fix an underlying visibility or fit problem.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know which category a product falls into?</h3>
+<p>Its own elasticity and confidence score, calculated from its actual sales history, naturally reflect this rather than requiring you to guess based on instinct.</p>
+</div>
+<div class="faq-item">
+<h3>Is a catalog-wide discount ever a good idea?</h3>
+<p>It can work for a genuine, time-limited event, but it typically overcorrects bestsellers (giving away unneeded margin) while possibly undercorrecting slow sellers if price wasn't their real problem.</p>
+</div>
+<div class="faq-item">
+<h3>What should I check before discounting a slow seller?</h3>
+<p>Whether its elasticity is actually high enough that price is a meaningful lever, versus a visibility or positioning issue a lower price wouldn't solve.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need to manually categorize my products?</h3>
+<p>No. Elasticity and confidence, calculated per product, naturally sort your catalog by how it should be treated without requiring manual labeling.</p>
+</div>
+</section>
+
+<p class="conclusion">A catalog isn't one pricing problem, it's many small ones that happen to share a dashboard. Let each product's own data tell you whether it's a bestseller with room to raise, or a slow seller whose real problem might not be its price at all.</p>
+    `.trim(),
+  },
+  {
+    slug: "do-i-need-a-data-analyst-to-price-my-products-well",
+    title: "Do I Need a Data Analyst to Price My Products Well?",
+    excerpt:
+      "The math behind good pricing is real statistics, but you don't have to be the one running it by hand.",
+    date: "2026-07-30",
+    readingTime: "6 min read",
+    category: "Education",
+    content: `
+<p class="intro">No, you don't need a data analyst to price your products well. The underlying math, elasticity modeling from your sales history, is genuinely statistical, but the calculation itself can run automatically the moment you upload your sales data. What used to require a dedicated analyst is now a mechanical step, not a skill you personally need to acquire.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elasticity modeling is real statistics, but running the calculation doesn't require you to understand the underlying regression, just upload sales history and read the output.</li>
+<li>The gap a dedicated pricing analyst used to close, systematically reading your own sales data, can now be closed by a tool rather than a hire.</li>
+<li>What you actually need to bring is judgment: reviewing a recommendation, understanding your own product context, and deciding whether to apply it.</li>
+<li>A confidence score exists specifically so you don't need statistical training to know how much to trust a given output.</li>
+<li>Hiring a dedicated analyst still makes sense at a certain scale, but that threshold is much higher than most SMB merchants assume.</li>
+</ul>
+</div>
+
+<h2>Why This Question Comes Up So Often</h2>
+<p>Pricing discussions are full of statistical language, elasticity, regression, confidence intervals, and it's reasonable to assume that anything described that way requires a specialist to actually use. That assumption made more sense when the only way to get an elasticity estimate was to build a spreadsheet model yourself or hire someone who could. It makes much less sense now that the calculation itself is automatable.</p>
+
+<h2>What a Pricing Analyst Actually Used to Do</h2>
+<p>Historically, a pricing analyst's core job was reading a company's own sales data systematically: gathering price and quantity history, running a regression to estimate elasticity, checking the fit of that model, and translating the output into a recommendation a non-technical stakeholder could act on. None of those steps require a human specifically, they require a process, and a process is exactly what a modeling tool automates.</p>
+
+<h2>What You Actually Need to Bring Instead</h2>
+<p>The parts of pricing that genuinely still need a human are judgment calls a model can't make for you: knowing that a product is seasonal for reasons the data alone won't show, recognizing when a competitor's move is temporary versus permanent, deciding whether a recommendation makes sense given something you know about your own customers that isn't captured in the sales history. A tool hands you the statistical output. You still decide what to do with it.</p>
+
+<h2>How the Automation Actually Works</h2>
+<p>You upload your sales history, a CSV export or a live Shopify or WooCommerce sync, and the tool fits a log-log regression per product automatically. The output isn't a raw statistical readout, it's a plain recommendation: raise, lower, or hold, alongside an estimated profit lift and a confidence label based on how much data supports the estimate. The regression happens, but you never have to run it, read it, or defend the math behind it yourself.</p>
+
+<table>
+  <thead>
+    <tr><th>What an analyst used to do by hand</th><th>What happens automatically now</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Gather price and quantity history per product</td><td>Reads directly from an uploaded CSV or a live sync</td></tr>
+    <tr><td>Run a regression to estimate elasticity</td><td>Fits the model automatically per SKU</td></tr>
+    <tr><td>Check the statistical fit before trusting the output</td><td>Returns an R-squared score and a confidence label</td></tr>
+    <tr><td>Translate the output into a plain recommendation</td><td>Returns raise/lower/hold with an estimated profit lift</td></tr>
+  </tbody>
+</table>
+
+<h2>Why the Confidence Score Matters Here Specifically</h2>
+<p>Without a background in statistics, it's hard to know from a raw elasticity number alone whether it's actually reliable. A confidence label (commonly something like Strong, Fair, or Weak fit) exists specifically to close that gap, telling you plainly whether a given estimate has enough data behind it to trust, without requiring you to interpret an R-squared value yourself.</p>
+
+<h2>When a Dedicated Analyst Still Makes Sense</h2>
+<p>At a large enough scale, with a catalog spanning thousands of SKUs, multiple markets, and pricing questions that go beyond single-product elasticity (bundling strategy, cross-product cannibalization, complex promotional calendars), a dedicated analyst or pricing team earns their keep. That threshold is far higher than most SMB merchants operating a lean one-to-five-person team, which is exactly the gap automated elasticity modeling is built to close in the meantime.</p>
+
+<h2>What This Means for a Lean Team</h2>
+<p>You don't need to learn statistics, hire someone who has, or build a spreadsheet model to price well. You need a way to read your own sales data systematically, which a tool can do automatically, and the judgment to apply the resulting recommendation with your own product context in mind. If you want to see what your own catalog's elasticity looks like without doing the math yourself, <a href="/signup">upload your sales history</a> and let the model run.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Do I need a data analyst to price my products well?</h3>
+<p>No. The underlying elasticity modeling can run automatically once you upload your sales history, without requiring you to understand or run the regression yourself.</p>
+</div>
+<div class="faq-item">
+<h3>What did a pricing analyst actually do before automation?</h3>
+<p>Gathered price and quantity history, ran a regression to estimate elasticity, checked the statistical fit, and translated the result into a plain recommendation.</p>
+</div>
+<div class="faq-item">
+<h3>What do I still need to do myself?</h3>
+<p>Bring judgment: reviewing a recommendation against your own knowledge of the product and deciding whether to apply it, since a model doesn't know everything about your business context.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if a recommendation is reliable without statistics training?</h3>
+<p>A confidence label (Strong, Fair, Weak) tells you plainly how much data supports a given estimate, without requiring you to interpret raw statistical output yourself.</p>
+</div>
+<div class="faq-item">
+<h3>Does this replace a pricing analyst entirely?</h3>
+<p>For most SMB catalogs, yes, the core function (reading your own sales data systematically) is what gets automated. At a much larger scale with more complex pricing questions, a dedicated analyst still adds value.</p>
+</div>
+<div class="faq-item">
+<h3>What data do I need to provide for this to work?</h3>
+<p>Your sales history, typically a CSV export with date, SKU, units sold, and price, or a live sync from Shopify or WooCommerce.</p>
+</div>
+<div class="faq-item">
+<h3>Is the underlying math still real statistics?</h3>
+<p>Yes. A log-log regression genuinely runs behind the scenes, it's just automated rather than something you need to perform or understand yourself.</p>
+</div>
+</section>
+
+<p class="conclusion">The statistics behind good pricing are real, but running them by hand was always the bottleneck, not a requirement you personally need to meet. Automate the calculation, bring your own judgment to the recommendation, and the analyst-sized gap closes without an analyst-sized hire.</p>
+    `.trim(),
+  },
+  {
+    slug: "whats-a-good-profit-margin-for-an-online-store",
+    title: "What's a Good Profit Margin for an Online Store?",
+    excerpt:
+      "Industry benchmarks are a starting point, not an answer. Here's why your own number matters more than the average.",
+    date: "2026-07-30",
+    readingTime: "7 min read",
+    category: "Education",
+    content: `
+<p class="intro">A commonly cited benchmark for online stores is 60 to 70% gross margin and 10 to 20% net margin, though this varies meaningfully by category and business model. The more useful answer, though, is that a "good" margin for your specific store is whatever your own cost structure and demand curve actually support, not an industry average copied from a blog post. Benchmarks are a sanity check, not a target to force your pricing toward.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Commonly cited ecommerce benchmarks run 60-70% gross margin and 10-20% net margin, varying meaningfully by category and business model.</li>
+<li>An industry average tells you roughly where stores like yours tend to land, not what your specific margin should be.</li>
+<li>The gap between gross and net margin is often 35-40 percentage points, so tracking gross margin alone can hide a real profitability problem.</li>
+<li>Your own elasticity and cost structure, not a benchmark, determine the actual profit-maximizing price for each product.</li>
+<li>A margin that matches the industry average on paper can still be leaving profit on the table for your specific customer base.</li>
+</ul>
+</div>
+
+<h2>What the Commonly Cited Numbers Actually Say</h2>
+<p>Industry benchmarks suggest average ecommerce stores run somewhere around 60-65% gross margin, with dropshipping models often higher (65-70%) and private-label or self-produced goods slightly lower (60-65%). On the net margin side, 5% is generally considered low, 10% average, and 20% or higher considered strong for sustainable long-term growth. These numbers are a reasonable starting orientation, especially if you have no other reference point yet.</p>
+
+<table>
+  <thead>
+    <tr><th>Margin type</th><th>Commonly cited range</th><th>What it measures</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Gross margin</td><td>60-70%</td><td>Revenue minus cost of goods sold, before operating expenses</td></tr>
+    <tr><td>Net margin</td><td>10-20%</td><td>What's left after all operating costs, the real bottom-line profitability</td></tr>
+  </tbody>
+</table>
+<p>These figures are general industry benchmarks, not a guarantee for any specific store; actual healthy margins vary by product category and business model.</p>
+
+<h2>Why the Gap Between Gross and Net Margin Matters</h2>
+<p>The difference between gross and net margin commonly runs 35 to 40 percentage points, meaning a store with an impressive-looking 65% gross margin might still only be netting 10-15% after everything else is accounted for. Tracking gross margin alone can create a false sense of security. The number that actually determines whether your business is healthy is net margin, not the more flattering gross figure.</p>
+
+<h2>Why a Benchmark Can't Tell You Your Actual Number</h2>
+<p>An industry average describes where stores like yours tend to land on average, not what your specific product, cost structure, and customer base can actually support. Two stores selling similar products can have meaningfully different optimal margins if their customers have different price sensitivity, their supplier costs differ, or their acquisition channels bring in different kinds of buyers. Chasing a benchmark number as a target can mean underpricing a product whose actual demand would support a higher margin, or overpricing one where your specific customers are more price-sensitive than the category average.</p>
+
+<h2>What Actually Determines Your Real Optimal Margin</h2>
+<p>Your true landed cost (including fees, shipping, and returns) sets the floor. Your product's elasticity, how much demand shifts with price, calculated from your own sales history, tells you how far above that floor you can reasonably price without losing more in volume than you gain in margin. Neither number comes from an industry average. Both come from your own store's actual data.</p>
+
+<h2>Using Benchmarks the Right Way</h2>
+<p>Treat an industry benchmark as a sanity check, not a target. If your margin is dramatically below the typical range for your category, that's worth investigating, maybe your costs are unusually high, or your pricing is more conservative than your customers would actually tolerate. If your margin already sits within a normal range, that alone doesn't mean it's optimal for your specific catalog; it just means it's not an outlier.</p>
+
+<h2>A More Useful Question Than "What's a Good Margin"</h2>
+<p>Rather than asking what margin is generically good, ask whether your current margin, for each specific product, matches what your own elasticity and cost data would recommend. That's a more precise question with a more actionable answer, one product can genuinely support a higher margin than the industry average, and another might need to sit lower to move at the volume your business needs.</p>
+<p>If you want to see where your own products actually sit relative to their profit-maximizing price, rather than an industry average, <a href="/blog/is-your-store-leaving-money-on-the-table">here's how to check</a>, or <a href="/signup">connect your sales history</a> directly.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's a good profit margin for an online store?</h3>
+<p>Commonly cited benchmarks run 60-70% gross margin and 10-20% net margin, though your own optimal number depends on your specific costs and customer demand, not the industry average alone.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between gross and net margin?</h3>
+<p>Gross margin is revenue minus cost of goods sold. Net margin subtracts all other operating costs too, and is a more accurate measure of actual profitability.</p>
+</div>
+<div class="faq-item">
+<h3>Why might my margin be within the normal range but still not optimal?</h3>
+<p>An industry average describes where stores like yours typically land, not what your specific demand curve and cost structure can support. Being "normal" doesn't mean it's your profit-maximizing number.</p>
+</div>
+<div class="faq-item">
+<h3>Should I aim to match the industry average margin?</h3>
+<p>Use it as a sanity check rather than a target. Your own elasticity and cost data determine your actual optimal margin, which may sit above or below the average.</p>
+</div>
+<div class="faq-item">
+<h3>Why do gross and net margin sometimes look so different?</h3>
+<p>Operating costs beyond cost of goods sold (fees, overhead, returns) commonly eat 35-40 percentage points between the two, so a strong gross margin can still mask a weak net margin.</p>
+</div>
+<div class="faq-item">
+<h3>Does margin vary a lot by product category?</h3>
+<p>Yes, significantly. Benchmarks differ meaningfully across categories and business models (dropshipping vs. private label, for example), so a single universal number rarely applies well.</p>
+</div>
+<div class="faq-item">
+<h3>How do I find my actual optimal margin instead of guessing from a benchmark?</h3>
+<p>Calculate your true landed cost as a floor, then use your product's own elasticity, from its actual sales history, to determine how far above that floor your specific customers will support.</p>
+</div>
+</section>
+
+<p class="conclusion">Industry benchmarks are a reasonable starting orientation, not a substitute for your own numbers. Your actual optimal margin lives in your own cost structure and your own customers' demand, not in an average calculated across thousands of stores that aren't yours.</p>
+    `.trim(),
+  },
+  {
+    slug: "should-i-raise-prices-to-cover-rising-costs",
+    title: "Should I Raise Prices to Cover Rising Costs?",
+    excerpt:
+      "Usually yes, but the timing and size of the increase matter more than the decision to raise at all.",
+    date: "2026-07-30",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">Usually, yes, if your supplier costs, fees, or fulfillment expenses have genuinely risen, absorbing that increase indefinitely just shrinks your margin quietly instead of addressing it directly. The harder question isn't whether to raise prices, it's how much and how fast, since a poorly timed or oversized increase can cost you more in lost customers than the cost increase itself would have.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Absorbing a real, sustained cost increase without adjusting price simply shrinks your margin over time rather than solving the underlying problem.</li>
+<li>Small businesses generally have less room to absorb rising costs than larger companies, making pass-through more necessary, not less.</li>
+<li>Timing and framing matter: raising prices too abruptly, without a clear reason communicated, risks losing customers you didn't need to lose.</li>
+<li>Your product's elasticity tells you how much of the cost increase can realistically be passed through without a disproportionate volume loss.</li>
+<li>Cost management (renegotiating supplier terms, cutting non-essential spend) is a complement to a price increase, not a full substitute for one.</li>
+</ul>
+</div>
+
+<h2>Why Absorbing Costs Indefinitely Isn't Actually Neutral</h2>
+<p>It can feel safer to hold your price steady and absorb a cost increase rather than risk upsetting customers with a higher number. But holding price steady while costs rise isn't a neutral choice, it's a slow, quiet decision to shrink your margin every single sale, indefinitely, until you eventually address it. Small businesses in particular tend to have less margin cushion to absorb rising costs than larger companies, which makes this trade-off more urgent, not less.</p>
+
+<h2>The Real Question: How Much and How Fast, Not Whether</h2>
+<p>Once a cost increase is real and sustained, not a temporary blip, the decision to eventually pass some of it through is usually necessary for the business to stay healthy. The genuinely important decisions are about size and timing: raising prices too abruptly or too far beyond what the increase actually warrants risks losing customers who would have tolerated a smaller, better-timed adjustment.</p>
+
+<h2>Let Elasticity Set the Ceiling on What's Realistic</h2>
+<p>Your product's elasticity, calculated from its own sales history, tells you roughly how much volume you'd expect to lose for a given price increase. If demand is fairly inelastic, a cost-driven increase can likely be passed through close to fully without a disproportionate hit to volume. If demand is highly elastic, passing through the full cost increase risks losing more in volume than the increase gains in margin, and a partial pass-through, absorbing some of the cost yourself, may be the more profitable choice even though it feels less "fair" on paper.</p>
+
+<table>
+  <thead>
+    <tr><th>Elasticity signal</th><th>What it suggests for cost pass-through</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Low elasticity (inelastic)</td><td>Passing through most or all of the cost increase is likely to preserve or improve total profit</td></tr>
+    <tr><td>High elasticity (elastic)</td><td>Full pass-through risks a bigger volume hit than the cost increase justifies; consider partial absorption</td></tr>
+  </tbody>
+</table>
+
+<h2>Timing and Framing Matter More Than Most Merchants Expect</h2>
+<p>A sudden, large price jump can shock customers accustomed to a stable price in a way a smaller, better-timed increase wouldn't, independent of whether the new price is objectively justified by real cost increases. It's also worth watching competitors' pricing as a reference point, since raising prices well ahead of comparable stores, without a clear reason, risks losing price-sensitive customers to an alternative that hasn't moved yet.</p>
+
+<h2>Cost Management Isn't a Substitute, But It Helps</h2>
+<p>Before or alongside a price increase, it's worth exploring whether some of the pressure can be relieved without touching price at all: renegotiating supplier terms, consolidating orders for bulk pricing, or cutting non-essential spend. None of this replaces a genuinely necessary price increase if input costs have risen meaningfully, but it can reduce how much of the increase actually needs to reach the customer.</p>
+
+<h2>A Practical Sequence for a Cost-Driven Increase</h2>
+<ol>
+  <li><strong>Confirm the cost increase is real and sustained</strong>, not a temporary spike that might reverse on its own.</li>
+  <li><strong>Check what cost relief is available elsewhere first</strong> (supplier terms, non-essential spend) before assuming the full increase must be passed through.</li>
+  <li><strong>Use your product's own elasticity</strong> to estimate how much of the increase can be passed through without a disproportionate volume loss.</li>
+  <li><strong>Size and time the increase deliberately</strong> rather than reacting abruptly the moment costs rise.</li>
+  <li><strong>Watch the actual outcome against what elasticity predicted</strong>, the same way you would for any other price change.</li>
+</ol>
+<p>If you want to know how much of a specific cost increase your own customers would likely tolerate, <a href="/blog/what-does-price-elasticity-actually-mean">calculate your product's elasticity</a> first, or <a href="/signup">connect your sales history</a> to see it directly.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Should I raise prices to cover rising costs?</h3>
+<p>Usually yes, if the cost increase is real and sustained. Absorbing it indefinitely just shrinks your margin quietly rather than addressing the underlying problem.</p>
+</div>
+<div class="faq-item">
+<h3>How much of a cost increase should I pass through to customers?</h3>
+<p>It depends on your product's elasticity. Low elasticity supports passing through most or all of the increase; high elasticity may make partial absorption more profitable overall.</p>
+</div>
+<div class="faq-item">
+<h3>Is it risky to raise prices during inflation?</h3>
+<p>The bigger risk is usually in the size and timing of the increase, not the decision to raise prices at all. A sudden, large jump is riskier than a smaller, well-timed one.</p>
+</div>
+<div class="faq-item">
+<h3>Should I check competitor prices before raising mine?</h3>
+<p>It's worth being aware of where competitors sit, since raising prices well ahead of comparable stores without a clear reason risks losing price-sensitive customers to an alternative.</p>
+</div>
+<div class="faq-item">
+<h3>What can I do besides raising prices to manage rising costs?</h3>
+<p>Renegotiating supplier terms, consolidating orders for bulk pricing, and cutting non-essential spend can relieve some pressure, though they rarely replace a genuinely necessary price increase entirely.</p>
+</div>
+<div class="faq-item">
+<h3>Do small businesses have less room to absorb rising costs than large ones?</h3>
+<p>Generally yes, which makes timely, deliberate price adjustments more important for small businesses, not less, compared to larger companies with more margin cushion.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if a cost increase is temporary or worth reacting to?</h3>
+<p>If it's sustained across more than one order cycle and doesn't look like a one-off supplier or shipping fluctuation, it's usually worth treating as a real, ongoing cost change.</p>
+</div>
+</section>
+
+<p class="conclusion">Raising prices to cover a real, sustained cost increase usually isn't the risky part, it's the size and timing of the increase that determines whether it protects your margin or costs you more in lost customers than the original cost increase would have. Let your product's own elasticity guide how much is realistic.</p>
+    `.trim(),
+  },
+  {
+    slug: "how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one",
+    title: "How Do I Set Prices for My Whole Catalog Without Doing It One by One?",
+    excerpt:
+      "Reviewing hundreds of SKUs individually doesn't scale for a lean team. Here's how to price a whole catalog without burning a week on it.",
+    date: "2026-07-30",
+    readingTime: "7 min read",
+    category: "Product",
+    content: `
+<p class="intro">You can price a whole catalog without reviewing every product manually by letting each SKU's own elasticity model generate a recommendation automatically, then applying the ones you trust in bulk while reviewing individually only the products flagged with lower confidence or bigger changes. The manual, one-by-one approach isn't a discipline worth admiring, it's a bottleneck that doesn't scale past a small handful of products.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A catalog-wide view that shows every product's recommendation and estimated profit lift at once replaces reviewing SKUs one at a time.</li>
+<li>Bulk applying is safe for high-confidence recommendations, while low-confidence or unusually large changes are worth a quick individual look first.</li>
+<li>Per-product independence during a bulk apply matters: a failure or issue on one SKU shouldn't block the rest of the catalog from updating.</li>
+<li>Starting with a subset before trusting the whole catalog to bulk apply is a reasonable way to build confidence in the pattern of recommendations.</li>
+<li>The goal isn't zero human review, it's concentrating your limited review time on the products that actually need it.</li>
+</ul>
+</div>
+
+<h2>Why One-by-One Doesn't Scale</h2>
+<p>Reviewing ten products individually is manageable for an afternoon. Reviewing a few hundred, the reality for many established SMB catalogs, simply isn't, not without either a dedicated team or an unreasonable amount of time taken away from running the rest of the business. The manual approach isn't more careful, it's just slower, and slowness at that scale usually means most of the catalog never gets reviewed at all, not that it gets reviewed thoroughly.</p>
+
+<h2>What a Catalog-Wide View Actually Replaces</h2>
+<p>Instead of opening each product's page individually, a catalog view shows every SKU's recommendation (raise, lower, or hold) and estimated profit lift in one list, sortable and scannable in a single pass. This turns "review my whole catalog" from a multi-day task into something you can meaningfully process in one sitting, because you're scanning a list of outcomes rather than re-deriving each one from scratch.</p>
+
+<table>
+  <thead>
+    <tr><th>Product</th><th>Recommendation</th><th>Est. profit lift</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Wireless Headphones</td><td>Raise</td><td>+18.3%</td></tr>
+    <tr><td>Mechanical Keyboard</td><td>Lower</td><td>+6.1%</td></tr>
+    <tr><td>Ergonomic Mouse</td><td>Hold</td><td>—</td></tr>
+    <tr><td>USB-C Hub</td><td>Raise</td><td>+11.7%</td></tr>
+  </tbody>
+</table>
+<p>This table is illustrative of the format, not a claim about any specific catalog; actual recommendations depend entirely on each product's own sales history.</p>
+
+<h2>Where Bulk Applying Is Genuinely Safe</h2>
+<p>A high-confidence recommendation, backed by a strong model fit and a meaningful volume of historical data, is a reasonable candidate for bulk applying without individual review, since the statistical support behind it is already substantial. This is where most of your time savings actually come from: not skipping review entirely, but not needing to re-verify a conclusion that's already well supported.</p>
+
+<h2>Where Individual Review Still Earns Its Keep</h2>
+<p>A Weak-confidence recommendation, an unusually large suggested change, or a product where you have outside context the model can't see (a known upcoming promotion, a supplier issue, a seasonal quirk) is worth a quick individual look before applying. The point isn't to review everything by hand, it's to concentrate your limited attention on the subset that actually benefits from it.</p>
+
+<h2>Why Per-Product Independence Matters During a Bulk Apply</h2>
+<p>When applying changes across many SKUs at once, a single product hitting an issue, a sync failure, a flagged inconsistency, shouldn't block the rest of the catalog from updating. A well-built bulk apply flow handles each product independently, applying the ones that succeed and clearly reporting which ones didn't, rather than an all-or-nothing operation that stalls the entire batch over one problem product.</p>
+
+<h2>A Practical Way to Roll This Out</h2>
+<ol>
+  <li><strong>Start with a subset</strong>, ten to twenty products in a category you know well, and review those individually first.</li>
+  <li><strong>Compare the recommendations against outcomes</strong> you'd expect, building trust in the pattern before scaling up.</li>
+  <li><strong>Bulk apply high-confidence recommendations</strong> across the rest of the catalog once you trust the pattern.</li>
+  <li><strong>Reserve individual review</strong> for low-confidence products, unusually large changes, or SKUs with context the model wouldn't know about.</li>
+  <li><strong>Repeat on your normal review cadence</strong>, not as a one-time catalog cleanup.</li>
+</ol>
+<p>If your catalog has grown past what you can reasonably review product by product, <a href="/signup">connect your sales history</a> and see the full-catalog recommendation view rather than opening each product one at a time.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I set prices for my whole catalog without doing it one by one?</h3>
+<p>Let each product's own elasticity model generate a recommendation automatically, then bulk apply the high-confidence ones and individually review only those flagged with lower confidence or unusually large changes.</p>
+</div>
+<div class="faq-item">
+<h3>Is it safe to bulk apply price changes across many products at once?</h3>
+<p>For high-confidence recommendations backed by substantial sales history, yes. Lower-confidence or unusually large changes are worth a quick individual look first.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if one product fails during a bulk price update?</h3>
+<p>A well-built bulk apply process handles each product independently, so a single failure doesn't block the rest of the catalog from updating successfully.</p>
+</div>
+<div class="faq-item">
+<h3>Should I review every recommendation individually the first time?</h3>
+<p>Starting with a smaller subset and comparing recommendations against expected outcomes is a reasonable way to build trust before applying changes across your full catalog.</p>
+</div>
+<div class="faq-item">
+<h3>Does bulk applying mean I skip review entirely?</h3>
+<p>No. The goal is concentrating your limited review time on products that genuinely need it, not eliminating review for the whole catalog.</p>
+</div>
+<div class="faq-item">
+<h3>How often should I run a catalog-wide pricing review?</h3>
+<p>On a regular cadence, commonly monthly for a small catalog, rather than as a one-time cleanup, since costs and demand continue shifting over time.</p>
+</div>
+<div class="faq-item">
+<h3>What size catalog actually needs this instead of manual review?</h3>
+<p>Once a catalog grows past what you can reasonably review in an afternoon, commonly a few dozen SKUs or more, manual one-by-one review stops being a practical option for a lean team.</p>
+</div>
+</section>
+
+<p class="conclusion">Pricing a whole catalog doesn't have to mean reviewing every product by hand. Let the data sort high-confidence recommendations from the ones that need a closer look, and your limited review time goes to the products that actually benefit from it.</p>
+    `.trim(),
+  },
+  {
     slug: "how-much-should-i-trust-an-ai-pricing-recommendation",
     title: "How Much Should I Trust an AI Pricing Recommendation?",
     excerpt:
