@@ -47,6 +47,7 @@ export async function importProducts(
           category: r.category,
           cogs: r.cogsCents,
           estUnits: r.estUnits,
+          imageUrl: r.imageUrl,
         },
       });
       touched.push(id);
@@ -61,6 +62,7 @@ export async function importProducts(
           category: r.category,
           cogs: r.cogsCents,
           estUnits: r.estUnits,
+          imageUrl: r.imageUrl,
         },
       });
       inserted++;
