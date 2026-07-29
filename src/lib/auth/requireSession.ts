@@ -39,9 +39,9 @@ export async function requireSessionPage(): Promise<SessionInfo> {
   // doesn't check it for this pass. Keep the boundary explicit.
   const merchant = await prisma.merchant.findUnique({
     where: { id: session.merchantId },
-    select: { subscriptionStatus: true },
+    select: { subscriptionStatus: true, trialEndsAt: true },
   });
-  if (!hasActiveSubscription(merchant?.subscriptionStatus ?? null)) {
+  if (!hasActiveSubscription(merchant?.subscriptionStatus ?? null, merchant?.trialEndsAt ?? null)) {
     redirect("/billing/reactivate");
   }
 

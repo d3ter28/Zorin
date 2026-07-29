@@ -43,7 +43,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Is there a free trial?",
-    a: "Yes — every plan includes a 14-day free trial before we start charging. This trial is only available while Zorin is in beta; once beta ends, new signups start billing immediately with no trial period. Early access users also get locked-in pricing when we launch paid plans.",
+    a: "Yes — every plan includes a 7-day free trial, no credit card required. This trial is only available while Zorin is in beta; once beta ends, new signups start billing immediately with no trial period. Early access users also get locked-in pricing when we launch paid plans.",
   },
 ];
 

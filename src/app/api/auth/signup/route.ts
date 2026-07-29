@@ -5,8 +5,11 @@ import { parseJsonBody } from "@/lib/api/validation";
 import { hashPassword } from "@/lib/auth/password";
 import { createSession, setSessionCookie } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/auth/rateLimit";
+import { isValidPlanTier } from "@/lib/stripe/plans";
+import { TRIAL_DAYS } from "@/lib/billing/trial";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
+const DEFAULT_PLAN_TIER = "growth";
 
 export const POST = withErrorHandling(async (req: Request) => {
   const ip =
@@ -25,17 +28,28 @@ export const POST = withErrorHandling(async (req: Request) => {
   const password = typeof body.password === "string" ? body.password : "";
   const storeName = typeof body.storeName === "string" ? body.storeName.trim() : "";
   const storeUrl = typeof body.storeUrl === "string" ? body.storeUrl.trim() : "";
+  const rawPlan = typeof body.plan === "string" ? body.plan : "";
+  const plan = rawPlan === "" ? DEFAULT_PLAN_TIER : rawPlan;
 
   if (!EMAIL_RE.test(email)) throw new HttpError(400, "Invalid email address");
   if (password.length < 8) throw new HttpError(400, "Password must be at least 8 characters");
   if (storeName === "") throw new HttpError(400, "Store name is required");
+  if (!isValidPlanTier(plan)) throw new HttpError(400, "plan must be one of starter, growth, scale");
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) throw new HttpError(409, "An account with this email already exists");
 
   const passwordHash = await hashPassword(password);
+  // No Stripe involvement here — the trial starts immediately with no card
+  // required. trialEndsAt is what actually gates access (see
+  // hasActiveSubscription); Stripe only enters the picture if the merchant
+  // converts to a paid plan, either during the trial or after it expires
+  // via /billing/reactivate.
+  const trialEndsAt = new Date(Date.now() + TRIAL_DAYS * 24 * 60 * 60 * 1000);
   const user = await prisma.$transaction(async (tx) => {
-    const merchant = await tx.merchant.create({ data: { name: storeName, storeUrl } });
+    const merchant = await tx.merchant.create({
+      data: { name: storeName, storeUrl, subscriptionStatus: "trialing", planTier: plan, trialEndsAt },
+    });
     return tx.user.create({ data: { email, passwordHash, merchantId: merchant.id } });
   });
 

@@ -36,12 +36,16 @@ export const POST = withErrorHandling(async (req: Request) => {
   }
 
   const origin = new URL(req.url).origin;
+  // No trial_period_days here — by the time a merchant reaches Checkout,
+  // they've already had their no-card trial (started at signup, see
+  // src/app/api/auth/signup/route.ts) or their previous subscription
+  // lapsed/canceled. Checkout is only reached via /billing/reactivate now,
+  // so it should charge immediately, not grant a second free period.
   const session = await stripe.checkout.sessions.create({
     customer: customerId,
     mode: "subscription",
     payment_method_collection: "always",
     line_items: [{ price: priceIdForTier(plan), quantity: 1 }],
-    subscription_data: { trial_period_days: 14 },
     // Round-trips through checkout.session.completed so the webhook can set
     // Merchant.planTier without an extra Stripe API call — session.subscription
     // on that event is just a string ID with no price info attached.

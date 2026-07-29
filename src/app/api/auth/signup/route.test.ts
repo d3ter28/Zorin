@@ -50,7 +50,7 @@ beforeEach(() => {
 });
 
 describe("POST /api/auth/signup", () => {
-  it("creates merchant + user, starts a session, sets the cookie, returns 201", async () => {
+  it("creates merchant + user, starts a 7-day no-card trial, starts a session, returns 201", async () => {
     userFindUnique.mockResolvedValue(null);
     hashPassword.mockResolvedValue("hashed");
     txMerchantCreate.mockResolvedValue({ id: "m-new" });
@@ -60,18 +60,43 @@ describe("POST /api/auth/signup", () => {
       expiresAt: new Date(Date.now() + 1000),
     });
 
-    const res = await POST(req(valid));
+    const before = Date.now();
+    const res = await POST(req({ ...valid, plan: "starter" }));
 
     expect(res.status).toBe(201);
-    expect(txMerchantCreate).toHaveBeenCalledWith({
-      data: { name: "New Shop", storeUrl: "https://new.example" },
-    });
+    expect(txMerchantCreate).toHaveBeenCalledTimes(1);
+    const merchantArgs = txMerchantCreate.mock.calls[0][0];
+    expect(merchantArgs.data.name).toBe("New Shop");
+    expect(merchantArgs.data.storeUrl).toBe("https://new.example");
+    expect(merchantArgs.data.subscriptionStatus).toBe("trialing");
+    expect(merchantArgs.data.planTier).toBe("starter");
+    expect(merchantArgs.data.trialEndsAt.getTime()).toBeGreaterThanOrEqual(
+      before + 7 * 24 * 60 * 60 * 1000 - 1000,
+    );
     expect(txUserCreate).toHaveBeenCalledWith({
       data: { email: "new@shop.example", passwordHash: "hashed", merchantId: "m-new" },
     });
     expect(createSession.mock.calls[0][1]).toBe("u-new");
     expect(res.headers.get("set-cookie")).toContain("zorin_session=tok123");
     expect(res.headers.get("set-cookie")).toContain("HttpOnly");
+  });
+
+  it("defaults to the growth plan tier when no plan is provided", async () => {
+    userFindUnique.mockResolvedValue(null);
+    hashPassword.mockResolvedValue("hashed");
+    txMerchantCreate.mockResolvedValue({ id: "m-new" });
+    txUserCreate.mockResolvedValue({ id: "u-new" });
+    createSession.mockResolvedValue({ token: "tok123", expiresAt: new Date(Date.now() + 1000) });
+
+    await POST(req(valid));
+
+    expect(txMerchantCreate.mock.calls[0][0].data.planTier).toBe("growth");
+  });
+
+  it("returns 400 for an invalid plan tier", async () => {
+    const res = await POST(req({ ...valid, plan: "enterprise" }));
+    expect(res.status).toBe(400);
+    expect(txMerchantCreate).not.toHaveBeenCalled();
   });
 
   it("returns 409 for a duplicate email", async () => {

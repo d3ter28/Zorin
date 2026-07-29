@@ -14,11 +14,15 @@ export function AuthForm({
   submitLabel,
   endpoint,
   onSuccess,
+  extraFields,
 }: {
   fields: Field[];
   submitLabel: string;
   endpoint: string;
   onSuccess?: () => void | Promise<void>;
+  /** Extra values merged into the POST body that aren't rendered as inputs
+   * (e.g. a plan tier already chosen via a query param elsewhere on the page). */
+  extraFields?: Record<string, string>;
 }) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +36,7 @@ export function AuthForm({
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, ...extraFields }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({ error: "Something went wrong" }));

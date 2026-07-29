@@ -28,7 +28,13 @@ export async function POST(req: Request): Promise<NextResponse> {
       const session = event.data.object as Stripe.Checkout.Session;
       const customerId = session.customer as string;
       const subscriptionId = session.subscription as string;
-      const trialEndsAt = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
+      // No trialing/trialEndsAt written here — Checkout no longer grants a
+      // Stripe-side trial (see /api/billing/checkout), so the subscription
+      // is active (or incomplete, on payment failure) immediately. The
+      // customer.subscription.updated event below fires right after this
+      // one and sets the real status read straight from Stripe, rather than
+      // this event guessing at it.
+      //
       // planTier round-trips via the metadata set when the session was
       // created (see /api/billing/checkout) — the session itself carries no
       // price info without an extra Stripe API call.
@@ -41,8 +47,6 @@ export async function POST(req: Request): Promise<NextResponse> {
         where: { stripeCustomerId: customerId },
         data: {
           stripeSubscriptionId: subscriptionId,
-          subscriptionStatus: "trialing",
-          trialEndsAt,
           ...(planTier ? { planTier } : {}),
         },
       });

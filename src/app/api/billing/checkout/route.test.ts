@@ -96,7 +96,7 @@ describe("POST /api/billing/checkout", () => {
     expect(update).not.toHaveBeenCalled();
   });
 
-  it("creates a subscription checkout session with a 14-day trial and card required", async () => {
+  it("creates a subscription checkout session with card required and no additional trial", async () => {
     findUnique.mockResolvedValue({ id: "m1", stripeCustomerId: "cus_existing" });
     checkoutSessionsCreate.mockResolvedValue({ url: "https://checkout.stripe.com/session3" });
 
@@ -110,11 +110,11 @@ describe("POST /api/billing/checkout", () => {
         mode: "subscription",
         payment_method_collection: "always",
         line_items: [{ price: "price_scale_123", quantity: 1 }],
-        subscription_data: { trial_period_days: 14 },
         metadata: { planTier: "scale" },
         success_url: expect.stringContaining("/dashboard"),
         cancel_url: expect.stringContaining("/billing/reactivate"),
       }),
     );
+    expect(checkoutSessionsCreate.mock.calls[0][0].subscription_data).toBeUndefined();
   });
 });

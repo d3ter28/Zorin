@@ -58,11 +58,11 @@ export function EarlyAccess() {
               Get early access
             </h2>
             <p className="mt-4 max-w-[44ch] text-base leading-relaxed text-zinc-500">
-              Zorin is in active development. Every plan includes a 14-day free trial before billing starts — in exchange, we ask for honest feedback on what's working and what isn&apos;t. This trial offer is only available while we&apos;re in beta.
+              Zorin is in active development. Every plan includes a 7-day free trial, no credit card required — in exchange, we ask for honest feedback on what's working and what isn&apos;t. This trial offer is only available while we&apos;re in beta.
             </p>
             <ul className="mt-8 flex flex-col gap-3">
               {[
-                "14-day free trial before billing starts, while we're in beta",
+                "7-day free trial, no credit card required, while we're in beta",
                 "Direct line to the founder for support",
                 "Shape the features we build next",
                 "Locked-in early adopter pricing when we launch",

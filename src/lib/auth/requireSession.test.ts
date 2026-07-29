@@ -78,7 +78,7 @@ describe("requireSessionPage", () => {
   it("redirects to /billing/reactivate when subscription is not active", async () => {
     getCookie.mockReturnValue({ value: "tok" });
     getSessionUser.mockResolvedValue(user);
-    findUnique.mockResolvedValue({ subscriptionStatus: "past_due" });
+    findUnique.mockResolvedValue({ subscriptionStatus: "past_due", trialEndsAt: null });
 
     await expect(requireSessionPage()).rejects.toThrow("REDIRECT:/billing/reactivate");
     expect(redirect).toHaveBeenCalledWith("/billing/reactivate");
@@ -87,15 +87,29 @@ describe("requireSessionPage", () => {
   it("redirects to /billing/reactivate when subscriptionStatus is null", async () => {
     getCookie.mockReturnValue({ value: "tok" });
     getSessionUser.mockResolvedValue(user);
-    findUnique.mockResolvedValue({ subscriptionStatus: null });
+    findUnique.mockResolvedValue({ subscriptionStatus: null, trialEndsAt: null });
 
     await expect(requireSessionPage()).rejects.toThrow("REDIRECT:/billing/reactivate");
   });
 
-  it("returns the session when subscription is trialing", async () => {
+  it("redirects to /billing/reactivate when the no-card trial has expired", async () => {
     getCookie.mockReturnValue({ value: "tok" });
     getSessionUser.mockResolvedValue(user);
-    findUnique.mockResolvedValue({ subscriptionStatus: "trialing" });
+    findUnique.mockResolvedValue({
+      subscriptionStatus: "trialing",
+      trialEndsAt: new Date(Date.now() - 60_000),
+    });
+
+    await expect(requireSessionPage()).rejects.toThrow("REDIRECT:/billing/reactivate");
+  });
+
+  it("returns the session when trialing and trialEndsAt is in the future", async () => {
+    getCookie.mockReturnValue({ value: "tok" });
+    getSessionUser.mockResolvedValue(user);
+    findUnique.mockResolvedValue({
+      subscriptionStatus: "trialing",
+      trialEndsAt: new Date(Date.now() + 60_000),
+    });
 
     await expect(requireSessionPage()).resolves.toEqual({ user, merchantId: "m1" });
   });
@@ -103,7 +117,7 @@ describe("requireSessionPage", () => {
   it("returns the session when subscription is active", async () => {
     getCookie.mockReturnValue({ value: "tok" });
     getSessionUser.mockResolvedValue(user);
-    findUnique.mockResolvedValue({ subscriptionStatus: "active" });
+    findUnique.mockResolvedValue({ subscriptionStatus: "active", trialEndsAt: null });
 
     await expect(requireSessionPage()).resolves.toEqual({ user, merchantId: "m1" });
   });

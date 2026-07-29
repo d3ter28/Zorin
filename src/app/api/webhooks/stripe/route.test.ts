@@ -45,7 +45,7 @@ describe("POST /api/webhooks/stripe", () => {
     expect(updateMany).not.toHaveBeenCalled();
   });
 
-  it("checkout.session.completed sets trialing status and plan tier from session metadata", async () => {
+  it("checkout.session.completed sets the subscription id and plan tier from session metadata", async () => {
     constructEvent.mockReturnValue({
       type: "checkout.session.completed",
       data: {
@@ -61,15 +61,11 @@ describe("POST /api/webhooks/stripe", () => {
     expect(res.status).toBe(200);
     expect(updateMany).toHaveBeenCalledWith({
       where: { stripeCustomerId: "cus_123" },
-      data: expect.objectContaining({
-        stripeSubscriptionId: "sub_123",
-        subscriptionStatus: "trialing",
-        planTier: "growth",
-      }),
+      data: { stripeSubscriptionId: "sub_123", planTier: "growth" },
     });
   });
 
-  it("checkout.session.completed omits planTier when session metadata has no valid tier", async () => {
+  it("checkout.session.completed omits planTier when session metadata has no valid tier, and never writes subscriptionStatus", async () => {
     constructEvent.mockReturnValue({
       type: "checkout.session.completed",
       data: {
@@ -85,7 +81,8 @@ describe("POST /api/webhooks/stripe", () => {
     expect(res.status).toBe(200);
     const data = updateMany.mock.calls[0][0].data;
     expect(data.planTier).toBeUndefined();
-    expect(data.subscriptionStatus).toBe("trialing");
+    expect(data.subscriptionStatus).toBeUndefined();
+    expect(data.trialEndsAt).toBeUndefined();
   });
 
   it("customer.subscription.updated syncs status and plan tier from the price id", async () => {
