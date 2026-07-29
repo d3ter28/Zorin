@@ -15,6 +15,7 @@ describe("parseProductCsv", () => {
         category: "Apparel",
         cogsCents: 1800,
         estUnits: 40,
+        imageUrl: null,
       },
       {
         line: 2,
@@ -24,6 +25,7 @@ describe("parseProductCsv", () => {
         category: "Drinkware",
         cogsCents: null,
         estUnits: null,
+        imageUrl: null,
       },
     ]);
   });
@@ -41,6 +43,7 @@ describe("parseProductCsv", () => {
         category: "Apparel",
         cogsCents: 1800,
         estUnits: 40,
+        imageUrl: null,
       },
     ]);
   });
@@ -58,7 +61,7 @@ describe("parseProductCsv", () => {
     const { rows, errors } = parseProductCsv(csv);
     expect(rows).toEqual([]);
     expect(errors.map((e) => e.line)).toEqual([1, 2, 3, 4, 5, 6, 7]);
-    expect(errors[0].reason).toMatch(/6 columns/);
+    expect(errors[0].reason).toMatch(/6 or 7 columns/);
     expect(errors[1].reason).toMatch(/sku/i);
     expect(errors[2].reason).toMatch(/title/i);
     expect(errors[3].reason).toMatch(/price/i);
@@ -72,5 +75,44 @@ describe("parseProductCsv", () => {
     const { rows, errors } = parseProductCsv(csv);
     expect(rows).toEqual([]);
     expect(errors[0].reason).toMatch(/price/i);
+  });
+
+  // ── image_url column (7th, optional) ──────────────────────────────────────
+
+  it("parses a valid image_url in the 7th column", () => {
+    const csv = "TEE-100,Linen Shirt,49.99,Apparel,18.00,40,https://cdn.example.com/shirt.jpg";
+    const { rows, errors } = parseProductCsv(csv);
+    expect(errors).toEqual([]);
+    expect(rows[0].imageUrl).toBe("https://cdn.example.com/shirt.jpg");
+  });
+
+  it("treats an empty image_url column as null", () => {
+    const csv = "TEE-100,Linen Shirt,49.99,Apparel,18.00,40,";
+    const { rows, errors } = parseProductCsv(csv);
+    expect(errors).toEqual([]);
+    expect(rows[0].imageUrl).toBeNull();
+  });
+
+  it("rejects a malformed image_url", () => {
+    const csv = "TEE-100,Linen Shirt,49.99,Apparel,18.00,40,not-a-url";
+    const { rows, errors } = parseProductCsv(csv);
+    expect(rows).toEqual([]);
+    expect(errors[0].reason).toMatch(/image_url/i);
+  });
+
+  it("rejects an image_url with a non-http(s) scheme", () => {
+    const csv = "TEE-100,Linen Shirt,49.99,Apparel,18.00,40,ftp://example.com/shirt.jpg";
+    const { rows, errors } = parseProductCsv(csv);
+    expect(rows).toEqual([]);
+    expect(errors[0].reason).toMatch(/image_url/i);
+  });
+
+  it("skips the 7-column header row (with image_url)", () => {
+    const csv = "sku,title,current_price,category,cogs,est_units,image_url\nTEE-100,Linen Shirt,49.99,Apparel,18.00,40,https://cdn.example.com/shirt.jpg";
+    const { rows, errors } = parseProductCsv(csv);
+    expect(errors).toEqual([]);
+    expect(rows).toHaveLength(1);
+    expect(rows[0].line).toBe(2);
+    expect(rows[0].imageUrl).toBe("https://cdn.example.com/shirt.jpg");
   });
 });

@@ -26,6 +26,7 @@ const row = (over: Partial<ProductParseResult["rows"][number]> = {}) => ({
   category: "Apparel",
   cogsCents: 1800,
   estUnits: 40,
+  imageUrl: null,
   ...over,
 });
 
@@ -45,6 +46,7 @@ describe("importProducts", () => {
         category: "Apparel",
         cogs: 1800,
         estUnits: 40,
+        imageUrl: null,
       },
     });
     expect(prisma.product.update).not.toHaveBeenCalled();
@@ -68,6 +70,7 @@ describe("importProducts", () => {
         category: "Apparel",
         cogs: null,
         estUnits: null,
+        imageUrl: null,
       },
     });
     expect(prisma.product.create).not.toHaveBeenCalled();
@@ -89,10 +92,42 @@ describe("importProducts", () => {
     const result = await importProducts(
       prisma as never,
       "m1",
-      parsed([], [{ line: 3, raw: "bad,row", reason: "malformed line: expected 6 columns" }]),
+      parsed([], [{ line: 3, raw: "bad,row", reason: "malformed line: expected 6 or 7 columns" }]),
     );
     expect(result.skipped).toBe(1);
     expect(result.errors).toHaveLength(1);
     expect(prisma.product.create).not.toHaveBeenCalled();
+  });
+
+  // ── image_url persistence ─────────────────────────────────────────────────
+
+  it("persists imageUrl from the row on create", async () => {
+    const prisma = mockPrisma([]);
+    await importProducts(
+      prisma as never,
+      "m1",
+      parsed([row({ imageUrl: "https://cdn.example.com/shirt.jpg" })]),
+    );
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ imageUrl: "https://cdn.example.com/shirt.jpg" }),
+      }),
+    );
+  });
+
+  it("overwrites imageUrl on re-import when it changed", async () => {
+    const prisma = mockPrisma([{ id: "p1", sku: "TEE-100" }]);
+    await importProducts(
+      prisma as never,
+      "m1",
+      parsed([row({ imageUrl: "https://cdn.example.com/new-shirt.jpg" })]),
+    );
+
+    expect(prisma.product.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ imageUrl: "https://cdn.example.com/new-shirt.jpg" }),
+      }),
+    );
   });
 });
