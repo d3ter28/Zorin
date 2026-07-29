@@ -1,0 +1,19 @@
+{
+  "planPath": "docs/superpowers/plans/2026-07-30-product-images.md",
+  "tasks": [
+    {
+      "id": 10,
+      "subject": "Task 1: Product schema + Shopify/WooCommerce sync fetch imageUrl",
+      "status": "pending",
+      "description": "See native task #10 via TaskGet — full Goal/Files/Acceptance Criteria/Verify/metadata block. Full step-by-step detail in docs/superpowers/plans/2026-07-30-product-images.md, Task 1."
+    },
+    {
+      "id": 11,
+      "subject": "Task 2: ProductThumbnail component + display in table and detail page",
+      "status": "pending",
+      "blockedBy": [10],
+      "description": "See native task #11 via TaskGet — full Goal/Files/Acceptance Criteria/Verify/metadata block. Full step-by-step detail in docs/superpowers/plans/2026-07-30-product-images.md, Task 2."
+    }
+  ],
+  "lastUpdated": "2026-07-30T00:00:00Z"
+}
