@@ -2,59 +2,13 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { Check } from "@phosphor-icons/react";
+import { PLAN_CATALOG } from "@/lib/billing/planCatalog";
 
-const plans = [
-  {
-    name: "Starter",
-    price: "$39",
-    period: "/mo",
-    description: "For stores testing the waters with data-driven pricing.",
-    cta: "Start free trial",
-    href: "/signup?plan=starter",
-    highlight: false,
-    features: [
-      "Up to 25 products",
-      "CSV upload",
-      "Elasticity modeling",
-      "Profit recommendations",
-    ],
-  },
-  {
-    name: "Growth",
-    price: "$99",
-    period: "/mo",
-    description: "For growing stores ready to optimize their full catalog.",
-    cta: "Start free trial",
-    href: "/signup?plan=growth",
-    highlight: true,
-    features: [
-      "Up to 150 products",
-      "Shopify & WooCommerce sync",
-      "Elasticity modeling",
-      "Profit recommendations",
-      "What-if simulator",
-      "Priority support",
-    ],
-  },
-  {
-    name: "Scale",
-    price: "$249",
-    period: "/mo",
-    description: "For catalogs and multi-store operations that outgrow the basics.",
-    cta: "Talk to us",
-    href: "/signup?plan=scale",
-    highlight: false,
-    features: [
-      "Unlimited products",
-      "Shopify & WooCommerce sync",
-      "Elasticity modeling",
-      "Profit recommendations",
-      "What-if simulator",
-      "Multi-store support",
-      "Dedicated support",
-    ],
-  },
-];
+const plans = PLAN_CATALOG.map((plan) => ({
+  ...plan,
+  cta: plan.tier === "scale" ? "Talk to us" : "Start free trial",
+  href: `/signup?plan=${plan.tier}`,
+}));
 
 export function Pricing() {
   const reduce = useReducedMotion();

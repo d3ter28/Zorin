@@ -12,14 +12,17 @@ afterEach(() => {
 });
 
 describe("ReactivatePlanPicker", () => {
-  it("renders all three plans", () => {
+  it("renders all three plans with pricing and feature lists", () => {
     render(<ReactivatePlanPicker />);
     expect(screen.getByText("Starter")).toBeTruthy();
     expect(screen.getByText("Growth")).toBeTruthy();
     expect(screen.getByText("Scale")).toBeTruthy();
-    expect(screen.getByText("$39/mo")).toBeTruthy();
-    expect(screen.getByText("$99/mo")).toBeTruthy();
-    expect(screen.getByText("$249/mo")).toBeTruthy();
+    expect(screen.getByText("$39")).toBeTruthy();
+    expect(screen.getByText("$99")).toBeTruthy();
+    expect(screen.getByText("$249")).toBeTruthy();
+    expect(screen.getByText("Up to 25 products")).toBeTruthy();
+    expect(screen.getByText("Unlimited products")).toBeTruthy();
+    expect(screen.getByText("Most popular")).toBeTruthy();
   });
 
   it("calls the checkout API with the chosen plan and shows a busy state on the clicked button", async () => {

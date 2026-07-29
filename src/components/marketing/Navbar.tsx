@@ -8,7 +8,7 @@ const links = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
-  { label: "Early access", href: "/#early-access" },
+  { label: "Talk to us", href: "/#early-access" },
 ];
 
 export function Navbar() {
@@ -44,10 +44,10 @@ export function Navbar() {
             Log in
           </a>
           <a
-            href="/#early-access"
+            href="/signup"
             className="inline-flex h-9 items-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Join beta
+            Start free trial
           </a>
         </div>
 
@@ -78,10 +78,10 @@ export function Navbar() {
               Log in
             </a>
             <a
-              href="/#early-access"
+              href="/signup"
               className="inline-flex h-9 items-center justify-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white"
             >
-              Join beta
+              Start free trial
             </a>
           </div>
         </div>

@@ -37,8 +37,8 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="/#early-access" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Early access
+                  <a href="/signup" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Start free trial
                   </a>
                 </li>
               </ul>

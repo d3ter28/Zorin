@@ -26,10 +26,10 @@ export function Hero() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
-              href="#early-access"
+              href="/signup"
               className="inline-flex h-11 items-center rounded-lg bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
             >
-              Request early access
+              Start free trial
             </a>
             <a
               href="/login"

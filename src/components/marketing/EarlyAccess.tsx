@@ -52,17 +52,17 @@ export function EarlyAccess() {
           >
             <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-              Early Access
+              Talk to us
             </span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
-              Get early access
+              Want a personal walkthrough?
             </h2>
             <p className="mt-4 max-w-[44ch] text-base leading-relaxed text-zinc-500">
-              Zorin is in active development. Every plan includes a 7-day free trial, no credit card required — in exchange, we ask for honest feedback on what's working and what isn&apos;t. This trial offer is only available while we&apos;re in beta.
+              You don&apos;t need to wait — every plan starts with an instant 7-day free trial, no credit card required. But if you&apos;d rather talk it through first, tell us about your store and we&apos;ll reach out personally.
             </p>
             <ul className="mt-8 flex flex-col gap-3">
               {[
-                "7-day free trial, no credit card required, while we're in beta",
+                "No waitlist — sign up and start your trial right away",
                 "Direct line to the founder for support",
                 "Shape the features we build next",
                 "Locked-in early adopter pricing when we launch",
@@ -96,9 +96,13 @@ export function EarlyAccess() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-zinc-900">You&apos;re on the list</p>
+                  <p className="font-semibold text-zinc-900">Thanks — we&apos;ll be in touch</p>
                   <p className="mt-1 text-sm text-zinc-500">
-                    We&apos;ll be in touch shortly with access details.
+                    In the meantime, you can{" "}
+                    <a href="/signup" className="font-medium text-blue-600 hover:text-blue-700">
+                      start your free trial
+                    </a>{" "}
+                    whenever you&apos;re ready.
                   </p>
                 </div>
               </div>
@@ -170,7 +174,7 @@ export function EarlyAccess() {
                   disabled={state === "loading"}
                   className="inline-flex h-10 items-center justify-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60"
                 >
-                  {state === "loading" ? "Submitting…" : "Request early access"}
+                  {state === "loading" ? "Submitting…" : "Request a walkthrough"}
                 </button>
               </form>
             )}

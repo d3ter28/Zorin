@@ -101,10 +101,10 @@ export function FAQ() {
               Still not sure? These are what merchants usually ask before signing up.
             </p>
             <a
-              href="/#early-access"
+              href="/signup"
               className="mt-8 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
             >
-              Request early access
+              Start free trial
             </a>
           </div>
           <div className="divide-y divide-zinc-200">
