@@ -106,6 +106,27 @@ describe("POST /api/auth/signup", () => {
     expect(transaction).not.toHaveBeenCalled();
   });
 
+  it("normalizes email before the uniqueness check, blocking Gmail dot/+tag trial-farming variants", async () => {
+    userFindUnique.mockResolvedValue({ id: "u-exists" });
+
+    const res = await POST(req({ ...valid, email: "N.ew+trial@Gmail.com" }));
+
+    expect(res.status).toBe(409);
+    expect(userFindUnique).toHaveBeenCalledWith({ where: { email: "new@gmail.com" } });
+  });
+
+  it("stores the normalized email, not the raw input, on a fresh signup", async () => {
+    userFindUnique.mockResolvedValue(null);
+    hashPassword.mockResolvedValue("hashed");
+    txMerchantCreate.mockResolvedValue({ id: "m-new" });
+    txUserCreate.mockResolvedValue({ id: "u-new" });
+    createSession.mockResolvedValue({ token: "tok123", expiresAt: new Date(Date.now() + 1000) });
+
+    await POST(req({ ...valid, email: "New+trial@Gmail.com" }));
+
+    expect(txUserCreate.mock.calls[0][0].data.email).toBe("new@gmail.com");
+  });
+
   it("returns 400 for an invalid email", async () => {
     const res = await POST(req({ ...valid, email: "not-an-email" }));
     expect(res.status).toBe(400);

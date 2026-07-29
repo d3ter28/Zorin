@@ -5,6 +5,7 @@ import { parseJsonBody } from "@/lib/api/validation";
 import { checkRateLimit } from "@/lib/auth/rateLimit";
 import { createPasswordResetToken } from "@/lib/auth/resetToken";
 import { sendPasswordResetEmail } from "@/lib/email/sendPasswordResetEmail";
+import { normalizeEmail } from "@/lib/auth/normalizeEmail";
 
 export const POST = withErrorHandling(async (req: Request) => {
   const ip =
@@ -19,7 +20,7 @@ export const POST = withErrorHandling(async (req: Request) => {
   }
 
   const body = await parseJsonBody(req);
-  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const email = typeof body.email === "string" ? normalizeEmail(body.email) : "";
 
   // Always the same response shape ({ ok: true }) regardless of whether the
   // email exists — an attacker inspecting the response body can't tell which

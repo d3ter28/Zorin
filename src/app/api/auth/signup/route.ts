@@ -7,6 +7,7 @@ import { createSession, setSessionCookie } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/auth/rateLimit";
 import { isValidPlanTier } from "@/lib/stripe/plans";
 import { TRIAL_DAYS } from "@/lib/billing/trial";
+import { normalizeEmail } from "@/lib/auth/normalizeEmail";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 const DEFAULT_PLAN_TIER = "growth";
@@ -24,17 +25,22 @@ export const POST = withErrorHandling(async (req: Request) => {
   }
 
   const body = await parseJsonBody(req);
-  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const rawEmail = typeof body.email === "string" ? body.email.trim() : "";
   const password = typeof body.password === "string" ? body.password : "";
   const storeName = typeof body.storeName === "string" ? body.storeName.trim() : "";
   const storeUrl = typeof body.storeUrl === "string" ? body.storeUrl.trim() : "";
   const rawPlan = typeof body.plan === "string" ? body.plan : "";
   const plan = rawPlan === "" ? DEFAULT_PLAN_TIER : rawPlan;
 
-  if (!EMAIL_RE.test(email)) throw new HttpError(400, "Invalid email address");
+  if (!EMAIL_RE.test(rawEmail)) throw new HttpError(400, "Invalid email address");
   if (password.length < 8) throw new HttpError(400, "Password must be at least 8 characters");
   if (storeName === "") throw new HttpError(400, "Store name is required");
   if (!isValidPlanTier(plan)) throw new HttpError(400, "plan must be one of starter, growth, scale");
+
+  // Canonicalize before the uniqueness check — otherwise "you@gmail.com" and
+  // "you+trial@gmail.com" register as two separate accounts, each getting
+  // its own free trial.
+  const email = normalizeEmail(rawEmail);
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) throw new HttpError(409, "An account with this email already exists");
