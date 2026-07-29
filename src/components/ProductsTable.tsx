@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ModelHealthBadge } from "./ModelHealthBadge";
 import { useCallback, useEffect, useState } from "react";
 import { CogsInput } from "./CogsInput";
+import { ProductThumbnail } from "./ProductThumbnail";
 import { formatCents, pct } from "@/lib/money";
 
 interface Row {
@@ -13,6 +14,7 @@ interface Row {
   cogs: number | null;
   category: string;
   estUnits: number | null;
+  imageUrl: string | null;
   margin: number | null;
   recommendedAction: "raise" | "lower" | "hold" | null;
   suggestedPrice: number | null;
@@ -215,13 +217,18 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
                     )}
                   </td>
                   <td className="py-3 pr-3">
-                    <Link
-                      className="font-medium text-ink underline-offset-2 hover:text-accent hover:underline"
-                      href={`/product/${r.id}`}
-                    >
-                      {r.title}
-                    </Link>
-                    <div className="text-xs text-faint">{r.sku}</div>
+                    <div className="flex items-center gap-3">
+                      <ProductThumbnail imageUrl={r.imageUrl} alt={r.title} size={32} />
+                      <div>
+                        <Link
+                          className="font-medium text-ink underline-offset-2 hover:text-accent hover:underline"
+                          href={`/product/${r.id}`}
+                        >
+                          {r.title}
+                        </Link>
+                        <div className="text-xs text-faint">{r.sku}</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="py-3 pr-3 text-right tabular">
                     {formatCents(r.currentPrice)}

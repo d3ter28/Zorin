@@ -105,6 +105,7 @@ describe("WooCommerceClient", () => {
             name: "Widget",
             sku: "WID-1",
             regular_price: "9.99",
+            images: [{ src: "https://example.com/wp-content/widget.jpg" }],
           },
         ]),
       );
@@ -122,13 +123,35 @@ describe("WooCommerceClient", () => {
           name: "Widget",
           sku: "WID-1",
           regularPriceDollars: "9.99",
+          imageUrl: "https://example.com/wp-content/widget.jpg",
         },
       ]);
     });
 
-    it("fetches variations for variable products", async () => {
+    it("sets imageUrl to null for a simple product with no images", async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse([
+          {
+            id: 2,
+            type: "simple",
+            name: "No Photo",
+            sku: "NP-1",
+            regular_price: "5.00",
+            images: [],
+          },
+        ]),
+      );
+
+      const pages: unknown[] = [];
+      for await (const page of client.fetchAllProducts()) {
+        pages.push(page);
+      }
+
+      expect((pages[0] as Array<{ imageUrl: string | null }>)[0].imageUrl).toBeNull();
+    });
+
+    it("fetches variations for variable products, each variation using its own image", async () => {
       vi.mocked(fetch)
-        // First call: products page
         .mockResolvedValueOnce(
           mockResponse([
             {
@@ -137,10 +160,10 @@ describe("WooCommerceClient", () => {
               name: "T-Shirt",
               sku: "",
               regular_price: "",
+              images: [{ src: "https://example.com/tshirt-parent.jpg" }],
             },
           ]),
         )
-        // Second call: variations for product 10
         .mockResolvedValueOnce(
           mockResponse([
             {
@@ -148,12 +171,14 @@ describe("WooCommerceClient", () => {
               sku: "TS-S",
               regular_price: "19.99",
               attributes: [{ name: "Size", option: "Small" }],
+              images: [{ src: "https://example.com/tshirt-small.jpg" }],
             },
             {
               id: 102,
               sku: "TS-L",
               regular_price: "19.99",
               attributes: [{ name: "Size", option: "Large" }],
+              images: [{ src: "https://example.com/tshirt-large.jpg" }],
             },
           ]),
         );
@@ -171,6 +196,7 @@ describe("WooCommerceClient", () => {
           name: "T-Shirt - Small",
           sku: "TS-S",
           regularPriceDollars: "19.99",
+          imageUrl: "https://example.com/tshirt-small.jpg",
         },
         {
           id: 102,
@@ -178,14 +204,50 @@ describe("WooCommerceClient", () => {
           name: "T-Shirt - Large",
           sku: "TS-L",
           regularPriceDollars: "19.99",
+          imageUrl: "https://example.com/tshirt-large.jpg",
         },
       ]);
 
-      // Variations URL called
       expect(fetch).toHaveBeenNthCalledWith(
         2,
         `${storeUrl}/wp-json/wc/v3/products/10/variations?per_page=100`,
         expect.anything(),
+      );
+    });
+
+    it("falls back to the parent product's image when a variation has none of its own", async () => {
+      vi.mocked(fetch)
+        .mockResolvedValueOnce(
+          mockResponse([
+            {
+              id: 20,
+              type: "variable",
+              name: "Mug",
+              sku: "",
+              regular_price: "",
+              images: [{ src: "https://example.com/mug-parent.jpg" }],
+            },
+          ]),
+        )
+        .mockResolvedValueOnce(
+          mockResponse([
+            {
+              id: 201,
+              sku: "MUG-RED",
+              regular_price: "12.00",
+              attributes: [{ name: "Color", option: "Red" }],
+              images: [],
+            },
+          ]),
+        );
+
+      const pages: unknown[] = [];
+      for await (const page of client.fetchAllProducts()) {
+        pages.push(page);
+      }
+
+      expect((pages[0] as Array<{ imageUrl: string | null }>)[0].imageUrl).toBe(
+        "https://example.com/mug-parent.jpg",
       );
     });
 

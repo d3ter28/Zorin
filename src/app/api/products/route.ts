@@ -33,6 +33,7 @@ export const GET = withErrorHandling(async () => {
       cogs: p.cogs,
       category: p.category,
       estUnits: p.estUnits,
+      imageUrl: p.imageUrl,
       margin: marginPct(p.currentPrice, p.cogs),
       modelHealth: p.elasticityModel
         ? {

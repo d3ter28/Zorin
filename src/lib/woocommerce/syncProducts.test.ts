@@ -20,6 +20,7 @@ function product(over: Partial<WooNormalizedProduct> = {}): WooNormalizedProduct
     name: "Test Shirt",
     sku: "SHIRT-001",
     regularPriceDollars: "19.99",
+    imageUrl: null,
     ...over,
   };
 }
@@ -41,6 +42,7 @@ describe("syncWooProducts", () => {
         currentPrice: 1999,
         woocommerceVariantId: "101",
         woocommerceParentId: null,
+        imageUrl: null,
         category: "WooCommerce",
       },
     });
@@ -90,6 +92,7 @@ describe("syncWooProducts", () => {
         currentPrice: 3499,
         woocommerceVariantId: "202",
         woocommerceParentId: null,
+        imageUrl: null,
       },
     });
     expect(prisma.product.create).not.toHaveBeenCalled();
@@ -175,6 +178,34 @@ describe("syncWooProducts", () => {
     expect(result.skippedReasons).toHaveLength(1);
     expect(prisma.product.create).toHaveBeenCalledTimes(1);
     expect(prisma.product.update).toHaveBeenCalledTimes(1);
+  });
+
+  // ── Image URL persistence ─────────────────────────────────────────────────
+
+  it("persists imageUrl from the product on create", async () => {
+    const prisma = mockPrisma([]);
+    await syncWooProducts(prisma as never, "m1", [
+      product({ imageUrl: "https://example.com/photo.jpg" }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ imageUrl: "https://example.com/photo.jpg" }),
+      }),
+    );
+  });
+
+  it("overwrites imageUrl on re-sync when the merchant's photo changed", async () => {
+    const prisma = mockPrisma([{ id: "p1", sku: "SHIRT-001" }]);
+    await syncWooProducts(prisma as never, "m1", [
+      product({ sku: "SHIRT-001", imageUrl: "https://example.com/new-photo.jpg" }),
+    ]);
+
+    expect(prisma.product.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ imageUrl: "https://example.com/new-photo.jpg" }),
+      }),
+    );
   });
 
   // ── Empty input ───────────────────────────────────────────────────────────

@@ -22,6 +22,7 @@ function variant(over: Partial<ShopifyVariant> = {}): ShopifyVariant {
     sku: "TEE-100",
     price: "29.99",
     inventory_quantity: 10,
+    imageUrl: null,
     ...over,
   };
 }
@@ -95,6 +96,7 @@ describe("syncProducts", () => {
         title: "Linen Shirt",
         currentPrice: 2999,
         shopifyVariantId: "1001",
+        imageUrl: null,
         category: "Shopify",
       },
     });
@@ -127,6 +129,7 @@ describe("syncProducts", () => {
         title: "Linen Shirt",
         currentPrice: 3499,
         shopifyVariantId: "1001",
+        imageUrl: null,
       },
     });
     expect(prisma.product.create).not.toHaveBeenCalled();
@@ -176,6 +179,34 @@ describe("syncProducts", () => {
     expect(result.updated).toBe(1);
     expect(result.skipped).toBe(1);
     expect(result.skippedReasons).toHaveLength(1);
+  });
+
+  // ── Image URL persistence ─────────────────────────────────────────────────
+
+  it("persists imageUrl from the variant on create", async () => {
+    const prisma = mockPrisma([]);
+    await syncProducts(prisma as never, "m1", [
+      variant({ imageUrl: "https://cdn.shopify.com/photo.jpg" }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ imageUrl: "https://cdn.shopify.com/photo.jpg" }),
+      }),
+    );
+  });
+
+  it("overwrites imageUrl on re-sync when the merchant's photo changed", async () => {
+    const prisma = mockPrisma([{ id: "p1", sku: "TEE-100" }]);
+    await syncProducts(prisma as never, "m1", [
+      variant({ sku: "TEE-100", imageUrl: "https://cdn.shopify.com/new-photo.jpg" }),
+    ]);
+
+    expect(prisma.product.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ imageUrl: "https://cdn.shopify.com/new-photo.jpg" }),
+      }),
+    );
   });
 
   // ── Return shape ──────────────────────────────────────────────────────────

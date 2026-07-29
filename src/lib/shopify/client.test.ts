@@ -82,6 +82,7 @@ describe('ShopifyClient', () => {
             {
               id: 1,
               title: 'Widget',
+              image: { src: 'https://cdn.shopify.com/widget.jpg' },
               variants: [
                 {
                   id: 101,
@@ -112,8 +113,39 @@ describe('ShopifyClient', () => {
           sku: 'WID-S',
           price: '9.99',
           inventory_quantity: 50,
+          imageUrl: 'https://cdn.shopify.com/widget.jpg',
         },
       ]);
+    });
+
+    it('sets imageUrl to null when the product has no image', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse({
+          products: [
+            {
+              id: 2,
+              title: 'No Photo Product',
+              variants: [
+                {
+                  id: 201,
+                  product_id: 2,
+                  title: 'Default Title',
+                  sku: 'NP-1',
+                  price: '5.00',
+                  inventory_quantity: 3,
+                },
+              ],
+            },
+          ],
+        }),
+      );
+
+      const pages: unknown[] = [];
+      for await (const page of client.fetchAllProducts()) {
+        pages.push(page);
+      }
+
+      expect((pages[0] as Array<{ imageUrl: string | null }>)[0].imageUrl).toBeNull();
     });
 
     it('follows Link header pagination across multiple pages', async () => {

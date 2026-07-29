@@ -16,6 +16,7 @@ export const GET = withErrorHandling(
       title: p.title,
       currentPrice: p.currentPrice,
       cogs: p.cogs,
+      imageUrl: p.imageUrl,
     });
   },
 );

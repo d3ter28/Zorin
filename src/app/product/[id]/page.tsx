@@ -10,12 +10,14 @@ import type { MLRecView } from "@/components/RecommendationCard";
 import { SalesHistoryUpload } from "@/components/SalesHistoryUpload";
 import { formatCents } from "@/lib/money";
 import { AppShell } from "@/components/AppShell";
+import { ProductThumbnail } from "@/components/ProductThumbnail";
 
 interface Detail {
   id: string;
   title: string;
   currentPrice: number;
   cogs: number | null;
+  imageUrl: string | null;
 }
 
 interface RecData {
@@ -185,13 +187,18 @@ export default function ProductPage({
                 </svg>
                 Back to dashboard
               </Link>
-              <h1 className="text-2xl font-semibold tracking-tight text-ink">{d.title}</h1>
-              <p className="mt-1 text-sm text-muted">
-                Current price{" "}
-                <span className="font-medium tabular text-ink">
-                  {formatCents(d.currentPrice)}
-                </span>
-              </p>
+              <div className="flex items-center gap-4">
+                <ProductThumbnail imageUrl={d.imageUrl} alt={d.title} size={56} />
+                <div>
+                  <h1 className="text-2xl font-semibold tracking-tight text-ink">{d.title}</h1>
+                  <p className="mt-1 text-sm text-muted">
+                    Current price{" "}
+                    <span className="font-medium tabular text-ink">
+                      {formatCents(d.currentPrice)}
+                    </span>
+                  </p>
+                </div>
+              </div>
             </header>
 
             <SalesHistoryUpload onSuccess={loadData} />
