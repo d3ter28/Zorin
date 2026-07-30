@@ -15,6 +15,7 @@ const { userFindUnique, txMerchantCreate, txUserCreate, transaction } = vi.hoist
 const { createSession } = vi.hoisted(() => ({ createSession: vi.fn() }));
 const { hashPassword } = vi.hoisted(() => ({ hashPassword: vi.fn() }));
 const { checkRateLimit } = vi.hoisted(() => ({ checkRateLimit: vi.fn() }));
+const { notifySignup } = vi.hoisted(() => ({ notifySignup: vi.fn() }));
 
 vi.mock("@/lib/db", () => ({
   prisma: { user: { findUnique: userFindUnique }, $transaction: transaction },
@@ -25,6 +26,7 @@ vi.mock("@/lib/auth/session", async (importOriginal) => ({
 }));
 vi.mock("@/lib/auth/password", () => ({ hashPassword }));
 vi.mock("@/lib/auth/rateLimit", () => ({ checkRateLimit }));
+vi.mock("@/lib/email/notifySignup", () => ({ notifySignup }));
 
 import { POST } from "./route";
 
@@ -47,6 +49,8 @@ beforeEach(() => {
   hashPassword.mockReset();
   checkRateLimit.mockReset();
   checkRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
+  notifySignup.mockReset();
+  notifySignup.mockResolvedValue(undefined);
 });
 
 describe("POST /api/auth/signup", () => {
@@ -79,6 +83,11 @@ describe("POST /api/auth/signup", () => {
     expect(createSession.mock.calls[0][1]).toBe("u-new");
     expect(res.headers.get("set-cookie")).toContain("zorin_session=tok123");
     expect(res.headers.get("set-cookie")).toContain("HttpOnly");
+    expect(notifySignup).toHaveBeenCalledWith({
+      email: "new@shop.example",
+      storeName: "New Shop",
+      planTier: "starter",
+    });
   });
 
   it("defaults to the growth plan tier when no plan is provided", async () => {
@@ -104,6 +113,7 @@ describe("POST /api/auth/signup", () => {
     const res = await POST(req(valid));
     expect(res.status).toBe(409);
     expect(transaction).not.toHaveBeenCalled();
+    expect(notifySignup).not.toHaveBeenCalled();
   });
 
   it("normalizes email before the uniqueness check, blocking Gmail dot/+tag trial-farming variants", async () => {

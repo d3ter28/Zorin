@@ -8,6 +8,7 @@ import { checkRateLimit } from "@/lib/auth/rateLimit";
 import { isValidPlanTier } from "@/lib/stripe/plans";
 import { TRIAL_DAYS } from "@/lib/billing/trial";
 import { normalizeEmail } from "@/lib/auth/normalizeEmail";
+import { notifySignup } from "@/lib/email/notifySignup";
 
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
 const DEFAULT_PLAN_TIER = "growth";
@@ -57,6 +58,10 @@ export const POST = withErrorHandling(async (req: Request) => {
       data: { name: storeName, storeUrl, subscriptionStatus: "trialing", planTier: plan, trialEndsAt },
     });
     return tx.user.create({ data: { email, passwordHash, merchantId: merchant.id } });
+  });
+
+  notifySignup({ email, storeName, planTier: plan }).catch((err) => {
+    console.error("[signup] notification email failed:", err);
   });
 
   const { token, expiresAt } = await createSession(prisma, user.id);
