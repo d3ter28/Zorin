@@ -10,6 +10,136 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "woocommerce-pricing-apps-what-to-look-for",
+    title: "WooCommerce Pricing Apps: What to Look for Before You Buy",
+    excerpt:
+      "Dynamic pricing plugins, wholesale role rules, and competitor repricers all call themselves pricing apps. Here's how they actually differ, and what's missing from all of them.",
+    date: "2026-07-30",
+    readingTime: "9 min read",
+    category: "Product",
+    content: `
+<p class="intro">Most WooCommerce pricing apps fall into three categories that behave nothing alike: rule-based discount plugins that apply fixed markdowns, wholesale plugins that show different prices to different customer roles, and competitor repricers that match or undercut whatever another store charges. None of them, on their own, answer the actual question merchants are trying to solve, which is what your own customers will pay for a specific product. That gap is exactly what an elasticity-based tool like Zorin is built to close.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>"WooCommerce pricing app" covers four genuinely different tools: rule-based discount plugins, wholesale/B2B role pricing, competitor repricers, and elasticity-based tools that learn from your own sales data.</li>
+<li>Rule-based and wholesale plugins are useful for running fixed logic (quantity tiers, cart discounts, role pricing), but none of them tell you whether a price is actually optimal for your demand.</li>
+<li>Competitor repricers answer "what is the market charging," not "what will my customers pay," and can trigger a race-to-the-bottom with no regard for your own margin.</li>
+<li>An elasticity-based tool fits a demand model from your own historical sales, then recommends raise, lower, or hold with a stated confidence level, not a rule someone else configured.</li>
+<li>The right tool (or combination) depends on what you're actually trying to solve: automating a known discount structure, serving wholesale buyers, watching competitors, or finding your profit-maximizing price.</li>
+</ul>
+</div>
+
+<h2>The Myth: "Pricing App" Means One Thing</h2>
+<p>Search for a WooCommerce pricing plugin and you'll find dozens of tools all describing themselves the same way, as something that "optimizes your pricing." In practice they split into categories that solve completely different problems. A quantity-discount plugin and a competitor repricer share almost nothing under the hood, and neither one calculates whether your regular, non-discounted price is actually the one that maximizes profit. Picking the wrong category for your actual problem is the most common mistake merchants make before they've even compared specific plugins.</p>
+
+<h2>Category 1: Rule-Based Dynamic Pricing and Discount Plugins</h2>
+<p>This is the largest and most crowded category. These plugins let you configure fixed logic, buy-three-get-one-free, 10% off orders over $100, a discount for a specific category during a date range, and apply it automatically at checkout. <strong>Discount Rules for WooCommerce</strong> by FlyCart is one of the most widely used, with over 100,000 active installs and a 4.8-star rating, offering cart rules based on quantity, cart amount, user role, and specific products without requiring code. <strong>YITH WooCommerce Dynamic Pricing and Discounts</strong> is used by more than 27,000 stores and lets you stack multiple conditions with AND/OR logic. The official <strong>WooCommerce Dynamic Pricing</strong> extension from WooCommerce.com covers similar ground: cart discounts, bulk pricing, and free gifts tied to rules you set manually.</p>
+<p>These tools are genuinely useful for automating a discount structure you've already decided on. What they don't do is tell you whether that structure is the right one. A 10%-off-for-3-or-more rule is a guess dressed up as a feature, unless you've separately verified that your specific catalog's demand actually supports that discount depth.</p>
+
+<h2>Category 2: Wholesale and B2B Role-Based Pricing Plugins</h2>
+<p>A second category solves a segmentation problem, not a demand problem: showing different prices to different types of buyers. <strong>WooCommerce Wholesale Prices</strong>, <strong>B2B Pricing</strong> from the official WooCommerce marketplace, and <strong>WholesaleX</strong> all let you define custom roles (Wholesale, Gold, Distributor, Reseller) and assign role-specific pricing without touching your retail price. This is essential infrastructure if you actually sell at multiple tiers, but it's a routing mechanism, not a pricing calculation. It tells the system who should see which price. It doesn't tell you what either price should actually be.</p>
+
+<h2>Category 3: Competitor Price Trackers and Repricers</h2>
+<p>A third category watches other stores instead of your own customers. Tools like <strong>Dealavo</strong>, <strong>Pricesearch</strong>, <strong>Price Patrol</strong>, and <strong>WooCommerce Repricer</strong> map your SKUs against competitor listings and automatically adjust your price to match, undercut, or stay within a set gap. This can matter in categories where customers are actively comparison shopping across near-identical products. It has a real structural weakness though: it answers what the market is doing, not what your specific customers, who may have entirely different price sensitivity than a competitor's audience, will actually tolerate. Chasing a competitor's price down with no regard for your own margin data is how a repricer turns into a race to the bottom.</p>
+<table>
+  <thead>
+    <tr><th>Category</th><th>What it optimizes for</th><th>What it can't tell you</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Rule-based discount plugins</td><td>Automating a discount structure you've already decided on</td><td>Whether that structure matches your actual demand</td></tr>
+    <tr><td>Wholesale/B2B role plugins</td><td>Showing the right price to the right customer segment</td><td>What either the retail or wholesale price should actually be</td></tr>
+    <tr><td>Competitor repricers</td><td>Matching or beating what other stores charge</td><td>What your own customers are willing to pay, independent of a rival's price</td></tr>
+    <tr><td>Elasticity-based tools (Zorin)</td><td>Calculating the profit-maximizing price from your own sales history</td><td>Fixed discount logic or role-based segmentation, which still need a separate rules plugin if you use them</td></tr>
+  </tbody>
+</table>
+
+<h2>Category 4: Elasticity-Based Pricing Tools</h2>
+<p>The fourth category, and the one most of the WooCommerce plugin ecosystem doesn't cover at all, reads your own historical sales at different prices and calculates price elasticity: how much your demand actually shifts when your price shifts. This is the mechanism Zorin runs. You connect your WooCommerce store or upload a sales history CSV, and it fits a log-log regression per product, returning an elasticity coefficient, an R-squared fit score, and a plain raise, lower, or hold recommendation with an estimated profit lift, not a rule you configured or a competitor's number you copied.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/settings-integrations.png" alt="Zorin settings page showing a WooCommerce Connection form with store URL, consumer key, and consumer secret fields for syncing products and orders" loading="lazy" />
+  <figcaption>Connecting a WooCommerce store directly is what lets a tool read your own sales history instead of a competitor's price or a fixed rule.</figcaption>
+</figure>
+
+<p>The distinction matters because it changes what question is actually being answered. A discount plugin answers "how do I automate this markdown." A repricer answers "what is everyone else charging." An elasticity-based tool answers "what will my own customers actually pay," which is the question underneath all the others, but the one none of the rule-based or competitor-watching tools are built to calculate.</p>
+
+<h2>What This Looks Like Side by Side</h2>
+<p>Say you're deciding whether to discount a slow-moving product by 15%. A discount plugin will apply that 15% the moment you tell it to, no questions asked, whether or not it actually helps. A repricer might suggest matching a competitor who dropped their price, regardless of whether your customers are as price-sensitive as theirs. An elasticity-based read of your own sales history might show the product has fairly inelastic demand, meaning a 15% cut would likely cost you more in margin than it recovers in volume, and a smaller discount or a different lever entirely (visibility, bundling) would serve you better. Only the third answer is actually grounded in your specific catalog's behavior.</p>
+
+<h2>Five Things Worth Checking Before You Pick One</h2>
+
+<h3>Does it read your own sales data, or apply someone else's logic?</h3>
+<p>A rule you configured or a competitor's price you're matching are both external inputs. Ask whether the tool's recommendation comes from your own historical demand, or from a rule or reference point you (or a rival) set.</p>
+
+<h3>Does it show a confidence score, or just a number?</h3>
+<p>An elasticity estimate is more reliable with more price variation and sales volume behind it. Look for a model health indicator, commonly labeled Strong, Fair, or Weak fit, so a thin-data product isn't treated with the same certainty as a well-established one.</p>
+
+<h3>Can you test before anything goes live?</h3>
+<p>A what-if simulator that previews the projected impact of a candidate price against your own demand curve is a meaningfully different experience than committing a change and checking results a month later.</p>
+
+<h3>Does it separate promotional spikes from normal demand?</h3>
+<p>If your sales history includes a discount period, that spike reflects the promotion, not ordinary buying behavior. A model that doesn't flag and exclude it will produce a skewed elasticity estimate.</p>
+
+<h3>Does it work alongside your existing rules, or force you to rip them out?</h3>
+<p>If you already rely on wholesale role pricing or a quantity-discount plugin for legitimate reasons, the right elasticity tool should inform your baseline retail price, not require you to abandon segmentation logic that's already working.</p>
+
+<h2>Which Category Actually Fits Your Situation</h2>
+<ul>
+  <li><strong>You already know your discount structure and just need it automated:</strong> a rule-based plugin like Discount Rules for WooCommerce or YITH Dynamic Pricing handles this well.</li>
+  <li><strong>You sell to both retail and wholesale or B2B customers:</strong> a role-based plugin like WooCommerce Wholesale Prices or WholesaleX is the right infrastructure, though it still doesn't tell you what either price should be.</li>
+  <li><strong>You're in a category where customers actively comparison shop across near-identical listings:</strong> a repricer has a real role, but shouldn't be the only signal driving your price.</li>
+  <li><strong>You don't actually know if your current prices are optimal, discounted or not:</strong> this is the gap an elasticity-based tool closes, and it's the question underneath all the others.</li>
+</ul>
+<p>Most established stores end up using more than one: role-based pricing for wholesale buyers, a discount plugin for scheduled promotions, and an elasticity model underneath both to make sure the baseline retail price itself is actually correct before any rule or discount gets layered on top of it.</p>
+
+<h2>Testing Zorin Against Your Own WooCommerce Store</h2>
+<ol>
+  <li><strong>Connect your store or upload a sales history CSV</strong> for a handful of your best-tracked products first, ones with real price variation in the past.</li>
+  <li><strong>Check the confidence score</strong> before acting on any recommendation, not just the raise, lower, or hold call itself.</li>
+  <li><strong>Use the what-if simulator</strong> to sanity-check a recommendation against a price you'd expect to work, before applying it.</li>
+  <li><strong>Apply one product at a time</strong> initially, and compare the actual outcome against the projected lift.</li>
+  <li><strong>Keep your existing wholesale or discount rules running</strong> alongside it. The elasticity model informs your baseline price; it doesn't replace segmentation or scheduled promotions you still need.</li>
+</ol>
+<p>If you haven't calculated your own catalog's elasticity yet, <a href="/blog/how-do-i-know-what-to-price-my-products">here's how to know what to price your products</a> using your own sales history rather than a rule or a competitor's number. And if a sale is part of your plan either way, <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">here's how to run one without corrupting your pricing data</a> afterward. Once you're ready to see your own catalog's numbers, <a href="/signup">connect your WooCommerce store</a> and start with a handful of products before trusting it with your whole catalog.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the best WooCommerce pricing app?</h3>
+<p>It depends on the problem you're solving. Discount Rules for WooCommerce and YITH Dynamic Pricing are strong for automating fixed discount logic. Wholesale plugins like WooCommerce Wholesale Prices handle role-based B2B pricing. For finding your actual profit-maximizing price from your own sales history, an elasticity-based tool like Zorin covers ground none of the rule-based plugins do.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a dynamic pricing plugin and an elasticity-based tool?</h3>
+<p>A dynamic pricing plugin applies rules you configure (quantity tiers, cart discounts, role pricing). An elasticity-based tool calculates your actual price sensitivity from historical sales data and recommends a price based on that calculation, not a rule.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a competitor repricer for WooCommerce?</h3>
+<p>Only if you're in a category where customers actively comparison shop across near-identical listings. Even then, it answers what the market is charging, not what your specific customers will pay, so it shouldn't be your only pricing signal.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use a wholesale pricing plugin and an elasticity tool together?</h3>
+<p>Yes. Role-based pricing handles who sees which price. An elasticity model helps determine whether the underlying retail or wholesale price is actually optimal. They solve different problems and work well alongside each other.</p>
+</div>
+<div class="faq-item">
+<h3>Will a dynamic pricing plugin tell me if my discount is actually a good idea?</h3>
+<p>No. It applies the discount you configure without evaluating whether your specific catalog's demand supports it. That evaluation is what an elasticity read of your own sales history is for.</p>
+</div>
+<div class="faq-item">
+<h3>Is Zorin a replacement for my existing WooCommerce pricing plugins?</h3>
+<p>Not necessarily. Zorin calculates your profit-maximizing baseline price from your own sales history. It's commonly used alongside, not instead of, wholesale role plugins or scheduled discount rules you already rely on.</p>
+</div>
+<div class="faq-item">
+<h3>How does Zorin read my WooCommerce data?</h3>
+<p>You connect your store with your site URL and WooCommerce REST API keys (consumer key and secret), or upload a sales history CSV directly, and the model fits an elasticity estimate per product from that history.</p>
+</div>
+</section>
+
+<p class="conclusion">Most tools sold as WooCommerce pricing apps automate a rule, segment a customer, or react to a competitor, and all three are legitimate jobs. None of them calculate whether your price is actually the one that maximizes profit for your specific customers. That calculation only comes from reading your own sales history, which is the one category most of the WooCommerce plugin ecosystem still doesn't cover.</p>
+    `.trim(),
+  },
+  {
     slug: "why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies",
     title: "Why Do My Bestsellers and Slow Sellers Need Different Pricing Strategies?",
     excerpt:
@@ -50,6 +180,11 @@ export const posts: BlogPost[] = [
     <tr><td>Slow seller</td><td>Is price actually the obstacle?</td><td>Varies; low elasticity suggests price isn't the fix</td><td>Investigate visibility/fit before discounting</td></tr>
   </tbody>
 </table>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing every product's margin, model status, and raise or lower recommendation in one sortable table" loading="lazy" />
+  <figcaption>A real catalog view: bestsellers and slow sellers get different recommendations side by side, not one blanket rule.</figcaption>
+</figure>
 
 <h2>Why One Blanket Rule Overcorrects Both Groups</h2>
 <p>A catalog-wide discount treats a bestseller and a slow seller identically, giving away margin on the bestseller that didn't need to be given up, while possibly still not being enough to move the slow seller if price wasn't the real obstacle. A catalog-wide price increase has the mirror problem: it might work fine on inelastic bestsellers but push an already-struggling slow seller further from moving at all. Segmenting the catalog before applying any blanket rule avoids both mistakes at once.</p>
@@ -147,6 +282,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a plain raise recommendation with the elasticity number, expected profit lift, and a confidence badge, not a raw statistical output" loading="lazy" />
+  <figcaption>What the automation actually hands you: a plain recommendation, not a regression you have to interpret yourself.</figcaption>
+</figure>
+
 <h2>Why the Confidence Score Matters Here Specifically</h2>
 <p>Without a background in statistics, it's hard to know from a raw elasticity number alone whether it's actually reliable. A confidence label (commonly something like Strong, Fair, or Weak fit) exists specifically to close that gap, telling you plainly whether a given estimate has enough data behind it to trust, without requiring you to interpret an R-squared value yourself.</p>
 
@@ -226,6 +366,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 <p>These figures are general industry benchmarks, not a guarantee for any specific store; actual healthy margins vary by product category and business model.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing the margin percentage for every product in a store's catalog alongside price and cost of goods" loading="lazy" />
+  <figcaption>Margin varies a lot product to product even within one store, which is exactly why a single benchmark number can't tell you your own.</figcaption>
+</figure>
 
 <h2>Why the Gap Between Gross and Net Margin Matters</h2>
 <p>The difference between gross and net margin commonly runs 35 to 40 percentage points, meaning a store with an impressive-looking 65% gross margin might still only be netting 10-15% after everything else is accounted for. Tracking gross margin alone can create a false sense of security. The number that actually determines whether your business is healthy is net margin, not the more flattering gross figure.</p>
@@ -319,6 +464,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
+<figure class="post-image">
+  <img src="/images/blog/price-history.png" alt="Zorin product page showing a price change history entry: a price raised from $32.00 to $35.32, timestamped" loading="lazy" />
+  <figcaption>A real, applied price change with its own history entry, not a hypothetical number.</figcaption>
+</figure>
+
 <h2>Timing and Framing Matter More Than Most Merchants Expect</h2>
 <p>A sudden, large price jump can shock customers accustomed to a stable price in a way a smaller, better-timed increase wouldn't, independent of whether the new price is objectively justified by real cost increases. It's also worth watching competitors' pricing as a reference point, since raising prices well ahead of comparable stores, without a clear reason, risks losing price-sensitive customers to an alternative that hasn't moved yet.</p>
 
@@ -410,6 +560,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 <p>This table is illustrative of the format, not a claim about any specific catalog; actual recommendations depend entirely on each product's own sales history.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.png" alt="Zorin catalog view with several products checked for a bulk price update, showing a sticky bar reading '7 changes selected' with an Apply button" loading="lazy" />
+  <figcaption>A real catalog-wide view: recommendations for every SKU in one list, ready to bulk apply.</figcaption>
+</figure>
 
 <h2>Where Bulk Applying Is Genuinely Safe</h2>
 <p>A high-confidence recommendation, backed by a strong model fit and a meaningful volume of historical data, is a reasonable candidate for bulk applying without individual review, since the statistical support behind it is already substantial. This is where most of your time savings actually come from: not skipping review entirely, but not needing to re-verify a conclusion that's already well supported.</p>
@@ -507,6 +662,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a Weak fit confidence badge alongside a raise recommendation, with the elasticity coefficient and profit lift stated plainly" loading="lazy" />
+  <figcaption>The confidence badge is the whole point: a Weak-fit call is flagged as a hypothesis to test, not a settled answer.</figcaption>
+</figure>
+
 <h2>Where Real Skepticism Is Warranted</h2>
 <p>There's a real, ongoing conversation among regulators and researchers about algorithmic pricing more broadly, particularly around opaque systems that adjust prices in real time without clear limits or explanation. That skepticism is healthy and mostly applies to a different kind of system: fully automated repricers with no review step and no stated reasoning. A recommendation you review, understand, and choose to apply yourself is a fundamentally different risk profile than a black-box system silently changing prices on its own.</p>
 <p><strong>The practical guardrails worth insisting on from any pricing tool:</strong> a review-before-apply step, a stated reason for every recommendation, and a way to test a change before committing to it. Those three things do more for trustworthiness than any claim about how advanced the underlying model is.</p>
@@ -595,6 +755,11 @@ export const posts: BlogPost[] = [
 
 <h2>How the Calculation Actually Works</h2>
 <p>The underlying method is a log-log regression across your historical price and quantity data, which fits a line describing the relationship between the two on a percentage basis. You don't need to run this by hand. A model does the regression automatically from an uploaded sales history or a live Shopify or WooCommerce sync, and returns the elasticity coefficient alongside an R-squared score, which tells you how well the model actually fits your data, not just what the number is.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing an elasticity coefficient of -1.46, a demand curve chart, and a raise recommendation with expected profit lift" loading="lazy" />
+  <figcaption>A real elasticity output: the demand curve, the coefficient, and the confidence badge shown together.</figcaption>
+</figure>
 
 <h2>One Distortion Worth Knowing About: Promotions</h2>
 <p>Not every data point in your history is a clean read on normal buying behavior. A discount period shows a lot of units sold at an artificially low price, and that spike reflects the promotion, not how customers respond to your regular pricing. Left uncorrected, it pulls the whole elasticity estimate in the wrong direction. A well-built model automatically flags statistical outliers, most commonly promotional spikes, and excludes them so the baseline number reflects ordinary demand.</p>
@@ -695,6 +860,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
+<figure class="post-image">
+  <img src="/images/blog/product-empty-state.png" alt="Zorin product page for a new product with no sales history yet, showing 'No recommendation yet' and 'No demand curve yet' empty states with prompts to upload data and fit a model" loading="lazy" />
+  <figcaption>The honest pre-launch state: no sales history means no elasticity yet, not a hidden number waiting to be revealed.</figcaption>
+</figure>
+
 <h2>A Practical Sequence for a New Product</h2>
 <ol>
   <li><strong>Set a cost-plus floor</strong> first, so no launch price can accidentally sell at a loss.</li>
@@ -790,6 +960,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
+<figure class="post-image">
+  <img src="/images/blog/price-history.png" alt="Zorin product page showing a price change history entry recording a price raised from $32.00 to $35.32" loading="lazy" />
+  <figcaption>Every applied change gets its own history entry, so you can go back and compare the actual outcome against what elasticity predicted.</figcaption>
+</figure>
+
 <h2>How to Actually Check This on Your Own Store</h2>
 <p>Compare your product's actual elasticity, calculated from its own price and quantity history, against the drop you observed after the increase. If the observed drop tracks closely with what the elasticity number predicted, the increase is behaving exactly as expected, and the profit outcome, not the volume outcome, is what determines whether it was the right call. If the drop is meaningfully larger, look for a confounding factor (framing, discount history, a simultaneous change elsewhere) before concluding the price itself was wrong.</p>
 
@@ -882,6 +1057,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
+<figure class="post-image">
+  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing a model health mix across products: some fitted with Weak confidence, others with no model yet" loading="lazy" />
+  <figcaption>Not every product is on the same clock. Confidence per SKU tells you which ones need a closer look this cycle.</figcaption>
+</figure>
+
 <h2>Triggers Worth an Off-Cycle Review</h2>
 <p>Regardless of your regular schedule, certain events are worth an immediate look rather than waiting for the next scheduled review: a real cost change (a supplier price increase, a new platform fee), a meaningful and sustained swing in sales that doesn't match a known promotion or seasonal pattern, or entering a new sales channel with its own distinct customer base.</p>
 
@@ -968,6 +1148,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 <p>No spreadsheet, no data science background, and no competitor scraping required. The model reads your data, not anyone else's.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing the full elasticity output: coefficient, demand curve chart, confidence badge, and a raise recommendation with expected profit lift" loading="lazy" />
+  <figcaption>The full loop in one view: elasticity, demand curve, confidence, and the recommendation it produces.</figcaption>
+</figure>
 
 <h2>What "Enough Data" Actually Means</h2>
 <p>Elasticity estimates get more reliable with more price variation and more data points to learn from. A product that's had one price its entire life gives the model almost nothing to work with; a product that's moved through several price points across enough sales history gives it a real signal. This is why Zorin shows a confidence score and a model health badge (Strong, Fair, Weak) alongside every recommendation, rather than presenting every output with equal certainty. A weak-data product still gets a number, but you should treat it as a starting hypothesis, not a settled answer, until more sales history accumulates.</p>
@@ -1057,6 +1242,12 @@ export const posts: BlogPost[] = [
 
 <h2>What "Checking" Actually Looks Like</h2>
 <p>Checking isn't guessing harder. It's reading your own price-and-quantity history to calculate elasticity per product, the measurable relationship between a price change and the resulting change in demand. Zorin runs this calculation automatically from an uploaded sales history (or a live Shopify or WooCommerce sync) and returns a raise, lower, or hold recommendation for every SKU, along with an estimated profit lift and a confidence score based on how much reliable data supports it.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/dashboard-overview.png" alt="Zorin dashboard overview showing 8 actionable recommendations across a 23-product catalog, an average profit lift of 30%, and a ranked list of raise and lower opportunities" loading="lazy" />
+  <figcaption>A real catalog view: raise and lower recommendations ranked by profit opportunity, calculated per SKU.</figcaption>
+</figure>
+
 <table>
   <thead>
     <tr><th>What the old approach sounds like</th><th>What the data actually says</th></tr>
@@ -1148,6 +1339,11 @@ export const posts: BlogPost[] = [
 <h2>Fees Are Real, But They're a Separate Question From Elasticity</h2>
 <p>Amazon's referral fee and any FBA fulfillment costs are a genuine, separate reason your break-even price differs by channel; that's simple cost math, not a demand question. Elasticity tells you what customers are willing to pay. Fees tell you what you actually keep after the platform takes its cut. Both matter, but conflating them leads to the wrong conclusion: a channel can have low elasticity (customers would tolerate a higher price) while also having high fees (you need a higher price just to hit the same margin), and the right response addresses both, not just one.</p>
 <p><strong>A practical way to separate them:</strong> when you're comparing net profit per channel, use your realized price after fees as the number that feeds into your margin math. Use the raw customer-facing price as the number that feeds into elasticity, since that's what the customer actually reacted to.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/settings-integrations.png" alt="Zorin settings page showing separate Shopify Connection and WooCommerce Connection forms, each with its own store domain and access token fields" loading="lazy" />
+  <figcaption>Shopify and WooCommerce connect separately, which is what makes it possible to read each channel's sales history on its own.</figcaption>
+</figure>
 
 <h2>What This Looks Like in Practice</h2>
 <p>Say a product is priced at $79 on both channels. If Shopify sales history shows demand barely moves at $85, and Amazon sales history shows demand drops noticeably above $79, that's your own customers telling you two different things about the same product. Raising the Shopify price and holding the Amazon price isn't inconsistency, it's responding to two different, real demand signals with two different, correct answers.</p>
@@ -1255,6 +1451,11 @@ export const posts: BlogPost[] = [
 </table>
 <p>Neither approach is wrong for every use case, but they answer different questions. A repricer answers "what is the market doing." An elasticity tool answers "what will my customers actually pay."</p>
 
+<figure class="post-image">
+  <img src="/images/blog/settings-integrations.png" alt="Zorin settings page showing the Shopify Connection form with shop domain and access token fields for syncing products and orders" loading="lazy" />
+  <figcaption>Connecting Shopify or WooCommerce directly is what lets a tool read your own sales data instead of a competitor's price.</figcaption>
+</figure>
+
 <h2>Is a Pricing App Worth It for a Small Store?</h2>
 <p>This depends more on your catalog size and how much price variation exists in your history than on your revenue. A store with 50+ SKUs and enough sales history to show real price movement has plenty of signal to learn from. A brand-new store with a handful of products and no price history yet has very little for any model, elasticity-based or otherwise, to work with until more data accumulates.</p>
 <ul>
@@ -1352,6 +1553,11 @@ export const posts: BlogPost[] = [
 <h2>Flag the Promotional Period, Don't Let It Slip Into Your Baseline Data</h2>
 <p>This is the step most sellers skip, and it's the one with the longest tail of consequences. If a sale period isn't excluded from the data your future pricing decisions are built on, it teaches the model, and effectively teaches you, the wrong lesson about how price-sensitive your customers really are. Promotional elasticity is typically higher than baseline elasticity: customers respond more aggressively to a visible discount than they would to the same percentage change at your regular price, and treating that as your normal elasticity overstates how much a future price cut would actually help.</p>
 <p>Zorin's model automatically detects statistical outliers in your sales history, most commonly promotional spikes, and flags them for exclusion so your baseline elasticity estimate reflects ordinary buying behavior, not sale-week behavior. You can also manually confirm or override a flag if you know a spike had a different cause.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/promotion-flags.png" alt="Zorin product page showing a promotion flags table listing each sales record by date, price, and units, with a 'Flag' link per row and an Auto-detect button" loading="lazy" />
+  <figcaption>Flagged records are excluded from model fitting, so a discount week doesn't get baked into your baseline elasticity.</figcaption>
+</figure>
 
 <h2>Watch for the Post-Sale Dip</h2>
 <p>A real pattern worth expecting: customers who stock up during a sale often reduce their normal purchasing for a period afterward, since they already bought what they needed at a discount. If you misread that natural dip as a sign your regular price is suddenly too high, you risk cutting a price that didn't actually need to change. Give the post-sale period a reasonable window before drawing conclusions from it.</p>
