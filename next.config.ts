@@ -14,11 +14,13 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // unsafe-eval needed for Next.js dev/HMR
+      // unsafe-eval needed for Next.js dev/HMR; googletagmanager.com serves the GA4 gtag.js loader
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://cdn.simpleicons.org",
       "font-src 'self'",
-      "connect-src 'self'",
+      // GA4 sends hit data to google-analytics.com/analytics.google.com; googletagmanager.com serves gtag config
+      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
       "frame-ancestors 'none'",
     ].join("; "),
   },

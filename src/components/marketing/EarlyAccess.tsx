@@ -141,7 +141,7 @@ export function EarlyAccess() {
 
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="ea-store" className="text-sm font-medium text-zinc-700">
-                    Store URL <span className="font-normal text-zinc-400">(optional)</span>
+                    Store URL <span className="font-normal text-zinc-500">(optional)</span>
                   </label>
                   <input
                     id="ea-store"
@@ -154,7 +154,7 @@ export function EarlyAccess() {
 
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="ea-message" className="text-sm font-medium text-zinc-700">
-                    Anything you want us to know? <span className="font-normal text-zinc-400">(optional)</span>
+                    Anything you want us to know? <span className="font-normal text-zinc-500">(optional)</span>
                   </label>
                   <textarea
                     id="ea-message"

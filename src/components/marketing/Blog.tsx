@@ -56,7 +56,7 @@ export function Blog() {
               <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-500">
                 {post.excerpt}
               </p>
-              <div className="mt-4 flex items-center gap-2 text-xs text-zinc-400">
+              <div className="mt-4 flex items-center gap-2 text-xs text-zinc-500">
                 <span>{formatDate(post.date)}</span>
                 <span>·</span>
                 <span>{post.readingTime}</span>

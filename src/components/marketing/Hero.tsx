@@ -51,16 +51,16 @@ export function Hero() {
               <div className="h-2.5 w-2.5 rounded-full bg-zinc-200" />
               <div className="h-2.5 w-2.5 rounded-full bg-zinc-200" />
               <div className="h-2.5 w-2.5 rounded-full bg-zinc-200" />
-              <span className="ml-3 text-xs text-zinc-400">Zorin Dashboard</span>
+              <span className="ml-3 text-xs text-zinc-500">Zorin Dashboard</span>
             </div>
             <div className="p-5">
               <div className="mb-4 flex items-baseline justify-between">
                 <span className="text-sm font-medium text-zinc-700">Premium Wireless Headphones</span>
-                <span className="font-mono text-xs text-zinc-400">SKU-4821</span>
+                <span className="font-mono text-xs text-zinc-500">SKU-4821</span>
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div className="rounded-lg bg-zinc-50 p-3">
-                  <p className="text-xs text-zinc-400">Current</p>
+                  <p className="text-xs text-zinc-500">Current</p>
                   <p className="mt-1 font-mono text-lg font-semibold text-zinc-800">$79.99</p>
                 </div>
                 <div className="rounded-lg bg-blue-50 p-3">
@@ -68,7 +68,7 @@ export function Hero() {
                   <p className="mt-1 font-mono text-lg font-semibold text-blue-700">$89.99</p>
                 </div>
                 <div className="rounded-lg bg-zinc-50 p-3">
-                  <p className="text-xs text-zinc-400">Profit lift</p>
+                  <p className="text-xs text-zinc-500">Profit lift</p>
                   <p className="mt-1 font-mono text-lg font-semibold text-blue-600">+18.3%</p>
                 </div>
               </div>
@@ -76,7 +76,7 @@ export function Hero() {
                 <div className="h-1.5 flex-1 rounded-full bg-zinc-100">
                   <div className="h-1.5 w-[82%] rounded-full bg-blue-500" />
                 </div>
-                <span className="font-mono text-xs text-zinc-400">82% confidence</span>
+                <span className="font-mono text-xs text-zinc-500">82% confidence</span>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ export function Footer() {
               </span>
               Zorin
             </a>
-            <p className="mt-3 max-w-[32ch] text-sm leading-relaxed text-zinc-400">
+            <p className="mt-3 max-w-[32ch] text-sm leading-relaxed text-zinc-500">
               ML-powered pricing intelligence for online merchants.
             </p>
           </div>
@@ -64,7 +64,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-zinc-100 pt-6">
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-zinc-500">
             &copy; {new Date().getFullYear()} Zorin. All rights reserved.
           </p>
         </div>

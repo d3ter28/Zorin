@@ -111,7 +111,7 @@ export function WhyZorin() {
               ].map((row, i) => (
                 <div key={i} className="flex items-start gap-3 rounded-xl bg-white/70 p-4">
                   <div className="flex flex-col gap-2 flex-1 min-w-0">
-                    <p className="text-xs leading-relaxed text-zinc-400 line-through">
+                    <p className="text-xs leading-relaxed text-zinc-500 line-through">
                       {row.before}
                     </p>
                     <div className="flex items-start gap-2">

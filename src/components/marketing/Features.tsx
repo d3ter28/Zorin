@@ -41,14 +41,14 @@ export function Features() {
       visual: (
         <div className="mt-6 grid grid-cols-2 gap-3">
           <div className="rounded-lg bg-zinc-100/80 p-4">
-            <p className="font-mono text-xs text-zinc-400">Elasticity</p>
+            <p className="font-mono text-xs text-zinc-500">Elasticity</p>
             <p className="mt-1 font-mono text-2xl font-semibold text-zinc-800">-1.47</p>
-            <p className="mt-1 text-xs text-zinc-400">Elastic demand</p>
+            <p className="mt-1 text-xs text-zinc-500">Elastic demand</p>
           </div>
           <div className="rounded-lg bg-zinc-100/80 p-4">
-            <p className="font-mono text-xs text-zinc-400">R-squared</p>
+            <p className="font-mono text-xs text-zinc-500">R-squared</p>
             <p className="mt-1 font-mono text-2xl font-semibold text-zinc-800">0.91</p>
-            <p className="mt-1 text-xs text-zinc-400">Strong fit</p>
+            <p className="mt-1 text-xs text-zinc-500">Strong fit</p>
           </div>
         </div>
       ),
@@ -72,7 +72,7 @@ export function Features() {
                 rx={2} className="fill-amber-300" />
             ))}
           </svg>
-          <div className="mt-3 flex items-center gap-4 text-xs text-zinc-400">
+          <div className="mt-3 flex items-center gap-4 text-xs text-zinc-500">
             <span className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-sm bg-zinc-200" />
               Normal
@@ -92,7 +92,7 @@ export function Features() {
       span: "md:col-span-1",
       visual: (
         <div className="mt-6 space-y-3">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+          <div className="flex items-center justify-between text-xs text-zinc-500">
             <span>${MIN_PRICE}</span>
             <span className="font-mono font-semibold text-blue-600">
               ${sliderPrice}
@@ -119,11 +119,12 @@ export function Features() {
               max={MAX_PRICE}
               value={sliderPrice}
               onChange={(e) => setSliderPrice(Number(e.target.value))}
+              aria-label="Test price point"
               className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             />
           </div>
 
-          <p className="font-mono text-xs text-zinc-400">
+          <p className="font-mono text-xs text-zinc-500">
             Projected lift:{" "}
             <span
               className={
@@ -155,7 +156,7 @@ export function Features() {
               key={row.label}
               className="flex items-center justify-between border-b border-zinc-100 pb-2 last:border-0"
             >
-              <span className="text-xs text-zinc-400">{row.label}</span>
+              <span className="text-xs text-zinc-500">{row.label}</span>
               <span className="font-mono text-xs font-medium text-zinc-700">
                 {row.value}
               </span>
@@ -174,9 +175,9 @@ export function Features() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-zinc-100 bg-zinc-50">
-                <th className="px-3 py-2 text-left font-medium text-zinc-400">Product</th>
-                <th className="px-3 py-2 text-left font-medium text-zinc-400">Action</th>
-                <th className="px-3 py-2 text-right font-medium text-zinc-400">Est. lift</th>
+                <th className="px-3 py-2 text-left font-medium text-zinc-500">Product</th>
+                <th className="px-3 py-2 text-left font-medium text-zinc-500">Action</th>
+                <th className="px-3 py-2 text-right font-medium text-zinc-500">Est. lift</th>
               </tr>
             </thead>
             <tbody>
@@ -187,7 +188,7 @@ export function Features() {
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-medium text-zinc-700">{row.name}</span>
-                    <span className="ml-2 font-mono text-zinc-400">{row.sku}</span>
+                    <span className="ml-2 font-mono text-zinc-500">{row.sku}</span>
                   </td>
                   <td className="px-3 py-2.5">
                     <span className={`inline-flex rounded-full px-2 py-0.5 text-xs font-semibold ${actionStyle[row.action]}`}>

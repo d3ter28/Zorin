@@ -52,7 +52,7 @@ export function Pricing() {
                   {plan.price}
                 </span>
                 {plan.period && (
-                  <span className="text-sm text-zinc-400">{plan.period}</span>
+                  <span className="text-sm text-zinc-500">{plan.period}</span>
                 )}
               </div>
               <p className="mt-3 text-sm leading-relaxed text-zinc-500">
