@@ -12,7 +12,7 @@ const steps = [
   {
     icon: ChartLine,
     title: "We fit a demand model",
-    body: "A log-log elasticity model learns how your customers respond to price changes for each product.",
+    body: "Our statistical model learns how your customers respond to price changes for each product.",
   },
   {
     icon: TrendUp,
