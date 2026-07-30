@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.tryzorin.com"),
   title: "Zorin",
-  description: "Competitor-aware pricing recommendations for your store.",
+  description: "Turn your sales history into profit-maximizing price recommendations, no spreadsheets required.",
 };
 
 const organizationJsonLd = {
