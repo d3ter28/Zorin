@@ -35,6 +35,13 @@
     "stripe": "^22.3.2",
     "undici": "^7.28.0"
   },
+  "browserslist": [
+    "chrome >= 64",
+    "edge >= 79",
+    "firefox >= 67",
+    "opera >= 51",
+    "safari >= 12"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
