@@ -10,6 +10,110 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "does-charm-pricing-999-actually-work",
+    title: "Does Charm Pricing ($9.99 vs $10) Actually Work?",
+    excerpt:
+      "The .99 ending has real research behind it, but the effect is smaller and more conditional than the common advice suggests. Here's what actually holds up.",
+    date: "2026-07-31",
+    readingTime: "8 min read",
+    category: "Education",
+    content: `
+<p class="intro">Yes, generally, but the effect is smaller and more conditional than most pricing advice suggests. Ending a price in .99 does measurably increase sales for lower-priced, non-luxury products, largely because of a well-documented cognitive shortcut called left-digit bias. It's not a universal trick that works the same way for every product, every price point, or every brand, and it never replaces the more important question of what the underlying number should actually be.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Charm pricing (ending a price in .99) works through left-digit bias: customers anchor on the leftmost digit and perceive $9.99 as closer to $9 than to $10.</li>
+<li>The classic Schindler and Kibarian research found 99-ending prices meaningfully outsold round-number prices, and more recent research puts the conversion lift around 8 to 12% for items under $100.</li>
+<li>The effect is strongest for impulse, lower-priced, non-luxury purchases, and weakest or reversed for premium and considered purchases, where a round number signals quality instead.</li>
+<li>At least one large replication study found a much weaker effect than earlier research claimed, so charm pricing isn't a guaranteed win for every catalog.</li>
+<li>Charm pricing is a presentation choice layered on top of your actual price. It doesn't tell you whether $34.99 or $39.99 is the right number to begin with, that's still a question for your own elasticity data.</li>
+</ul>
+</div>
+
+<h2>The Myth: .99 Endings Are a Universal Sales Trick</h2>
+<p>Charm pricing gets treated in a lot of pricing advice as a free, no-downside lever, just knock a cent off every price and watch conversions rise. The actual research is more specific than that. The effect is real and repeatedly documented, but it depends heavily on the category, the price point, and how the customer is evaluating the purchase. Treating it as a blanket rule for every product in a catalog misses the conditions under which it actually works.</p>
+
+<h2>The Mechanism: Left-Digit Bias</h2>
+<p>The reason .99 pricing works at all comes down to how people read numbers. Consumers process prices left to right and anchor disproportionately on the first digit, a well-studied effect called left-digit bias. The perceived difference between $9.99 and $10.00 ends up feeling larger than the actual one-cent gap, because $9.99 registers as "in the $9 range" while $10.00 registers as "in the $10 range." Research published in the Journal of Consumer Research by Sokolova, Seenivasan, and Thomas documented this pattern in detail, including the finding that the effect gets stronger, not weaker, when a reference price is shown right next to the discounted one, which is part of why it's so commonly paired with promotional pricing.</p>
+<p>This isn't a new finding. Schindler and Kibarian's frequently cited 1996 study found that prices ending in 99 produced meaningfully higher sales than otherwise identical round-number prices. More recent analysis puts the effect at roughly an 8 to 12% lift in conversion for products under $100, though exact figures vary by study and category.</p>
+
+<h2>Where the Effect Is Actually Strongest</h2>
+<p>Left-digit bias shows up most reliably for impulse purchases and lower-priced, non-luxury items, the kind of decision made quickly, without much deliberation. A customer glancing at a $24.99 phone case doesn't spend much time doing exact math, so the leftmost-digit shortcut does most of the work. The lower the price and the more impulsive the decision, the more this particular bias tends to matter.</p>
+
+<h2>Where It Weakens or Actually Reverses</h2>
+<p>For considered, higher-ticket purchases, the effect gets noticeably weaker, and for premium or luxury positioning it can flip entirely. A round number like $100 or $500 reads as deliberate and confident, while $99.99 can read as a discount-store signal, undercutting the quality perception a premium brand is trying to build. This is a real, documented pattern, not just a stylistic preference among luxury brands. It's also worth being honest that the effect isn't universally confirmed: a large online experiment published in PLOS One failed to reproduce either a left-digit or a perceptual-fluency effect at the strength earlier research suggested, a useful reminder that "charm pricing works" isn't settled science for every context, it's a pattern that holds under some conditions and weakens under others.</p>
+
+<table>
+  <thead>
+    <tr><th>Situation</th><th>What the research suggests</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Low-priced, impulse, non-luxury item</td><td>Charm pricing (.99 ending) most reliably helps</td></tr>
+    <tr><td>Higher-ticket, considered purchase</td><td>Effect weakens meaningfully</td></tr>
+    <tr><td>Premium or luxury positioning</td><td>A round number often outperforms; .99 can undercut quality perception</td></tr>
+    <tr><td>Promotional price shown next to a reference price</td><td>Left-digit bias tends to be stronger in this side-by-side context</td></tr>
+  </tbody>
+</table>
+
+<h2>Charm Pricing Doesn't Answer the Question That Actually Matters</h2>
+<p>Even where the effect holds, it's a presentation choice layered on top of a number you still have to determine some other way. Deciding to end a price in .99 doesn't tell you whether that price should be built around $35, $40, or $45 in the first place. That underlying number is a demand question, not a formatting one, and it's exactly what <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity calculated from your own sales history</a> is built to answer. Get the underlying price wrong and a charming ending won't fix it. A well-chosen underlying price with a plain round ending still likely outperforms a poorly chosen one dressed up in .99.</p>
+<p>In practice, the two questions are sequential, not competing. First, use your own sales history to find the price that actually maximizes profit for a specific product. Then, separately, decide how to present that number, .99, a round figure, or something else, based on where the product actually sits: impulse and lower-priced, or considered and premium.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a recommended price of $35.32 based on the product's own elasticity, before any decision about how to format or end the number" loading="lazy" />
+  <figcaption>The number comes from your own demand data first. How you format the ending is a separate decision layered on top.</figcaption>
+</figure>
+
+<h2>How to Actually Test This on Your Own Catalog</h2>
+<p>Published research describes an average effect across many stores and categories, not a guarantee for your specific customers. The only way to know if charm pricing helps your catalog is to test it directly rather than assume the published averages apply exactly to you. Since you're already tracking sales history per product to calculate elasticity, the same data lets you compare periods at a round price against periods at a .99 price for a given product, and see whether the actual unit lift shows up in your own numbers.</p>
+<p>This is the same discipline as testing any other price change: don't apply it blind, and don't assume a general finding transfers perfectly to your specific customers. A confidence-scored read of your own data will always tell you more about your store than an average from someone else's.</p>
+
+<h2>A Practical Sequence</h2>
+<ol>
+  <li><strong>Find your actual optimal price first</strong>, using your product's own elasticity, not a charm-pricing rule applied before you know the real number.</li>
+  <li><strong>Segment by product type</strong>, lower-priced and impulse-driven items are the better candidates for a .99 ending; premium or considered-purchase items may do better rounded.</li>
+  <li><strong>Test rather than assume</strong>, especially for anything mid-catalog or ambiguous, since published research is an average, not a guarantee for your store.</li>
+  <li><strong>Watch total profit, not just the conversion rate</strong>, the same discipline that applies to <a href="/blog/why-did-my-sales-drop-when-i-raised-my-price">any other price change</a> you evaluate.</li>
+</ol>
+<p>If you haven't calculated your own catalog's elasticity yet, that's the number that actually determines your price before any decision about how to end it. <a href="/signup">Connect your sales history</a> and see what your own demand curve recommends.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Does charm pricing ($9.99 vs $10) actually work?</h3>
+<p>Generally yes for lower-priced, non-luxury, impulse-driven products, where research points to a meaningful conversion lift. The effect weakens for considered or premium purchases, and at least one large replication study found a smaller effect than earlier research claimed.</p>
+</div>
+<div class="faq-item">
+<h3>Why does ending a price in .99 change how customers perceive it?</h3>
+<p>Left-digit bias: customers read prices left to right and anchor on the first digit, so $9.99 registers as being in the $9 range rather than the $10 range, even though the real difference is one cent.</p>
+</div>
+<div class="faq-item">
+<h3>Does charm pricing work for expensive or luxury products?</h3>
+<p>Less reliably, and it can backfire. A round number like $500 often signals quality and confidence for premium positioning, while a .99 ending can read as a discount-store cue that undercuts that perception.</p>
+</div>
+<div class="faq-item">
+<h3>Is the research on charm pricing settled?</h3>
+<p>Not entirely. While studies going back to Schindler and Kibarian's 1996 work and more recent research both document a real effect, at least one large online experiment failed to reproduce it at the same strength, so it's a real but conditional pattern, not a universal law.</p>
+</div>
+<div class="faq-item">
+<h3>Should I use .99 pricing on my entire catalog?</h3>
+<p>Not automatically. It tends to help lower-priced, impulse items more than considered or premium purchases. Testing it on your own products, rather than applying it universally, gives you a more reliable answer than a blanket rule.</p>
+</div>
+<div class="faq-item">
+<h3>Does charm pricing replace the need to calculate my actual optimal price?</h3>
+<p>No. It's a formatting decision layered on top of a price you still need to determine from your own demand data. A well-chosen underlying price with a round ending typically outperforms a poorly chosen one with a charming one.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if charm pricing is actually helping my store specifically?</h3>
+<p>Compare periods at a round price against periods at a .99 price for the same product using your own sales history, the same way you'd test any other price change, rather than assuming a published average applies exactly to your customers.</p>
+</div>
+</section>
+
+<p class="conclusion">Charm pricing is a real, researched effect, not a myth, but it's narrower and more conditional than the common advice suggests. It works best on lower-priced, impulse purchases and weakens or reverses for premium ones, and it never substitutes for actually knowing what your price should be in the first place. Get the underlying number right from your own data, then decide how to format it.</p>
+    `.trim(),
+  },
+  {
     slug: "woocommerce-pricing-apps-what-to-look-for",
     title: "WooCommerce Pricing Apps: What to Look for Before You Buy",
     excerpt:
