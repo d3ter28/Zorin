@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, posts } from "@/lib/blog/posts";
+import { buildArticleSchema, buildFaqSchema } from "@/lib/blog/schema";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 
@@ -27,8 +28,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const articleSchema = buildArticleSchema(post);
+  const faqSchema = buildFaqSchema(post);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <Navbar />
       <main className="mx-auto max-w-2xl px-6 pb-24 pt-32 md:pb-32">
         <a
