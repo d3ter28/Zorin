@@ -1,0 +1,65 @@
+{
+  "planPath": "docs/superpowers/plans/2026-07-31-shopify-woocommerce-webhooks.md",
+  "tasks": [
+    {
+      "id": 0,
+      "subject": "Task 1: Schema — webhook fields + ProcessedWebhook model",
+      "status": "pending",
+      "description": "**Goal:** Add the columns and model the rest of this plan depends on.\n\n**Files:**\n- Modify: `prisma/schema.prisma`\n- Modify: `prisma/schema.production.prisma`\n\n**Acceptance Criteria:**\n- [ ] `ShopifyConnection.shopDomain` is `@unique`\n- [ ] `ShopifyConnection` has `encryptedApiSecret String` and `webhookIds String`\n- [ ] `WooCommerceConnection` has `encryptedWebhookSecret String` and `webhookIds String`\n- [ ] New `ProcessedWebhook` model exists with a unique `deliveryId`\n- [ ] Both schema files stay in sync\n\n**Verify:** `npx prisma db push && npx prisma generate` → no errors\n\n```json:metadata\n{\"files\": [\"prisma/schema.prisma\", \"prisma/schema.production.prisma\"], \"verifyCommand\": \"npx prisma db push && npx prisma generate\", \"acceptanceCriteria\": [\"ShopifyConnection.shopDomain is unique\", \"ShopifyConnection has encryptedApiSecret and webhookIds\", \"WooCommerceConnection has encryptedWebhookSecret and webhookIds\", \"ProcessedWebhook model exists with unique deliveryId\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 1,
+      "subject": "Task 2: Webhook delivery dedup helper",
+      "status": "pending",
+      "blockedBy": [0],
+      "description": "**Goal:** A small, testable helper both webhook receivers use to avoid double-processing a redelivered webhook.\n\n**Files:**\n- Create: `src/lib/webhooks/dedupe.ts`\n- Test: `src/lib/webhooks/dedupe.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `wasAlreadyProcessed(prisma, deliveryId)` returns `false` and records on first call, `true` on repeat\n- [ ] Uses ProcessedWebhook.deliveryId's unique constraint (catches P2002) rather than read-then-write\n\n**Verify:** `npm test -- src/lib/webhooks/dedupe.test.ts` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/webhooks/dedupe.ts\", \"src/lib/webhooks/dedupe.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/webhooks/dedupe.test.ts\", \"acceptanceCriteria\": [\"wasAlreadyProcessed returns false then true on repeat deliveryId\", \"catches P2002 unique constraint errors\", \"propagates other errors\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 3: HMAC verification helpers (Shopify + WooCommerce) + WC secret generator",
+      "status": "pending",
+      "description": "**Goal:** Pure, testable functions to verify an inbound webhook's signature for each platform, plus the generator Zorin uses to create its own WooCommerce webhook secret.\n\n**Files:**\n- Create: `src/lib/shopify/webhookAuth.ts` + test\n- Create: `src/lib/woocommerce/webhookAuth.ts` + test\n\n**Acceptance Criteria:**\n- [ ] `verifyShopifyWebhook(rawBody, signatureHeader, apiSecret)` timing-safe HMAC-SHA256/base64 compare\n- [ ] `verifyWooWebhook(rawBody, signatureHeader, webhookSecret)` same shape\n- [ ] `generateWooWebhookSecret()` returns 64-char hex\n- [ ] timingSafeEqual used, not ===\n\n**Verify:** `npm test -- src/lib/shopify/webhookAuth.test.ts src/lib/woocommerce/webhookAuth.test.ts` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/shopify/webhookAuth.ts\", \"src/lib/shopify/webhookAuth.test.ts\", \"src/lib/woocommerce/webhookAuth.ts\", \"src/lib/woocommerce/webhookAuth.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/shopify/webhookAuth.test.ts src/lib/woocommerce/webhookAuth.test.ts\", \"acceptanceCriteria\": [\"valid signature verifies true\", \"wrong secret or tampered body verifies false\", \"timing-safe compare used\", \"generateWooWebhookSecret returns 64-char hex\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 4: ShopifyClient webhook registration methods",
+      "status": "pending",
+      "description": "**Goal:** Extend `ShopifyClient` with the ability to create and delete webhook subscriptions.\n\n**Files:**\n- Modify: `src/lib/shopify/client.ts`\n- Modify: `src/lib/shopify/client.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `createWebhook(topic, address)` POSTs `/admin/api/2024-01/webhooks.json`, returns id as string\n- [ ] `deleteWebhook(webhookId)` DELETEs `/admin/api/2024-01/webhooks/{id}.json`\n- [ ] Both reuse existing `request()` helper\n\n**Verify:** `npm test -- src/lib/shopify/client.test.ts` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/shopify/client.ts\", \"src/lib/shopify/client.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/shopify/client.test.ts\", \"acceptanceCriteria\": [\"createWebhook POSTs correct URL/body and returns id\", \"deleteWebhook DELETEs correct URL\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 5: WooCommerceClient webhook registration methods",
+      "status": "pending",
+      "description": "**Goal:** Extend `WooCommerceClient` with the ability to create and delete webhook subscriptions.\n\n**Files:**\n- Modify: `src/lib/woocommerce/client.ts`\n- Modify: `src/lib/woocommerce/client.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `createWebhook(topic, deliveryUrl, secret)` POSTs `/wp-json/wc/v3/webhooks`, returns id as string\n- [ ] `deleteWebhook(webhookId)` DELETEs `/wp-json/wc/v3/webhooks/{id}?force=true`\n\n**Verify:** `npm test -- src/lib/woocommerce/client.test.ts` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/woocommerce/client.ts\", \"src/lib/woocommerce/client.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/woocommerce/client.test.ts\", \"acceptanceCriteria\": [\"createWebhook POSTs correct URL/body and returns id\", \"deleteWebhook DELETEs correct URL with force=true\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 6: Shopify connect/disconnect/status wiring + UI",
+      "status": "pending",
+      "blockedBy": [0, 3],
+      "description": "**Goal:** Wire webhook registration into the Shopify connect flow, cleanup into disconnect, and surface live-sync status.\n\n**Files:**\n- Modify: `src/app/api/shopify/connect/route.ts` + test\n- Modify: `src/app/api/shopify/disconnect/route.ts`, create test\n- Modify: `src/app/api/shopify/status/route.ts`\n- Modify: `src/components/ShopifyConnectionCard.tsx`\n- Create: `src/lib/appConfig.ts`\n\n**Acceptance Criteria:**\n- [ ] Connect form requires `apiSecret`\n- [ ] On connect, registers products/update, orders/create, app/uninstalled webhooks; persists encryptedApiSecret + webhookIds\n- [ ] Disconnect best-effort deletes each registered webhook first\n- [ ] status returns webhooksActive\n- [ ] UI has apiSecret field and live-sync badge\n\n**Verify:** `npm test -- src/app/api/shopify` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/appConfig.ts\", \"src/app/api/shopify/connect/route.ts\", \"src/app/api/shopify/connect/route.test.ts\", \"src/app/api/shopify/disconnect/route.ts\", \"src/app/api/shopify/disconnect/route.test.ts\", \"src/app/api/shopify/status/route.ts\", \"src/components/ShopifyConnectionCard.tsx\"], \"verifyCommand\": \"npm test -- src/app/api/shopify\", \"acceptanceCriteria\": [\"connect requires apiSecret and registers 3 webhooks\", \"disconnect deletes registered webhooks best-effort\", \"status returns webhooksActive\", \"UI has apiSecret field and live-sync badge\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 6,
+      "subject": "Task 7: WooCommerce connect/disconnect/status wiring + UI",
+      "status": "pending",
+      "blockedBy": [0, 4, 2],
+      "description": "**Goal:** Mirror Task 6 for WooCommerce — self-generated webhook secret, registration on connect, cleanup on disconnect, status flag, UI badge.\n\n**Files:**\n- Modify: `src/app/api/woocommerce/connect/route.ts`, create test\n- Modify: `src/app/api/woocommerce/disconnect/route.ts`, create test\n- Modify: `src/app/api/woocommerce/status/route.ts`\n- Modify: `src/components/WooCommerceConnectionCard.tsx`\n\n**Acceptance Criteria:**\n- [ ] Connect flow unchanged for merchant; Zorin generates webhook secret itself\n- [ ] Registers product.updated, order.created webhooks at per-connection URL; persists encryptedWebhookSecret + webhookIds\n- [ ] Disconnect best-effort deletes each registered webhook first\n- [ ] status returns webhooksActive\n- [ ] UI shows live-sync badge (no new form field)\n\n**Verify:** `npm test -- src/app/api/woocommerce` → all pass\n\n```json:metadata\n{\"files\": [\"src/app/api/woocommerce/connect/route.ts\", \"src/app/api/woocommerce/connect/route.test.ts\", \"src/app/api/woocommerce/disconnect/route.ts\", \"src/app/api/woocommerce/disconnect/route.test.ts\", \"src/app/api/woocommerce/status/route.ts\", \"src/components/WooCommerceConnectionCard.tsx\"], \"verifyCommand\": \"npm test -- src/app/api/woocommerce\", \"acceptanceCriteria\": [\"connect generates webhook secret and registers 2 webhooks\", \"disconnect deletes registered webhooks best-effort\", \"status returns webhooksActive\", \"UI shows live-sync badge\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 7,
+      "subject": "Task 8: Shopify webhook receiver route",
+      "status": "pending",
+      "blockedBy": [0, 1, 2, 5],
+      "description": "**Goal:** The endpoint Shopify actually calls — verify, dedupe, sync.\n\n**Files:**\n- Create: `src/app/api/webhooks/shopify/route.ts`\n- Test: `src/app/api/webhooks/shopify/route.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Invalid/missing HMAC → 401\n- [ ] Unknown shopDomain → 404\n- [ ] Replayed delivery id → 200, no reprocessing\n- [ ] products/update → syncProducts with mapped single-item array\n- [ ] orders/create → syncOrders with single-item array\n- [ ] app/uninstalled → deletes ShopifyConnection row\n- [ ] Unrecognized topic → 200 no-op\n- [ ] Rate limited, keyed by shopDomain → 429\n\n**Verify:** `npm test -- src/app/api/webhooks/shopify/route.test.ts` → all pass (8 tests)\n\n```json:metadata\n{\"files\": [\"src/app/api/webhooks/shopify/route.ts\", \"src/app/api/webhooks/shopify/route.test.ts\"], \"verifyCommand\": \"npm test -- src/app/api/webhooks/shopify/route.test.ts\", \"acceptanceCriteria\": [\"401 on bad signature\", \"404 on unknown shop domain\", \"200 no-op on replayed delivery id\", \"syncProducts/syncOrders called correctly per topic\", \"app/uninstalled deletes connection\", \"429 when rate limited\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 8,
+      "subject": "Task 9: WooCommerce webhook receiver route",
+      "status": "pending",
+      "blockedBy": [0, 1, 2, 6],
+      "description": "**Goal:** The endpoint WooCommerce actually calls — verify, dedupe, sync.\n\n**Files:**\n- Create: `src/app/api/webhooks/woocommerce/[connectionId]/route.ts`\n- Test: `src/app/api/webhooks/woocommerce/[connectionId]/route.test.ts`\n\n**Acceptance Criteria:**\n- [ ] Invalid/missing signature → 401\n- [ ] Unknown connectionId → 404\n- [ ] Replayed delivery id → 200, no reprocessing\n- [ ] product.updated → syncWooProducts with single-item array\n- [ ] order.created → syncWooOrders with single-item array\n- [ ] Unrecognized topic → 200 no-op\n- [ ] Rate limited, keyed by connectionId → 429\n- [ ] Full `npm test` suite passes with no regressions\n\n**Verify:** `npm test -- src/app/api/webhooks/woocommerce` then full `npm test`\n\n```json:metadata\n{\"files\": [\"src/app/api/webhooks/woocommerce/[connectionId]/route.ts\", \"src/app/api/webhooks/woocommerce/[connectionId]/route.test.ts\"], \"verifyCommand\": \"npm test\", \"acceptanceCriteria\": [\"401 on bad signature\", \"404 on unknown connectionId\", \"200 no-op on replayed delivery id\", \"syncWooProducts/syncWooOrders called correctly per topic\", \"429 when rate limited\", \"full suite passes\"], \"modelTier\": \"standard\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-07-31T00:00:00Z"
+}
