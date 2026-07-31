@@ -5,7 +5,7 @@ import { decryptToken } from "@/lib/shopify/crypto";
 import { wasAlreadyProcessed } from "@/lib/webhooks/dedupe";
 import { syncProducts } from "@/lib/shopify/syncProducts";
 import { syncOrders } from "@/lib/shopify/syncOrders";
-import { checkRateLimit } from "@/lib/auth/rateLimit";
+import { checkWebhookRateLimit } from "@/lib/auth/rateLimit";
 import type { ShopifyVariant, ShopifyOrder } from "@/lib/shopify/client";
 
 interface RawWebhookProduct {
@@ -38,7 +38,7 @@ function mapProductPayload(raw: RawWebhookProduct): ShopifyVariant[] {
 
 export async function POST(req: Request): Promise<NextResponse> {
   const shopDomain = req.headers.get("X-Shopify-Shop-Domain");
-  const { allowed } = await checkRateLimit(`shopify-webhook:${shopDomain ?? "unknown"}`);
+  const { allowed } = await checkWebhookRateLimit(`shopify-webhook:${shopDomain ?? "unknown"}`);
   if (!allowed) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }

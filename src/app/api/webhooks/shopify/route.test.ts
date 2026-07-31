@@ -6,14 +6,14 @@ const {
   wasAlreadyProcessed,
   syncProducts,
   syncOrders,
-  checkRateLimit,
+  checkWebhookRateLimit,
 } = vi.hoisted(() => ({
   verifyShopifyWebhook: vi.fn(),
   decryptToken: vi.fn(),
   wasAlreadyProcessed: vi.fn(),
   syncProducts: vi.fn(),
   syncOrders: vi.fn(),
-  checkRateLimit: vi.fn(),
+  checkWebhookRateLimit: vi.fn(),
 }));
 
 vi.mock("@/lib/db", () => ({
@@ -32,7 +32,7 @@ vi.mock("@/lib/shopify/crypto", () => ({ decryptToken }));
 vi.mock("@/lib/webhooks/dedupe", () => ({ wasAlreadyProcessed }));
 vi.mock("@/lib/shopify/syncProducts", () => ({ syncProducts }));
 vi.mock("@/lib/shopify/syncOrders", () => ({ syncOrders }));
-vi.mock("@/lib/auth/rateLimit", () => ({ checkRateLimit }));
+vi.mock("@/lib/auth/rateLimit", () => ({ checkWebhookRateLimit }));
 
 import { POST } from "./route";
 import { prisma } from "@/lib/db";
@@ -58,7 +58,7 @@ const CONNECTION = {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  checkRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
+  checkWebhookRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
   verifyShopifyWebhook.mockReturnValue(true);
   decryptToken.mockReturnValue("plain-secret");
   wasAlreadyProcessed.mockResolvedValue(false);
@@ -145,7 +145,7 @@ describe("POST /api/webhooks/shopify", () => {
   });
 
   it("returns 429 when rate limited", async () => {
-    checkRateLimit.mockResolvedValue({ allowed: false, retryAfterMs: 5000 });
+    checkWebhookRateLimit.mockResolvedValue({ allowed: false, retryAfterMs: 5000 });
     const res = await POST(
       req({ id: 1 }, { "X-Shopify-Hmac-Sha256": "sig", "X-Shopify-Shop-Domain": "mystore.myshopify.com", "X-Shopify-Topic": "products/update", "X-Shopify-Webhook-Id": "d1" }),
     );

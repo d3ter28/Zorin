@@ -5,7 +5,7 @@ import { decrypt } from "@/lib/woocommerce/crypto";
 import { wasAlreadyProcessed } from "@/lib/webhooks/dedupe";
 import { syncWooProducts } from "@/lib/woocommerce/syncProducts";
 import { syncWooOrders } from "@/lib/woocommerce/syncOrders";
-import { checkRateLimit } from "@/lib/auth/rateLimit";
+import { checkWebhookRateLimit } from "@/lib/auth/rateLimit";
 import type { WooNormalizedProduct, WooOrder } from "@/lib/woocommerce/client";
 
 interface RawWebhookProduct {
@@ -35,7 +35,7 @@ interface RouteContext {
 export async function POST(req: Request, ctx: RouteContext): Promise<NextResponse> {
   const { connectionId } = await ctx.params;
 
-  const { allowed } = await checkRateLimit(`woocommerce-webhook:${connectionId}`);
+  const { allowed } = await checkWebhookRateLimit(`woocommerce-webhook:${connectionId}`);
   if (!allowed) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }

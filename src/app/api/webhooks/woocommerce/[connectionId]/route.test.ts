@@ -6,14 +6,14 @@ const {
   wasAlreadyProcessed,
   syncWooProducts,
   syncWooOrders,
-  checkRateLimit,
+  checkWebhookRateLimit,
 } = vi.hoisted(() => ({
   verifyWooWebhook: vi.fn(),
   decrypt: vi.fn(),
   wasAlreadyProcessed: vi.fn(),
   syncWooProducts: vi.fn(),
   syncWooOrders: vi.fn(),
-  checkRateLimit: vi.fn(),
+  checkWebhookRateLimit: vi.fn(),
 }));
 
 vi.mock("@/lib/db", () => ({
@@ -31,7 +31,7 @@ vi.mock("@/lib/woocommerce/crypto", () => ({ decrypt }));
 vi.mock("@/lib/webhooks/dedupe", () => ({ wasAlreadyProcessed }));
 vi.mock("@/lib/woocommerce/syncProducts", () => ({ syncWooProducts }));
 vi.mock("@/lib/woocommerce/syncOrders", () => ({ syncWooOrders }));
-vi.mock("@/lib/auth/rateLimit", () => ({ checkRateLimit }));
+vi.mock("@/lib/auth/rateLimit", () => ({ checkWebhookRateLimit }));
 
 import { POST } from "./route";
 import { prisma } from "@/lib/db";
@@ -61,7 +61,7 @@ const CONNECTION = {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  checkRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
+  checkWebhookRateLimit.mockResolvedValue({ allowed: true, retryAfterMs: 0 });
   verifyWooWebhook.mockReturnValue(true);
   decrypt.mockReturnValue("plain-secret");
   wasAlreadyProcessed.mockResolvedValue(false);
@@ -137,7 +137,7 @@ describe("POST /api/webhooks/woocommerce/[connectionId]", () => {
   });
 
   it("returns 429 when rate limited", async () => {
-    checkRateLimit.mockResolvedValue({ allowed: false, retryAfterMs: 5000 });
+    checkWebhookRateLimit.mockResolvedValue({ allowed: false, retryAfterMs: 5000 });
     const res = await POST(
       req({ id: 1 }, { "X-WC-Webhook-Signature": "sig", "X-WC-Webhook-Topic": "product.updated", "X-WC-Webhook-Delivery-Id": "d1" }),
       ctx("conn123"),
