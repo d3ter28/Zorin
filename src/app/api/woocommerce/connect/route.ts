@@ -59,6 +59,13 @@ export const POST = withErrorHandling(async (req: Request) => {
     update: { storeUrl, encryptedKey, encryptedSecret, encryptedWebhookSecret },
   });
 
+  // Not transactional: if createWebhook throws partway through this loop,
+  // the webhooks already created on WooCommerce have no local record and
+  // can't be cleaned up via /disconnect. Same on reconnect — the update
+  // below overwrites webhookIds without deleting the old ones first, so
+  // prior webhooks are orphaned on WooCommerce's side. Accepted risk for
+  // now (low blast radius pre-launch); revisit if this shows up as leaked
+  // webhooks.
   const deliveryUrl = `${getAppUrl()}/api/webhooks/woocommerce/${connection.id}`;
   const webhookIds: string[] = [];
   for (const topic of WEBHOOK_TOPICS) {

@@ -50,6 +50,12 @@ export const POST = withErrorHandling(async (req: Request) => {
     throw err; // let withErrorHandling produce the 500
   }
 
+  // Not transactional: if createWebhook throws partway through this loop,
+  // the webhooks already created on Shopify have no local record and can't
+  // be cleaned up via /disconnect. Same on reconnect — the upsert below
+  // overwrites webhookIds without deleting the old ones first, so prior
+  // webhooks are orphaned on Shopify's side. Accepted risk for now (low
+  // blast radius pre-launch); revisit if this shows up as leaked webhooks.
   const webhookAddress = `${getAppUrl()}/api/webhooks/shopify`;
   const webhookIds: string[] = [];
   for (const topic of WEBHOOK_TOPICS) {
