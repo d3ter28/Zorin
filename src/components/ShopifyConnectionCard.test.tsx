@@ -109,6 +109,7 @@ describe("ShopifyConnectionCard", () => {
 
     await user.type(screen.getByLabelText(/shop domain/i), "mystore.myshopify.com");
     await user.type(screen.getByLabelText(/access token/i), "shpat_abc123");
+    await user.type(screen.getByLabelText(/api secret/i), "shpss_abc123");
     await user.click(screen.getByRole("button", { name: "Connect" }));
 
     await waitFor(() => {
@@ -142,6 +143,7 @@ describe("ShopifyConnectionCard", () => {
 
     await user.type(screen.getByLabelText(/shop domain/i), "mystore.myshopify.com");
     await user.type(screen.getByLabelText(/access token/i), "bad_token");
+    await user.type(screen.getByLabelText(/api secret/i), "shpss_bad");
     await user.click(screen.getByRole("button", { name: "Connect" }));
 
     await waitFor(() => {
