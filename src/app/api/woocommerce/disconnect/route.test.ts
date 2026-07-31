@@ -1,13 +1,32 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+const { decrypt, mockDeleteWebhook } = vi.hoisted(() => ({
+  decrypt: vi.fn(),
+  mockDeleteWebhook: vi.fn(),
+}));
+
 vi.mock("@/lib/db", () => ({
   prisma: {
     wooCommerceConnection: {
+      findUnique: vi.fn(),
       delete: vi.fn(),
     },
     product: {
       updateMany: vi.fn(),
     },
+  },
+}));
+
+vi.mock("@/lib/woocommerce/crypto", () => ({ decrypt }));
+
+vi.mock("@/lib/woocommerce/client", () => ({
+  WooCommerceClient: class MockWooCommerceClient {
+    constructor(
+      public storeUrl: string,
+      public consumerKey: string,
+      public consumerSecret: string,
+    ) {}
+    deleteWebhook = mockDeleteWebhook;
   },
 }));
 
@@ -27,6 +46,9 @@ function req(): Request {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  decrypt.mockReturnValue("plain-value");
+  mockDeleteWebhook.mockResolvedValue(undefined);
+  (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue(null);
 });
 
 describe("POST /api/woocommerce/disconnect", () => {
@@ -51,5 +73,40 @@ describe("POST /api/woocommerce/disconnect", () => {
     (prisma.wooCommerceConnection.delete as ReturnType<typeof vi.fn>).mockRejectedValue(err);
     const res = await POST(req());
     expect(res.status).toBe(404);
+  });
+
+  it("deletes each registered webhook before deleting the connection", async () => {
+    (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
+      storeUrl: "https://mystore.com",
+      encryptedKey: "enc",
+      encryptedSecret: "enc",
+      webhookIds: JSON.stringify(["wh-1", "wh-2"]),
+    });
+    (prisma.wooCommerceConnection.delete as ReturnType<typeof vi.fn>).mockResolvedValue({});
+    (prisma.product.updateMany as ReturnType<typeof vi.fn>).mockResolvedValue({ count: 0 });
+
+    const res = await POST(req());
+
+    expect(res.status).toBe(200);
+    expect(mockDeleteWebhook).toHaveBeenCalledWith("wh-1");
+    expect(mockDeleteWebhook).toHaveBeenCalledWith("wh-2");
+    expect(prisma.wooCommerceConnection.delete).toHaveBeenCalledWith({ where: { merchantId: "m1" } });
+  });
+
+  it("still deletes the connection if a webhook deletion fails", async () => {
+    (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
+      storeUrl: "https://mystore.com",
+      encryptedKey: "enc",
+      encryptedSecret: "enc",
+      webhookIds: JSON.stringify(["wh-1"]),
+    });
+    (prisma.wooCommerceConnection.delete as ReturnType<typeof vi.fn>).mockResolvedValue({});
+    (prisma.product.updateMany as ReturnType<typeof vi.fn>).mockResolvedValue({ count: 0 });
+    mockDeleteWebhook.mockRejectedValueOnce(new Error("401: revoked"));
+
+    const res = await POST(req());
+
+    expect(res.status).toBe(200);
+    expect(prisma.wooCommerceConnection.delete).toHaveBeenCalled();
   });
 });

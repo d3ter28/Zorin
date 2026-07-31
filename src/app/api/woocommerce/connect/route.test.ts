@@ -2,12 +2,15 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 // ── hoisted mocks ────────────────────────────────────────────────────────────
 
-const { encrypt, mockVerifyConnection } = vi.hoisted(() => ({
+const { encrypt, mockVerifyConnection, mockCreateWebhook, generateWooWebhookSecret } = vi.hoisted(() => ({
   encrypt: vi.fn(),
   mockVerifyConnection: vi.fn(),
+  mockCreateWebhook: vi.fn(),
+  generateWooWebhookSecret: vi.fn(),
 }));
 
 vi.mock("@/lib/woocommerce/crypto", () => ({ encrypt }));
+vi.mock("@/lib/woocommerce/webhookAuth", () => ({ generateWooWebhookSecret }));
 
 vi.mock("@/lib/woocommerce/client", () => ({
   WooCommerceClient: class MockWooCommerceClient {
@@ -17,6 +20,7 @@ vi.mock("@/lib/woocommerce/client", () => ({
       public consumerSecret: string,
     ) {}
     verifyConnection = mockVerifyConnection;
+    createWebhook = mockCreateWebhook;
   },
 }));
 
@@ -24,6 +28,7 @@ vi.mock("@/lib/db", () => ({
   prisma: {
     wooCommerceConnection: {
       upsert: vi.fn(),
+      update: vi.fn(),
     },
   },
 }));
@@ -47,8 +52,11 @@ function req(body: unknown): Request {
 beforeEach(() => {
   vi.clearAllMocks();
   encrypt.mockImplementation((s: string) => `enc:${s}`);
+  generateWooWebhookSecret.mockReturnValue("plain-webhook-secret");
   mockVerifyConnection.mockResolvedValue({ storeName: "My WooCommerce Store" });
-  (prisma.wooCommerceConnection.upsert as ReturnType<typeof vi.fn>).mockResolvedValue({});
+  mockCreateWebhook.mockResolvedValue("wc-webhook-id");
+  (prisma.wooCommerceConnection.upsert as ReturnType<typeof vi.fn>).mockResolvedValue({ id: "conn123" });
+  (prisma.wooCommerceConnection.update as ReturnType<typeof vi.fn>).mockResolvedValue({});
 });
 
 describe("POST /api/woocommerce/connect", () => {
@@ -126,5 +134,28 @@ describe("POST /api/woocommerce/connect", () => {
     expect(call.create.storeUrl).toBe("https://mystore.example.com");
     expect(call.create.encryptedKey).toBe("enc:ck_123");
     expect(call.create.encryptedSecret).toBe("enc:cs_456");
+    expect(call.create.encryptedWebhookSecret).toBe("enc:plain-webhook-secret");
+  });
+
+  it("registers two webhooks pointed at the per-connection URL and persists their ids", async () => {
+    mockCreateWebhook
+      .mockResolvedValueOnce("wh-1")
+      .mockResolvedValueOnce("wh-2");
+
+    const res = await POST(req({ storeUrl: "https://mystore.com", consumerKey: "ck", consumerSecret: "cs" }));
+
+    expect(res.status).toBe(200);
+    expect(mockCreateWebhook).toHaveBeenCalledWith(
+      "product.updated",
+      expect.stringContaining("/api/webhooks/woocommerce/conn123"),
+      "plain-webhook-secret",
+    );
+    expect(mockCreateWebhook).toHaveBeenCalledWith(
+      "order.created",
+      expect.stringContaining("/api/webhooks/woocommerce/conn123"),
+      "plain-webhook-secret",
+    );
+    const updateCall = (prisma.wooCommerceConnection.update as ReturnType<typeof vi.fn>).mock.calls[0][0];
+    expect(JSON.parse(updateCall.data.webhookIds)).toEqual(["wh-1", "wh-2"]);
   });
 });

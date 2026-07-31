@@ -5,6 +5,7 @@ interface WooCommerceStatus {
   connected: boolean;
   storeUrl?: string;
   lastSyncedAt?: string | null;
+  webhooksActive?: boolean;
 }
 
 interface SyncResult {
@@ -23,6 +24,7 @@ export function WooCommerceConnectionCard() {
   const [consumerSecret, setConsumerSecret] = useState("");
   const [connectedHost, setConnectedHost] = useState<string | undefined>();
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null | undefined>();
+  const [webhooksActive, setWebhooksActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [syncResult, setSyncResult] = useState<SyncResult | null>(null);
   const [showHelp, setShowHelp] = useState(false);
@@ -40,6 +42,7 @@ export function WooCommerceConnectionCard() {
           setConnectedHost(data.storeUrl);
         }
         setLastSyncedAt(data.lastSyncedAt);
+        setWebhooksActive(data.webhooksActive ?? false);
         setUiState("connected");
       } else {
         setUiState("disconnected");
@@ -220,6 +223,11 @@ export function WooCommerceConnectionCard() {
             <p className="text-xs text-muted">
               Last synced: {formatDate(lastSyncedAt)}
             </p>
+            {webhooksActive && (
+              <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent">
+                Live sync active
+              </p>
+            )}
           </div>
           <div className="flex flex-wrap gap-2">
             <button
