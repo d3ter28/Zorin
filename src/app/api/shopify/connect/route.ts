@@ -4,6 +4,7 @@ import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { encryptToken } from "@/lib/shopify/crypto";
 import { ShopifyClient } from "@/lib/shopify/client";
+import { getAppUrl } from "@/lib/appConfig";
 
 function normalizeDomain(raw: string): string {
   let domain = raw.trim().toLowerCase();
@@ -16,10 +17,12 @@ function normalizeDomain(raw: string): string {
   return domain;
 }
 
+const WEBHOOK_TOPICS = ["products/update", "orders/create", "app/uninstalled"];
+
 export const POST = withErrorHandling(async (req: Request) => {
   const { merchantId } = await requireSessionApi();
 
-  const body = await req.json() as { shopDomain?: unknown; accessToken?: unknown };
+  const body = await req.json() as { shopDomain?: unknown; accessToken?: unknown; apiSecret?: unknown };
 
   if (!body.shopDomain || typeof body.shopDomain !== "string") {
     throw new HttpError(400, "shopDomain is required");
@@ -27,9 +30,13 @@ export const POST = withErrorHandling(async (req: Request) => {
   if (!body.accessToken || typeof body.accessToken !== "string") {
     throw new HttpError(400, "accessToken is required");
   }
+  if (!body.apiSecret || typeof body.apiSecret !== "string") {
+    throw new HttpError(400, "apiSecret is required");
+  }
 
   const shopDomain = normalizeDomain(body.shopDomain);
   const accessToken = body.accessToken;
+  const apiSecret = body.apiSecret;
 
   const client = new ShopifyClient(shopDomain, accessToken);
 
@@ -43,12 +50,31 @@ export const POST = withErrorHandling(async (req: Request) => {
     throw err; // let withErrorHandling produce the 500
   }
 
+  const webhookAddress = `${getAppUrl()}/api/webhooks/shopify`;
+  const webhookIds: string[] = [];
+  for (const topic of WEBHOOK_TOPICS) {
+    const id = await client.createWebhook(topic, webhookAddress);
+    webhookIds.push(id);
+  }
+
   const encryptedToken = encryptToken(accessToken);
+  const encryptedApiSecret = encryptToken(apiSecret);
 
   await prisma.shopifyConnection.upsert({
     where: { merchantId },
-    create: { merchantId, shopDomain, encryptedToken },
-    update: { shopDomain, encryptedToken },
+    create: {
+      merchantId,
+      shopDomain,
+      encryptedToken,
+      encryptedApiSecret,
+      webhookIds: JSON.stringify(webhookIds),
+    },
+    update: {
+      shopDomain,
+      encryptedToken,
+      encryptedApiSecret,
+      webhookIds: JSON.stringify(webhookIds),
+    },
   });
 
   return NextResponse.json({ success: true, shopName });

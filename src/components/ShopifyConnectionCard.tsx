@@ -5,6 +5,7 @@ interface ShopifyStatus {
   connected: boolean;
   shopDomain?: string;
   lastSyncedAt?: string | null;
+  webhooksActive?: boolean;
 }
 
 interface SyncResult {
@@ -18,8 +19,10 @@ export function ShopifyConnectionCard() {
   const [uiState, setUiState] = useState<UIState>("loading");
   const [shopDomain, setShopDomain] = useState("");
   const [accessToken, setAccessToken] = useState("");
+  const [apiSecret, setApiSecret] = useState("");
   const [connectedDomain, setConnectedDomain] = useState<string | undefined>();
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null | undefined>();
+  const [webhooksActive, setWebhooksActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [syncResult, setSyncResult] = useState<SyncResult | null>(null);
 
@@ -32,6 +35,7 @@ export function ShopifyConnectionCard() {
       if (data.connected) {
         setConnectedDomain(data.shopDomain);
         setLastSyncedAt(data.lastSyncedAt);
+        setWebhooksActive(data.webhooksActive ?? false);
         setUiState("connected");
       } else {
         setUiState("disconnected");
@@ -57,7 +61,7 @@ export function ShopifyConnectionCard() {
       const res = await fetch("/api/shopify/connect", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ shopDomain, accessToken }),
+        body: JSON.stringify({ shopDomain, accessToken, apiSecret }),
       });
       if (!res.ok) {
         const body = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -67,6 +71,7 @@ export function ShopifyConnectionCard() {
       await fetchStatus();
       setShopDomain("");
       setAccessToken("");
+      setApiSecret("");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Connection failed — try again.");
       setUiState("disconnected");
@@ -169,6 +174,21 @@ export function ShopifyConnectionCard() {
               className="w-full rounded-lg border border-line bg-panel px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
             />
           </div>
+          <div>
+            <label htmlFor="apiSecret" className="block text-xs font-medium text-ink mb-1">
+              API Secret Key
+            </label>
+            <input
+              id="apiSecret"
+              type="password"
+              placeholder="shpss_••••••••"
+              value={apiSecret}
+              onChange={(e) => setApiSecret(e.target.value)}
+              disabled={uiState === "connecting"}
+              required
+              className="w-full rounded-lg border border-line bg-panel px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
+            />
+          </div>
           <button
             type="submit"
             disabled={uiState === "connecting"}
@@ -186,6 +206,11 @@ export function ShopifyConnectionCard() {
             <p className="text-xs text-muted">
               Last synced: {formatDate(lastSyncedAt)}
             </p>
+            {webhooksActive && (
+              <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent">
+                Live sync active
+              </p>
+            )}
           </div>
           <div className="flex flex-wrap gap-2">
             <button
