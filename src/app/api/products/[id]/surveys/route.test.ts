@@ -6,7 +6,6 @@ const { generateSurveyToken } = vi.hoisted(() => ({
 
 vi.mock("@/lib/db", () => ({
   prisma: {
-    product: { findUnique: vi.fn() },
     priceSurvey: { create: vi.fn(), findMany: vi.fn() },
   },
 }));
@@ -19,8 +18,16 @@ vi.mock("@/lib/auth/requireSession", () => ({
 }));
 vi.mock("@/lib/appConfig", () => ({ getAppUrl: () => "https://tryzorin.com" }));
 
+const { assertProductOwned } = vi.hoisted(() => ({ assertProductOwned: vi.fn(async () => undefined) }));
+
+vi.mock("@/lib/auth/ownership", () => ({
+  assertProductOwned,
+  filterOwnedProductIds: vi.fn(async (_p: unknown, ids: string[]) => ids),
+}));
+
 import { POST, GET } from "./route";
 import { prisma } from "@/lib/db";
+import { HttpError } from "@/lib/api/errors";
 
 function req(): Request {
   return {} as unknown as Request;
@@ -33,18 +40,18 @@ function ctx(id: string) {
 beforeEach(() => {
   vi.clearAllMocks();
   generateSurveyToken.mockReturnValue("a".repeat(64));
+  assertProductOwned.mockResolvedValue(undefined);
 });
 
 describe("POST /api/products/[id]/surveys", () => {
   it("returns 404 when the product isn't owned by the caller", async () => {
-    (prisma.product.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    assertProductOwned.mockRejectedValue(new HttpError(404, "Not found"));
     const res = await POST(req(), ctx("p1"));
     expect(res.status).toBe(404);
     expect(prisma.priceSurvey.create).not.toHaveBeenCalled();
   });
 
   it("creates a survey and returns its shareable URL", async () => {
-    (prisma.product.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({ merchantId: "m1" });
     (prisma.priceSurvey.create as ReturnType<typeof vi.fn>).mockResolvedValue({
       id: "s1",
       token: "a".repeat(64),
@@ -67,13 +74,12 @@ describe("POST /api/products/[id]/surveys", () => {
 
 describe("GET /api/products/[id]/surveys", () => {
   it("returns 404 when the product isn't owned by the caller", async () => {
-    (prisma.product.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+    assertProductOwned.mockRejectedValue(new HttpError(404, "Not found"));
     const res = await GET(req(), ctx("p1"));
     expect(res.status).toBe(404);
   });
 
   it("lists surveys with a response count, most recent first", async () => {
-    (prisma.product.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({ merchantId: "m1" });
     (prisma.priceSurvey.findMany as ReturnType<typeof vi.fn>).mockResolvedValue([
       { id: "s2", token: "b".repeat(64), createdAt: new Date("2026-08-01"), _count: { responses: 3 } },
       { id: "s1", token: "a".repeat(64), createdAt: new Date("2026-07-01"), _count: { responses: 12 } },
