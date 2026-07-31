@@ -232,4 +232,23 @@ export class WooCommerceClient {
       },
     );
   }
+
+  // ─── createWebhook ─────────────────────────────────────────────────────────
+
+  async createWebhook(topic: string, deliveryUrl: string, secret: string): Promise<string> {
+    const { data } = await this.request(`${this.baseUrl}/webhooks`, {
+      method: "POST",
+      body: { name: `Zorin ${topic}`, topic, delivery_url: deliveryUrl, secret },
+    });
+    const body = data as { id: number };
+    return String(body.id);
+  }
+
+  // ─── deleteWebhook ─────────────────────────────────────────────────────────
+
+  async deleteWebhook(webhookId: string): Promise<void> {
+    await this.request(`${this.baseUrl}/webhooks/${webhookId}?force=true`, {
+      method: "DELETE",
+    });
+  }
 }
