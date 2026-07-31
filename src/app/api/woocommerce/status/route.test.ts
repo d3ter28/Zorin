@@ -40,6 +40,7 @@ describe("GET /api/woocommerce/status", () => {
     (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
       storeUrl: "https://mystore.example.com",
       lastSyncedAt,
+      webhookIds: JSON.stringify(["wh-1", "wh-2"]),
     });
     const res = await GET(req());
     expect(res.status).toBe(200);
@@ -53,11 +54,34 @@ describe("GET /api/woocommerce/status", () => {
     (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
       storeUrl: "https://mystore.example.com",
       lastSyncedAt: null,
+      webhookIds: JSON.stringify([]),
     });
     const res = await GET(req());
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.connected).toBe(true);
     expect(body.lastSyncedAt).toBeNull();
+  });
+
+  it("returns webhooksActive: true when webhookIds is non-empty", async () => {
+    (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
+      storeUrl: "https://mystore.example.com",
+      lastSyncedAt: null,
+      webhookIds: JSON.stringify(["wh-1", "wh-2"]),
+    });
+    const res = await GET(req());
+    const body = await res.json();
+    expect(body.webhooksActive).toBe(true);
+  });
+
+  it("returns webhooksActive: false when webhookIds is empty", async () => {
+    (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
+      storeUrl: "https://mystore.example.com",
+      lastSyncedAt: null,
+      webhookIds: JSON.stringify([]),
+    });
+    const res = await GET(req());
+    const body = await res.json();
+    expect(body.webhooksActive).toBe(false);
   });
 });

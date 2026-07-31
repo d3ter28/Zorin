@@ -4,6 +4,8 @@ import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { encrypt } from "@/lib/woocommerce/crypto";
 import { WooCommerceClient } from "@/lib/woocommerce/client";
+import { generateWooWebhookSecret } from "@/lib/woocommerce/webhookAuth";
+import { getAppUrl } from "@/lib/appConfig";
 
 function normalizeStoreUrl(raw: string): string {
   let url = raw.trim();
@@ -16,6 +18,8 @@ function normalizeStoreUrl(raw: string): string {
   }
   return url;
 }
+
+const WEBHOOK_TOPICS = ["product.updated", "order.created"];
 
 export const POST = withErrorHandling(async (req: Request) => {
   const { merchantId } = await requireSessionApi();
@@ -44,10 +48,35 @@ export const POST = withErrorHandling(async (req: Request) => {
   }
   const encryptedKey = encrypt(consumerKey);
   const encryptedSecret = encrypt(consumerSecret);
-  await prisma.wooCommerceConnection.upsert({
+  const webhookSecret = generateWooWebhookSecret();
+  const encryptedWebhookSecret = encrypt(webhookSecret);
+
+  // Upsert first (without webhookIds) so we have a stable connection id to
+  // build the per-merchant webhook delivery URL from.
+  const connection = await prisma.wooCommerceConnection.upsert({
     where: { merchantId },
-    create: { merchantId, storeUrl, encryptedKey, encryptedSecret },
-    update: { storeUrl, encryptedKey, encryptedSecret },
+    create: { merchantId, storeUrl, encryptedKey, encryptedSecret, encryptedWebhookSecret },
+    update: { storeUrl, encryptedKey, encryptedSecret, encryptedWebhookSecret },
   });
+
+  // Not transactional: if createWebhook throws partway through this loop,
+  // the webhooks already created on WooCommerce have no local record and
+  // can't be cleaned up via /disconnect. Same on reconnect — the update
+  // below overwrites webhookIds without deleting the old ones first, so
+  // prior webhooks are orphaned on WooCommerce's side. Accepted risk for
+  // now (low blast radius pre-launch); revisit if this shows up as leaked
+  // webhooks.
+  const deliveryUrl = `${getAppUrl()}/api/webhooks/woocommerce/${connection.id}`;
+  const webhookIds: string[] = [];
+  for (const topic of WEBHOOK_TOPICS) {
+    const id = await client.createWebhook(topic, deliveryUrl, webhookSecret);
+    webhookIds.push(id);
+  }
+
+  await prisma.wooCommerceConnection.update({
+    where: { merchantId },
+    data: { webhookIds: JSON.stringify(webhookIds) },
+  });
+
   return NextResponse.json({ storeName });
 });

@@ -8,16 +8,19 @@ export const GET = withErrorHandling(async (_req: Request) => {
 
   const connection = await prisma.shopifyConnection.findUnique({
     where: { merchantId },
-    select: { shopDomain: true, lastSyncedAt: true },
+    select: { shopDomain: true, lastSyncedAt: true, webhookIds: true },
   });
 
   if (!connection) {
     return NextResponse.json({ connected: false });
   }
 
+  const webhookIds = JSON.parse(connection.webhookIds) as string[];
+
   return NextResponse.json({
     connected: true,
     shopDomain: connection.shopDomain,
     lastSyncedAt: connection.lastSyncedAt,
+    webhooksActive: webhookIds.length > 0,
   });
 });

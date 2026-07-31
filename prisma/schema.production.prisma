@@ -123,14 +123,16 @@ model PasswordResetToken {
 }
 
 model ShopifyConnection {
-  id             String    @id @default(cuid())
-  merchantId     String    @unique
-  merchant       Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
-  shopDomain     String
-  encryptedToken String
-  lastSyncedAt   DateTime?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id                 String    @id @default(cuid())
+  merchantId         String    @unique
+  merchant           Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  shopDomain         String    @unique
+  encryptedToken     String
+  encryptedApiSecret String
+  webhookIds         String    @default("[]")
+  lastSyncedAt       DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 }
 
 model Feedback {
@@ -150,13 +152,21 @@ model EarlyAccessInterest {
 }
 
 model WooCommerceConnection {
-  id              String    @id @default(cuid())
-  merchantId      String    @unique
-  merchant        Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
-  storeUrl        String
-  encryptedKey    String
-  encryptedSecret String
-  lastSyncedAt    DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id                     String    @id @default(cuid())
+  merchantId             String    @unique
+  merchant               Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  storeUrl               String
+  encryptedKey           String
+  encryptedSecret        String
+  encryptedWebhookSecret String
+  webhookIds             String    @default("[]")
+  lastSyncedAt           DateTime?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+}
+
+model ProcessedWebhook {
+  id         String   @id @default(cuid())
+  deliveryId String   @unique
+  createdAt  DateTime @default(now())
 }

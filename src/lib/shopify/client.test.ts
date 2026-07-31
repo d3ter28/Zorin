@@ -430,6 +430,46 @@ describe('ShopifyClient', () => {
     });
   });
 
+  // ─── createWebhook / deleteWebhook ──────────────────────────────────────
+
+  describe('createWebhook()', () => {
+    it('POSTs to /webhooks.json and returns the webhook id', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse({ webhook: { id: 987654321 } }),
+      );
+
+      const id = await client.createWebhook('products/update', 'https://tryzorin.com/api/webhooks/shopify');
+
+      expect(id).toBe('987654321');
+      expect(fetch).toHaveBeenCalledWith(
+        `https://${shopDomain}/admin/api/2024-01/webhooks.json`,
+        expect.objectContaining({
+          method: 'POST',
+          body: JSON.stringify({
+            webhook: {
+              topic: 'products/update',
+              address: 'https://tryzorin.com/api/webhooks/shopify',
+              format: 'json',
+            },
+          }),
+        }),
+      );
+    });
+  });
+
+  describe('deleteWebhook()', () => {
+    it('DELETEs /webhooks/{id}.json', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(mockResponse({}));
+
+      await client.deleteWebhook('987654321');
+
+      expect(fetch).toHaveBeenCalledWith(
+        `https://${shopDomain}/admin/api/2024-01/webhooks/987654321.json`,
+        expect.objectContaining({ method: 'DELETE' }),
+      );
+    });
+  });
+
   // ─── Non-429 error handling ───────────────────────────────────────────────
 
   describe('error handling', () => {

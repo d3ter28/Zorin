@@ -446,4 +446,49 @@ describe("WooCommerceClient", () => {
       );
     });
   });
+
+  // ─── createWebhook ────────────────────────────────────────────────────────
+
+  describe('createWebhook()', () => {
+    it('POSTs to /webhooks and returns the webhook id', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse({ id: 55 }),
+      );
+
+      const id = await client.createWebhook(
+        'product.updated',
+        'https://tryzorin.com/api/webhooks/woocommerce/conn123',
+        'wc-secret',
+      );
+
+      expect(id).toBe('55');
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/wp-json/wc/v3/webhooks'),
+        expect.objectContaining({
+          method: 'POST',
+          body: JSON.stringify({
+            name: 'Zorin product.updated',
+            topic: 'product.updated',
+            delivery_url: 'https://tryzorin.com/api/webhooks/woocommerce/conn123',
+            secret: 'wc-secret',
+          }),
+        }),
+      );
+    });
+  });
+
+  // ─── deleteWebhook ────────────────────────────────────────────────────────
+
+  describe('deleteWebhook()', () => {
+    it('DELETEs /webhooks/{id}?force=true', async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(mockResponse({}));
+
+      await client.deleteWebhook('55');
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/wp-json/wc/v3/webhooks/55?force=true'),
+        expect.objectContaining({ method: 'DELETE' }),
+      );
+    });
+  });
 });

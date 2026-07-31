@@ -40,6 +40,7 @@ describe("GET /api/shopify/status", () => {
     (prisma.shopifyConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
       shopDomain: "mystore.myshopify.com",
       lastSyncedAt,
+      webhookIds: JSON.stringify(["wh-1", "wh-2", "wh-3"]),
     });
     const res = await GET(req());
     expect(res.status).toBe(200);
@@ -47,17 +48,20 @@ describe("GET /api/shopify/status", () => {
     expect(body.connected).toBe(true);
     expect(body.shopDomain).toBe("mystore.myshopify.com");
     expect(body.lastSyncedAt).toBe(lastSyncedAt.toISOString());
+    expect(body.webhooksActive).toBe(true);
   });
 
   it("returns connected: true with null lastSyncedAt when never synced", async () => {
     (prisma.shopifyConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
       shopDomain: "mystore.myshopify.com",
       lastSyncedAt: null,
+      webhookIds: JSON.stringify([]),
     });
     const res = await GET(req());
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.connected).toBe(true);
     expect(body.lastSyncedAt).toBeNull();
+    expect(body.webhooksActive).toBe(false);
   });
 });
