@@ -54,4 +54,50 @@ describe("calculateVanWestendorp", () => {
     expect(result.responseCount).toBe(3);
     expect(result.acceptableRange.min).toBeLessThanOrEqual(result.acceptableRange.max);
   });
+
+  it("falls back to the single grid point when every response has identical values", () => {
+    // 3 respondents who all gave the same value (1000) for all four fields collapse the
+    // grid (the deduped, sorted set of every field value across every respondent) down to
+    // a single point: [1000]. That hits findIntersection's `grid.length === 1` fallback
+    // for all four intersections (PMC, PME, OPP, IPP) directly, before the crossing-search
+    // loop ever runs, and each one returns that single grid point unchanged.
+    // Verified by hand: cumulativeAtLeast/cumulativeAtMost at p=1000 are irrelevant here
+    // since the length-1 guard returns grid[0] (1000) immediately for every intersection.
+    const result = calculateVanWestendorp([
+      { tooCheapCents: 1000, goodValueCents: 1000, gettingExpensiveCents: 1000, tooExpensiveCents: 1000 },
+      { tooCheapCents: 1000, goodValueCents: 1000, gettingExpensiveCents: 1000, tooExpensiveCents: 1000 },
+      { tooCheapCents: 1000, goodValueCents: 1000, gettingExpensiveCents: 1000, tooExpensiveCents: 1000 },
+    ]);
+    expect(result.pointOfMarginalCheapness).toBe(1000);
+    expect(result.pointOfMarginalExpensiveness).toBe(1000);
+    expect(result.optimalPricePoint).toBe(1000);
+    expect(result.indifferencePricePoint).toBe(1000);
+    expect(result.acceptableRange).toEqual({ min: 1000, max: 1000 });
+  });
+
+  it("takes the diff1 === 0 early return when curves cross exactly at a grid point", () => {
+    // Two respondents chosen so that at the lowest grid price (1), the "too cheap" and
+    // "getting expensive" cumulative curves are exactly equal, hitting findIntersection's
+    // `diff1 === 0` early return (an exact crossing at a grid point, not interpolated).
+    //
+    // Grid (deduped, sorted, all four fields across both respondents): [1, 2, 4, 5, 6, 7].
+    //
+    // Hand-verified for pointOfMarginalCheapness = findIntersection(grid, tooCheap, gettingExpensive):
+    //   decreasing = tooCheap:      P(tooCheapCents >= 1)        = 2/2 = 1  (values 5, 4)
+    //   increasing = gettingExpensive: P(gettingExpensiveCents <= 1) = 2/2 = 1  (values 1, 1)
+    //   diff1 = increasing(1) - decreasing(1) = 1 - 1 = 0 -> exact hit, returns p1 = 1.
+    //
+    // The same reasoning applies to indifferencePricePoint = findIntersection(grid, goodValue, gettingExpensive):
+    //   decreasing = goodValue: P(goodValueCents >= 1) = 2/2 = 1 (values 7, 1)
+    //   increasing = gettingExpensive: P(gettingExpensiveCents <= 1) = 2/2 = 1 (values 1, 1)
+    //   diff1 = 1 - 1 = 0 -> exact hit, returns p1 = 1.
+    const result = calculateVanWestendorp([
+      { tooCheapCents: 5, goodValueCents: 7, gettingExpensiveCents: 1, tooExpensiveCents: 2 },
+      { tooCheapCents: 4, goodValueCents: 1, gettingExpensiveCents: 1, tooExpensiveCents: 6 },
+    ]);
+    expect(result.pointOfMarginalCheapness).toBe(1);
+    expect(result.indifferencePricePoint).toBe(1);
+    expect(result.pointOfMarginalExpensiveness).toBe(2);
+    expect(result.optimalPricePoint).toBe(5);
+  });
 });

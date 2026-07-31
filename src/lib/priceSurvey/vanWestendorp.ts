@@ -64,6 +64,11 @@ function findIntersection(
 
     if (diff1 === 0) return p1;
     if ((diff1 < 0 && diff2 >= 0) || (diff1 > 0 && diff2 <= 0)) {
+      // The guard above rules out diff1 === 0, and this branch only runs when diff1 and
+      // diff2 have strictly opposite signs (diff1 < 0 <= diff2, or diff1 > 0 >= diff2).
+      // That means diff2 can never equal diff1, so diff1 - diff2 is never 0 here — this
+      // division cannot produce NaN. If the guard conditions above ever change, re-verify
+      // this invariant still holds.
       const t = diff1 / (diff1 - diff2);
       return Math.round(p1 + t * (p2 - p1));
     }
