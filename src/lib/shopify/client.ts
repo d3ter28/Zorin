@@ -161,6 +161,25 @@ export class ShopifyClient {
     });
   }
 
+  // ─── createWebhook ───────────────────────────────────────────────────────
+
+  async createWebhook(topic: string, address: string): Promise<string> {
+    const { data } = await this.request(`${this.baseUrl}/webhooks.json`, {
+      method: "POST",
+      body: { webhook: { topic, address, format: "json" } },
+    });
+    const body = data as { webhook: { id: number } };
+    return String(body.webhook.id);
+  }
+
+  // ─── deleteWebhook ───────────────────────────────────────────────────────
+
+  async deleteWebhook(webhookId: string): Promise<void> {
+    await this.request(`${this.baseUrl}/webhooks/${webhookId}.json`, {
+      method: "DELETE",
+    });
+  }
+
   // ─── fetchOrders ──────────────────────────────────────────────────────────
 
   async *fetchOrders(sinceDate: Date): AsyncGenerator<ShopifyOrder[]> {
