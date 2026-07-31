@@ -1,0 +1,53 @@
+{
+  "planPath": "docs/superpowers/plans/2026-08-01-price-sensitivity-survey.md",
+  "tasks": [
+    {
+      "id": 0,
+      "subject": "Task 1: Schema — PriceSurvey + PriceSurveyResponse models",
+      "status": "pending",
+      "description": "**Goal:** Add the data model this feature depends on.\n\n**Files:**\n- Modify: `prisma/schema.prisma`\n- Modify: `prisma/schema.production.prisma`\n\n**Acceptance Criteria:**\n- [ ] `PriceSurvey` model exists with a unique `token`, relation to `Product` (onDelete Cascade), and `merchantId`\n- [ ] `PriceSurveyResponse` model exists with the four price fields and a relation to `PriceSurvey` (onDelete Cascade)\n- [ ] `Product` gains a `priceSurveys PriceSurvey[]` relation\n- [ ] Both schema files stay in sync\n\n**Verify:** `npx prisma db push && npx prisma generate` → no errors\n\n```json:metadata\n{\"files\": [\"prisma/schema.prisma\", \"prisma/schema.production.prisma\"], \"verifyCommand\": \"npx prisma db push && npx prisma generate\", \"acceptanceCriteria\": [\"PriceSurvey model with unique token\", \"PriceSurveyResponse model with four price fields\", \"Product.priceSurveys relation added\", \"both schema files in sync\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 1,
+      "subject": "Task 2: Van Westendorp calculation module",
+      "status": "pending",
+      "description": "**Goal:** A pure, testable function that computes the four Van Westendorp intersections and a confidence tier from a set of survey responses.\n\n**Files:**\n- Create: `src/lib/priceSurvey/vanWestendorp.ts`\n- Test: `src/lib/priceSurvey/vanWestendorp.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `calculateVanWestendorp(responses)` returns PMC, PME, OPP, IPP, acceptable range, response count, confidence tier\n- [ ] Confidence tiering: none <5, low 5–19, good 20+\n- [ ] Empty input returns all-zero result with confidence \"none\", no throw\n- [ ] Single response produces a deterministic, hand-verifiable result (PMC=1000, PME=1500, OPP=1000, IPP=1250 for the test fixture)\n\n**Verify:** `npm test -- src/lib/priceSurvey/vanWestendorp.test.ts` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/priceSurvey/vanWestendorp.ts\", \"src/lib/priceSurvey/vanWestendorp.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/priceSurvey/vanWestendorp.test.ts\", \"acceptanceCriteria\": [\"empty input returns all-zero none-confidence result\", \"single-response fixture matches hand-derived PMC/PME/OPP/IPP\", \"confidence tiers correctly at 5/20 boundaries\", \"multi-response input does not throw\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 3: Survey creation + listing API (authenticated)",
+      "status": "pending",
+      "blockedBy": [0],
+      "description": "**Goal:** Let a merchant create a survey for a product they own and list its surveys.\n\n**Files:**\n- Create: `src/lib/priceSurvey/token.ts` + test\n- Create: `src/app/api/products/[id]/surveys/route.ts` + test\n\n**Acceptance Criteria:**\n- [ ] `generateSurveyToken()` returns a 64-char hex string\n- [ ] `POST /api/products/[id]/surveys` creates a survey for an owned product, returns {id, token, shareUrl}\n- [ ] POST on unowned/nonexistent product → 404\n- [ ] `GET /api/products/[id]/surveys` lists surveys with responseCount, most recent first\n\n**Verify:** `npm test -- src/lib/priceSurvey/token.test.ts \"src/app/api/products/[id]/surveys/route.test.ts\"` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/priceSurvey/token.ts\", \"src/lib/priceSurvey/token.test.ts\", \"src/app/api/products/[id]/surveys/route.ts\", \"src/app/api/products/[id]/surveys/route.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/priceSurvey/token.test.ts \\\"src/app/api/products/[id]/surveys/route.test.ts\\\"\", \"acceptanceCriteria\": [\"token is 64-char hex\", \"POST creates survey and returns shareUrl\", \"POST 404s on unowned product\", \"GET lists surveys with responseCount desc by createdAt\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 4: Public survey lookup + respond API",
+      "status": "pending",
+      "blockedBy": [0],
+      "description": "**Goal:** The public-facing endpoints a customer's browser calls — no login, rate-limited, cookie-guarded.\n\n**Files:**\n- Create: `src/app/api/survey/[token]/route.ts` + test\n- Create: `src/app/api/survey/[token]/respond/route.ts` + test\n\n**Acceptance Criteria:**\n- [ ] `GET /api/survey/[token]` returns product title/image for valid token, 404 for unknown\n- [ ] `POST /api/survey/[token]/respond` rejects non-positive or out-of-order (tooCheap > tooExpensive) prices with 400\n- [ ] Repeat submission with the same anti-resubmit cookie → 409, no second row created\n- [ ] Rate limited via checkWebhookRateLimit keyed by IP → 429 when exceeded\n- [ ] Success creates the response row and sets the anti-resubmit cookie\n\n**Verify:** `npm test -- \"src/app/api/survey/[token]\"` → all pass\n\n```json:metadata\n{\"files\": [\"src/app/api/survey/[token]/route.ts\", \"src/app/api/survey/[token]/route.test.ts\", \"src/app/api/survey/[token]/respond/route.ts\", \"src/app/api/survey/[token]/respond/route.test.ts\"], \"verifyCommand\": \"npm test -- \\\"src/app/api/survey/[token]\\\"\", \"acceptanceCriteria\": [\"lookup 404s on unknown token, 200 with product info on valid\", \"respond 400s on non-positive or out-of-order prices\", \"respond 409s on repeat cookie\", \"respond 429s when rate limited\", \"success sets anti-resubmit cookie\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 5: Survey results API",
+      "status": "pending",
+      "blockedBy": [0, 1],
+      "description": "**Goal:** Compute and return the Van Westendorp results for a specific survey.\n\n**Files:**\n- Create: `src/app/api/products/[id]/surveys/[surveyId]/results/route.ts` + test\n\n**Acceptance Criteria:**\n- [ ] 404 if product not owned by caller, or survey doesn't belong to that product\n- [ ] Returns the VanWestendorpResult shape computed from that survey's responses\n\n**Verify:** `npm test -- \"src/app/api/products/[id]/surveys/[surveyId]/results/route.test.ts\"` → all pass\n\n```json:metadata\n{\"files\": [\"src/app/api/products/[id]/surveys/[surveyId]/results/route.ts\", \"src/app/api/products/[id]/surveys/[surveyId]/results/route.test.ts\"], \"verifyCommand\": \"npm test -- \\\"src/app/api/products/[id]/surveys/[surveyId]/results/route.test.ts\\\"\", \"acceptanceCriteria\": [\"404 on unowned product\", \"404 on survey not belonging to product\", \"200 with computed VanWestendorpResult\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 6: Public survey page",
+      "status": "pending",
+      "blockedBy": [3],
+      "description": "**Goal:** The standalone, no-app-chrome page a customer sees when they follow the survey link.\n\n**Files:**\n- Create: `src/app/survey/[token]/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] Renders without AppShell/sidebar — no dashboard chrome visible to a public respondent\n- [ ] Shows product title/image, four Van Westendorp price inputs, submit button\n- [ ] Success shows a thank-you state instead of the form\n- [ ] 409 (already responded) / 429 (rate limited) show a clear distinct message, not a generic error\n\n**Verify:** Manual browser check — create a survey, visit /survey/[token] in an incognito window, submit.\n\n```json:metadata\n{\"files\": [\"src/app/survey/[token]/page.tsx\"], \"verifyCommand\": \"manual browser check per plan Task 6 Step 2\", \"acceptanceCriteria\": [\"no AppShell chrome on public page\", \"four price inputs render with product info\", \"409/429 show distinct messages\", \"success shows thank-you state\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 6,
+      "subject": "Task 7: Product page integration — survey card + chart",
+      "status": "pending",
+      "blockedBy": [2, 4, 5],
+      "description": "**Goal:** Let a merchant create a survey and see its results from the product detail page.\n\n**Files:**\n- Create: `src/components/PriceSensitivityChart.tsx`\n- Create: `src/components/PriceSurveyCard.tsx`\n- Modify: `src/app/product/[id]/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] Product page shows a \"Price Sensitivity Survey\" card alongside the existing RecommendationCard\n- [ ] Empty state offers \"Create survey link\"; active state shows copyable link + response count\n- [ ] Chart renders once a survey has ≥5 responses, with a visible confidence label\n- [ ] Pure SVG chart, no new charting library dependency\n- [ ] Full npm test suite passes with no regressions\n\n**Verify:** `npm test` (full suite) then manual browser check per plan Task 7 Step 5\n\n```json:metadata\n{\"files\": [\"src/components/PriceSensitivityChart.tsx\", \"src/components/PriceSurveyCard.tsx\", \"src/app/product/[id]/page.tsx\"], \"verifyCommand\": \"npm test\", \"acceptanceCriteria\": [\"card appears on product page alongside RecommendationCard\", \"empty state creates survey link\", \"chart appears at >=5 responses with confidence label\", \"full suite passes\"], \"modelTier\": \"standard\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-08-01T00:00:00Z"
+}
