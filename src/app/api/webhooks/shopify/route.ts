@@ -65,31 +65,40 @@ export async function POST(req: Request): Promise<NextResponse> {
   // Scope the dedup key by platform+shop so a delivery id from a different
   // platform or merchant can never collide with this one (ProcessedWebhook.
   // deliveryId is a single global-unique column with no other scoping).
-  if (rawDeliveryId) {
-    const scopedDeliveryId = `shopify:${shopDomain}:${rawDeliveryId}`;
-    if (await wasAlreadyProcessed(prisma, scopedDeliveryId)) {
-      return NextResponse.json({ received: true, duplicate: true });
-    }
+  const scopedDeliveryId = rawDeliveryId ? `shopify:${shopDomain}:${rawDeliveryId}` : null;
+  if (scopedDeliveryId && (await wasAlreadyProcessed(prisma, scopedDeliveryId))) {
+    return NextResponse.json({ received: true, duplicate: true });
   }
 
-  const payload = JSON.parse(rawBody);
+  try {
+    const payload = JSON.parse(rawBody);
 
-  switch (topic) {
-    case "products/update": {
-      const variants = mapProductPayload(payload as RawWebhookProduct);
-      await syncProducts(prisma, connection.merchantId, variants);
-      break;
+    switch (topic) {
+      case "products/update": {
+        const variants = mapProductPayload(payload as RawWebhookProduct);
+        await syncProducts(prisma, connection.merchantId, variants);
+        break;
+      }
+      case "orders/create": {
+        await syncOrders(prisma, connection.merchantId, [payload as ShopifyOrder]);
+        break;
+      }
+      case "app/uninstalled": {
+        await prisma.shopifyConnection.delete({ where: { merchantId: connection.merchantId } });
+        break;
+      }
+      default:
+        break;
     }
-    case "orders/create": {
-      await syncOrders(prisma, connection.merchantId, [payload as ShopifyOrder]);
-      break;
+  } catch (err) {
+    // Processing failed after the dedup record was already written. Delete it
+    // so the platform's retry (triggered by the non-2xx this throws into)
+    // can actually reprocess the delivery instead of being silently dropped
+    // as a duplicate forever.
+    if (scopedDeliveryId) {
+      await prisma.processedWebhook.delete({ where: { deliveryId: scopedDeliveryId } }).catch(() => {});
     }
-    case "app/uninstalled": {
-      await prisma.shopifyConnection.delete({ where: { merchantId: connection.merchantId } });
-      break;
-    }
-    default:
-      break;
+    throw err;
   }
 
   return NextResponse.json({ received: true });

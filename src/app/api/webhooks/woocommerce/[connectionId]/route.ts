@@ -59,27 +59,36 @@ export async function POST(req: Request, ctx: RouteContext): Promise<NextRespons
   // different platform or merchant can never collide with this one
   // (ProcessedWebhook.deliveryId is a single global-unique column with no
   // other scoping).
-  if (rawDeliveryId) {
-    const scopedDeliveryId = `woocommerce:${connectionId}:${rawDeliveryId}`;
-    if (await wasAlreadyProcessed(prisma, scopedDeliveryId)) {
-      return NextResponse.json({ received: true, duplicate: true });
-    }
+  const scopedDeliveryId = rawDeliveryId ? `woocommerce:${connectionId}:${rawDeliveryId}` : null;
+  if (scopedDeliveryId && (await wasAlreadyProcessed(prisma, scopedDeliveryId))) {
+    return NextResponse.json({ received: true, duplicate: true });
   }
 
-  const payload = JSON.parse(rawBody);
+  try {
+    const payload = JSON.parse(rawBody);
 
-  switch (topic) {
-    case "product.updated": {
-      const product = mapProductPayload(payload as RawWebhookProduct);
-      await syncWooProducts(prisma, connection.merchantId, [product]);
-      break;
+    switch (topic) {
+      case "product.updated": {
+        const product = mapProductPayload(payload as RawWebhookProduct);
+        await syncWooProducts(prisma, connection.merchantId, [product]);
+        break;
+      }
+      case "order.created": {
+        await syncWooOrders(prisma, connection.merchantId, [payload as WooOrder]);
+        break;
+      }
+      default:
+        break;
     }
-    case "order.created": {
-      await syncWooOrders(prisma, connection.merchantId, [payload as WooOrder]);
-      break;
+  } catch (err) {
+    // Processing failed after the dedup record was already written. Delete it
+    // so the platform's retry (triggered by the non-2xx this throws into)
+    // can actually reprocess the delivery instead of being silently dropped
+    // as a duplicate forever.
+    if (scopedDeliveryId) {
+      await prisma.processedWebhook.delete({ where: { deliveryId: scopedDeliveryId } }).catch(() => {});
     }
-    default:
-      break;
+    throw err;
   }
 
   return NextResponse.json({ received: true });

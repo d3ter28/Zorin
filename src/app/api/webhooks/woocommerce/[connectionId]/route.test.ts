@@ -21,6 +21,9 @@ vi.mock("@/lib/db", () => ({
     wooCommerceConnection: {
       findUnique: vi.fn(),
     },
+    processedWebhook: {
+      delete: vi.fn(),
+    },
   },
 }));
 vi.mock("@/lib/woocommerce/webhookAuth", () => ({ verifyWooWebhook }));
@@ -65,6 +68,7 @@ beforeEach(() => {
   (prisma.wooCommerceConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue(CONNECTION);
   syncWooProducts.mockResolvedValue({ created: 0, updated: 1, skipped: 0, skippedReasons: [] });
   syncWooOrders.mockResolvedValue({ upserted: 1, skippedLineItems: 0 });
+  (prisma.processedWebhook.delete as ReturnType<typeof vi.fn>).mockResolvedValue({});
 });
 
 describe("POST /api/webhooks/woocommerce/[connectionId]", () => {
@@ -140,5 +144,17 @@ describe("POST /api/webhooks/woocommerce/[connectionId]", () => {
     );
     expect(res.status).toBe(429);
     expect(syncWooProducts).not.toHaveBeenCalled();
+  });
+
+  it("rolls back the dedup record and rethrows when processing fails", async () => {
+    syncWooProducts.mockRejectedValueOnce(new Error("db hiccup"));
+    const payload = { id: 42, type: "simple", name: "Widget", sku: "SKU1", regular_price: "9.99", images: [{ src: "https://cdn.example.com/w.jpg" }] };
+    await expect(
+      POST(
+        req(payload, { "X-WC-Webhook-Signature": "sig", "X-WC-Webhook-Topic": "product.updated", "X-WC-Webhook-Delivery-Id": "d1" }),
+        ctx("conn123"),
+      ),
+    ).rejects.toThrow("db hiccup");
+    expect(prisma.processedWebhook.delete).toHaveBeenCalledWith({ where: { deliveryId: "woocommerce:conn123:d1" } });
   });
 });

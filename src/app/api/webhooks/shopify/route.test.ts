@@ -22,6 +22,9 @@ vi.mock("@/lib/db", () => ({
       findUnique: vi.fn(),
       delete: vi.fn(),
     },
+    processedWebhook: {
+      delete: vi.fn(),
+    },
   },
 }));
 vi.mock("@/lib/shopify/webhookAuth", () => ({ verifyShopifyWebhook }));
@@ -62,6 +65,7 @@ beforeEach(() => {
   (prisma.shopifyConnection.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue(CONNECTION);
   syncProducts.mockResolvedValue({ created: 0, updated: 1, skipped: 0, skippedReasons: [] });
   syncOrders.mockResolvedValue({ upserted: 1, skippedLineItems: 0 });
+  (prisma.processedWebhook.delete as ReturnType<typeof vi.fn>).mockResolvedValue({});
 });
 
 describe("POST /api/webhooks/shopify", () => {
@@ -147,5 +151,19 @@ describe("POST /api/webhooks/shopify", () => {
     );
     expect(res.status).toBe(429);
     expect(syncProducts).not.toHaveBeenCalled();
+  });
+
+  it("rolls back the dedup record and rethrows when processing fails", async () => {
+    syncProducts.mockRejectedValueOnce(new Error("db hiccup"));
+    const payload = {
+      id: 555,
+      title: "Widget",
+      image: { src: "https://cdn.example.com/w.jpg" },
+      variants: [{ id: 999, product_id: 555, title: "Default Title", sku: "SKU1", price: "19.99", inventory_quantity: 5 }],
+    };
+    await expect(
+      POST(req(payload, { "X-Shopify-Hmac-Sha256": "sig", "X-Shopify-Shop-Domain": "mystore.myshopify.com", "X-Shopify-Topic": "products/update", "X-Shopify-Webhook-Id": "d1" })),
+    ).rejects.toThrow("db hiccup");
+    expect(prisma.processedWebhook.delete).toHaveBeenCalledWith({ where: { deliveryId: "shopify:mystore.myshopify.com:d1" } });
   });
 });
