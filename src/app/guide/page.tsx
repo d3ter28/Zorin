@@ -7,6 +7,7 @@ const TOC = [
   { id: "getting-started", label: "Getting started" },
   { id: "your-dashboard", label: "Your dashboard" },
   { id: "price-elasticity", label: "Price elasticity" },
+  { id: "price-survey", label: "Price sensitivity survey" },
   { id: "integrations", label: "Integrations" },
   { id: "faq", label: "Common questions" },
 ];
@@ -83,22 +84,18 @@ export default async function GuidePage() {
             <strong className="text-ink">Settings</strong> to import automatically — products
             and orders come in with one click.
           </p>
-          <ScreenDiagram label="Dashboard — Products tab">
-            <DiagramDashboardProducts />
-          </ScreenDiagram>
+          <Screenshot src="/images/guide/dashboard-products.png" alt="Dashboard Products tab showing catalog import and sales history upload" />
         </StepBlock>
 
         <StepBlock number={2} title="Upload sales history">
           <p className="text-muted leading-relaxed">
-            On the Products tab, use the <strong className="text-ink">Upload Sales History</strong>{" "}
+            On a product&apos;s page, use the <strong className="text-ink">Upload Sales History</strong>{" "}
             panel. Upload a CSV with one row per sale: SKU, date, units sold, and price. You need
             at least 10 data points at two or more different price points per product.
             Use <strong className="text-ink">Download sample CSV</strong> to get a correctly
             formatted template.
           </p>
-          <ScreenDiagram label="Products tab — Upload Sales History">
-            <DiagramUpload />
-          </ScreenDiagram>
+          <Screenshot src="/images/guide/product-upload.png" alt="Product page with the Upload Sales History panel and Analyse Pricing card" />
         </StepBlock>
 
         <StepBlock number={3} title="Fit a model">
@@ -107,9 +104,7 @@ export default async function GuidePage() {
             <strong className="text-ink">Fit Model</strong>. Zorin runs a regression on your
             sales data to calculate the price elasticity for that product.
           </p>
-          <ScreenDiagram label="Product page — Fit Model">
-            <DiagramFitModel />
-          </ScreenDiagram>
+          <Screenshot src="/images/guide/product-upload.png" alt="Product page with the Analyse Pricing card and Fit Model / Get Recommendation buttons" />
         </StepBlock>
 
         <StepBlock number={4} title="Get a recommendation">
@@ -119,9 +114,7 @@ export default async function GuidePage() {
             that maximises your profit and recommends raise, lower, or hold — with an expected
             profit lift percentage.
           </p>
-          <ScreenDiagram label="Product page — Recommendation">
-            <DiagramRecommendation />
-          </ScreenDiagram>
+          <Screenshot src="/images/guide/product-recommendation.png" alt="A RAISE recommendation with expected profit lift and model confidence" />
         </StepBlock>
 
         <StepBlock number={5} title="Apply the price">
@@ -130,18 +123,14 @@ export default async function GuidePage() {
             in Zorin and — if you are connected to Shopify or WooCommerce — pushes live to your
             store automatically. Your full price history is recorded on this page.
           </p>
-          <ScreenDiagram label="Product page — Apply">
-            <DiagramApply />
-          </ScreenDiagram>
+          <Screenshot src="/images/guide/product-price-history.png" alt="Price change history showing an applied price change, with the promotion flags table below" />
         </StepBlock>
       </Section>
 
       {/* Dashboard */}
       <Section id="your-dashboard" title="Understanding your dashboard">
         <p>The Overview tab shows your whole catalog at a glance.</p>
-        <ScreenDiagram label="Dashboard — Overview">
-          <DiagramDashboardOverview />
-        </ScreenDiagram>
+        <Screenshot src="/images/guide/dashboard-overview.png" alt="Dashboard Overview tab with portfolio stats, model health, and the average price trend chart" />
         <dl className="mt-4 space-y-4">
           <Term term="Products">Total products in your catalog.</Term>
           <Term term="Actionable">
@@ -183,15 +172,56 @@ export default async function GuidePage() {
         </p>
       </Section>
 
+      {/* Price sensitivity survey */}
+      <Section id="price-survey" title="Price sensitivity survey">
+        <p>
+          Elasticity modelling tells you how customers respond based on what they actually
+          bought. A price sensitivity survey asks them directly. Both are useful, and Zorin
+          keeps them separate — the survey never overwrites or blends into your raise / lower /
+          hold recommendation, it is a second, independent signal you look at alongside it.
+        </p>
+        <p>
+          Open any product page and find the <strong className="text-ink">Van Westendorp
+          Analysis</strong> card. Click <strong className="text-ink">Create survey link</strong>{" "}
+          to generate a shareable, no-login link, then send it however you already reach
+          customers — email, an order confirmation page, social media. Each respondent answers
+          four questions: at what price would this feel too cheap to trust, a bargain, starting
+          to feel expensive, and too expensive to buy.
+        </p>
+        <Callout>
+          The method is named after Dutch economist Peter van Westendorp, who developed it in
+          1976. It is a standard, widely used pricing-research technique — Zorin automates the
+          math, not the methodology.
+        </Callout>
+        <Screenshot src="/images/guide/product-survey.png" alt="Van Westendorp Analysis card showing the optimal price, acceptable range, and a confidence badge" />
+        <dl className="mt-4 space-y-4">
+          <Term term="Optimal price">
+            The price where the fewest customers call it either too cheap or too expensive —
+            the headline number.
+          </Term>
+          <Term term="Indifference point">
+            Where opinion is most evenly split between &quot;good value&quot; and &quot;getting
+            expensive&quot;.
+          </Term>
+          <Term term="Acceptable range">
+            The band of prices customers are unlikely to reject outright in either direction.
+            Usually the most actionable number of the four.
+          </Term>
+          <Term term="Confidence">
+            Purely a function of response count: no confidence under 5 responses, low from 5–19,
+            good at 20 or more. Results show immediately at every tier — low-confidence results
+            are still shown, just labelled, rather than hidden until you have more data.
+          </Term>
+        </dl>
+      </Section>
+
       {/* Integrations */}
       <Section id="integrations" title="Platform integrations">
         <p>
           Connect your store so products and orders import automatically and price changes go
           live without any extra steps.
         </p>
-        <ScreenDiagram label="Settings — Connection cards">
-          <DiagramSettings />
-        </ScreenDiagram>
+        <Screenshot src="/images/guide/settings-integrations.png" alt="Settings page with the Shopify and WooCommerce connection cards" />
         <div className="mt-4 space-y-4">
           <IntegrationCard
             name="Shopify"
@@ -266,20 +296,9 @@ function StepBlock({ number, title, children }: { number: number; title: string;
   );
 }
 
-function ScreenDiagram({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="mt-3 rounded-xl border border-line overflow-hidden">
-      <div className="bg-zinc-50 px-3 py-1.5 border-b border-line flex items-center gap-1.5">
-        <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-        <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-        <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
-        <span className="text-xs text-muted ml-2">{label}</span>
-      </div>
-      <div className="bg-white p-4">
-        {children}
-      </div>
-    </div>
-  );
+function Screenshot({ src, alt }: { src: string; alt: string }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt={alt} className="mt-3 w-full rounded-xl border border-line" />;
 }
 
 function Callout({ children }: { children: React.ReactNode }) {
@@ -327,294 +346,3 @@ function Faq({ q, children }: { q: string; children: React.ReactNode }) {
   );
 }
 
-/* ── Annotated diagrams ── */
-
-function ArrowDefs() {
-  return (
-    <defs>
-      <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-        <path d="M0,0.5 L6,3.5 L0,6.5 Z" fill="#3b82f6" />
-      </marker>
-    </defs>
-  );
-}
-
-function Arrow({ x1, y1, x2, y2 }: { x1: number; y1: number; x2: number; y2: number }) {
-  return (
-    <line x1={x1} y1={y1} x2={x2} y2={y2}
-      stroke="#3b82f6" strokeWidth="1.5" strokeDasharray="4 2"
-      markerEnd="url(#arrow)" />
-  );
-}
-
-function Badge({ x, y, num, label }: { x: number; y: number; num: number; label: string }) {
-  const nearRight = x > 430;
-  return (
-    <g>
-      <circle cx={x} cy={y} r="9" fill="#3b82f6" />
-      <text x={x} y={y + 3.5} fontSize="9" fill="#fff" textAnchor="middle" fontWeight="700">{num}</text>
-      <text x={nearRight ? x - 14 : x + 14} y={y + 3.5} fontSize="8.5" fill="#1d4ed8"
-            textAnchor={nearRight ? "end" : "start"} fontWeight="600">{label}</text>
-    </g>
-  );
-}
-
-function DiagramDashboardProducts() {
-  return (
-    <svg viewBox="0 0 520 195" className="w-full" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <ArrowDefs />
-
-      {/* Tab bar */}
-      <rect x="0" y="0" width="520" height="28" fill="#f8f8f8" rx="4" />
-      <text x="16" y="18" fontSize="11" fontWeight="700" fill="#111">Overview</text>
-      <rect x="80" y="4" width="60" height="20" rx="4" fill="#3b82f6" />
-      <text x="110" y="18" fontSize="11" fontWeight="700" fill="#fff" textAnchor="middle">Products</text>
-
-      {/* Product rows */}
-      {[
-        { y: 44, sku: "TEE-001", title: "Organic Cotton Tee", price: "$32.00" },
-        { y: 65, sku: "BEAN-002", title: "Merino Wool Beanie", price: "$28.00" },
-        { y: 86, sku: "BOT-003", title: "Stainless Water Bottle", price: "$18.00" },
-      ].map(({ y, sku, title, price }) => (
-        <g key={sku}>
-          <rect x="0" y={y - 10} width="520" height="22" fill={y === 44 ? "#f0f6ff" : "transparent"} />
-          <text x="8" y={y + 4} fontSize="9" fill="#888">{sku}</text>
-          <text x="80" y={y + 4} fontSize="10" fill="#111">{title}</text>
-          <text x="350" y={y + 4} fontSize="10" fill="#111">{price}</text>
-          <text x="430" y={y + 4} fontSize="9" fill="#aaa">No model</text>
-        </g>
-      ))}
-      <text x="8" y="112" fontSize="9" fill="#aaa">+ 5 more products…</text>
-
-      {/* Upload section */}
-      <rect x="0" y="122" width="520" height="22" fill="#f8f8f8" rx="3" />
-      <text x="8" y="137" fontSize="9" fontWeight="600" fill="#555">Upload Sales History</text>
-      <rect x="185" y="124" width="100" height="18" rx="3" fill="#3b82f6" />
-      <text x="235" y="137" fontSize="9" fill="#fff" textAnchor="middle">Choose CSV file</text>
-      <text x="300" y="137" fontSize="9" fill="#3b82f6">Download sample CSV</text>
-
-      {/* Divider */}
-      <line x1="0" y1="154" x2="520" y2="154" stroke="#e5e7eb" strokeWidth="1" />
-
-      <Badge x={110} y={176} num={1} label="Click Products tab" /><Arrow x1={110} y1={167} x2={110} y2={24} />
-      <Badge x={235} y={176} num={2} label="Upload CSV here" /><Arrow x1={235} y1={167} x2={235} y2={142} />
-      <Badge x={350} y={176} num={3} label="Download template" /><Arrow x1={350} y1={167} x2={350} y2={142} />
-    </svg>
-  );
-}
-
-function DiagramUpload() {
-  return (
-    <svg viewBox="0 0 520 197" className="w-full" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <ArrowDefs />
-
-      {/* UI */}
-      <rect x="0" y="0" width="520" height="120" fill="#fafafa" rx="6" />
-      <text x="12" y="20" fontSize="11" fontWeight="700" fill="#111">Upload Sales History</text>
-      <text x="12" y="34" fontSize="9" fill="#888">Format: sku, date (YYYY-MM-DD), units_sold, price</text>
-
-      {/* CSV preview */}
-      <rect x="12" y="44" width="230" height="60" rx="4" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="20" y="60" fontSize="8" fill="#888" fontFamily="monospace">sku,date,units_sold,price</text>
-      <text x="20" y="73" fontSize="8" fill="#555" fontFamily="monospace">TEE-001,2026-01-01,18,32.00</text>
-      <text x="20" y="86" fontSize="8" fill="#555" fontFamily="monospace">TEE-001,2026-02-01,11,35.00</text>
-      <text x="20" y="99" fontSize="8" fill="#888" fontFamily="monospace">…</text>
-
-      {/* Upload button */}
-      <rect x="256" y="44" width="120" height="26" rx="4" fill="#3b82f6" />
-      <text x="316" y="61" fontSize="10" fill="#fff" textAnchor="middle" fontWeight="600">Choose CSV file</text>
-
-      {/* Download link */}
-      <text x="256" y="90" fontSize="9" fill="#3b82f6">Download sample CSV →</text>
-
-      {/* Divider */}
-      <line x1="0" y1="132" x2="520" y2="132" stroke="#e5e7eb" strokeWidth="1" />
-
-      <Badge x={120} y={154} num={1} label="Your CSV data" /><Arrow x1={120} y1={145} x2={120} y2={105} />
-      <Badge x={316} y={154} num={2} label="Upload button" /><Arrow x1={316} y1={145} x2={316} y2={70} />
-      <Badge x={265} y={177} num={3} label="Get template" /><Arrow x1={265} y1={168} x2={265} y2={91} />
-    </svg>
-  );
-}
-
-function DiagramFitModel() {
-  return (
-    <svg viewBox="0 0 520 198" className="w-full" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <ArrowDefs />
-
-      {/* Product header */}
-      <text x="8" y="16" fontSize="12" fontWeight="700" fill="#111">Organic Cotton Tee</text>
-      <text x="8" y="30" fontSize="9" fill="#888">SKU-TEE-001 · $32.00 current price</text>
-
-      {/* Sales records count */}
-      <rect x="0" y="42" width="150" height="42" rx="6" fill="#f0f6ff" stroke="#bdd4f8" strokeWidth="1" />
-      <text x="10" y="58" fontSize="9" fill="#555">Sales records</text>
-      <text x="10" y="76" fontSize="16" fontWeight="700" fill="#111">23</text>
-
-      {/* Fit Model button */}
-      <rect x="164" y="46" width="110" height="28" rx="6" fill="#111" />
-      <text x="219" y="64" fontSize="10" fill="#fff" textAnchor="middle" fontWeight="600">Fit Model</text>
-
-      {/* Get Recommendation button (greyed) */}
-      <rect x="286" y="46" width="140" height="28" rx="6" fill="#e5e7eb" />
-      <text x="356" y="64" fontSize="10" fill="#aaa" textAnchor="middle">Get Recommendation</text>
-
-      {/* Result area */}
-      <rect x="0" y="100" width="520" height="44" rx="6" fill="#f8f8f8" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="12" y="118" fontSize="9" fill="#888">Model result will appear here after fitting</text>
-      <text x="12" y="134" fontSize="9" fill="#aaa">Elasticity · R² score · Data points used</text>
-
-      {/* Divider */}
-      <line x1="0" y1="156" x2="520" y2="156" stroke="#e5e7eb" strokeWidth="1" />
-
-      <Badge x={219} y={178} num={1} label="Click Fit Model" /><Arrow x1={219} y1={169} x2={219} y2={74} />
-      <Badge x={356} y={178} num={2} label="Unlocks Recommend" /><Arrow x1={356} y1={169} x2={356} y2={74} />
-      <Badge x={65} y={178} num={3} label="Result shown here" /><Arrow x1={65} y1={169} x2={65} y2={144} />
-    </svg>
-  );
-}
-
-function DiagramRecommendation() {
-  return (
-    <svg viewBox="0 0 520 195" className="w-full" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <ArrowDefs />
-
-      {/* Rec card */}
-      <rect x="0" y="0" width="520" height="140" rx="8" fill="#f0f6ff" stroke="#bdd4f8" strokeWidth="1" />
-
-      {/* Badge */}
-      <rect x="12" y="12" width="38" height="18" rx="4" fill="#16a34a" />
-      <text x="31" y="24" fontSize="8" fill="#fff" textAnchor="middle" fontWeight="700">RAISE</text>
-
-      {/* Current → Suggested prices */}
-      <text x="12" y="52" fontSize="9" fill="#888">Current price</text>
-      <text x="12" y="70" fontSize="18" fontWeight="700" fill="#111">$32.00</text>
-
-      <text x="115" y="70" fontSize="18" fill="#aaa">→</text>
-
-      <text x="160" y="52" fontSize="9" fill="#888">Suggested price</text>
-      <text x="160" y="70" fontSize="18" fontWeight="700" fill="#3b82f6">$35.00</text>
-
-      <text x="340" y="52" fontSize="9" fill="#888">Expected profit lift</text>
-      <text x="340" y="70" fontSize="18" fontWeight="700" fill="#16a34a">+14.2%</text>
-
-      {/* Apply button */}
-      <rect x="12" y="100" width="160" height="28" rx="6" fill="#3b82f6" />
-      <text x="92" y="118" fontSize="10" fill="#fff" textAnchor="middle" fontWeight="600">Apply recommendation</text>
-
-      {/* Divider */}
-      <line x1="0" y1="152" x2="520" y2="152" stroke="#e5e7eb" strokeWidth="1" />
-
-      <Badge x={190} y={174} num={1} label="Optimal price" /><Arrow x1={190} y1={165} x2={190} y2={72} />
-      <Badge x={390} y={174} num={2} label="Extra profit" /><Arrow x1={390} y1={165} x2={390} y2={72} />
-      <Badge x={92} y={174} num={3} label="Click to apply" /><Arrow x1={92} y1={165} x2={92} y2={128} />
-    </svg>
-  );
-}
-
-function DiagramApply() {
-  return (
-    <svg viewBox="0 0 520 195" className="w-full" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <ArrowDefs />
-
-      {/* Success state */}
-      <rect x="0" y="0" width="520" height="66" rx="6" fill="#f0fdf4" stroke="#86efac" strokeWidth="1" />
-      <text x="12" y="20" fontSize="10" fontWeight="700" fill="#16a34a">✓ Price updated</text>
-      <text x="12" y="36" fontSize="9" fill="#555">$32.00 → $35.00 applied at 14:23 today</text>
-      <rect x="12" y="46" width="86" height="12" rx="2" fill="#bbf7d0" />
-      <text x="55" y="56" fontSize="7.5" fill="#16a34a" textAnchor="middle">Shopify: synced ✓</text>
-
-      {/* Price history */}
-      <text x="0" y="88" fontSize="10" fontWeight="600" fill="#111">Price history</text>
-      <rect x="0" y="96" width="520" height="22" fill="#f8f8f8" rx="3" />
-      <text x="8" y="111" fontSize="9" fill="#888">$29.00 → $32.00</text>
-      <text x="200" y="111" fontSize="9" fill="#aaa">3 months ago</text>
-      <rect x="0" y="120" width="520" height="22" fill="#eff6ff" rx="3" />
-      <text x="8" y="135" fontSize="9" fill="#3b82f6" fontWeight="600">$32.00 → $35.00</text>
-      <text x="200" y="135" fontSize="9" fill="#3b82f6">just now</text>
-
-      {/* Divider */}
-      <line x1="0" y1="152" x2="520" y2="152" stroke="#e5e7eb" strokeWidth="1" />
-
-      <Badge x={55} y={174} num={1} label="Confirmation + sync" /><Arrow x1={55} y1={165} x2={55} y2={66} />
-      <Badge x={300} y={174} num={2} label="Price in history" /><Arrow x1={300} y1={165} x2={300} y2={142} />
-    </svg>
-  );
-}
-
-function DiagramDashboardOverview() {
-  return (
-    <svg viewBox="0 0 520 180" className="w-full" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <ArrowDefs />
-
-      {/* Stat cards — 5 across */}
-      {[
-        { x: 0, label: "PRODUCTS", value: "8", sub: "in catalog" },
-        { x: 106, label: "ACTIONABLE", value: "3", sub: "ready to apply" },
-        { x: 212, label: "MARGIN", value: "1", sub: "< 15%", red: true },
-        { x: 318, label: "AVG LIFT", value: "+14%", sub: "across catalog" },
-        { x: 418, label: "OPP.", value: "$420", sub: "per month" },
-      ].map(({ x, label, value, sub, red }) => (
-        <g key={x}>
-          <rect x={x} y="0" width="98" height="68" rx="6" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
-          <text x={x + 8} y="14" fontSize="7" fill="#888" fontWeight="600">{label}</text>
-          <text x={x + 8} y="40" fontSize="18" fontWeight="700" fill={red ? "#ef4444" : "#111"}>{value}</text>
-          <text x={x + 8} y="56" fontSize="8" fill="#888">{sub}</text>
-        </g>
-      ))}
-
-      {/* Model health bar */}
-      <rect x="0" y="78" width="520" height="24" rx="6" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="8" y="94" fontSize="8" fill="#888" fontWeight="600">MODEL HEALTH</text>
-      <rect x="110" y="84" width="80" height="12" rx="2" fill="#16a34a" />
-      <rect x="192" y="84" width="60" height="12" rx="2" fill="#84cc16" />
-      <rect x="254" y="84" width="40" height="12" rx="2" fill="#f59e0b" />
-      <rect x="296" y="84" width="200" height="12" rx="2" fill="#e5e7eb" />
-
-      {/* Divider */}
-      <line x1="0" y1="114" x2="520" y2="114" stroke="#e5e7eb" strokeWidth="1" />
-
-      <Badge x={150} y={136} num={1} label="Prices ready to apply" /><Arrow x1={150} y1={127} x2={150} y2={68} />
-      <Badge x={210} y={158} num={2} label="More data = stronger" /><Arrow x1={210} y1={149} x2={210} y2={102} />
-      <Badge x={465} y={136} num={3} label="Profit opportunity" /><Arrow x1={465} y1={127} x2={465} y2={68} />
-    </svg>
-  );
-}
-
-function DiagramSettings() {
-  return (
-    <svg viewBox="0 0 520 213" className="w-full" style={{ fontFamily: "system-ui, sans-serif" }}>
-      <ArrowDefs />
-
-      {/* Shopify card */}
-      <rect x="0" y="0" width="520" height="70" rx="8" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="12" y="18" fontSize="11" fontWeight="700" fill="#111">Shopify Connection</text>
-      <text x="12" y="32" fontSize="9" fill="#888">Connect your store to sync products and orders.</text>
-      <rect x="12" y="42" width="155" height="18" rx="4" fill="#f3f4f6" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="20" y="55" fontSize="8.5" fill="#aaa">mystore.myshopify.com</text>
-      <rect x="178" y="42" width="130" height="18" rx="4" fill="#f3f4f6" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="186" y="55" fontSize="8.5" fill="#aaa">shpat_••••••••</text>
-      <rect x="320" y="42" width="70" height="18" rx="4" fill="#111" />
-      <text x="355" y="55" fontSize="9" fill="#fff" textAnchor="middle" fontWeight="600">Connect</text>
-
-      {/* WooCommerce card */}
-      <rect x="0" y="82" width="520" height="76" rx="8" fill="#fff" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="12" y="100" fontSize="11" fontWeight="700" fill="#111">WooCommerce Connection</text>
-      <text x="12" y="114" fontSize="9" fill="#888">Connect your WooCommerce store to sync products and orders.</text>
-      <rect x="12" y="124" width="125" height="18" rx="4" fill="#f3f4f6" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="20" y="137" fontSize="8.5" fill="#aaa">https://mystore.com</text>
-      <rect x="148" y="124" width="100" height="18" rx="4" fill="#f3f4f6" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="156" y="137" fontSize="8.5" fill="#aaa">ck_••••••••</text>
-      <rect x="258" y="124" width="100" height="18" rx="4" fill="#f3f4f6" stroke="#e5e7eb" strokeWidth="1" />
-      <text x="266" y="137" fontSize="8.5" fill="#aaa">cs_••••••••</text>
-      <rect x="368" y="124" width="70" height="18" rx="4" fill="#7c3aed" />
-      <text x="403" y="137" fontSize="9" fill="#fff" textAnchor="middle" fontWeight="600">Connect</text>
-
-      {/* Divider */}
-      <line x1="0" y1="170" x2="520" y2="170" stroke="#e5e7eb" strokeWidth="1" />
-
-      <Badge x={90} y={192} num={1} label="Store URL and API key" /><Arrow x1={90} y1={183} x2={90} y2={60} />
-      <Badge x={355} y={192} num={2} label="Click Connect to link" /><Arrow x1={355} y1={183} x2={355} y2={60} />
-    </svg>
-  );
-}
