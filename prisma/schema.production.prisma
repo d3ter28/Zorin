@@ -41,6 +41,7 @@ model Product {
   salesRecords         SalesRecord[]
   elasticityModel      ElasticityModel?
   priceChanges         PriceChange[]
+  priceSurveys         PriceSurvey[]
 }
 
 model Recommendation {
@@ -91,6 +92,27 @@ model PriceChange {
   fromCents Int
   toCents   Int
   appliedAt DateTime @default(now())
+}
+
+model PriceSurvey {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  merchantId String
+  token      String   @unique
+  createdAt  DateTime @default(now())
+  responses  PriceSurveyResponse[]
+}
+
+model PriceSurveyResponse {
+  id                    String      @id @default(cuid())
+  surveyId              String
+  survey                PriceSurvey @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  tooCheapCents         Int
+  goodValueCents        Int
+  gettingExpensiveCents Int
+  tooExpensiveCents     Int
+  submittedAt           DateTime    @default(now())
 }
 
 model User {
