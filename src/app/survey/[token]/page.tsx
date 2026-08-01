@@ -26,7 +26,8 @@ type Status =
   | "done"
   | "already-responded"
   | "rate-limited"
-  | "error";
+  | "load-error"
+  | "submit-error";
 
 export default function SurveyPage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = use(params);
@@ -53,14 +54,14 @@ export default function SurveyPage({ params }: { params: Promise<{ token: string
           return;
         }
         if (!res.ok) {
-          setStatus("error");
+          setStatus("load-error");
           return;
         }
         const data = (await res.json()) as SurveyInfo;
         setSurvey(data);
         setStatus("ready");
       } catch {
-        if (!cancelled) setStatus("error");
+        if (!cancelled) setStatus("load-error");
       }
     }
 
@@ -93,6 +94,12 @@ export default function SurveyPage({ params }: { params: Promise<{ token: string
       }
     }
 
+    const { tooCheapCents, tooExpensiveCents } = cents;
+    if (tooCheapCents !== null && tooExpensiveCents !== null && tooCheapCents > tooExpensiveCents) {
+      setErrorMessage("The 'too cheap' price can't be higher than the 'too expensive' price.");
+      return;
+    }
+
     setStatus("submitting");
 
     try {
@@ -120,16 +127,18 @@ export default function SurveyPage({ params }: { params: Promise<{ token: string
         setStatus("ready");
         return;
       }
-      setStatus("error");
+      setStatus("submit-error");
     } catch {
-      setStatus("error");
+      setStatus("submit-error");
     }
   }
 
   if (status === "loading") {
     return (
       <main className="flex min-h-screen items-center justify-center bg-bg px-4">
-        <p className="text-sm text-muted">Loading survey...</p>
+        <p className="text-sm text-muted" role="status" aria-live="polite">
+          Loading survey...
+        </p>
       </main>
     );
   }
@@ -147,13 +156,26 @@ export default function SurveyPage({ params }: { params: Promise<{ token: string
     );
   }
 
-  if (status === "error") {
+  if (status === "load-error") {
     return (
       <main className="flex min-h-screen items-center justify-center bg-bg px-4">
         <div className="max-w-sm text-center">
           <h1 className="text-lg font-semibold text-ink">Something went wrong</h1>
           <p className="mt-2 text-sm text-muted">
             We couldn't load this survey. Please try again later.
+          </p>
+        </div>
+      </main>
+    );
+  }
+
+  if (status === "submit-error") {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-bg px-4">
+        <div className="max-w-sm text-center">
+          <h1 className="text-lg font-semibold text-ink">Something went wrong</h1>
+          <p className="mt-2 text-sm text-muted">
+            Something went wrong submitting your response. Please try again.
           </p>
         </div>
       </main>
@@ -248,7 +270,9 @@ export default function SurveyPage({ params }: { params: Promise<{ token: string
             )}
 
             <button type="submit" className="btn btn-primary w-full" disabled={submitting}>
-              {submitting ? "Submitting..." : "Submit"}
+              <span role="status" aria-live="polite">
+                {submitting ? "Submitting..." : "Submit"}
+              </span>
             </button>
           </form>
         </div>
