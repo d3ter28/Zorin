@@ -10,6 +10,110 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "should-you-price-below-at-or-above-your-competitors",
+    title: "Should You Price Below, At, or Above Your Competitors?",
+    excerpt:
+      "Below, at, or above is a real framework worth knowing. It's just the wrong place to start, since a competitor's price was never calculated from your customers' behavior.",
+    date: "2026-07-31",
+    readingTime: "8 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">Below, at, or above your competitors is a genuinely useful way to frame a positioning decision, and it's worth knowing the tradeoffs of each. But the position that actually works for a specific product isn't something you can choose from the framework alone, it has to be verified against your own customers' price sensitivity, since a competitor's price was calculated for their business, not yours. Use the framework to organize the decision. Use your own sales data to make it.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Pricing below, at, or above competitors is a real, useful positioning framework, each position has legitimate use cases and real tradeoffs.</li>
+<li>A competitor's price reflects their costs, their brand, and their customers' price sensitivity, not yours, so copying it doesn't automatically produce the right number for your store.</li>
+<li>Different products in the same catalog can rationally sit in different positions; there's no single right answer for a whole store.</li>
+<li>Your own elasticity, calculated from your own sales history, is what actually tells you whether a given position helps or costs you profit for a specific product.</li>
+<li>A position is a starting lens for thinking about a price, not a substitute for checking it against your own demand data.</li>
+</ul>
+</div>
+
+<h2>A Framework Worth Knowing, Borrowed From How B2B Pricing Teams Think</h2>
+<p>Competitive positioning is the decision to price a product below, at, or above what comparable competitors charge for it. Pricing teams commonly describe the choice in exactly these three terms, and each position maps to real, well-established strategies: below includes penetration pricing and everyday-low-price positioning, at parity includes straight price matching, and above includes premium positioning and price skimming. The framework itself is sound. The mistake is stopping there, as if picking a position settles the actual number.</p>
+
+<h2>Position 1: Below Competitors</h2>
+<p>Pricing below competitors means deliberately setting a lower price than comparable alternatives to win price-sensitive customers or gain market share quickly. It works best for a newer store building initial traction, when your cost structure can sustain the thinner margin, and when the lower price actually reaches customers who wouldn't have converted otherwise, not just customers who'd have paid more anyway.</p>
+
+<h2>Position 2: At Parity</h2>
+<p>Pricing at parity means matching a competitor's price so closely that price stops being the deciding factor and the competition shifts to something else, brand, service, convenience, or product quality. It's a reasonable default when you genuinely don't have a differentiation story to tell, but it's also the position most often chosen by default rather than by actual analysis, simply because it feels safe.</p>
+
+<h2>Position 3: Above Competitors</h2>
+<p>Pricing above competitors means charging a premium justified by a real, communicable reason your product is worth more, better materials, faster shipping, a stronger return policy, or a brand your customers already trust. Without that justification, a price above the market just reads as overpricing, and customers who are comparison shopping will notice the gap with no reason to accept it.</p>
+
+<table>
+  <thead>
+    <tr><th>Position</th><th>Works well when</th><th>Risk if applied without checking your own data</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Below competitors</td><td>Building initial traction; cost structure supports thinner margin</td><td>Trains your existing customers to expect a lower price than they'd have actually tolerated</td></tr>
+    <tr><td>At parity</td><td>No clear differentiation story; price isn't the main lever you're competing on</td><td>Leaves real margin on the table if your customers were actually less price-sensitive than a competitor's</td></tr>
+    <tr><td>Above competitors</td><td>A genuine, communicable reason for the premium exists</td><td>Reads as plain overpricing if the premium isn't justified in the customer's mind</td></tr>
+  </tbody>
+</table>
+
+<h2>The Problem: A Competitor's Price Was Never About Your Customers</h2>
+<p>Here's the part the framework alone doesn't solve. A competitor's price reflects their supplier costs, their overhead, their brand positioning, and critically, their customers' specific price sensitivity, all of which can differ meaningfully from yours even for a near-identical product. Two stores selling the same item can rationally land on different optimal prices if one's customers arrived through a discount-driven channel and the other's arrived through a brand-loyal direct search. Matching or undercutting a competitor's number assumes your buyers behave like theirs. Often they don't, and the gap shows up as quietly lost margin, not as an obvious red flag.</p>
+
+<h2>How to Actually Choose a Position Using Your Own Data</h2>
+<p>Rather than picking one position for your entire catalog, let each product's own elasticity, calculated from its own sales history, tell you which position it can actually support. A product with low elasticity (customers not very price-sensitive) can often sustain a position above the market without losing meaningful volume. A product with high elasticity may only hold its ground at or below the market, regardless of what a premium-positioning instinct would suggest. This is the same mechanism behind <a href="/blog/what-does-price-elasticity-actually-mean">calculating price elasticity from your own sales history</a>, applied specifically to the competitive-positioning question instead of a standalone pricing decision.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing different products with different raise or lower recommendations, illustrating that no single competitive position fits an entire catalog" loading="lazy" />
+  <figcaption>Different products in the same catalog can rationally sit in different competitive positions. The data, not a single catalog-wide rule, tells you which.</figcaption>
+</figure>
+
+<h2>What This Looks Like in Practice</h2>
+<p>Say a competitor sells a near-identical product at $79. If your own sales history shows your customers barely change their buying behavior between $79 and $89, holding a position above the market on that specific product is a reasonable, data-backed call, not a guess dressed up as premium positioning. If your history shows demand drops sharply above $75, holding at or slightly below the market is the position your own customers are actually telling you to take, independent of what your instinct about the brand would suggest. Neither conclusion comes from the competitor's price. Both come from your own data.</p>
+
+<h2>A Practical Sequence</h2>
+<ol>
+  <li><strong>Use the framework to organize your thinking</strong>, below, at, or above is a genuinely useful starting lens for a positioning conversation.</li>
+  <li><strong>Resist picking one position for the whole catalog</strong>. Different products can rationally sit in different places.</li>
+  <li><strong>Check your own product's elasticity</strong> before committing to a position, rather than assuming it from a competitor's number or a general brand instinct.</li>
+  <li><strong>Watch for a differentiation story</strong> that would justify a position above the market, and be honest if one doesn't exist yet.</li>
+  <li><strong>Revisit the position periodically</strong>, since competitor prices, your own costs, and your own customer mix all shift over time.</li>
+</ol>
+<p>If you're evaluating a repricing tool that just matches competitors automatically, <a href="/blog/shopify-pricing-apps-what-to-look-for">here's what that approach misses</a> compared to a model that reads your own demand instead. And if you haven't checked what your own elasticity actually supports yet, <a href="/signup">connect your sales history</a> and see which position your own customers' data actually recommends.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Should I price below, at, or above my competitors?</h3>
+<p>It depends on the specific product's elasticity, not a single rule for your whole catalog. A competitor's price reflects their costs and their customers, not yours, so it shouldn't be copied directly without checking your own data.</p>
+</div>
+<div class="faq-item">
+<h3>Is it ever safe to just match a competitor's price?</h3>
+<p>It can be a reasonable default when you have no clear differentiation story, but it risks leaving margin on the table if your customers are actually less price-sensitive than the competitor's, which only your own sales history can tell you.</p>
+</div>
+<div class="faq-item">
+<h3>When does pricing above competitors actually work?</h3>
+<p>When there's a genuine, communicable reason for the premium, quality, service, brand trust, and when your product's own elasticity shows customers aren't strongly price-sensitive. Without either, a price above the market just reads as overpriced.</p>
+</div>
+<div class="faq-item">
+<h3>Can different products in my catalog have different competitive positions?</h3>
+<p>Yes, and often should. There's no requirement that a whole store commit to one position. Each product's own demand data can support a different answer.</p>
+</div>
+<div class="faq-item">
+<h3>Is pricing below competitors always a race to the bottom?</h3>
+<p>Not necessarily, if it's a deliberate strategy backed by a cost structure that supports it and genuinely reaches price-sensitive customers. It becomes a problem when it's reactive, matching every competitor move with no regard for your own margin data.</p>
+</div>
+<div class="faq-item">
+<h3>How is this different from just using a competitor repricing tool?</h3>
+<p>A repricer automatically matches or undercuts competitor prices without reading your own customers' behavior. This approach uses the below/at/above framework as a starting lens, then verifies the actual position with your own elasticity data before committing to it.</p>
+</div>
+<div class="faq-item">
+<h3>How often should I recheck my competitive position?</h3>
+<p>Periodically, since competitor prices, your own costs, and your customer mix can all shift. Treat it as part of your regular pricing review rather than a one-time decision.</p>
+</div>
+</section>
+
+<p class="conclusion">Below, at, or above your competitors is a real, useful way to frame a pricing decision, but it's a lens, not an answer. The position that actually works for a specific product comes from your own customers' demonstrated price sensitivity, not from what a competitor happened to charge.</p>
+    `.trim(),
+  },
+  {
     slug: "does-charm-pricing-999-actually-work",
     title: "Does Charm Pricing ($9.99 vs $10) Actually Work?",
     excerpt:
