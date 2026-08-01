@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ArrowClockwise } from "@phosphor-icons/react";
 import { PriceSensitivityChart } from "@/components/PriceSensitivityChart";
 import type { VanWestendorpResult } from "@/lib/priceSurvey/vanWestendorp";
 
@@ -16,15 +17,18 @@ const MIN_RESPONSES_FOR_CHART = 5;
 export function PriceSurveyCard({ productId }: { productId: string }) {
   const [surveys, setSurveys] = useState<SurveySummary[] | undefined>(undefined);
   const [creating, setCreating] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [result, setResult] = useState<VanWestendorpResult | null>(null);
 
-  function load() {
+  function load(showSpinner = false) {
+    if (showSpinner) setRefreshing(true);
     fetch(`/api/products/${productId}/surveys`)
       .then((r) => (r.ok ? r.json() : []))
       .then(setSurveys)
-      .catch(() => setSurveys([]));
+      .catch(() => setSurveys([]))
+      .finally(() => setRefreshing(false));
   }
 
   useEffect(() => {
@@ -41,6 +45,14 @@ export function PriceSurveyCard({ productId }: { productId: string }) {
 
   const survey = surveys && surveys.length > 0 ? surveys[0] : null;
 
+  function loadResults() {
+    if (!survey) return;
+    fetch(`/api/products/${productId}/surveys/${survey.id}/results`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setResult)
+      .catch(() => setResult(null));
+  }
+
   useEffect(() => {
     if (!survey || survey.responseCount < MIN_RESPONSES_FOR_CHART) {
       setResult(null);
@@ -55,6 +67,11 @@ export function PriceSurveyCard({ productId }: { productId: string }) {
       active = false;
     };
   }, [productId, survey?.id, survey?.responseCount]);
+
+  function refresh() {
+    load(true);
+    loadResults();
+  }
 
   async function createSurvey() {
     setCreating(true);
@@ -92,13 +109,25 @@ export function PriceSurveyCard({ productId }: { productId: string }) {
 
   return (
     <div className="rounded-xl border border-line bg-surface p-5">
-      <h3 className="text-sm font-semibold text-ink">Price sensitivity survey</h3>
+      <div className="flex items-start justify-between gap-4">
+        <h3 className="text-sm font-semibold text-ink">Van Westendorp Analysis</h3>
+        {survey && (
+          <button
+            onClick={refresh}
+            disabled={refreshing}
+            className="shrink-0 text-muted hover:text-ink transition-colors disabled:opacity-40"
+            title="Refresh"
+          >
+            <ArrowClockwise size={14} className={refreshing ? "animate-spin" : ""} />
+          </button>
+        )}
+      </div>
 
       {!survey ? (
         <>
           <p className="mt-0.5 mb-4 text-xs text-muted">
-            Create a shareable link to ask customers about price sensitivity using the Van
-            Westendorp method.
+            Create a shareable link to ask customers about prices using a price sensitivity
+            survey.
           </p>
           <button
             className="btn btn-ghost text-xs"

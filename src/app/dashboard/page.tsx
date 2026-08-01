@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { requireSessionPage } from "@/lib/auth/requireSession";
 import { prisma } from "@/lib/db";
 import { AppShell } from "@/components/AppShell";
@@ -26,7 +27,9 @@ export default async function DashboardPage() {
             ↓ Export CSV
           </a>
         </header>
-        <Dashboard />
+        <Suspense fallback={null}>
+          <Dashboard />
+        </Suspense>
       </div>
     </AppShell>
   );

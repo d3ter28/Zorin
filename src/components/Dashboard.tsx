@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PortfolioStats } from "./PortfolioStats";
 import { ProductsTable } from "./ProductsTable";
 import { ProductUpload } from "./ProductUpload";
@@ -85,7 +86,17 @@ interface PortfolioData {
 }
 
 export function Dashboard() {
-  const [tab, setTab] = useState<Tab>("overview");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialTab: Tab = searchParams.get("tab") === "products" ? "products" : "overview";
+  const [tab, setTabState] = useState<Tab>(initialTab);
+
+  // Keep the active tab in the URL so navigating into a product and back
+  // returns to the tab the merchant was actually on, not always Overview.
+  function setTab(t: Tab) {
+    setTabState(t);
+    router.replace(t === "overview" ? "/dashboard" : `/dashboard?tab=${t}`, { scroll: false });
+  }
   const [refreshToken, setRefreshToken] = useState(0);
   const [rows, setRows] = useState<OpportunityRow[]>([]);
   const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);

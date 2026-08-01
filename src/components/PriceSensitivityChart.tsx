@@ -49,22 +49,36 @@ export function PriceSensitivityChart({ result }: { result: VanWestendorpResult 
   const bandX = Math.min(rangeMinX, rangeMaxX);
   const bandWidth = Math.max(Math.abs(rangeMaxX - rangeMinX), 2);
 
+  // A label centered on a marker near the chart's left/right edge would run off the
+  // SVG and get clipped — anchor it to the near edge instead once it's within ~50px.
+  const EDGE_GUARD = 50;
+  function labelAnchor(x: number): "start" | "middle" | "end" {
+    if (x < MARGIN_X + EDGE_GUARD) return "start";
+    if (x > WIDTH - MARGIN_X - EDGE_GUARD) return "end";
+    return "middle";
+  }
+
   const cfg = CONFIDENCE_CONFIG[confidence];
 
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <p className="text-xs text-muted">
-          Optimal price point{" "}
-          <span className="font-medium tabular text-ink">{formatCents(optimalPricePoint)}</span>
-        </p>
+        <div>
+          <p className="text-xs text-muted">Optimal price</p>
+          <p className="text-lg font-semibold tabular text-ink">{formatCents(optimalPricePoint)}</p>
+        </div>
         <span
+          title="How reliable this result is, based on how many people responded"
           className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium ${cfg.text} ${cfg.bg}`}
         >
           <span className={`h-2 w-2 rounded-full ${cfg.dot}`} />
           {cfg.label}
         </span>
       </div>
+      <p className="mt-1 text-xs text-muted">
+        The price most of your customers see as fair — not too cheap to seem low-quality, not too
+        expensive to pass on.
+      </p>
 
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -97,42 +111,80 @@ export function PriceSensitivityChart({ result }: { result: VanWestendorpResult 
           strokeWidth={2}
         />
 
-        {/* Acceptable range bounds */}
+        {/* Acceptable range bounds, with their own price labels */}
         <line x1={bandX} y1={AXIS_Y - 16} x2={bandX} y2={AXIS_Y + 16} stroke="currentColor" className="text-positive" strokeWidth={1.5} />
         <line x1={bandX + bandWidth} y1={AXIS_Y - 16} x2={bandX + bandWidth} y2={AXIS_Y + 16} stroke="currentColor" className="text-positive" strokeWidth={1.5} />
+        <text x={bandX} y={AXIS_Y - 22} textAnchor={labelAnchor(bandX)} className="fill-positive text-[9px] font-medium">
+          {formatCents(acceptableRange.min)}
+        </text>
+        <text x={bandX + bandWidth} y={AXIS_Y - 22} textAnchor={labelAnchor(bandX + bandWidth)} className="fill-positive text-[9px] font-medium">
+          {formatCents(acceptableRange.max)}
+        </text>
 
         {/* Indifference price point marker */}
-        <circle cx={toX(indifferencePricePoint)} cy={AXIS_Y} r={5} className="fill-muted" />
+        <circle cx={toX(indifferencePricePoint)} cy={AXIS_Y} r={5} className="fill-muted">
+          <title>
+            Indifference point ({formatCents(indifferencePricePoint)}) — the price where roughly
+            equal numbers of customers called it &quot;good value&quot; vs &quot;getting
+            expensive&quot;.
+          </title>
+        </circle>
         <text
           x={toX(indifferencePricePoint)}
-          y={AXIS_Y + 30}
-          textAnchor="middle"
+          y={AXIS_Y + 32}
+          textAnchor={labelAnchor(toX(indifferencePricePoint))}
           className="fill-muted text-[10px]"
         >
-          {formatCents(indifferencePricePoint)}
+          Indifference · {formatCents(indifferencePricePoint)}
         </text>
 
         {/* Optimal price point marker (headline) */}
-        <circle cx={toX(optimalPricePoint)} cy={AXIS_Y} r={6} className="fill-ink" />
+        <circle cx={toX(optimalPricePoint)} cy={AXIS_Y} r={6} className="fill-ink">
+          <title>
+            Optimal price ({formatCents(optimalPricePoint)}) — where roughly equal numbers of
+            customers called it &quot;too cheap&quot; vs &quot;too expensive&quot;.
+          </title>
+        </circle>
         <text
           x={toX(optimalPricePoint)}
-          y={AXIS_Y - 24}
-          textAnchor="middle"
+          y={AXIS_Y - 46}
+          textAnchor={labelAnchor(toX(optimalPricePoint))}
           className="fill-ink text-[11px] font-semibold"
         >
-          {formatCents(optimalPricePoint)}
+          Optimal · {formatCents(optimalPricePoint)}
         </text>
 
-        {/* Axis endpoint labels */}
-        <text x={MARGIN_X} y={AXIS_Y + 30} textAnchor="start" className="fill-faint text-[10px]">
-          {formatCents(min)}
-        </text>
-        <text x={WIDTH - MARGIN_X} y={AXIS_Y + 30} textAnchor="end" className="fill-faint text-[10px]">
-          {formatCents(max)}
+        {/* Axis caption */}
+        <text x={WIDTH / 2} y={AXIS_Y + 46} textAnchor="middle" className="fill-faint text-[10px]">
+          Price customers said (low → high)
         </text>
       </svg>
 
-      <p className="mt-2 text-xs text-muted">
+      <div className="mt-4 space-y-1.5 text-[0.7rem] text-muted">
+        <p className="flex items-center gap-1.5">
+          <span className="h-2 w-2 shrink-0 rounded-full bg-ink" />
+          <span>
+            <strong className="font-medium text-ink">Optimal price</strong> — where the fewest
+            customers call it too cheap or too expensive.
+          </span>
+        </p>
+        <p className="flex items-center gap-1.5">
+          <span className="h-2 w-2 shrink-0 rounded-full bg-muted" />
+          <span>
+            <strong className="font-medium text-ink">Indifference point</strong> — where opinion
+            is most evenly split between &quot;good value&quot; and &quot;getting expensive&quot;.
+          </span>
+        </p>
+        <p className="flex items-center gap-1.5">
+          <span className="h-2 w-3 shrink-0 rounded-sm bg-[color:oklch(0.85_0.08_150)]" />
+          <span>
+            <strong className="font-medium text-ink">Acceptable range</strong> — prices customers
+            are unlikely to reject as either too cheap or too expensive.
+          </span>
+        </p>
+      </div>
+
+      <p className="mt-3 text-xs text-muted">
         Acceptable range{" "}
         <span className="font-medium tabular text-ink">
           {formatCents(acceptableRange.min)} – {formatCents(acceptableRange.max)}
