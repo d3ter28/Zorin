@@ -28,7 +28,14 @@ export function PriceSurveyCard({ productId }: { productId: string }) {
   }
 
   useEffect(() => {
-    load();
+    let active = true;
+    fetch(`/api/products/${productId}/surveys`)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data) => active && setSurveys(data))
+      .catch(() => active && setSurveys([]));
+    return () => {
+      active = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productId]);
 
@@ -119,6 +126,9 @@ export function PriceSurveyCard({ productId }: { productId: string }) {
               {copied ? "Copied!" : "Copy"}
             </button>
           </div>
+          <span className="sr-only" aria-live="polite">
+            {copied ? "Copied to clipboard" : ""}
+          </span>
 
           <div className="mt-4">
             {survey.responseCount < MIN_RESPONSES_FOR_CHART ? (
