@@ -1,6 +1,6 @@
 "use client";
 import { use, useEffect, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { WhatIfSlider } from "@/components/WhatIfSlider";
 import { DemandCurve } from "@/components/DemandCurve";
 import { PriceHistory } from "@/components/PriceHistory";
@@ -130,6 +130,7 @@ export default function ProductPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
+  const router = useRouter();
   const [d, setD] = useState<Detail | null>(null);
   const [rec, setRec] = useState<RecData | null>(null);
   const [failed, setFailed] = useState(false);
@@ -179,15 +180,16 @@ export default function ProductPage({
         ) : (
           <div className="space-y-8">
             <header>
-              <Link
-                href="/dashboard"
+              <button
+                type="button"
+                onClick={() => router.back()}
                 className="mb-4 inline-flex items-center gap-1.5 text-xs text-muted hover:text-ink"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M9 11L5 7l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                Back to dashboard
-              </Link>
+                Back
+              </button>
               <div className="flex items-center gap-4">
                 <ProductThumbnail imageUrl={d.imageUrl} alt={d.title} size={56} />
                 <div>
