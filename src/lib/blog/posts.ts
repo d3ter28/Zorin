@@ -10,6 +10,276 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-price-a-discount-without-losing-your-margin",
+    title: "How to Price a Discount Without Losing Your Margin",
+    excerpt:
+      "Learn how deep to discount, clear dead stock, and price BOGO deals. Zorin shows the margin math before you cut a price.",
+    date: "2026-08-03",
+    readingTime: "10 min read",
+    category: "Pricing Strategy",
+    content: `
+<p class="intro">If you're deciding how deep to discount, the answer starts with one number: your gross margin, not your competitor's sale price. Most sustainable discounts land between 10% and 30%, with the right depth set by how much margin room your category actually has. Get that number wrong and a discount that looks generous on the surface quietly eats your entire profit on every unit sold.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A discount's margin hit is always proportionally larger than the discount percentage itself, because your costs stay fixed while revenue drops.</li>
+<li>Discount depth should follow your category's gross margin, generally 10 to 30%, not a round number that feels generous.</li>
+<li>Bundling or a targeted BOGO on a high-margin pairing usually clears dead stock at a better realized margin than a flat markdown.</li>
+<li>"Buy One, Get One 50% Off" is roughly a 25% discount on the full order, not 50%, and BOGO Free generally needs 50%+ gross margin to stay profitable.</li>
+<li>Discounting and bundling solve different problems: discount for urgency on one product, bundle to raise order value without touching a bestseller's visible price.</li>
+</ul>
+</div>
+
+<p>I've made this mistake myself, running a "just take 20% off, it's not that much" sale on a product with a 35% margin, and watching the math afterward tell a very different story than the one I'd assumed while setting the price. That gap between what a discount feels like and what it actually costs is the entire subject of this guide. Whether you're clearing dead stock, weighing a BOGO offer, or deciding between a flash sale and an extended one, it all comes back to the same formula. This is closely related to <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">running a sale without wrecking your margin</a> more broadly, this guide goes deeper on the specific tactics: discount depth, dead stock, flash vs. extended, and BOGO.</p>
+
+<h2>The Only Formula You Need Before Any Discount</h2>
+<p>Every discount decision in this guide traces back to one relationship: cutting your price shrinks your margin faster than the discount percentage suggests, because your costs stay fixed while your revenue drops. Once you have this formula, you can sanity check any promotion in under a minute instead of discovering the damage after the sale ends.</p>
+<p>Here's the math. If you sell a product for $100 with a 40% margin ($60 cost, $40 profit), a 10% discount drops your price to $90. Your cost stays at $60, so your new profit is $30, a margin of 33%. That's not a 10% hit to your margin, it's closer to a 17% hit, because the discount comes straight out of your profit dollar, not out of a proportional slice of everything.</p>
+<p>The general relationship: new margin = (old margin minus discount) divided by (1 minus discount). At deeper discounts the effect compounds. A 20% discount on that same 40% margin product requires you to sell roughly double the units just to hold the same total profit. At 30% off, you'd need close to four times the volume.</p>
+<p>I check this formula before I approve any promotion now, and I'd recommend building it into a simple spreadsheet if you haven't already. It takes five minutes and it's the difference between a sale that grows your business and one that quietly funds it away.</p>
+<p><strong>The takeaway:</strong> run the break-even formula before setting any discount number, because the margin hit is always proportionally larger than the discount percentage itself.</p>
+
+<h2>How Deep Should My Discount Actually Be</h2>
+<p>Discount depth should follow your category's gross margin, not a round number that feels generous or a competitor's sale price. Products with thick margins can absorb a real cut. Products with thin margins usually can't, no matter how good the sale looks on a banner.</p>
+<p>A rough guide that holds up consistently across categories:</p>
+
+<table>
+  <thead>
+    <tr><th>Margin band</th><th>Sustainable discount depth</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>High margin (50%+ gross margin)</td><td>Often 20 to 30%</td><td>Enough room to absorb a real cut without falling below a reasonable profit line</td></tr>
+    <tr><td>Medium margin (30 to 50%)</td><td>Needs caution past 20%</td><td>A flat 20 to 30% cut can get uncomfortably close to break-even; tiered offers or free shipping often protect margin better</td></tr>
+    <tr><td>Low margin (under 30%)</td><td>Rarely discount directly</td><td>A 30% discount on a 35% margin product can leave roughly 5% margin left, barely enough to cover overhead</td></tr>
+  </tbody>
+</table>
+
+<p>There's also a perception ceiling worth knowing. Research on discount perception puts 10% as roughly the minimum threshold customers register as "worth acting on," while discounts past about 30% start to trigger a "something's wrong with this product" reaction rather than reading as a good deal. That 10 to 30% band isn't arbitrary. It's roughly where perceived value and margin protection both hold up at once.</p>
+<p>I'd add one thing from actually running these numbers over time: your best customers, the ones who'd buy at full price anyway, are usually the ones you should discount least. Blanket sitewide discounts hand margin to people who never needed the incentive in the first place. This is the same logic behind <a href="/blog/why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies">why bestsellers and slow sellers need different pricing strategies</a>, a proven seller rarely needs the same discount as something that isn't moving.</p>
+<p><strong>The takeaway:</strong> set discount depth from your category's margin band, generally 10 to 30%, with high-margin products absorbing the deeper end and thin-margin products avoiding direct discounts almost entirely.</p>
+
+<h2>How Do I Clear Dead Stock Without Destroying My Margin</h2>
+<p>Dead stock feels like it demands a deep, immediate markdown, but that instinct is usually the most expensive way to solve the problem. Bundling and targeted offers on the right pairing frequently clear inventory at a better realized margin than a flat, sitewide price cut.</p>
+<p>Before reaching for a markdown, I run through this order of preference:</p>
+<ol>
+<li><strong>Bundle the dead stock with a high-margin bestseller.</strong> The customer sees a complete, appealing offer. You move the slow item without directly cutting its visible price, and the bundle's blended margin often looks much better than a standalone discount would.</li>
+<li><strong>Run a BOGO on a specific high-margin pairing.</strong> This works especially well when the dead stock item has decent margin on its own; giving it away or discounting it as the "second item" in a BOGO can clear inventory while the paid item still carries most of the profit.</li>
+<li><strong>Use a tiered discount tied to order value</strong>, something like 10% off $50, 20% off $100, rather than a flat percentage off the dead item alone. This nudges customers toward a bigger basket instead of just a cheaper single purchase.</li>
+<li><strong>Reserve a flat, deep markdown for stock that genuinely has to move</strong>, seasonal inventory before it's fully out of season, or anything taking up warehouse space you need back. Even here, run the break-even math first so you know the actual floor.</li>
+</ol>
+<p>One pattern worth watching: deep discounts during clearance can also increase returns and shrink average order value during the promotion itself, so factor that into your expected recovery, not just the headline discount percentage.</p>
+<p><strong>The takeaway:</strong> try bundling or a targeted BOGO on high-margin pairings before a flat markdown, and reserve deep across-the-board discounts for stock you genuinely need gone regardless of margin impact.</p>
+
+<h2>Should I Run a Flash Sale or an Extended Sale</h2>
+<p>Flash sales concentrate your margin risk into a short, controllable window. Extended sales spread that exposure over more time, and they're harder to walk back once customers start expecting the lower price as the norm.</p>
+<p>Here's how I think through the choice:</p>
+<p><strong>Flash sale fits when:</strong></p>
+<ul>
+<li>You need a burst of urgency around a specific event or inventory push.</li>
+<li>You want the discount contained to 24 to 72 hours so the margin hit is easy to forecast and doesn't bleed into your regular pricing perception.</li>
+<li>You're testing a discount depth or format before committing to it more broadly.</li>
+</ul>
+<p><strong>Extended sale fits when:</strong></p>
+<ul>
+<li>You're addressing a genuinely slow season and need sustained demand, not just a spike.</li>
+<li>Your margin can absorb a longer exposure window without threatening your break-even for the quarter.</li>
+<li>You're comfortable that customers won't simply learn to wait for the extended window every time.</li>
+</ul>
+<p>The risk with extended and frequent sales is cumulative: when a store is "always on sale," nothing feels like a real discount anymore, and customers start waiting rather than buying at your normal price. Flash sales sidestep that risk mostly because their scarcity is the point. A tight window signals urgency instead of desperation.</p>
+<p>I'd lean flash by default unless you have a specific, margin-checked reason to extend it. It's easier to run a second flash sale next month than to walk back a six-week sale that's trained your customers to expect a lower price permanently.</p>
+<p><strong>The takeaway:</strong> choose a flash sale for contained, forecastable margin risk and urgency, and reserve extended sales for genuine seasonal slowdowns where the margin can sustain a longer window.</p>
+
+<h2>How Do I Price a BOGO Offer Without Losing Money</h2>
+<p>BOGO's real discount is almost always smaller than it feels to the customer, and it only works financially on products with enough margin to absorb giving away or cutting a second unit. Getting this wrong is one of the most common ways well-meaning promotions quietly lose money on every single order.</p>
+<p>Start with the math most merchants get wrong. "Buy One, Get One 50% Off" is not a 50% discount. On two $20 items, the customer pays $20 plus $10, or $30 total for $40 of product. That's 25% off the order, not 50%. If your marketing copy or your own mental math treats it as a 50% discount, you're underestimating your actual revenue by a meaningful margin.</p>
+<p>The margin threshold matters even more. BOGO Free (buy one, get one fully free) generally needs a gross margin above 50% to stay profitable once you account for the free item's cost. Below roughly 40% margin, giving away a full second unit can mean losing money on every qualifying transaction. Softer variants scale down from there: half-off BOGO generally needs gross margin above 25%, and buy-two-get-one needs above 33%. If your margin doesn't clear the bar for a full free item, a percentage-off second item protects your profit far better than a straight free offer.</p>
+<p>A quick way to check before you launch:</p>
+<ul>
+<li><strong>Confirm your product's gross margin first.</strong> Below 40%, avoid BOGO Free entirely.</li>
+<li><strong>Calculate the combined-transaction margin</strong>, revenue from one item minus the cost of two, not just the margin on the paid item alone.</li>
+<li><strong>Restrict eligibility to specific SKUs</strong> with enough margin to absorb the hit, rather than running BOGO sitewide.</li>
+<li><strong>State the real discount plainly in your marketing</strong>, both for compliance and so your own team doesn't overestimate the deal's cost.</li>
+</ul>
+<p>I've seen BOGO offers work beautifully as a clearance tool on high-margin, low-cost-of-goods items, and I've seen the same format quietly lose money for months when applied to something with a 30% margin and a hopeful shrug instead of a calculation. The format itself isn't the risk. Skipping the math is.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing an elasticity coefficient, a demand curve, and a raise recommendation with expected profit lift, calculated from the product's own sales history" loading="lazy" />
+  <figcaption>The same discipline this guide applies to discounts and BOGO math, know the real number before you commit to a price, is what Zorin calculates for everyday pricing: elasticity from your own sales history, not a competitor's price or a guess.</figcaption>
+</figure>
+
+<p>This is the same discipline Zorin applies to everyday pricing, just aimed at a different question. Zorin doesn't run BOGO or bundle math directly, its engine reads your own sales history to calculate <a href="/blog/how-do-i-know-what-to-price-my-products">each product's price elasticity</a> and recommends a raise, lower, or hold with an estimated profit lift, not a competitor's price or a fixed rule. But the underlying habit is identical: know the real number behind a price change before you commit to it, whether that change is a repriced product or a BOGO offer on the same SKU.</p>
+<p><strong>The takeaway:</strong> confirm your product clears roughly a 40 to 50% margin threshold before running BOGO Free, and remember that "50% off the second item" is closer to a 25% discount on the full order.</p>
+
+<h2>When Should I Discount vs. Bundle Instead</h2>
+<p>Discounting and bundling solve different problems, and picking the wrong one for your actual goal is a common way to give away margin without getting the result you wanted. The decision should follow from what you're actually trying to accomplish, not from which tactic is easier to set up in your store admin.</p>
+<p><strong>Discount when:</strong></p>
+<ul>
+<li>You need urgency on a specific, identifiable product, dead stock, a seasonal item, something you need moving this week.</li>
+<li>The goal is a clear, fast signal: this price is temporarily lower, act now.</li>
+<li>You're comfortable with customers seeing the item's price drop directly, since that visible cut is the whole point.</li>
+</ul>
+<p><strong>Bundle when:</strong></p>
+<ul>
+<li>You want to raise average order value without touching the perceived price of any single product.</li>
+<li>You have a complementary high-margin item that pairs naturally with a slower mover, letting the bundle's blended margin do the work a standalone discount can't.</li>
+<li>You're wary of training customers to wait for discounts on your bestsellers, since a bundle protects the individual item's price integrity while still offering real value.</li>
+</ul>
+<p>A simple example: a camera bundled with a discounted case and memory card gives the customer a complete, appealing package at a better combined price, without ever putting the camera itself on sale. The camera's price stays intact. The bundle does the persuading.</p>
+<p>I'd default to bundling whenever the underlying question is "how do I get people to buy more," and reach for a direct discount only when the question is genuinely "how do I move this specific thing, now." Conflating the two is how a lot of promotions end up costing more margin than the result was worth.</p>
+<p>None of the tactics in this guide, discount depth, BOGO, bundling, replace the need to know your actual margin on a product before you touch its price. That's the same starting point Zorin is built around for everyday pricing: it reads your own sales history, calculates each product's price elasticity, and recommends a raise, lower, or hold with an estimated profit lift, grounded in your real cost and demand data, not a competitor's price or a guess. Zorin doesn't calculate discount or bundle math directly, but the habit of knowing your real numbers before changing a price is the same one this guide has been asking you to build for every promotion. If you haven't checked your baseline elasticity yet, <a href="/signup">connect your sales history</a> before your next sale.</p>
+<p><strong>The takeaway:</strong> discount to create urgency on a specific product, bundle to raise order value while protecting a product's perceived price, and choose based on the actual goal rather than convenience.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How deep should my discount actually be?</h3>
+<p>Typically 10% to 30% of price, with the right depth set by your category's gross margin rather than a competitor's sale. Categories under 30% margin should generally avoid discounts much past 10 to 15%.</p>
+</div>
+<div class="faq-item">
+<h3>How do I clear dead stock without destroying my margin?</h3>
+<p>Try bundling the item with a high-margin bestseller, or run a targeted BOGO on a strong pairing, before reaching for a flat markdown. Reserve deep across-the-board cuts for stock that genuinely has to move regardless of margin.</p>
+</div>
+<div class="faq-item">
+<h3>Should I run a flash sale or an extended sale?</h3>
+<p>Flash sales concentrate margin risk into a short, controllable window and suit urgency-driven clearance. Extended sales spread that exposure over time and only make sense when your margin can sustain a longer window without training customers to always wait.</p>
+</div>
+<div class="faq-item">
+<h3>How do I price a BOGO offer without losing money?</h3>
+<p>Confirm your product's gross margin clears roughly 40 to 50% before running BOGO Free. Below that threshold, a percentage-off second item protects your margin far better than giving a full unit away.</p>
+</div>
+<div class="faq-item">
+<h3>When should I discount vs. bundle instead?</h3>
+<p>Discount when you need urgency on one specific product. Bundle when you want to raise order value while protecting the perceived price of any single item in your catalog.</p>
+</div>
+<div class="faq-item">
+<h3>Is "Buy One, Get One 50% Off" actually a 50% discount?</h3>
+<p>No. It's roughly 25% off the total order, since the 50% reduction only applies to the second item, not the full purchase.</p>
+</div>
+<div class="faq-item">
+<h3>Why does a small discount hurt margin more than it seems?</h3>
+<p>Because your costs stay fixed while revenue drops, the margin percentage falls faster than the discount percentage. A 10% discount on a 40% margin product can cut margin by closer to 17%, not 10%.</p>
+</div>
+<div class="faq-item">
+<h3>How many times a year should I run major discounts?</h3>
+<p>Most guidance points to roughly 4 to 6 major sale events a year outside your regular pricing, so discounts still feel occasional rather than an expected, permanent state.</p>
+</div>
+</section>
+
+<p class="conclusion">Every question in this guide comes back to the same habit: know your margin floor before you touch a price, whether that's a seasonal discount, a BOGO offer, or a bundle built to move dead stock. The math takes minutes to run and it's the difference between a sale that grows your business and one that quietly funds it away. Building that check into your everyday pricing, not just your big promotions, is exactly what elasticity, calculated from your own sales history, is for.</p>
+    `.trim(),
+  },
+  {
+    slug: "how-do-i-know-what-price-my-customers-are-willing-to-pay",
+    title: "How Do I Know What Price My Customers Are Actually Willing to Pay?",
+    excerpt:
+      "Sales history tells you what customers did. A short, direct survey tells you what they'd actually accept, especially useful before you have sales history at all.",
+    date: "2026-08-01",
+    readingTime: "8 min read",
+    category: "Product",
+    content: `
+<p class="intro">The most direct way to know is to ask, using a short four-question survey called the Van Westendorp Price Sensitivity Meter, which turns customer answers into a specific acceptable price range and an optimal price point. This is a different signal than reading elasticity from your past sales, and it's especially useful when you don't have much sales history to read yet, since it works even for a brand-new product with zero orders.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>The Van Westendorp Price Sensitivity Meter asks customers four questions about a specific product and calculates an acceptable price range plus an optimal price point from their answers.</li>
+<li>It measures stated preference, what people say they'd accept, which is a different signal from elasticity, which measures revealed preference, what people actually did when the price changed.</li>
+<li>It works with zero sales history, making it especially useful for new products, unlike elasticity, which needs real price-and-quantity data to calculate.</li>
+<li>Reliability scales with response count: fewer than 5 responses gives no usable read, 5 to 19 gives a low-confidence estimate, and 20 or more gives a good-confidence one.</li>
+<li>Stated and revealed preference answer related but different questions, and the two are best read side by side, not blended into a single number.</li>
+</ul>
+</div>
+
+<h2>Two Different Ways to Answer the Same Question</h2>
+<p>There are really two ways to find out what a customer will pay for something: watch what they actually do across your sales history, or ask them directly. Reading elasticity from sales history is the first approach, it's precise and grounded in real behavior, but it requires that behavior to already exist, meaning real orders across some price variation. Asking directly is the second approach, and it works even before a single sale has happened, which is exactly the gap it's built to close.</p>
+
+<h2>What the Van Westendorp Method Actually Asks</h2>
+<p>The method asks a customer four specific questions about one product:</p>
+<table>
+  <thead>
+    <tr><th>Question</th><th>What it's measuring</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>At what price would this be so cheap you'd doubt its quality?</td><td>The lower bound where price starts to feel suspiciously low</td></tr>
+    <tr><td>At what price would this be a bargain, great value for the money?</td><td>A price the customer would feel good about paying</td></tr>
+    <tr><td>At what price would this start to feel expensive, but you'd still consider buying it?</td><td>The upper edge of what still feels justifiable</td></tr>
+    <tr><td>At what price would this be too expensive to consider buying?</td><td>The upper bound where the customer walks away entirely</td></tr>
+  </tbody>
+</table>
+<p>Each answer is a single dollar figure, no ranking, no multiple choice, just four prices reflecting how one person perceives the product's value.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-public-page.png" alt="A customer-facing Zorin price sensitivity survey page showing the four classic Van Westendorp questions with a dollar-amount input for each" loading="lazy" />
+  <figcaption>The four questions as a customer actually sees them, no login required, no email collected.</figcaption>
+</figure>
+
+<h2>How Four Prices From Many People Turn Into One Answer</h2>
+<p>A single response is just four numbers. The method becomes useful once enough responses accumulate: each question's answers are treated as a curve (the share of respondents who said "too cheap" at or above a given price, the share who said "too expensive" at or below a given price, and so on), and the method finds where specific curves cross. Two crossings matter most: the Optimal Price Point, where the "too cheap" and "too expensive" curves intersect, representing the price the fewest people reject in either direction, and the Indifference Price Point, where "good value" and "getting expensive" cross, representing the price where opinion is most evenly split between a bargain and a stretch. A third pair of crossings defines the acceptable range itself, the Point of Marginal Cheapness and Point of Marginal Expensiveness, the practical floor and ceiling most customers won't reject outright.</p>
+
+<h2>How Confident Should You Be in the Result</h2>
+<p>The math runs on any number of responses above zero, but a result from 3 responses and a result from 30 don't deserve the same trust. Fewer than 5 responses produces no usable read at all. Five to 19 responses gives a low-confidence estimate, worth treating as directional. Twenty or more gives a good-confidence estimate you can lean on with more certainty. This mirrors the same honesty principle already used for elasticity confidence scoring: show the result plainly, but label how much data actually supports it, rather than hiding a thin-data estimate behind a wall until it magically becomes trustworthy.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.png" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" loading="lazy" />
+  <figcaption>Seven real responses producing an acceptable range, an optimal price, and an honest low-confidence label, not false certainty.</figcaption>
+</figure>
+
+<h2>Where This Beats Reading Sales History</h2>
+<p>The clearest case is <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">a brand-new product with no sales history yet</a>, where elasticity simply can't be calculated because there's no price-and-quantity variation to read. A short survey sent to a beta list, a social audience, or even a handful of existing customers gives you a real, if early, read on acceptable pricing before you've committed to a launch number. It's also useful for validating a price increase before you make it, or for checking a new product line against customer expectations before it's built.</p>
+
+<h2>Why It's Not a Replacement for Elasticity</h2>
+<p>What people say they'd pay and what they actually pay aren't always the same number. A stated-preference survey asks someone to imagine a hypothetical purchase decision in the abstract, with none of the context, urgency, or comparison shopping that shapes a real one. Elasticity, calculated from actual sales history, reflects what customers did when a real price was in front of them with real money on the line, which is a stronger signal once it exists. This is exactly why the two are kept as separate, side-by-side readings rather than merged into one blended number, they're answering related but genuinely different questions, and collapsing them into a single score would hide which kind of evidence a given recommendation is actually built on.</p>
+
+<h2>How to Actually Run One</h2>
+<p>From a product's page, generate a shareable survey link, no account or login required for the customer to respond. Share it however you already reach customers, an email you're already sending, a social post, a QR code on packaging, since Zorin doesn't send survey invitations itself or collect an email list from responses. Each response is just four price fields, no name, email, or IP address stored alongside it, so the response data itself carries no customer PII. Once at least 5 responses come in, a chart appears showing the acceptable range and the two key price points, with the confidence label updating as more responses arrive.</p>
+
+<h2>A Practical Sequence</h2>
+<ol>
+  <li><strong>Generate a survey link</strong> for a product you're genuinely unsure about, a new launch, a planned increase, or an established item you've never validated.</li>
+  <li><strong>Share it somewhere real customers will actually see it</strong>, an existing email list, a social audience, or a QR code, rather than only internal team members.</li>
+  <li><strong>Wait for at least 5 responses</strong> before reading anything into the result, and treat 5 to 19 as directional rather than final.</li>
+  <li><strong>Compare it against elasticity</strong> if you have sales history for the product too. Agreement between the two is a strong signal; disagreement is worth investigating rather than picking one arbitrarily.</li>
+  <li><strong>Use the result as a starting anchor</strong>, especially for a new product, then let real sales data take over once it exists.</li>
+</ol>
+<p>If you haven't calculated your own catalog's elasticity from actual sales yet, <a href="/blog/how-do-i-know-what-to-price-my-products">here's how that side of the picture works</a>. And if you're pricing something with no sales history at all, <a href="/signup">connect your store</a> and generate a survey link for it directly from the product page.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know what price my customers are willing to pay?</h3>
+<p>Two ways: read elasticity from your own sales history if you have it, or ask directly with a short four-question survey (the Van Westendorp Price Sensitivity Meter), which works even with zero sales history.</p>
+</div>
+<div class="faq-item">
+<h3>What is the Van Westendorp Price Sensitivity Meter?</h3>
+<p>A pricing research method that asks customers four questions about a specific product, too cheap, good value, getting expensive, too expensive, and calculates an acceptable price range and an optimal price point from the answers.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use this before I have any sales?</h3>
+<p>Yes. Unlike elasticity, which requires real price-and-quantity history to calculate, a price sensitivity survey works from customer responses alone, making it useful for a brand-new product with no sales yet.</p>
+</div>
+<div class="faq-item">
+<h3>How many responses do I need before I can trust the result?</h3>
+<p>Fewer than 5 gives no usable read. 5 to 19 gives a low-confidence estimate worth treating as directional. 20 or more gives a good-confidence estimate you can lean on with more certainty.</p>
+</div>
+<div class="faq-item">
+<h3>Does this replace calculating elasticity from my sales history?</h3>
+<p>No. It measures what customers say they'd pay, elasticity measures what they actually did when a real price was in front of them. They're different signals worth reading side by side, not merged into one number.</p>
+</div>
+<div class="faq-item">
+<h3>Does the survey collect customer emails or personal information?</h3>
+<p>No. A response is just four price answers, with no name, email, or IP address stored alongside it. The survey link itself doesn't require the customer to log in or create an account.</p>
+</div>
+<div class="faq-item">
+<h3>What do I do if the survey result and my elasticity estimate disagree?</h3>
+<p>Treat it as worth investigating rather than picking one arbitrarily. Stated and revealed preference can diverge for real reasons, worth understanding before committing to a price either result alone would suggest.</p>
+</div>
+</section>
+
+<p class="conclusion">Reading your own sales history tells you what customers actually did. A short, direct survey tells you what they say they'd accept, and it works even before you have any sales to read. Neither replaces the other. Used together, they give you a fuller, more honest picture than either signal alone.</p>
+    `.trim(),
+  },
+  {
     slug: "should-you-price-below-at-or-above-your-competitors",
     title: "Should You Price Below, At, or Above Your Competitors?",
     excerpt:
