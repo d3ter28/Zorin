@@ -10,6 +10,153 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "price-elasticity-explained-a-guide-for-ecommerce-sellers",
+    title: "Price Elasticity Explained: A Guide for Ecommerce Sellers",
+    excerpt:
+      "Learn how price elasticity works, with real examples and formulas. Zorin calculates it automatically from your own sales history.",
+    date: "2026-08-03",
+    readingTime: "10 min read",
+    category: "Education",
+    content: `
+<p class="intro">Price elasticity measures how much your sales volume shifts when you change a price. If a small price increase barely dents your sales, your demand is inelastic and you likely have room to raise prices without losing much. If a small increase sends customers straight to a competitor, your demand is elastic, and pricing power is limited.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elasticity equals the percentage change in quantity demanded divided by the percentage change in price, a simple before-and-after comparison is often all you need to calculate it.</li>
+<li>A result between 0 and -1 means inelastic demand (customers keep buying through a price change); beyond -1 means elastic demand (they respond strongly).</li>
+<li>Elasticity is driven mainly by substitute availability, necessity, price transparency, and brand loyalty, not randomness.</li>
+<li>There's no universal "good" score, compare against your own category, and treat a result beyond roughly 3.5 in absolute value as a likely data issue rather than real behavior.</li>
+<li>Zorin calculates this exact coefficient automatically per product from your own sales history, with an R-squared fit and a confidence label, so you don't have to run the formula by hand for every SKU.</li>
+</ul>
+</div>
+
+<p>I didn't think about elasticity much until I raised a product's price by 8% expecting a modest sales dip, and watched volume barely move. That gap between what I expected and what actually happened is exactly what this concept explains. Once you understand it, a lot of pricing decisions that used to feel like guesswork start to feel like math. This is exactly the number Zorin calculates automatically: it fits an elasticity model per product from your own sales history and returns a raise, lower, or hold recommendation, so you don't have to run this math by hand for every SKU, but understanding what the number actually means is what makes a specific recommendation easier to trust.</p>
+
+<h2>What Price Elasticity Actually Measures</h2>
+<p>Price elasticity quantifies the relationship between a price change and the resulting change in how much customers buy. It's the single number that underlies every other question in this guide, whether a product is elastic, what a "good" score looks like, or how to calculate one from your own sales data.</p>
+<p>The formula is straightforward: price elasticity of demand equals the percentage change in quantity demanded divided by the percentage change in price. If you raise a price by 10% and sales drop by 5%, your elasticity is -0.5. That negative sign shows up because price and quantity typically move in opposite directions, and it's expected, not a sign something's wrong with your math.</p>
+<p>Once you have that single number, you can read it two ways. A result between 0 and -1 means demand is inelastic: customers keep buying even as price moves. A result beyond -1 means demand is elastic: customers respond strongly to the same price change. That distinction is worth sitting with for a second, because it changes what a smart pricing move looks like for that specific product.</p>
+<p><strong>The takeaway:</strong> price elasticity is percentage change in quantity divided by percentage change in price, and it's the foundation every other elasticity question in this guide builds on.</p>
+
+<h2>Elastic vs. Inelastic Demand: What's the Difference</h2>
+<p>Elastic demand means a small price change causes a large shift in how much customers buy. Inelastic demand means the opposite: price can move noticeably and sales barely react. Knowing which one you're dealing with changes whether a price increase is a smart move or a risky one.</p>
+<p>There's actually a third case worth knowing, called unitary elasticity, where the percentage change in demand matches the percentage change in price exactly, leaving total revenue roughly unchanged. Here's how the three break down in practice:</p>
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>What happens</th><th>Common examples</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Elastic demand (elasticity greater than 1)</td><td>A price increase causes a proportionally larger drop in sales</td><td>Products with many close substitutes, generic phone cases, a soda brand next to a competing brand on the shelf</td></tr>
+    <tr><td>Inelastic demand (elasticity less than 1)</td><td>Sales barely move even with a real price change</td><td>Essentials or products with few real alternatives, gasoline being the textbook example</td></tr>
+    <tr><td>Unitary elasticity (elasticity equal to 1)</td><td>Demand shifts in exact proportion to price; revenue stays roughly flat</td><td>Rare in practice, mostly a theoretical reference point</td></tr>
+  </tbody>
+</table>
+
+<p>The most useful mental shortcut here: elastic products compete on price and volume, inelastic products compete on value and margin. Knowing which side your product sits on tells you which lever is actually worth pulling.</p>
+<p><strong>The takeaway:</strong> elastic demand reacts strongly to price changes, inelastic demand barely reacts, and that single distinction should guide whether you compete on price or protect margin.</p>
+
+<h2>How Is Price Elasticity Actually Calculated</h2>
+<p>The calculation only needs two data points on either side of a price change: your quantity sold before and after, and the price before and after. It's simple enough to run in a spreadsheet without any statistics background.</p>
+<p>Here's a worked example using round numbers. Say you're selling 80 units a day at $6. You lower the price to $4, and daily sales rise to 100 units.</p>
+<p><strong>Step 1: Calculate the percentage change in quantity.</strong> (100 minus 80) divided by 80, which comes out to 25%.</p>
+<p><strong>Step 2: Calculate the percentage change in price.</strong> ($4 minus $6) divided by $6, which comes out to negative 33%.</p>
+<p><strong>Step 3: Divide the two.</strong> 25% divided by negative 33% gives an elasticity of roughly -0.76.</p>
+<p>That result sits between 0 and -1, so this product is showing inelastic demand. The price cut generated some extra volume, but not enough to suggest the product is highly price sensitive. If you'd expected the lower price to double your sales and it only lifted them by 25%, this calculation tells you exactly why, and whether the discount was worth the margin you gave up.</p>
+<p>For larger price swings, a refined version called arc elasticity is sometimes used to avoid the calculation depending on which price point you treat as the "starting" one, but the basic percentage-change formula above is the one worth knowing first. Zorin runs a more rigorous version of this same idea automatically, a log-log regression across your full price-and-quantity history rather than a single before-and-after snapshot, which is what <a href="/blog/what-does-price-elasticity-actually-mean">the underlying model actually calculates</a> for every product with enough sales history.</p>
+<p><strong>The takeaway:</strong> elasticity equals percentage change in quantity divided by percentage change in price, and a simple before-and-after comparison is often all you need to run it.</p>
+
+<h2>What's a Good Price Elasticity Score for My Products</h2>
+<p>There's no single "good" elasticity score. What matters is how your number compares to your own category, and whether it lines up with your pricing goal, protecting margin or driving volume.</p>
+<p>That said, industry benchmarks give you something concrete to compare against rather than guessing in a vacuum:</p>
+
+<table>
+  <thead>
+    <tr><th>Category</th><th>Typical elasticity</th><th>Reading</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Grocery staples</td><td>-0.5 to -0.8</td><td>Solidly inelastic</td></tr>
+    <tr><td>Standard consumer electronics</td><td>Often beyond -1.3, sometimes higher</td><td>Clearly elastic, reflecting heavy comparison shopping</td></tr>
+    <tr><td>Premium or luxury brands</td><td>Often -0.6 to -0.8</td><td>More inelastic than their category average, since brand loyalty softens price sensitivity</td></tr>
+  </tbody>
+</table>
+
+<p>One sanity check worth knowing: if your calculated elasticity comes out above roughly 3.5 in absolute value, that's usually a sign of a data quality issue rather than genuinely extreme consumer behavior. Before you act on a wild number, double check that you're not comparing mismatched time periods or conflating a promotional price with your base price. This is exactly why <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">flagging and excluding promotional spikes</a> from your baseline sales history matters before trusting an elasticity read.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a calculated elasticity coefficient of -1.46, a demand curve, and a confidence badge, computed automatically from the product's own sales history" loading="lazy" />
+  <figcaption>This is the exact coefficient Zorin calculates automatically, fit from your own sales history, not a category benchmark, alongside an R-squared fit and a confidence label.</figcaption>
+</figure>
+
+<p>Zorin calculates this exact coefficient for you automatically, fit from your own sales history rather than a category benchmark, alongside an R-squared fit score and a confidence label (commonly Strong, Fair, or Weak) based on how much real price variation and data actually support the estimate. Knowing what the underlying number means gives useful context for how confidently to follow a raise recommendation on a specific product, a Strong-confidence -1.6 deserves more trust than a Weak-confidence one, versus <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">treating every recommendation with the same level of caution</a>.</p>
+<p><strong>The takeaway:</strong> benchmark your elasticity against your category rather than chasing a universal "good" number, and treat any score above roughly 3.5 as a likely data issue worth double checking.</p>
+
+<h2>Why Do Some Products Have More Elastic Demand Than Others</h2>
+<p>Elasticity isn't random. It's driven mainly by how many substitutes a product has, how essential it is to the customer, and how easily a customer can compare your price to someone else's.</p>
+<p>A few drivers worth understanding:</p>
+<ul>
+<li><strong>Substitute availability.</strong> The more easily a customer can switch to a comparable product, the more elastic demand becomes. A specific brand of soda is a classic example: raise the price and shoppers grab the one next to it instead.</li>
+<li><strong>Necessity.</strong> Essential goods, water, basic groceries, tend toward inelastic demand because customers keep buying regardless of price. Optional or discretionary purchases tend toward elastic demand, since skipping the purchase entirely is a real option.</li>
+<li><strong>Price transparency.</strong> The easier it is to comparison shop, the more elastic demand becomes. Mobile apps that surface real-time price comparisons have made many categories more elastic simply by making the alternative easier to find.</li>
+<li><strong>Brand loyalty.</strong> Strong loyalty can make an otherwise elastic category behave inelastically for a specific brand, which is part of why premium electronics or well-known labels often see smaller elasticity than their category average.</li>
+</ul>
+<p>This plays out clearly across a real catalog. Products where you're one of several nearly identical listings tend to behave elastically, small price moves shift volume fast. Products with a real point of difference, better reviews, a unique variant, faster shipping, tend to behave far more inelastically, even in categories that are usually price sensitive. This is the same reasoning behind <a href="/blog/why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies">why bestsellers and slow sellers need different pricing strategies</a>, differentiation and demand history both shape where a product actually sits.</p>
+<p><strong>The takeaway:</strong> elasticity comes down to substitute availability, necessity, price transparency, and brand loyalty, and a product can shift categories entirely based on how differentiated it feels to the customer.</p>
+
+<h2>Price Elasticity Examples for Ecommerce Sellers</h2>
+<p>Seeing real category examples makes elasticity concrete faster than the formula alone, and most ecommerce sellers can place their own products by analogy once they see where familiar categories land.</p>
+<p>A rough map across common ecommerce categories:</p>
+<ul>
+<li><strong>Grocery and consumable staples:</strong> -0.5 to -0.8. Inelastic. Customers buy roughly the same amount regardless of moderate price shifts.</li>
+<li><strong>Standard consumer electronics:</strong> often beyond -1.3. Elastic. Heavy comparison shopping and many close substitutes push this category toward strong price sensitivity.</li>
+<li><strong>Premium electronics brands:</strong> -0.6 to -0.8, despite sitting in an otherwise elastic category, thanks to brand loyalty softening price sensitivity.</li>
+<li><strong>Discount or private-label goods</strong> in the same categories as name brands: often notably more elastic than the branded version, since customers see them as more interchangeable with each other.</li>
+<li><strong>Subscription and streaming services:</strong> frequently adjust pricing based on usage patterns, treating elasticity as a live, ongoing input rather than a one-time calculation.</li>
+</ul>
+<p>If you sell across a few different categories, this is a useful exercise even without running the formula: sort your catalog roughly into "customers will comparison shop this" and "customers will buy this regardless," and you already have a working elasticity map before you touch a spreadsheet. If you want the real number instead of an estimate, <a href="/signup">connect your sales history</a> and let the model calculate it per product.</p>
+<p><strong>The takeaway:</strong> grocery staples and premium brands tend inelastic, standard electronics and private-label goods tend elastic, and most sellers can roughly place their own catalog using these category patterns as a starting reference.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the difference between elastic and inelastic demand?</h3>
+<p>Elastic demand means quantity sold changes a lot when price changes. Inelastic demand means quantity barely changes even with a meaningful price shift. The dividing line sits at an elasticity value of 1.</p>
+</div>
+<div class="faq-item">
+<h3>What's a good price elasticity score for my products?</h3>
+<p>There's no universal "good" number, it depends on your category and goal. Compare your score to similar products, and treat any value above roughly 3.5 as a likely data quality issue rather than real consumer behavior.</p>
+</div>
+<div class="faq-item">
+<h3>Why do some products have more elastic demand than others?</h3>
+<p>Mainly substitutability and necessity. Products with many easy alternatives or that aren't essential tend to be more elastic than staples with few real substitutes.</p>
+</div>
+<div class="faq-item">
+<h3>Can you give price elasticity examples for ecommerce sellers?</h3>
+<p>Grocery staples often run -0.5 to -0.8 (inelastic). Standard consumer electronics often exceed -1.3 (elastic). Premium brands often sit closer to -0.6 to -0.8 despite being in an otherwise elastic category, due to brand loyalty.</p>
+</div>
+<div class="faq-item">
+<h3>How is price elasticity actually calculated?</h3>
+<p>Divide the percentage change in quantity demanded by the percentage change in price. A result between 0 and -1 signals inelastic demand, below -1 signals elastic demand.</p>
+</div>
+<div class="faq-item">
+<h3>Does a negative elasticity number mean something is wrong?</h3>
+<p>No. Elasticity is negative for most goods by convention, since price and quantity typically move in opposite directions. It's the expected result, not an error.</p>
+</div>
+<div class="faq-item">
+<h3>Should I raise prices on an inelastic product?</h3>
+<p>Often yes, since demand won't drop much. Always check the resulting margin, not just the elasticity number, before deciding how far to raise it.</p>
+</div>
+<div class="faq-item">
+<h3>How often should I recalculate elasticity for my products?</h3>
+<p>Elasticity can shift meaningfully over time due to competition and market changes, so revisit it at least annually or right after a significant price change.</p>
+</div>
+</section>
+
+<p class="conclusion">Elasticity isn't a number you calculate once and forget. It's a lens that tells you which products can carry a price increase and which ones will punish you for trying. Once you know where your catalog sits on that spectrum, pricing decisions stop feeling like guesswork. For everyday pricing across a full catalog, Zorin calculates this exact number automatically, per product, from your own sales history, with a confidence score attached, so you're not running this formula by hand for every SKU, the elasticity context in this guide is what makes a specific recommendation easier to read and trust once you see it.</p>
+    `.trim(),
+  },
+  {
     slug: "how-to-price-a-discount-without-losing-your-margin",
     title: "How to Price a Discount Without Losing Your Margin",
     excerpt:
