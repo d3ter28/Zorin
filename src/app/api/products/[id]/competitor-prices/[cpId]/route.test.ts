@@ -64,6 +64,18 @@ describe("PATCH /api/products/[id]/competitor-prices/[cpId]", () => {
     expect(update).not.toHaveBeenCalled();
   });
 
+  it("returns 400 for a malformed JSON body", async () => {
+    (findFirst as ReturnType<typeof vi.fn>).mockResolvedValue({ id: "cp1", productId: "p1" });
+    const req = {
+      json: async () => {
+        throw new SyntaxError("Unexpected end of JSON input");
+      },
+    } as unknown as Request;
+    const res = await PATCH(req, ctx("p1", "cp1"));
+    expect(res.status).toBe(400);
+    expect(update).not.toHaveBeenCalled();
+  });
+
   it("updates the given fields and bumps capturedAt", async () => {
     (findFirst as ReturnType<typeof vi.fn>).mockResolvedValue({ id: "cp1", productId: "p1" });
     (update as ReturnType<typeof vi.fn>).mockResolvedValue({

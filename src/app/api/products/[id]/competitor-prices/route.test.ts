@@ -87,6 +87,17 @@ describe("POST /api/products/[id]/competitor-prices", () => {
     expect(create).not.toHaveBeenCalled();
   });
 
+  it("returns 400 for a malformed JSON body", async () => {
+    const req = {
+      json: async () => {
+        throw new SyntaxError("Unexpected end of JSON input");
+      },
+    } as unknown as Request;
+    const res = await POST(req, ctx("p1"));
+    expect(res.status).toBe(400);
+    expect(create).not.toHaveBeenCalled();
+  });
+
   it("returns 400 for an invalid url", async () => {
     const res = await POST(
       reqWith({ competitorName: "Acme", priceCents: 2900, url: "not-a-url" }),

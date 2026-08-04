@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
+import { parseJsonBody } from "@/lib/api/validation";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { assertProductOwned } from "@/lib/auth/ownership";
 
@@ -60,7 +61,7 @@ export const POST = withErrorHandling(
     const { id: productId } = await params;
     await assertProductOwned(prisma, productId, merchantId);
 
-    const body = (await req.json()) as {
+    const body = (await parseJsonBody(req)) as {
       competitorName?: unknown;
       priceCents?: unknown;
       url?: unknown;
