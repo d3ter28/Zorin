@@ -116,6 +116,9 @@ model PriceSurveyResponse {
   submittedAt           DateTime    @default(now())
 }
 
+// Unrelated to the same-named model from the abandoned 2026-06-29 CSV-ingestion
+// feature, whose table was dropped in the 20260726061521_add_woocommerce migration.
+// This is a fresh model for a different feature (competitor price benchmarking, 2026-08-04).
 model CompetitorPrice {
   id             String   @id @default(cuid())
   productId      String
