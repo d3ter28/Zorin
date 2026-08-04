@@ -19,6 +19,7 @@ export function CompetitorPricesCard({ productId }: { productId: string }) {
   const [price, setPrice] = useState("");
   const [url, setUrl] = useState("");
   const [saving, setSaving] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function fetchRows() {
@@ -66,8 +67,20 @@ export function CompetitorPricesCard({ productId }: { productId: string }) {
   }
 
   async function removeRow(id: string) {
-    await fetch(`/api/products/${productId}/competitor-prices/${id}`, { method: "DELETE" });
-    await fetchRows();
+    setError(null);
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/products/${productId}/competitor-prices/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.error ?? "Failed to remove competitor price");
+      }
+      await fetchRows();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to remove competitor price");
+    } finally {
+      setDeletingId(null);
+    }
   }
 
   if (rows === null) {
@@ -129,8 +142,13 @@ export function CompetitorPricesCard({ productId }: { productId: string }) {
                   <p className="text-xs text-faint">{new Date(row.capturedAt).toLocaleDateString()}</p>
                 </div>
                 <span className="tabular text-ink">{formatCents(row.priceCents)}</span>
-                <button onClick={() => removeRow(row.id)} className="text-xs text-faint hover:text-danger">
-                  Remove
+                <button
+                  onClick={() => removeRow(row.id)}
+                  disabled={deletingId === row.id}
+                  aria-label={`Remove ${row.competitorName}`}
+                  className="text-xs text-faint hover:text-danger disabled:opacity-50"
+                >
+                  {deletingId === row.id ? "Removing…" : "Remove"}
                 </button>
               </div>
             ))}
@@ -174,7 +192,7 @@ export function CompetitorPricesCard({ productId }: { productId: string }) {
         </button>
       </form>
 
-      {error && <p className="mt-2 text-sm text-danger">{error}</p>}
+      {error && <p role="alert" className="mt-2 text-sm text-danger">{error}</p>}
     </div>
   );
 }
