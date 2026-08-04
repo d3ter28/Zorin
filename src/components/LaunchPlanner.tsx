@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   calculateBreakEvenPlan,
   type LaunchRiskLevel,
@@ -116,6 +117,24 @@ export function LaunchPlanner() {
   const [salesDataPoints, setSalesDataPoints] = useState("0");
   const [savedScenarios, setSavedScenarios] = useState<SavedLaunchScenario[]>([]);
   const [scenarioLimitMessage, setScenarioLimitMessage] = useState("");
+
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("productId");
+
+  useEffect(() => {
+    if (!productId) return;
+    let active = true;
+    fetch(`/api/products/${productId}/competitor-prices`)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((rows: { priceCents: number }[]) => {
+        if (!active || rows.length === 0) return;
+        setCompetitors(rows.map((r) => (r.priceCents / 100).toFixed(2)).join(", "));
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [productId]);
 
   const competitorPricesCents = useMemo(
     () =>

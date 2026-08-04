@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { AppShell } from "@/components/AppShell";
 import { LaunchPlanner } from "@/components/LaunchPlanner";
 import { requireSessionPage } from "@/lib/auth/requireSession";
@@ -17,7 +18,9 @@ export default async function LaunchPlannerPage() {
           <h1 className="text-xl font-semibold text-ink">Launch Planner</h1>
           <p className="text-sm text-muted mt-0.5">{merchant?.name ?? "Your store"}</p>
         </header>
-        <LaunchPlanner />
+        <Suspense fallback={null}>
+          <LaunchPlanner />
+        </Suspense>
       </div>
     </AppShell>
   );

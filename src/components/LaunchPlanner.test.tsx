@@ -1,9 +1,18 @@
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { LaunchPlanner } from "./LaunchPlanner";
 
-afterEach(cleanup);
+const { mockSearchParams } = vi.hoisted(() => ({ mockSearchParams: new URLSearchParams() }));
+vi.mock("next/navigation", () => ({
+  useSearchParams: () => mockSearchParams,
+}));
+
+afterEach(() => {
+  cleanup();
+  mockSearchParams.forEach((_value, key) => mockSearchParams.delete(key));
+  vi.restoreAllMocks();
+});
 
 describe("LaunchPlanner", () => {
   it("renders the default recommendation and scenario summary", () => {
@@ -149,5 +158,39 @@ describe("LaunchPlanner", () => {
 
     expect(screen.getByText("Not reachable")).toBeTruthy();
     expect(screen.getByText("No paid ads room")).toBeTruthy();
+  });
+
+  it("prefills competitor prices from a product's saved list when ?productId= is present", async () => {
+    mockSearchParams.set("productId", "p1");
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => [
+          { id: "c1", competitorName: "A", priceCents: 2900, url: null, capturedAt: "2026-01-01" },
+          { id: "c2", competitorName: "B", priceCents: 3500, url: null, capturedAt: "2026-01-01" },
+        ],
+      })
+    );
+
+    render(<LaunchPlanner />);
+
+    await waitFor(() => {
+      const field = screen.getByRole("textbox", { name: "Competitor prices" }) as HTMLInputElement;
+      expect(field.value).toContain("29.00");
+      expect(field.value).toContain("35.00");
+    });
+    expect(fetch).toHaveBeenCalledWith("/api/products/p1/competitor-prices");
+  });
+
+  it("leaves competitor prices empty when no productId is present", () => {
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+
+    render(<LaunchPlanner />);
+
+    const field = screen.getByRole("textbox", { name: "Competitor prices" }) as HTMLInputElement;
+    expect(field.value).toBe("");
+    expect(fetchSpy).not.toHaveBeenCalled();
   });
 });
