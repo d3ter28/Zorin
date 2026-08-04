@@ -4,41 +4,11 @@ import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseJsonBody } from "@/lib/api/validation";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { assertProductOwned } from "@/lib/auth/ownership";
-
-interface CompetitorPriceRow {
-  id: string;
-  competitorName: string;
-  priceCents: number;
-  url: string | null;
-  capturedAt: Date;
-}
-
-function serialize(row: CompetitorPriceRow) {
-  return {
-    id: row.id,
-    competitorName: row.competitorName,
-    priceCents: row.priceCents,
-    url: row.url,
-    capturedAt: row.capturedAt.toISOString(),
-  };
-}
-
-/** Absolute http(s) URL only — competitor product pages live on arbitrary external domains. */
-function validateUrl(value: unknown): string | null | undefined {
-  if (value === undefined || value === null || value === "") return null;
-  if (typeof value !== "string") return undefined;
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "http:" && url.protocol !== "https:") return undefined;
-    return value;
-  } catch {
-    return undefined;
-  }
-}
-
-function isPositiveInt(n: unknown): n is number {
-  return typeof n === "number" && Number.isFinite(n) && Number.isInteger(n) && n > 0;
-}
+import {
+  isPositiveInt,
+  serializeCompetitorPrice,
+  validateCompetitorUrl,
+} from "@/lib/competitorPrices/validate";
 
 export const GET = withErrorHandling(
   async (_req: Request, { params }: { params: Promise<{ id: string }> }) => {
@@ -51,7 +21,7 @@ export const GET = withErrorHandling(
       orderBy: { priceCents: "asc" },
     });
 
-    return NextResponse.json(rows.map(serialize));
+    return NextResponse.json(rows.map(serializeCompetitorPrice));
   },
 );
 
@@ -74,7 +44,7 @@ export const POST = withErrorHandling(
     if (!isPositiveInt(body.priceCents)) {
       throw new HttpError(400, "Price must be a positive whole number of cents");
     }
-    const url = validateUrl(body.url);
+    const url = validateCompetitorUrl(body.url);
     if (url === undefined) {
       throw new HttpError(400, "url must be a valid http(s) URL");
     }
@@ -83,6 +53,6 @@ export const POST = withErrorHandling(
       data: { productId, merchantId, competitorName, priceCents: body.priceCents, url },
     });
 
-    return NextResponse.json(serialize(row));
+    return NextResponse.json(serializeCompetitorPrice(row));
   },
 );

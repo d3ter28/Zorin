@@ -4,39 +4,11 @@ import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { parseJsonBody } from "@/lib/api/validation";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { assertProductOwned } from "@/lib/auth/ownership";
-
-function serialize(row: {
-  id: string;
-  competitorName: string;
-  priceCents: number;
-  url: string | null;
-  capturedAt: Date;
-}) {
-  return {
-    id: row.id,
-    competitorName: row.competitorName,
-    priceCents: row.priceCents,
-    url: row.url,
-    capturedAt: row.capturedAt.toISOString(),
-  };
-}
-
-function validateUrl(value: unknown): string | null | undefined {
-  if (value === undefined) return null;
-  if (value === null || value === "") return null;
-  if (typeof value !== "string") return undefined;
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "http:" && url.protocol !== "https:") return undefined;
-    return value;
-  } catch {
-    return undefined;
-  }
-}
-
-function isPositiveInt(n: unknown): n is number {
-  return typeof n === "number" && Number.isFinite(n) && Number.isInteger(n) && n > 0;
-}
+import {
+  isPositiveInt,
+  serializeCompetitorPrice,
+  validateCompetitorUrl,
+} from "@/lib/competitorPrices/validate";
 
 async function loadOwnedRow(productId: string, cpId: string) {
   const row = await prisma.competitorPrice.findFirst({ where: { id: cpId, productId } });
@@ -73,13 +45,13 @@ export const PATCH = withErrorHandling(
       data.priceCents = body.priceCents;
     }
     if (body.url !== undefined) {
-      const url = validateUrl(body.url);
+      const url = validateCompetitorUrl(body.url);
       if (url === undefined) throw new HttpError(400, "url must be a valid http(s) URL");
       data.url = url;
     }
 
     const row = await prisma.competitorPrice.update({ where: { id: cpId }, data });
-    return NextResponse.json(serialize(row));
+    return NextResponse.json(serializeCompetitorPrice(row));
   },
 );
 
