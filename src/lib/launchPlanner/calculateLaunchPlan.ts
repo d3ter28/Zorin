@@ -1,3 +1,7 @@
+import { calculateMarketStats, type MarketStats } from "@/lib/pricing/marketStats";
+
+export type { MarketStats as LaunchMarketStats } from "@/lib/pricing/marketStats";
+
 export type LaunchPositioning = "budget" | "mid-market" | "premium";
 export type LaunchRoundingMode = "whole" | "ninety-nine";
 export type LaunchPlanConfidence = "low" | "medium";
@@ -15,14 +19,6 @@ export interface CalculateLaunchPlanInput {
   roundingMode?: LaunchRoundingMode;
 }
 
-export interface LaunchMarketStats {
-  minCents: number;
-  maxCents: number;
-  medianCents: number;
-  q1Cents: number;
-  q3Cents: number;
-}
-
 export type CalculateLaunchPlanResult =
   | {
       ok: true;
@@ -35,7 +31,7 @@ export type CalculateLaunchPlanResult =
       confidence: LaunchPlanConfidence;
       warnings: string[];
       explanation: string;
-      marketStats: LaunchMarketStats | null;
+      marketStats: MarketStats | null;
     }
   | {
       ok: false;
@@ -133,30 +129,7 @@ function sanitizePrices(prices: number[]): number[] {
     .sort((a, b) => a - b);
 }
 
-function calculateMarketStats(prices: number[]): LaunchMarketStats {
-  return {
-    minCents: prices[0],
-    maxCents: prices[prices.length - 1],
-    medianCents: percentile(prices, 0.5),
-    q1Cents: percentile(prices, 0.25),
-    q3Cents: percentile(prices, 0.75),
-  };
-}
-
-function percentile(sortedPrices: number[], pct: number): number {
-  const index = (sortedPrices.length - 1) * pct;
-  const lowerIndex = Math.floor(index);
-  const upperIndex = Math.ceil(index);
-
-  if (lowerIndex === upperIndex) {
-    return sortedPrices[lowerIndex];
-  }
-
-  const weight = index - lowerIndex;
-  return Math.round(sortedPrices[lowerIndex] * (1 - weight) + sortedPrices[upperIndex] * weight);
-}
-
-function marketTargetForPositioning(stats: LaunchMarketStats, positioning: LaunchPositioning): number {
+function marketTargetForPositioning(stats: MarketStats, positioning: LaunchPositioning): number {
   if (positioning === "budget") return (stats.minCents + stats.medianCents) / 2;
   if (positioning === "premium") return (stats.medianCents + stats.maxCents) / 2;
   return stats.medianCents;
