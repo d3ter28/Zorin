@@ -9,6 +9,7 @@ import { RecommendationCard } from "@/components/RecommendationCard";
 import type { MLRecView } from "@/components/RecommendationCard";
 import { SalesHistoryUpload } from "@/components/SalesHistoryUpload";
 import { PriceSurveyCard } from "@/components/PriceSurveyCard";
+import { CompetitorPricesCard } from "@/components/CompetitorPricesCard";
 import { formatCents } from "@/lib/money";
 import { AppShell } from "@/components/AppShell";
 import { ProductThumbnail } from "@/components/ProductThumbnail";
@@ -217,6 +218,8 @@ export default function ProductPage({
             <RecommendationCard rec={mlRec} />
 
             <PriceSurveyCard productId={d.id} />
+
+            <CompetitorPricesCard productId={d.id} />
 
             <DemandCurve
               productId={d.id}
