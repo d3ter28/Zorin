@@ -42,6 +42,7 @@ model Product {
   elasticityModel      ElasticityModel?
   priceChanges         PriceChange[]
   priceSurveys         PriceSurvey[]
+  competitorPrices     CompetitorPrice[]
 }
 
 model Recommendation {
@@ -113,6 +114,17 @@ model PriceSurveyResponse {
   gettingExpensiveCents Int
   tooExpensiveCents     Int
   submittedAt           DateTime    @default(now())
+}
+
+model CompetitorPrice {
+  id             String   @id @default(cuid())
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  merchantId     String
+  competitorName String
+  priceCents     Int
+  url            String?
+  capturedAt     DateTime @default(now())
 }
 
 model User {
