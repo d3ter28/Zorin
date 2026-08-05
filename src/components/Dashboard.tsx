@@ -9,6 +9,9 @@ import { SalesHistoryUpload } from "./SalesHistoryUpload";
 import { formatCents } from "@/lib/money";
 import { PortfolioTrendChart } from "./PortfolioTrendChart";
 import { OnboardingChecklist } from "./OnboardingChecklist";
+import { WalkthroughTour } from "./WalkthroughTour";
+
+const WALKTHROUGH_SEEN_KEY = "zorin_walkthrough_seen";
 
 type Tab = "overview" | "products";
 
@@ -107,6 +110,31 @@ export function Dashboard() {
       return true;
     }
   });
+  const [showWalkthrough, setShowWalkthrough] = useState(false);
+
+  // localStorage isn't available during SSR, so this is decided client-side
+  // after mount rather than in the useState initializer (which would render
+  // differently on the server vs. client and trigger a hydration mismatch).
+  useEffect(() => {
+    if (searchParams.get("walkthrough") === "1") {
+      setShowWalkthrough(true);
+      return;
+    }
+    try {
+      if (localStorage.getItem(WALKTHROUGH_SEEN_KEY) !== "true") setShowWalkthrough(true);
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function dismissWalkthrough() {
+    setShowWalkthrough(false);
+    try {
+      localStorage.setItem(WALKTHROUGH_SEEN_KEY, "true");
+    } catch {}
+    if (searchParams.get("walkthrough") === "1") {
+      router.replace(tab === "products" ? "/dashboard?tab=products" : "/dashboard", { scroll: false });
+    }
+  }
 
   useEffect(() => {
     fetch("/api/products")
@@ -139,6 +167,7 @@ export function Dashboard() {
 
   return (
     <div>
+      {showWalkthrough && <WalkthroughTour onDone={dismissWalkthrough} />}
       {portfolio && !allDone && showChecklist && (
         <OnboardingChecklist
           hasProducts={hasProducts}

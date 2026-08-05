@@ -25,9 +25,15 @@ export default async function GuidePage() {
           <div className="sticky top-8">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors mb-6"
+              className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors mb-2"
             >
               ← Back to Dashboard
+            </Link>
+            <Link
+              href="/dashboard?walkthrough=1"
+              className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors mb-6"
+            >
+              ↻ Replay walkthrough
             </Link>
             <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-3">On this page</p>
             <nav className="space-y-0.5">
