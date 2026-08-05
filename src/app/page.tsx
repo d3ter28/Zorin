@@ -16,6 +16,7 @@ const Pricing = dynamic(() => import("@/components/marketing/Pricing").then(m =>
 const Blog = dynamic(() => import("@/components/marketing/Blog").then(m => m.Blog));
 const FAQ = dynamic(() => import("@/components/marketing/FAQ").then(m => m.FAQ));
 const EarlyAccess = dynamic(() => import("@/components/marketing/EarlyAccess").then(m => m.EarlyAccess));
+const DataGuarantee = dynamic(() => import("@/components/marketing/DataGuarantee").then(m => m.DataGuarantee));
 
 export const metadata = {
   title: "Zorin - ML-powered pricing intelligence for online merchants",
@@ -38,6 +39,7 @@ export default function LandingPage() {
         <Blog />
         <FAQ />
         <EarlyAccess />
+        <DataGuarantee />
       </main>
       <Footer />
     </>

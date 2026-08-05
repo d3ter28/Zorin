@@ -39,7 +39,7 @@ export function Hero() {
             </a>
           </div>
           <p className="mt-3 text-xs text-zinc-500">
-            We never share or sell your store data.
+            Your sales data is never shared, sold, or used to train other merchants&apos; models. Deleted on request.
           </p>
         </motion.div>
 

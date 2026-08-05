@@ -1,0 +1,30 @@
+import { Navbar } from "@/components/marketing/Navbar";
+import { Footer } from "@/components/marketing/Footer";
+import { IntegrationLanding } from "@/components/marketing/IntegrationLanding";
+
+export const metadata = {
+  title: "Shopify Pricing Intelligence Integration - Zorin",
+  description:
+    "Connect your Shopify store to Zorin in 2 minutes. Products, orders, and price changes sync automatically so you always get profit-maximizing price recommendations.",
+};
+
+export default function ShopifyIntegrationPage() {
+  return (
+    <>
+      <Navbar />
+      <IntegrationLanding
+        platform="Shopify"
+        ctaLabel="Connect Shopify in 2 Minutes"
+        intro="Connect once and Zorin keeps your catalog, orders, and prices in sync automatically - no manual re-import, no spreadsheets."
+        where="In your Shopify admin: Settings → Apps → Develop apps → Create an app → configure Admin API scopes (read_products, read_orders, write_products)."
+        how="In Zorin: Settings → Shopify Connection. Paste your store domain and the Admin API access token from that app."
+        syncedData={[
+          "Products and prices - imported on connect, then kept current via real-time webhooks",
+          "Orders - synced automatically as sales come in, feeding your elasticity model",
+          "Price changes you apply in Zorin push straight back to your Shopify catalog",
+        ]}
+      />
+      <Footer />
+    </>
+  );
+}
