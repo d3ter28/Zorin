@@ -1,0 +1,47 @@
+{
+  "planPath": "docs/superpowers/plans/2026-08-04-competitor-price-benchmarking.md",
+  "tasks": [
+    {
+      "id": 1,
+      "subject": "Task 1: Schema — CompetitorPrice model",
+      "status": "completed",
+      "description": "**Goal:** Add the data model this feature depends on.\n\n**Files:**\n- Modify: `prisma/schema.prisma`\n- Modify: `prisma/schema.production.prisma`\n\n**Acceptance Criteria:**\n- [ ] `CompetitorPrice` model exists with `productId` (relation to `Product`, `onDelete: Cascade`), `merchantId`, `competitorName`, `priceCents`, optional `url`, and `capturedAt` (defaults to now)\n- [ ] `Product` gains a `competitorPrices CompetitorPrice[]` relation\n- [ ] Both schema files stay in sync (only the `datasource` block differs)\n\n**Verify:** `npx prisma db push && npx prisma generate` → no errors\n\n```json:metadata\n{\"files\": [\"prisma/schema.prisma\", \"prisma/schema.production.prisma\"], \"verifyCommand\": \"npx prisma db push && npx prisma generate\", \"acceptanceCriteria\": [\"CompetitorPrice model exists with productId relation onDelete Cascade, merchantId, competitorName, priceCents, optional url, capturedAt default now\", \"Product gains competitorPrices relation\", \"both schema files in sync\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Extract shared market stats utility",
+      "status": "completed",
+      "blockedBy": [1],
+      "description": "**Goal:** Move the min/median/q1/q3 stats math out of `calculateLaunchPlan.ts` into a shared, reusable module — no behavior change, but now usable by the new competitor-prices UI too.\n\n**Files:**\n- Create: `src/lib/pricing/marketStats.ts`\n- Test: `src/lib/pricing/marketStats.test.ts`\n- Modify: `src/lib/launchPlanner/calculateLaunchPlan.ts`\n\n**Acceptance Criteria:**\n- [ ] `calculateMarketStats(pricesCents: number[])` computes `{ minCents, maxCents, medianCents, q1Cents, q3Cents }` from a sorted ascending array — identical math to the private function it replaces\n- [ ] `calculateLaunchPlan.ts` imports and uses the shared function instead of its own private copy; `LaunchMarketStats` remains importable from `calculateLaunchPlan.ts` (re-exported) so `explainLaunchPrice.ts` needs no changes\n- [ ] `calculateLaunchPlan.test.ts` passes unmodified — confirms no behavior regression\n\n**Verify:** `npm test -- src/lib/pricing/marketStats.test.ts src/lib/launchPlanner/calculateLaunchPlan.test.ts` → all pass\n\n```json:metadata\n{\"files\": [\"src/lib/pricing/marketStats.ts\", \"src/lib/pricing/marketStats.test.ts\", \"src/lib/launchPlanner/calculateLaunchPlan.ts\"], \"verifyCommand\": \"npm test -- src/lib/pricing/marketStats.test.ts src/lib/launchPlanner/calculateLaunchPlan.test.ts\", \"acceptanceCriteria\": [\"calculateMarketStats exported from new module matches prior private behavior\", \"calculateLaunchPlan.ts uses shared module, re-exports LaunchMarketStats type\", \"existing calculateLaunchPlan.test.ts passes unmodified\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: Competitor price CRUD API",
+      "status": "completed",
+      "blockedBy": [1],
+      "description": "**Goal:** Let a merchant list, add, edit, and delete competitor prices for a product they own.\n\n**Files:**\n- Create: `src/app/api/products/[id]/competitor-prices/route.ts`\n- Test: `src/app/api/products/[id]/competitor-prices/route.test.ts`\n- Create: `src/app/api/products/[id]/competitor-prices/[cpId]/route.ts`\n- Test: `src/app/api/products/[id]/competitor-prices/[cpId]/route.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `GET /api/products/[id]/competitor-prices` returns rows sorted by `priceCents` ascending; 404 if product isn't owned by caller\n- [ ] `POST /api/products/[id]/competitor-prices` creates a row (`competitorName`, `priceCents`, optional `url`); 400 for empty name, non-positive/non-integer price, or invalid (non-http/https) `url`\n- [ ] `PATCH /api/products/[id]/competitor-prices/[cpId]` updates given fields and bumps `capturedAt`; 404 if row doesn't belong to that product/merchant\n- [ ] `DELETE /api/products/[id]/competitor-prices/[cpId]` removes the row; 404 if it doesn't belong to that product/merchant\n\n**Verify:** `npm test -- \"src/app/api/products/[id]/competitor-prices\"` → all pass\n\n```json:metadata\n{\"files\": [\"src/app/api/products/[id]/competitor-prices/route.ts\", \"src/app/api/products/[id]/competitor-prices/route.test.ts\", \"src/app/api/products/[id]/competitor-prices/[cpId]/route.ts\", \"src/app/api/products/[id]/competitor-prices/[cpId]/route.test.ts\"], \"verifyCommand\": \"npm test -- \\\"src/app/api/products/[id]/competitor-prices\\\"\", \"acceptanceCriteria\": [\"GET lists sorted by priceCents asc with 404 ownership check\", \"POST validates name/price/url and creates row\", \"PATCH updates fields and bumps capturedAt with 404 checks\", \"DELETE removes row with 404 checks\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: Competitor prices card + product page wiring",
+      "status": "completed",
+      "blockedBy": [2, 3],
+      "description": "**Goal:** Let a merchant view, add, edit, and remove competitor prices from the product detail page, with summary stats.\n\n**Files:**\n- Create: `src/components/CompetitorPricesCard.tsx`\n- Modify: `src/app/product/[id]/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] Product page shows a \"Competitor prices\" card alongside existing cards (`RecommendationCard`, `PriceSurveyCard`)\n- [ ] Empty state message when zero rows exist\n- [ ] With ≥1 row: shows min/median/max (via `calculateMarketStats`) above a table (name, price, optional link-out, captured date, remove)\n- [ ] Inline add-row form creates a new row without a page reload\n- [ ] A \"Plan launch price →\" link points to `/launch-planner?productId=<id>`\n\n**Verify:** Manual check in the browser — add competitor prices, confirm stats/table update, confirm launch-planner link carries the product id.\n\n```json:metadata\n{\"files\": [\"src/components/CompetitorPricesCard.tsx\", \"src/app/product/[id]/page.tsx\"], \"verifyCommand\": \"manual browser check per plan Task 4 Step 3\", \"acceptanceCriteria\": [\"card renders empty state at 0 rows\", \"card renders min/median/max stats and table at >=1 row\", \"add form creates row without reload\", \"Plan launch price link includes productId query param\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 5: Launch Planner prefill from saved competitor prices",
+      "status": "completed",
+      "blockedBy": [3],
+      "description": "**Goal:** When Launch Planner is opened with `?productId=`, prefill the existing competitor-prices field from that product's saved list.\n\n**Files:**\n- Modify: `src/components/LaunchPlanner.tsx`\n- Test: `src/components/LaunchPlanner.test.tsx`\n\n**Acceptance Criteria:**\n- [ ] With no `productId` in the URL, behavior unchanged from today (field starts empty)\n- [ ] With a `productId` that has saved competitor prices, field is prefilled with a comma-separated dollar list on mount\n- [ ] If the fetch fails or returns zero rows, the field stays empty — no error state blocks the rest of the calculator\n\n**Verify:** `npm test -- src/components/LaunchPlanner.test.tsx` → all pass\n\n```json:metadata\n{\"files\": [\"src/components/LaunchPlanner.tsx\", \"src/components/LaunchPlanner.test.tsx\"], \"verifyCommand\": \"npm test -- src/components/LaunchPlanner.test.tsx\", \"acceptanceCriteria\": [\"no productId leaves field empty, no fetch call\", \"productId with saved rows prefills comma-separated dollar values\", \"failed fetch or empty rows leaves field untouched, no blocking error\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 6,
+      "subject": "Task 6: Full-suite verification",
+      "status": "completed",
+      "blockedBy": [4, 5],
+      "description": "**Goal:** Confirm the whole feature integrates cleanly with no regressions before merge.\n\n**Files:** None (verification only)\n\n**Acceptance Criteria:**\n- [ ] Full test suite passes\n- [ ] `npm run build` succeeds with no new route errors\n- [ ] Manual end-to-end walkthrough: add competitor prices on a product → see stats/table update → follow \"Plan launch price →\" → confirm prefill → remove a row back on the product page → confirm it's gone\n\n**Verify:** `npm test && npm run build` → both succeed\n\n```json:metadata\n{\"files\": [], \"verifyCommand\": \"npm test && npm run build\", \"acceptanceCriteria\": [\"full test suite passes with count above pre-feature baseline of 562\", \"npm run build succeeds, /product/[id] and /launch-planner routes present\", \"manual end-to-end walkthrough confirms add/prefill/remove flow works\"], \"modelTier\": \"standard\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-08-04"
+}
