@@ -10,6 +10,115 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "why-do-some-products-have-more-elastic-demand-than-others",
+    title: "Why Do Some Products Have More Elastic Demand Than Others?",
+    excerpt:
+      "Elasticity isn't random. Five real drivers determine why one product in your catalog can absorb a price increase and another can't.",
+    date: "2026-08-05",
+    readingTime: "8 min read",
+    category: "Education",
+    content: `
+<p class="intro">A product has more elastic demand when customers have easy alternatives, don't consider it essential, and can react quickly to a price change. The opposite conditions, few substitutes, genuine necessity, high switching costs, produce inelastic demand. Five specific, well-documented factors determine where any given product actually lands, and none of them are random.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Substitute availability is the single biggest driver of elasticity, more alternatives means customers can walk away from a price increase more easily.</li>
+<li>Necessity, budget share, brand loyalty, and time horizon all shape elasticity independently of how many competitors exist.</li>
+<li>Elasticity typically rises the longer a price change stays in effect, a product that looks inelastic in week one can look meaningfully more elastic a year later.</li>
+<li>Two products in the same store, even the same category, can sit at opposite ends of the spectrum for reasons that have nothing to do with price itself.</li>
+<li>Diagnosing which drivers apply to a specific product is a faster starting point than waiting for enough sales history to calculate an exact coefficient.</li>
+</ul>
+</div>
+
+<h2>Five Real Drivers, Not a Coin Flip</h2>
+<p>Elasticity looks like an abstract statistic until you break it into what actually produces it. Economic research consistently points to the same five determinants, and understanding each one separately makes it possible to reason about a product's likely elasticity before you've even calculated it.</p>
+
+<table>
+  <thead>
+    <tr><th>Driver</th><th>Pushes demand toward</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Substitute availability</td><td>More substitutes → more elastic</td></tr>
+    <tr><td>Necessity vs. luxury</td><td>More essential → more inelastic</td></tr>
+    <tr><td>Share of budget</td><td>Bigger share of spend → more elastic</td></tr>
+    <tr><td>Time horizon</td><td>More time to react → more elastic</td></tr>
+    <tr><td>Brand loyalty / differentiation</td><td>Stronger loyalty → more inelastic</td></tr>
+  </tbody>
+</table>
+
+<h2>Substitute Availability: The Biggest Lever</h2>
+<p>The presence and quality of substitutes is widely considered the single most important determinant of elasticity. If a customer can easily find something comparable elsewhere, raising your price just hands them a reason to look. A generic phone case sitting next to a dozen near-identical listings has almost no pricing power, because the substitute is one click away. A product with a genuinely unique feature, a proprietary material, an exclusive design, has real room to move price without losing the sale, simply because there's nowhere else to go.</p>
+<p>This is also the driver most within a merchant's control. Building a real point of difference, better materials, a warranty competitors don't offer, a faster fulfillment promise, doesn't just help conversion, it structurally reduces elasticity by narrowing how substitutable your product actually is in the customer's mind.</p>
+
+<h2>Necessity vs. Luxury</h2>
+<p>Essential goods tend toward inelastic demand because customers keep buying regardless of price, they don't have the option to simply not buy. Discretionary and luxury goods behave the opposite way, since skipping the purchase entirely, or postponing it, is a real and easy choice. This is why the same percentage price increase can barely register on a household staple while meaningfully denting sales of an optional accessory.</p>
+<p>Necessity isn't just about the product category, it's about how the customer perceives the purchase in the moment. A specialty ingredient can feel like a luxury to a casual buyer and a non-negotiable necessity to someone who cooks with it weekly, which is part of why the same product can show different elasticity across different customer segments.</p>
+
+<h2>Share of Budget</h2>
+<p>Goods that make up a larger share of a customer's spending tend to show more elastic demand, since a price change has a proportionally bigger effect on what's left in their budget. A $2 price increase on a $15 item is easy to absorb without much thought. The same $2 increase on a $20,000 purchase is invisible by comparison, but a $2,000 increase on that same purchase is a very different conversation. Inexpensive items that represent a small fraction of a customer's spending tend toward inelastic demand for exactly this reason, the price change simply isn't large enough in absolute terms to change behavior.</p>
+
+<h2>Time Horizon: Elasticity Isn't Fixed Over Time</h2>
+<p>This is the driver most merchants miss entirely: elasticity for the same product changes depending on how long the new price has been in effect. Demand is typically more inelastic in the short run, before customers have had time to notice, adjust, or find an alternative, and becomes more elastic in the long run as they do.</p>
+<p>Fuel prices are the textbook example. When fuel prices rise, the quantity purchased barely drops in the first few months, drivers still need to get to work. But given a year or more, the same price increase pushes people toward more fuel-efficient vehicles, shorter commutes, or alternative transportation, and long-run elasticity ends up meaningfully higher than the short-run number would have predicted. A software price increase follows a similar pattern: existing users tolerate it in the short run because switching costs (retraining, data migration) are high, but the increase signals competitors to build alternatives, and elasticity rises as those alternatives mature.</p>
+<p>For a merchant, the practical implication is direct: a price increase that looks safely inelastic based on the first few weeks of data can look considerably riskier a year out, once customers have had time to actually respond. This is exactly why <a href="/blog/how-often-should-i-change-my-prices">revisiting pricing on a regular cadence</a> matters more than treating a single elasticity read as permanent.</p>
+
+<h2>Brand Loyalty and Differentiation</h2>
+<p>Strong brand loyalty can make an otherwise elastic category behave inelastically for one specific product. Customers with genuine attachment to a brand, through trust, habit, or perceived quality, don't treat a price increase as an invitation to comparison shop the way a first-time buyer would. This is part of why premium products within an otherwise price-sensitive category often carry more pricing power than their category average would suggest.</p>
+<p>Loyalty isn't purely emotional, either. Real switching costs, a customer's data locked into a platform, a subscription tied to years of history, a learning curve for a new tool, function the same way loyalty does: they make the substitute less attractive even when one exists.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing different products in the same store with different margins, model confidence, and raise or lower recommendations" loading="lazy" />
+  <figcaption>Even products sitting side by side in the same catalog can land on opposite ends of the elasticity spectrum for reasons that have nothing to do with their category.</figcaption>
+</figure>
+
+<h2>How to Diagnose Your Own Products Before You Have the Number</h2>
+<p>Calculating an exact elasticity coefficient needs real sales history with price variation in it. Before that data exists, or while you're waiting for enough of it to accumulate, these five drivers work as a diagnostic checklist:</p>
+<ol>
+<li><strong>How many close substitutes does this specific product have</strong>, not the category in general, but this exact listing?</li>
+<li><strong>How essential does it feel to the customer buying it</strong>, not how essential it objectively is?</li>
+<li><strong>What share of a typical customer's budget does it represent</strong>, relative to their overall spending, not just its dollar price?</li>
+<li><strong>How much time has the current price actually been in effect</strong>, and is enough time passing for customers to have reacted yet?</li>
+<li><strong>Does this product have a real point of differentiation or loyalty behind it</strong>, or is it functionally interchangeable with several others?</li>
+</ol>
+<p>A product that scores toward inelastic on most of these (few substitutes, feels essential, small budget share, established loyalty) is a reasonable candidate for testing a price increase. A product that scores toward elastic on most of them is a better candidate for holding price or competing on something other than the price tag. Once real sales history exists, <a href="/blog/what-does-price-elasticity-actually-mean">the actual calculated elasticity</a> replaces this qualitative read with an exact number, and <a href="/blog/price-elasticity-examples-by-ecommerce-category">seeing how these drivers play out across specific ecommerce categories</a> is a useful next step for calibrating your own instincts. If you'd rather see the real number for your own catalog, <a href="/signup">connect your sales history</a> and let the model calculate it per product.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Why do some products have more elastic demand than others?</h3>
+<p>Five factors mainly: substitute availability, necessity vs. luxury, share of a customer's budget, time horizon, and brand loyalty. More substitutes, less necessity, a bigger budget share, more time to react, and weaker loyalty all push demand toward elastic.</p>
+</div>
+<div class="faq-item">
+<h3>What's the single biggest driver of price elasticity?</h3>
+<p>Substitute availability. If a customer can easily find something comparable elsewhere, a price increase gives them an easy reason to switch, which is why it's widely considered the most important determinant.</p>
+</div>
+<div class="faq-item">
+<h3>Does elasticity change over time for the same product?</h3>
+<p>Yes. Demand is typically more inelastic in the short run, before customers notice or find alternatives, and becomes more elastic in the long run as they do. Fuel and software pricing are classic examples of this pattern.</p>
+</div>
+<div class="faq-item">
+<h3>Can two products in the same category have very different elasticity?</h3>
+<p>Yes. A product with real differentiation or strong brand loyalty can behave inelastically even in a category that's elastic on average, while a nearly interchangeable listing in the same category can be highly price sensitive.</p>
+</div>
+<div class="faq-item">
+<h3>Why does budget share affect elasticity?</h3>
+<p>A price change on something that represents a larger share of a customer's spending has a proportionally bigger impact on their budget, making them more likely to react. Small, inexpensive purchases barely register the same way.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know which drivers apply to my own product before I have sales data?</h3>
+<p>Walk through the five drivers as a checklist: substitute count, perceived necessity, budget share, how long the current price has been active, and whether real differentiation or loyalty exists. A product leaning inelastic on most of these is a safer candidate for testing a price increase.</p>
+</div>
+<div class="faq-item">
+<h3>Is brand loyalty the same thing as low elasticity?</h3>
+<p>Not exactly, but it's one of the strongest contributors to it. Loyalty and real switching costs both reduce how attractive an available substitute feels, which is what actually lowers elasticity.</p>
+</div>
+</section>
+
+<p class="conclusion">Elasticity isn't a fixed property stamped onto a product category, it's the outcome of five specific, understandable forces: substitutes, necessity, budget share, time, and loyalty. Two products sitting next to each other in your catalog can land in completely different places once you look at which of these actually apply. Understanding why gives you a real starting point even before you have the exact number.</p>
+    `.trim(),
+  },
+  {
     slug: "price-elasticity-examples-by-ecommerce-category",
     title: "Price Elasticity Examples by Ecommerce Category",
     excerpt:
