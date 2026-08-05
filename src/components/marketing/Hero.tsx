@@ -18,8 +18,8 @@ export function Hero() {
             7-day free trial - no credit card required
           </span>
           <h1 className="mt-5 text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl">
-            Stop guessing your prices.{" "}
-            <span className="text-blue-600">Start optimizing.</span>
+            Turn your Shopify sales data into{" "}
+            <span className="text-blue-600">profit-maximizing prices.</span>
           </h1>
           <p className="mt-5 max-w-[50ch] text-lg leading-relaxed text-zinc-500">
             Zorin turns your sales history into profit-maximizing price recommendations, no spreadsheets required.
@@ -38,6 +38,9 @@ export function Hero() {
               Already have access? Log in
             </a>
           </div>
+          <p className="mt-3 text-xs text-zinc-500">
+            We never share or sell your store data.
+          </p>
         </motion.div>
 
         <motion.div
