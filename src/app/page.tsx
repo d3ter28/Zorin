@@ -19,7 +19,7 @@ const EarlyAccess = dynamic(() => import("@/components/marketing/EarlyAccess").t
 const DataGuarantee = dynamic(() => import("@/components/marketing/DataGuarantee").then(m => m.DataGuarantee));
 
 export const metadata = {
-  title: "Zorin - ML-powered pricing intelligence for online merchants",
+  title: "Zorin - Pricing Intelligence for E-Commerce Sellers",
   description:
     "Turn your sales history into profit-maximizing price recommendations. Upload, model, optimize.",
 };
