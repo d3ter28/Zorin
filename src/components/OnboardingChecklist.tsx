@@ -96,11 +96,16 @@ export function OnboardingChecklist({
                   )}
                   {/* CTA — only on current step */}
                   {isCurrent && (
-                    <div className="mt-2">
+                    <div className="mt-2 flex items-center gap-3">
                       {i === 0 && (
-                        <button onClick={onGoToProducts} className="btn btn-ghost text-xs px-3 py-1">
-                          Go to Products →
-                        </button>
+                        <>
+                          <button onClick={onGoToProducts} className="btn btn-ghost text-xs px-3 py-1">
+                            Go to Products →
+                          </button>
+                          <Link href="/launch-planner" className="text-xs text-muted hover:text-ink underline underline-offset-2">
+                            No sales data yet? Plan a launch price →
+                          </Link>
+                        </>
                       )}
                       {i === 1 && firstProductWithoutModel && (
                         <Link href={`/product/${firstProductWithoutModel}`} className="btn btn-ghost text-xs px-3 py-1">
