@@ -8,6 +8,7 @@ const links = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
+  { label: "Calculator", href: "/shopify-profit-margin-calculator" },
   { label: "Talk to us", href: "/#early-access" },
 ];
 

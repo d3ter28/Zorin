@@ -15,7 +15,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-16">
+          <div className="flex flex-wrap gap-x-16 gap-y-10">
             <div>
               <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
                 Product
@@ -37,8 +37,30 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="/shopify-profit-margin-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Profit margin calculator
+                  </a>
+                </li>
+                <li>
                   <a href="/signup" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Start free trial
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
+                Integrations
+              </h4>
+              <ul className="mt-3 flex flex-col gap-2">
+                <li>
+                  <a href="/integrations/shopify" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Shopify
+                  </a>
+                </li>
+                <li>
+                  <a href="/integrations/woocommerce" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    WooCommerce
                   </a>
                 </li>
               </ul>
