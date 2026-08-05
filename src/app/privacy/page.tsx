@@ -2,7 +2,7 @@ import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 
 export const metadata = {
-  title: "Privacy Policy — Zorin",
+  title: "Privacy Policy - Zorin",
   description: "How Zorin handles your store's sales data, in plain English.",
 };
 
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         <div className="prose prose-zinc mt-10 max-w-none text-zinc-600">
           <p>
             Zorin is a pricing tool for online merchants. This page explains, in plain
-            English, what happens to your sales data when you use it &mdash; no legal
+            English, what happens to your sales data when you use it - no legal
             filler.
           </p>
 
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
 
           <h2 className="mt-10 text-xl font-semibold text-zinc-900">How it&apos;s stored</h2>
           <p>
-            Every merchant&apos;s data is isolated from every other merchant&apos;s &mdash;
+            Every merchant&apos;s data is isolated from every other merchant&apos;s -
             there&apos;s no shared or pooled dataset. When you upload a CSV, we parse it
             and store the resulting product and order records; we don&apos;t keep the
             original file. Store credentials (Shopify/WooCommerce API keys) are encrypted
@@ -57,8 +57,8 @@ export default function PrivacyPage() {
           <p>
             We keep your data for as long as your account is active, so your price
             recommendations stay accurate as new sales come in. If you want your data
-            deleted &mdash; whether you&apos;re closing your account or just changed your
-            mind &mdash; email{" "}
+            deleted - whether you&apos;re closing your account or just changed your
+            mind - email{" "}
             <a href="mailto:support@tryzorin.com" className="text-blue-600 hover:underline">
               support@tryzorin.com
             </a>{" "}
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
             <a href="mailto:support@tryzorin.com" className="text-blue-600 hover:underline">
               support@tryzorin.com
             </a>{" "}
-            and we&apos;ll answer directly &mdash; no ticket queue.
+            and we&apos;ll answer directly - no ticket queue.
           </p>
         </div>
       </main>
