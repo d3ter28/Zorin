@@ -10,6 +10,111 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "elastic-vs-inelastic-demand-whats-the-difference",
+    title: "Elastic vs. Inelastic Demand: What's the Difference?",
+    excerpt:
+      "Elastic and inelastic aren't labels for a product category, they're a measurement of how customers react to your next price change. Here's how to tell which side a product is on.",
+    date: "2026-08-06",
+    readingTime: "7 min read",
+    category: "Education",
+    content: `
+<p class="intro">Elastic demand means customers respond strongly to a price change, quantity sold moves a lot for a relatively small price move. Inelastic demand means the opposite: quantity sold barely moves even when price does. The dividing line is a single number, the price elasticity of demand, and knowing which side of it a product sits on is the difference between a price increase that grows profit and one that quietly erodes it.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elastic demand: a 1% price change produces a more than 1% change in quantity sold. Inelastic demand: quantity changes by less than 1%.</li>
+<li>The dividing line is an elasticity coefficient of exactly -1, more negative than that is elastic, closer to zero is inelastic.</li>
+<li>Real-world gasoline demand has been estimated near -0.13, close to perfectly inelastic, while discretionary goods with easy substitutes often sit well past -1.</li>
+<li>Elastic products lose revenue when you raise price and gain it when you lower price; inelastic products do the reverse, which is why the same percentage increase can be profitable on one SKU and damaging on another.</li>
+<li>Most catalogs are a mix of both, treating every product with the same pricing rule is the most common way merchants leave profit on the table.</li>
+</ul>
+</div>
+
+<h2>The One-Line Definition</h2>
+<p>Price elasticity of demand is the percentage change in quantity demanded divided by the percentage change in price. That single ratio is what separates elastic from inelastic, everything else is downstream of it.</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Elastic demand</th><th>Inelastic demand</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Elasticity coefficient</td><td>More negative than -1</td><td>Between -1 and 0</td></tr>
+    <tr><td>Response to a 10% price increase</td><td>Quantity drops more than 10%</td><td>Quantity drops less than 10%</td></tr>
+    <tr><td>Effect of raising price on revenue</td><td>Revenue falls</td><td>Revenue rises</td></tr>
+    <tr><td>Effect of lowering price on revenue</td><td>Revenue rises</td><td>Revenue falls</td></tr>
+    <tr><td>Typical drivers</td><td>Many substitutes, discretionary, small budget share</td><td>Few substitutes, necessity, brand loyalty</td></tr>
+  </tbody>
+</table>
+
+<h2>Why the Sign and the Size Both Matter</h2>
+<p>Elasticity coefficients are almost always negative, since price and quantity typically move in opposite directions, but the number worth paying attention to is the magnitude, how far it sits from zero. A coefficient of -0.13 and a coefficient of -3.5 are both negative, but they describe two completely different products. The first barely reacts to price at all. The second reacts enormously.</p>
+<p>The U.S. Bureau of Labor Statistics has estimated the price elasticity of gasoline demand at around -0.13, meaning a 10% price increase reduces the quantity purchased by roughly 1.3%, close to perfectly inelastic, because driving to work isn't optional for most people in the short run <a href="https://www.bls.gov/opub/btn/volume-5/using-gasoline-data-to-explain-inelasticity.htm" target="_blank" rel="noopener noreferrer">(BLS)</a>. Insulin behaves similarly for the same reason: it's a life-necessary medication with no real substitute, so demand stays inelastic across a wide price range regardless of what it costs a given patient. Compare that to a private-label phone case sitting next to a dozen near-identical listings, where a small price increase can send a large share of buyers to the next tab in their browser. Same math, wildly different real-world behavior, because the underlying <a href="/blog/why-do-some-products-have-more-elastic-demand-than-others">drivers of elasticity</a>, substitutes, necessity, budget share, are different for each.</p>
+
+<h2>Why This Determines Whether a Price Change Grows or Shrinks Revenue</h2>
+<p>This is the part that trips merchants up: raising price doesn't always raise revenue, and lowering price doesn't always lower it. The direction depends entirely on which side of the elastic/inelastic line a product sits on.</p>
+<ul>
+<li><strong>Inelastic product, price increase:</strong> quantity sold drops only slightly, so the higher price per unit outweighs the small volume loss. Revenue rises.</li>
+<li><strong>Elastic product, price increase:</strong> quantity sold drops more than proportionally, so the volume loss outweighs the higher price per unit. Revenue falls.</li>
+<li><strong>Inelastic product, price decrease:</strong> the small volume gain doesn't make up for the lower price per unit. Revenue falls.</li>
+<li><strong>Elastic product, price decrease:</strong> the large volume gain more than makes up for the lower price per unit. Revenue rises.</li>
+</ul>
+<p>This is exactly why <a href="/blog/why-did-my-sales-drop-when-i-raised-my-price">a price increase that seemed reasonable can tank sales</a> on one SKU while an identical percentage increase quietly pads margin on another. The products weren't priced wrong in some absolute sense, they were just sitting on opposite sides of the elastic/inelastic line, and the same rule was applied to both.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>Which side of the elastic/inelastic line a product sits on is exactly what a raise, lower, or hold recommendation is built to answer.</figcaption>
+</figure>
+
+<h2>How to Tell Which Side a Product Is On</h2>
+<p>Three questions get you most of the way to a reasonable guess before you have enough sales history to calculate the exact number:</p>
+<ol>
+<li><strong>If a customer couldn't buy this from you, would they buy it somewhere else, or just not buy it?</strong> Easy substitution points toward elastic. No real alternative points toward inelastic.</li>
+<li><strong>Is this a considered purchase or an impulse one?</strong> Impulse and discretionary purchases tend to be more elastic, because the decision to buy at all is already marginal, a price bump gives an easy reason to skip it.</li>
+<li><strong>Has this exact price been in place long enough for customers to notice?</strong> Elasticity tends to grow over time as customers have room to react, so a product that looks inelastic in its first month of a new price isn't necessarily inelastic a year later.</li>
+</ol>
+<p>The qualitative read is a reasonable starting point, but it's still a guess. The <a href="/blog/what-does-price-elasticity-actually-mean">actual coefficient</a>, calculated from real price and quantity history, replaces the guess with a number, and <a href="/blog/price-elasticity-examples-by-ecommerce-category">typical ranges by ecommerce category</a> are a useful sanity check while you're waiting for enough of your own sales history to accumulate.</p>
+
+<h2>Why Most Catalogs Are a Mix of Both</h2>
+<p>The mistake isn't picking the wrong side, it's assuming there's only one side. A typical store carries some products with real differentiation or loyalty behind them, sitting well toward inelastic, alongside commodity items with a dozen near-identical competitors, sitting well toward elastic. A single storewide pricing rule, "raise everything 5% to offset rising costs," treats both groups identically and gets roughly half of the catalog wrong. The inelastic half absorbs the increase fine. The elastic half loses more in volume than it gains in price, and total profit can fall even while the average price tag went up. Pricing product by product, rather than storewide, is what actually protects margin when costs rise, which is the same reasoning behind <a href="/blog/should-i-raise-prices-to-cover-rising-costs">deciding whether and how to pass on a cost increase</a> per SKU rather than across the board.</p>
+<p>If you'd rather see which side of the line your own products actually sit on instead of estimating it, <a href="/signup">connect your sales history</a> and the model will calculate a coefficient and confidence score per SKU.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the difference between elastic and inelastic demand?</h3>
+<p>Elastic demand means quantity sold changes by more than the percentage price change, customers are sensitive to price. Inelastic demand means quantity sold changes by less than the percentage price change, customers keep buying regardless.</p>
+</div>
+<div class="faq-item">
+<h3>What elasticity number counts as elastic versus inelastic?</h3>
+<p>The dividing line is a coefficient of exactly -1. A coefficient more negative than -1 (further from zero) is elastic. A coefficient between -1 and 0 (closer to zero) is inelastic.</p>
+</div>
+<div class="faq-item">
+<h3>Does raising price always increase revenue?</h3>
+<p>No. It increases revenue for inelastic products, where the small drop in units sold is outweighed by the higher price per unit. For elastic products, the opposite happens, the drop in units sold outweighs the higher price and revenue falls.</p>
+</div>
+<div class="faq-item">
+<h3>Are most products elastic or inelastic?</h3>
+<p>It varies by product, not by store. A typical catalog contains a mix, items with real substitutes or that are purely discretionary tend toward elastic, while items with few substitutes, genuine necessity, or strong brand loyalty tend toward inelastic.</p>
+</div>
+<div class="faq-item">
+<h3>Can a product change from inelastic to elastic over time?</h3>
+<p>Yes. Demand for the same product is typically more inelastic in the short run, before customers have had time to notice or find alternatives, and becomes more elastic the longer a price stays in effect.</p>
+</div>
+<div class="faq-item">
+<h3>What's a real-world example of inelastic demand?</h3>
+<p>Gasoline is a commonly cited example, U.S. Bureau of Labor Statistics research has estimated its price elasticity around -0.13, meaning a 10% price increase reduces quantity purchased by roughly 1.3%.</p>
+</div>
+<div class="faq-item">
+<h3>How do I find out if my own products are elastic or inelastic?</h3>
+<p>Without sales history, a qualitative check on substitute availability, necessity, and how long the current price has been in effect gets you a reasonable estimate. With enough price and quantity history, the exact coefficient can be calculated directly per product.</p>
+</div>
+</section>
+
+<p class="conclusion">Elastic and inelastic aren't fixed labels stamped on a product category, they describe how strongly a specific product's customers react to a specific price change, and that reaction determines whether raising or lowering price grows revenue or shrinks it. Knowing which side a product sits on, rather than applying one rule to the whole catalog, is what turns a price change from a guess into a decision.</p>
+    `.trim(),
+  },
+  {
     slug: "why-do-some-products-have-more-elastic-demand-than-others",
     title: "Why Do Some Products Have More Elastic Demand Than Others?",
     excerpt:
