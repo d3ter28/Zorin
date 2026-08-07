@@ -14,6 +14,12 @@ describe("toErrorResponse", () => {
     await expect(res.json()).resolves.toEqual({ error: "Not found" });
   });
 
+  it("maps a Prisma P2002 (unique constraint violation) to 409", async () => {
+    const res = toErrorResponse({ code: "P2002", message: "Unique constraint failed" });
+    expect(res.status).toBe(409);
+    await expect(res.json()).resolves.toEqual({ error: "This resource already exists" });
+  });
+
   it("maps an unknown error to a 500 without leaking details", async () => {
     const res = toErrorResponse(new Error("connection string was sk-secret"));
     expect(res.status).toBe(500);

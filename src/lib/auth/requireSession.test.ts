@@ -21,9 +21,9 @@ vi.mock("./session", async (importOriginal) => ({
 }));
 
 import { HttpError } from "@/lib/api/errors";
-import { getSession, requireSessionApi, requireSessionPage } from "./requireSession";
+import { getSession, requireSessionApi, requireSessionPage, requireOwnerApi } from "./requireSession";
 
-const user = { id: "u1", email: "d@e.f", merchantId: "m1" };
+const user = { id: "u1", email: "d@e.f", merchantId: "m1", role: "OWNER" };
 
 beforeEach(() => {
   getCookie.mockReset();
@@ -120,5 +120,28 @@ describe("requireSessionPage", () => {
     findUnique.mockResolvedValue({ subscriptionStatus: "active", trialEndsAt: null });
 
     await expect(requireSessionPage()).resolves.toEqual({ user, merchantId: "m1" });
+  });
+});
+
+describe("requireOwnerApi", () => {
+  it("returns the session when the user is OWNER", async () => {
+    getCookie.mockReturnValue({ value: "tok" });
+    getSessionUser.mockResolvedValue(user);
+    await expect(requireOwnerApi()).resolves.toEqual({ user, merchantId: "m1" });
+  });
+
+  it("throws HttpError 403 when the user is MEMBER", async () => {
+    getCookie.mockReturnValue({ value: "tok" });
+    getSessionUser.mockResolvedValue({ ...user, role: "MEMBER" });
+    await expect(requireOwnerApi()).rejects.toMatchObject(
+      new HttpError(403, "Owner access required"),
+    );
+  });
+
+  it("throws HttpError 401 when unauthenticated", async () => {
+    getCookie.mockReturnValue(undefined);
+    await expect(requireOwnerApi()).rejects.toMatchObject(
+      new HttpError(401, "unauthorized"),
+    );
   });
 });

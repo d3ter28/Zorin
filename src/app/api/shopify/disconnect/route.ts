@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { withErrorHandling } from "@/lib/api/errors";
-import { requireSessionApi } from "@/lib/auth/requireSession";
+import { requireOwnerApi } from "@/lib/auth/requireSession";
 import { decryptToken } from "@/lib/shopify/crypto";
 import { ShopifyClient } from "@/lib/shopify/client";
 
 export const POST = withErrorHandling(async (_req: Request) => {
-  const { merchantId } = await requireSessionApi();
+  const { merchantId } = await requireOwnerApi();
 
   const connection = await prisma.shopifyConnection.findUnique({ where: { merchantId } });
 
