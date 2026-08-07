@@ -218,6 +218,7 @@ export function TeamCard({ currentUserId, currentUserRole }: { currentUserId: st
                 <button
                   onClick={() => resendInvite(inv.id)}
                   disabled={busyId === inv.id}
+                  aria-label={`Resend invite to ${inv.email}`}
                   className="text-xs text-faint hover:text-ink"
                 >
                   Resend
@@ -225,6 +226,7 @@ export function TeamCard({ currentUserId, currentUserRole }: { currentUserId: st
                 <button
                   onClick={() => revokeInvite(inv.id)}
                   disabled={busyId === inv.id}
+                  aria-label={`Revoke invite to ${inv.email}`}
                   className="text-xs text-faint hover:text-danger"
                 >
                   Revoke
