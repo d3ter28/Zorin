@@ -65,7 +65,7 @@ export default async function GuidePage() {
         <p>
           Zorin is a pricing intelligence tool for online merchants. It reads your sales history,
           calculates how sensitive your customers are to price changes, and tells you which products
-          to raise, lower, or hold — and by how much.
+          to raise, lower, or hold - and by how much.
         </p>
         <p>
           Most merchants price by gut feel or by copying competitors. The problem is that your
@@ -74,7 +74,7 @@ export default async function GuidePage() {
         </p>
         <Callout>
           Every sale you have ever made is a data point. When more people bought at $49 than at
-          $59, that gap tells Zorin exactly how price-sensitive your buyers are — and it uses
+          $59, that gap tells Zorin exactly how price-sensitive your buyers are - and it uses
           that to recommend the price that makes you the most money.
         </Callout>
       </Section>
@@ -87,7 +87,7 @@ export default async function GuidePage() {
           <p className="text-muted leading-relaxed">
             Go to the <strong className="text-ink">Products</strong> tab on your dashboard and
             upload a CSV with your catalog. Or connect Shopify or WooCommerce in{" "}
-            <strong className="text-ink">Settings</strong> to import automatically — products
+            <strong className="text-ink">Settings</strong> to import automatically - products
             and orders come in with one click.
           </p>
           <Screenshot src="/images/guide/dashboard-products.png" alt="Dashboard Products tab showing catalog import and sales history upload" />
@@ -117,7 +117,7 @@ export default async function GuidePage() {
           <p className="text-muted leading-relaxed">
             Once the model is fitted, click{" "}
             <strong className="text-ink">Get Recommendation</strong>. Zorin finds the price
-            that maximises your profit and recommends raise, lower, or hold — with an expected
+            that maximises your profit and recommends raise, lower, or hold - with an expected
             profit lift percentage.
           </p>
           <Screenshot src="/images/guide/product-recommendation.png" alt="A RAISE recommendation with expected profit lift and model confidence" />
@@ -126,7 +126,7 @@ export default async function GuidePage() {
         <StepBlock number={5} title="Apply the price">
           <p className="text-muted leading-relaxed">
             Click <strong className="text-ink">Apply recommendation</strong>. The price updates
-            in Zorin and — if you are connected to Shopify or WooCommerce — pushes live to your
+            in Zorin and - if you are connected to Shopify or WooCommerce - pushes live to your
             store automatically. Your full price history is recorded on this page.
           </p>
           <Screenshot src="/images/guide/product-price-history.png" alt="Price change history showing an applied price change, with the promotion flags table below" />
@@ -141,7 +141,7 @@ export default async function GuidePage() {
           <Term term="Products">Total products in your catalog.</Term>
           <Term term="Actionable">
             Products with a raise or lower recommendation ready to apply. Zero means all products
-            are on hold — usually because the model needs more price variation in the data.
+            are on hold - usually because the model needs more price variation in the data.
           </Term>
           <Term term="Below margin floor">
             Products where your current margin is below 15%. Worth reviewing pricing or costs.
@@ -183,26 +183,26 @@ export default async function GuidePage() {
         <p>
           Elasticity modelling tells you how customers respond based on what they actually
           bought. A price sensitivity survey asks them directly. Both are useful, and Zorin
-          keeps them separate — the survey never overwrites or blends into your raise / lower /
+          keeps them separate - the survey never overwrites or blends into your raise / lower /
           hold recommendation, it is a second, independent signal you look at alongside it.
         </p>
         <p>
           Open any product page and find the <strong className="text-ink">Van Westendorp
           Analysis</strong> card. Click <strong className="text-ink">Create survey link</strong>{" "}
           to generate a shareable, no-login link, then send it however you already reach
-          customers — email, an order confirmation page, social media. Each respondent answers
+          customers - email, an order confirmation page, social media. Each respondent answers
           four questions: at what price would this feel too cheap to trust, a bargain, starting
           to feel expensive, and too expensive to buy.
         </p>
         <Callout>
           The method is named after Dutch economist Peter van Westendorp, who developed it in
-          1976. It is a standard, widely used pricing-research technique — Zorin automates the
+          1976. It is a standard, widely used pricing-research technique - Zorin automates the
           math, not the methodology.
         </Callout>
         <Screenshot src="/images/guide/product-survey.png" alt="Van Westendorp Analysis card showing the optimal price, acceptable range, and a confidence badge" />
         <dl className="mt-4 space-y-4">
           <Term term="Optimal price">
-            The price where the fewest customers call it either too cheap or too expensive —
+            The price where the fewest customers call it either too cheap or too expensive -
             the headline number.
           </Term>
           <Term term="Indifference point">
@@ -215,7 +215,7 @@ export default async function GuidePage() {
           </Term>
           <Term term="Confidence">
             Purely a function of response count: no confidence under 5 responses, low from 5–19,
-            good at 20 or more. Results show immediately at every tier — low-confidence results
+            good at 20 or more. Results show immediately at every tier - low-confidence results
             are still shown, just labelled, rather than hidden until you have more data.
           </Term>
         </dl>
@@ -251,7 +251,7 @@ export default async function GuidePage() {
             price, try a small price test first.
           </Faq>
           <Faq q="Why is my model health Weak or Fair?">
-            Weak means R² is low — the data does not show a clear price-volume relationship,
+            Weak means R² is low - the data does not show a clear price-volume relationship,
             often due to seasonality or promotions. Fair means R² is 0.5–0.7. Both are usable,
             treat recommendations as directional rather than precise.
           </Faq>
@@ -261,7 +261,7 @@ export default async function GuidePage() {
             on any product page.
           </Faq>
           <Faq q="Can I undo a price change?">
-            Not automatically — but you can apply any price at any time. Your full price history
+            Not automatically - but you can apply any price at any time. Your full price history
             is on each product page so you always know what changed and when.
           </Faq>
           <Faq q="Is my data safe?">
