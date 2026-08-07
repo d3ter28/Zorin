@@ -26,6 +26,20 @@ function isPrismaNotFound(err: unknown): boolean {
   );
 }
 
+function isPrismaUniqueConstraintViolation(err: unknown): boolean {
+  // Prisma throws PrismaClientKnownRequestError with code "P2002" when a
+  // create/update violates a unique constraint (e.g. two near-simultaneous
+  // requests both pass a pre-check and both attempt to create the same
+  // row). Duck-type the code so this module doesn't need to import the
+  // generated Prisma client.
+  return (
+    typeof err === "object" &&
+    err !== null &&
+    "code" in err &&
+    (err as { code?: unknown }).code === "P2002"
+  );
+}
+
 /** Convert any thrown value into a safe NextResponse. Never leaks stack traces. */
 export function toErrorResponse(err: unknown): NextResponse {
   if (err instanceof HttpError) {
@@ -33,6 +47,9 @@ export function toErrorResponse(err: unknown): NextResponse {
   }
   if (isPrismaNotFound(err)) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+  if (isPrismaUniqueConstraintViolation(err)) {
+    return NextResponse.json({ error: "This resource already exists" }, { status: 409 });
   }
   // Unexpected: log server-side, return an opaque message to the client.
   console.error("Unhandled API error:", err);
