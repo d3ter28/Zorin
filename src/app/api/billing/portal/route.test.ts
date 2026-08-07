@@ -15,14 +15,14 @@ vi.mock("@/lib/stripe/client", () => ({
 }));
 
 vi.mock("@/lib/auth/requireSession", () => ({
-  requireSessionApi: vi.fn(async () => ({
+  requireOwnerApi: vi.fn(async () => ({
     merchantId: "m1",
-    user: { id: "u1", email: "merchant@example.com", merchantId: "m1" },
+    user: { id: "u1", email: "merchant@example.com", merchantId: "m1", role: "OWNER" },
   })),
 }));
 
 import { POST } from "./route";
-import { requireSessionApi } from "@/lib/auth/requireSession";
+import { requireOwnerApi } from "@/lib/auth/requireSession";
 import { HttpError } from "@/lib/api/errors";
 
 function req(): Request {
@@ -31,19 +31,28 @@ function req(): Request {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  vi.mocked(requireSessionApi).mockResolvedValue({
+  vi.mocked(requireOwnerApi).mockResolvedValue({
     merchantId: "m1",
-    user: { id: "u1", email: "merchant@example.com", merchantId: "m1" },
+    user: { id: "u1", email: "merchant@example.com", merchantId: "m1", role: "OWNER" },
   });
 });
 
 describe("POST /api/billing/portal", () => {
   it("returns 401 when there's no session", async () => {
-    vi.mocked(requireSessionApi).mockRejectedValue(new HttpError(401, "unauthorized"));
+    vi.mocked(requireOwnerApi).mockRejectedValue(new HttpError(401, "unauthorized"));
 
     const res = await POST(req());
 
     expect(res.status).toBe(401);
+    expect(billingPortalSessionsCreate).not.toHaveBeenCalled();
+  });
+
+  it("returns 403 when the caller is a Member, not the Owner", async () => {
+    vi.mocked(requireOwnerApi).mockRejectedValue(new HttpError(403, "Owner access required"));
+
+    const res = await POST(req());
+
+    expect(res.status).toBe(403);
     expect(billingPortalSessionsCreate).not.toHaveBeenCalled();
   });
 

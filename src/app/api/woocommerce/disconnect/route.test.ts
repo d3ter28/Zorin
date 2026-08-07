@@ -31,14 +31,16 @@ vi.mock("@/lib/woocommerce/client", () => ({
 }));
 
 vi.mock("@/lib/auth/requireSession", () => ({
-  requireSessionApi: vi.fn(async () => ({
+  requireOwnerApi: vi.fn(async () => ({
     merchantId: "m1",
-    user: { id: "u1", email: "demo@zorin.example", merchantId: "m1" },
+    user: { id: "u1", email: "demo@zorin.example", merchantId: "m1", role: "OWNER" },
   })),
 }));
 
 import { POST } from "./route";
 import { prisma } from "@/lib/db";
+import { requireOwnerApi } from "@/lib/auth/requireSession";
+import { HttpError } from "@/lib/api/errors";
 
 function req(): Request {
   return {} as unknown as Request;
@@ -108,5 +110,14 @@ describe("POST /api/woocommerce/disconnect", () => {
 
     expect(res.status).toBe(200);
     expect(prisma.wooCommerceConnection.delete).toHaveBeenCalled();
+  });
+
+  it("returns 403 when the caller is a Member, not the Owner", async () => {
+    vi.mocked(requireOwnerApi).mockRejectedValue(new HttpError(403, "Owner access required"));
+
+    const res = await POST(req());
+
+    expect(res.status).toBe(403);
+    expect(prisma.wooCommerceConnection.delete).not.toHaveBeenCalled();
   });
 });

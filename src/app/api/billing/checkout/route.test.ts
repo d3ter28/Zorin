@@ -22,9 +22,9 @@ vi.mock("@/lib/stripe/client", () => ({
 }));
 
 vi.mock("@/lib/auth/requireSession", () => ({
-  requireSessionApi: vi.fn(async () => ({
+  requireOwnerApi: vi.fn(async () => ({
     merchantId: "m1",
-    user: { id: "u1", email: "merchant@example.com", merchantId: "m1" },
+    user: { id: "u1", email: "merchant@example.com", merchantId: "m1", role: "OWNER" },
   })),
 }));
 
@@ -33,7 +33,7 @@ process.env.STRIPE_PRICE_GROWTH = "price_growth_123";
 process.env.STRIPE_PRICE_SCALE = "price_scale_123";
 
 import { POST } from "./route";
-import { requireSessionApi } from "@/lib/auth/requireSession";
+import { requireOwnerApi } from "@/lib/auth/requireSession";
 import { HttpError } from "@/lib/api/errors";
 
 function req(body: unknown): Request {
@@ -45,19 +45,28 @@ function req(body: unknown): Request {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  vi.mocked(requireSessionApi).mockResolvedValue({
+  vi.mocked(requireOwnerApi).mockResolvedValue({
     merchantId: "m1",
-    user: { id: "u1", email: "merchant@example.com", merchantId: "m1" },
+    user: { id: "u1", email: "merchant@example.com", merchantId: "m1", role: "OWNER" },
   });
 });
 
 describe("POST /api/billing/checkout", () => {
   it("returns 401 when there's no session", async () => {
-    vi.mocked(requireSessionApi).mockRejectedValue(new HttpError(401, "unauthorized"));
+    vi.mocked(requireOwnerApi).mockRejectedValue(new HttpError(401, "unauthorized"));
 
     const res = await POST(req({ plan: "growth" }));
 
     expect(res.status).toBe(401);
+    expect(checkoutSessionsCreate).not.toHaveBeenCalled();
+  });
+
+  it("returns 403 when the caller is a Member, not the Owner", async () => {
+    vi.mocked(requireOwnerApi).mockRejectedValue(new HttpError(403, "Owner access required"));
+
+    const res = await POST(req({ plan: "growth" }));
+
+    expect(res.status).toBe(403);
     expect(checkoutSessionsCreate).not.toHaveBeenCalled();
   });
 

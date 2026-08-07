@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { stripe } from "@/lib/stripe/client";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
-import { requireSessionApi } from "@/lib/auth/requireSession";
+import { requireOwnerApi } from "@/lib/auth/requireSession";
 
 export const POST = withErrorHandling(async (req: Request) => {
-  const { merchantId } = await requireSessionApi();
+  const { merchantId } = await requireOwnerApi();
 
   const merchant = await prisma.merchant.findUnique({
     where: { id: merchantId },

@@ -3,10 +3,10 @@ import { prisma } from "@/lib/db";
 import { stripe } from "@/lib/stripe/client";
 import { isValidPlanTier, priceIdForTier } from "@/lib/stripe/plans";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
-import { requireSessionApi } from "@/lib/auth/requireSession";
+import { requireOwnerApi } from "@/lib/auth/requireSession";
 
 export const POST = withErrorHandling(async (req: Request) => {
-  const { merchantId, user } = await requireSessionApi();
+  const { merchantId, user } = await requireOwnerApi();
 
   const body = (await req.json()) as { plan?: unknown };
   if (typeof body.plan !== "string" || !isValidPlanTier(body.plan)) {
