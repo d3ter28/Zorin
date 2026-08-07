@@ -26,6 +26,17 @@ export async function requireSessionApi(): Promise<SessionInfo> {
   return session;
 }
 
+// Like requireSessionApi, but also requires the caller to be the account
+// Owner. Use for routes that manage billing or team membership — everything
+// else stays open to any authenticated Member, scoped by merchantId as usual.
+export async function requireOwnerApi(): Promise<SessionInfo> {
+  const session = await requireSessionApi();
+  if (session.user.role !== "OWNER") {
+    throw new HttpError(403, "Owner access required");
+  }
+  return session;
+}
+
 // For server components: unauthenticated visitors land on the login page,
 // and merchants without an active/trialing subscription land on the
 // reactivate page instead of rendering the protected page.

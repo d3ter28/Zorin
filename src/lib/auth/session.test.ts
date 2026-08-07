@@ -45,7 +45,7 @@ describe("createSession", () => {
 });
 
 describe("getSessionUser", () => {
-  const user = { id: "u1", email: "d@e.f", merchantId: "m1" };
+  const user = { id: "u1", email: "d@e.f", merchantId: "m1", role: "OWNER" };
 
   it("returns the user for a live session", async () => {
     findUnique.mockResolvedValue({

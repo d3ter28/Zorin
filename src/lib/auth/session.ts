@@ -5,10 +5,13 @@ import { NextResponse } from "next/server";
 export const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 export const SESSION_COOKIE = "zorin_session";
 
+export type UserRole = "OWNER" | "MEMBER";
+
 export interface SessionUser {
   id: string;
   email: string;
   merchantId: string;
+  role: UserRole;
 }
 
 export async function createSession(
@@ -40,8 +43,8 @@ export async function getSessionUser(
     await prisma.session.deleteMany({ where: { token } });
     return null;
   }
-  const { id, email, merchantId } = session.user;
-  return { id, email, merchantId };
+  const { id, email, merchantId, role } = session.user;
+  return { id, email, merchantId, role: role as UserRole };
 }
 
 export async function destroySession(prisma: PrismaClient, token: string): Promise<void> {
