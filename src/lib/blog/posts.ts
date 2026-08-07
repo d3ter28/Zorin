@@ -18,18 +18,11 @@ export const posts: BlogPost[] = [
     readingTime: "8 min read",
     category: "Education",
     content: `
-<p class="intro">The basic formula is percentage change in quantity sold divided by percentage change in price, and you can calculate it in a spreadsheet from two price points you've already tried, no statistics background required. It's a rougher number than a proper regression, but it's usually good enough to tell you whether a product can absorb a price increase or not, which is the decision that actually matters.</p>
+<p class="intro">Two merchants sell a similar product at the same price, and both raise it by 10% to cover rising costs. A month later, one is celebrating, the higher price stuck, volume barely moved, and profit is up. The other is staring at a sales dashboard that's dropped off a cliff. Nothing went wrong for the second merchant, their product just had a different price elasticity, how much quantity sold actually moves when price does, and neither of them knew the number going in. The basic formula for that number is percentage change in quantity sold divided by percentage change in price, and you can calculate it in a spreadsheet from two price points you've already tried, no statistics background required.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>The formula is (% change in quantity) ÷ (% change in price), calculated from any two periods where the price actually changed.</li>
-<li>Use the midpoint method for the percentage changes, it avoids the formula giving you a different answer depending on whether you calculate a price increase or its reverse decrease.</li>
-<li>A two-point calculation is a rough estimate, it doesn't control for seasonality, promotions, or other products changing price at the same time, all of which can distort the number.</li>
-<li>You need real price variation in your sales history to calculate anything at all, a product that's never changed price has no elasticity to measure yet.</li>
-<li>A proper log-log regression across many price points does what the two-point formula does, but averages out the noise and adds a confidence score, which is the difference between a rough estimate and a number you can act on.</li>
-</ul>
-</div>
+<h2>Why This Number Matters More Than It Sounds Like It Should</h2>
+<p>Elasticity isn't an abstract economics term, it's the answer to the one question every pricing decision actually depends on: if I change this price, what happens to how much I sell? Get that answer right and a price increase quietly adds profit. Get it wrong and the same price increase drives customers to a competitor, or the same discount trains them to wait for the next one instead of buying now. The dollar amount of the price change is rarely what determines the outcome, the underlying elasticity is.</p>
+<p>Most merchants make pricing calls on instinct, a gut sense of what customers will tolerate, sometimes right, sometimes expensive. Elasticity replaces the guess with a measurement. It won't tell you what price to charge, that still depends on margin, strategy, and positioning, but it will tell you how a given customer base is likely to react before you find out the hard way. That's what the rest of this guide is actually building toward, not the formula for its own sake, but a real number for a real product, calculated from your own sales history instead of a hunch.</p>
 
 <h2>The Formula, in Plain Terms</h2>
 <p>Price elasticity of demand is the percentage change in quantity demanded divided by the percentage change in price. That's the whole formula. If a 10% price increase causes a 15% drop in units sold, elasticity is -15% ÷ 10% = -1.5. If the same price increase only causes a 4% drop, elasticity is -4% ÷ 10% = -0.4. The first product is elastic, the second is inelastic, and neither calculation required anything beyond division.</p>
@@ -86,6 +79,17 @@ export const posts: BlogPost[] = [
 <p>The more rigorous version of the same idea is a log-log regression across many price-and-quantity observations rather than just two. Instead of one before-and-after comparison, it fits a line through every price point in your sales history and reads the slope of that line as the elasticity coefficient. This is <a href="/blog/what-does-price-elasticity-actually-mean">the actual method behind a calculated elasticity coefficient</a>, and it comes with two things the two-point formula can't give you: it averages out the noise from any single unusual period instead of being fully exposed to it, and it produces an R-squared value, a direct measure of how much you should trust the number.</p>
 <p>You don't need to run this yourself. Connect your sales history and Zorin fits the regression per SKU automatically, returning the coefficient alongside a confidence score, so you can see at a glance which recommendations are backed by clean, consistent data and which ones are closer to <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a guess dressed up as a number</a>.</p>
 <p>If you'd rather skip the spreadsheet entirely, <a href="/signup">connect your sales history</a> and get the real coefficient, with a confidence score, for every product in your catalog.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>The formula is (% change in quantity) ÷ (% change in price), calculated from any two periods where the price actually changed.</li>
+<li>Use the midpoint method for the percentage changes, it avoids the formula giving you a different answer depending on whether you calculate a price increase or its reverse decrease.</li>
+<li>A two-point calculation is a rough estimate, it doesn't control for seasonality, promotions, or other products changing price at the same time, all of which can distort the number.</li>
+<li>You need real price variation in your sales history to calculate anything at all, a product that's never changed price has no elasticity to measure yet.</li>
+<li>A proper log-log regression across many price points does what the two-point formula does, but averages out the noise and adds a confidence score, which is the difference between a rough estimate and a number you can act on.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
