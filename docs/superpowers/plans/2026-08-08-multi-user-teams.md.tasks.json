@@ -1,0 +1,61 @@
+{
+  "planPath": "docs/superpowers/plans/2026-08-08-multi-user-teams.md",
+  "tasks": [
+    {
+      "id": 1,
+      "subject": "Task 1: Schema — role, drop unique, Invitation model",
+      "status": "pending",
+      "description": "**Goal:** Add the data model this feature depends on.\n\n**Files:**\n- Modify: `prisma/schema.prisma`\n- Modify: `prisma/schema.production.prisma`\n\n**Acceptance Criteria:**\n- [ ] `User.merchantId` is no longer `@unique` — a Merchant can have many Users\n- [ ] `User.role` exists as `String @default(\"OWNER\")` — existing rows backfill to `\"OWNER\"` automatically\n- [ ] `Merchant.user User?` becomes `Merchant.users User[]`\n- [ ] New `Invitation` model exists with `merchantId` (relation, cascade delete), `email`, unique `tokenHash`, `invitedByUserId`, `expiresAt`, nullable `acceptedAt`, `createdAt`\n- [ ] Both schema files stay in sync (only the `datasource` block differs)\n\n**Verify:** `npx prisma db push && npx prisma generate` → \"Your database is now in sync with your Prisma schema\", no errors\n\n**Steps:** See docs/superpowers/plans/2026-08-08-multi-user-teams.md Task 1 for full prisma model diffs.\n\n```json:metadata\n{\"files\": [\"prisma/schema.prisma\", \"prisma/schema.production.prisma\"], \"verifyCommand\": \"npx prisma db push && npx prisma generate\", \"acceptanceCriteria\": [\"User.merchantId no longer @unique\", \"User.role defaults to OWNER\", \"Merchant.users is User[]\", \"Invitation model exists with hashed tokenHash\", \"both schema files in sync\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Session layer — role support + requireOwnerApi()",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Make `role` a first-class part of the session, and add an Owner-only guard for the routes that need it.\n\n**Files:**\n- Modify: `src/lib/auth/session.ts`\n- Modify: `src/lib/auth/session.test.ts`\n- Modify: `src/lib/auth/requireSession.ts`\n- Modify: `src/lib/auth/requireSession.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `SessionUser` includes `role: \"OWNER\" | \"MEMBER\"`, sourced the same way `merchantId` already is\n- [ ] `requireOwnerApi()` returns the session when `role === \"OWNER\"`, throws `HttpError(403, ...)` otherwise\n- [ ] `requireOwnerApi()` throws `HttpError(401, ...)` when unauthenticated\n- [ ] All existing session.test.ts/requireSession.test.ts cases still pass with the fixture updated to include `role`\n\n**Verify:** `npm test -- src/lib/auth/session.test.ts src/lib/auth/requireSession.test.ts` → all pass\n\n**Steps:** See docs/superpowers/plans/2026-08-08-multi-user-teams.md Task 2 for full code.\n\n```json:metadata\n{\"files\": [\"src/lib/auth/session.ts\", \"src/lib/auth/session.test.ts\", \"src/lib/auth/requireSession.ts\", \"src/lib/auth/requireSession.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/auth/session.test.ts src/lib/auth/requireSession.test.ts\", \"acceptanceCriteria\": [\"SessionUser has role field\", \"requireOwnerApi returns session for OWNER\", \"requireOwnerApi throws 403 for MEMBER\", \"requireOwnerApi throws 401 unauthenticated\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: Invitation business logic library",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Token creation/validation/listing logic for invitations, independent of any route — mirrors resetToken.ts's shape and test style.\n\n**Files:**\n- Create: `src/lib/team/invitation.ts`\n- Test: `src/lib/team/invitation.test.ts`\n\n**Acceptance Criteria:**\n- [ ] `createInvitation()` generates a 64-hex-char raw token, stores only its SHA-256 hash, sets a 7-day expiry, and deletes any existing pending invitation for the same (merchantId, email) pair first\n- [ ] `findValidInvitation()` returns null for unknown/already-accepted/expired tokens\n- [ ] `markInvitationAccepted()` sets acceptedAt to now\n- [ ] `revokeInvitation()` deletes a pending invitation scoped by merchantId, throws HttpError(404,...) otherwise\n- [ ] `listTeam()` returns active members and pending invitations (with `expired` flag) for a merchant\n- [ ] All functions typed against `Prisma.TransactionClient` (not `PrismaClient`) so they're callable both standalone and inside a `prisma.$transaction()` callback\n\n**Verify:** `npm test -- src/lib/team/invitation.test.ts` → all pass (12 tests)\n\n**Steps:** See docs/superpowers/plans/2026-08-08-multi-user-teams.md Task 3 for full code.\n\n```json:metadata\n{\"files\": [\"src/lib/team/invitation.ts\", \"src/lib/team/invitation.test.ts\"], \"verifyCommand\": \"npm test -- src/lib/team/invitation.test.ts\", \"acceptanceCriteria\": [\"createInvitation returns 64-hex token and stores only hash\", \"findValidInvitation returns null for expired/accepted/unknown\", \"revokeInvitation throws 404 when nothing matched\", \"listTeam flags expired pending invites\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: Team invite management API (Owner-only) + invite email",
+      "status": "pending",
+      "blockedBy": [2, 3],
+      "description": "**Goal:** Let the Owner invite, list, resend, and revoke teammates.\n\n**Files:**\n- Create: `src/lib/email/sendInviteEmail.ts` + test\n- Create: `src/app/api/team/route.ts` + test\n- Create: `src/app/api/team/invite/route.ts` + test\n- Create: `src/app/api/team/invitations/[id]/route.ts` + test\n- Create: `src/app/api/team/invitations/[id]/resend/route.ts` + test\n\n**Acceptance Criteria:**\n- [ ] `GET /api/team` returns members + pending invitations; any authenticated user can call it\n- [ ] `POST /api/team/invite` (Owner-only) creates an invitation and sends an email; 400 invalid email, 409 email already has an account, 403 non-owner\n- [ ] `DELETE /api/team/invitations/[id]` (Owner-only) revokes; 404 if not caller's merchant\n- [ ] `POST /api/team/invitations/[id]/resend` (Owner-only) reissues with a fresh token; old token stops working\n- [ ] `sendInviteEmail()` silently no-ops when RESEND_API_KEY unset\n\n**Verify:** `npm test -- src/lib/email/sendInviteEmail.test.ts \"src/app/api/team\"` → all pass\n\n**Steps:** See docs/superpowers/plans/2026-08-08-multi-user-teams.md Task 4 for full code.\n\n```json:metadata\n{\"files\": [\"src/lib/email/sendInviteEmail.ts\", \"src/app/api/team/route.ts\", \"src/app/api/team/invite/route.ts\", \"src/app/api/team/invitations/[id]/route.ts\", \"src/app/api/team/invitations/[id]/resend/route.ts\"], \"verifyCommand\": \"npm test -- src/lib/email/sendInviteEmail.test.ts \\\"src/app/api/team\\\"\", \"acceptanceCriteria\": [\"GET /api/team open to any authenticated user\", \"POST /api/team/invite owner-only with 409 on existing account\", \"resend issues fresh token invalidating old one\", \"sendInviteEmail no-ops without RESEND_API_KEY\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 5: Public invite accept flow",
+      "status": "pending",
+      "blockedBy": [3],
+      "description": "**Goal:** Let an invited person resolve their invite link, see which store they're joining, set a password, and land in the app.\n\n**Files:**\n- Create: `src/app/api/invite/[token]/route.ts` + test\n- Create: `src/app/api/invite/[token]/accept/route.ts` + test\n- Create: `src/app/invite/[token]/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] `GET /api/invite/[token]` returns `{ merchantName, email }` for valid token, 404 invalid/expired/accepted\n- [ ] `POST /api/invite/[token]/accept` creates User (role: MEMBER, invitation's merchantId), marks invitation accepted, creates session, sets cookie; 404 invalid, 400 short password, 409 email claimed since invite sent\n- [ ] `/invite/[token]` renders loading → not-found → ready → submitting → done state machine like `/survey/[token]`, redirects to `/dashboard` on success\n\n**Verify:** `npm test -- \"src/app/api/invite\"` → all pass; manual browser check\n\n**Steps:** See docs/superpowers/plans/2026-08-08-multi-user-teams.md Task 5 for full code.\n\n```json:metadata\n{\"files\": [\"src/app/api/invite/[token]/route.ts\", \"src/app/api/invite/[token]/accept/route.ts\", \"src/app/invite/[token]/page.tsx\"], \"verifyCommand\": \"npm test -- \\\"src/app/api/invite\\\"\", \"acceptanceCriteria\": [\"GET resolve returns merchantName+email for valid token\", \"accept creates MEMBER user in transaction with markInvitationAccepted\", \"accept re-checks email uniqueness at accept time (409)\", \"page redirects to /dashboard on success\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 6,
+      "subject": "Task 6: Remove and leave",
+      "status": "pending",
+      "blockedBy": [2],
+      "description": "**Goal:** Let the Owner remove a Member, and let a Member leave voluntarily — either way, that user's access is revoked immediately.\n\n**Files:**\n- Create: `src/app/api/team/[userId]/route.ts` + test\n- Create: `src/app/api/team/leave/route.ts` + test\n\n**Acceptance Criteria:**\n- [ ] `DELETE /api/team/[userId]` (Owner-only): destroys target's sessions then removes them; 404 if not in caller's merchant; 400 if target is the Owner (including self-target)\n- [ ] `POST /api/team/leave`: any Member removes themselves, destroys own sessions; 400 if called by Owner\n- [ ] Leave clears the session cookie on the response\n\n**Verify:** `npm test -- \"src/app/api/team/[userId]\" src/app/api/team/leave` → all pass\n\n**Steps:** See docs/superpowers/plans/2026-08-08-multi-user-teams.md Task 6 for full code.\n\n```json:metadata\n{\"files\": [\"src/app/api/team/[userId]/route.ts\", \"src/app/api/team/leave/route.ts\"], \"verifyCommand\": \"npm test -- \\\"src/app/api/team/[userId]\\\" src/app/api/team/leave\", \"acceptanceCriteria\": [\"remove destroys sessions before deleting user\", \"remove rejects owner-targets-self with 400\", \"leave rejects owner with 400\", \"leave clears session cookie\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 7,
+      "subject": "Task 7: TeamCard UI on Settings",
+      "status": "pending",
+      "blockedBy": [4, 5, 6],
+      "description": "**Goal:** Let a merchant actually use all of the above — invite, view, remove, resend, revoke, and leave — from the Settings page.\n\n**Files:**\n- Create: `src/components/TeamCard.tsx`\n- Modify: `src/app/settings/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] `/settings` shows a Team card alongside existing cards\n- [ ] Owner view: member table with Remove on non-Owner rows, pending invites list with Resend/Revoke, Invite teammate button+form\n- [ ] Member view: read-only member table, Leave team action on own row, no Invite button\n- [ ] All actions refetch on success, show inline errors on failure\n\n**Verify:** Manual check in the browser — full invite/resend/revoke/accept/remove/leave cycle\n\n**Steps:** See docs/superpowers/plans/2026-08-08-multi-user-teams.md Task 7 for full code.\n\n```json:metadata\n{\"files\": [\"src/components/TeamCard.tsx\", \"src/app/settings/page.tsx\"], \"verifyCommand\": \"manual browser verification\", \"acceptanceCriteria\": [\"Owner sees invite/remove controls\", \"Member sees leave action only\", \"pending invites show resend/revoke\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 8,
+      "subject": "Task 8: Full-suite verification",
+      "status": "pending",
+      "blockedBy": [7],
+      "description": "**Goal:** Confirm the whole feature integrates cleanly with no regressions before merge.\n\n**Files:** None (verification only)\n\n**Acceptance Criteria:**\n- [ ] Full test suite passes, count higher than pre-feature baseline (583)\n- [ ] `npm run build` succeeds with no new route errors\n- [ ] Demo account (single-user merchant) still works exactly as before\n- [ ] Full manual end-to-end walkthrough: invite → accept → remove/leave, session revocation confirmed\n\n**Verify:** `npm test && npm run build` → both succeed\n\n```json:metadata\n{\"files\": [], \"verifyCommand\": \"npm test && npm run build\", \"acceptanceCriteria\": [\"full suite passes above baseline count\", \"build succeeds with new routes listed\", \"demo account regression-free\", \"removed member's session actually dies\"], \"modelTier\": \"standard\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-08-08T00:00:00.000Z"
+}
