@@ -5,6 +5,7 @@ import { ShopifyConnectionCard } from "@/components/ShopifyConnectionCard";
 import { WooCommerceConnectionCard } from "@/components/WooCommerceConnectionCard";
 import { BillingCard } from "@/components/BillingCard";
 import { ChangePasswordCard } from "@/components/ChangePasswordCard";
+import { TeamCard } from "@/components/TeamCard";
 
 export default async function SettingsPage() {
   const user = await requireSessionPage();
@@ -23,6 +24,7 @@ export default async function SettingsPage() {
             subscriptionStatus={merchant?.subscriptionStatus ?? null}
           />
           <ChangePasswordCard />
+          <TeamCard currentUserId={user.user.id} currentUserRole={user.user.role} />
           <ShopifyConnectionCard />
           <WooCommerceConnectionCard />
         </div>
