@@ -10,6 +10,117 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-automate-pricing-updates-across-your-shopify-store",
+    title: "How to Automate Pricing Updates Across Your Shopify Store",
+    excerpt:
+      "Getting a pricing recommendation is one thing. Acting on it across 200 SKUs is another. Here's how to automate the workflow around the decision, not the decision itself.",
+    date: "2026-08-07",
+    readingTime: "8 min read",
+    category: "Product",
+    content: `
+<p class="intro">Automating pricing updates means automating the workflow around the decision, not the decision itself: exporting sales data on a schedule, feeding it to a pricing model, pushing approved prices back into Shopify through the Admin API, and notifying your team when it's done. The analysis itself takes minutes. Most of the time merchants lose is in the manual steps around it, exporting CSVs, cross-referencing cost sheets, editing product pages one by one.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Pricing is really three separate jobs: data collection, analysis, and execution. Most merchants automate the middle one and do the other two by hand.</li>
+<li>Shopify Flow and third-party connectors can automate the data export step so sales history lands in a consistent format without manual clicking.</li>
+<li>Pushing recommended prices back into Shopify has three options, the bulk CSV editor, Flow plus tags, or the Admin API, with the API being the only one that scales cleanly to large catalogs.</li>
+<li>Confidence scores matter for automation specifically: only push high-confidence recommendations automatically, route low-confidence ones to a manual review queue.</li>
+<li>Automate the plumbing before you trust the model, not before. Run recommendations manually a few times first so you know what a good one looks like.</li>
+</ul>
+</div>
+
+<h2>The Pricing Workflow Has Three Parts</h2>
+<p>Think of pricing as three distinct jobs: data collection, pulling sales history, cost data, and competitor prices into one place; analysis, running that data through an elasticity model to find the profit-maximizing price for each SKU; and execution, pushing the new prices back into your store, updating internal reports, and notifying your team. Most merchants automate the second part, or let a tool handle it, and do the first and third by hand. That's where the time disappears.</p>
+
+<table>
+  <thead>
+    <tr><th>Step</th><th>What it involves</th><th>Typically automated?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1. Data collection</td><td>Sales history, cost data, competitor prices</td><td>Rarely</td></tr>
+    <tr><td>2. Analysis</td><td>Elasticity model, confidence scoring, price recommendation</td><td>Usually, by the pricing tool</td></tr>
+    <tr><td>3. Execution</td><td>Updating product prices, reporting, team notification</td><td>Rarely</td></tr>
+  </tbody>
+</table>
+
+<h2>Step 1: Automate the Data Export</h2>
+<p>Shopify lets you export order history as a CSV, but doing it manually every week gets old fast. Shopify Flow can trigger an export on a schedule, and third-party connectors (Mesa, Alloy, Zapier) can route that file to Google Sheets, email, or a cloud folder automatically. The goal is simple: your sales data lands in a consistent format, in a consistent place, without you clicking "Export."</p>
+<p>If you also track competitor prices, that's a second data stream worth automating. Competitor sites change layouts, block scrapers, and rotate pricing tiers, so scheduled browser automation is generally more reliable than a one-off script. <a href="https://webrun.ai/blog/integrating-webrun-with-n8n" target="_blank" rel="noopener noreferrer">WebRun's guide to integrating browser automation with n8n</a> walks through setting up scheduled competitor price checks, including how to handle timeouts and poll for results when a task takes longer than expected.</p>
+
+<h2>Step 2: Feed the Data Into Your Pricing Model</h2>
+<p>Once your data export is automated, the next step is connecting it to whatever runs your pricing analysis. With Zorin, you upload a CSV of past transactions and the demand model fits automatically, returning a recommended price, expected profit lift, and confidence score for each product. The whole process takes about five minutes from upload to recommendation, the same <a href="/blog/what-does-price-elasticity-actually-mean">elasticity coefficient</a> that would otherwise take a spreadsheet and a statistics background to calculate by hand.</p>
+<p>The key detail is that your export format needs to match what your pricing tool expects. Zorin parses quantities, prices, and dates from your CSV. If your automated export includes extra columns or different headers, add a transformation step, a simple Google Sheets formula or a Zapier formatter, to clean the file before it hits the model.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact for a specific SKU" loading="lazy" />
+  <figcaption>The recommendation and confidence score are the output of step 2. Steps 1 and 3, getting data in and prices out, are what automation actually needs to handle.</figcaption>
+</figure>
+
+<h2>Step 3: Push Price Changes Back Into Shopify</h2>
+<p>This is where most workflows fall apart. You have a list of recommended prices. Now what?</p>
+<ul>
+<li><strong>Option A, Shopify's bulk editor:</strong> download your recommendations, format them as a Shopify product CSV, and upload via the admin. Semi-manual, but faster than editing products one by one.</li>
+<li><strong>Option B, Shopify Flow plus tags:</strong> tag products that need price changes, then use a Flow to apply specific price rules based on tags. Works for simple adjustments but gets messy with per-SKU recommendations.</li>
+<li><strong>Option C, the Shopify Admin API:</strong> with a no-code automation tool like Make or n8n, connect your pricing output directly to the Shopify API. The automation reads each row of your recommendation file, calls the API to update the product variant price, and logs the change. No manual uploading.</li>
+</ul>
+<p>Option C is the most reliable for stores with large catalogs. Once it runs, every recommended price is live in your store within minutes, and you have a log of exactly what changed, which matters if you're <a href="/blog/how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one">pricing an entire catalog rather than a handful of products</a>.</p>
+
+<h2>Step 4: Close the Loop With Notifications</h2>
+<p>Price changes affect more than just the product page. Your team needs to know what moved and why. A few things worth automating after prices update:</p>
+<ul>
+<li><strong>Slack or email alert</strong> listing every SKU that changed, the old price, and the new price.</li>
+<li><strong>Margin report</strong> recalculated with the new prices and your current cost of goods.</li>
+<li><strong>Calendar reminder</strong> to review results in 7 to 14 days, once enough sales data accumulates to measure the impact.</li>
+</ul>
+<p>These are simple automations in any workflow tool. The point is to avoid the scenario where prices changed three weeks ago and nobody remembers which ones or why.</p>
+
+<h2>What This Looks Like End to End</h2>
+<p>A fully automated pricing workflow runs on a weekly or biweekly cycle. Monday morning, your sales data and competitor prices are automatically exported and cleaned. You upload the data to your pricing model, or it pulls automatically, and five minutes later you have recommendations with confidence scores. You review the recommendations, approve the ones above your confidence threshold, and hit go. The automation pushes approved prices to Shopify, logs every change, and pings your team. Two weeks later, you review performance against the old prices, which is also a good moment to revisit <a href="/blog/how-often-should-i-change-my-prices">how often you're actually changing prices</a> versus how often the model has something worth acting on.</p>
+<p>The human stays in the loop for the decision. Everything else runs without them.</p>
+
+<h2>Where Merchants Get Stuck</h2>
+<p>Two common mistakes show up with pricing automation. The first is automating too early: if you haven't run your pricing model manually a few times, you don't yet know what a good recommendation looks like. Automate the workflow after you trust the output, not before.</p>
+<p>The second is ignoring confidence scores. Not every recommendation is equally strong. A product with an elasticity R-squared of 0.91 is telling you something reliable. A product with sparse sales data and low confidence is a guess. Build your automation to filter on confidence, so only strong recommendations get pushed automatically and weaker ones go to a review queue.</p>
+<p>The pricing decision is the valuable part. Everything around it, the exports, the formatting, the uploads, the notifications, is plumbing. Automate the plumbing, keep your hands on the lever. <a href="/signup">Connect your sales history</a> to see the recommendation side of this workflow running on your own catalog.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Can I fully automate Shopify pricing updates without a developer?</h3>
+<p>Yes. No-code tools like Shopify Flow, Zapier, Make, and n8n can handle the data export and price-push steps without custom code, connecting directly to the Shopify Admin API.</p>
+</div>
+<div class="faq-item">
+<h3>What's the best way to push bulk price changes into Shopify?</h3>
+<p>For large catalogs, connecting your pricing output to the Shopify Admin API through a no-code automation tool is the most reliable option. It updates every variant directly and logs the change, unlike the bulk CSV editor or Flow-plus-tags approaches, which get harder to manage at scale.</p>
+</div>
+<div class="faq-item">
+<h3>Should I automate every price change a model recommends?</h3>
+<p>No. Filter on confidence score first. High-confidence recommendations are reasonable to push automatically, while low-confidence ones, usually from products with sparse sales history, should go to a manual review queue instead.</p>
+</div>
+<div class="faq-item">
+<h3>How often should an automated pricing workflow run?</h3>
+<p>Weekly or biweekly is typical, enough time for meaningful sales data to accumulate between cycles without letting stale recommendations sit unused.</p>
+</div>
+<div class="faq-item">
+<h3>What format does my sales data need to be in before feeding it to a pricing model?</h3>
+<p>It needs to match what the tool expects, typically quantities, prices, and dates per transaction. If your automated export includes extra columns or different headers, add a cleanup step before the file reaches the model.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need to automate competitor price tracking too?</h3>
+<p>Only if your pricing process uses it. Scheduled browser automation is more reliable than manual checks for this, since competitor sites frequently change layouts and block scrapers.</p>
+</div>
+<div class="faq-item">
+<h3>What's the risk of automating pricing before trusting the model?</h3>
+<p>You won't yet recognize a bad recommendation when you see one. Run the model manually a few times first, get a feel for what a reasonable output looks like, and automate the surrounding workflow once you trust the recommendations themselves.</p>
+</div>
+</section>
+
+<p class="conclusion">Getting a pricing recommendation is one thing. Acting on it across 200 SKUs is another, and that gap is almost entirely a plumbing problem, not a modeling one. Automate the data export, the price push, and the notifications, and keep the actual pricing decision, and a healthy dose of skepticism toward low-confidence recommendations, in human hands.</p>
+    `.trim(),
+  },
+  {
     slug: "elastic-vs-inelastic-demand-whats-the-difference",
     title: "Elastic vs. Inelastic Demand: What's the Difference?",
     excerpt:
