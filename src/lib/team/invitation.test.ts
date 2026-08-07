@@ -138,8 +138,8 @@ describe("listTeam", () => {
       { id: "u2", email: "member@example.com", role: "MEMBER", createdAt: new Date("2026-08-05") },
     ]);
     (prisma.invitation.findMany as ReturnType<typeof vi.fn>).mockResolvedValue([
-      { id: "inv1", email: "pending@example.com", expiresAt: new Date(Date.now() + 60_000) },
-      { id: "inv2", email: "stale@example.com", expiresAt: new Date(Date.now() - 60_000) },
+      { id: "inv1", email: "pending@example.com", expiresAt: new Date(Date.now() + 60_000), createdAt: new Date("2026-08-06") },
+      { id: "inv2", email: "stale@example.com", expiresAt: new Date(Date.now() - 60_000), createdAt: new Date("2026-08-01") },
     ]);
 
     const result = await listTeam(prisma, "m1");
@@ -149,8 +149,8 @@ describe("listTeam", () => {
       { id: "u2", email: "member@example.com", role: "MEMBER", createdAt: new Date("2026-08-05") },
     ]);
     expect(result.pendingInvites).toEqual([
-      { id: "inv1", email: "pending@example.com", expiresAt: expect.any(Date), expired: false },
-      { id: "inv2", email: "stale@example.com", expiresAt: expect.any(Date), expired: true },
+      { id: "inv1", email: "pending@example.com", expiresAt: expect.any(Date), createdAt: expect.any(Date), expired: false },
+      { id: "inv2", email: "stale@example.com", expiresAt: expect.any(Date), createdAt: expect.any(Date), expired: true },
     ]);
     expect(prisma.user.findMany).toHaveBeenCalledWith({ where: { merchantId: "m1" }, orderBy: { createdAt: "asc" } });
     expect(prisma.invitation.findMany).toHaveBeenCalledWith({

@@ -94,6 +94,7 @@ export interface PendingInvite {
   id: string;
   email: string;
   expiresAt: Date;
+  createdAt: Date;
   expired: boolean;
 }
 
@@ -112,6 +113,7 @@ export async function listTeam(
       id: i.id,
       email: i.email,
       expiresAt: i.expiresAt,
+      createdAt: i.createdAt,
       expired: i.expiresAt.getTime() <= now,
     })),
   };

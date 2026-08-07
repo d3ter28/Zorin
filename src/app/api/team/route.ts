@@ -10,6 +10,10 @@ export const GET = withErrorHandling(async () => {
 
   return NextResponse.json({
     members: team.members.map((m) => ({ ...m, createdAt: m.createdAt.toISOString() })),
-    pendingInvites: team.pendingInvites.map((i) => ({ ...i, expiresAt: i.expiresAt.toISOString() })),
+    pendingInvites: team.pendingInvites.map((i) => ({
+      ...i,
+      expiresAt: i.expiresAt.toISOString(),
+      createdAt: i.createdAt.toISOString(),
+    })),
   });
 });

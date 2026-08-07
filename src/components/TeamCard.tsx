@@ -13,6 +13,7 @@ interface PendingInvite {
   id: string;
   email: string;
   expiresAt: string;
+  createdAt: string;
   expired: boolean;
 }
 
@@ -210,7 +211,9 @@ export function TeamCard({ currentUserId, currentUserRole }: { currentUserId: st
               <div key={inv.id} className="flex items-center gap-3 py-2 text-sm">
                 <div className="flex-1 min-w-0">
                   <span className="text-ink">{inv.email}</span>
-                  <p className="text-xs text-faint">{inv.expired ? "Expired" : "Pending"}</p>
+                  <p className="text-xs text-faint">
+                    Invited {new Date(inv.createdAt).toLocaleDateString()} · {inv.expired ? "Expired" : "Pending"}
+                  </p>
                 </div>
                 <button
                   onClick={() => resendInvite(inv.id)}

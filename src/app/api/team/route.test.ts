@@ -30,7 +30,12 @@ describe("GET /api/team", () => {
       { id: "u1", email: "owner@example.com", role: "OWNER", createdAt: new Date("2026-08-01") },
     ]);
     invitationFindMany.mockResolvedValue([
-      { id: "inv1", email: "teammate@example.com", expiresAt: new Date(Date.now() + 60_000) },
+      {
+        id: "inv1",
+        email: "teammate@example.com",
+        expiresAt: new Date(Date.now() + 60_000),
+        createdAt: new Date("2026-08-06T00:00:00.000Z"),
+      },
     ]);
 
     const res = await GET();
@@ -40,6 +45,11 @@ describe("GET /api/team", () => {
     expect(body.members).toEqual([
       { id: "u1", email: "owner@example.com", role: "OWNER", createdAt: "2026-08-01T00:00:00.000Z" },
     ]);
-    expect(body.pendingInvites[0]).toMatchObject({ id: "inv1", email: "teammate@example.com", expired: false });
+    expect(body.pendingInvites[0]).toMatchObject({
+      id: "inv1",
+      email: "teammate@example.com",
+      createdAt: "2026-08-06T00:00:00.000Z",
+      expired: false,
+    });
   });
 });
