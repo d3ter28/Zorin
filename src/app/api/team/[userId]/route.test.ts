@@ -27,7 +27,15 @@ beforeEach(() => {
 
 describe("DELETE /api/team/[userId]", () => {
   it("returns 400 when the Owner targets themselves", async () => {
+    findFirst.mockResolvedValue({ id: "owner1", merchantId: "m1", role: "OWNER" });
     const res = await DELETE(undefined as unknown as Request, ctx("owner1"));
+    expect(res.status).toBe(400);
+    expect(deleteUser).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when the target is an Owner other than the caller", async () => {
+    findFirst.mockResolvedValue({ id: "owner2", merchantId: "m1", role: "OWNER" });
+    const res = await DELETE(undefined as unknown as Request, ctx("owner2"));
     expect(res.status).toBe(400);
     expect(deleteUser).not.toHaveBeenCalled();
   });

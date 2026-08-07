@@ -9,12 +9,12 @@ export const DELETE = withErrorHandling(
     const session = await requireOwnerApi();
     const { userId } = await params;
 
-    if (userId === session.user.id) {
-      throw new HttpError(400, "The account owner cannot remove themselves");
-    }
-
     const target = await prisma.user.findFirst({ where: { id: userId, merchantId: session.merchantId } });
     if (!target) throw new HttpError(404, "Not found");
+
+    if (target.role === "OWNER") {
+      throw new HttpError(400, "The account owner cannot be removed");
+    }
 
     await destroyAllSessions(prisma, userId);
     await prisma.user.delete({ where: { id: userId } });
