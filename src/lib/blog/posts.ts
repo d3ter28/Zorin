@@ -10,6 +10,115 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist",
+    title: "How Do I Calculate My Own Price Elasticity Without a Data Scientist?",
+    excerpt:
+      "You don't need a statistics degree to get a usable elasticity number, just two price points, the sales they produced, and a formula you can run in a spreadsheet.",
+    date: "2026-08-08",
+    readingTime: "8 min read",
+    category: "Education",
+    content: `
+<p class="intro">The basic formula is percentage change in quantity sold divided by percentage change in price, and you can calculate it in a spreadsheet from two price points you've already tried, no statistics background required. It's a rougher number than a proper regression, but it's usually good enough to tell you whether a product can absorb a price increase or not, which is the decision that actually matters.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>The formula is (% change in quantity) ÷ (% change in price), calculated from any two periods where the price actually changed.</li>
+<li>Use the midpoint method for the percentage changes, it avoids the formula giving you a different answer depending on whether you calculate a price increase or its reverse decrease.</li>
+<li>A two-point calculation is a rough estimate, it doesn't control for seasonality, promotions, or other products changing price at the same time, all of which can distort the number.</li>
+<li>You need real price variation in your sales history to calculate anything at all, a product that's never changed price has no elasticity to measure yet.</li>
+<li>A proper log-log regression across many price points does what the two-point formula does, but averages out the noise and adds a confidence score, which is the difference between a rough estimate and a number you can act on.</li>
+</ul>
+</div>
+
+<h2>The Formula, in Plain Terms</h2>
+<p>Price elasticity of demand is the percentage change in quantity demanded divided by the percentage change in price. That's the whole formula. If a 10% price increase causes a 15% drop in units sold, elasticity is -15% ÷ 10% = -1.5. If the same price increase only causes a 4% drop, elasticity is -4% ÷ 10% = -0.4. The first product is elastic, the second is inelastic, and neither calculation required anything beyond division.</p>
+
+<h2>A Worked Example You Can Copy</h2>
+<p>Say a product sold 400 units a month at $20. You raised the price to $22, and the following month it sold 340 units. Here's the calculation:</p>
+
+<table>
+  <thead>
+    <tr><th>Step</th><th>Calculation</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>% change in price</td><td>($22 - $20) ÷ $20</td><td>+10%</td></tr>
+    <tr><td>% change in quantity</td><td>(340 - 400) ÷ 400</td><td>-15%</td></tr>
+    <tr><td>Elasticity</td><td>-15% ÷ 10%</td><td>-1.5 (elastic)</td></tr>
+  </tbody>
+</table>
+
+<p>A coefficient of -1.5 means demand is elastic, quantity fell by more than the price rose, so this particular increase likely cost more in lost volume than it gained in higher price per unit. Worth checking against <a href="/blog/elastic-vs-inelastic-demand-whats-the-difference">what elastic versus inelastic actually means for revenue</a> before deciding whether to roll the price back.</p>
+
+<h2>Use the Midpoint Method to Avoid a Common Mistake</h2>
+<p>The simple percentage calculation above has a flaw: it gives a different answer depending on which price you treat as the starting point. Going from $20 to $22 is a 10% increase, but going from $22 back to $20 is a 9.1% decrease, not 10%, because the base changed. That asymmetry can meaningfully shift your elasticity number depending on which direction you calculate it.</p>
+<p>The fix is the midpoint method: divide the change by the average of the two values instead of the starting value.</p>
+
+<table>
+  <thead>
+    <tr><th>Step</th><th>Calculation</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>% change in price (midpoint)</td><td>($22 - $20) ÷ (($22 + $20) ÷ 2)</td><td>9.5%</td></tr>
+    <tr><td>% change in quantity (midpoint)</td><td>(340 - 400) ÷ ((340 + 400) ÷ 2)</td><td>-16.2%</td></tr>
+    <tr><td>Elasticity (midpoint method)</td><td>-16.2% ÷ 9.5%</td><td>-1.71</td></tr>
+  </tbody>
+</table>
+
+<p>The midpoint version gives a slightly different, more consistent number, and it's the version economists actually use when reporting elasticity from two observed points. If you're doing this in a spreadsheet, build the midpoint formula once and reuse it, it's the same handful of cells for every product.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/price-history.png" alt="Zorin price history view showing past price changes for a product alongside the sales volume at each price point" loading="lazy" />
+  <figcaption>A two-point calculation needs exactly this: a price that changed, and the sales before and after it.</figcaption>
+</figure>
+
+<h2>What This Rough Number Can't Tell You</h2>
+<p>A two-point calculation is a real elasticity estimate, but it's a noisy one, and it's worth knowing where the noise comes from before you act on it.</p>
+<ul>
+<li><strong>Seasonality.</strong> If the price change happened to coincide with a seasonal dip or spike in demand, the calculation attributes all of that swing to price, when some or most of it wasn't.</li>
+<li><strong>Other changes at the same time.</strong> A promotion, a competitor's price move, a change in shipping cost, or even a different product going out of stock can all shift sales independent of your price change.</li>
+<li><strong>Small sample size.</strong> One month of data before and after is two data points. A single unusual week can swing the whole number.</li>
+<li><strong>No confidence read.</strong> The formula gives you a number, but not a sense of how much to trust it. -1.5 calculated from a clean, isolated price test means something different than -1.5 calculated from a chaotic month with five other things going on.</li>
+</ul>
+<p>None of this makes the two-point method useless, it's a legitimate way to get a directional read fast. It just means treating the result as a strong hint rather than a precise measurement, especially for a decision as consequential as a storewide price change.</p>
+
+<h2>When You Need the Real Regression Instead</h2>
+<p>The more rigorous version of the same idea is a log-log regression across many price-and-quantity observations rather than just two. Instead of one before-and-after comparison, it fits a line through every price point in your sales history and reads the slope of that line as the elasticity coefficient. This is <a href="/blog/what-does-price-elasticity-actually-mean">the actual method behind a calculated elasticity coefficient</a>, and it comes with two things the two-point formula can't give you: it averages out the noise from any single unusual period instead of being fully exposed to it, and it produces an R-squared value, a direct measure of how much you should trust the number.</p>
+<p>You don't need to run this yourself. Connect your sales history and Zorin fits the regression per SKU automatically, returning the coefficient alongside a confidence score, so you can see at a glance which recommendations are backed by clean, consistent data and which ones are closer to <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a guess dressed up as a number</a>.</p>
+<p>If you'd rather skip the spreadsheet entirely, <a href="/signup">connect your sales history</a> and get the real coefficient, with a confidence score, for every product in your catalog.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the simplest formula for calculating price elasticity?</h3>
+<p>Percentage change in quantity sold divided by percentage change in price. If you have two periods where the price differed, you can calculate a rough elasticity estimate from those numbers alone.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a statistics background to calculate elasticity?</h3>
+<p>No. A two-point calculation is basic division. Getting a more reliable number from many price points does use regression, but you don't need to run that yourself, tools that connect to your sales history can calculate it automatically.</p>
+</div>
+<div class="faq-item">
+<h3>What's the midpoint method and why does it matter?</h3>
+<p>It calculates percentage changes using the average of the two values as the base instead of the starting value, which avoids getting a different elasticity number depending on whether you calculate a price increase or its reverse.</p>
+</div>
+<div class="faq-item">
+<h3>Can I calculate elasticity if my price has never changed?</h3>
+<p>No. Elasticity measures how quantity responds to a price change, so you need at least one instance of the price actually changing in your sales history to calculate anything.</p>
+</div>
+<div class="faq-item">
+<h3>Why is a two-point elasticity calculation less reliable than a regression?</h3>
+<p>A two-point calculation can't separate the effect of the price change from other things happening at the same time, seasonality, promotions, competitor moves, and it has no way to tell you how much to trust the result. A regression across many price points averages out that noise and produces a confidence measure alongside the coefficient.</p>
+</div>
+<div class="faq-item">
+<h3>How many price changes do I need before the number becomes reliable?</h3>
+<p>There's no fixed minimum, but more price variation and more sales data generally produce a tighter, more trustworthy estimate. A single before-and-after comparison is usable but rough, several price points over time, ideally isolated from other changes, get you much closer to a real answer.</p>
+</div>
+</section>
+
+<p class="conclusion">You don't need a data scientist to get a usable elasticity number, just two price points, the sales they produced, and the formula above. It won't be as clean as a full regression, but it's often enough to tell you whether a product can take a price increase, which is the question you're actually trying to answer.</p>
+    `.trim(),
+  },
+  {
     slug: "how-to-automate-pricing-updates-across-your-shopify-store",
     title: "How to Automate Pricing Updates Across Your Shopify Store",
     excerpt:
