@@ -10,6 +10,157 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-calculate-price-elasticity-for-your-shopify-store",
+    title: "How to Calculate Price Elasticity for Your Shopify Store",
+    excerpt:
+      "The formula takes ten seconds. Pulling clean before-and-after numbers out of Shopify Analytics, and knowing whether to trust the result, is where it actually gets hard.",
+    date: "2026-08-10",
+    readingTime: "9 min read",
+    category: "Education",
+    content: `
+<p class="intro">Price elasticity of demand (PED) tells you how much a product's sales volume changes when its price changes, and you calculate it by dividing the percentage change in quantity sold by the percentage change in price. You can work this out by hand for a single product using two data points from Shopify Analytics, or you can run it across your whole catalog automatically. This walks through both.</p>
+
+<p>Doing this the manual way for a dozen best sellers, one spreadsheet tab per product, makes clear exactly where it gets tedious: not the math, the data pulling. The formula itself takes ten seconds. Getting clean before-and-after numbers out of your own store, and knowing whether you can trust the result, is where most merchants get stuck. That's also exactly the gap Zorin is built to close, worth pointing out where it fits along the way.</p>
+
+<h2>The Price Elasticity of Demand Formula</h2>
+<p>Price elasticity of demand measures how sensitive your customers are to a price change. The formula is:</p>
+<p><strong>PED = % change in quantity sold ÷ % change in price</strong></p>
+<p>If a 10% price increase causes a 15% drop in units sold, your PED is -1.5. Economists usually report the absolute value, so you'd call this product's elasticity 1.5.</p>
+<p>Each piece of that formula comes from your own order data:</p>
+<ul>
+<li><strong>% change in quantity sold:</strong> (new quantity - old quantity) ÷ old quantity</li>
+<li><strong>% change in price:</strong> (new price - old price) ÷ old price</li>
+</ul>
+<p>You don't need a data science background to calculate this. You need two clean data points: a baseline price and quantity, and a second price and quantity after a change.</p>
+
+<h3>The Midpoint Formula (More Accurate for Small Sample Sizes)</h3>
+<p>The simple formula above has a known flaw: it gives you a different answer depending on whether you treat the price increase or the price decrease as your starting point. If you're working with a short sales history or only one price change, that inconsistency can meaningfully skew your number.</p>
+<p>The midpoint, or arc elasticity, formula fixes this by averaging the two price points and two quantity points instead of picking one as the base:</p>
+<p><strong>PED = [(Q2 - Q1) ÷ ((Q2 + Q1) ÷ 2)] ÷ [(P2 - P1) ÷ ((P2 + P1) ÷ 2)]</strong></p>
+<p>Where Q1 and P1 are your original quantity and price, and Q2 and P2 are the new quantity and price. It's a few more steps, but it removes the directional bias, which matters most when you're working with limited data, exactly the situation most independent Shopify merchants are in.</p>
+
+<h2>Step-by-Step: Calculating PED for a Shopify Product</h2>
+<p>Here's the actual workflow, using a real-shaped example.</p>
+<ol>
+<li><strong>Pull your baseline data.</strong> In Shopify Admin, go to Analytics, then Reports, and look for your product performance or sessions-by-product report to find units sold at your current price over a defined period, ideally 30 days or more so a short-term spike doesn't distort the read.</li>
+<li><strong>Make, or find, a price change.</strong> This can be a deliberate test or a price change you already made for another reason. Either way, you need the exact price and the exact date it changed.</li>
+<li><strong>Pull the same window post-change.</strong> Use a comparable time period after the change, same length, and ideally similar seasonality, so you're comparing like to like.</li>
+<li><strong>Run the formula.</strong></li>
+</ol>
+<p>Say you sell a skincare serum at $32 and typically move 500 units a month. You raise the price 12.5% to $36, and the following month you sell 400 units, a 20% drop.</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Price</th><th>Units sold</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Before</td><td>$32</td><td>500</td></tr>
+    <tr><td>After</td><td>$36</td><td>400</td></tr>
+  </tbody>
+</table>
+
+<p>PED = -20% ÷ 12.5% = <strong>-1.6</strong></p>
+<p>Taking the absolute value, this product has an elasticity of 1.6. Because that's greater than 1, demand for this serum is elastic, the 12.5% price increase produced a disproportionately larger drop in units sold.</p>
+
+<h2>Elastic, Inelastic, or Unitary: What Your Number Means</h2>
+<p>Once you have a PED value, here's <a href="/blog/elastic-vs-inelastic-demand-whats-the-difference">what it tells you about how to price that product</a>:</p>
+
+<table>
+  <thead>
+    <tr><th>Elasticity value</th><th>Classification</th><th>What it means</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>PED = 0</td><td>Perfectly inelastic</td><td>Demand doesn't move regardless of price. Rare in ecommerce, typical of true necessities.</td></tr>
+    <tr><td>0 &lt; PED &lt; 1</td><td>Inelastic</td><td>Demand shifts proportionally less than price. You likely have room to raise price without losing much volume.</td></tr>
+    <tr><td>PED = 1</td><td>Unitary elastic</td><td>Demand shifts exactly in proportion to price. Revenue stays roughly flat either direction.</td></tr>
+    <tr><td>PED &gt; 1</td><td>Elastic</td><td>Demand shifts more than proportionally to price. Cutting price could grow revenue, raising it risks a steep volume drop.</td></tr>
+    <tr><td>PED = infinity</td><td>Perfectly elastic</td><td>Any price increase collapses demand to zero. Typical of commodity products with easy substitutes.</td></tr>
+  </tbody>
+</table>
+
+<p>A product with PED of 1.6, like the serum above, is telling you customers have alternatives and are watching the price. A product sitting at 0.4 is telling you the opposite, raising price is unlikely to cost you many sales.</p>
+
+<h2>A/B Testing vs. Historical Sales Data: Which Method Is More Reliable</h2>
+<p>There are two main ways to gather the price-and-quantity data this formula needs, and they have different tradeoffs.</p>
+<p><strong>Historical sales data</strong> uses price changes you've already made, deliberately or not, and compares before-and-after windows. It's the faster method since you don't need to run anything new, but it's vulnerable to contamination: seasonality, a marketing push, a competitor's stockout, or a holiday can all shift demand at the same time your price changed, and you won't be able to separate the two effects cleanly.</p>
+<p><strong>A/B testing</strong> splits your traffic into two cohorts at the same time and shows each cohort a different price. This is the statistically cleaner method because both groups experience the same seasonality, the same marketing conditions, and the same external environment simultaneously, so the only real variable is price. The tradeoff is that it takes deliberate setup, typically a split-URL or server-side experiment, and needs enough concurrent traffic to reach a meaningful sample, generally a minimum of a couple hundred conversions per variant before the result is trustworthy.</p>
+<p>If you're working from historical data, avoid comparing two sequential periods weeks apart, since anything that changed in between, a sale, a season, a viral moment, will bias your number. Concurrent A/B testing avoids that problem entirely, at the cost of needing enough traffic to run it.</p>
+
+<h2>Why Manual Calculation Breaks Down Past a Few SKUs</h2>
+<p>The math above works cleanly for one product with two clean data points. It gets a lot harder to trust at scale.</p>
+<p>Run this by hand across 40 SKUs and you hit three real problems. First, most stores don't have a clean two-point comparison for every product, some have five price changes over a year, others have none. Second, a manual calculation gives you a number with no sense of how much to trust it, a PED derived from two data points after a big traffic spike is not the same quality of evidence as one derived from six months of steady sales with several price movements, but the plain formula treats them identically. Third, promotional periods quietly distort the read: if your before or after window includes a discount code or a flash sale, your elasticity number is really measuring discount sensitivity, not baseline price sensitivity, and nothing in the manual formula flags that for you.</p>
+<p>This is the exact gap Zorin was built to close. Instead of computing PED by hand, product by product, Zorin connects to your Shopify or WooCommerce store, or reads an uploaded CSV of sales history, and fits a price elasticity model per SKU using your own historical price-and-quantity data. Each product gets a plain raise, lower, or hold recommendation, an estimated profit lift, and <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence label that reflects how much real data and price variation actually support the number</a>, so a thin-data SKU is never presented with the same certainty as a well-established one. It also automatically detects likely promotional spikes in your sales history and excludes them from the model fit, solving the exact discount-contamination problem a manual calculation can't catch. It doesn't watch or match competitor prices, every recommendation is grounded in what your own customers have actually done.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/dashboard-overview.png" alt="Zorin dashboard showing raise, lower, and hold recommendations across a full product catalog" loading="lazy" />
+  <figcaption>The same formula, run automatically across every SKU instead of one spreadsheet tab at a time.</figcaption>
+</figure>
+
+<h2>Is This Worth It for a Small Store, or Only Large Catalogs</h2>
+<p>Elasticity analysis isn't gated by store size, it's gated by data. What actually matters is whether you have enough sales history with enough price movement in it for the formula to have something to read. A useful rough bar: at least 10 to 20 SKUs, roughly six months of sales history, and some real price variation somewhere in that history, a formula can't tell you anything about price sensitivity if your price never moved.</p>
+<p>A 15-SKU store that's changed a few prices over the past year has more usable elasticity signal than a 300-SKU store that's never touched a single price tag. Catalog size affects how much manual effort this takes if you're doing it by hand in a spreadsheet, one calculation per SKU adds up fast, but it doesn't affect whether the underlying math is valid. This is also where <a href="/blog/how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one">the case for automation gets stronger even for smaller stores</a>: reading 15 SKUs by hand is tedious but doable in an afternoon, reading 150 by hand generally doesn't happen at all, which is usually how "probably fine" pricing habits take root in the first place.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>PED = % change in quantity sold ÷ % change in price; a result greater than 1 (absolute value) means demand is elastic.</li>
+<li>The midpoint formula removes directional bias and is more reliable with limited data.</li>
+<li>Concurrent A/B testing is statistically cleaner than comparing sequential historical periods, but needs enough simultaneous traffic to be valid.</li>
+<li>Manual PED calculation works for one product; it breaks down at scale because it can't flag thin data or promotional distortion.</li>
+<li>Elasticity analysis is gated by data (SKU count, sales history, price variation), not by store size.</li>
+</ul>
+</div>
+
+<p>If you'd like to see this calculated automatically across your own catalog rather than product by product in a spreadsheet, you can <a href="/integrations/shopify">connect your Shopify store</a> or <a href="/integrations/woocommerce">connect WooCommerce</a> and Zorin will fit an elasticity model to your actual sales history. You can also check your current margins first with the free <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before deciding where to test a price change.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the best software for measuring price elasticity in an ecommerce store?</h3>
+<p>It depends on the mechanism you want. Competitor repricers watch rival prices, not your own demand. Rule-based plugins apply fixed discount logic you configure yourself. Tools like Zorin instead fit an elasticity model from your own Shopify or WooCommerce sales history, which is the only data source that reflects how your specific customers respond to price.</p>
+</div>
+<div class="faq-item">
+<h3>How do I calculate price elasticity of demand for my Shopify products?</h3>
+<p>Pull a baseline price and quantity sold from Shopify Analytics, apply or find a price change, pull the same data after the change, then divide the percentage change in quantity by the percentage change in price. Use the midpoint formula if you're working with limited data.</p>
+</div>
+<div class="faq-item">
+<h3>What's the most reliable way to test price elasticity, A/B testing or historical sales data?</h3>
+<p>Concurrent A/B testing is statistically cleaner because both price groups experience the same conditions at the same time. Historical data comparison is faster to set up but risks contamination from seasonality, promotions, or other changes that happened in the same window.</p>
+</div>
+<div class="faq-item">
+<h3>Is price elasticity analysis worth it for a small ecommerce store, or only for large catalogs?</h3>
+<p>It's worth it for small stores too. What matters is having roughly 10 to 20+ SKUs, several months of sales history, and some real price variation in that history, not overall catalog size or revenue.</p>
+</div>
+<div class="faq-item">
+<h3>Which pricing tools use AI to model demand elasticity across a whole product catalog?</h3>
+<p>Zorin fits a log-log regression per SKU from your own sales history and returns a raise, lower, or hold recommendation with an estimated profit lift and a confidence score, applied across your full catalog rather than one product at a time.</p>
+</div>
+<div class="faq-item">
+<h3>What does a PED value greater than 1 mean?</h3>
+<p>It means demand is elastic: a price change produces a proportionally larger change in units sold. Customers likely have accessible substitutes and are price-sensitive on that product.</p>
+</div>
+<div class="faq-item">
+<h3>Can I calculate price elasticity without a data science background?</h3>
+<p>Yes. The core formula is basic arithmetic using two price points and two quantity figures you can pull directly from Shopify Analytics.</p>
+</div>
+<div class="faq-item">
+<h3>Why did my elasticity calculation give a strange or inconsistent result?</h3>
+<p>The most common cause is a comparison window that includes a promotion, discount code, or seasonal spike, which distorts the quantity figure. Use clean, comparable time periods, or use the midpoint formula to reduce sensitivity to which point you treat as the baseline.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin compare my prices to competitors?</h3>
+<p>No. Zorin's elasticity model reads only your own sales history, not competitor prices. That mechanism was deliberately left out of the product in favor of reading first-party demand data, since your customers, costs, and brand aren't the same as anyone else's.</p>
+</div>
+<div class="faq-item">
+<h3>How much sales history do I need before elasticity numbers are trustworthy?</h3>
+<p>There's no fixed cutoff, but more history with real price variation produces a more reliable estimate. This is why a confidence score matters: it tells you how much to trust a given number rather than presenting every estimate with the same certainty.</p>
+</div>
+</section>
+
+<p class="conclusion">The formula for price elasticity of demand is simple enough to run by hand on one product in a spreadsheet. Where it gets genuinely hard is doing it accurately across a real catalog, with promotions filtered out and a confidence level attached to every number. If you want to <a href="/signup">start a free trial</a> and see your own catalog's elasticity read automatically, Zorin will fit the model directly from your Shopify or WooCommerce sales history.</p>
+    `.trim(),
+  },
+  {
     slug: "best-price-optimization-app-for-small-shopify-stores",
     title: "Best Price Optimization App for Small Shopify Stores",
     excerpt:
