@@ -17,7 +17,8 @@ model Merchant {
   planTier              String?
   trialEndsAt           DateTime?
   products              Product[]
-  user                  User?
+  users                 User[]
+  invitations           Invitation[]
   shopifyConnection     ShopifyConnection?
   wooCommerceConnection WooCommerceConnection?
 }
@@ -134,7 +135,8 @@ model User {
   id                  String               @id @default(cuid())
   email               String               @unique
   passwordHash        String
-  merchantId          String               @unique
+  merchantId          String
+  role                String               @default("OWNER") // "OWNER" | "MEMBER"
   merchant            Merchant             @relation(fields: [merchantId], references: [id])
   createdAt           DateTime             @default(now())
   sessions            Session[]
@@ -206,4 +208,16 @@ model ProcessedWebhook {
   id         String   @id @default(cuid())
   deliveryId String   @unique
   createdAt  DateTime @default(now())
+}
+
+model Invitation {
+  id              String    @id @default(cuid())
+  merchantId      String
+  merchant        Merchant  @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  email           String
+  tokenHash       String    @unique
+  invitedByUserId String
+  expiresAt       DateTime
+  acceptedAt      DateTime?
+  createdAt       DateTime  @default(now())
 }
