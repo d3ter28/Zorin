@@ -65,7 +65,7 @@ function NavItem({
 }
 
 function SettingsNavGroup({ pathname }: { pathname: string }) {
-  const expanded = pathname.startsWith("/settings");
+  const expanded = pathname === "/settings" || pathname.startsWith("/settings/");
 
   return (
     <div>
@@ -93,6 +93,7 @@ function SettingsNavGroup({ pathname }: { pathname: string }) {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
                   active ? "bg-accent text-accent-fg" : ""
                 }`}
