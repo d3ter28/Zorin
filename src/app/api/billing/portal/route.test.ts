@@ -74,7 +74,7 @@ describe("POST /api/billing/portal", () => {
     expect(body).toEqual({ url: "https://billing.stripe.com/session1" });
     expect(billingPortalSessionsCreate).toHaveBeenCalledWith({
       customer: "cus_123",
-      return_url: "http://localhost:3000/settings",
+      return_url: "http://localhost:3000/settings/billing",
     });
   });
 });

@@ -21,7 +21,7 @@ export const POST = withErrorHandling(async (req: Request) => {
   const origin = new URL(req.url).origin;
   const session = await stripe.billingPortal.sessions.create({
     customer: merchant.stripeCustomerId,
-    return_url: `${origin}/settings`,
+    return_url: `${origin}/settings/billing`,
   });
 
   return NextResponse.json({ url: session.url });
