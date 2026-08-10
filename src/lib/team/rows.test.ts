@@ -204,6 +204,11 @@ describe("actionKindsForRow", () => {
     expect(actionKindsForRow(inviteRow, { isOwner: true, currentUserId: "u1" })).toEqual(["resend", "revoke"]);
   });
 
+  it("Owner viewing an expired invite row -> revoke only, no resend", () => {
+    const expiredInviteRow = rows.find((r) => r.id === "i2")!;
+    expect(actionKindsForRow(expiredInviteRow, { isOwner: true, currentUserId: "u1" })).toEqual(["revoke"]);
+  });
+
   it("Member viewing their own row -> leave", () => {
     expect(actionKindsForRow(memberRow, { isOwner: false, currentUserId: "u2" })).toEqual(["leave"]);
   });

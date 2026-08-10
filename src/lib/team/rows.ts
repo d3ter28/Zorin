@@ -97,15 +97,18 @@ export type ActionKind = "remove" | "resend" | "revoke" | "leave";
 
 /**
  * Which row-action kinds are available for a given viewer/row combination.
- * Owner viewing a Member -> remove. Owner viewing an invite -> resend + revoke.
- * Member viewing their own row -> leave. Everything else -> none.
+ * Owner viewing a Member -> remove. Owner viewing a pending (non-expired) invite ->
+ * resend + revoke; an expired invite can only be revoked, not resent. Member
+ * viewing their own row -> leave. Everything else -> none.
  */
 export function actionKindsForRow(
   row: TeamRow,
   { isOwner, currentUserId }: { isOwner: boolean; currentUserId: string },
 ): ActionKind[] {
   if (isOwner && row.kind === "member" && row.role !== "OWNER") return ["remove"];
-  if (isOwner && row.kind === "invite") return ["resend", "revoke"];
+  if (isOwner && row.kind === "invite") {
+    return row.status === "Expired" ? ["revoke"] : ["resend", "revoke"];
+  }
   if (!isOwner && row.kind === "member" && row.id === currentUserId) return ["leave"];
   return [];
 }
