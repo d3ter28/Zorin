@@ -1,0 +1,26 @@
+{
+  "planPath": "docs/superpowers/plans/2026-08-08-settings-restructure.md",
+  "tasks": [
+    {
+      "id": 10,
+      "subject": "Task 1: Settings layout + 4 sub-pages + redirect",
+      "status": "pending",
+      "description": "**Goal:** Move all 5 existing settings cards into 4 dedicated sub-pages under a shared layout, with the bare `/settings` URL redirecting to the first one.\n\n**Files:**\n- Create: `src/app/settings/layout.tsx`\n- Create: `src/app/settings/account/page.tsx`\n- Create: `src/app/settings/billing/page.tsx`\n- Create: `src/app/settings/team/page.tsx`\n- Create: `src/app/settings/integrations/page.tsx`\n- Modify: `src/app/settings/page.tsx`\n\n**Acceptance Criteria:**\n- [ ] `/settings` redirects (HTTP redirect) to `/settings/account`\n- [ ] `/settings/account` renders only ChangePasswordCard\n- [ ] `/settings/billing` renders only BillingCard with correct planTier/subscriptionStatus\n- [ ] `/settings/team` renders only TeamCard with correct currentUserId/currentUserRole\n- [ ] `/settings/integrations` renders both ShopifyConnectionCard and WooCommerceConnectionCard\n- [ ] Every settings page wrapped in AppShell with merchant name shown\n- [ ] Unauthenticated visitors redirected to /login via layout's requireSessionPage()\n\n**Verify:** No automated test (pure page/routing restructure) — manual browser verification per plan Step 7.\n\n**Steps:** See docs/superpowers/plans/2026-08-08-settings-restructure.md Task 1 for full code.\n\n```json:metadata\n{\"files\": [\"src/app/settings/layout.tsx\", \"src/app/settings/account/page.tsx\", \"src/app/settings/billing/page.tsx\", \"src/app/settings/team/page.tsx\", \"src/app/settings/integrations/page.tsx\", \"src/app/settings/page.tsx\"], \"verifyCommand\": \"manual browser verification\", \"acceptanceCriteria\": [\"/settings redirects to /settings/account\", \"each sub-page renders exactly its intended card(s) with correct data\", \"unauthenticated visits redirect to /login\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 11,
+      "subject": "Task 2: Expandable Settings section in the sidebar",
+      "status": "pending",
+      "blockedBy": [10],
+      "description": "**Goal:** Replace the flat \"Settings\" sidebar link with an expandable group showing the 4 new sub-pages, expanded only while inside /settings/*.\n\n**Files:**\n- Modify: `src/components/Sidebar.tsx`\n\n**Acceptance Criteria:**\n- [ ] Outside /settings/*, sidebar shows a single unchanged \"Settings\" row, no sub-items\n- [ ] Under /settings/*, sidebar shows \"Settings\" row plus 4 indented sub-items (Account/Billing/Team/Integrations)\n- [ ] Sub-item matching current exact path is highlighted (bg-accent), others are not\n- [ ] Parent \"Settings\" row never gets the accent-highlight treatment itself\n- [ ] Clicking Settings navigates to /settings; clicking a sub-item navigates directly\n- [ ] Dashboard/Launch Planner/Guide nav items unchanged\n\n**Verify:** No automated test (no Sidebar.test.tsx exists in this codebase) — manual browser verification per plan Step 3.\n\n**Steps:** See docs/superpowers/plans/2026-08-08-settings-restructure.md Task 2 for full code.\n\n```json:metadata\n{\"files\": [\"src/components/Sidebar.tsx\"], \"verifyCommand\": \"manual browser verification\", \"acceptanceCriteria\": [\"sub-items only visible under /settings/*\", \"correct sub-item highlighted per path\", \"other nav items unchanged\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 12,
+      "subject": "Task 3: Full-suite verification",
+      "status": "pending",
+      "blockedBy": [10, 11],
+      "description": "**Goal:** Confirm the restructure integrates cleanly with no regressions before merge.\n\n**Files:** None (verification only)\n\n**Acceptance Criteria:**\n- [ ] Full test suite passes, same count as pre-restructure baseline\n- [ ] `npm run build` succeeds, all 5 settings routes listed in output, no new type errors\n- [ ] Stripe Portal return_url (`/settings`) checked and confirmed to still resolve sensibly; note (don't silently fix) whether it should point at /settings/billing instead\n- [ ] Full manual click-through: Dashboard → Settings → each of the 4 sub-pages via sidebar nav (not direct URL), confirming every card still works exactly as before\n\n**Verify:** `npm test && npm run build` → both succeed\n\n```json:metadata\n{\"files\": [], \"verifyCommand\": \"npm test && npm run build\", \"acceptanceCriteria\": [\"full suite passes at baseline count\", \"build succeeds with all 5 settings routes listed\", \"Stripe portal return_url checked\", \"full sidebar-driven click-through confirmed working\"], \"modelTier\": \"standard\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-08-08T00:00:00.000Z"
+}
