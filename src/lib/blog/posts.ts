@@ -6,9 +6,148 @@ export type BlogPost = {
   readingTime: string;
   category: string;
   content: string; // HTML string
+  author?: {
+    name: string;
+    bio: string;
+  };
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "price-increase-killed-your-sales-heres-the-real-reason",
+    title: "Price Increase Killed Your Sales? Here's the Real Reason",
+    excerpt:
+      "A 5-10% price increase can trigger a 15-20% drop in sales. It usually comes down to one of three causes, and each one has a different fix.",
+    date: "2026-08-11",
+    readingTime: "9 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">You raised a price by what felt like a small amount, and sales fell off a cliff. That drop almost always traces back to one of three things: your product is more price elastic than you assumed, customers feel a price hike more sharply than they'd have felt an equivalent discount, or something else entirely, like a competitor's move, happened to land at the same time. Each cause has a different fix, and the first step is figuring out which one you're actually looking at.</p>
+
+<h2>The Math Behind a Small Increase Causing a Big Drop</h2>
+<p><strong>A 5 to 10 percent price increase can trigger a 15 to 20 percent drop in units sold, and the reason has a name: price elasticity of demand.</strong></p>
+<p>Say you sold 500 units a month at $20 each. You raise the price to $22, a 10 percent increase. The next month you sell 400 units, a 20 percent drop. Divide the percentage change in quantity by the percentage change in price and you get an elasticity of -2. That means for every 1 percent you raised price, demand fell about 2 percent. Your product isn't just elastic, it's highly elastic, and the sales chart is doing exactly what the math predicts.</p>
+<p>Economists sort products into three broad zones:</p>
+
+<table>
+  <thead>
+    <tr><th>Classification</th><th>Elasticity (absolute value)</th><th>What it means</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Elastic</td><td>Greater than 1</td><td>Small price moves cause disproportionately large swings in demand. Discretionary goods with easy substitutes, fashion items, anything a customer can simply skip buying this month.</td></tr>
+    <tr><td>Inelastic</td><td>Less than 1</td><td>Demand barely moves even with a real price change. Necessities, products with no close substitute, items that make up a tiny share of a customer's budget.</td></tr>
+    <tr><td>Unitary</td><td>Around 1</td><td>The percentage change in quantity roughly matches the percentage change in price, so total revenue holds steady either way.</td></tr>
+  </tbody>
+</table>
+
+<p>The uncomfortable part is that <a href="/blog/why-do-some-products-have-more-elastic-demand-than-others">most merchants don't know which zone a given SKU sits in</a> until after they've already tested it the hard way, by raising the price and watching what happens.</p>
+
+<h3>Quick Self-Check: Is Your Product Too Elastic to Raise Safely</h3>
+<p>Before you touch a price again, run through this checklist. The more boxes a product checks, the more likely it's sitting in elastic territory:</p>
+<ul>
+<li><strong>Substitutes are one click away.</strong> If a customer can find a near-identical product from another store in under a minute, price sensitivity goes up.</li>
+<li><strong>It's discretionary, not a necessity.</strong> Products a customer can delay or skip buying entirely tend to be more elastic than things they need regardless of price.</li>
+<li><strong>It's a meaningful share of the customer's budget.</strong> A $5 increase on a $15 item registers very differently than a $5 increase on a $150 item.</li>
+<li><strong>There's little brand loyalty built up.</strong> New customers and low-repeat categories tend to be far more price sensitive than an established base with a habit of buying from you specifically.</li>
+<li><strong>You've never tested a price change on this SKU before.</strong> Without any price variation in your own sales history, you're guessing, not measuring.</li>
+</ul>
+<p>This checklist gets you a rough read. Zorin turns the same underlying signals into an actual number: it fits a price elasticity model from your own sales history per SKU, and returns your elasticity coefficient alongside <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence label based on how much real price variation is in that history</a>. A product that's never had its price moved before shows up with a lower confidence score, which is often the exact situation behind a price increase that hurt more than expected. You're not just told the product is "probably elastic," you get the coefficient and how much you should trust it.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>The coefficient and the confidence label sit side by side, so a thin-data guess never looks as certain as a well-supported one.</figcaption>
+</figure>
+
+<h2>Why Customers Punish a Price Hike Harder Than They'd Reward a Discount</h2>
+<p><strong>Customers feel the sting of a price increase more intensely than they'd have felt the pleasure of an equivalent discount, a well-documented behavioral pattern called loss aversion.</strong></p>
+<p>Loss aversion comes from Daniel Kahneman and Amos Tversky's prospect theory. Their research found that the psychological pain of a loss is roughly twice as powerful as the pleasure of an equivalent gain. Applied to pricing, that means a $2 price increase doesn't just cancel out the goodwill a $2 discount would have earned, it actively costs you more goodwill than the discount would have gained you.</p>
+<p>The mechanism behind this is the reference price. Every returning customer carries a mental anchor of what your product "should" cost, built from the price they paid last time. When your new price comes in above that anchor, they don't evaluate it neutrally, they evaluate it as a loss relative to what they'd already mentally budgeted. That's why a price increase can trigger a sharper drop in sales than the raw elasticity math alone would predict, you're not just pricing above what some customers will pay, you're asking every returning customer to give something up relative to their own reference point.</p>
+<p>This explains a pattern a lot of merchants notice and can't quite name: <strong>the drop after a price increase is often front-loaded and disproportionate</strong>, heaviest right after the change, among your most price-aware repeat customers, then it partially recovers as the new price becomes the new reference point over time. If your sales data shows a sharp initial dip followed by partial stabilization a few weeks later, that shape itself is a loss-aversion signature, not necessarily proof your long-run elasticity is as bad as the first week suggested.</p>
+
+<h2>Ruling Out Your Competitors Before Blaming Your Price</h2>
+<p><strong>A sales drop that lines up with a price increase isn't automatic proof the price caused it. A competitor's simultaneous discount, a stockout on their end resolving, or a seasonal dip can produce a nearly identical-looking chart.</strong></p>
+<p>Before you conclude your price increase was the problem, run a few checks:</p>
+<ul>
+<li><strong>Check the timing precisely.</strong> Did the drop start the exact week you changed price, or did it start a few days earlier or later? A mismatch in timing points away from your price as the sole cause.</li>
+<li><strong>Check whether the drop is catalog-wide or isolated to the SKU you repriced.</strong> If products you didn't touch also saw a dip at the same time, something bigger than your one price change is happening, likely a traffic or seasonal issue, not elasticity.</li>
+<li><strong>Check your traffic, not just your conversion rate.</strong> A drop in visits with a stable conversion rate points to a demand-side or marketing issue. A stable traffic number with a falling conversion rate points more clearly at the price itself.</li>
+<li><strong>Check what your direct competitors did that same week</strong>, if you have any visibility into it. A rival running a flash sale or restocking a popular item can pull share away from you in a way that looks, on your dashboard, exactly like a bad reaction to your own price change.</li>
+</ul>
+<p>This is one reason <a href="/blog/should-you-price-below-at-or-above-your-competitors">Zorin's elasticity model doesn't scrape or compare against competitor prices</a> in the first place. It fits its recommendation from your own sales history, your own customers, your own demand curve, so the raise, lower, or hold call you get isn't quietly reacting to a competitor's pricing move mixed in with the data. That separation matters most exactly in a situation like this one: when you're trying to figure out whether a drop was really your price, or something happening one tab over on a rival's storefront.</p>
+
+<h2>How to Raise Prices Without Losing Customers Next Time</h2>
+<p><strong>A safer price increase combines three things: sizing the increase to what your actual elasticity can absorb, staging it incrementally instead of all at once, and communicating the change in a way that resets the customer's reference price instead of leaving it exposed as a pure loss.</strong></p>
+<p>A few concrete tactics:</p>
+<ul>
+<li><strong>Test on a subset of SKUs first</strong>, not your whole catalog at once. A single bad reaction on one product tells you something specific about that product's elasticity. A catalog-wide increase tells you nothing you can isolate.</li>
+<li><strong>Move in smaller increments over time</strong> rather than one large jump. A staged path gives the reference price room to shift gradually instead of asking customers to absorb the whole increase as a single loss.</li>
+<li><strong>Pair a price increase with visible added value</strong> where you can, a packaging upgrade, an included extra, a service improvement, anything that gives the customer a reason the new number reflects something different, not just a straight increase on the same thing.</li>
+<li><strong>Preview the outcome before you commit.</strong> Look at the estimated profit impact of a given price, not just the unit-volume impact, before applying it. A price that drops units but raises total profit is often still the right call, and a price that raises units but tanks margin is often the wrong one, even though the sales chart alone won't tell you which is which.</li>
+</ul>
+<p>That last point is where Zorin's review and apply workflow is built to help. Instead of guessing a new price and watching what happens, you can adjust any recommendation with a slider or type in your own number, and see a live preview of the resulting margin and profit lift before you commit. You can apply a change to one product at a time, or across your whole catalog, with each product's apply handled independently so one SKU's issue never blocks the rest. And if you want a second signal before committing catalog-wide, <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">Zorin's Van Westendorp price sensitivity survey</a> gives you stated customer preference, what customers say they'd tolerate, sitting alongside the elasticity model's revealed preference, what your customers have actually done. Nothing changes automatically. You review the reasoning and the confidence behind it, and you decide.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A small price increase causing a large sales drop usually means the product has elastic demand, where a percentage price change produces a proportionally larger percentage change in quantity sold.</li>
+<li>Loss aversion means customers feel a price increase roughly twice as intensely as they'd have felt an equivalent discount, which can make the drop sharper than pure elasticity math predicts, especially right after the change.</li>
+<li>Before blaming your price, check whether the drop is catalog-wide, whether the timing lines up exactly, and whether traffic (not just conversion) dropped too, since a competitor move can produce an identical-looking dip.</li>
+<li>A diagnostic checklist (substitutes, discretionary spend, budget share, brand loyalty, no price-testing history) gives a rough read on elasticity before you ever touch a price again.</li>
+<li>The safer path is sizing the increase to your actual elasticity, staging it incrementally, and previewing profit impact, not just unit-volume impact, before committing.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Why did a small price increase cause such a big drop in sales?</h3>
+<p>Your product likely has elastic demand, where a small percentage change in price produces a larger percentage change in units sold. A 5-10% increase causing a 15-20% drop is common for elastic products, not a sign something went wrong with the price change itself.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my product's demand is too price elastic to raise prices safely?</h3>
+<p>Check for easy substitutes, discretionary (not necessity) purchases, a large share of customer budget, low brand loyalty, and no prior price-testing history. The more of these apply, the more likely the product is elastic. A per-SKU elasticity model gives you the actual coefficient instead of a guess.</p>
+</div>
+<div class="faq-item">
+<h3>Why do customers punish a price increase more than they'd reward an equivalent discount?</h3>
+<p>Loss aversion, a concept from Kahneman and Tversky's prospect theory, means people feel the pain of a loss roughly twice as strongly as the pleasure of an equivalent gain. A price increase reads as a loss relative to a customer's remembered reference price.</p>
+</div>
+<div class="faq-item">
+<h3>Could my competitors' pricing be the real reason my sales dropped, not my price increase?</h3>
+<p>Yes, this is common. Check whether the drop is isolated to the SKU you repriced or catalog-wide, whether the timing matches exactly, and whether traffic dropped too. A competitor's simultaneous discount or restock can produce a nearly identical-looking sales dip.</p>
+</div>
+<div class="faq-item">
+<h3>How can I raise prices without losing customers or tanking my conversion rate?</h3>
+<p>Size the increase to your product's actual elasticity, stage it in smaller increments instead of one jump, pair it with visible added value where possible, and preview the profit impact before committing rather than reacting to the sales chart alone.</p>
+</div>
+<div class="faq-item">
+<h3>Does a sales drop always mean I raised the price too much?</h3>
+<p>No. A drop in units doesn't automatically mean a drop in profit. If the new price lifts your margin enough, total profit can rise even with fewer units sold. Check the estimated profit impact, not just the unit count, before deciding the increase was a mistake.</p>
+</div>
+<div class="faq-item">
+<h3>How much price variation do I need in my sales history before an elasticity estimate is trustworthy?</h3>
+<p>More than a single price change on a single product. A confidence label based on how much real price variation exists in your data tells you whether an estimate is well-supported or still thin, so you're not treating an early guess as a settled number.</p>
+</div>
+<div class="faq-item">
+<h3>Should I test a price increase on my whole catalog at once?</h3>
+<p>No. Testing on a subset of SKUs first isolates what a single product's elasticity actually looks like. A catalog-wide change at once makes it much harder to tell which products reacted and why.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin compare my prices against competitors to make recommendations?</h3>
+<p>No. Zorin fits its elasticity model from your own sales history only. It doesn't scrape or match competitor prices, so a raise, lower, or hold recommendation reflects your own customers' demonstrated behavior, not a competitor's move.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between Zorin's elasticity model and the Van Westendorp survey?</h3>
+<p>The elasticity model reads revealed preference, what your customers have actually done, from your sales history. The Van Westendorp survey captures stated preference, what customers say they'd tolerate, through a short four-question survey. They're kept as separate signals on purpose.</p>
+</div>
+</section>
+
+<p class="conclusion">Start with the product that hurt the most. Run it through the checklist above, rule out a same-week competitor move, and look at the actual elasticity behind the drop before you decide whether to hold, reverse, or stage the next increase differently. <a href="/signup">Zorin</a> fits a price elasticity model from your own sales history per SKU and shows you the estimated profit impact before you commit to anything.</p>
+    `.trim(),
+  },
   {
     slug: "how-to-calculate-price-elasticity-for-your-shopify-store",
     title: "How to Calculate Price Elasticity for Your Shopify Store",
@@ -17,6 +156,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-10",
     readingTime: "9 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Price elasticity of demand (PED) tells you how much a product's sales volume changes when its price changes, and you calculate it by dividing the percentage change in quantity sold by the percentage change in price. You can work this out by hand for a single product using two data points from Shopify Analytics, or you can run it across your whole catalog automatically. This walks through both.</p>
 
@@ -168,6 +311,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-09",
     readingTime: "9 min read",
     category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">You don't need a data scientist to price your catalog correctly. What you need is a tool that reads your own sales history, tells you whether to raise, lower, or hold each price, and shows you a confidence score so you know how much to trust the call. That's the category of tool this article is about, not a competitor repricer, not a discount rule plugin, a price optimization app built for a small team with no analyst on staff.</p>
 
@@ -294,6 +441,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-08",
     readingTime: "8 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Two merchants sell a similar product at the same price, and both raise it by 10% to cover rising costs. A month later, one is celebrating, the higher price stuck, volume barely moved, and profit is up. The other is staring at a sales dashboard that's dropped off a cliff. Nothing went wrong for the second merchant, their product just had a different price elasticity, how much quantity sold actually moves when price does, and neither of them knew the number going in. The basic formula for that number is percentage change in quantity sold divided by percentage change in price, and you can calculate it in a spreadsheet from two price points you've already tried, no statistics background required.</p>
 
@@ -407,6 +558,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-07",
     readingTime: "8 min read",
     category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Automating pricing updates means automating the workflow around the decision, not the decision itself: exporting sales data on a schedule, feeding it to a pricing model, pushing approved prices back into Shopify through the Admin API, and notifying your team when it's done. The analysis itself takes minutes. Most of the time merchants lose is in the manual steps around it, exporting CSVs, cross-referencing cost sheets, editing product pages one by one.</p>
 
@@ -514,10 +669,14 @@ export const posts: BlogPost[] = [
     slug: "elastic-vs-inelastic-demand-whats-the-difference",
     title: "Elastic vs. Inelastic Demand: What's the Difference?",
     excerpt:
-      "Elastic and inelastic aren't labels for a product category, they're a measurement of how customers react to your next price change. Here's how to tell which side a product is on.",
+      "Elastic and inelastic aren't labels for a product category, they're a measurement of how customers react to your next price change.",
     date: "2026-08-06",
     readingTime: "7 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Elastic demand means customers respond strongly to a price change, quantity sold moves a lot for a relatively small price move. Inelastic demand means the opposite: quantity sold barely moves even when price does. The dividing line is a single number, the price elasticity of demand, and knowing which side of it a product sits on is the difference between a price increase that grows profit and one that quietly erodes it.</p>
 
@@ -623,6 +782,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-05",
     readingTime: "8 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">A product has more elastic demand when customers have easy alternatives, don't consider it essential, and can react quickly to a price change. The opposite conditions, few substitutes, genuine necessity, high switching costs, produce inelastic demand. Five specific, well-documented factors determine where any given product actually lands, and none of them are random.</p>
 
@@ -732,6 +895,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-04",
     readingTime: "10 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Price elasticity varies enormously by category. Fashion and standard electronics tend to be highly price sensitive, beauty and skincare split depending on whether the purchase is routine or discovery driven, and handmade goods often resist typical elasticity patterns altogether because there's rarely a true competitor to compare against.</p>
 
@@ -869,6 +1036,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-03",
     readingTime: "10 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Price elasticity measures how much your sales volume shifts when you change a price. If a small price increase barely dents your sales, your demand is inelastic and you likely have room to raise prices without losing much. If a small increase sends customers straight to a competitor, your demand is elastic, and pricing power is limited.</p>
 
@@ -1016,6 +1187,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-03",
     readingTime: "10 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">If you're deciding how deep to discount, the answer starts with one number: your gross margin, not your competitor's sale price. Most sustainable discounts land between 10% and 30%, with the right depth set by how much margin room your category actually has. Get that number wrong and a discount that looks generous on the surface quietly eats your entire profit on every unit sold.</p>
 
@@ -1176,6 +1351,10 @@ export const posts: BlogPost[] = [
     date: "2026-08-01",
     readingTime: "8 min read",
     category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">The most direct way to know is to ask, using a short four-question survey called the Van Westendorp Price Sensitivity Meter, which turns customer answers into a specific acceptable price range and an optimal price point. This is a different signal than reading elasticity from your past sales, and it's especially useful when you don't have much sales history to read yet, since it works even for a brand-new product with zero orders.</p>
 
@@ -1286,6 +1465,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-31",
     readingTime: "8 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Below, at, or above your competitors is a genuinely useful way to frame a positioning decision, and it's worth knowing the tradeoffs of each. But the position that actually works for a specific product isn't something you can choose from the framework alone, it has to be verified against your own customers' price sensitivity, since a competitor's price was calculated for their business, not yours. Use the framework to organize the decision. Use your own sales data to make it.</p>
 
@@ -1390,6 +1573,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-31",
     readingTime: "8 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Yes, generally, but the effect is smaller and more conditional than most pricing advice suggests. Ending a price in .99 does measurably increase sales for lower-priced, non-luxury products, largely because of a well-documented cognitive shortcut called left-digit bias. It's not a universal trick that works the same way for every product, every price point, or every brand, and it never replaces the more important question of what the underlying number should actually be.</p>
 
@@ -1494,6 +1681,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-30",
     readingTime: "9 min read",
     category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Most WooCommerce pricing apps fall into three categories that behave nothing alike: rule-based discount plugins that apply fixed markdowns, wholesale plugins that show different prices to different customer roles, and competitor repricers that match or undercut whatever another store charges. None of them, on their own, answer the actual question merchants are trying to solve, which is what your own customers will pay for a specific product. That gap is exactly what an elasticity-based tool like Zorin is built to close.</p>
 
@@ -1624,6 +1815,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-30",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Bestsellers and slow sellers need different pricing strategies because they're solving different problems: a bestseller's question is how much more profit you can extract from demand that's already proven, while a slow seller's question is whether the price itself, not the product, is the reason it isn't moving. Applying one blanket pricing rule across a catalog treats both as if they were the same problem, and that's usually where margin gets left on the table or dead stock quietly piles up.</p>
 
@@ -1721,6 +1916,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-30",
     readingTime: "6 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">No, you don't need a data analyst to price your products well. The underlying math, elasticity modeling from your sales history, is genuinely statistical, but the calculation itself can run automatically the moment you upload your sales data. What used to require a dedicated analyst is now a mechanical step, not a skill you personally need to acquire.</p>
 
@@ -1816,6 +2015,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-30",
     readingTime: "7 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">A commonly cited benchmark for online stores is 60 to 70% gross margin and 10 to 20% net margin, though this varies meaningfully by category and business model. The more useful answer, though, is that a "good" margin for your specific store is whatever your own cost structure and demand curve actually support, not an industry average copied from a blog post. Benchmarks are a sanity check, not a target to force your pricing toward.</p>
 
@@ -1908,6 +2111,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-30",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Usually, yes, if your supplier costs, fees, or fulfillment expenses have genuinely risen, absorbing that increase indefinitely just shrinks your margin quietly instead of addressing it directly. The harder question isn't whether to raise prices, it's how much and how fast, since a poorly timed or oversized increase can cost you more in lost customers than the cost increase itself would have.</p>
 
@@ -2005,6 +2212,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-30",
     readingTime: "7 min read",
     category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">You can price a whole catalog without reviewing every product manually by letting each SKU's own elasticity model generate a recommendation automatically, then applying the ones you trust in bulk while reviewing individually only the products flagged with lower confidence or bigger changes. The manual, one-by-one approach isn't a discipline worth admiring, it's a bottleneck that doesn't scale past a small handful of products.</p>
 
@@ -2105,6 +2316,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-29",
     readingTime: "8 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">You should trust an AI pricing recommendation exactly as much as its confidence score and stated reasoning support, no more and no less. A recommendation backed by strong data and a clear explanation deserves real weight. One with thin data and a vague justification deserves a test, not blind acceptance. The mistake most merchants make isn't trusting AI too much or too little in general, it's treating every recommendation with the same level of trust regardless of what's actually behind it.</p>
 
@@ -2197,6 +2412,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-29",
     readingTime: "7 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Price elasticity is just a number describing how much your sales volume changes when your price changes, calculated directly from your own sales history. A lot of merchants assume it's academic jargon that only applies to economists or huge retailers with data teams. In reality, it's one of the simplest, most directly useful numbers a small store can calculate, and you likely already have the raw data sitting in your order history.</p>
 
@@ -2290,6 +2509,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-29",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Without sales history, you can't yet calculate elasticity, so a new product's launch price should be set with value-based reasoning and a deliberate cost-plus floor, then corrected quickly once real sales data starts to accumulate. The honest answer is that a launch price is always a hypothesis, not a settled number, and the goal is getting to real data as fast as possible, not perfecting a guess.</p>
 
@@ -2395,6 +2618,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-29",
     readingTime: "8 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Sales dropping after a price increase isn't automatically a sign the increase was wrong, it's often exactly what elasticity predicts, and the real question is whether the resulting profit went up or down, not whether unit volume did. A price increase that costs you 10% of your sales volume while raising your margin 20% usually leaves you more profitable overall, even though the drop in units feels like a bad outcome in the moment.</p>
 
@@ -2492,6 +2719,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-29",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Most small catalogs are well served by reviewing pricing on a regular cadence, commonly monthly, rather than reacting to every minor fluctuation or leaving prices untouched for months at a time. The right frequency depends more on how fast your costs and demand actually shift than on a fixed rule, but the two failure modes to avoid are the same for almost everyone: changing too often to react to noise, or changing so rarely that a price quietly drifts out of alignment with reality.</p>
 
@@ -2589,6 +2820,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-28",
     readingTime: "8 min read",
     category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">You know what to price your products by reading your own sales history: how many units sold at each price you've charged in the past tells you exactly how sensitive your customers are to price, a number called elasticity. From that single number, you can calculate the price that maximizes profit for that specific product, not a guess borrowed from a competitor or a gut feeling about what "feels right."</p>
 
@@ -2687,6 +2922,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-28",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Your store is very likely leaving money on the table if you can't remember the last time you deliberately changed a price based on data, rather than a hunch, a competitor's move, or simply not touching it since launch. The signs are rarely dramatic. Healthy sales volume can sit right on top of a real pricing problem without anything obviously breaking.</p>
 
@@ -2782,6 +3021,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-28",
     readingTime: "8 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">Often, yes, and not just because of fees. Customers who buy on Amazon and customers who buy on your own Shopify store frequently have different price sensitivity, because they arrived through different channels with different expectations. The only reliable way to know if that's true for your specific catalog is to look at your own sales history on each channel separately, not assume it either way.</p>
 
@@ -2875,6 +3118,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-28",
     readingTime: "9 min read",
     category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">If you're evaluating a Shopify pricing app, look for three things: does it learn from your own sales data instead of guessing or copying competitors, does it tell you how confident it is in a given recommendation, and does it let you review and test before anything actually changes. Most tools skip at least one of these, and that gap is usually where merchants get burned.</p>
 
@@ -2995,6 +3242,10 @@ export const posts: BlogPost[] = [
     date: "2026-07-28",
     readingTime: "8 min read",
     category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
     content: `
 <p class="intro">The safest way to run a sale without wrecking your margin is to test the discount against your product's actual demand curve before applying it, and to make sure the promotional period gets excluded from your pricing data afterward so it doesn't distort future recommendations. Most of the damage from a bad sale isn't the discount itself, it's the corrupted signal that discount leaves behind in your sales history.</p>
 

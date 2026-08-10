@@ -28,7 +28,9 @@ export function buildArticleSchema(post: BlogPost) {
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    author: { "@type": "Organization", name: "Zorin" },
+    author: post.author
+      ? { "@type": "Person", name: post.author.name }
+      : { "@type": "Organization", name: "Zorin" },
     publisher: { "@type": "Organization", name: "Zorin" },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/${post.slug}` },
   };

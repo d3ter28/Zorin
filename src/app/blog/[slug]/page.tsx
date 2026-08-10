@@ -60,6 +60,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.title}
           </h1>
           <div className="mt-3 flex items-center gap-2 text-sm text-zinc-400">
+            {post.author && (
+              <>
+                <span>By {post.author.name}</span>
+                <span>·</span>
+              </>
+            )}
             <span>{formatDate(post.date)}</span>
             <span>·</span>
             <span>{post.readingTime}</span>
@@ -70,6 +76,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           className="prose-content mt-10"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        {post.author && (
+          <div className="mt-12 rounded-xl border border-zinc-100 bg-zinc-50 p-5">
+            <p className="text-sm font-semibold text-zinc-900">Written by {post.author.name}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">{post.author.bio}</p>
+          </div>
+        )}
 
         <div className="mt-16 border-t border-zinc-100 pt-8">
           <a
