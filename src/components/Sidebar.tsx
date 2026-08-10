@@ -18,7 +18,13 @@ const NAV = [
   { href: "/dashboard", icon: SquaresFour, label: "Dashboard", matchPrefix: ["/dashboard", "/product"] },
   { href: "/launch-planner", icon: RocketLaunch, label: "Launch Planner", matchPrefix: ["/launch-planner"] },
   { href: "/guide", icon: BookOpen, label: "Guide", matchPrefix: ["/guide"] },
-  { href: "/settings", icon: Gear, label: "Settings", matchPrefix: ["/settings"] },
+];
+
+const SETTINGS_SUBNAV = [
+  { href: "/settings/account", label: "Account" },
+  { href: "/settings/billing", label: "Billing" },
+  { href: "/settings/team", label: "Team" },
+  { href: "/settings/integrations", label: "Integrations" },
 ];
 
 function NavItem({
@@ -58,6 +64,62 @@ function NavItem({
   );
 }
 
+function SettingsNavGroup({ pathname }: { pathname: string }) {
+  const expanded = pathname.startsWith("/settings");
+
+  return (
+    <div>
+      <Link
+        href="/settings"
+        className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors"
+        style={{ color: ITEM_TEXT }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.backgroundColor = ITEM_HOVER_BG;
+          (e.currentTarget as HTMLElement).style.color = ITEM_HOVER_TEXT;
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.backgroundColor = "";
+          (e.currentTarget as HTMLElement).style.color = ITEM_TEXT;
+        }}
+      >
+        <Gear size={16} weight={expanded ? "fill" : "regular"} />
+        Settings
+      </Link>
+      {expanded && (
+        <div className="ml-4 mt-0.5 space-y-0.5 border-l pl-3" style={{ borderColor: DIVIDER }}>
+          {SETTINGS_SUBNAV.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                  active ? "bg-accent text-accent-fg" : ""
+                }`}
+                style={active ? undefined : { color: ITEM_TEXT }}
+                onMouseEnter={(e) => {
+                  if (!active) {
+                    (e.currentTarget as HTMLElement).style.backgroundColor = ITEM_HOVER_BG;
+                    (e.currentTarget as HTMLElement).style.color = ITEM_HOVER_TEXT;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!active) {
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "";
+                    (e.currentTarget as HTMLElement).style.color = ITEM_TEXT;
+                  }
+                }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function Sidebar({ merchantName }: { merchantName?: string }) {
   const pathname = usePathname();
   const [feedbackOpen, setFeedbackOpen] = useState(false);
@@ -90,6 +152,7 @@ export function Sidebar({ merchantName }: { merchantName?: string }) {
             active={matchPrefix.some((p) => pathname === p || pathname.startsWith(p + "/"))}
           />
         ))}
+        <SettingsNavGroup pathname={pathname} />
       </nav>
 
       {/* Feedback + Logout */}
