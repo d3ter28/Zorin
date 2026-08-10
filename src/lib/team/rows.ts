@@ -92,3 +92,25 @@ export function summarizeRemovalFailures(results: RemovalResult[]): string | nul
   if (failures.length === 0) return null;
   return `Some removals failed:\n${failures.map((f) => `${f.email}: ${f.error ?? "failed"}`).join("\n")}`;
 }
+
+export type ActionKind = "remove" | "resend" | "revoke" | "leave";
+
+/**
+ * Which row-action kinds are available for a given viewer/row combination.
+ * Owner viewing a Member -> remove. Owner viewing an invite -> resend + revoke.
+ * Member viewing their own row -> leave. Everything else -> none.
+ */
+export function actionKindsForRow(
+  row: TeamRow,
+  { isOwner, currentUserId }: { isOwner: boolean; currentUserId: string },
+): ActionKind[] {
+  if (isOwner && row.kind === "member" && row.role !== "OWNER") return ["remove"];
+  if (isOwner && row.kind === "invite") return ["resend", "revoke"];
+  if (!isOwner && row.kind === "member" && row.id === currentUserId) return ["leave"];
+  return [];
+}
+
+/** The DELETE endpoint for removing/revoking a given row. */
+export function teamRowEndpoint(row: TeamRow): string {
+  return row.kind === "member" ? `/api/team/${row.id}` : `/api/team/invitations/${row.id}`;
+}

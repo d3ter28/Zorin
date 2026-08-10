@@ -5,6 +5,8 @@ import {
   sortTeamRows,
   removableRowIds,
   summarizeRemovalFailures,
+  actionKindsForRow,
+  teamRowEndpoint,
 } from "./rows";
 
 const members = [
@@ -185,5 +187,51 @@ describe("summarizeRemovalFailures", () => {
     expect(result).toBe(
       "Some removals failed:\nb@example.com: Not found\nc@example.com: failed",
     );
+  });
+});
+
+describe("actionKindsForRow", () => {
+  const rows = normalizeTeamRows(members, pendingInvites);
+  const memberRow = rows.find((r) => r.id === "u2")!; // MEMBER row
+  const ownerRow = rows.find((r) => r.id === "u1")!; // OWNER row
+  const inviteRow = rows.find((r) => r.id === "i1")!;
+
+  it("Owner viewing a Member row -> remove", () => {
+    expect(actionKindsForRow(memberRow, { isOwner: true, currentUserId: "u1" })).toEqual(["remove"]);
+  });
+
+  it("Owner viewing an invite row -> resend + revoke", () => {
+    expect(actionKindsForRow(inviteRow, { isOwner: true, currentUserId: "u1" })).toEqual(["resend", "revoke"]);
+  });
+
+  it("Member viewing their own row -> leave", () => {
+    expect(actionKindsForRow(memberRow, { isOwner: false, currentUserId: "u2" })).toEqual(["leave"]);
+  });
+
+  it("Owner viewing their own row -> no actions", () => {
+    expect(actionKindsForRow(ownerRow, { isOwner: true, currentUserId: "u1" })).toEqual([]);
+  });
+
+  it("Member viewing another Member's row -> no actions", () => {
+    const otherMemberRow = rows.find((r) => r.id === "u1")!;
+    expect(actionKindsForRow(otherMemberRow, { isOwner: false, currentUserId: "u2" })).toEqual([]);
+  });
+
+  it("Member viewing an invite row -> no actions", () => {
+    expect(actionKindsForRow(inviteRow, { isOwner: false, currentUserId: "u2" })).toEqual([]);
+  });
+});
+
+describe("teamRowEndpoint", () => {
+  const rows = normalizeTeamRows(members, pendingInvites);
+
+  it("returns the member endpoint for a member row", () => {
+    const row = rows.find((r) => r.id === "u2")!;
+    expect(teamRowEndpoint(row)).toBe("/api/team/u2");
+  });
+
+  it("returns the invitation endpoint for an invite row", () => {
+    const row = rows.find((r) => r.id === "i1")!;
+    expect(teamRowEndpoint(row)).toBe("/api/team/invitations/i1");
   });
 });
