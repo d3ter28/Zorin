@@ -14,6 +14,122 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "price-elasticity-vs-repricing-software",
+    title: "Price Elasticity vs Repricing Software: Which Ecommerce Tool Fits?",
+    excerpt:
+      "Repricing software watches competitors. Elasticity software reads your own sales history. Picking the wrong one for your store can quietly cost you margin.",
+    date: "2026-08-12",
+    readingTime: "8 min read",
+    category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Repricing software watches your competitors and adjusts your prices to match or beat them. Price elasticity software reads your own sales history and tells you how your own customers respond to price changes. They solve different problems, and picking the wrong one for your store can quietly cost you margin either way.</p>
+
+<p>The confusion between the two is common. The tools all get lumped together under "pricing software," the marketing language overlaps, and most comparison pages don't actually explain the mechanism underneath. So let's fix that.</p>
+
+<h2>What Repricing Software Actually Does</h2>
+<p>Tools like Prisync, Price2Spy, and RepricerExpress track what your competitors charge, then apply a rule you configure: match the lowest price, stay 2% under the cheapest listing, never drop below a margin floor. The data source is external. It's your competitor's storefront, not your own store.</p>
+<p>This works well when the job is genuinely competitive: winning a marketplace buy box, keeping pace on commodity products where your customer is comparison shopping by default. Prisync's current plans run <strong>$99 a month for up to 100 products (Professional) up to $399 a month for up to 5,000 products (Platinum)</strong>, with API access adding a further 20% on top, so cost scales with catalog size fast.</p>
+<p>The mechanism has a structural limitation, though. A competitor's price was set based on their costs, their brand, and their own customers, not yours. Matching it tells you nothing about what <a href="/blog/should-you-price-below-at-or-above-your-competitors">your specific buyers are actually willing to pay</a>. Chase it too aggressively and you can end up in a race to the bottom that neither store can afford.</p>
+
+<h2>What Price Elasticity Software Actually Does</h2>
+<p>Elasticity software fits a demand model to your own historical price and quantity data. Instead of asking "what is the competitor charging," it asks "what happens to my sales when my price moves."</p>
+<p>Here's a worked example of how that read actually looks. Say a product's price rose 65% and demand fell 70%. Divide the percentage change in quantity by the percentage change in price and you get an elasticity of roughly -1.08, meaning demand is fairly responsive to price. A coefficient close to zero means the product is inelastic (price moves barely change demand), while a coefficient further from zero means it's elastic (small price moves shift demand a lot). That single number tells you far more about a specific SKU than any competitor's listed price does.</p>
+<p>This is the mechanism Zorin runs, specifically: connect your Shopify or WooCommerce store, or upload a sales history CSV, and Zorin fits a log-log regression per SKU. You get a raise, lower, or hold recommendation, an estimated profit lift, and <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence score based on how much real price variation actually supports the read</a>. A thin-data product never gets presented with the same certainty as a well-established one. Nothing here touches or compares against competitor prices, that mechanism was deliberately left out in favor of reading first-party demand only.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>A repricer would show you a competitor's number. This is what your own demand model shows instead.</figcaption>
+</figure>
+
+<h2>Prisync vs Competera vs an Elasticity Tool: Side-by-Side</h2>
+<table>
+  <thead>
+    <tr><th></th><th>Prisync (repricer)</th><th>Competera (elasticity, enterprise)</th><th>Zorin (elasticity, SMB)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Data source</td><td>Competitor prices (scraped/monitored)</td><td>Merchant sales history + market signals</td><td>Merchant's own sales history only</td></tr>
+    <tr><td>Core output</td><td>Rule-based price match/undercut</td><td>AI price recommendation + scenarios</td><td>Raise/lower/hold + profit lift + confidence score</td></tr>
+    <tr><td>Typical buyer</td><td>Retailers competing on marketplaces</td><td>Mature, large-scale retail and brand teams</td><td>Independent and SMB Shopify/WooCommerce merchants</td></tr>
+    <tr><td>Entry pricing</td><td>$99 to $399+/month by catalog size</td><td>Enterprise, custom quote</td><td>Built for lean teams, self-serve setup</td></tr>
+    <tr><td>Competitor data used?</td><td>Yes, it's the core input</td><td>Sometimes blended in</td><td>No, explicitly excluded</td></tr>
+  </tbody>
+</table>
+
+<h2>Which One Fits a Small or Mid-Size Store</h2>
+<p>If you're selling on a marketplace where buy-box visibility depends on being the cheapest listed price, a repricer solves a real, immediate problem. That's a legitimate use case and it's what Prisync and its peers are built for.</p>
+<p>If your store has its own brand, its own customer base, and at least 10 to 150+ SKUs with roughly 6 months of sales history that includes some real price movement (elasticity needs price variation to read, it can't work from volume data alone), an elasticity read is going to tell you something a competitor's price never will. That's the profile Zorin is built around: a store owner or a small ops team of one to five people handling pricing as one job among many, not a dedicated analyst.</p>
+<p>Enterprise elasticity platforms like Competera exist too, but they're generally priced and built for retailers with in-house pricing teams already. Zorin sits specifically in the gap between "no pricing intelligence at all" and "enterprise pricing team," aimed at merchants who don't have the headcount for the second option.</p>
+
+<h2>Do You Actually Need Elasticity Data, or Is Repricing Enough</h2>
+<p>Ask yourself one direct question: is your product a commodity where the customer is actively comparing your price to five other identical listings right now, or is it something where your own customer's behavior, not the competitor's number, actually decides the sale?</p>
+<p>For true commodity SKUs on competitive marketplaces, repricing is doing real work. For most independent stores with their own brand and audience, the more useful question isn't "what is everyone else charging," it's "what has my own data already told me my customers will pay." A rule copied from a discount plugin's defaults or a reflexive match against a competitor's number isn't a pricing strategy, it's an assumption standing in for one.</p>
+
+<h2>Where Zorin Fits</h2>
+<p>Zorin is the elasticity engine built specifically for that second group. Connect your Shopify or WooCommerce store, or upload a CSV, and Zorin fits a price elasticity model per SKU from your own sales history, then hands you a plain raise, lower, or hold call with the reasoning attached: the elasticity, the estimated profit lift, and a confidence label so you know how much data actually backs the number. Nothing applies automatically. You review each recommendation, adjust it with a slider or your own number, preview the margin impact, and apply it one product at a time or in bulk. Alongside the elasticity read, <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">Zorin also offers a separate Van Westendorp price sensitivity survey</a>, a four-question, no-login customer survey that gives you a second, stated-preference signal to read next to your own sales data, not blended into it.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Repricing software reads competitor prices and applies a rule you configure; elasticity software reads your own sales history and models how your customers actually respond to price.</li>
+<li>Repricing earns its keep on true commodity SKUs where customers are actively price comparing, typically on marketplaces where buy-box visibility matters.</li>
+<li>Elasticity is the better signal for stores with their own brand and customer base, since a competitor's price reflects their costs and audience, not yours.</li>
+<li>Enterprise elasticity platforms like Competera exist but are priced and built for large retail teams; tools like Zorin target the SMB gap below that.</li>
+<li>The two categories aren't competing answers to the same question, they answer different questions, and most independent stores need the elasticity one.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the difference between competitor price tracking tools and AI-based price optimization software for ecommerce?</h3>
+<p>Competitor price tracking tools (Prisync, Price2Spy) monitor other stores' prices and apply rules to match or beat them. AI-based price optimization software reads your own sales history and models how your specific customers respond to price changes.</p>
+</div>
+<div class="faq-item">
+<h3>Which ecommerce pricing tool is easiest to set up for a small Shopify store on a budget?</h3>
+<p>It depends on the job. For competitor monitoring, Prisync's entry plan starts at $99/month. For elasticity-based pricing built for lean teams without a data analyst, Zorin is designed for self-serve setup by connecting Shopify or WooCommerce directly.</p>
+</div>
+<div class="faq-item">
+<h3>What's the best pricing software for ecommerce that actually models price elasticity, not just repricing rules?</h3>
+<p>Elasticity modeling requires fitting a demand curve to real price-and-quantity history, which repricers don't do. Zorin does this at the SMB level; Competera offers a similar mechanism at enterprise scale and pricing.</p>
+</div>
+<div class="faq-item">
+<h3>Prisync vs Competera vs a price elasticity tool: which one fits a small to mid-size online store?</h3>
+<p>Prisync fits stores competing on marketplace price visibility. Competera is built for large retailers with in-house pricing teams. A tool like Zorin fits independent and SMB merchants who want elasticity-based recommendations without enterprise cost or complexity.</p>
+</div>
+<div class="faq-item">
+<h3>Is dynamic repricing software worth it, or do you need real demand and elasticity data to price SKUs correctly?</h3>
+<p>Repricing is worth it if your product is a commodity where customers are actively price comparing. For most independent stores, elasticity data grounded in your own sales history says more about what your customers will actually pay than any competitor's listed price.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin compare my prices against competitors?</h3>
+<p>No. Zorin explicitly does not scrape or compare competitor prices. Every recommendation is grounded in your own sales history, not the market.</p>
+</div>
+<div class="faq-item">
+<h3>How much sales history do I need before Zorin's recommendations are reliable?</h3>
+<p>Zorin generally needs at least 6 months of sales history with some real price variation in it. A confidence score on every recommendation tells you how much data is actually supporting that specific read.</p>
+</div>
+<div class="faq-item">
+<h3>What does a Zorin recommendation actually look like?</h3>
+<p>A plain raise, lower, or hold call per SKU, paired with the elasticity behind it, an estimated profit lift, and a confidence label, for example: "your elasticity is -1.2, raising to $85 lifts profit an estimated 14%."</p>
+</div>
+<div class="faq-item">
+<h3>Can I apply Zorin's recommendations automatically?</h3>
+<p>No. Nothing changes without your review. You can adjust any recommendation with a slider or your own number, preview the margin impact, and apply changes one product at a time or in bulk, but the decision is always yours.</p>
+</div>
+<div class="faq-item">
+<h3>What is the Van Westendorp survey Zorin offers?</h3>
+<p>A separate, four-question customer survey that produces an acceptable price range and optimal price point based on what customers say they'd pay, kept distinct from the elasticity model's read on what customers actually did.</p>
+</div>
+</section>
+
+<p class="conclusion">Repricing and elasticity modeling aren't competing answers to the same question, they're built to answer two different ones. If your store's pricing problem is "am I visible at the right price point on a marketplace," a repricer earns its keep. If it's "what should this specific product actually cost given how my customers behave," that's a question only your own sales history can answer, and it's the one <a href="/signup">Zorin</a> was built to read.</p>
+    `.trim(),
+  },
+  {
     slug: "price-increase-killed-your-sales-heres-the-real-reason",
     title: "Price Increase Killed Your Sales? Here's the Real Reason",
     excerpt:
