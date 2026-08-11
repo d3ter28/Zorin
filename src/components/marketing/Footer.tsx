@@ -97,10 +97,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-zinc-100 pt-6">
+        <div className="mt-12 flex flex-col items-start gap-4 border-t border-zinc-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-zinc-500">
             &copy; {new Date().getFullYear()} Zorin. All rights reserved.
           </p>
+          <a href="https://smollaunch.com" target="_blank" rel="noopener">
+            <img
+              src="/badges/smollaunch-featured.svg"
+              alt="Zorin — Featured on Smol Launch"
+              loading="lazy"
+              width={250}
+              height={60}
+              className="h-10 w-auto opacity-90 transition-opacity hover:opacity-100"
+            />
+          </a>
         </div>
       </div>
     </footer>
