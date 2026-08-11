@@ -135,9 +135,7 @@ export function WooCommerceConnectionCard() {
   }
 
   return (
-    <section className="rounded-xl border border-line bg-surface p-5">
-      <h2 className="text-sm font-semibold text-ink">WooCommerce Connection</h2>
-
+    <>
       {uiState === "loading" && (
         <p className="mt-3 text-sm text-muted">Loading…</p>
       )}
@@ -272,6 +270,6 @@ export function WooCommerceConnectionCard() {
           {error}
         </p>
       )}
-    </section>
+    </>
   );
 }

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { SquaresFour, RocketLaunch, Gear, SignOut, ChatTeardrop, BookOpen } from "@phosphor-icons/react";
+import { SquaresFour, RocketLaunch, Gear, SignOut, ChatTeardrop, BookOpen, CaretRight } from "@phosphor-icons/react";
 import { LogoutButton } from "./LogoutButton";
 import { FeedbackModal } from "./FeedbackModal";
 
@@ -65,13 +65,17 @@ function NavItem({
 }
 
 function SettingsNavGroup({ pathname }: { pathname: string }) {
-  const expanded = pathname === "/settings" || pathname.startsWith("/settings/");
+  const [expanded, setExpanded] = useState(
+    () => pathname === "/settings" || pathname.startsWith("/settings/"),
+  );
 
   return (
     <div>
-      <Link
-        href="/settings"
-        className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors"
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-expanded={expanded}
+        className="flex w-full items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors"
         style={{ color: ITEM_TEXT }}
         onMouseEnter={(e) => {
           (e.currentTarget as HTMLElement).style.backgroundColor = ITEM_HOVER_BG;
@@ -84,7 +88,12 @@ function SettingsNavGroup({ pathname }: { pathname: string }) {
       >
         <Gear size={16} weight={expanded ? "fill" : "regular"} />
         Settings
-      </Link>
+        <CaretRight
+          size={12}
+          className="ml-auto transition-transform"
+          style={{ transform: expanded ? "rotate(90deg)" : "rotate(0deg)" }}
+        />
+      </button>
       {expanded && (
         <div className="ml-4 mt-0.5 space-y-0.5 border-l pl-3" style={{ borderColor: DIVIDER }}>
           {SETTINGS_SUBNAV.map((item) => {
