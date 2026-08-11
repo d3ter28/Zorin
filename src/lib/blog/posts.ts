@@ -1953,10 +1953,10 @@ export const posts: BlogPost[] = [
 <p>"What should I price this at" sounds like one question, but it means something different depending on the product. For a bestseller, demand at the current price is already proven, so the real question is whether that price is leaving profit on the table, whether a modest increase would barely dent volume while meaningfully raising margin. For a slow seller, demand hasn't been proven at all, and the question is whether price is even the actual obstacle, or whether the product simply isn't reaching the right customers.</p>
 
 <h2>Why a Bestseller's Elasticity Often Supports a Higher Price Than You'd Guess</h2>
-<p>A product selling consistently at its current price doesn't automatically mean the current price is optimal, it means the price is acceptable to enough customers to generate steady volume. If the elasticity estimate for that product is low (customers not very price-sensitive), there's often real room to raise price without losing much volume, and the resulting margin gain applies to every unit you're already selling. This is easy to miss precisely because nothing about steady sales signals a problem.</p>
+<p>A product selling consistently at its current price doesn't automatically mean the current price is optimal, it means the price is acceptable to enough customers to generate steady volume. If the elasticity estimate for that product is low (customers not very price-sensitive), there's often real room to raise price without losing much volume, and the resulting margin gain applies to every unit you're already selling, assuming you know <a href="/blog/whats-a-good-profit-margin-for-an-online-store">what counts as a healthy margin for your store in the first place</a>. This is easy to miss precisely because nothing about steady sales signals a problem.</p>
 
 <h2>Why a Slow Seller's Problem Might Not Be Price at All</h2>
-<p>It's tempting to assume a slow-moving product just needs a discount to move. Sometimes that's true. Often, the real issue is visibility, positioning, or simply weaker product-market fit, none of which a lower price actually fixes. Elasticity can help here too: if a product's estimated elasticity is high (very price-sensitive) and it's still not moving even at a reasonable price, that's a signal worth investigating beyond pricing. If elasticity is low and it's still not moving, a discount is unlikely to be the fix, since customers weren't especially price-sensitive to begin with.</p>
+<p>It's tempting to assume a slow-moving product just needs <a href="/blog/how-to-price-a-discount-without-losing-your-margin">a discount to move</a>. Sometimes that's true. Often, the real issue is visibility, positioning, or simply weaker product-market fit, none of which a lower price actually fixes. Elasticity can help here too: if a product's estimated elasticity is high (very price-sensitive) and it's still not moving even at a reasonable price, that's a signal worth investigating beyond pricing. If elasticity is low and it's still not moving, a discount is unlikely to be the fix, since customers weren't especially price-sensitive to begin with.</p>
 
 <table>
   <thead>
@@ -2060,7 +2060,7 @@ export const posts: BlogPost[] = [
 <p>The parts of pricing that genuinely still need a human are judgment calls a model can't make for you: knowing that a product is seasonal for reasons the data alone won't show, recognizing when a competitor's move is temporary versus permanent, deciding whether a recommendation makes sense given something you know about your own customers that isn't captured in the sales history. A tool hands you the statistical output. You still decide what to do with it.</p>
 
 <h2>How the Automation Actually Works</h2>
-<p>You upload your sales history, a CSV export or a live Shopify or WooCommerce sync, and the tool fits a log-log regression per product automatically. The output isn't a raw statistical readout, it's a plain recommendation: raise, lower, or hold, alongside an estimated profit lift and a confidence label based on how much data supports the estimate. The regression happens, but you never have to run it, read it, or defend the math behind it yourself.</p>
+<p>You upload your sales history, a CSV export or a live Shopify or WooCommerce sync, and the tool fits a log-log regression per product automatically. The output isn't a raw statistical readout, it's a plain recommendation: raise, lower, or hold, alongside an estimated profit lift and a confidence label based on how much data supports the estimate. The regression happens, but you never have to run it, read it, or defend the math behind it yourself, though if you're curious what that math actually looks like, <a href="/blog/how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist">here's the formula in plain terms</a>.</p>
 
 <table>
   <thead>
@@ -2086,7 +2086,7 @@ export const posts: BlogPost[] = [
 <p>At a large enough scale, with a catalog spanning thousands of SKUs, multiple markets, and pricing questions that go beyond single-product elasticity (bundling strategy, cross-product cannibalization, complex promotional calendars), a dedicated analyst or pricing team earns their keep. That threshold is far higher than most SMB merchants operating a lean one-to-five-person team, which is exactly the gap automated elasticity modeling is built to close in the meantime.</p>
 
 <h2>What This Means for a Lean Team</h2>
-<p>You don't need to learn statistics, hire someone who has, or build a spreadsheet model to price well. You need a way to read your own sales data systematically, which a tool can do automatically, and the judgment to apply the resulting recommendation with your own product context in mind. If you want to see what your own catalog's elasticity looks like without doing the math yourself, <a href="/signup">upload your sales history</a> and let the model run.</p>
+<p>You don't need to learn statistics, hire someone who has, or build a spreadsheet model to price well. What you need instead is <a href="/blog/best-price-optimization-app-for-small-shopify-stores">the right kind of tool for a lean team</a>, one that reads your own sales data systematically, plus the judgment to apply the resulting recommendation with your own product context in mind. If you want to see what your own catalog's elasticity looks like without doing the math yourself, <a href="/signup">upload your sales history</a> and let the model run.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2347,7 +2347,7 @@ export const posts: BlogPost[] = [
 </div>
 
 <h2>Why One-by-One Doesn't Scale</h2>
-<p>Reviewing ten products individually is manageable for an afternoon. Reviewing a few hundred, the reality for many established SMB catalogs, simply isn't, not without either a dedicated team or an unreasonable amount of time taken away from running the rest of the business. The manual approach isn't more careful, it's just slower, and slowness at that scale usually means most of the catalog never gets reviewed at all, not that it gets reviewed thoroughly.</p>
+<p>Reviewing ten products individually is manageable for an afternoon. Reviewing a few hundred, the reality for many established SMB catalogs, simply isn't, not without either a dedicated team or an unreasonable amount of time taken away from running the rest of the business. The manual approach isn't more careful, it's just slower, and slowness at that scale usually means most of the catalog never gets reviewed at all, not that it gets reviewed thoroughly. Once you trust the pattern of recommendations, <a href="/blog/how-to-automate-pricing-updates-across-your-shopify-store">automating the export-review-apply cycle</a> removes even more of that manual overhead.</p>
 
 <h2>What a Catalog-Wide View Actually Replaces</h2>
 <p>Instead of opening each product's page individually, a catalog view shows every SKU's recommendation (raise, lower, or hold) and estimated profit lift in one list, sortable and scannable in a single pass. This turns "review my whole catalog" from a multi-day task into something you can meaningfully process in one sitting, because you're scanning a list of outcomes rather than re-deriving each one from scratch.</p>
@@ -2371,7 +2371,7 @@ export const posts: BlogPost[] = [
 </figure>
 
 <h2>Where Bulk Applying Is Genuinely Safe</h2>
-<p>A high-confidence recommendation, backed by a strong model fit and a meaningful volume of historical data, is a reasonable candidate for bulk applying without individual review, since the statistical support behind it is already substantial. This is where most of your time savings actually come from: not skipping review entirely, but not needing to re-verify a conclusion that's already well supported.</p>
+<p>A high-confidence recommendation, backed by a strong model fit and a meaningful volume of historical data, is a reasonable candidate for bulk applying without individual review, since the statistical support behind it is already substantial. This is where most of your time savings actually come from: not skipping review entirely, but not needing to re-verify a conclusion that's already well supported. That statistical support is exactly what separates this from <a href="/blog/price-elasticity-vs-repricing-software">a repricing tool applying the same rule across the board regardless of each product's own data</a>.</p>
 
 <h2>Where Individual Review Still Earns Its Keep</h2>
 <p>A Weak-confidence recommendation, an unusually large suggested change, or a product where you have outside context the model can't see (a known upcoming promotion, a supplier issue, a seasonal quirk) is worth a quick individual look before applying. The point isn't to review everything by hand, it's to concentrate your limited attention on the subset that actually benefits from it.</p>
@@ -2458,7 +2458,7 @@ export const posts: BlogPost[] = [
 <p><strong>This is the difference between a black box and a reasoning partner.</strong> One asks for faith. The other shows its work, so you're evaluating the logic, not just accepting a conclusion.</p>
 
 <h2>Confidence Scores Exist Specifically So You Don't Trust Uniformly</h2>
-<p>A model health indicator (commonly labeled something like Strong, Fair, or Weak fit, alongside an R-squared value) tells you directly how much statistical support exists behind a given recommendation. A Strong-fit recommendation on a bestseller with months of price history deserves real weight. A Weak-fit recommendation on a product that's only ever had one price is closer to an educated hypothesis than a settled answer, and should be treated that way, tested rather than applied outright.</p>
+<p>A model health indicator (commonly labeled something like Strong, Fair, or Weak fit, alongside an R-squared value) tells you directly how much statistical support exists behind a given recommendation. A Strong-fit recommendation on a bestseller with months of price history deserves real weight. A Weak-fit recommendation on a product that's only ever had one price is closer to an educated hypothesis than a settled answer, and should be treated that way, tested rather than applied outright. If you want to see <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store">how that elasticity number is actually calculated</a>, the underlying math is straightforward once you know the formula.</p>
 <table>
   <thead>
     <tr><th>Confidence level</th><th>What it means</th><th>How much to trust it</th></tr>
@@ -2483,7 +2483,7 @@ export const posts: BlogPost[] = [
 <p>Every recommendation ships with the elasticity number, the R-squared fit, a confidence label, and the estimated profit lift, not a bare instruction. Nothing applies automatically. You review each raise, lower, or hold call and apply it yourself, one product at a time or in bulk, and a what-if simulator lets you preview a candidate price against your own demand curve before you commit to anything. The goal isn't to ask for blind trust. It's to make the reasoning visible enough that you can decide, case by case, how much a given recommendation deserves.</p>
 
 <h2>A Practical Test You Can Run Yourself</h2>
-<p>Pick one product with a Strong confidence score and one with a Weak one. Apply the Strong recommendation and watch the actual outcome against the projected lift. Test the Weak recommendation with the simulator first rather than applying it directly, and let more sales history accumulate before trusting it fully. This single comparison teaches you more about how much to trust the system than any general rule would. If you're ready to see your own numbers, <a href="/signup">connect your sales history</a> and start with a handful of products before trusting it with your whole catalog.</p>
+<p>Pick one product with a Strong confidence score and one with a Weak one. Apply the Strong recommendation and watch the actual outcome against the projected lift. Test the Weak recommendation with the simulator first rather than applying it directly, and let more sales history accumulate before trusting it fully. Skipping that test on a Weak-fit call is exactly how <a href="/blog/price-increase-killed-your-sales-heres-the-real-reason">a price increase can tank sales more than expected</a>. This single comparison teaches you more about how much to trust the system than any general rule would. If you're ready to see your own numbers, <a href="/signup">connect your sales history</a> and start with a handful of products before trusting it with your whole catalog.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2550,7 +2550,7 @@ export const posts: BlogPost[] = [
 <p>It's easy to assume elasticity belongs in an economics textbook, not a small Shopify store's dashboard. That assumption comes from how it's usually taught, as an abstract curve with theoretical demand functions, rather than from what it actually requires: your own price and quantity history, nothing more exotic than that. Any store with some price variation in its sales history has what's needed to calculate it.</p>
 
 <h2>What the Number Actually Means</h2>
-<p>Elasticity is expressed as a single figure, typically negative, describing the percentage change in quantity sold for a percentage change in price. If 100 customers bought a product at $49 and only 55 bought it after you raised the price to $59, that gap is a direct, measurable read on how price-sensitive your buyers are for that specific product.</p>
+<p>Elasticity is expressed as a single figure, typically negative, describing the percentage change in quantity sold for a percentage change in price. If 100 customers bought a product at $49 and only 55 bought it after you raised the price to $59, that gap is a direct, measurable read on how price-sensitive your buyers are for that specific product, separate from <a href="/blog/does-charm-pricing-999-actually-work">whatever effect crossing a psychological price threshold like $49.99 might have added on top</a>.</p>
 <table>
   <thead>
     <tr><th>Elasticity value</th><th>What it means</th><th>What it suggests</th></tr>
@@ -2563,7 +2563,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <h2>Why This Beats Gut Feel or Copying a Competitor</h2>
-<p>Gut feel tells you nothing about whether $79 or $89 makes more money, because there's no data behind the instinct either way. Copying a competitor's price assumes your customers behave identically to theirs, which is rarely true since they arrived through different channels with different expectations. Elasticity is the only one of the three that's actually grounded in how your specific customers respond, because it's calculated from their actual past behavior, not a guess about it.</p>
+<p>Gut feel tells you nothing about whether $79 or $89 makes more money, because there's no data behind the instinct either way. Copying a competitor's price assumes your customers behave identically to theirs, which is rarely true since they arrived through different channels with different expectations, the same reason <a href="/blog/price-elasticity-vs-repricing-software">a repricer and an elasticity model answer fundamentally different questions</a>. Elasticity is the only one of the three that's actually grounded in how your specific customers respond, because it's calculated from their actual past behavior, not a guess about it.</p>
 
 <h2>How the Calculation Actually Works</h2>
 <p>The underlying method is a log-log regression across your historical price and quantity data, which fits a line describing the relationship between the two on a percentage basis. You don't need to run this by hand. A model does the regression automatically from an uploaded sales history or a live Shopify or WooCommerce sync, and returns the elasticity coefficient alongside an R-squared score, which tells you how well the model actually fits your data, not just what the number is.</p>
@@ -2663,7 +2663,7 @@ export const posts: BlogPost[] = [
 <p>The fastest way out of "no sales history" is a small, planned price test rather than picking one number and leaving it untouched indefinitely. Testing two or three price points early, even briefly, gives you the price-and-quantity variation elasticity actually needs to be calculated. Sitting at one unchanged price for months produces the exact blind spot: no variation means no signal, regardless of how much volume moves.</p>
 
 <h2>What Changes Once Real Data Exists</h2>
-<p>As soon as there's enough sales history with some price variation, an elasticity model can be fit for the product just like any established item in your catalog, with a confidence score reflecting how thin that early data still is. Early on, expect a Weak or Fair confidence label rather than Strong, and treat the resulting recommendation as directional rather than final until more history accumulates.</p>
+<p>As soon as there's enough sales history with some price variation, an elasticity model can be fit for the product just like any established item in your catalog, with a confidence score reflecting how thin that early data still is, no statistics background required to read it, <a href="/blog/do-i-need-a-data-analyst-to-price-my-products-well">the calculation itself runs automatically</a>. Early on, expect a Weak or Fair confidence label rather than Strong, and treat the resulting recommendation as directional rather than final until more history accumulates.</p>
 <table>
   <thead>
     <tr><th>Stage</th><th>What you have</th><th>What to do</th></tr>
@@ -2689,7 +2689,7 @@ export const posts: BlogPost[] = [
   <li><strong>Test a second price point</strong> within the first few weeks to generate real variation.</li>
   <li><strong>Let a confidence-scored elasticity estimate take over</strong> once there's enough history, and stop relying on the initial guess.</li>
 </ol>
-<p>Once you have even a few weeks of sales at more than one price, <a href="/signup">upload that history</a> and see what the earliest elasticity read looks like, flagged with an honest confidence level rather than false certainty.</p>
+<p>If you're still comparing tools for when that data does arrive, <a href="/blog/best-price-optimization-app-for-small-shopify-stores">here's what to actually look for in a price optimization app built for a lean team</a>. Once you have even a few weeks of sales at more than one price, <a href="/signup">upload that history</a> and see what the earliest elasticity read looks like, flagged with an honest confidence level rather than false certainty.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -3313,7 +3313,7 @@ export const posts: BlogPost[] = [
   <li><strong>Expand to the rest of your catalog</strong> once you trust the pattern of recommendations against real results.</li>
 </ol>
 <p>The trust-building step matters more than any single feature. The value of an AI-assisted recommendation holds up because you can see the reasoning and test it before it goes live, not because you're asked to believe it on faith.</p>
-<p>Once you've picked a tool, <a href="/blog/is-your-store-leaving-money-on-the-table">check whether your current prices are already leaving profit on the table</a>. If a sale is coming up, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to discount without corrupting your pricing data</a>.</p>
+<p>Once you've picked a tool, <a href="/blog/is-your-store-leaving-money-on-the-table">check whether your current prices are already leaving profit on the table</a>. If a sale is coming up, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to discount without corrupting your pricing data</a>. Running WooCommerce instead of Shopify? <a href="/blog/woocommerce-pricing-apps-what-to-look-for">The same evaluation criteria apply, with a few platform-specific differences worth knowing</a>.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
