@@ -3,7 +3,7 @@ import { importProducts } from "./importProducts";
 import type { ProductParseResult } from "./parseProductCsv";
 
 function mockPrisma(existing: { id: string; sku: string; cogs?: number | null }[]) {
-  return {
+  const p = {
     product: {
       findMany: vi.fn().mockResolvedValue(existing),
       create: vi.fn().mockResolvedValue({ id: "new-id" }),
@@ -11,7 +11,15 @@ function mockPrisma(existing: { id: string; sku: string; cogs?: number | null }[
     },
     recommendation: { deleteMany: vi.fn().mockResolvedValue({}) },
     cogsChange: { create: vi.fn().mockResolvedValue({}) },
+    $transaction: vi.fn(),
   };
+  p.$transaction.mockImplementation(async (arg: unknown) => {
+    if (typeof arg === "function") {
+      return arg(p);
+    }
+    return Promise.all(arg as Promise<unknown>[]);
+  });
+  return p;
 }
 
 const parsed = (
@@ -151,10 +159,8 @@ describe("importProducts", () => {
   it("logs a first-set CogsChange (fromCents null) for a newly created product", async () => {
     const prisma = mockPrisma([]);
     await importProducts(prisma as never, "m1", parsed([row({ sku: "NEW-SKU", cogsCents: 3000 })]));
-    expect(prisma.cogsChange.create).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({ fromCents: null, toCents: 3000, source: "csv_import" }),
-      }),
-    );
+    expect(prisma.cogsChange.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({ fromCents: null, toCents: 3000, source: "csv_import", merchantId: "m1" }),
+    });
   });
 });

@@ -16,15 +16,17 @@ export const POST = withErrorHandling(
     const existing = await prisma.product.findUnique({ where: { id }, select: { cogs: true } });
     const prior = existing?.cogs ?? null;
 
-    await prisma.product.update({ where: { id }, data: { cogs } });
-
-    if (cogs !== null && cogs !== prior) {
-      await prisma.cogsChange.create({
-        data: { productId: id, merchantId, fromCents: prior, toCents: cogs, source: "manual_edit" },
-      });
-    }
-
-    await prisma.recommendation.deleteMany({ where: { productId: id } });
+    await prisma.$transaction([
+      prisma.product.update({ where: { id }, data: { cogs } }),
+      ...(cogs !== null && cogs !== prior
+        ? [
+            prisma.cogsChange.create({
+              data: { productId: id, merchantId, fromCents: prior, toCents: cogs, source: "manual_edit" },
+            }),
+          ]
+        : []),
+      prisma.recommendation.deleteMany({ where: { productId: id } }),
+    ]);
 
     return NextResponse.json({ ok: true });
   },

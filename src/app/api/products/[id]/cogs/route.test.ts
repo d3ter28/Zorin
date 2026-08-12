@@ -12,6 +12,7 @@ vi.mock("@/lib/db", () => ({
     product: { update: productUpdate, findUnique: productFindUnique },
     cogsChange: { create: cogsChangeCreate },
     recommendation: { deleteMany: recommendationDeleteMany },
+    $transaction: vi.fn((ops: unknown[]) => Promise.all(ops as Promise<unknown>[])),
   },
 }));
 

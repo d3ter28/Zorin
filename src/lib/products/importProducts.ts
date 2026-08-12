@@ -9,7 +9,7 @@ export interface ProductImportSummary {
 }
 
 /** Minimal Prisma surface this function needs (real client is assignable). */
-type PrismaSurface = Pick<PrismaClient, "product" | "recommendation" | "cogsChange">;
+type PrismaSurface = Pick<PrismaClient, "product" | "recommendation" | "cogsChange" | "$transaction">;
 
 /**
  * Apply a parsed product catalog for one merchant: create new SKUs, update
@@ -41,42 +41,51 @@ export async function importProducts(
     if (id) {
       const before = existing.find((e) => e.id === id);
       const priorCogs = before?.cogs ?? null;
-      await prisma.product.update({
-        where: { id },
-        data: {
-          title: r.title,
-          currentPrice: r.currentPriceCents,
-          category: r.category,
-          cogs: r.cogsCents,
-          estUnits: r.estUnits,
-          imageUrl: r.imageUrl,
-        },
-      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const ops: any[] = [
+        prisma.product.update({
+          where: { id },
+          data: {
+            title: r.title,
+            currentPrice: r.currentPriceCents,
+            category: r.category,
+            cogs: r.cogsCents,
+            estUnits: r.estUnits,
+            imageUrl: r.imageUrl,
+          },
+        }),
+      ];
       if (r.cogsCents !== null && r.cogsCents !== priorCogs) {
-        await prisma.cogsChange.create({
-          data: { productId: id, merchantId, fromCents: priorCogs, toCents: r.cogsCents, source: "csv_import" },
-        });
+        ops.push(
+          prisma.cogsChange.create({
+            data: { productId: id, merchantId, fromCents: priorCogs, toCents: r.cogsCents, source: "csv_import" },
+          }),
+        );
       }
+      await prisma.$transaction(ops);
       touched.push(id);
       updated++;
     } else {
-      const created = await prisma.product.create({
-        data: {
-          merchantId,
-          sku: r.sku,
-          title: r.title,
-          currentPrice: r.currentPriceCents,
-          category: r.category,
-          cogs: r.cogsCents,
-          estUnits: r.estUnits,
-          imageUrl: r.imageUrl,
-        },
-      });
-      if (r.cogsCents !== null) {
-        await prisma.cogsChange.create({
-          data: { productId: created.id, merchantId, fromCents: null, toCents: r.cogsCents, source: "csv_import" },
+      await prisma.$transaction(async (tx) => {
+        const p = await tx.product.create({
+          data: {
+            merchantId,
+            sku: r.sku,
+            title: r.title,
+            currentPrice: r.currentPriceCents,
+            category: r.category,
+            cogs: r.cogsCents,
+            estUnits: r.estUnits,
+            imageUrl: r.imageUrl,
+          },
         });
-      }
+        if (r.cogsCents !== null) {
+          await tx.cogsChange.create({
+            data: { productId: p.id, merchantId, fromCents: null, toCents: r.cogsCents, source: "csv_import" },
+          });
+        }
+        return p;
+      });
       inserted++;
     }
   }
