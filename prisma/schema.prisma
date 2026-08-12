@@ -230,7 +230,7 @@ model Invitation {
 model Campaign {
   id              String            @id @default(cuid())
   merchantId      String
-  merchant        Merchant          @relation(fields: [merchantId], references: [id])
+  merchant        Merchant          @relation(fields: [merchantId], references: [id], onDelete: Cascade)
   name            String
   type            String
   status          String            @default("draft")
@@ -244,6 +244,8 @@ model Campaign {
   createdAt       DateTime          @default(now())
   products        CampaignProduct[]
   logs            CampaignLog[]
+
+  @@index([merchantId])
 }
 
 model CampaignProduct {
@@ -251,7 +253,7 @@ model CampaignProduct {
   campaignId         String
   campaign           Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
   productId          String
-  product            Product   @relation(fields: [productId], references: [id])
+  product            Product   @relation(fields: [productId], references: [id], onDelete: Restrict)
   originalPriceCents Int
   targetPriceCents   Int
   appliedAt          DateTime?
@@ -268,4 +270,6 @@ model CampaignLog {
   event      String
   detail     String?
   createdAt  DateTime @default(now())
+
+  @@index([campaignId])
 }
