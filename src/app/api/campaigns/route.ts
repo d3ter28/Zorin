@@ -56,11 +56,8 @@ export const POST = withErrorHandling(async (req: Request) => {
       throw new HttpError(400, "endsAt must be after startsAt");
     }
   }
-  if (
-    (rules as Record<string, unknown>).marginFloorPct !== undefined &&
-    (typeof (rules as Record<string, unknown>).marginFloorPct !== "number" ||
-      (rules as Record<string, unknown>).marginFloorPct >= 100)
-  ) {
+  const mfp = (rules as Record<string, unknown>).marginFloorPct;
+  if (mfp !== undefined && (typeof mfp !== "number" || mfp >= 100)) {
     throw new HttpError(400, "marginFloorPct must be less than 100");
   }
 

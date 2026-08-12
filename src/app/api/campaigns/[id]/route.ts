@@ -48,11 +48,8 @@ export const PATCH = withErrorHandling(
       if (!body.rules || typeof body.rules !== "object" || Array.isArray(body.rules)) {
         throw new HttpError(400, "Campaign rules must be an object");
       }
-      if (
-        (body.rules as Record<string, unknown>).marginFloorPct !== undefined &&
-        (typeof (body.rules as Record<string, unknown>).marginFloorPct !== "number" ||
-          (body.rules as Record<string, unknown>).marginFloorPct >= 100)
-      ) {
+      const mfp = (body.rules as Record<string, unknown>).marginFloorPct;
+      if (mfp !== undefined && (typeof mfp !== "number" || mfp >= 100)) {
         throw new HttpError(400, "marginFloorPct must be less than 100");
       }
       data.rules = JSON.stringify(body.rules);
