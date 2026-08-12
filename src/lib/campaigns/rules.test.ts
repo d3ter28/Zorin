@@ -142,6 +142,7 @@ describe("calculateTargetPrice — margin floor", () => {
     });
     expect(result.clampedByMarginFloor).toBe(true);
     expect(result.skipped).toBe(false);
+    expect(result.targetPriceCents).toBe(1000);
   });
 
   it("skips margin check when cogs is null", () => {
@@ -161,6 +162,20 @@ describe("calculateTargetPrice — margin floor", () => {
     });
     expect(result.targetPriceCents).toBe(900);
     expect(result.clampedByMarginFloor).toBe(false);
+  });
+
+  it("re-enforces margin floor after rounding pushes price below it", () => {
+    // cogs=900, floor=ceil(900/0.9)=1000, "99" rounding of 1000 would give 999 — below floor
+    // should return 1000, not 999
+    const result = calculateTargetPrice(makeProduct({ currentPrice: 1500, cogs: 900 }), {
+      ...baseRules,
+      percentage: -40,   // 1500 * 0.6 = 900, then clamped to 1000, then "99" rounding → 999 → re-clamped to 1000
+      marginFloorPct: 10,
+      rounding: "99",
+    });
+    expect(result.targetPriceCents).toBe(1000);
+    expect(result.clampedByMarginFloor).toBe(true);
+    expect(result.skipped).toBe(false);
   });
 });
 

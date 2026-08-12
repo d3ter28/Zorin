@@ -107,7 +107,15 @@ export function calculateTargetPrice(product: RuleProduct, rules: CampaignRules)
 
   const { price: afterFloor, clamped } = applyMarginFloor(base.price, product.cogs, rules.marginFloorPct);
   const afterRounding = applyRounding(afterFloor, rules.rounding);
-  const finalPrice = Math.max(afterRounding, 1);
+
+  // Re-enforce margin floor after rounding: rounding down can violate the floor.
+  let finalPrice = Math.max(afterRounding, 1);
+  if (product.cogs !== null) {
+    const floorPrice = Math.ceil(product.cogs / (1 - rules.marginFloorPct / 100));
+    if (finalPrice < floorPrice) {
+      finalPrice = floorPrice;
+    }
+  }
 
   if (finalPrice === product.currentPrice) {
     return { targetPriceCents: finalPrice, skipped: true, skipReason: "no_change", clampedByMarginFloor: clamped };
