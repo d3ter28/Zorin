@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { SquaresFour, RocketLaunch, Gear, SignOut, ChatTeardrop, BookOpen, CaretRight } from "@phosphor-icons/react";
+import { SquaresFour, CalendarBlank, RocketLaunch, Gear, SignOut, ChatTeardrop, BookOpen, CaretRight } from "@phosphor-icons/react";
 import { LogoutButton } from "./LogoutButton";
 import { FeedbackModal } from "./FeedbackModal";
 
@@ -16,6 +16,7 @@ const MERCHANT_TEXT = "oklch(0.50 0.010 265)";
 
 const NAV = [
   { href: "/dashboard", icon: SquaresFour, label: "Dashboard", matchPrefix: ["/dashboard", "/product"] },
+  { href: "/campaigns", icon: CalendarBlank, label: "Campaigns", matchPrefix: ["/campaigns"] },
   { href: "/launch-planner", icon: RocketLaunch, label: "Launch Planner", matchPrefix: ["/launch-planner"] },
   { href: "/guide", icon: BookOpen, label: "Guide", matchPrefix: ["/guide"] },
 ];
