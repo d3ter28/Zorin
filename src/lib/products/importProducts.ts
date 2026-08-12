@@ -9,7 +9,7 @@ export interface ProductImportSummary {
 }
 
 /** Minimal Prisma surface this function needs (real client is assignable). */
-type PrismaSurface = Pick<PrismaClient, "product" | "recommendation">;
+type PrismaSurface = Pick<PrismaClient, "product" | "recommendation" | "cogsChange">;
 
 /**
  * Apply a parsed product catalog for one merchant: create new SKUs, update
@@ -39,6 +39,8 @@ export async function importProducts(
   for (const r of parsed.rows) {
     const id = skuToId.get(r.sku);
     if (id) {
+      const before = existing.find((e) => e.id === id);
+      const priorCogs = before?.cogs ?? null;
       await prisma.product.update({
         where: { id },
         data: {
@@ -50,10 +52,15 @@ export async function importProducts(
           imageUrl: r.imageUrl,
         },
       });
+      if (r.cogsCents !== null && r.cogsCents !== priorCogs) {
+        await prisma.cogsChange.create({
+          data: { productId: id, merchantId, fromCents: priorCogs, toCents: r.cogsCents, source: "csv_import" },
+        });
+      }
       touched.push(id);
       updated++;
     } else {
-      await prisma.product.create({
+      const created = await prisma.product.create({
         data: {
           merchantId,
           sku: r.sku,
@@ -65,6 +72,11 @@ export async function importProducts(
           imageUrl: r.imageUrl,
         },
       });
+      if (r.cogsCents !== null) {
+        await prisma.cogsChange.create({
+          data: { productId: created.id, merchantId, fromCents: null, toCents: r.cogsCents, source: "csv_import" },
+        });
+      }
       inserted++;
     }
   }

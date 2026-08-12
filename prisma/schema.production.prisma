@@ -46,6 +46,7 @@ model Product {
   priceSurveys         PriceSurvey[]
   competitorPrices     CompetitorPrice[]
   campaignProducts     CampaignProduct[]
+  cogsChanges          CogsChange[]
 }
 
 model Recommendation {
@@ -273,4 +274,17 @@ model CampaignLog {
   createdAt  DateTime @default(now())
 
   @@index([campaignId])
+}
+
+model CogsChange {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  merchantId String
+  fromCents  Int?
+  toCents    Int
+  source     String
+  changedAt  DateTime @default(now())
+
+  @@index([productId, changedAt])
 }
