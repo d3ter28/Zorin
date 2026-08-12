@@ -14,6 +14,136 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-know-if-your-prices-are-too-high-or-too-low",
+    title: "How to Know If Your Prices Are Too High or Too Low",
+    excerpt:
+      "Declining sales and high close rates are lagging signals. Price elasticity tells you before you change anything, not after the damage is done.",
+    date: "2026-08-13",
+    readingTime: "8 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Most merchants find out their prices are wrong after the damage is already done. Sales dip and you don't know if it's the price or the season. Margin quietly erodes and you don't notice until the quarterly numbers come in. The only reliable way to know if a price is too high or too low is to measure how your own customers respond to it, which is exactly what price elasticity tells you, product by product, instead of leaving you to guess from gut feel.</p>
+
+<p>The symptoms merchants usually reach for, declining sales, a suspiciously high close rate, a customer saying "wow, that's cheap", are all lagging indicators. By the time you notice them, you've already lost the sale, the margin, or both. What you actually want is a number you can check before you make the change, not after.</p>
+
+<h2>The Signs You're Priced Wrong (and Why They're Unreliable)</h2>
+<p>Every merchant has a mental checklist for spotting a bad price. The problem is that most items on it are ambiguous at best and misleading at worst.</p>
+<p><strong>Signs your price might be too low:</strong></p>
+<ul>
+<li>Nearly every visitor who reaches checkout completes the purchase, with almost no hesitation or price objections.</li>
+<li>You're selling a healthy volume but still struggling to cover marketing, support, or restocking costs.</li>
+<li>Customers comment that your price "seems too good to be true" or ask if there's a catch.</li>
+</ul>
+<p><strong>Signs your price might be too high:</strong></p>
+<ul>
+<li>Add-to-cart rates look fine, but checkout completion drops.</li>
+<li>Customers abandon carts specifically at the price or shipping cost step.</li>
+<li>You're consistently undercut in reviews or comparison threads by name.</li>
+</ul>
+<p>Here's the catch: a high close rate could mean your price is too low, or it could mean your ads are just well-targeted. A cart abandonment spike could mean your price is too high, or it could mean a shipping fee surprised people at checkout. These signals point you in a direction, they don't give you a number, and they show up well after the sale was already won or lost.</p>
+
+<h2>What Price Elasticity Actually Tells You</h2>
+<p><a href="/blog/what-does-price-elasticity-actually-mean">Price elasticity of demand (PED) measures how much your sales volume moves when your price moves</a>. The formula is simple:</p>
+<p><strong>PED = % change in quantity sold ÷ % change in price</strong></p>
+<p>Say you raise a product from $50 to $55, a 10% increase, and units sold drop from 200 to 160, a 20% decrease. Your PED works out to -2.0. Products with a PED above 1 (in absolute terms) are elastic, meaning demand is sensitive to price and a small change moves a lot of volume. Products below 1 are inelastic, meaning customers keep buying even as price shifts.</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Elastic demand</th><th>Inelastic demand</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>What it means</td><td>Small price changes cause large swings in units sold</td><td>Units sold stay relatively stable even as price changes</td></tr>
+    <tr><td>Typical examples</td><td>Discretionary goods, items with easy substitutes</td><td>Everyday essentials, unique or hard-to-replace items</td></tr>
+    <tr><td>Pricing implication</td><td>Raising price risks losing meaningful volume</td><td>There's often room to raise price without losing many customers</td></tr>
+  </tbody>
+</table>
+
+<p>Knowing whether a SKU is <a href="/blog/elastic-vs-inelastic-demand-whats-the-difference">elastic or inelastic</a> changes what "too high" or "too low" even means for that specific product. A 10% price cut on an elastic product might genuinely pay for itself in extra volume. The same cut on an inelastic product mostly just gives away margin you didn't need to.</p>
+
+<h2>Why Competitor Prices Don't Answer the Question</h2>
+<p>The instinct when a price feels off is to check what competitors charge and match or undercut it. It's an understandable shortcut, but it doesn't actually answer <a href="/blog/should-you-price-below-at-or-above-your-competitors">whether your price is right for your customers</a>.</p>
+<p>A competitor's price was never calculated from your customers' behavior in the first place. It reflects their costs, their brand positioning, and their audience, not yours. They might be running thinner margins, subsidizing with a different revenue stream, or targeting a more price-sensitive segment entirely. Copying that number tells you nothing about what your specific buyers are actually willing to pay.</p>
+<p>Your own sales history is the only data set that reflects how your customers respond to your prices. That's the read that actually matters, and it's the one most merchants have no realistic way to extract on their own across a full catalog.</p>
+
+<h2>How to Get a Real Answer for Each SKU</h2>
+<p>Reading elasticity from raw sales data yourself is harder than it sounds. You need enough historical price movement to have something to measure, enough order volume for the read to mean anything, and a way to separate a real demand signal from noise like a holiday spike or a clearance sale. Miss any of those and you're not measuring elasticity, you're reading tea leaves.</p>
+<p>This is where Zorin's mechanism comes in. You connect your Shopify or WooCommerce store, or upload a CSV of sales history, and Zorin fits a price elasticity model per SKU using your own historical price-and-quantity data. Each product gets one of three plain outputs: raise, lower, or hold, along with an estimated profit lift and a confidence label based on how much real data actually supports that read. Promotional spikes get automatically flagged and excluded from the model fit, so a discount weekend doesn't quietly distort the baseline number.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>The confidence label matters as much as the recommendation itself, an honest "we don't know yet" beats false certainty.</figcaption>
+</figure>
+
+<p>The confidence label matters as much as the recommendation itself. A product with six months of solid price variation and consistent volume gets <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a strong-confidence read</a>. A product you've never actually changed the price on gets a lower one, honestly labeled as such instead of dressed up with false certainty. That distinction is exactly what a symptom checklist can't give you: it tells you not just what to do, but how much to trust the answer before you act on it.</p>
+
+<h2>What to Do Once You Know Your Price Is Off</h2>
+<p>Once you have an elasticity read and a direction, the size of the move matters. McKinsey's analysis of S&P 1500 companies found that a 1% price increase, with volume held steady, produced roughly an 8% increase in operating profit, a bigger impact than an equivalent cut in variable costs or a 1% gain in sales volume <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">(McKinsey)</a>. Small, well-placed price moves carry outsized leverage on the bottom line, which is exactly why guessing at the size of the move is expensive in both directions.</p>
+<p>Before applying anything, it helps to preview what a price change actually does to your margin and estimated profit, not just assume it'll work out. Zorin's what-if simulator lets you adjust a recommended price with a slider or type your own number and see the resulting margin impact before committing. You can apply a change to a single product to test the read, or roll it out across your whole catalog at once, with each product's apply working independently so one failure doesn't block the rest.</p>
+<p>Nothing changes automatically. You're the one deciding whether to act on a raise, lower, or hold recommendation, Zorin's job is just making sure you're deciding from a real number instead of a guess.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Common symptoms of a bad price (declining sales, a high close rate, cart abandonment) are lagging and ambiguous, they show up after the sale is already won or lost.</li>
+<li>Price elasticity measures how much sales volume moves when price moves, giving you a number to check before changing a price, not after.</li>
+<li>Whether a product is elastic or inelastic changes what "too high" or "too low" even means for that specific SKU.</li>
+<li>Competitor prices reflect someone else's costs and audience, not yours, so matching them doesn't answer what your own customers will pay.</li>
+<li>A confidence label matters as much as the recommendation itself, a thin-data estimate should be labeled as such, not presented with false certainty.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the best pricing software for ecommerce sellers to optimize profit margins?</h3>
+<p>Look for a tool that reads your own sales history rather than just tracking competitors. Zorin fits a price elasticity model per SKU from your historical price-and-quantity data and returns a raise, lower, or hold recommendation with an estimated profit lift and confidence score.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my product prices are too high or too low?</h3>
+<p>Symptoms like declining sales or a high close rate are lagging signals. The reliable way is measuring price elasticity, how much your sales volume shifts when price shifts, for each product using your own sales history.</p>
+</div>
+<div class="faq-item">
+<h3>Is there a tool that tells me the price elasticity of my products?</h3>
+<p>Yes. Zorin connects to Shopify or WooCommerce, or accepts a CSV of sales history, and fits a per-SKU elasticity model automatically, no data science background required.</p>
+</div>
+<div class="faq-item">
+<h3>How can I raise my prices without losing sales on Shopify?</h3>
+<p>Start with products that show inelastic demand, meaning volume holds steady even as price moves. Check the elasticity and confidence level before the change, then preview the margin impact with a what-if simulator before applying it.</p>
+</div>
+<div class="faq-item">
+<h3>What's the best AI pricing tool for Shopify stores with large product catalogs?</h3>
+<p>For catalogs with dozens or hundreds of SKUs, look for per-SKU modeling rather than one blanket rule. Zorin fits an individual elasticity model to each product and supports bulk apply across the catalog, with each product's apply handled independently.</p>
+</div>
+<div class="faq-item">
+<h3>Should I price based on what competitors charge?</h3>
+<p>Competitor prices reflect their costs, brand, and audience, not yours. Your own sales history is the only data that shows how your specific customers respond to your prices.</p>
+</div>
+<div class="faq-item">
+<h3>How much sales data do I need before I can trust an elasticity estimate?</h3>
+<p>It depends on the product, but generally you need at least a few months of price variation and enough order volume to separate a real signal from noise. Zorin labels each recommendation's confidence based on exactly this, so you know how much to trust it.</p>
+</div>
+<div class="faq-item">
+<h3>Does raising a price always mean losing sales?</h3>
+<p>No. For inelastic products, demand often holds steady even as price rises, meaning a price increase can lift profit with minimal volume loss. Elasticity tells you which of your products behave this way.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between watching competitors and reading elasticity?</h3>
+<p>Watching competitors tells you what someone else charges. Reading elasticity tells you how your own customers respond to your prices, which is the only signal that actually reflects your business.</p>
+</div>
+<div class="faq-item">
+<h3>Can I test prices manually instead of using a tool?</h3>
+<p>You can, but naive testing on too small a sample or too short a window often produces a false signal rather than a real one. A model that reads your full sales history and flags low-confidence estimates avoids that trap.</p>
+</div>
+</section>
+
+<p class="conclusion">Guessing at a price is expensive in either direction, too low and you're quietly giving away margin, too high and you're losing sales you'll never see reported as "lost to price." The fix isn't a better checklist of symptoms, it's reading what your own sales history already knows. <a href="/signup">Start a free trial</a> and see what your elasticity actually says about your next price move.</p>
+    `.trim(),
+  },
+  {
     slug: "price-elasticity-vs-repricing-software",
     title: "Price Elasticity vs Repricing Software: Which Ecommerce Tool Fits?",
     excerpt:
