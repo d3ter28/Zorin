@@ -31,7 +31,7 @@ beforeEach(() => {
 describe("POST /api/team/leave", () => {
   it("returns 400 when the Owner tries to leave", async () => {
     const { POST } = await mockSessionRole("OWNER");
-    const res = await POST();
+    const res = await POST(new Request("http://localhost/"));
     expect(res.status).toBe(400);
     expect(deleteUser).not.toHaveBeenCalled();
   });
@@ -39,7 +39,7 @@ describe("POST /api/team/leave", () => {
   it("destroys the caller's own sessions and removes them", async () => {
     const { POST } = await mockSessionRole("MEMBER");
     deleteUser.mockResolvedValue({});
-    const res = await POST();
+    const res = await POST(new Request("http://localhost/"));
     expect(res.status).toBe(200);
     expect(destroyAllSessions).toHaveBeenCalledWith(expect.anything(), "u2");
     expect(deleteUser).toHaveBeenCalledWith({ where: { id: "u2" } });

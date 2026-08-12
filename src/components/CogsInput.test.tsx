@@ -8,8 +8,9 @@ const LABEL = "Cost of goods for Ceramic Mug";
 const json = (data: unknown, ok = true) => ({ ok, json: async () => data }) as Response;
 
 // Single endpoint, so a plain mock (no URL routing) is enough.
+// Typed as fetch's full signature so mock.calls[0] carries (url, init) types.
 function stubFetch(impl: () => Promise<Response> = async () => json({})) {
-  const fetchMock = vi.fn(impl);
+  const fetchMock = vi.fn<typeof fetch>(impl as never);
   vi.stubGlobal("fetch", fetchMock);
   return fetchMock;
 }

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { ShopifyClient } from './client';
+import { ShopifyClient, ShopifyVariant } from './client';
 
 // Helper to build a mock Response
 function mockResponse(
@@ -98,7 +98,7 @@ describe('ShopifyClient', () => {
         }),
       );
 
-      const pages: Awaited<ReturnType<typeof client.fetchAllProducts>>[] = [];
+      const pages: ShopifyVariant[][] = [];
       for await (const page of client.fetchAllProducts()) {
         pages.push(page as typeof page);
       }

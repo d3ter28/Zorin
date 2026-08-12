@@ -38,7 +38,7 @@ describe("GET /api/team", () => {
       },
     ]);
 
-    const res = await GET();
+    const res = await GET(new Request("http://localhost/"));
 
     expect(res.status).toBe(200);
     const body = await res.json();

@@ -22,7 +22,7 @@ describe("POST /api/auth/logout", () => {
     getCookie.mockReturnValue({ value: "tok" });
     destroySession.mockResolvedValue(undefined);
 
-    const res = await POST();
+    const res = await POST(new Request("http://localhost/"));
 
     expect(res.status).toBe(200);
     expect(destroySession.mock.calls[0][1]).toBe("tok");
@@ -31,7 +31,7 @@ describe("POST /api/auth/logout", () => {
 
   it("succeeds even with no cookie", async () => {
     getCookie.mockReturnValue(undefined);
-    const res = await POST();
+    const res = await POST(new Request("http://localhost/"));
     expect(res.status).toBe(200);
     expect(destroySession).not.toHaveBeenCalled();
   });
