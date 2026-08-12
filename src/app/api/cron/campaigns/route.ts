@@ -6,8 +6,12 @@ export const dynamic = "force-dynamic";
 
 export async function GET(req: Request): Promise<NextResponse> {
   if (process.env.NODE_ENV === "production") {
+    const secret = process.env.CRON_SECRET;
+    if (!secret) {
+      return NextResponse.json({ error: "Server misconfiguration" }, { status: 500 });
+    }
     const authHeader = req.headers.get("authorization");
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    if (authHeader !== `Bearer ${secret}`) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }
@@ -20,13 +24,17 @@ export async function GET(req: Request): Promise<NextResponse> {
   });
 
   for (const c of scheduledReady) {
-    await prisma.campaign.update({
-      where: { id: c.id },
-      data: { status: "executing", executionCursor: 0 },
-    });
-    await prisma.campaignLog.create({
-      data: { campaignId: c.id, event: "execution_started" },
-    });
+    try {
+      await prisma.campaign.update({
+        where: { id: c.id },
+        data: { status: "executing", executionCursor: 0 },
+      });
+      await prisma.campaignLog.create({
+        data: { campaignId: c.id, event: "execution_started" },
+      });
+    } catch (err) {
+      console.error(`[cron] transition to executing failed for campaign ${c.id}:`, err);
+    }
   }
 
   // 2. Executing campaigns → run next chunk
@@ -35,15 +43,26 @@ export async function GET(req: Request): Promise<NextResponse> {
   });
 
   for (const c of executing) {
-    const result = await executeChunk(prisma, c.id, c.merchantId, c.executionCursor);
-    if (result.done) {
-      await prisma.campaign.update({
-        where: { id: c.id },
-        data: { status: "active", executedAt: now },
-      });
+    try {
+      const result = await executeChunk(prisma, c.id, c.merchantId, c.executionCursor);
+      if (result.done) {
+        await prisma.campaign.update({
+          where: { id: c.id },
+          data: { status: "active", executedAt: now },
+        });
+        await prisma.campaignLog.create({
+          data: { campaignId: c.id, event: "execution_completed" },
+        });
+      }
+    } catch (err) {
+      console.error(`[cron] executeChunk failed for campaign ${c.id}:`, err);
       await prisma.campaignLog.create({
-        data: { campaignId: c.id, event: "execution_completed" },
-      });
+        data: {
+          campaignId: c.id,
+          event: "product_failed",
+          detail: JSON.stringify({ error: err instanceof Error ? err.message : String(err) }),
+        },
+      }).catch(() => {}); // don't let log failure cascade
     }
   }
 
@@ -64,7 +83,7 @@ export async function GET(req: Request): Promise<NextResponse> {
     } else {
       await prisma.campaign.update({
         where: { id: c.id },
-        data: { status: "completed", revertedAt: now },
+        data: { status: "completed" },
       });
     }
   }
@@ -75,15 +94,26 @@ export async function GET(req: Request): Promise<NextResponse> {
   });
 
   for (const c of reverting) {
-    const result = await revertChunk(prisma, c.id, c.merchantId, c.executionCursor);
-    if (result.done) {
-      await prisma.campaign.update({
-        where: { id: c.id },
-        data: { status: "completed", revertedAt: now },
-      });
+    try {
+      const result = await revertChunk(prisma, c.id, c.merchantId, c.executionCursor);
+      if (result.done) {
+        await prisma.campaign.update({
+          where: { id: c.id },
+          data: { status: "completed", revertedAt: now },
+        });
+        await prisma.campaignLog.create({
+          data: { campaignId: c.id, event: "revert_completed" },
+        });
+      }
+    } catch (err) {
+      console.error(`[cron] revertChunk failed for campaign ${c.id}:`, err);
       await prisma.campaignLog.create({
-        data: { campaignId: c.id, event: "revert_completed" },
-      });
+        data: {
+          campaignId: c.id,
+          event: "product_failed",
+          detail: JSON.stringify({ error: err instanceof Error ? err.message : String(err) }),
+        },
+      }).catch(() => {}); // don't let log failure cascade
     }
   }
 
