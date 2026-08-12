@@ -261,6 +261,7 @@ model CampaignProduct {
   error              String?
 
   @@unique([campaignId, productId])
+  @@index([productId])
 }
 
 model CampaignLog {

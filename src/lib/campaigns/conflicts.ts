@@ -7,6 +7,11 @@ export interface CampaignConflict {
   existingCampaignName: string;
 }
 
+/**
+ * Returns one entry per (product, campaign) pair. A single product can appear
+ * multiple times in the result if it is enrolled in more than one active/scheduled
+ * campaign simultaneously. Callers building "N products conflict" counts must deduplicate by productId.
+ */
 export async function findConflicts(
   prisma: PrismaClient,
   merchantId: string,
