@@ -32,6 +32,28 @@ export const POST = withErrorHandling(
       return NextResponse.json({ conflicts }, { status: 409 });
     }
 
+    // Before touching the DB, guard against active/executing conflicts whose
+    // CampaignProduct rows hold the only record of originalPriceCents.
+    if (conflicts.length > 0 && body.overrideConflicts) {
+      const conflictCampaigns = await prisma.campaign.findMany({
+        where: { id: { in: [...new Set(conflicts.map((c) => c.existingCampaignId))] } },
+        select: { id: true, status: true },
+      });
+      const runningConflict = conflictCampaigns.find(
+        (c) => c.status === "executing" || c.status === "active",
+      );
+      if (runningConflict) {
+        return NextResponse.json(
+          {
+            error:
+              "Cannot override conflicts with executing or active campaigns. Stop those campaigns first.",
+            conflicts,
+          },
+          { status: 409 },
+        );
+      }
+    }
+
     const products = await prisma.product.findMany({
       where: { id: { in: productIds as string[] }, merchantId },
       include: {

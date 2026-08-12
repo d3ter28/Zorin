@@ -8,6 +8,12 @@ vi.mock("@/lib/db", () => ({
   prisma: {
     campaign: { findUniqueOrThrow: mockFindUniqueOrThrow, update: mockUpdate },
     campaignLog: { create: mockLogCreate },
+    $transaction: vi.fn(async (cb: (tx: unknown) => Promise<unknown>) =>
+      cb({
+        campaign: { update: mockUpdate },
+        campaignLog: { create: mockLogCreate },
+      }),
+    ),
   },
 }));
 

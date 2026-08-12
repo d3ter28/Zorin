@@ -37,11 +37,9 @@ export async function executeChunk(
   if (rows.length === 0) return { processed: 0, done: true };
 
   for (const row of rows) {
-    let shopifyPushed = false;
     try {
       if (row.product.shopifyVariantId) {
         await pushPriceToShopify(merchantId, row.product.shopifyVariantId, row.targetPriceCents);
-        shopifyPushed = true;
       }
 
       await prisma.$transaction([
@@ -100,21 +98,19 @@ export async function executeChunk(
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      // Only tombstone if Shopify hasn't pushed yet — the row is safe to retry.
-      // If Shopify already succeeded, leave the row untouched so the cron retries it.
-      if (!shopifyPushed) {
-        await prisma.campaignProduct.update({
-          where: { id: row.id },
-          data: { error: msg },
-        });
-      }
+      // Always record the error to prevent infinite retry loops.
+      // If Shopify was already updated, the error records the mismatch for manual resolution.
+      await prisma.campaignProduct.update({
+        where: { id: row.id },
+        data: { error: msg },
+      }).catch(() => {}); // best-effort
       await prisma.campaignLog.create({
         data: {
           campaignId,
           event: "product_failed",
-          detail: JSON.stringify({ productId: row.productId, error: msg, shopifyPushed }),
+          detail: JSON.stringify({ productId: row.productId, error: msg }),
         },
-      });
+      }).catch(() => {});
     }
   }
 
@@ -157,11 +153,9 @@ export async function revertChunk(
   if (rows.length === 0) return { processed: 0, done: true };
 
   for (const row of rows) {
-    let shopifyPushed = false;
     try {
       if (row.product.shopifyVariantId) {
         await pushPriceToShopify(merchantId, row.product.shopifyVariantId, row.originalPriceCents);
-        shopifyPushed = true;
       }
 
       await prisma.$transaction([
@@ -220,21 +214,19 @@ export async function revertChunk(
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
-      // Only tombstone if Shopify hasn't pushed yet — the row is safe to retry.
-      // If Shopify already succeeded, leave the row untouched so the cron retries it.
-      if (!shopifyPushed) {
-        await prisma.campaignProduct.update({
-          where: { id: row.id },
-          data: { error: msg },
-        });
-      }
+      // Always record the error to prevent infinite retry loops.
+      // If Shopify was already updated, the error records the mismatch for manual resolution.
+      await prisma.campaignProduct.update({
+        where: { id: row.id },
+        data: { error: msg },
+      }).catch(() => {}); // best-effort
       await prisma.campaignLog.create({
         data: {
           campaignId,
           event: "product_failed",
-          detail: JSON.stringify({ productId: row.productId, error: msg, shopifyPushed }),
+          detail: JSON.stringify({ productId: row.productId, error: msg }),
         },
-      });
+      }).catch(() => {});
     }
   }
 

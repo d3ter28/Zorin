@@ -23,16 +23,20 @@ export const POST = withErrorHandling(
     }
     const data: Record<string, unknown> = { status: nextStatus };
     if (nextStatus === "reverting") data.executionCursor = 0;
-    if (nextStatus === "completed") data.revertedAt = new Date();
+    // Do NOT set revertedAt here — the cron handler sets it only on natural revert completion.
+    // Absence of revertedAt on a completed campaign signals a forced stop with possible
+    // un-reverted prices, which requires manual inspection.
 
-    const updated = await prisma.campaign.update({ where: { id }, data });
-
-    await prisma.campaignLog.create({
-      data: {
-        campaignId: id,
-        event: "stopped",
-        detail: JSON.stringify({ nextStatus }),
-      },
+    const updated = await prisma.$transaction(async (tx) => {
+      const result = await tx.campaign.update({ where: { id }, data });
+      await tx.campaignLog.create({
+        data: {
+          campaignId: id,
+          event: nextStatus === "reverting" ? "revert_started" : "stopped",
+          detail: JSON.stringify({ forced: true, nextStatus }),
+        },
+      });
+      return result;
     });
 
     return NextResponse.json(updated);

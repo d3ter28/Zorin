@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockCampaignFindUniqueOrThrow = vi.hoisted(() => vi.fn());
+const mockCampaignFindMany = vi.hoisted(() => vi.fn());
 const mockCampaignUpdate = vi.hoisted(() => vi.fn());
 const mockProductFindMany = vi.hoisted(() => vi.fn());
 const mockCpCreateMany = vi.hoisted(() => vi.fn());
@@ -10,7 +11,7 @@ const mockTransaction = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/db", () => ({
   prisma: {
-    campaign: { findUniqueOrThrow: mockCampaignFindUniqueOrThrow, update: mockCampaignUpdate },
+    campaign: { findUniqueOrThrow: mockCampaignFindUniqueOrThrow, findMany: mockCampaignFindMany, update: mockCampaignUpdate },
     product: { findMany: mockProductFindMany },
     campaignProduct: { createMany: mockCpCreateMany, deleteMany: mockCpDeleteMany },
     campaignLog: { create: mockLogCreate },
@@ -43,6 +44,7 @@ beforeEach(() => {
   vi.resetAllMocks();
   mockLogCreate.mockResolvedValue({});
   mockCampaignUpdate.mockResolvedValue({ id: "c1", status: "scheduled" });
+  mockCampaignFindMany.mockResolvedValue([]); // no conflicting campaigns by default
   mockFindConflicts.mockResolvedValue([]);
   mockCpCreateMany.mockResolvedValue({ count: 1 });
   mockTransaction.mockImplementation(
@@ -114,6 +116,8 @@ describe("POST /api/campaigns/[id]/schedule", () => {
     mockFindConflicts.mockResolvedValue([
       { productId: "p1", productTitle: "Mug", existingCampaignId: "c2", existingCampaignName: "Old" },
     ]);
+    // Conflicting campaign is scheduled — safe to delete
+    mockCampaignFindMany.mockResolvedValue([{ id: "c2", status: "scheduled" }]);
     mockProductFindMany.mockResolvedValue([
       { id: "p1", currentPrice: 1000, cogs: null, recommendation: null, competitorPrices: [] },
     ]);
