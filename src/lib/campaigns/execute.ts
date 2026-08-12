@@ -77,13 +77,18 @@ export async function executeChunk(
             centsToDollars(row.targetPriceCents),
           );
           if (!result.ok) {
+            const wooErrMsg = `WooCommerce sync failed: ${result.error}`;
+            await prisma.campaignProduct.update({
+              where: { id: row.id },
+              data: { error: wooErrMsg },
+            });
             await prisma.campaignLog.create({
               data: {
                 campaignId,
                 event: "product_failed",
                 detail: JSON.stringify({
                   productId: row.productId,
-                  error: `WooCommerce sync failed: ${result.error}`,
+                  error: wooErrMsg,
                   priceAppliedInDb: true,
                 }),
               },
@@ -179,12 +184,30 @@ export async function revertChunk(
       if (row.product.woocommerceVariantId) {
         const wooClient = await getWooClient(merchantId);
         if (wooClient) {
-          await pushPriceToWooCommerce(
+          const result = await pushPriceToWooCommerce(
             prisma,
             wooClient,
             row.productId,
             centsToDollars(row.originalPriceCents),
           );
+          if (!result.ok) {
+            const wooErrMsg = `WooCommerce sync failed: ${result.error}`;
+            await prisma.campaignProduct.update({
+              where: { id: row.id },
+              data: { error: wooErrMsg },
+            });
+            await prisma.campaignLog.create({
+              data: {
+                campaignId,
+                event: "product_failed",
+                detail: JSON.stringify({
+                  productId: row.productId,
+                  error: wooErrMsg,
+                  priceRevertedInDb: true,
+                }),
+              },
+            });
+          }
         }
       }
     } catch (err) {
