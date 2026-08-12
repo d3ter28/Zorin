@@ -6,6 +6,7 @@ const mockProductFindMany = vi.hoisted(() => vi.fn());
 const mockCpCreateMany = vi.hoisted(() => vi.fn());
 const mockCpDeleteMany = vi.hoisted(() => vi.fn());
 const mockLogCreate = vi.hoisted(() => vi.fn());
+const mockTransaction = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/db", () => ({
   prisma: {
@@ -13,6 +14,7 @@ vi.mock("@/lib/db", () => ({
     product: { findMany: mockProductFindMany },
     campaignProduct: { createMany: mockCpCreateMany, deleteMany: mockCpDeleteMany },
     campaignLog: { create: mockLogCreate },
+    $transaction: mockTransaction,
   },
 }));
 
@@ -43,6 +45,14 @@ beforeEach(() => {
   mockCampaignUpdate.mockResolvedValue({ id: "c1", status: "scheduled" });
   mockFindConflicts.mockResolvedValue([]);
   mockCpCreateMany.mockResolvedValue({ count: 1 });
+  mockTransaction.mockImplementation(
+    (fn: (tx: unknown) => unknown) =>
+      fn({
+        campaign: { update: mockCampaignUpdate },
+        campaignProduct: { createMany: mockCpCreateMany, deleteMany: mockCpDeleteMany },
+        campaignLog: { create: mockLogCreate },
+      }),
+  );
 });
 
 describe("POST /api/campaigns/[id]/schedule", () => {

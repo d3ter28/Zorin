@@ -4,12 +4,14 @@ const mockFindUniqueOrThrow = vi.hoisted(() => vi.fn());
 const mockUpdate = vi.hoisted(() => vi.fn());
 const mockCpDeleteMany = vi.hoisted(() => vi.fn());
 const mockLogCreate = vi.hoisted(() => vi.fn());
+const mockTransaction = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/db", () => ({
   prisma: {
     campaign: { findUniqueOrThrow: mockFindUniqueOrThrow, update: mockUpdate },
     campaignProduct: { deleteMany: mockCpDeleteMany },
     campaignLog: { create: mockLogCreate },
+    $transaction: mockTransaction,
   },
 }));
 
@@ -32,6 +34,14 @@ function makeReq(): Request {
 beforeEach(() => {
   vi.resetAllMocks();
   mockLogCreate.mockResolvedValue({});
+  mockTransaction.mockImplementation(
+    (fn: (tx: unknown) => unknown) =>
+      fn({
+        campaign: { update: mockUpdate },
+        campaignProduct: { deleteMany: mockCpDeleteMany },
+        campaignLog: { create: mockLogCreate },
+      }),
+  );
 });
 
 describe("POST /api/campaigns/[id]/cancel", () => {

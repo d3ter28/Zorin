@@ -15,15 +15,16 @@ export const POST = withErrorHandling(
       throw new HttpError(400, "Only scheduled campaigns can be cancelled");
     }
 
-    await prisma.campaignProduct.deleteMany({ where: { campaignId: id } });
-
-    const updated = await prisma.campaign.update({
-      where: { id },
-      data: { status: "draft", executionCursor: 0 },
-    });
-
-    await prisma.campaignLog.create({
-      data: { campaignId: id, event: "stopped", detail: JSON.stringify({ reason: "cancelled" }) },
+    const updated = await prisma.$transaction(async (tx) => {
+      await tx.campaignProduct.deleteMany({ where: { campaignId: id } });
+      const result = await tx.campaign.update({
+        where: { id },
+        data: { status: "draft", executionCursor: 0 },
+      });
+      await tx.campaignLog.create({
+        data: { campaignId: id, event: "stopped", detail: JSON.stringify({ reason: "cancelled" }) },
+      });
+      return result;
     });
 
     return NextResponse.json(updated);

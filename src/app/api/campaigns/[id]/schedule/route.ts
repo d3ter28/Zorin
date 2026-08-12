@@ -32,17 +32,6 @@ export const POST = withErrorHandling(
       return NextResponse.json({ conflicts }, { status: 409 });
     }
 
-    if (conflicts.length > 0 && body.overrideConflicts) {
-      const conflictProductIds = conflicts.map((c) => c.productId);
-      const conflictCampaignIds = [...new Set(conflicts.map((c) => c.existingCampaignId))];
-      await prisma.campaignProduct.deleteMany({
-        where: {
-          productId: { in: conflictProductIds },
-          campaignId: { in: conflictCampaignIds },
-        },
-      });
-    }
-
     const products = await prisma.product.findMany({
       where: { id: { in: productIds as string[] }, merchantId },
       include: {
@@ -79,17 +68,29 @@ export const POST = withErrorHandling(
       }
     }
 
-    if (campaignProducts.length > 0) {
-      await prisma.campaignProduct.createMany({ data: campaignProducts });
-    }
+    const updated = await prisma.$transaction(async (tx) => {
+      if (conflicts.length > 0 && body.overrideConflicts) {
+        const conflictProductIds = conflicts.map((c) => c.productId);
+        const conflictCampaignIds = [...new Set(conflicts.map((c) => c.existingCampaignId))];
+        await tx.campaignProduct.deleteMany({
+          where: { productId: { in: conflictProductIds }, campaignId: { in: conflictCampaignIds } },
+        });
+      }
 
-    const updated = await prisma.campaign.update({
-      where: { id },
-      data: { status: "scheduled" },
-    });
+      if (campaignProducts.length > 0) {
+        await tx.campaignProduct.createMany({ data: campaignProducts });
+      }
 
-    await prisma.campaignLog.create({
-      data: { campaignId: id, event: "scheduled", detail: JSON.stringify({ productCount: campaignProducts.length }) },
+      const result = await tx.campaign.update({
+        where: { id },
+        data: { status: "scheduled" },
+      });
+
+      await tx.campaignLog.create({
+        data: { campaignId: id, event: "scheduled", detail: JSON.stringify({ productCount: campaignProducts.length }) },
+      });
+
+      return result;
     });
 
     return NextResponse.json(updated);
