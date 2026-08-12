@@ -1,0 +1,75 @@
+{
+  "planPath": "docs/superpowers/plans/2026-08-12-profit-tracking-dashboard.md",
+  "tasks": [
+    {
+      "id": 23,
+      "subject": "Task 1: CogsChange schema + audit wiring",
+      "status": "pending",
+      "description": "**Goal:** Add the CogsChange model to both schema files and append an audit row wherever COGS changes (inline edit + CSV import).\n\n**Files:** prisma/schema.prisma, prisma/schema.production.prisma, src/app/api/products/[id]/cogs/route.ts (+test), src/lib/products/importProducts.ts (+test)\n\n**Verify:** npx vitest run src/app/api/products/[id]/cogs src/lib/products/importProducts\n\n```json:metadata\n{\"files\": [\"prisma/schema.prisma\", \"prisma/schema.production.prisma\", \"src/app/api/products/[id]/cogs/route.ts\", \"src/app/api/products/[id]/cogs/route.test.ts\", \"src/lib/products/importProducts.ts\", \"src/lib/products/importProducts.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/products/[id]/cogs src/lib/products/importProducts\", \"acceptanceCriteria\": [\"CogsChange model identical in both schema files with index and onDelete Cascade\", \"Product.cogsChanges relation in both files\", \"prisma migrate dev succeeds\", \"cogs edit logs CogsChange only when non-null value changed\", \"CSV import logs CogsChange only when cogs differs/first-set\", \"cogs + importProducts tests pass\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 24,
+      "subject": "Task 2: computeProfit pure module",
+      "status": "pending",
+      "blockedBy": [23],
+      "description": "**Goal:** Pure Prisma-free module: COGS-at-date primitive plus monthly P&L, per-product profit, and windowed profit, flagging estimated (fallback) figures.\n\n**Files:** src/lib/profit/computeProfit.ts (+test)\n\n**Verify:** npx vitest run src/lib/profit/computeProfit\n\n```json:metadata\n{\"files\": [\"src/lib/profit/computeProfit.ts\", \"src/lib/profit/computeProfit.test.ts\"], \"verifyCommand\": \"npx vitest run src/lib/profit/computeProfit\", \"acceptanceCriteria\": [\"cogsInEffectOn returns in-effect change or estimated fallback, sorts defensively\", \"monthlyPnL buckets by month excluding null-cogs rows, marks estimated\", \"productProfit per-product totals with null-safe marginPct\", \"windowProfitForProducts sums product set in [start,end) with hasSales\", \"integer cents only, no NaN\", \"computeProfit tests pass\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 25,
+      "subject": "Task 3: GET /api/profit/trend",
+      "status": "pending",
+      "blockedBy": [24],
+      "description": "**Goal:** Monthly P&L API — 24 months of revenue/COGS/gross-profit from non-promo sales, flagging estimated months.\n\n**Files:** src/app/api/profit/trend/route.ts (+test)\n\n**Verify:** npx vitest run src/app/api/profit/trend\n\n```json:metadata\n{\"files\": [\"src/app/api/profit/trend/route.ts\", \"src/app/api/profit/trend/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/profit/trend\", \"acceptanceCriteria\": [\"GET returns MonthlyPnLPoint[] for last 24 months\", \"query scoped by merchantId with promotionFlag false\", \"returns [] when no sales\", \"trend route tests pass\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 26,
+      "subject": "Task 4: GET /api/profit/products",
+      "status": "pending",
+      "blockedBy": [24],
+      "description": "**Goal:** Per-product profit for a selectable window (30/90/365), enriched with title/sku.\n\n**Files:** src/app/api/profit/products/route.ts (+test)\n\n**Verify:** npx vitest run src/app/api/profit/products\n\n```json:metadata\n{\"files\": [\"src/app/api/profit/products/route.ts\", \"src/app/api/profit/products/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/profit/products\", \"acceptanceCriteria\": [\"GET ?window returns {window, products[]} enriched with title/sku\", \"invalid window defaults to 90, promo excluded\", \"null-cogs products omitted, sorted by grossProfit desc\", \"scoped by merchantId\", \"products route tests pass\"], \"modelTier\": \"mechanical\"}\n```"
+    },
+    {
+      "id": 27,
+      "subject": "Task 5: GET /api/profit/campaigns",
+      "status": "pending",
+      "blockedBy": [24],
+      "description": "**Goal:** Campaign before/after report — window vs prior-period profit for each campaign with applied products, with honesty flags.\n\n**Files:** src/app/api/profit/campaigns/route.ts (+test)\n\n**Verify:** npx vitest run src/app/api/profit/campaigns\n\n```json:metadata\n{\"files\": [\"src/app/api/profit/campaigns/route.ts\", \"src/app/api/profit/campaigns/route.test.ts\"], \"verifyCommand\": \"npx vitest run src/app/api/profit/campaigns\", \"acceptanceCriteria\": [\"report row per campaign with applied products incl all fields\", \"during and prior windows computed as specified\", \"windowEnd fallback chain and flags correct\", \"no-applied campaigns omitted, sorted desc, scoped by merchant\", \"campaigns route tests pass\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 28,
+      "subject": "Task 6: Profit page shell + nav + summary cards",
+      "status": "pending",
+      "blockedBy": [25],
+      "description": "**Goal:** /profit server page with AppShell, a Profit sidebar item, and summary cards from trend data.\n\n**Files:** src/app/profit/page.tsx, src/components/ProfitSummaryCards.tsx (+test), src/components/Sidebar.tsx\n\n**Verify:** npx vitest run src/components/ProfitSummaryCards\n\n```json:metadata\n{\"files\": [\"src/app/profit/page.tsx\", \"src/components/ProfitSummaryCards.tsx\", \"src/components/ProfitSummaryCards.test.tsx\", \"src/components/Sidebar.tsx\"], \"verifyCommand\": \"npx vitest run src/components/ProfitSummaryCards\", \"acceptanceCriteria\": [\"/profit renders in AppShell behind requireSessionPage\", \"sidebar Profit item after Campaigns, active on /profit\", \"ProfitSummaryCards shows latest-month gross profit + MoM + revenue + margin + COGS, empty state\", \"ProfitSummaryCards test passes\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 29,
+      "subject": "Task 7: P&L trend chart component",
+      "status": "pending",
+      "blockedBy": [28],
+      "description": "**Goal:** Pure-SVG chart of monthly revenue/COGS/gross profit, mounted on /profit, marking estimated months.\n\n**Files:** src/components/ProfitTrendChart.tsx (+test), src/app/profit/page.tsx\n\n**Verify:** npx vitest run src/components/ProfitTrendChart\n\n```json:metadata\n{\"files\": [\"src/components/ProfitTrendChart.tsx\", \"src/components/ProfitTrendChart.test.tsx\", \"src/app/profit/page.tsx\"], \"verifyCommand\": \"npx vitest run src/components/ProfitTrendChart\", \"acceptanceCriteria\": [\"fetches trend and renders three SVG series with legend\", \"loading + <2-point empty state\", \"estimated note when any point estimated\", \"no charting dependency, OKLCH tokens\", \"ProfitTrendChart test passes\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 30,
+      "subject": "Task 8: Per-product profit leaderboard component",
+      "status": "pending",
+      "blockedBy": [28, 26],
+      "description": "**Goal:** Table ranking products by gross profit with Top-earners/Margin-bleeders toggle and 30/90/365 window switch.\n\n**Files:** src/components/ProductProfitTable.tsx (+test), src/app/profit/page.tsx\n\n**Verify:** npx vitest run src/components/ProductProfitTable\n\n```json:metadata\n{\"files\": [\"src/components/ProductProfitTable.tsx\", \"src/components/ProductProfitTable.test.tsx\", \"src/app/profit/page.tsx\"], \"verifyCommand\": \"npx vitest run src/components/ProductProfitTable\", \"acceptanceCriteria\": [\"fetches products?window and refetches on toggle change\", \"earners sorts profit desc, bleeders sorts margin asc with floor flag\", \"renders all columns + est. marker\", \"empty state when no data\", \"ProductProfitTable test passes\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 31,
+      "subject": "Task 9: Campaign performance list component",
+      "status": "pending",
+      "blockedBy": [28, 27],
+      "description": "**Goal:** List of campaigns with window profit and the honest 'vs prior period' delta, rows linking to campaign detail.\n\n**Files:** src/components/CampaignPerformanceList.tsx (+test), src/app/profit/page.tsx\n\n**Verify:** npx vitest run src/components/CampaignPerformanceList\n\n```json:metadata\n{\"files\": [\"src/components/CampaignPerformanceList.tsx\", \"src/components/CampaignPerformanceList.test.tsx\", \"src/app/profit/page.tsx\"], \"verifyCommand\": \"npx vitest run src/components/CampaignPerformanceList\", \"acceptanceCriteria\": [\"fetches campaigns and renders name/days/products/profit/delta\", \"no-prior-baseline, still-running, est. states shown\", \"row links to /campaigns/[id]\", \"empty state present\", \"CampaignPerformanceList test passes\"], \"modelTier\": \"standard\"}\n```"
+    },
+    {
+      "id": 32,
+      "subject": "Task 10: Integration + final verification",
+      "status": "pending",
+      "blockedBy": [29, 30, 31],
+      "description": "**Goal:** Confirm the full feature works and the whole suite is green.\n\n**Files:** src/app/profit/page.tsx (polish only)\n\n**Verify:** npx vitest run && npx tsc --noEmit; manual /profit walkthrough\n\n```json:metadata\n{\"files\": [\"src/app/profit/page.tsx\"], \"verifyCommand\": \"npx vitest run && npx tsc --noEmit\", \"acceptanceCriteria\": [\"full vitest suite passes with zero failures\", \"tsc --noEmit clean\", \"/profit renders all four sections with working toggles and campaign links\", \"honesty labels appear when data warrants\"], \"modelTier\": \"standard\"}\n```"
+    }
+  ],
+  "lastUpdated": "2026-08-12T00:00:00Z"
+}
