@@ -40,6 +40,11 @@ describe("cogsInEffectOn", () => {
     ];
     expect(cogsInEffectOn(unsorted, 2000, d("2026-03-01"))).toEqual({ cogsCents: 1000, estimated: false });
   });
+
+  it("applies a change whose changedAt equals the sale date (same-day boundary)", () => {
+    const result = cogsInEffectOn([{ toCents: 1500, changedAt: d("2026-03-01") }], 2000, d("2026-03-01"));
+    expect(result).toEqual({ cogsCents: 1500, estimated: false });
+  });
 });
 
 describe("monthlyPnL", () => {
@@ -74,6 +79,14 @@ describe("monthlyPnL", () => {
     const feb = out.find((b) => b.month === "2026-02");
     expect(feb).toBeUndefined();
   });
+
+  it("excludes rows older than the months window", () => {
+    // now = 2026-03-15, months = 24 → cutoff = 2024-04-01
+    // A row dated 2024-03-15 is before the cutoff and must not appear
+    const sales: SalesRow[] = [{ productId: "p1", date: d("2024-03-15"), unitsSold: 10, priceCents: 1000 }];
+    const out = monthlyPnL(sales, changesByProduct, currentCogs, 24, now);
+    expect(out.find((b) => b.month === "2024-03")).toBeUndefined();
+  });
 });
 
 describe("productProfit", () => {
@@ -102,6 +115,15 @@ describe("productProfit", () => {
     const sales: SalesRow[] = [{ productId: "p1", date: d("2026-05-10"), unitsSold: 5, priceCents: 1000 }];
     const out = productProfit(sales, changesByProduct, currentCogs, d("2026-02-01"), d("2026-03-01"));
     expect(out).toHaveLength(0);
+  });
+
+  it("produces negative grossProfitCents and null marginPct for a zero-price row", () => {
+    const sales: SalesRow[] = [{ productId: "p1", date: d("2026-02-10"), unitsSold: 5, priceCents: 0 }];
+    const out = productProfit(sales, changesByProduct, currentCogs, d("2026-02-01"), d("2026-03-01"));
+    const p1 = out.find((p) => p.productId === "p1")!;
+    expect(p1.revenueCents).toBe(0);
+    expect(p1.grossProfitCents).toBe(-2000); // 0 revenue - 5 * 400 cost
+    expect(p1.marginPct).toBeNull();
   });
 });
 
