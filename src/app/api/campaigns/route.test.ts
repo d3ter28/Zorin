@@ -214,4 +214,80 @@ describe("POST /api/campaigns", () => {
     expect(res.status).toBe(403);
     expect(campaignCreate).not.toHaveBeenCalled();
   });
+
+  it("returns 400 when startsAt is an invalid date string", async () => {
+    mockRequireOwnerApi.mockResolvedValue(ownerSession);
+
+    const res = await POST(makeReq({ name: "Sale", type: "sale", rules: {}, startsAt: "not-a-date" }));
+    const body = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(body.error).toMatch(/date/i);
+    expect(campaignCreate).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when endsAt is an invalid date string", async () => {
+    mockRequireOwnerApi.mockResolvedValue(ownerSession);
+
+    const res = await POST(makeReq({ name: "Sale", type: "sale", rules: {}, endsAt: "bad-date" }));
+    const body = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(body.error).toMatch(/date/i);
+    expect(campaignCreate).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when endsAt is not after startsAt", async () => {
+    mockRequireOwnerApi.mockResolvedValue(ownerSession);
+
+    const res = await POST(makeReq({
+      name: "Sale",
+      type: "sale",
+      rules: {},
+      startsAt: "2026-09-01T00:00:00Z",
+      endsAt: "2026-08-01T00:00:00Z",
+    }));
+    const body = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(body.error).toContain("endsAt");
+    expect(campaignCreate).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 when marginFloorPct is 100 or more", async () => {
+    mockRequireOwnerApi.mockResolvedValue(ownerSession);
+
+    const res = await POST(makeReq({ name: "Sale", type: "sale", rules: { marginFloorPct: 100 } }));
+    const body = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(body.error).toContain("marginFloorPct");
+    expect(campaignCreate).not.toHaveBeenCalled();
+  });
+
+  it("accepts marginFloorPct of 0", async () => {
+    mockRequireOwnerApi.mockResolvedValue(ownerSession);
+    campaignCreate.mockResolvedValue({ id: "c4" });
+    campaignLogCreate.mockResolvedValue({});
+
+    const res = await POST(makeReq({ name: "Sale", type: "sale", rules: { marginFloorPct: 0 } }));
+    expect(res.status).toBe(201);
+    expect(campaignCreate).toHaveBeenCalled();
+  });
+
+  it("accepts valid startsAt and endsAt", async () => {
+    mockRequireOwnerApi.mockResolvedValue(ownerSession);
+    campaignCreate.mockResolvedValue({ id: "c5" });
+    campaignLogCreate.mockResolvedValue({});
+
+    const res = await POST(makeReq({
+      name: "Sale",
+      type: "sale",
+      rules: {},
+      startsAt: "2026-09-01T00:00:00Z",
+      endsAt: "2026-10-01T00:00:00Z",
+    }));
+    expect(res.status).toBe(201);
+    expect(campaignCreate).toHaveBeenCalled();
+  });
 });

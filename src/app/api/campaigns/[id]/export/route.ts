@@ -21,7 +21,14 @@ export const GET = withErrorHandling(
       },
     });
 
-    const csvEscape = (s: string) => `"${s.replace(/"/g, '""')}"`;
+    const csvEscape = (s: string) => {
+      let value = s.replace(/"/g, '""');
+      // Prevent formula injection in spreadsheet applications
+      if (/^[=+\-@\t\r]/.test(value)) {
+        value = "'" + value;
+      }
+      return `"${value}"`;
+    };
     const header = "SKU,Title,Original Price,Target Price,Change %,Applied At,Reverted At,Error";
     const rows = campaign.products.map((cp) => {
       const changePct = cp.originalPriceCents > 0

@@ -72,19 +72,30 @@ export async function GET(req: Request): Promise<NextResponse> {
   });
 
   for (const c of activeExpired) {
-    if (c.revertOnEnd) {
-      await prisma.campaign.update({
-        where: { id: c.id },
-        data: { status: "reverting", executionCursor: 0 },
-      });
-      await prisma.campaignLog.create({
-        data: { campaignId: c.id, event: "revert_started" },
-      });
-    } else {
-      await prisma.campaign.update({
-        where: { id: c.id },
-        data: { status: "completed" },
-      });
+    try {
+      if (c.revertOnEnd) {
+        await prisma.campaign.update({
+          where: { id: c.id },
+          data: { status: "reverting", executionCursor: 0 },
+        });
+        await prisma.campaignLog.create({
+          data: { campaignId: c.id, event: "revert_started" },
+        });
+      } else {
+        await prisma.campaign.update({
+          where: { id: c.id },
+          data: { status: "completed" },
+        });
+        await prisma.campaignLog.create({
+          data: {
+            campaignId: c.id,
+            event: "completed",
+            detail: JSON.stringify({ reason: "endsAt_reached" }),
+          },
+        });
+      }
+    } catch (err) {
+      console.error(`[cron] transition from active failed for campaign ${c.id}:`, err);
     }
   }
 

@@ -48,13 +48,33 @@ export const PATCH = withErrorHandling(
       if (!body.rules || typeof body.rules !== "object" || Array.isArray(body.rules)) {
         throw new HttpError(400, "Campaign rules must be an object");
       }
+      if (
+        (body.rules as Record<string, unknown>).marginFloorPct !== undefined &&
+        (typeof (body.rules as Record<string, unknown>).marginFloorPct !== "number" ||
+          (body.rules as Record<string, unknown>).marginFloorPct >= 100)
+      ) {
+        throw new HttpError(400, "marginFloorPct must be less than 100");
+      }
       data.rules = JSON.stringify(body.rules);
     }
     if (body.revertOnEnd !== undefined) data.revertOnEnd = Boolean(body.revertOnEnd);
-    if (body.startsAt !== undefined)
+    if (body.startsAt !== undefined) {
+      if (body.startsAt && isNaN(new Date(body.startsAt as string).getTime())) {
+        throw new HttpError(400, "Invalid date format for startsAt/endsAt");
+      }
       data.startsAt = body.startsAt ? new Date(body.startsAt as string) : null;
-    if (body.endsAt !== undefined)
+    }
+    if (body.endsAt !== undefined) {
+      if (body.endsAt && isNaN(new Date(body.endsAt as string).getTime())) {
+        throw new HttpError(400, "Invalid date format for startsAt/endsAt");
+      }
       data.endsAt = body.endsAt ? new Date(body.endsAt as string) : null;
+    }
+    if (body.startsAt !== undefined && body.endsAt !== undefined && body.startsAt && body.endsAt) {
+      if (!(new Date(body.endsAt as string) > new Date(body.startsAt as string))) {
+        throw new HttpError(400, "endsAt must be after startsAt");
+      }
+    }
 
     const updated = await prisma.campaign.update({ where: { id }, data });
     return NextResponse.json(updated);

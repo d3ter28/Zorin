@@ -19,7 +19,7 @@ export const POST = withErrorHandling(
     await prisma.$transaction(async (tx) => {
       await tx.campaign.update({
         where: { id },
-        data: { status: "executing", startsAt: new Date(), executionCursor: 0 },
+        data: { status: "executing", executionCursor: 0 },
       });
       await tx.campaignLog.create({
         data: { campaignId: id, event: "execution_started" },

@@ -45,6 +45,25 @@ export const POST = withErrorHandling(async (req: Request) => {
     throw new HttpError(400, "Campaign rules must be an object");
   }
 
+  if (body.startsAt !== undefined && isNaN(new Date(body.startsAt as string).getTime())) {
+    throw new HttpError(400, "Invalid date format for startsAt/endsAt");
+  }
+  if (body.endsAt !== undefined && isNaN(new Date(body.endsAt as string).getTime())) {
+    throw new HttpError(400, "Invalid date format for startsAt/endsAt");
+  }
+  if (body.startsAt !== undefined && body.endsAt !== undefined) {
+    if (!(new Date(body.endsAt as string) > new Date(body.startsAt as string))) {
+      throw new HttpError(400, "endsAt must be after startsAt");
+    }
+  }
+  if (
+    (rules as Record<string, unknown>).marginFloorPct !== undefined &&
+    (typeof (rules as Record<string, unknown>).marginFloorPct !== "number" ||
+      (rules as Record<string, unknown>).marginFloorPct >= 100)
+  ) {
+    throw new HttpError(400, "marginFloorPct must be less than 100");
+  }
+
   const revertOnEnd =
     body.revertOnEnd !== undefined ? Boolean(body.revertOnEnd) : type === "sale";
 
