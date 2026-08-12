@@ -13,12 +13,15 @@ type SaleMode = "percentage" | "competitor_match" | "fixed_price";
 
 interface PreviewProduct {
   productId: string;
+  title: string;
+  sku: string;
+  currentPriceCents: number;
   targetPriceCents: number;
-  originalPriceCents: number;
-  changePct: number;
-  clampedByMarginFloor: boolean;
+  changePct: number;           // already a percent (e.g. -10), not a fraction
+  marginPct: number | null;
   skipped: boolean;
   skipReason: string | null;
+  clampedByMarginFloor: boolean;
 }
 
 interface PreviewResult {
@@ -36,7 +39,7 @@ function buildRules(
   saleMode: SaleMode,
   pctChange: string,
   offsetPct: string,
-  roundTo99: boolean,
+  rounding: "none" | "99" | "95",
   marginFloorPct: string,
 ): Record<string, unknown> {
   let core: Record<string, unknown>;
@@ -44,19 +47,19 @@ function buildRules(
   if (type === "ml_recommendation") {
     core = { mode: "ml_recommendation" };
   } else if (saleMode === "percentage") {
-    core = { mode: "percentage", pctChange: parseFloat(pctChange) || 0 };
+    core = { mode: "percentage", percentage: parseFloat(pctChange) || 0 };
   } else if (saleMode === "competitor_match") {
-    core = { mode: "competitor_match", offsetPct: parseFloat(offsetPct) || 0 };
+    core = { mode: "competitor_match", competitorOffset: parseFloat(offsetPct) || 0 };
   } else {
-    core = { mode: "fixed_price" };
+    // fixed_price requires fixedPriceCents — not supported in UI wizard, skip
+    core = { mode: "percentage", percentage: 0 };
   }
 
-  const rules: Record<string, unknown> = { ...core };
-  if (roundTo99) rules.roundTo99 = true;
-  if (marginFloorPct !== "") {
-    const val = parseFloat(marginFloorPct);
-    if (!isNaN(val)) rules.marginFloorPct = val / 100;
-  }
+  const rules: Record<string, unknown> = {
+    ...core,
+    rounding,
+    marginFloorPct: marginFloorPct !== "" ? parseFloat(marginFloorPct) : 0,
+  };
   return rules;
 }
 
@@ -79,7 +82,7 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
   const [saleMode, setSaleMode] = useState<SaleMode>("percentage");
   const [pctChange, setPctChange] = useState("-10");
   const [offsetPct, setOffsetPct] = useState("-5");
-  const [roundTo99, setRoundTo99] = useState(false);
+  const [rounding, setRounding] = useState<"none" | "99" | "95">("none");
   const [marginFloorPct, setMarginFloorPct] = useState("");
   const [startsAt, setStartsAt] = useState("");
   const [endsAt, setEndsAt] = useState("");
@@ -147,16 +150,14 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
         if (rules) {
           if (rules.mode === "percentage") {
             setSaleMode("percentage");
-            setPctChange(String(rules.pctChange ?? -10));
+            setPctChange(String(rules.percentage ?? -10));
           } else if (rules.mode === "competitor_match") {
             setSaleMode("competitor_match");
-            setOffsetPct(String(rules.offsetPct ?? -5));
-          } else if (rules.mode === "fixed_price") {
-            setSaleMode("fixed_price");
+            setOffsetPct(String(rules.competitorOffset ?? -5));
           }
-          if (rules.roundTo99) setRoundTo99(true);
+          if (rules.rounding) setRounding(rules.rounding as "none" | "99" | "95");
           if (rules.marginFloorPct != null) {
-            setMarginFloorPct(String(rules.marginFloorPct * 100));
+            setMarginFloorPct(String(rules.marginFloorPct));
           }
         }
         if (Array.isArray(data.products)) {
@@ -181,7 +182,7 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
     setLoadingPreview(true);
     setPreview(null);
     try {
-      const rules = buildRules(type, saleMode, pctChange, offsetPct, roundTo99, marginFloorPct);
+      const rules = buildRules(type, saleMode, pctChange, offsetPct, rounding, marginFloorPct);
       const res = await fetch("/api/campaigns/preview", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -216,7 +217,7 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
   }
 
   async function saveDraftInner(): Promise<string | null> {
-    const rules = buildRules(type, saleMode, pctChange, offsetPct, roundTo99, marginFloorPct);
+    const rules = buildRules(type, saleMode, pctChange, offsetPct, rounding, marginFloorPct);
     const body = {
       name: name.trim(),
       type,
@@ -261,11 +262,18 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
   }
 
   async function handleSchedule() {
+    // If no start date, default to now
+    const effectiveStartsAt = startsAt || new Date().toISOString();
+    if (!startsAt) setStartsAt(effectiveStartsAt.slice(0, 16));
+
     let id = campaignId;
     if (!id) {
       const saved = await saveDraftInner();
       if (!saved) return;
       id = saved;
+    } else {
+      // Re-save to persist current form state (including startsAt)
+      await saveDraftInner();
     }
 
     setScheduling(true);
@@ -277,7 +285,7 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          startsAt: startsAt || new Date().toISOString(),
+          productIds: selectedIds,
           ...(overrideConflicts ? { overrideConflicts: true } : {}),
         }),
       });
@@ -307,19 +315,34 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
     let id = campaignId;
     if (!id) {
       const saved = await saveDraftInner();
-      if (!saved) return;
+      if (!saved) { setExecuteError("Failed to save campaign."); return; }
       id = saved;
+    } else {
+      await saveDraftInner();
     }
 
     setExecuting(true);
     setExecuteError("");
 
     try {
-      const res = await fetch(`/api/campaigns/${id}/execute`, {
+      // Step 1: Schedule (draft → scheduled)
+      const schedRes = await fetch(`/api/campaigns/${id}/schedule`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productIds: selectedIds }),
+      });
+      if (!schedRes.ok) {
+        const body = await schedRes.json().catch(() => ({}));
+        setExecuteError((body as { error?: string }).error ?? "Failed to schedule campaign.");
+        return;
+      }
+
+      // Step 2: Execute (scheduled → executing/active)
+      const exRes = await fetch(`/api/campaigns/${id}/execute`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
-      if (!res.ok) {
+      if (!exRes.ok) {
         setExecuteError("Failed to execute campaign.");
         return;
       }
@@ -410,7 +433,6 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
                 >
                   <option value="percentage">Percentage Change</option>
                   <option value="competitor_match">Competitor Match</option>
-                  <option value="fixed_price">Fixed Price (ML suggestion)</option>
                 </select>
               </div>
 
@@ -473,14 +495,15 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
           <div className="space-y-3 rounded-xl border border-line bg-panel p-4">
             <p className="text-sm font-medium text-ink">Options</p>
 
-            <label className="flex cursor-pointer items-center gap-2 text-sm text-ink">
-              <input
-                type="checkbox"
-                checked={roundTo99}
-                onChange={(e) => setRoundTo99(e.target.checked)}
-              />
-              Round prices to .99
-            </label>
+            <select
+              value={rounding}
+              onChange={(e) => setRounding(e.target.value as "none" | "99" | "95")}
+              className="rounded border border-line bg-surface px-2 py-1.5 text-sm text-ink"
+            >
+              <option value="none">No rounding</option>
+              <option value="99">Round to .99</option>
+              <option value="95">Round to .95</option>
+            </select>
 
             <div className="flex items-center gap-2">
               <label htmlFor="margin-floor" className="text-sm text-ink">
@@ -584,7 +607,7 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
                 />
                 <StatCard
                   label="Avg change"
-                  value={`${(preview.avgChangePct * 100).toFixed(1)}%`}
+                  value={`${preview.avgChangePct.toFixed(1)}%`}
                 />
               </div>
 
@@ -633,7 +656,7 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
                             {product?.title ?? p.productId}
                           </td>
                           <td className="px-4 py-2 text-right text-muted">
-                            ${(p.originalPriceCents / 100).toFixed(2)}
+                            ${(p.currentPriceCents / 100).toFixed(2)}
                           </td>
                           <td className="px-4 py-2 text-right text-ink">
                             {p.skipped ? "—" : `$${(p.targetPriceCents / 100).toFixed(2)}`}
@@ -649,7 +672,7 @@ export function CampaignBuilder({ campaignId: initialCampaignId }: CampaignBuild
                           >
                             {p.skipped
                               ? "—"
-                              : `${p.changePct > 0 ? "+" : ""}${(p.changePct * 100).toFixed(1)}%`}
+                              : `${p.changePct > 0 ? "+" : ""}${p.changePct.toFixed(1)}%`}
                           </td>
                           <td className="px-4 py-2 text-muted">
                             {p.clampedByMarginFloor && "margin floor"}
