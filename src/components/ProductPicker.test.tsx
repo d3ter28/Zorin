@@ -120,6 +120,28 @@ describe("ProductPicker", () => {
     expect(onChange).toHaveBeenCalledWith(["p1", "p2", "p3", "p4"]);
   });
 
+  it("Deselect all only clears visible products, preserving hidden selections", async () => {
+    const onChange = vi.fn();
+    render(
+      <ProductPicker
+        products={PRODUCTS}
+        campaignType="sale"
+        selectedIds={["p1", "p2", "p3", "p4"]}
+        onChange={onChange}
+      />,
+    );
+    // Filter to kitchen only (p1, p2 visible; p3, p4 hidden but selected)
+    await userEvent.selectOptions(
+      screen.getByRole("combobox", { name: "Category filter" }),
+      "kitchen",
+    );
+    // All visible are selected, so button reads "Deselect all"
+    await userEvent.click(screen.getByRole("button", { name: "Deselect all" }));
+    const called = onChange.mock.calls.at(-1)![0] as string[];
+    // p3 and p4 should remain selected (they were hidden during deselect)
+    expect(called.sort()).toEqual(["p3", "p4"]);
+  });
+
   it("Select all after category filter only selects visible products", async () => {
     const onChange = vi.fn();
     render(
@@ -151,6 +173,20 @@ describe("ProductPicker", () => {
     );
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith(["p1", "p2"]);
+  });
+
+  it("ML auto-select does NOT override existing selections on remount", () => {
+    const onChange = vi.fn();
+    render(
+      <ProductPicker
+        products={PRODUCTS}
+        campaignType="ml_recommendation"
+        selectedIds={["p3", "p4"]}
+        onChange={onChange}
+      />,
+    );
+    // selectedIds is non-empty, so the auto-select effect should not fire
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   it("sale campaignType does NOT auto-call onChange on mount", () => {

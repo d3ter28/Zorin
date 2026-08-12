@@ -69,7 +69,7 @@ describe("GET /api/cron/campaigns — auth", () => {
 describe("GET /api/cron/campaigns — scheduled → executing", () => {
   it("transitions scheduled campaigns past startsAt to executing", async () => {
     mockCampaignFindMany
-      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", executionCursor: 0 }]) // scheduled
+      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1" }]) // scheduled
       .mockResolvedValue([]); // all others
     mockExecuteChunk.mockResolvedValue({ processed: 0, done: true });
 
@@ -90,19 +90,19 @@ describe("GET /api/cron/campaigns — executing", () => {
   it("continues chunk execution for executing campaigns", async () => {
     mockCampaignFindMany
       .mockResolvedValueOnce([]) // scheduled
-      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", executionCursor: 0 }]) // executing
+      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1" }]) // executing
       .mockResolvedValue([]); // others
     mockExecuteChunk.mockResolvedValue({ processed: 10, done: false });
 
     await GET(makeReq());
-    expect(mockExecuteChunk).toHaveBeenCalledWith(expect.anything(), "c1", "m1", 0);
+    expect(mockExecuteChunk).toHaveBeenCalledWith(expect.anything(), "c1", "m1");
     expect(mockCampaignUpdate).not.toHaveBeenCalled(); // not done, no transition
   });
 
   it("transitions executing → active when executeChunk returns done=true", async () => {
     mockCampaignFindMany
       .mockResolvedValueOnce([]) // scheduled
-      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", executionCursor: 30 }]) // executing
+      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1" }]) // executing
       .mockResolvedValue([]);
     mockExecuteChunk.mockResolvedValue({ processed: 5, done: true });
 
@@ -118,7 +118,7 @@ describe("GET /api/cron/campaigns — active → reverting/completed", () => {
     mockCampaignFindMany
       .mockResolvedValueOnce([]) // scheduled
       .mockResolvedValueOnce([]) // executing
-      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", executionCursor: 0, revertOnEnd: true }]) // expired active
+      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", revertOnEnd: true }]) // expired active
       .mockResolvedValue([]);
 
     await GET(makeReq());
@@ -131,7 +131,7 @@ describe("GET /api/cron/campaigns — active → reverting/completed", () => {
     mockCampaignFindMany
       .mockResolvedValueOnce([]) // scheduled
       .mockResolvedValueOnce([]) // executing
-      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", executionCursor: 0, revertOnEnd: false }]) // expired active
+      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", revertOnEnd: false }]) // expired active
       .mockResolvedValue([]);
 
     await GET(makeReq());
@@ -147,11 +147,11 @@ describe("GET /api/cron/campaigns — reverting", () => {
       .mockResolvedValueOnce([]) // scheduled
       .mockResolvedValueOnce([]) // executing
       .mockResolvedValueOnce([]) // expired active
-      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", executionCursor: 0 }]); // reverting
+      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1" }]); // reverting
     mockRevertChunk.mockResolvedValue({ processed: 10, done: false });
 
     await GET(makeReq());
-    expect(mockRevertChunk).toHaveBeenCalledWith(expect.anything(), "c1", "m1", 0);
+    expect(mockRevertChunk).toHaveBeenCalledWith(expect.anything(), "c1", "m1");
     expect(mockCampaignUpdate).not.toHaveBeenCalled();
   });
 
@@ -160,7 +160,7 @@ describe("GET /api/cron/campaigns — reverting", () => {
       .mockResolvedValueOnce([]) // scheduled
       .mockResolvedValueOnce([]) // executing
       .mockResolvedValueOnce([]) // expired active
-      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1", executionCursor: 30 }]); // reverting
+      .mockResolvedValueOnce([{ id: "c1", merchantId: "m1" }]); // reverting
     mockRevertChunk.mockResolvedValue({ processed: 5, done: true });
 
     await GET(makeReq());

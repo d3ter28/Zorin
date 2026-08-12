@@ -120,6 +120,31 @@ describe("calculateTargetPrice — rounding", () => {
     expect(result.targetPriceCents).toBe(1095);
   });
 
+  it("clips .99 rounding at minimum 1 cent for very low prices", () => {
+    const product = { currentPrice: 25, cogs: null };
+    const rules: CampaignRules = {
+      mode: "percentage",
+      percentage: 0,
+      rounding: "99",
+      marginFloorPct: 0,
+    };
+    // Math.round(25/100)*100 = 0, 0-1 = -1, clamp to 1
+    const result = calculateTargetPrice(product, rules);
+    expect(result.targetPriceCents).toBeGreaterThanOrEqual(1);
+  });
+
+  it("clips .95 rounding at minimum 1 cent for very low prices", () => {
+    const product = { currentPrice: 2, cogs: null };
+    const rules: CampaignRules = {
+      mode: "percentage",
+      percentage: 0,
+      rounding: "95",
+      marginFloorPct: 0,
+    };
+    const result = calculateTargetPrice(product, rules);
+    expect(result.targetPriceCents).toBeGreaterThanOrEqual(1);
+  });
+
   it("handles price already ending in .99 with no rounding", () => {
     const result = calculateTargetPrice(makeProduct({ currentPrice: 999 }), {
       ...baseRules,

@@ -40,7 +40,6 @@ interface Campaign {
   revertOnEnd: boolean;
   startsAt: string | null;
   endsAt: string | null;
-  executionCursor: number;
   executedAt: string | null;
   revertedAt: string | null;
   createdAt: string;

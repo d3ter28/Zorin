@@ -94,8 +94,8 @@ function applyMarginFloor(
 function applyRounding(priceCents: number, rounding: CampaignRules["rounding"]): number {
   if (rounding === "none") return priceCents;
   const wholeDollars = Math.round(priceCents / 100) * 100;
-  if (rounding === "99") return wholeDollars - 1;
-  if (rounding === "95") return wholeDollars - 5;
+  if (rounding === "99") return Math.max(1, wholeDollars - 1);
+  if (rounding === "95") return Math.max(1, wholeDollars - 5);
   return priceCents;
 }
 

@@ -27,7 +27,7 @@ export async function GET(req: Request): Promise<NextResponse> {
     try {
       await prisma.campaign.update({
         where: { id: c.id },
-        data: { status: "executing", executionCursor: 0 },
+        data: { status: "executing" },
       });
       await prisma.campaignLog.create({
         data: { campaignId: c.id, event: "execution_started" },
@@ -44,7 +44,7 @@ export async function GET(req: Request): Promise<NextResponse> {
 
   for (const c of executing) {
     try {
-      const result = await executeChunk(prisma, c.id, c.merchantId, c.executionCursor);
+      const result = await executeChunk(prisma, c.id, c.merchantId);
       if (result.done) {
         await prisma.campaign.update({
           where: { id: c.id },
@@ -76,7 +76,7 @@ export async function GET(req: Request): Promise<NextResponse> {
       if (c.revertOnEnd) {
         await prisma.campaign.update({
           where: { id: c.id },
-          data: { status: "reverting", executionCursor: 0 },
+          data: { status: "reverting" },
         });
         await prisma.campaignLog.create({
           data: { campaignId: c.id, event: "revert_started" },
@@ -106,7 +106,7 @@ export async function GET(req: Request): Promise<NextResponse> {
 
   for (const c of reverting) {
     try {
-      const result = await revertChunk(prisma, c.id, c.merchantId, c.executionCursor);
+      const result = await revertChunk(prisma, c.id, c.merchantId);
       if (result.done) {
         await prisma.campaign.update({
           where: { id: c.id },

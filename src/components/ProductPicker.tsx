@@ -41,13 +41,14 @@ export function ProductPicker({
 
   // ML auto-select: on mount, pre-select all RAISE/LOWER products.
   useEffect(() => {
-    if (campaignType === "ml_recommendation") {
+    if (campaignType === "ml_recommendation" && selectedIds.length === 0) {
       const ids = products
         .filter((p) => p.recommendedAction === "raise" || p.recommendedAction === "lower")
         .map((p) => p.id);
       onChange(ids);
     }
     // Intentionally runs only on mount — products/onChange identity is stable at mount time.
+    // selectedIds.length check prevents wiping manual selections on back-navigation.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -95,7 +96,8 @@ export function ProductPicker({
 
   function handleSelectAll() {
     if (allVisibleSelected) {
-      onChange([]);
+      const visibleSet = new Set(visibleIds);
+      onChange(selectedIds.filter((id) => !visibleSet.has(id)));
     } else {
       const next = new Set(selectedIds);
       visibleIds.forEach((id) => next.add(id));

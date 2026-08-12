@@ -15,7 +15,6 @@ export async function executeChunk(
   prisma: PrismaClient,
   campaignId: string,
   merchantId: string,
-  cursor: number,
   chunkSize = DEFAULT_CHUNK_SIZE,
 ): Promise<ChunkResult> {
   const rows = await prisma.campaignProduct.findMany({
@@ -118,12 +117,6 @@ export async function executeChunk(
     where: { campaignId, appliedAt: null, error: null },
   });
 
-  const newCursor = cursor + rows.length;
-  await prisma.campaign.update({
-    where: { id: campaignId },
-    data: { executionCursor: newCursor },
-  });
-
   return { processed: rows.length, done: remaining === 0 };
 }
 
@@ -131,7 +124,6 @@ export async function revertChunk(
   prisma: PrismaClient,
   campaignId: string,
   merchantId: string,
-  cursor: number,
   chunkSize = DEFAULT_CHUNK_SIZE,
 ): Promise<ChunkResult> {
   const rows = await prisma.campaignProduct.findMany({
@@ -232,12 +224,6 @@ export async function revertChunk(
 
   const remaining = await prisma.campaignProduct.count({
     where: { campaignId, appliedAt: { not: null }, revertedAt: null },
-  });
-
-  const newCursor = cursor + rows.length;
-  await prisma.campaign.update({
-    where: { id: campaignId },
-    data: { executionCursor: newCursor },
   });
 
   return { processed: rows.length, done: remaining === 0 };
