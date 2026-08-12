@@ -21,6 +21,7 @@ model Merchant {
   invitations           Invitation[]
   shopifyConnection     ShopifyConnection?
   wooCommerceConnection WooCommerceConnection?
+  campaigns             Campaign[]
 }
 
 model Product {
@@ -44,6 +45,7 @@ model Product {
   priceChanges         PriceChange[]
   priceSurveys         PriceSurvey[]
   competitorPrices     CompetitorPrice[]
+  campaignProducts     CampaignProduct[]
 }
 
 model Recommendation {
@@ -223,4 +225,47 @@ model Invitation {
   expiresAt       DateTime
   acceptedAt      DateTime?
   createdAt       DateTime  @default(now())
+}
+
+model Campaign {
+  id              String            @id @default(cuid())
+  merchantId      String
+  merchant        Merchant          @relation(fields: [merchantId], references: [id])
+  name            String
+  type            String
+  status          String            @default("draft")
+  rules           String
+  revertOnEnd     Boolean           @default(true)
+  startsAt        DateTime?
+  endsAt          DateTime?
+  executionCursor Int               @default(0)
+  executedAt      DateTime?
+  revertedAt      DateTime?
+  createdAt       DateTime          @default(now())
+  products        CampaignProduct[]
+  logs            CampaignLog[]
+}
+
+model CampaignProduct {
+  id                 String    @id @default(cuid())
+  campaignId         String
+  campaign           Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  productId          String
+  product            Product   @relation(fields: [productId], references: [id])
+  originalPriceCents Int
+  targetPriceCents   Int
+  appliedAt          DateTime?
+  revertedAt         DateTime?
+  error              String?
+
+  @@unique([campaignId, productId])
+}
+
+model CampaignLog {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  event      String
+  detail     String?
+  createdAt  DateTime @default(now())
 }
