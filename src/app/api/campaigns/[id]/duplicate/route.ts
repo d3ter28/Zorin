@@ -20,23 +20,25 @@ export const POST = withErrorHandling(
 
     const productIds = campaign.products.map((p) => p.productId);
 
-    const duplicate = await prisma.campaign.create({
-      data: {
-        merchantId,
-        name: `${campaign.name} (copy)`,
-        type: campaign.type,
-        status: "draft",
-        rules: campaign.rules,
-        revertOnEnd: campaign.revertOnEnd,
-      },
-    });
-
-    await prisma.campaignLog.create({
-      data: {
-        campaignId: duplicate.id,
-        event: "created",
-        detail: JSON.stringify({ duplicatedFrom: id, productIds }),
-      },
+    const duplicate = await prisma.$transaction(async (tx) => {
+      const created = await tx.campaign.create({
+        data: {
+          merchantId,
+          name: `${campaign.name} (copy)`,
+          type: campaign.type,
+          status: "draft",
+          rules: campaign.rules,
+          revertOnEnd: campaign.revertOnEnd,
+        },
+      });
+      await tx.campaignLog.create({
+        data: {
+          campaignId: created.id,
+          event: "created",
+          detail: JSON.stringify({ duplicatedFrom: id, productIds }),
+        },
+      });
+      return created;
     });
 
     return NextResponse.json(duplicate, { status: 201 });

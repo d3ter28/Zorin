@@ -44,7 +44,7 @@ export const GET = withErrorHandling(
     return new NextResponse(csv, {
       headers: {
         "Content-Type": "text/csv",
-        "Content-Disposition": `attachment; filename="${campaign.name.replace(/"/g, "")}-export.csv"`,
+        "Content-Disposition": `attachment; filename="${campaign.name.replace(/["\r\n;]/g, "")}-export.csv"`,
       },
     });
   },

@@ -3,11 +3,13 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const mockFindUniqueOrThrow = vi.hoisted(() => vi.fn());
 const mockUpdate = vi.hoisted(() => vi.fn());
 const mockLogCreate = vi.hoisted(() => vi.fn());
+const mockTransaction = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/db", () => ({
   prisma: {
     campaign: { findUniqueOrThrow: mockFindUniqueOrThrow, update: mockUpdate },
     campaignLog: { create: mockLogCreate },
+    $transaction: mockTransaction,
   },
 }));
 
@@ -36,6 +38,9 @@ beforeEach(() => {
   vi.resetAllMocks();
   mockLogCreate.mockResolvedValue({});
   mockUpdate.mockResolvedValue({ id: "c1", status: "executing" });
+  mockTransaction.mockImplementation((fn: (tx: unknown) => Promise<unknown>) =>
+    fn({ campaign: { update: mockUpdate }, campaignLog: { create: mockLogCreate } }),
+  );
 });
 
 describe("POST /api/campaigns/[id]/execute", () => {

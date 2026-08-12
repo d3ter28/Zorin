@@ -16,24 +16,27 @@ export const POST = withErrorHandling(
       throw new HttpError(400, "Only scheduled campaigns can be manually executed");
     }
 
-    await prisma.campaign.update({
-      where: { id },
-      data: { status: "executing", startsAt: new Date(), executionCursor: 0 },
-    });
-
-    await prisma.campaignLog.create({
-      data: { campaignId: id, event: "execution_started" },
+    await prisma.$transaction(async (tx) => {
+      await tx.campaign.update({
+        where: { id },
+        data: { status: "executing", startsAt: new Date(), executionCursor: 0 },
+      });
+      await tx.campaignLog.create({
+        data: { campaignId: id, event: "execution_started" },
+      });
     });
 
     const result = await executeChunk(prisma, id, merchantId, 0);
 
     if (result.done) {
-      await prisma.campaign.update({
-        where: { id },
-        data: { status: "active", executedAt: new Date() },
-      });
-      await prisma.campaignLog.create({
-        data: { campaignId: id, event: "execution_completed" },
+      await prisma.$transaction(async (tx) => {
+        await tx.campaign.update({
+          where: { id },
+          data: { status: "active", executedAt: new Date() },
+        });
+        await tx.campaignLog.create({
+          data: { campaignId: id, event: "execution_completed" },
+        });
       });
     }
 

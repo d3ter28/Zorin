@@ -15,7 +15,12 @@ export const POST = withErrorHandling(
       throw new HttpError(400, "Cannot stop a campaign that is in draft or already completed");
     }
 
-    const nextStatus = campaign.revertOnEnd ? "reverting" : "completed";
+    let nextStatus: string;
+    if (campaign.status === "reverting") {
+      nextStatus = "completed";
+    } else {
+      nextStatus = campaign.revertOnEnd ? "reverting" : "completed";
+    }
     const data: Record<string, unknown> = { status: nextStatus };
     if (nextStatus === "reverting") data.executionCursor = 0;
     if (nextStatus === "completed") data.revertedAt = new Date();

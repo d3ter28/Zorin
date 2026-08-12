@@ -63,4 +63,13 @@ describe("POST /api/campaigns/[id]/stop", () => {
     const res = await POST(makeReq(), ctx);
     expect(res.status).toBe(400);
   });
+
+  it("transitions reverting campaign to completed when stopped", async () => {
+    mockFindUniqueOrThrow.mockResolvedValue({ id: "c1", status: "reverting", revertOnEnd: true });
+    const res = await POST(makeReq(), ctx);
+    expect(res.status).toBe(200);
+    expect(mockUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({ data: expect.objectContaining({ status: "completed" }) }),
+    );
+  });
 });
