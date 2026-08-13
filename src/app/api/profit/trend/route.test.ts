@@ -62,4 +62,31 @@ describe("GET /api/profit/trend", () => {
     const res = await GET(req());
     expect(await res.json()).toEqual([]);
   });
+
+  it("scopes product and cogsChange queries to the merchant", async () => {
+    salesFindMany.mockResolvedValue([]);
+    productFindMany.mockResolvedValue([]);
+    cogsChangeFindMany.mockResolvedValue([]);
+    await GET(req());
+    expect(productFindMany).toHaveBeenCalledWith(
+      expect.objectContaining({ where: expect.objectContaining({ merchantId: "m1" }) }),
+    );
+    expect(cogsChangeFindMany).toHaveBeenCalledWith(
+      expect.objectContaining({ where: expect.objectContaining({ merchantId: "m1" }) }),
+    );
+  });
+
+  it("excludes sales for products with no COGS data from the P&L", async () => {
+    const now = new Date();
+    const thisMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 10));
+    salesFindMany.mockResolvedValue([
+      { productId: "p-nocogs", date: thisMonth, unitsSold: 5, priceCents: 1000 },
+    ]);
+    productFindMany.mockResolvedValue([{ id: "p-nocogs", cogs: null }]);
+    cogsChangeFindMany.mockResolvedValue([]);
+
+    const res = await GET(req());
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual([]);
+  });
 });
