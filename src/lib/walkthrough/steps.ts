@@ -66,15 +66,17 @@ export const WALKTHROUGH_STEPS: WalkthroughStep[] = [
     icon: ChatCircleDots,
     title: "Ask customers directly",
     description:
-      "Open any product and find the Van Westendorp Analysis card to share a survey link with customers and see what they'd actually pay — a second signal alongside the sales-based recommendation.",
-    tab: "overview",
+      "Click into any product from this list and find the Van Westendorp Analysis card to share a survey link with customers and see what they'd actually pay — a second signal alongside the sales-based recommendation.",
+    targetId: "tour-products-table",
+    tab: "products",
   },
   {
     icon: Scales,
     title: "Benchmark against competitors",
     description:
-      "The Competitor prices card on each product page tracks what similar products sell for elsewhere, and feeds straight into Launch Planner for a market-aware starting price.",
-    tab: "overview",
+      "Click into any product from this list and find the Competitor prices card — it tracks what similar products sell for elsewhere, and feeds straight into Launch Planner for a market-aware starting price.",
+    targetId: "tour-products-table",
+    tab: "products",
   },
   {
     icon: TrendUp,

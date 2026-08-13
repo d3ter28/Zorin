@@ -46,10 +46,33 @@ export function WalkthroughTour({
     let observer: ResizeObserver | null = null;
     let pollId: ReturnType<typeof setInterval> | null = null;
     let scrolled = false;
+    let highlighted: HTMLElement | null = null;
 
     const measure = (el: Element) => {
       const r = el.getBoundingClientRect();
       setTargetRect({ top: r.top, left: r.left, width: r.width, height: r.height });
+    };
+
+    // Sidebar items render light text on the sidebar's own dark background,
+    // so the dim-everything-else overlay has nothing to contrast against —
+    // the "spotlit" item just looks like a normal, unlit nav item. Force it
+    // to the same light surface every other spotlighted target already has
+    // (cards, buttons, table) so it actually reads as highlighted, and
+    // restore its real inline style when this step ends.
+    const applyHighlight = (el: HTMLElement) => {
+      highlighted = el;
+      el.dataset.tourPrevStyle = el.getAttribute("style") ?? "";
+      el.style.setProperty("background-color", "#ffffff", "important");
+      el.style.setProperty("color", "#15161a", "important");
+      el.style.setProperty("border-radius", "0.5rem", "important");
+    };
+    const clearHighlight = () => {
+      if (!highlighted) return;
+      const prev = highlighted.dataset.tourPrevStyle ?? "";
+      if (prev) highlighted.setAttribute("style", prev);
+      else highlighted.removeAttribute("style");
+      delete highlighted.dataset.tourPrevStyle;
+      highlighted = null;
     };
 
     const attach = () => {
@@ -60,6 +83,7 @@ export function WalkthroughTour({
         el.scrollIntoView({ block: "center", behavior: "smooth" });
       }
       measure(el);
+      if (el.closest("nav")) applyHighlight(el);
       observer = new ResizeObserver(() => measure(el));
       observer.observe(el);
       return true;
@@ -84,6 +108,7 @@ export function WalkthroughTour({
     return () => {
       if (pollId) clearInterval(pollId);
       observer?.disconnect();
+      clearHighlight();
       window.removeEventListener("resize", onWindowChange);
       window.removeEventListener("scroll", onWindowChange, true);
     };
