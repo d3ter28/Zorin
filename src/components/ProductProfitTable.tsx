@@ -110,7 +110,7 @@ export function ProductProfitTable() {
                     <td className="px-2 py-2 text-muted tabular-nums">{r.units}</td>
                     <td className="px-2 py-2 text-ink tabular-nums">{formatCents(r.revenueCents)}</td>
                     <td className="px-2 py-2 text-muted tabular-nums">{formatCents(r.cogsCents)}</td>
-                    <td className="px-2 py-2 tabular-nums text-positive">{formatCents(r.grossProfitCents)}</td>
+                    <td className={`px-2 py-2 tabular-nums ${r.grossProfitCents >= 0 ? "text-positive" : "text-danger"}`}>{formatCents(r.grossProfitCents)}</td>
                     <td className={`px-2 py-2 tabular-nums ${belowFloor ? "text-warning" : "text-muted"}`}>
                       {r.marginPct !== null ? `${(r.marginPct * 100).toFixed(0)}%` : "—"}
                       {belowFloor && <span className="ml-1 text-xs">below floor</span>}

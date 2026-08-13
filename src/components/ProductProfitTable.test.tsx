@@ -23,4 +23,28 @@ describe("ProductProfitTable", () => {
     render(<ProductProfitTable />);
     await waitFor(() => expect(screen.getByText(/no product profit data/i)).toBeInTheDocument());
   });
+
+  it("shows the 'est.' marker and 'below floor' for estimated, low-margin rows", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ window: 90, products: rows }) })) as unknown as typeof fetch);
+    render(<ProductProfitTable />);
+    await waitFor(() => expect(screen.getByText("Gamma")).toBeInTheDocument());
+    expect(screen.getByText("est.")).toBeInTheDocument(); // Gamma has estimated: true
+    expect(screen.getByText(/below floor/i)).toBeInTheDocument(); // Gamma has marginPct: 0.09 < 0.15
+  });
+
+  it("shows '—' for null marginPct", async () => {
+    const withNullMargin = [
+      { ...rows[0], marginPct: null },
+    ];
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ window: 90, products: withNullMargin }) })) as unknown as typeof fetch);
+    render(<ProductProfitTable />);
+    await waitFor(() => expect(screen.getByText("Alpha")).toBeInTheDocument());
+    expect(screen.getByText("—")).toBeInTheDocument();
+  });
+
+  it("shows the empty state when fetch fails", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => { throw new Error("network"); }) as unknown as typeof fetch);
+    render(<ProductProfitTable />);
+    await waitFor(() => expect(screen.getByText(/no product profit data/i)).toBeInTheDocument());
+  });
 });
