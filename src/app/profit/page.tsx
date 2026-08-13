@@ -4,6 +4,7 @@ import { AppShell } from "@/components/AppShell";
 import { ProfitSummaryCards } from "@/components/ProfitSummaryCards";
 import { ProfitTrendChart } from "@/components/ProfitTrendChart";
 import { ProductProfitTable } from "@/components/ProductProfitTable";
+import { CampaignPerformanceList } from "@/components/CampaignPerformanceList";
 
 export default async function ProfitPage() {
   const user = await requireSessionPage();
@@ -22,7 +23,7 @@ export default async function ProfitPage() {
         <ProfitSummaryCards />
         <ProfitTrendChart />
         <ProductProfitTable />
-        {/* CampaignPerformanceList added in later tasks */}
+        <CampaignPerformanceList />
       </div>
     </AppShell>
   );
