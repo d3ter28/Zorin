@@ -86,14 +86,25 @@ export function ProfitTrendChart() {
         </div>
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ fontFamily: "var(--font-mono, monospace)" }}>
-        {yTicks.map((v) => (
-          <g key={v}>
+        {yTicks.map((v, i) => (
+          <g key={i}>
             <line x1={PAD.left} x2={PAD.left + INNER_W} y1={yOf(v)} y2={yOf(v)} stroke="var(--color-line)" strokeWidth="1" />
             <text x={PAD.left - 6} y={yOf(v)} textAnchor="end" dominantBaseline="middle" fontSize="9" fill="var(--color-faint)">
               {formatCents(v)}
             </text>
           </g>
         ))}
+        {minV < 0 && (
+          <line
+            x1={PAD.left}
+            x2={PAD.left + INNER_W}
+            y1={yOf(0)}
+            y2={yOf(0)}
+            stroke="var(--color-line-strong)"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
+        )}
         {SERIES.map((s) => (
           <path key={s.key} d={pathFor(s.key)} fill="none" stroke={s.color} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
         ))}

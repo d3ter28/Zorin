@@ -34,4 +34,10 @@ describe("ProfitTrendChart", () => {
     render(<ProfitTrendChart />);
     await waitFor(() => expect(screen.getByText(/add cogs and sync sales/i)).toBeInTheDocument());
   });
+
+  it("shows the empty state when the fetch fails", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => { throw new Error("network error"); }) as unknown as typeof fetch);
+    render(<ProfitTrendChart />);
+    await waitFor(() => expect(screen.getByText(/add cogs and sync sales/i)).toBeInTheDocument());
+  });
 });
