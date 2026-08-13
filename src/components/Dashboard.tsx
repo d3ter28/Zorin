@@ -10,6 +10,7 @@ import { formatCents } from "@/lib/money";
 import { PortfolioTrendChart } from "./PortfolioTrendChart";
 import { OnboardingChecklist } from "./OnboardingChecklist";
 import { WalkthroughTour } from "./WalkthroughTour";
+import type { WalkthroughStep } from "@/lib/walkthrough/steps";
 
 const WALKTHROUGH_SEEN_KEY = "zorin_walkthrough_seen";
 
@@ -167,7 +168,14 @@ export function Dashboard() {
 
   return (
     <div>
-      {showWalkthrough && <WalkthroughTour onDone={dismissWalkthrough} />}
+      {showWalkthrough && (
+        <WalkthroughTour
+          onDone={dismissWalkthrough}
+          onStepChange={(step: WalkthroughStep) => {
+            if (step.tab) setTab(step.tab);
+          }}
+        />
+      )}
       {portfolio && !allDone && showChecklist && (
         <OnboardingChecklist
           hasProducts={hasProducts}
@@ -187,6 +195,7 @@ export function Dashboard() {
         {(["overview", "products"] as Tab[]).map((t) => (
           <button
             key={t}
+            id={t === "products" ? "tour-products-tab" : undefined}
             onClick={() => setTab(t)}
             aria-pressed={tab === t}
             className={`pb-3 text-sm font-medium capitalize transition-colors border-b-2 -mb-px ${
@@ -211,7 +220,7 @@ export function Dashboard() {
       )}
 
       {tab === "products" && (
-        <div className="space-y-6">
+        <div id="tour-products-panel" className="space-y-6">
           <ProductUpload onImported={refresh} />
           <SalesHistoryUpload autoML onSuccess={refresh} />
           <ProductsTable refreshToken={refreshToken} />

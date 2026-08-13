@@ -16,9 +16,9 @@ const MERCHANT_TEXT = "oklch(0.50 0.010 265)";
 
 const NAV = [
   { href: "/dashboard", icon: SquaresFour, label: "Dashboard", matchPrefix: ["/dashboard", "/product"] },
-  { href: "/campaigns", icon: CalendarBlank, label: "Campaigns", matchPrefix: ["/campaigns"] },
-  { href: "/profit", icon: TrendUp, label: "Profit", matchPrefix: ["/profit"] },
-  { href: "/launch-planner", icon: RocketLaunch, label: "Launch Planner", matchPrefix: ["/launch-planner"] },
+  { href: "/campaigns", icon: CalendarBlank, label: "Campaigns", matchPrefix: ["/campaigns"], id: "tour-nav-campaigns" },
+  { href: "/profit", icon: TrendUp, label: "Profit", matchPrefix: ["/profit"], id: "tour-nav-profit" },
+  { href: "/launch-planner", icon: RocketLaunch, label: "Launch Planner", matchPrefix: ["/launch-planner"], id: "tour-nav-launch-planner" },
   { href: "/guide", icon: BookOpen, label: "Guide", matchPrefix: ["/guide"] },
 ];
 
@@ -34,14 +34,17 @@ function NavItem({
   icon: Icon,
   label,
   active,
+  id,
 }: {
   href: string;
   icon: React.ElementType;
   label: string;
   active: boolean;
+  id?: string;
 }) {
   return (
     <Link
+      id={id}
       href={href}
       className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors ${
         active ? "bg-accent text-accent-fg" : ""
@@ -74,6 +77,7 @@ function SettingsNavGroup({ pathname }: { pathname: string }) {
   return (
     <div>
       <button
+        id="tour-nav-settings"
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
@@ -155,9 +159,10 @@ export function Sidebar({ merchantName }: { merchantName?: string }) {
 
       {/* Nav */}
       <nav className="flex-1 px-3 space-y-0.5">
-        {NAV.map(({ href, icon, label, matchPrefix }) => (
+        {NAV.map(({ href, icon, label, matchPrefix, id }) => (
           <NavItem
             key={href}
+            id={id}
             href={href}
             icon={icon}
             label={label}
