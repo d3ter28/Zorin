@@ -199,6 +199,7 @@ function SignupPageInner() {
               endpoint="/api/auth/signup"
               submitLabel="Create account"
               extraFields={{ plan }}
+              gaEvent="sign_up"
               fields={[
                 { name: "email", label: "Email", type: "email", placeholder: "you@store.com" },
                 {

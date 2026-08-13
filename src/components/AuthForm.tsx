@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 interface Field {
   name: string;
@@ -24,6 +25,7 @@ export function AuthForm({
   endpoint,
   onSuccess,
   extraFields,
+  gaEvent,
 }: {
   fields: Field[];
   submitLabel: string;
@@ -32,6 +34,8 @@ export function AuthForm({
   /** Extra values merged into the POST body that aren't rendered as inputs
    * (e.g. a plan tier already chosen via a query param elsewhere on the page). */
   extraFields?: Record<string, string>;
+  /** GA4 event name to fire on a successful submit (e.g. "sign_up"). */
+  gaEvent?: string;
 }) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [error, setError] = useState<string | null>(null);
@@ -53,6 +57,7 @@ export function AuthForm({
         setBusy(false);
         return;
       }
+      if (gaEvent) trackEvent(gaEvent);
       if (onSuccess) {
         await onSuccess();
       } else {
