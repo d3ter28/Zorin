@@ -25,9 +25,9 @@ export const GET = withErrorHandling(async () => {
       where: { merchantId, productId: { in: allProductIds } },
       select: { productId: true, date: true, unitsSold: true, priceCents: true },
     }),
-    prisma.product.findMany({ where: { id: { in: allProductIds } }, select: { id: true, cogs: true } }),
+    prisma.product.findMany({ where: { merchantId, id: { in: allProductIds } }, select: { id: true, cogs: true } }),
     prisma.cogsChange.findMany({
-      where: { productId: { in: allProductIds } },
+      where: { merchantId, productId: { in: allProductIds } },
       select: { productId: true, toCents: true, changedAt: true },
       orderBy: { changedAt: "asc" },
     }),
