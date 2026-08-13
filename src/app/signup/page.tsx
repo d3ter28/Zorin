@@ -201,8 +201,14 @@ function SignupPageInner() {
               extraFields={{ plan }}
               fields={[
                 { name: "email", label: "Email", type: "email", placeholder: "you@store.com" },
-                { name: "password", label: "Password (8+ characters)", type: "password" },
-                { name: "storeName", label: "Store name", type: "text" },
+                {
+                  name: "password",
+                  label: "Password (8+ characters)",
+                  type: "password",
+                  autoComplete: "new-password",
+                  minLength: 8,
+                },
+                { name: "storeName", label: "Store name", type: "text", autoComplete: "organization" },
                 { name: "storeUrl", label: "Store URL (optional)", type: "url", required: false },
               ]}
             />

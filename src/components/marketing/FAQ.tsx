@@ -50,6 +50,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number }) {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
+  const panelId = `faq-panel-${index}`;
 
   return (
     <motion.div
@@ -61,6 +62,8 @@ function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number
     >
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={panelId}
         className="flex w-full items-start justify-between gap-4 py-5 text-left"
       >
         <span className="text-sm font-medium text-zinc-900">{q}</span>
@@ -72,6 +75,7 @@ function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number
         {open && (
           <motion.div
             key="answer"
+            id={panelId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

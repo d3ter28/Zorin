@@ -56,13 +56,15 @@ export function Navbar() {
           onClick={() => setOpen(!open)}
           className="flex h-9 w-9 items-center justify-center rounded-md text-zinc-600 md:hidden"
           aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-nav-menu"
         >
           {open ? <X size={20} /> : <List size={20} />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-zinc-200/60 bg-white px-6 py-4 md:hidden">
+        <div id="mobile-nav-menu" className="border-t border-zinc-200/60 bg-white px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             {links.map((l) => (
               <a

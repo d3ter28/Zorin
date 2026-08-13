@@ -49,12 +49,14 @@ export function ProductProfitTable() {
             <button
               className={`px-2 py-1 ${mode === "earners" ? "bg-accent text-accent-fg" : "text-muted"}`}
               onClick={() => setMode("earners")}
+              aria-pressed={mode === "earners"}
             >
               Top earners
             </button>
             <button
               className={`px-2 py-1 ${mode === "bleeders" ? "bg-accent text-accent-fg" : "text-muted"}`}
               onClick={() => setMode("bleeders")}
+              aria-pressed={mode === "bleeders"}
             >
               Margin bleeders
             </button>

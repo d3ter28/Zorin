@@ -188,6 +188,7 @@ export function Dashboard() {
           <button
             key={t}
             onClick={() => setTab(t)}
+            aria-pressed={tab === t}
             className={`pb-3 text-sm font-medium capitalize transition-colors border-b-2 -mb-px ${
               tab === t
                 ? "border-accent text-ink"

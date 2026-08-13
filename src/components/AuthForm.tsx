@@ -7,7 +7,16 @@ interface Field {
   type: "text" | "email" | "password" | "url";
   placeholder?: string;
   required?: boolean;
+  autoComplete?: string;
+  minLength?: number;
 }
+
+const DEFAULT_AUTOCOMPLETE: Record<Field["type"], string> = {
+  email: "email",
+  password: "current-password",
+  text: "on",
+  url: "url",
+};
 
 export function AuthForm({
   fields,
@@ -64,13 +73,19 @@ export function AuthForm({
             type={f.type}
             required={f.required !== false}
             placeholder={f.placeholder}
+            autoComplete={f.autoComplete ?? DEFAULT_AUTOCOMPLETE[f.type]}
+            minLength={f.minLength}
             value={values[f.name] ?? ""}
             onChange={(e) => setValues((v) => ({ ...v, [f.name]: e.target.value }))}
             className="mt-1 w-full rounded-md border border-black/10 px-3 py-2 text-sm"
           />
         </label>
       ))}
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && (
+        <p role="alert" className="text-sm text-red-600">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
         disabled={busy}

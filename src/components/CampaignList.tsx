@@ -133,6 +133,7 @@ export function CampaignList() {
                   : "text-muted hover:text-ink"
               }`}
               onClick={() => setActiveTab(tab.id)}
+              aria-pressed={isActive}
             >
               {tab.label}
               <span
