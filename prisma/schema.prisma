@@ -239,6 +239,7 @@ model Campaign {
   revertOnEnd     Boolean           @default(true)
   startsAt        DateTime?
   endsAt          DateTime?
+  executionCursor Int               @default(0)
   executedAt      DateTime?
   revertedAt      DateTime?
   createdAt       DateTime          @default(now())
