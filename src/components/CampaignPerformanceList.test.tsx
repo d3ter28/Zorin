@@ -41,4 +41,28 @@ describe("CampaignPerformanceList", () => {
     render(<CampaignPerformanceList />);
     await waitFor(() => expect(screen.getByText(/no campaign performance yet/i)).toBeInTheDocument());
   });
+
+  it("shows a negative delta with the correct sign character", async () => {
+    mockCampaigns([{ ...base, deltaCents: -100000 }]);
+    render(<CampaignPerformanceList />);
+    await waitFor(() => expect(screen.getByText("Summer Sale")).toBeInTheDocument());
+    // The component uses U+2212 MINUS SIGN (−), not ASCII hyphen (-)
+    // The ▼ is in the same span as the amount, so check toHaveTextContent
+    const deltaEl = screen.getByText(/−\$1,000\.00/);
+    expect(deltaEl).toBeInTheDocument();
+    expect(deltaEl).toHaveTextContent("▼");
+  });
+
+  it("shows the 'est.' badge when estimated is true", async () => {
+    mockCampaigns([{ ...base, estimated: true }]);
+    render(<CampaignPerformanceList />);
+    await waitFor(() => expect(screen.getByText("Summer Sale")).toBeInTheDocument());
+    expect(screen.getByText("est.")).toBeInTheDocument();
+  });
+
+  it("shows the empty state when fetch fails", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => { throw new Error("network"); }) as unknown as typeof fetch);
+    render(<CampaignPerformanceList />);
+    await waitFor(() => expect(screen.getByText(/no campaign performance yet/i)).toBeInTheDocument());
+  });
 });
