@@ -48,4 +48,25 @@ describe("GET /api/profit/products", () => {
     const res = await GET(reqWith("banana"));
     expect((await res.json()).window).toBe(90);
   });
+
+  it("excludes promotional sales from the query", async () => {
+    salesFindMany.mockResolvedValue([]);
+    productFindMany.mockResolvedValue([]);
+    cogsChangeFindMany.mockResolvedValue([]);
+    await GET(reqWith("30"));
+    expect(salesFindMany).toHaveBeenCalledWith(
+      expect.objectContaining({ where: expect.objectContaining({ merchantId: "m1", promotionFlag: false }) }),
+    );
+  });
+
+  it("surfaces estimated:true when a product has no COGS history", async () => {
+    const recent = new Date();
+    salesFindMany.mockResolvedValue([{ productId: "p1", date: recent, unitsSold: 5, priceCents: 1000 }]);
+    productFindMany.mockResolvedValue([{ id: "p1", cogs: 400, title: "Widget", sku: "W-1" }]);
+    cogsChangeFindMany.mockResolvedValue([]); // no history → estimated
+
+    const res = await GET(reqWith("90"));
+    const body = await res.json();
+    expect(body.products[0].estimated).toBe(true);
+  });
 });
