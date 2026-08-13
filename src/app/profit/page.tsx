@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { AppShell } from "@/components/AppShell";
 import { ProfitSummaryCards } from "@/components/ProfitSummaryCards";
 import { ProfitTrendChart } from "@/components/ProfitTrendChart";
+import { ProductProfitTable } from "@/components/ProductProfitTable";
 
 export default async function ProfitPage() {
   const user = await requireSessionPage();
@@ -20,7 +21,8 @@ export default async function ProfitPage() {
         </header>
         <ProfitSummaryCards />
         <ProfitTrendChart />
-        {/* ProductProfitTable, CampaignPerformanceList added in later tasks */}
+        <ProductProfitTable />
+        {/* CampaignPerformanceList added in later tasks */}
       </div>
     </AppShell>
   );
