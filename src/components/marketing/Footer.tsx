@@ -92,6 +92,11 @@ export function Footer() {
                     Privacy Policy
                   </a>
                 </li>
+                <li>
+                  <a href="/terms" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Terms of Service
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
