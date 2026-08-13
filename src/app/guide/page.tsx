@@ -8,7 +8,11 @@ const TOC = [
   { id: "your-dashboard", label: "Your dashboard" },
   { id: "price-elasticity", label: "Price elasticity" },
   { id: "price-survey", label: "Price sensitivity survey" },
+  { id: "competitor-prices", label: "Competitor prices" },
+  { id: "campaigns", label: "Pricing campaigns" },
+  { id: "profit-tracking", label: "Profit tracking" },
   { id: "integrations", label: "Integrations" },
+  { id: "team-settings", label: "Team & settings" },
   { id: "faq", label: "Common questions" },
 ];
 
@@ -221,25 +225,123 @@ export default async function GuidePage() {
         </dl>
       </Section>
 
+      {/* Competitor prices */}
+      <Section id="competitor-prices" title="Competitor prices">
+        <p>
+          Elasticity modelling and the survey both look inward, at your own customers. The{" "}
+          <strong className="text-ink">Competitor prices</strong> card on each product page looks
+          outward - it lets you record what similar products sell for elsewhere, so you know where
+          you sit in the market before you apply a change.
+        </p>
+        <p>
+          Open a product page and find the Competitor prices card. Add a competitor name, their
+          price, and optionally a link to the listing. Zorin tracks each entry over time. These
+          prices also feed directly into <strong className="text-ink">Launch Planner</strong>,
+          where a competitor-match mode uses them to suggest a market-aware starting price for
+          products with no sales history yet.
+        </p>
+      </Section>
+
+      {/* Pricing campaigns */}
+      <Section id="campaigns" title="Pricing campaigns">
+        <p>
+          A recommendation only helps once it is actually applied - and applying changes one
+          product at a time does not scale past a handful of SKUs. <strong className="text-ink">
+          Campaigns</strong> (in the sidebar, between Dashboard and Profit) let you roll a price
+          change out across many products at once, on a schedule, using a rules engine instead of
+          manual edits.
+        </p>
+        <div className="mt-4 space-y-4">
+          <IntegrationCard
+            name="Choose a mode"
+            how="Percentage (flat % change across selected products), ML recommendation (applies Zorin's own raise/lower suggestion per product), or Competitor match (prices to the min or median of tracked competitor prices, plus or minus an offset)."
+            where="Set in step 1 of the campaign builder, along with an optional margin floor so no product is ever priced below a safe profit line, and .99/.95 rounding."
+          />
+          <IntegrationCard
+            name="Pick products and schedule"
+            how="Filter by category, margin, or recommendation direction in step 2, then set a start and end date in step 3 - or use Execute Now to apply immediately."
+            where="A preview shows the exact before/after price and percentage change for every selected product before anything goes live."
+          />
+        </div>
+        <Callout>
+          Campaigns auto-revert at the end date, back to each product&apos;s original price, and
+          Zorin blocks two campaigns from claiming the same product at the same time. Track every
+          run - draft, scheduled, active, or completed - from the Campaigns list, including a CSV
+          export and a full timeline of what changed and when.
+        </Callout>
+      </Section>
+
+      {/* Profit tracking */}
+      <Section id="profit-tracking" title="Profit tracking">
+        <p>
+          A recommendation tells you what to change. <strong className="text-ink">Profit</strong>{" "}
+          (in the sidebar, after Campaigns) tells you whether it worked - real profit and loss
+          over time, not just the price itself.
+        </p>
+        <dl className="mt-4 space-y-4">
+          <Term term="Summary cards">
+            Gross profit and its month-over-month change, revenue, average margin, and cost of
+            goods sold, at a glance.
+          </Term>
+          <Term term="Trend chart">
+            Monthly revenue, cost of goods, and gross profit over the last 24 months, so you can
+            see the shape of your margin over time, not just a single snapshot.
+          </Term>
+          <Term term="Product leaderboard">
+            Toggle between top earners and margin bleeders, over a 30/90/365-day window, to find
+            which products are quietly costing you money.
+          </Term>
+          <Term term="Campaign performance">
+            For every completed campaign, profit during the campaign versus an equal-length prior
+            period - labelled honestly when a campaign is still running, has no prior baseline to
+            compare to, or falls back to an estimated cost of goods.
+          </Term>
+        </dl>
+      </Section>
+
       {/* Integrations */}
       <Section id="integrations" title="Platform integrations">
         <p>
           Connect your store so products and orders import automatically and price changes go
           live without any extra steps.
         </p>
-        <Screenshot src="/images/guide/settings-integrations.png" alt="Settings page with the Shopify and WooCommerce connection cards" />
+        <Screenshot src="/images/guide/settings-integrations.png" alt="Settings Integrations page with the Shopify and WooCommerce connection tiles" />
         <div className="mt-4 space-y-4">
           <IntegrationCard
             name="Shopify"
-            how="Settings → Shopify Connection. Paste your store domain and an Admin API access token from a custom app."
+            how="Settings → Integrations, click the Shopify tile to open the connection drawer. Paste your store domain and an Admin API access token from a custom app."
             where="Shopify admin → Settings → Apps → Develop apps → Create an app → Configure Admin API scopes (read_products, read_orders, write_products)."
           />
           <IntegrationCard
             name="WooCommerce"
-            how="Settings → WooCommerce Connection. Enter your store URL and a consumer key and secret."
+            how="Settings → Integrations, click the WooCommerce tile to open the connection drawer. Enter your store URL and a consumer key and secret."
             where="WordPress admin → WooCommerce → Settings → Advanced → REST API → Add key. Set permissions to Read/Write."
           />
         </div>
+      </Section>
+
+      {/* Team & settings */}
+      <Section id="team-settings" title="Team & settings">
+        <p>
+          Settings is split into four pages under the Settings item in the sidebar:{" "}
+          <strong className="text-ink">Account</strong> (your name and password),{" "}
+          <strong className="text-ink">Billing</strong> (your plan and the option to
+          upgrade or downgrade), <strong className="text-ink">Team</strong> (who has access), and{" "}
+          <strong className="text-ink">Integrations</strong> (Shopify and WooCommerce).
+        </p>
+        <p>
+          A Zorin account is no longer strictly one person. The account&apos;s{" "}
+          <strong className="text-ink">Owner</strong> can invite teammates by email from
+          Settings → Team - each invite is a link, valid for 7 days, that lets the invitee set
+          their own password. <strong className="text-ink">Members</strong> get full access to
+          products, pricing, campaigns, and profit data; only the Owner can manage billing and the
+          team itself.
+        </p>
+        <Callout>
+          The Team page is a filterable, sortable table: search by email, filter by status or
+          role, and remove one or several members at once. A member can also leave a team
+          themselves from their own Account page.
+        </Callout>
       </Section>
 
       {/* FAQ */}
@@ -261,8 +363,20 @@ export default async function GuidePage() {
             on any product page.
           </Faq>
           <Faq q="Can I undo a price change?">
-            Not automatically - but you can apply any price at any time. Your full price history
-            is on each product page so you always know what changed and when.
+            Not automatically for a single product - but you can apply any price at any time, and
+            your full price history is on each product page. A campaign, on the other hand, does
+            revert automatically at its end date back to the original price.
+          </Faq>
+          <Faq q="What's the difference between applying a recommendation and running a campaign?">
+            Applying a recommendation changes one product&apos;s price immediately from its
+            product page. A campaign changes many products at once, on a schedule, using a rule
+            (percentage, ML recommendation, or competitor match) - useful once you are past
+            reviewing products one at a time.
+          </Faq>
+          <Faq q="Can other people on my team use Zorin?">
+            Yes. The account Owner can invite teammates from Settings → Team. Members get full
+            access to products, pricing, campaigns, and profit tracking; only the Owner manages
+            billing and the team itself.
           </Faq>
           <Faq q="Is my data safe?">
             Yes. Your data is stored in your own database and never shared. Store credentials

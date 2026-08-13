@@ -3,9 +3,11 @@ import {
   Compass,
   UploadSimple,
   ChartLineUp,
+  CalendarBlank,
   RocketLaunch,
   ChatCircleDots,
   Scales,
+  TrendUp,
   Gear,
 } from "@phosphor-icons/react";
 
@@ -36,6 +38,12 @@ export const WALKTHROUGH_STEPS: WalkthroughStep[] = [
       "Once a product has sales history, fit the elasticity model and Zorin tells you whether to raise, lower, or hold the price — with the reasoning shown alongside it.",
   },
   {
+    icon: CalendarBlank,
+    title: "Apply recommendations at scale with Campaigns",
+    description:
+      "Campaigns roll a rules-based price change out across many products at once — by percentage, ML recommendation, or competitor match — on a schedule, with automatic revert and conflict detection built in.",
+  },
+  {
     icon: RocketLaunch,
     title: "No sales data yet? Use Launch Planner",
     description:
@@ -54,9 +62,15 @@ export const WALKTHROUGH_STEPS: WalkthroughStep[] = [
       "Track competitor prices per product to see where you sit in the market, and feed them straight into Launch Planner for a market-aware starting price.",
   },
   {
-    icon: Gear,
-    title: "Settings & integrations",
+    icon: TrendUp,
+    title: "Track profit, not just price",
     description:
-      "Connect Shopify or WooCommerce, manage billing, and update your account — all from Settings. You can replay this tour anytime from the Guide page.",
+      "The Profit page shows real P&L over time, a per-product leaderboard of top earners and margin bleeders, and before/after performance for every campaign you've run.",
+  },
+  {
+    icon: Gear,
+    title: "Settings & your team",
+    description:
+      "Settings is now split into Account, Billing, Team, and Integrations. Invite teammates from Team (Owners can manage billing and team; Members get full pricing access), and connect Shopify or WooCommerce from Integrations. Replay this tour anytime from the Guide page.",
   },
 ];
