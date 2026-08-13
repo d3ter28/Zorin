@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import { formatCents } from "@/lib/money";
 
 interface PnLPoint {
@@ -10,7 +11,7 @@ interface PnLPoint {
   estimated: boolean;
 }
 
-function Card({ label, value, sub }: { label: string; value: string; sub?: React.ReactNode }) {
+function Card({ label, value, sub }: { label: string; value: string; sub?: ReactNode }) {
   return (
     <div className="rounded-xl border border-line bg-surface p-4">
       <p className="text-xs text-muted">{label}</p>
@@ -22,15 +23,24 @@ function Card({ label, value, sub }: { label: string; value: string; sub?: React
 
 export function ProfitSummaryCards() {
   const [data, setData] = useState<PnLPoint[] | null>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     let active = true;
     fetch("/api/profit/trend")
-      .then((r) => (r.ok ? r.json() : []))
+      .then((r) => { if (!r.ok) throw new Error("fetch failed"); return r.json(); })
       .then((d: PnLPoint[]) => { if (active) setData(d); })
-      .catch(() => { if (active) setData([]); });
+      .catch(() => { if (active) setError(true); });
     return () => { active = false; };
   }, []);
+
+  if (error) {
+    return (
+      <div className="rounded-xl border border-line bg-surface p-4 text-sm text-danger">
+        Could not load profit data. Try refreshing the page.
+      </div>
+    );
+  }
 
   if (data === null) {
     return <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">{Array.from({ length: 4 }).map((_, i) => (
