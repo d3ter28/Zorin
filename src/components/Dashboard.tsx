@@ -220,10 +220,14 @@ export function Dashboard() {
       )}
 
       {tab === "products" && (
-        <div id="tour-products-panel" className="space-y-6">
-          <ProductUpload onImported={refresh} />
+        <div className="space-y-6">
+          <div id="tour-import-csv">
+            <ProductUpload onImported={refresh} />
+          </div>
           <SalesHistoryUpload autoML onSuccess={refresh} />
-          <ProductsTable refreshToken={refreshToken} />
+          <div id="tour-products-table">
+            <ProductsTable refreshToken={refreshToken} />
+          </div>
         </div>
       )}
     </div>

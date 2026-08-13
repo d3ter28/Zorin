@@ -34,8 +34,8 @@ export const WALKTHROUGH_STEPS: WalkthroughStep[] = [
     icon: UploadSimple,
     title: "Import your products",
     description:
-      "Upload a CSV of your catalog here on the Products tab, or connect Shopify/WooCommerce from Settings for automatic sync — either way, this is where your pricing data starts.",
-    targetId: "tour-products-tab",
+      "Upload a CSV of your catalog here, or connect Shopify/WooCommerce from Settings for automatic sync — either way, this is where your pricing data starts.",
+    targetId: "tour-import-csv",
     tab: "products",
   },
   {
@@ -43,7 +43,7 @@ export const WALKTHROUGH_STEPS: WalkthroughStep[] = [
     title: "Fit a model, get a recommendation",
     description:
       "Click into any product from this list, then Fit Model. Once it has sales history, Zorin tells you whether to raise, lower, or hold the price — with the reasoning shown alongside it.",
-    targetId: "tour-products-panel",
+    targetId: "tour-products-table",
     tab: "products",
   },
   {

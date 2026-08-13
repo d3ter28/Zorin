@@ -33,32 +33,59 @@ export function WalkthroughTour({
   }, [index]);
 
   // The target element may not exist yet (e.g. a tab switch triggered by the
-  // onStepChange call above hasn't rendered it), so measure on a short delay
-  // rather than synchronously, and keep re-measuring on resize/scroll.
+  // onStepChange call above hasn't rendered it), and its content can keep
+  // changing after that (e.g. the products table populates after an async
+  // fetch) — so poll briefly for the element to appear, then track its size
+  // with a ResizeObserver rather than measuring once on a fixed delay.
   useEffect(() => {
     if (!step.targetId) {
       setTargetRect(null);
       return;
     }
-    const measure = () => {
-      const el = document.getElementById(step.targetId!);
-      if (!el) {
-        setTargetRect(null);
-        return;
-      }
+    const targetId = step.targetId;
+    let observer: ResizeObserver | null = null;
+    let pollId: ReturnType<typeof setInterval> | null = null;
+    let scrolled = false;
+
+    const measure = (el: Element) => {
       const r = el.getBoundingClientRect();
       setTargetRect({ top: r.top, left: r.left, width: r.width, height: r.height });
     };
-    const t = setTimeout(() => {
-      document.getElementById(step.targetId!)?.scrollIntoView({ block: "center", behavior: "smooth" });
-      measure();
-    }, 150);
-    window.addEventListener("resize", measure);
-    window.addEventListener("scroll", measure, true);
+
+    const attach = () => {
+      const el = document.getElementById(targetId);
+      if (!el) return false;
+      if (!scrolled) {
+        scrolled = true;
+        el.scrollIntoView({ block: "center", behavior: "smooth" });
+      }
+      measure(el);
+      observer = new ResizeObserver(() => measure(el));
+      observer.observe(el);
+      return true;
+    };
+
+    if (!attach()) {
+      pollId = setInterval(() => {
+        if (attach() && pollId) {
+          clearInterval(pollId);
+          pollId = null;
+        }
+      }, 100);
+    }
+
+    const onWindowChange = () => {
+      const el = document.getElementById(targetId);
+      if (el) measure(el);
+    };
+    window.addEventListener("resize", onWindowChange);
+    window.addEventListener("scroll", onWindowChange, true);
+
     return () => {
-      clearTimeout(t);
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("scroll", measure, true);
+      if (pollId) clearInterval(pollId);
+      observer?.disconnect();
+      window.removeEventListener("resize", onWindowChange);
+      window.removeEventListener("scroll", onWindowChange, true);
     };
   }, [index, step.targetId]);
 
