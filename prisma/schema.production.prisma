@@ -247,6 +247,7 @@ model Campaign {
   logs            CampaignLog[]
 
   @@index([merchantId])
+  @@index([status])
 }
 
 model CampaignProduct {
@@ -254,7 +255,7 @@ model CampaignProduct {
   campaignId         String
   campaign           Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
   productId          String
-  product            Product   @relation(fields: [productId], references: [id], onDelete: Restrict)
+  product            Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
   originalPriceCents Int
   targetPriceCents   Int
   appliedAt          DateTime?
@@ -263,6 +264,7 @@ model CampaignProduct {
 
   @@unique([campaignId, productId])
   @@index([productId])
+  @@index([campaignId, appliedAt])
 }
 
 model CampaignLog {
