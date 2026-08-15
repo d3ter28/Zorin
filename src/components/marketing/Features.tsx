@@ -245,6 +245,15 @@ export function Features() {
             );
           })}
         </div>
+
+        <div className="mt-8">
+          <a
+            href="/features"
+            className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"
+          >
+            See all features →
+          </a>
+        </div>
       </div>
     </section>
   );
