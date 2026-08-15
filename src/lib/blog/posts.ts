@@ -14,6 +14,292 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "pricing-skincare-products-on-shopify-charging-enough",
+    title: "Pricing Skincare Products on Shopify: How to Know If You're Charging Enough",
+    excerpt:
+      "Most DTC skincare brands underprice, and the fix is rarely to cut costs. Learn what healthy beauty margins look like, how to structure entry/core/premium tiers, and how to price new and existing SKUs with real demand data.",
+    date: "2026-08-18",
+    readingTime: "11 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">If your DTC skincare brand's gross margin is below 65%, you're almost certainly underpriced. Private DTC skincare benchmarks land at 65-72% median, with the strongest brands clearing 75%. Below that floor, there's rarely enough room to fund customer acquisition and still earn an operating profit. The fix usually isn't cutting costs. It's raising prices, and the conversion drop from a moderate increase is almost always smaller than skincare founders expect.</p>
+
+<p>Most skincare pricing advice on the internet starts and ends with a cost-plus formula: calculate COGS, apply a 2-3x markup, check what competitors charge, done. That produces a defensible number. It rarely produces the right one. This post covers what healthy beauty margins actually look like, why most indie brands underprice, how to structure pricing across a product line, how to price a new SKU with no sales history, and how to know which products can handle a price increase using real demand data from tools like <a href="/features">Zorin</a>.</p>
+
+<h2>What "Good Margins" Actually Look Like for a DTC Beauty Brand</h2>
+<p>Beauty and skincare carry some of the highest gross margins in ecommerce, but "high" is relative, and the range within the category is wide. Here's what the benchmarks actually say.</p>
+<p>According to an Eightx analysis of DTC skincare financials in 2026, private skincare brands land at a 65-72% gross margin median, with the strongest performers above 75%. Public pure-play beauty companies sit in the same band: e.l.f. Beauty posted 73% gross margin in its most recent quarterly filing (Q4 fiscal 2026) and Olaplex reported 71-72% in 2026 (Q1 actual and full-year guidance). These numbers represent cost of goods as a percentage of revenue, including ingredients, packaging, and direct production costs.</p>
+<p>Below 65% gross margin, the economics of a DTC beauty brand start to break down. Here's why: customer acquisition in beauty is expensive. The average CPA for a DTC skincare brand is roughly $42, with a median AOV of $68. At those numbers, first-order contribution margin after product costs is approximately 38%. That has to cover payment processing, shipping, packaging, returns, and ideally leave something for operating profit. With a gross margin of 55%, that math gets very tight very fast. With a gross margin of 70%, it works.</p>
+<p>The benchmarks also vary meaningfully by product type within skincare. The average listed price for skincare products on Shopify is about $55, but the most common pricing band is under $25. That gap between the average and the mode tells you that a small number of brands are pricing at premium levels and pulling the average up, while the majority are clustering at entry-level price points. If most of your catalog is priced under $25, you're competing in the most crowded part of the market with the thinnest margins.</p>
+<p>One number to keep in mind as a gut check: the beauty rule of thumb is an 8-10x markup on bare unit COGS (ingredients and packaging only, before labor, overhead, or shipping). If your serum costs $4 in ingredients and packaging and you're selling it for $24, that's a 6x markup. Technically profitable, but leaving significant room on the table compared to brands that sell a similar formulation for $38-48.</p>
+
+<h2>The Underpricing Problem in Beauty</h2>
+<p>Most DTC beauty brands are underpriced. That's not an opinion. It's a pattern visible across pricing data from agencies, platforms, and the brands themselves.</p>
+<p>ATTN Agency documented a case study that illustrates this precisely. A skincare brand came to them spending $180,000 per month on Meta ads with a $52 AOV and a 3% contribution margin. The founders were terrified to raise prices because "the market is competitive." The agency ran a price test at three points: $52, $62, and $72. The $62 price point generated 6.5% more revenue per visitor and nearly tripled contribution margin from 3% to 8.5%. The conversion rate barely moved. Same product, same ads, same creative. Just a $10 price increase turned a money-losing brand into a profitable one.</p>
+<p>This pattern repeats because of a structural dynamic specific to beauty. Skincare founders price from costs and competitors, both of which push prices down. COGS on a skincare product can be remarkably low ($3-8 for many formulations), so cost-plus at 2-3x gives you a $9-24 price point. Then you check what "similar" products cost on Amazon or the Shopify App Store, and you find a crowded range of $15-30 cleansers and $25-45 serums. You price within that range, and you move on.</p>
+<p>What this misses is the single most important dynamic in beauty pricing: customers link price to quality. Research shows that 60% of beauty consumers associate higher prices with better product quality. Laura Thompson, co-founder of Three Ships Beauty, described the experience on Shopify's blog: her brand was initially priced too cheaply, and customers didn't associate the product with being high quality. Pricing up didn't just improve margins. It improved conversion because the product finally looked like it was worth what it actually delivered.</p>
+<p>This is the opposite of how pricing works in commodity markets. In commodities, lower price wins the sale because the product is identical. In beauty, lower price can lose the sale because it signals the product isn't as good. A $12 vitamin C serum and a $48 vitamin C serum may have similar ingredient lists, but the $48 one has permission to tell a story about clinical-grade formulation, third-party testing, and premium sourcing that the $12 one doesn't.</p>
+<p>The takeaway is blunt: if you've never raised your prices since launching your skincare brand, and your margins are below 65%, you are almost certainly underpriced. The conversion penalty for a moderate increase (10-20%) in beauty is consistently smaller than founders expect, and the margin improvement is consistently larger.</p>
+
+<h2>How to Price Across Your Product Line (Entry, Core, Premium)</h2>
+<p>A skincare line needs a pricing ladder, not a single markup formula. Different products serve different jobs in your catalog, attract different customer mindsets, and carry different margin profiles. Applying the same 3x markup across your entire line means your cleanser and your clinical serum are priced using the same logic, which doesn't reflect how customers actually evaluate them.</p>
+<p>The good-better-best framework spaces three tiers at roughly 1x : 1.5x : 2-3x, with each tier doing a different job:</p>
+
+<table>
+  <thead>
+    <tr><th>Tier</th><th>Typical price range</th><th>Target gross margin</th><th>Job</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Entry (good)</strong></td><td>$14-24</td><td>60-70%</td><td>Acquire customers. Low-risk first purchase. Builds trial and trust.</td></tr>
+    <tr><td><strong>Core (better)</strong></td><td>$28-48</td><td>70-75%</td><td>Default revenue driver. Where most volume should land. The "sensible" choice.</td></tr>
+    <tr><td><strong>Premium (best)</strong></td><td>$60-120+</td><td>75-80%+</td><td>High-margin anchor. Makes the core tier look reasonable by comparison.</td></tr>
+  </tbody>
+</table>
+
+<p>The most useful move in this framework is presenting the premium SKU first. A $98 clinical serum on the product page makes the $42 core serum read as the sensible, mainstream choice, which is exactly where you want most of your volume. This is the anchoring effect applied to your own catalog: the premium price reframes how customers evaluate the core price.</p>
+<p>Within these tiers, product type matters. Daily-use products (cleansers, moisturizers, toners) are more price-sensitive because customers buy them every 6-10 weeks and have a strong sense of per-ounce cost. These naturally sit in the entry and lower-core range. Treatment products (serums, masks, peels, exfoliants) command higher margins because customers perceive them as transformative, buy them less frequently, and evaluate them by results rather than volume. These belong in the upper-core and premium range.</p>
+<p>Pricing consistency across tiers also matters more than most founders realize. If your eye cream (0.5 oz) costs less than your face cream (1.5 oz) without a clear reason, customers notice the inconsistency. The formulation, ingredient quality, or concentration should justify any price point that breaks the per-ounce pattern. A $68 eye cream is defensible if it contains retinal at 0.1% in a specialized delivery system. It's confusing if it uses the same ingredients as your $32 moisturizer.</p>
+<p>For a deeper look at whether your current prices are too high or too low independent of product category, see our post on <a href="/blog/how-to-know-if-your-prices-are-too-high-or-too-low">how to know if your prices are too high or too low</a>.</p>
+
+<h2>How to Price a New Skincare Product When You Have No Sales Data</h2>
+<p>Launching a new SKU is the hardest pricing decision in beauty. You have COGS, you have competitor reference points, and you have instinct. None of these tell you what your specific customers would actually pay for this specific product.</p>
+<p>Cost-plus gives you a floor. If your serum costs $6 to produce (ingredients, packaging, fill, label), a 10x markup puts you at $60. That's useful as a minimum viable price, but it doesn't tell you whether $60 is too low, too high, or exactly right for your audience and brand positioning.</p>
+<p>Competitor benchmarking gives you noise, not signal. A "similar" serum at another brand was priced based on their costs, their brand equity, their audience, and their margin targets, none of which are the same as yours. Importing their number imports their entire pricing logic, which may not fit your store.</p>
+<p>The more useful approach for a pre-launch SKU is stated-preference research: asking your own customers (or target customers) what they'd pay, using a structured methodology rather than a casual "would you buy this for $X?" question.</p>
+<p>Zorin's Van Westendorp Price Sensitivity survey does this with four questions that calculate an acceptable price range, an optimal price point, and critically, a "too cheap" threshold. The too-cheap finding is especially valuable in beauty because it identifies the price below which customers start questioning product quality. For a clinical-grade serum, discovering that your target audience considers anything below $35 "too cheap to trust" is a pricing signal worth more than any cost-plus formula.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.png" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" loading="lazy" />
+  <figcaption>The "too cheap" threshold this survey surfaces is especially useful in beauty, where pricing too low can signal low quality rather than a good deal.</figcaption>
+</figure>
+
+<p>The survey requires no login from respondents and produces a stated-preference read you can use to set your launch price. Once the product has a few months of sales history, Zorin's elasticity model picks up from there with a revealed-preference signal, showing you how customers actually responded to the price through their purchasing behavior rather than their survey answers. You read the two signals side by side: what they said they'd pay, and what they actually did.</p>
+<p>For more on pricing new products with no history, see our post on <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">how to price a new product with no sales history</a>.</p>
+
+<h2>When to Raise Your Prices (and How to Know Your Customers Can Handle It)</h2>
+<p>If your beauty products are selling steadily, your margins are below 65%, and you haven't changed prices since launch, the answer is almost certainly to raise them. But "raise prices" isn't one decision. For a 40-SKU skincare line, it's 40 separate decisions, and each product has a different tolerance for an increase.</p>
+<p>This is where cost-plus thinking falls apart entirely. A cost-plus formula can tell you that your cleanser "should" be $22 based on a 3x markup. It can't tell you whether moving it from $18 to $22 will cost you 2% of unit volume or 15%. That answer depends on how price-sensitive your specific customers are for that specific product, and the only way to know is to read the data.</p>
+<p><a href="/features">Zorin</a> fits a demand model per SKU from your <a href="/integrations/shopify">Shopify</a> or WooCommerce sales history. For each product, you get a raise, lower, or hold recommendation with the elasticity coefficient that shows exactly how demand responds to price changes. A product with low elasticity (demand barely moves when price moves) is safe to increase because your customers aren't price-sensitive on that item. A product with high elasticity (demand drops sharply when price increases) needs more caution.</p>
+<p>For a skincare brand, the elasticity pattern often maps intuitively to product type. Treatment products with strong ingredient stories and visible results tend to be more inelastic: customers keep buying because the product works for their skin, and a $5 increase doesn't change that calculus. Daily-use basics like cleansers tend to be more elastic because customers have more alternatives and a stronger per-ounce price awareness.</p>
+<p>The confidence label adds a second layer of honesty. Many skincare SKUs have limited price variation history because the brand set a price at launch and never moved it. Zorin flags these as weak-confidence rather than presenting a false recommendation. A product with insufficient data to model gets a "we can't tell you yet" answer, not a guess dressed up as certainty.</p>
+<p>A practical approach to raising prices across a skincare line:</p>
+<p>Start by identifying the 5-10 products where Zorin shows a "raise" recommendation with strong confidence and low elasticity. These are the products where the data says your customers can absorb an increase without meaningful volume loss. Raise these first by 10-15%. Measure the impact over 4-6 weeks.</p>
+<p>Then move to the medium-confidence products and test smaller increases (5-10%). Hold off on the high-elasticity and weak-confidence products until you have more data.</p>
+<p>This sequenced approach is less risky than a blanket price increase across your entire catalog, and it lets you learn which product types and price bands your audience is most sensitive to. You can preview the margin impact of any price change using the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before committing.</p>
+<p>For more on the mechanics and psychology of raising prices, see our post on <a href="/blog/should-i-raise-prices-to-cover-rising-costs">whether you should raise prices to cover rising costs</a>.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>DTC skincare gross margins should be 65-75%, with the best brands above 75%. Below 65%, there's rarely enough room to fund acquisition and still earn an operating profit.</li>
+<li>Most indie beauty brands are underpriced. A skincare brand that raised its hero product from $52 to $62 saw conversion barely move while contribution margin nearly tripled, from 3% to 8.5%.</li>
+<li>Structure your pricing as a good-better-best ladder (entry $14-24, core $28-48, premium $60-120+) with each tier serving a different job and carrying a different margin band. Present the premium tier first to anchor the core tier as the sensible choice.</li>
+<li>For new product launches, a Van Westendorp survey identifies what your customers consider too cheap (a quality-perception risk unique to beauty) and too expensive, giving you a data-backed launch price before you have any sales history.</li>
+<li>Use per-SKU elasticity data to identify which products in your catalog can absorb a price increase and which can't. <a href="/signup">Start a free trial of Zorin</a> to see raise, lower, and hold recommendations across your product line.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know if I'm charging enough for my skincare products on Shopify?</h3>
+<p>Check your blended gross margin across your catalog. If it's below 65%, you're almost certainly underpriced for a DTC beauty brand. The private DTC skincare benchmark is 65-72% median, with top performers above 75%. If your margins are in the 40-55% range, a moderate price increase (10-15%) on your least price-sensitive products will likely improve profitability without meaningfully affecting conversion.</p>
+</div>
+<div class="faq-item">
+<h3>What profit margin should a DTC beauty brand aim for, and how do I get there?</h3>
+<p>Target 65-75% gross margin, with the goal of eventually reaching the 70-75% range where the strongest DTC skincare brands operate. To get there, audit your pricing tier by tier: entry products should clear 60-70% gross, core products 70-75%, and premium products 75-80%+. If your product COGS are already low (as they typically are in skincare), the lever is raising prices, not cutting costs. A skincare brand's unit COGS are often $3-8, so even small price increases produce outsized margin improvements.</p>
+</div>
+<div class="faq-item">
+<h3>How do I price a new skincare product when I don't know what customers will pay?</h3>
+<p>Start with cost-plus to set your floor (8-10x bare unit COGS is the beauty rule of thumb), then validate with stated-preference data. Zorin's Van Westendorp survey identifies the acceptable price range and optimal price point using four structured questions. The "too cheap" threshold is especially useful in beauty, where pricing too low signals low quality to 60% of consumers. Once you have 2-3 months of sales data, elasticity modeling picks up with revealed-preference signals showing how customers actually responded to the launch price.</p>
+</div>
+<div class="faq-item">
+<h3>Why do some beauty brands charge $60 for a serum and still outsell cheaper alternatives?</h3>
+<p>Because price is a quality signal in beauty. A $60 serum has permission to tell a story about clinical-grade formulation, higher active concentrations, third-party testing, and premium packaging that a $18 serum doesn't. Customers buying a $60 serum aren't comparison-shopping on price. They're buying a perceived outcome: better skin. The higher price actually supports conversion because it reinforces the product's credibility. Brands that try to compete on price in the treatment skincare category often find that lower prices reduce trust rather than increase sales.</p>
+</div>
+<div class="faq-item">
+<h3>Should I raise my prices if my beauty products are selling well but my margins are thin?</h3>
+<p>Yes, almost certainly. If products are selling steadily, that's evidence of demand. Thin margins on a product with steady sales usually means the product is underpriced, not that you need to sell more volume. The key is knowing which specific products can absorb an increase. Zorin's per-SKU elasticity model identifies which SKUs have inelastic demand (safe to raise) and which are more price-sensitive (raise cautiously or hold). Start with the 5-10 least elastic products and test a 10-15% increase.</p>
+</div>
+<div class="faq-item">
+<h3>Is the 2-3x markup on COGS enough for a skincare brand?</h3>
+<p>It depends on your COGS, but for most skincare brands, a 2-3x markup is too low. Skincare COGS are typically very low ($3-8 per unit for many formulations), so a 2-3x markup gives you a $6-24 retail price. That's the most crowded and lowest-margin segment of the market. The beauty rule of thumb is 8-10x on bare unit COGS, which puts a product with $5 COGS at $40-50, firmly in the core tier where healthy margins live. Higher markups aren't greed, they're what's required to fund marketing, absorb returns, and still earn operating profit.</p>
+</div>
+<div class="faq-item">
+<h3>How should I handle pricing for subscription vs. one-time purchases?</h3>
+<p>A 10-15% subscription discount is standard in DTC skincare and is usually margin-positive because it increases customer lifetime value and reduces acquisition cost per order. Skincare's natural replenishment cycle (every 6-10 weeks for daily-use products) makes subscription a strong fit. Price the one-time purchase at your target margin, then offer the subscription discount as a loyalty incentive. The slight margin reduction per order is more than offset by the increased purchase frequency and reduced churn.</p>
+</div>
+<div class="faq-item">
+<h3>Should I price differently for daily-use products vs. treatment products?</h3>
+<p>Yes. Daily-use products (cleansers, moisturizers, toners) should sit in the entry-to-lower-core range ($14-32) because customers buy them frequently, have strong per-ounce price awareness, and compare them against more alternatives. Treatment products (serums, masks, peels, exfoliants) belong in the upper-core-to-premium range ($38-120+) because customers perceive them as transformative, evaluate them by results rather than volume, and buy them less often. Applying the same markup to both product types ignores how differently customers evaluate them.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my prices are too low and it's hurting my brand perception?</h3>
+<p>Look for two signals. First, qualitative: if customers or reviewers describe your products as "great value" or "can't believe how cheap this is," that's a price-perception warning in beauty. In skincare, "cheap" is not a compliment. Second, quantitative: if your conversion rate is unusually low despite good traffic and strong product reviews, the price itself may be undermining perceived quality. A Van Westendorp survey can identify the threshold below which your target audience starts questioning quality, giving you a concrete number to price above.</p>
+</div>
+</section>
+
+<p class="conclusion">Underpricing is the default state for most DTC skincare brands, not a mistake anyone made on purpose. Fix it in order: get your margin structure right tier by tier, price new launches with real customer data instead of a cost-plus guess, and use per-SKU elasticity to find out which existing products can absorb an increase without losing customers. <a href="/signup">Start a free trial</a> to see raise, lower, and hold recommendations across your own catalog.</p>
+    `.trim(),
+  },
+  {
+    slug: "how-to-price-product-bundles-without-giving-away-your-margin",
+    title: "How to Price Product Bundles Without Giving Away Your Margin",
+    excerpt:
+      "Bundle discounts boost AOV, but the wrong depth erases the gain. Learn how to price bundles profitably and how Zorin flags which SKUs can absorb a discount.",
+    date: "2026-08-17",
+    readingTime: "10 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">The right bundle discount for most ecommerce stores is 10-20% off the combined individual price, but the exact number depends on your margin structure, not an industry average. A store with 60% gross margins can comfortably offer 15% off a bundle. A store with 35% gross margins offering the same discount is operating at razor-thin profit after fees and shipping. Before you set any bundle price, you need to know what each product's margin can absorb, and tools like Zorin can show you which SKUs can handle a price cut based on actual demand data rather than guesswork.</p>
+
+<p>This post walks through the full process of pricing a product bundle: checking your individual margins, picking the right products, setting the discount depth, framing the price so customers feel the deal, and making sure the bundle actually makes you more money than selling the same items individually.</p>
+
+<h2>The Bundle Pricing Mistake Most Shopify Stores Make</h2>
+<p>The standard approach to bundle pricing goes something like this: pick a few related products, offer 15% off the combined price, launch it, and watch your average order value climb. The AOV almost always goes up. That's the easy part. The harder question is whether the larger order actually put more profit in your pocket.</p>
+<p>According to an analysis by Eightx (a DTC-focused finance firm, drawn from their anonymized client panel), roughly 60% of the bundles they review are contribution-margin-dilutive at launch. That means the store is shipping more products per order, doing more fulfillment work, and netting the same or less profit than if the customer had bought a single item at full price. The discount ate the margin the bigger basket was supposed to create.</p>
+<p>This happens because most merchants set their bundle discount by feel or by copying what competitors do. "15% off the bundle" sounds reasonable. But "reasonable" and "profitable for your specific cost structure" are two different things.</p>
+<p>AOV is a vanity metric for bundles. The number that actually matters is contribution dollars per order: what's left after you subtract cost of goods, payment processing fees, shipping, and packaging from the bundle's selling price. If that number is lower than what you'd earn selling the same items individually in separate orders, the bundle is costing you money even though the top-line order value went up.</p>
+
+<h2>Step 1: Check Your Individual Product Margins First</h2>
+<p>You can't set a bundle discount without knowing what each item in the bundle can absorb. This sounds obvious, but most merchants skip straight to "15% off sounds about right" without running the product-level math first.</p>
+<p>Here's a simple way to think about it. Take three products you're considering bundling:</p>
+
+<table>
+  <thead>
+    <tr><th>Product</th><th>Retail price</th><th>COGS</th><th>Gross margin</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Product A</td><td>$40</td><td>$14</td><td>65%</td></tr>
+    <tr><td>Product B</td><td>$28</td><td>$12</td><td>57%</td></tr>
+    <tr><td>Product C</td><td>$22</td><td>$11</td><td>50%</td></tr>
+    <tr><td><strong>Combined</strong></td><td><strong>$90</strong></td><td><strong>$37</strong></td><td><strong>59%</strong></td></tr>
+  </tbody>
+</table>
+
+<p>At a 15% bundle discount, the bundle sells for $76.50. Your COGS are still $37. Add payment processing (~3%), shipping ($6-8), and packaging ($2), and your contribution per order is roughly $26-28. Compare that to what you'd earn if the customer bought just Product A at full price: $40 minus $14 COGS minus ~$9 in fees/shipping/packaging = roughly $17. The bundle earns more contribution dollars in this case, so the math works.</p>
+<p>Now imagine the same bundle but with 35% gross margins across all three items instead of 50-65%. A 15% bundle discount on thinner margins can push contribution per order below what you'd earn on a single full-price sale. That's the scenario where bundles silently destroy profit.</p>
+<p>A useful rule of thumb: never launch a bundle that drops below a 30% gross margin floor after the discount. If your blended gross margin on the bundle items is already close to 30%, you have almost no room to discount at all, and the bundle should rely on perceived value (complementarity, convenience) rather than price cuts.</p>
+<p>This is where per-SKU margin and demand data becomes valuable. If you're using Zorin, <a href="/blog/what-does-price-elasticity-actually-mean">the elasticity model tells you which products in a potential bundle can handle a lower price</a> and which ones can't. A product flagged as "lower" with strong confidence means the data shows a price cut would drive enough additional volume to increase total profit. That product is a natural bundle candidate. A product flagged as "hold" or "raise" is one you should protect at full price, not discount into a bundle unless the bundle drives enough incremental volume on other items to compensate.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>A "lower" call with strong confidence flags a natural bundle candidate. A "raise" or "hold" call is one to protect at full price instead.</figcaption>
+</figure>
+
+<p>The difference between guessing "15% off feels right" and knowing which SKUs can absorb a discount based on actual demand data is the difference between a profitable bundle and one that just looks good in your AOV dashboard.</p>
+
+<h2>Step 2: Pick Products That Belong Together</h2>
+<p>The strongest bundles are built from two signals: co-purchase patterns and margin-profile complementarity. The worst bundles are built from a desire to move inventory that isn't selling.</p>
+<p><strong>Co-purchase patterns</strong> tell you which products customers already buy together. If customers frequently add a cleanser, a toner, and a moisturizer to the same cart, bundling those three is reinforcing a behavior that already exists. You're making it easier and slightly cheaper for them to do something they were going to do anyway. Look at your Shopify analytics for products that appear in the same order at a rate of 5-10% or higher. Those are your natural bundle candidates.</p>
+<p><strong>Margin-profile complementarity</strong> means pairing a high-margin anchor product with lower-margin add-ons that increase perceived value without destroying the blend. A skincare set anchored around a $40 serum with 65% margins, bundled with a $15 travel-size cleanser at 45% margins and a $12 sample pack at 70% margins, gives you a blended margin that can absorb a reasonable discount. A bundle of three items that are all sitting at 35% margins has no room to discount without going underwater.</p>
+<p>What doesn't work: bundling random slow-moving products together and calling it a "value pack." Customers can tell the difference between a curated set and a clearance grab bag. A Harvard Business School study of Nintendo's Game Boy Advance era found that when Nintendo switched from mixed bundling (customers could buy items individually or as a bundle) to pure bundling (bundle only), revenues dropped by more than 20% compared to the mixed-bundling scenario. Giving customers no choice but to buy the bigger package deterred a large number of buyers who only wanted one or two of the items. Customers want to feel like the bundle was designed for them, not assembled to solve the store's inventory problem.</p>
+<p>One more thing to consider: cannibalization risk. If a customer would have bought Product A at full price regardless, and your bundle discounts Product A along with two items they weren't going to buy, you've discounted your best seller to move products the customer didn't want. The bundle needs to drive genuine incremental purchases, not just discount existing demand. Check whether your bundle attach rate (percentage of buyers who choose the bundle vs. the lead product alone) is actually adding new items to the cart or just wrapping a discount around what was already selling.</p>
+
+<h2>Step 3: Set the Right Discount Depth</h2>
+<p>With your margin math done and your products selected, you can now set the discount. Across the examples above, 10-20% off the combined individual price is where most successful ecommerce bundles land.</p>
+<p>Within that range, your specific number depends on your margin structure:</p>
+
+<table>
+  <thead>
+    <tr><th>Your blended gross margin on bundle items</th><th>Safe discount depth</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>60%+</td><td>15-20%</td><td>Plenty of margin cushion; customers feel a meaningful deal</td></tr>
+    <tr><td>45-60%</td><td>10-15%</td><td>Moderate cushion; stay closer to 10% unless volume uplift is significant</td></tr>
+    <tr><td>30-45%</td><td>5-10%</td><td>Thin margins; the bundle's value should come from complementarity and convenience, not a deep price cut</td></tr>
+    <tr><td>Below 30%</td><td>0-5% or no discount</td><td>Almost no room to discount; consider a value-add (free shipping, bonus sample) instead of a price cut</td></tr>
+  </tbody>
+</table>
+
+<p>Below 10%, customers generally don't feel the deal enough for it to influence their purchase decision. Above 20%, you're usually handing back the margin the bigger basket created, unless you're deliberately acquiring customers at a loss (which is a valid strategy, but a different one from "pricing bundles profitably").</p>
+<p><strong>The three-way contribution test.</strong> Before launching, calculate contribution dollars per order in three scenarios:</p>
+<ol>
+<li><strong>Full price, one cart.</strong> The customer buys all three items individually in a single order. Your contribution = combined revenue minus combined COGS minus one set of order-level variable costs (payment fees, shipping, packaging).</li>
+<li><strong>Bundle price.</strong> The same items at the discounted bundle price. Contribution = bundle price minus the same COGS minus one set of variable costs on the lower revenue.</li>
+<li><strong>Single item only.</strong> The customer buys only the anchor product at full price. Contribution = single item revenue minus single item COGS minus variable costs.</li>
+</ol>
+<p>If Scenario 2 beats Scenario 3, the bundle is profitable compared to a single-product order, which is the most common real-world counterfactual. If Scenario 2 also beats Scenario 1, you're in excellent shape. If Scenario 2 loses to both, your discount is too deep or the product mix is wrong.</p>
+<p>One nuance worth flagging: scenario 1 assumes the customer would have bought all three items anyway. For most stores, that's the less common case. The more realistic comparison is bundle vs. single item purchase (Scenario 2 vs. Scenario 3). If the bundle gets a customer who would have bought one item at $40 to instead buy three items at $76.50, and your contribution per order is higher at $76.50, the bundle is working.</p>
+
+<h2>Step 4: Frame the Price So the Deal Lands</h2>
+<p>A well-priced bundle can still underperform if the savings aren't visible and concrete on the product page. The psychology of bundle pricing is about making the customer feel smart for choosing the bundle.</p>
+<p><strong>Show the individual prices alongside the bundle price.</strong> The customer needs to see the math: "Product A ($40) + Product B ($28) + Product C ($22) = $90 individually. Bundle price: $76.50. You save $13.50." Without the individual prices, the savings are invisible and the bundle loses its psychological appeal. Shopify's compare_at_price field handles this natively, displaying a strikethrough on the higher combined price.</p>
+<p><strong>Lead with the dollar amount saved, not the percentage.</strong> "Save $13.50" is more compelling than "Save 15%" for most audiences because dollars are concrete and percentages require mental math. If a customer has to calculate what 15% of $90 is, that cognitive effort reduces the impact of the deal. Ecommerce pricing research consistently finds that dollar framing outperforms percentage framing for most price ranges, with the exception of very high-ticket items where the dollar amount can trigger sticker shock.</p>
+<p><strong>Use anchoring deliberately.</strong> The combined individual price is your anchor. Display it prominently, with a strikethrough, directly next to the bundle price and the savings callout. The anchor reframes the decision from "Is $76.50 worth it?" to "Am I getting a good deal compared to $90?" That reframing is what makes bundles psychologically different from a flat discount, even when the math is similar.</p>
+<p><strong>Pre-validate with customers if you're uncertain.</strong> If you're not sure whether your bundle price lands in the "great deal" zone or the "suspiciously cheap" zone, <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">Zorin's Van Westendorp survey</a> can tell you before you launch. The four-question survey identifies the price range customers consider acceptable, the point where it starts feeling too expensive, and the point where the price is so low they'd question quality. Running this on a bundle concept before committing to a live offer costs almost nothing and prevents the two worst outcomes: pricing the bundle too high (customers don't bite) or too low (you leave margin on the table and customers wonder what's wrong with the products).</p>
+
+<h2>When Bundles Beat Discounts (and When They Don't)</h2>
+<p>Bundles and sitewide discounts both reduce price, but they work through different mechanisms and produce different results.</p>
+<p>A <strong>sitewide percentage discount</strong> (e.g., "20% off everything") discounts your entire catalog, including items the customer would have bought at full price. It drives urgency and conversion, but it gives away margin on products that didn't need a discount to sell. It also trains customers to wait for the next sale, especially if you run them regularly. Over time, this erodes full-price credibility.</p>
+<p>A <strong>curated bundle</strong> discounts only the specific products you choose, at a depth you control, and increases units per order. A customer who would have bought one item at $40 now buys three items at $76.50. You gave up $13.50 in discount but gained $36.50 in additional revenue from the two extra items, and your contribution per order is higher. The discount is contained to the bundle rather than applied across your entire catalog.</p>
+<p>Bundles generally outperform sitewide discounts when you want to increase cart size without touching your full-price architecture. They're the right tool when you have complementary products that make sense together, healthy enough margins to absorb a modest discount, and a goal of increasing revenue per order rather than driving traffic.</p>
+<p>Bundles are the wrong tool when the products don't naturally go together (customers can tell), when your margins are too thin for any discount (consider a value-add like free shipping instead), or when the real problem is traffic, not cart size. A bundle won't fix a lack of visitors. It converts existing traffic into larger orders.</p>
+<p>For a deeper look at when discounting makes sense and when it doesn't, see our posts on <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to run a sale without wrecking your margin</a> and <a href="/blog/how-to-price-a-discount-without-losing-your-margin">how to price a discount without losing your margin</a>. The same margin-first thinking applies to bundles.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>AOV is a vanity metric for bundles. The number that matters is contribution dollars per order, and roughly 60% of DTC bundles are margin-dilutive at launch because the discount was set by feel.</li>
+<li>The sweet spot for most ecommerce bundle discounts is 10-20% off the combined individual price, but the right number depends on your margin structure, not an industry average. Never drop below a 30% gross margin floor.</li>
+<li>Build bundles from co-purchase patterns and margin-profile complementarity, not from slow-moving inventory you need to clear.</li>
+<li>Run the three-way contribution test (full price in one cart, bundle price, single item only) before every bundle launch to confirm the bundle actually earns more contribution dollars per order.</li>
+<li>Use Zorin's per-SKU elasticity data to identify which products can absorb a bundle discount and which should be protected at full price.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How much of a discount should I give on a product bundle without killing my margins?</h3>
+<p>Most successful ecommerce bundles discount 10-20% off the combined individual price. The exact right number depends on your margin structure. With 60%+ gross margins, you can comfortably offer 15-20%. With 35-45% margins, stay closer to 5-10% and let the bundle's value come from complementarity and convenience rather than a deep price cut. Never launch a bundle below a 30% gross margin floor after the discount.</p>
+</div>
+<div class="faq-item">
+<h3>Is bundling products on Shopify actually more profitable than just discounting individual items?</h3>
+<p>Usually, yes, because a bundle controls which products get discounted and increases units per order, while a sitewide discount discounts everything including items the customer would have bought at full price. A 15% bundle discount on three complementary items typically produces more contribution dollars per order than a 15% sitewide discount. But the bundle still needs margin math behind it: if the discount depth exceeds what the margin can absorb, neither approach is profitable.</p>
+</div>
+<div class="faq-item">
+<h3>How do I figure out which products to bundle together on my online store?</h3>
+<p>Start with co-purchase data: look at which products appear in the same order at a rate of 5-10% or higher in your Shopify analytics. Those are natural bundle candidates. Then check margin compatibility: pair a high-margin anchor product with complementary add-ons so the blended margin can absorb a discount. Avoid bundling random slow-moving products together, as this signals clearance rather than curation. Zorin's elasticity data can also flag which products are price-elastic enough that a small discount drives meaningful volume uplift.</p>
+</div>
+<div class="faq-item">
+<h3>Why did my average order value go up from bundles but my profit stayed the same?</h3>
+<p>Because the bundle discount ate the extra margin the larger order was supposed to create. If you sell three items at 15% off and your blended gross margin on those items is 40%, you're operating at 25% margin before fees and shipping. Contribution dollars per order may be no higher, or even lower, than what you'd earn selling a single item at full price. Run the three-way contribution test to check: compare contribution per order at full price, at the bundle price, and for a single-item purchase.</p>
+</div>
+<div class="faq-item">
+<h3>What's the best way to price a product bundle so customers feel like they're getting a deal?</h3>
+<p>Show the individual prices alongside the bundle price so the savings are visible, not buried. Use Shopify's compare_at_price to display a strikethrough on the combined individual total. Lead with the dollar amount saved ("Save $13.50") rather than the percentage ("Save 15%"), because dollars are concrete and percentages require mental math. The anchoring effect of seeing "$90" crossed out next to "$76.50" does most of the psychological heavy lifting.</p>
+</div>
+<div class="faq-item">
+<h3>Should I bundle a high-margin product with a low-margin product?</h3>
+<p>You can, but be deliberate about how it affects the blended margin. A low-margin filler pulls the bundle's overall margin rate down before you apply any discount. Sometimes that's fine because it moves slow inventory or raises perceived value. But check whether the contribution dollars per order still beat the counterfactual of selling the high-margin anchor product alone at full price. If adding the low-margin item to the bundle costs you more in margin than it adds in revenue, the bundle mix needs reworking.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a fixed-price bundle and a percentage-off bundle?</h3>
+<p>A fixed-price bundle ("Any 3 items for $50") is easier for the customer to understand and gives you tighter control over margin because you can design the eligible product pool to exclude thin-margin SKUs. A percentage-off bundle ("15% off when you buy these together") is more flexible but harder for the customer to evaluate quickly. Fixed pricing tends to outperform in testing because it removes the math from the customer's decision.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my bundle is cannibalizing full-price sales?</h3>
+<p>Track your bundle attach rate (percentage of buyers who choose the bundle vs. the lead product alone) alongside overall revenue per visitor. If the bundle attach rate is high but revenue per visitor hasn't increased, the bundle may be wrapping a discount around purchases that would have happened at full price. Also compare the number of single-item orders before and after the bundle launch. A sharp drop in full-price orders on the anchor product is a cannibalization signal.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use elasticity data to decide which products to put in a bundle?</h3>
+<p>Yes. Zorin's per-SKU elasticity coefficients tell you how much demand shifts when price moves. Products with high elasticity (demand is very sensitive to price) are natural bundle candidates because even a small discount drives meaningful volume uplift. Products with low elasticity (demand barely changes when price moves) should be protected at full price, or positioned as the anchor in a bundle where the discount is absorbed by the more elastic items. Using the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> to preview the margin impact at different discount depths helps you model this before committing.</p>
+</div>
+</section>
+
+<p class="conclusion">A bundle that raises AOV but not contribution dollars per order isn't a win, it's a discount wearing a nicer outfit. Check the individual margins first, build the bundle from real co-purchase and margin data, run the three-way contribution test before launch, and let the price framing do the rest. <a href="/signup">Start a free trial</a> to see which of your products are natural bundle candidates.</p>
+    `.trim(),
+  },
+  {
     slug: "do-you-need-a-competitor-price-tracking-app",
     title: "Do You Actually Need a Competitor Price Tracking App?",
     excerpt:
