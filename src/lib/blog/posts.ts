@@ -1078,7 +1078,7 @@ export const posts: BlogPost[] = [
 </ul>
 </div>
 
-<p><a href="/signup">Start a free trial</a> and connect your Shopify or WooCommerce store to see what your own catalog's elasticity actually looks like.</p>
+<p>For how Zorin stacks up against every other pricing tool category, not just the lean-team angle covered here, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full 2026 pricing tools comparison</a>. <a href="/signup">Start a free trial</a> and connect your Shopify or WooCommerce store to see what your own catalog's elasticity actually looks like.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2464,7 +2464,7 @@ export const posts: BlogPost[] = [
   <li><strong>Apply one product at a time</strong> initially, and compare the actual outcome against the projected lift.</li>
   <li><strong>Keep your existing wholesale or discount rules running</strong> alongside it. The elasticity model informs your baseline price; it doesn't replace segmentation or scheduled promotions you still need.</li>
 </ol>
-<p>If you haven't calculated your own catalog's elasticity yet, <a href="/blog/how-do-i-know-what-to-price-my-products">here's how to know what to price your products</a> using your own sales history rather than a rule or a competitor's number. And if a sale is part of your plan either way, <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">here's how to run one without corrupting your pricing data</a> afterward. Once you're ready to see your own catalog's numbers, <a href="/signup">connect your WooCommerce store</a> and start with a handful of products before trusting it with your whole catalog.</p>
+<p>If you haven't calculated your own catalog's elasticity yet, <a href="/blog/how-do-i-know-what-to-price-my-products">here's how to know what to price your products</a> using your own sales history rather than a rule or a competitor's number. And if a sale is part of your plan either way, <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">here's how to run one without corrupting your pricing data</a> afterward. For how all four categories stack up across the wider market, not just WooCommerce-specific plugins, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full 2026 pricing tools comparison</a>. Once you're ready to see your own catalog's numbers, <a href="/signup">connect your WooCommerce store</a> and start with a handful of products before trusting it with your whole catalog.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -3158,7 +3158,7 @@ export const posts: BlogPost[] = [
 <p>A product with one price its entire life gives almost no signal to calculate elasticity from. A product that's moved through several price points across meaningful sales history gives a real, trustworthy estimate. This is why elasticity should always come with a confidence indicator (Strong, Fair, Weak), so a data-thin estimate doesn't get treated with the same certainty as a well-supported one.</p>
 
 <h2>Putting the Number to Work</h2>
-<p>Once you have an elasticity estimate for a product, the profit-maximizing price follows directly from it, and a what-if simulator lets you preview the projected impact of specific candidate prices before you touch a live listing. If you want to see your own catalog's elasticity rather than a textbook example, <a href="/signup">upload your sales history</a> and the calculation runs automatically.</p>
+<p>Once you have an elasticity estimate for a product, the profit-maximizing price follows directly from it, and a what-if simulator lets you preview the projected impact of specific candidate prices before you touch a live listing. For a deeper walkthrough of the full mechanism, <a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">see the complete guide to price elasticity for ecommerce sellers</a>. If you want to see your own catalog's elasticity rather than a textbook example, <a href="/signup">upload your sales history</a> and the calculation runs automatically.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -3891,7 +3891,7 @@ export const posts: BlogPost[] = [
   <li><strong>Expand to the rest of your catalog</strong> once you trust the pattern of recommendations against real results.</li>
 </ol>
 <p>The trust-building step matters more than any single feature. The value of an AI-assisted recommendation holds up because you can see the reasoning and test it before it goes live, not because you're asked to believe it on faith.</p>
-<p>Once you've picked a tool, <a href="/blog/is-your-store-leaving-money-on-the-table">check whether your current prices are already leaving profit on the table</a>. If a sale is coming up, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to discount without corrupting your pricing data</a>. Running WooCommerce instead of Shopify? <a href="/blog/woocommerce-pricing-apps-what-to-look-for">The same evaluation criteria apply, with a few platform-specific differences worth knowing</a>.</p>
+<p>Once you've picked a tool, <a href="/blog/is-your-store-leaving-money-on-the-table">check whether your current prices are already leaving profit on the table</a>. If a sale is coming up, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to discount without corrupting your pricing data</a>. Running WooCommerce instead of Shopify? <a href="/blog/woocommerce-pricing-apps-what-to-look-for">The same evaluation criteria apply, with a few platform-specific differences worth knowing</a>. For a fuller breakdown of every pricing tool category, not just elasticity-based ones, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full 2026 pricing tools comparison</a>.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
