@@ -14,6 +14,165 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "do-you-need-a-competitor-price-tracking-app",
+    title: "Do You Actually Need a Competitor Price Tracking App?",
+    excerpt:
+      "Not every store needs to watch competitors. Learn when to track rivals vs. price from your own data, and how Zorin reads your sales history per SKU.",
+    date: "2026-08-16",
+    readingTime: "9 min read",
+    category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">If you sell the exact same product as other stores and compete on price, yes. A competitor tracking app like Prisync will save you hours of manual checking and help you stay visible. But if you sell your own branded products, or your real pricing question is "am I charging the right amount for this product," a competitor tracker can't answer that. It was never built to.</p>
+
+<p>Most Shopify merchants default to competitor tracking because it's the most visible category of pricing app and the easiest to understand. But there's a second category of tool that most merchants don't know exists: apps that read your own sales data and tell you what your customers would actually pay, product by product, without looking at what anyone else charges. This post breaks down when each type works, when it doesn't, and how to pick the right one for your store.</p>
+
+<h2>Why Most Stores Default to Competitor Tracking</h2>
+<p>Open the Shopify App Store, search "pricing," and you'll find hundreds of results. The vast majority fall into two buckets: discount schedulers and competitor price trackers. The discount apps help you run sales. The trackers scrape competitor websites, match products to your catalog, and tell you when prices change.</p>
+<p>Competitor tracking is popular because the logic feels obvious. If a competitor drops their price by 10%, you want to know about it. If you're selling the same branded product as three other stores and your price is the highest, you're probably losing the click. The tool solves a real problem for that scenario.</p>
+<p>But the intuitive appeal of "watch what others charge" has a side effect. It makes merchants assume that competitor data is the input their pricing decision needs, even when their actual question has nothing to do with competitors. A store owner who makes handmade candles has no meaningful competitor to match prices against. A DTC skincare brand selling its own formula isn't competing on the same SKU as anyone else. For these stores, competitor tracking data is noise, not signal.</p>
+<p>The question isn't whether competitor tracking apps work. They work well. The question is whether they answer the pricing question your store actually has.</p>
+
+<h2>The Difference Between a Repricing App and a Pricing Optimization App</h2>
+<p>These two terms sound interchangeable, but they describe fundamentally different tools.</p>
+<p>A repricing app watches external data (competitor prices, marketplace listings) and applies rules you've already decided on. "Stay 3% below the cheapest competitor." "Never drop below a 40% margin." "Match the lowest price on Google Shopping." The app automates a decision you made. It doesn't evaluate whether that decision is right.</p>
+<p>A pricing optimization app figures out what the decision should be. It reads data, whether from live traffic experiments or from your sales history, and calculates a recommended price based on evidence rather than a predefined rule.</p>
+<p>Here's how the main categories break down:</p>
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Data source</th><th>What it tells you</th><th>What it can't tell you</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Competitor tracker / repricer</td><td>Competitor websites, marketplaces</td><td>What others charge; automates your pricing rules</td><td>Whether your rule produces the optimal price</td></tr>
+    <tr><td>A/B price tester</td><td>Live traffic on your store</td><td>Which of two tested prices drives more profit</td><td>The full demand curve; requires significant traffic</td></tr>
+    <tr><td>Demand-based elasticity tool</td><td>Your own sales history</td><td>How your customers respond to price changes, per SKU</td><td>What competitors charge (by design)</td></tr>
+  </tbody>
+</table>
+
+<p>A competitor tracker like Prisync and a demand-based tool like Zorin aren't competing products. They <a href="/blog/price-elasticity-vs-repricing-software">answer different questions using different data</a>. The mistake merchants make is buying one while expecting it to do the other's job.</p>
+
+<h2>When Competitor Tracking Earns Its Keep</h2>
+<p>Competitor tracking is the right tool when all three of these are true:</p>
+<p><strong>You sell the same product other stores sell.</strong> Not a similar product, the same SKU. Multiple stores carrying identical Nike Air Max 90s are in a genuine price comparison market. A customer can get the exact same item elsewhere, so your price relative to competitors directly affects whether you get the sale.</p>
+<p><strong>Your customers shop on price.</strong> In commodity and marketplace contexts, price is the primary differentiator. The customer knows exactly what they're getting; the only variable is who charges less (and ships faster). Competitor tracking keeps you visible in that kind of market.</p>
+<p><strong>Your margins can absorb reactive price changes.</strong> Matching a competitor's price drop only works if you can sustain that price without eroding your margin below what's viable. Stores with strong supplier relationships or high volume can often absorb these swings. Smaller stores matching prices reflexively can quietly bleed margin.</p>
+<p>If all three apply, competitor tracking is a smart investment. The best tools for this on Shopify include Prisync (the most established, with a 4.9/5 rating and 200+ reviews, starting at $99/month for URL-based tracking), Pricefy (budget-friendly with a free tier covering 50 SKUs), and PriceMole (built for multi-channel sellers, starting at $99/month).</p>
+
+<h2>Three Types of Stores That Don't Need Competitor Tracking</h2>
+<p>This isn't contrarian for the sake of it. Some store types get zero value from competitor price data because the data simply doesn't map to their pricing question.</p>
+<p><strong>Stores selling their own branded products.</strong> If you design and manufacture your own goods, there's no competitor URL to scrape for the same SKU. You can track what "similar" products cost, but a similar product at a different brand with different quality and different positioning isn't a price signal. It's a distraction. Your pricing question is "what would my customers pay for this specific product," and no competitor's website has that answer.</p>
+<p><strong>DTC stores where brand, not price, drives the purchase.</strong> A customer buying a $160 handmade leather wallet isn't comparison-shopping against a $20 fast-fashion wallet. They're buying yours because of the materials, the craft, the story. Tracking the $20 wallet's price doesn't inform your pricing decision. If anything, reflexively lowering your price toward theirs would destroy the premium positioning you've built.</p>
+<p><strong>Stores where the goal is margin optimization, not marketplace visibility.</strong> Some merchants already have steady sales and aren't losing customers to cheaper competitors. Their question isn't "am I price-competitive?" It's "am I leaving money on the table?" That's a demand question, not a competitive intelligence question. The answer lives in how your own customers respond to your prices, not in what someone else charges.</p>
+<p>For these stores, the right data source is internal, not external.</p>
+
+<h2>What a Demand-Based Pricing App Does Instead</h2>
+<p>Instead of watching competitors, demand-based pricing tools read your store's own historical sales data. They look at what happened when your price moved: did unit volume change? By how much? In which direction? From those patterns, they build a demand model per product and tell you whether your current price is too high, too low, or about right.</p>
+<p>This is the mechanism that answers the question most branded and DTC merchants actually have: "what should I charge for this product, based on how my customers actually behave?"</p>
+<p>At the enterprise end, Competera uses deep learning across dozens of demand factors including elasticity, seasonality, and cross-category effects. It serves large retailers, including Sephora, with custom pricing that typically runs into six figures annually and onboarding that requires weeks of ERP integration. For a 50-SKU Shopify store, it's structurally mismatched.</p>
+<p>For independent and small-to-midsize merchants, Zorin takes the same core approach and makes it self-serve. You connect your Shopify or WooCommerce store, or upload a CSV of sales history, and Zorin fits a log-log regression per SKU. For each product, you get:</p>
+<ul>
+<li>A <strong>raise, lower, or hold</strong> recommendation</li>
+<li>The <strong>elasticity coefficient</strong> showing exactly how demand responds to price changes for that product</li>
+<li>An <strong>estimated profit lift</strong> if you follow the recommendation</li>
+<li>A <strong>confidence label</strong> (Strong, Fair, or Weak) reflecting how much real data and price variation backs the estimate</li>
+</ul>
+<p>That last point matters. A thin-data product never gets presented with the same certainty as a well-established one. If Zorin doesn't have enough data to give you a confident answer, it tells you so, rather than presenting a guess with false precision.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>A thin-data product never gets presented with the same certainty as a well-established one.</figcaption>
+</figure>
+
+<p>Separately, Zorin ships <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">a Van Westendorp Price Sensitivity survey</a>: a four-question, no-login customer survey that calculates an acceptable price range, an optimal price point, and an indifference price point. This is a stated-preference signal (what customers say they'd pay), deliberately kept separate from the elasticity model's revealed-preference signal (what they actually did). You read them side by side to triangulate, not blended into a single number.</p>
+<p>Nothing applies automatically. You review each recommendation, adjust it with a slider or by typing your own price, preview the resulting margin using the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a>, and apply changes one product at a time or in bulk. The decision is always yours.</p>
+<p>The key difference from competitor tracking: Zorin explicitly does not scrape or compare against competitor prices. This isn't a limitation. It's the point. A competitor's price was set based on their costs, their brand, and their audience. Matching it tells you nothing about what your specific customers are willing to pay.</p>
+
+<h2>When Matching Competitors Quietly Costs You Money</h2>
+<p>Price matching feels safe. If your competitor charges $45 and you match $45, you're at least "in the game." But that logic assumes the competitor's price is correct for your store, which it almost never is.</p>
+<p>Consider this scenario. You sell a product at $52 with healthy margins and steady sales. A competitor drops the same or a similar product to $42 as part of a clearance sale. You see the price change in your tracker, panic, and match it. Your margin shrinks. Your volume doesn't meaningfully increase because your customers were already buying at $52. You've just imported someone else's liquidation strategy into your store.</p>
+<p>Now scale that across a catalog. Every time you reflexively match a price drop, you're eroding margin without evidence that the match drives enough incremental volume to compensate. And once you lower a price, raising it back without losing trust is harder than holding it in the first place.</p>
+<p>The math on pricing as a profit lever is stark. McKinsey's long-running pricing research has found that a 1% improvement in price, with volume held steady, lifts operating profit by roughly 8% to 11% depending on the analysis. For a store doing $500,000 a year with a 10% operating margin, even the conservative end of that range is several thousand dollars in additional annual profit from a change most merchants could implement in an afternoon. But the same leverage works in reverse. A 1% erosion from reflexive matching costs the same amount, quietly, repeatedly, across every matched product.</p>
+<p>Price matching makes sense when you're in a genuine commodity market competing on the same SKU against stores with similar positioning. Outside that narrow scenario, it's a margin leak dressed up as competitive strategy.</p>
+
+<h2>How to Decide Which Type of App Your Store Needs</h2>
+<p>Two questions determine the right tool category:</p>
+<p><strong>Question 1: Do competitors sell the exact same product you do?</strong></p>
+<p>If yes, competitor price data is a real input to your pricing decision. You need visibility into what they charge and the ability to respond. A competitor tracker fits.</p>
+<p>If no (you sell your own branded products, or your product is sufficiently differentiated that no one else carries the same SKU), competitor price data doesn't map to your pricing decision. You need demand data from your own store instead.</p>
+<p><strong>Question 2: Is your goal to stay price-competitive, or to find your optimal price?</strong></p>
+<p>Staying price-competitive means reacting to external moves. Finding your optimal price means understanding your own demand. These are different problems that require different tools.</p>
+<p>Here's the decision matrix:</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Same product as competitors</th><th>Unique / branded product</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Goal: Stay price-competitive</td><td>Competitor tracker (Prisync, Pricefy, PriceMole)</td><td>Competitor tracking won't help, no matching SKU to track</td></tr>
+    <tr><td>Goal: Find optimal price</td><td>Demand-based tool (Zorin), can still use a tracker alongside for market context</td><td>Demand-based tool (Zorin), this is the only mechanism that applies</td></tr>
+  </tbody>
+</table>
+
+<p>A few practical notes.</p>
+<p>These categories aren't mutually exclusive. A store that resells commodity products and also carries its own branded line could reasonably use a competitor tracker for the commodity products and an elasticity tool for the branded ones. The tracker gives you market context. The elasticity tool gives you the pricing answer.</p>
+<p>Data requirements matter. Elasticity modeling needs at least a few months of sales history with some price variation in it. If you launched last week, you don't have enough data yet. Start with cost-plus or value-based pricing, and revisit demand modeling once you have a real sales history to read. In the meantime, Zorin's Van Westendorp survey can give you a stated-preference read even before you have sales data.</p>
+<p>Budget differs by mechanism. Competitor trackers start around $49 to $99/month. A/B price testing with Intelligems starts at $499/month for the plan that includes price tests. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, accessible to merchants who don't have enterprise budgets or dedicated pricing analysts. For a fuller breakdown of every category, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full pricing tools comparison</a>.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Competitor price tracking apps answer "what are others charging?" Demand-based pricing apps answer "what should I charge?" They're different tools for different questions.</li>
+<li>Competitor tracking earns its keep when you sell the same SKU as other stores and compete primarily on price. For branded, DTC, or differentiated products, competitor data doesn't map to your pricing decision.</li>
+<li>A repricing app automates a pricing rule you've already decided on. A pricing optimization app figures out what the rule should be, using your own data.</li>
+<li>Reflexive price matching imports someone else's pricing logic into your store and erodes margin without evidence that it drives enough volume to compensate.</li>
+<li>If your question is "what would my customers pay," the answer lives in your own sales history, not on a competitor's website.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Should I use a competitor price tracking app or a pricing app that uses my own sales data on Shopify?</h3>
+<p>It depends on what you sell and what question you're trying to answer. If you resell the same products other stores carry and compete on price, a competitor tracker like Prisync gives you the market visibility you need. If you sell your own branded products or want to know what your customers would actually pay based on your own demand data, a tool like Zorin that reads your sales history is the better fit. Some stores benefit from both.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a repricing app and a pricing optimization app for my online store?</h3>
+<p>A repricing app watches competitor prices and applies rules you've already configured, like "stay 5% below the cheapest competitor" or "never drop below 40% margin." It automates a decision you made, without evaluating whether that decision is right. A pricing optimization app uses data (your sales history, live experiments, or customer surveys) to calculate what the optimal price should be. The first automates your rule. The second figures out the rule.</p>
+</div>
+<div class="faq-item">
+<h3>Do I actually need to track competitor prices, or is there a better way to set prices on Shopify?</h3>
+<p>You need competitor tracking only if you sell the same products competitors sell and your customers primarily shop on price. If you sell your own branded or differentiated products, competitor prices aren't a meaningful input to your pricing decision, because no one else carries your exact SKU. In that case, pricing from your own sales data through demand-based elasticity modeling gives you a more useful answer.</p>
+</div>
+<div class="faq-item">
+<h3>Which type of Shopify pricing app is best if I sell my own branded products and don't compete on price?</h3>
+<p>A demand-based pricing app is the only mechanism that applies for branded products. Competitor tracking has no matching SKU to scrape, so the data is irrelevant. Zorin reads your own sales history and gives you a per-SKU raise, lower, or hold recommendation with a confidence score. For new products without sales history yet, the Van Westendorp survey can give you a stated-preference read on what customers are willing to pay before you have demand data to model.</p>
+</div>
+<div class="faq-item">
+<h3>Is matching competitor prices hurting my margins, and what should I do instead?</h3>
+<p>It can be, especially if you're matching prices that were set based on someone else's costs, brand positioning, and audience rather than your own. Reflexive matching erodes margin without evidence that it drives enough incremental volume to compensate. Even a small, repeated price erosion compounds into a meaningful profit loss across a catalog. Instead of matching, consider pricing from your own demand data. If your customers are already buying at your current price, lowering it to match a competitor who's clearing inventory doesn't serve your store.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use a competitor tracker and a demand-based tool together?</h3>
+<p>Yes. The two serve different functions. A competitor tracker gives you market context: what others charge, when they change prices, whether they're running a sale. A demand-based tool gives you the pricing answer for your own store, grounded in your own customers' behavior. Using both means you're informed about the market and optimizing for your own demand, rather than choosing one data source over the other.</p>
+</div>
+<div class="faq-item">
+<h3>What if I just launched my store and don't have much sales data yet?</h3>
+<p>Elasticity modeling needs a few months of sales history with some price variation to produce reliable recommendations. If you're brand new, start with cost-plus or value-based pricing to establish your initial price points. In the meantime, Zorin's Van Westendorp survey lets you collect stated-preference data from potential customers, giving you a read on acceptable price ranges even before you have purchase history to model.</p>
+</div>
+<div class="faq-item">
+<h3>How is Zorin different from Intelligems?</h3>
+<p>Both help you find the right price, but through different mechanisms. Intelligems runs live A/B price tests by splitting your store traffic and measuring which price point drives more profit. It requires significant traffic volume to reach statistical significance and starts at $499/month for price testing. Zorin reads your existing sales history and models elasticity per SKU without requiring a live experiment. It works for stores that don't have enough traffic to split-test or don't want to show different customers different prices.</p>
+</div>
+</section>
+
+<p class="conclusion">Competitor tracking and demand-based pricing aren't rival approaches, they're built to answer different questions. If your customers are comparison-shopping the exact same SKU, a tracker earns its keep. If your real question is what your own customers would pay for your product, that answer lives in your own sales history. <a href="/signup">Start a free trial</a> and see what Zorin's elasticity model says about your catalog.</p>
+    `.trim(),
+  },
+  {
     slug: "best-pricing-optimization-tools-for-shopify-stores-2026",
     title: "Best Pricing Optimization Tools for Shopify Stores (2026)",
     excerpt:
