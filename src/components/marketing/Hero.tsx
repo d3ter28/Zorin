@@ -18,11 +18,11 @@ export function Hero() {
             7-day free trial - no credit card required
           </span>
           <h1 className="mt-5 text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl">
-            Turn your Shopify sales data into{" "}
-            <span className="text-blue-600">profit-maximizing prices.</span>
+            Change your sales data into{" "}
+            <span className="text-blue-600">profit-maximising prices.</span>
           </h1>
           <p className="mt-5 max-w-[50ch] text-lg leading-relaxed text-zinc-500">
-            Zorin turns your sales history into profit-maximizing price recommendations with elasticity modelling.
+            Zorin uses elasticity modelling on your sales data to give you a price that allows you to maximise your profit margins.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
