@@ -14,6 +14,169 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "dynamic-pricing-vs-sales-a-shopify-sellers-guide",
+    title: "Dynamic Pricing vs Sales: A Shopify Seller's Guide",
+    excerpt:
+      "Most shoppers dislike dynamic pricing but accept sales without complaint. The difference isn't the price change, it's whether it felt fair. Here's how to use both without losing trust.",
+    date: "2026-08-20",
+    readingTime: "9 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Most shoppers say they dislike dynamic pricing, yet nearly every store runs sales constantly without backlash. The difference is not whether the price changed, it is whether the change felt fair. This guide explains what actually separates dynamic pricing from a sale, when a holiday price increase is safe, how often you can adjust prices without losing customer trust, and how deep a clearance discount needs to go before it is actually working.</p>
+
+<h2>Why "Dynamic Pricing" Has a Trust Problem That Sales Don't</h2>
+<p>A 2026 HyperFinity survey found that 65% of UK shoppers dislike dynamic pricing, while only 4% said they love it. In the same survey, 91% ranked clear and transparent pricing as their top purchase factor, and 82% said they value everyone paying the same price for the same product. That is a stark gap for a pricing practice that, in a different form, most shoppers accept without complaint every single day.</p>
+<p>The form that gets accepted is the sale. A 30%-off Black Friday banner does not trigger the same reaction as a checkout page that quietly shows a different price to different visitors. The mechanism can be nearly identical (both are a deviation from the "normal" price) but the framing is opposite. A sale reads as a limited-time gift extended to everyone. Unlabeled dynamic pricing reads as the store reacting to you specifically, and shoppers do not like feeling priced based on what the algorithm thinks they will tolerate.</p>
+<p>That distinction matters more than the mechanics of the price change itself. It shapes every decision in this guide: when to raise prices, how often to touch them, and how to discount without training customers to distrust your sticker price.</p>
+
+<h2>What's the Actual Difference Between Dynamic Pricing and a Sale</h2>
+<p>A sale is one visible, time-boxed form of dynamic pricing. Dynamic pricing is the broader practice of adjusting a product's price in response to demand, season, inventory levels, competition, or customer segment, and a sale is simply the version of it that gets announced with a banner and an end date.</p>
+<p>The broader category includes moves that never get labeled a "sale" at all: raising a price ahead of predictable seasonal demand, quietly marking down a SKU that stopped moving three weeks ago, offering a different price to a wholesale account than to a retail customer, or letting an elasticity model nudge a handful of prices up or down based on how demand has actually responded historically.</p>
+
+<h3>The tactics under the dynamic pricing umbrella</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tactic</th>
+      <th>Announced to customers?</th>
+      <th>Typical duration</th>
+      <th>Trust risk</th>
+      <th>Best used for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Scheduled sale</td>
+      <td>Yes (banner, email)</td>
+      <td>Days to weeks</td>
+      <td>Low</td>
+      <td>Seasonal demand peaks</td>
+    </tr>
+    <tr>
+      <td>Flash sale</td>
+      <td>Yes (countdown timer)</td>
+      <td>2-24 hours</td>
+      <td>Low</td>
+      <td>Urgency-driven clearance</td>
+    </tr>
+    <tr>
+      <td>Segment / tiered pricing</td>
+      <td>Partially (loyalty tiers)</td>
+      <td>Ongoing</td>
+      <td>Low-Medium</td>
+      <td>Wholesale, VIP programs</td>
+    </tr>
+    <tr>
+      <td>Inventory markdown</td>
+      <td>No</td>
+      <td>Until cleared</td>
+      <td>Medium</td>
+      <td>Dead stock clearance</td>
+    </tr>
+    <tr>
+      <td>Demand-based markup</td>
+      <td>No</td>
+      <td>Variable</td>
+      <td>High</td>
+      <td>Peak-demand periods</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Sales sit inside this list as the most visible, most customer-friendly version. The rest require more care, because none of them come with a banner explaining why the price is different today. Flash sales convert at 2-3x the rate of standard sales because of time pressure, but they lose most of their effect without a visible countdown timer.</p>
+
+<h2>How Often Can You Change Prices Without Losing Customer Trust</h2>
+<p>There is no universal safe frequency, no "once a month is fine, twice a week is not" rule that holds across every store and category. The trust risk comes from inconsistency and the absence of a visible reason, not from the raw number of price changes.</p>
+<p>A store that raises prices on a predictable seasonal cadence (warmer layers get pricier as fall approaches, holiday-adjacent items firm up in November) reads as normal, almost expected. A store that changes the same product's price three times in a week with no explanation reads as manipulation, even if each individual change was small and reasonable on its own.</p>
+<p>The practical guidance from the research is consistent: use a pricing model that aligns changes with a clear business logic, and be transparent about increases and discounts where it is appropriate to be. If a price moves, there should be a reason a customer could understand if they asked: seasonal demand, inventory clearance, a cost increase. Not "the algorithm decided you would pay more today."</p>
+<p>This is also where framing does real work. Customers tolerate demand-based pricing far more easily when it is presented as a sale ending than as a price increase. Setting a compare-at price and offering a "limited time" markdown from it lands very differently than raising the sticker price outright, even when the final number a customer pays is the same either way. If you are using <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">sales as a pricing tool</a>, the framing is doing half the work.</p>
+
+<h2>When Is the Right Time to Raise Prices for the Holidays</h2>
+<p>The right time to raise a price for the holidays is when demand data shows the product can absorb it, not simply "before Black Friday" as a blanket calendar rule.</p>
+<p>Seasonal demand genuinely shifts by category. Sunscreen sells best from May through August; winter coats peak from October through January. A merchant who raises every product's price 10% heading into Q4 is treating a sunscreen SKU and a winter coat SKU as if they behave identically, when their demand curves are moving in opposite directions at that exact time of year.</p>
+<p>The products worth raising are the ones where demand is genuinely climbing and where <a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">price elasticity</a> is low enough that the increase will not cost more in lost volume than it gains in margin. A blanket seasonal markup applied across an entire catalog usually means some products get raised too far (and quietly lose sales nobody notices until the quarter closes) while others get left on the table when they could have absorbed more.</p>
+<p>This is a place where gut-feel and competitor-matching both fall short. Most sellers do not actually know which five products in their catalog could take a price increase tomorrow with zero drop in sales, and which five would lose a quarter of their volume from a single dollar of movement. That gap between automating everything else in the business and still setting prices on instinct is <a href="https://digitalmagazines.online/articles/ecommerce-ai-pricing-elasticity-gap" target="_blank" rel="noopener noreferrer">a pattern worth naming directly</a>: stores that have automated marketing, support, and content still tend to price by gut feel or by copying a competitor's number, even though pricing is where a McKinsey study found a 1% improvement moves operating profit more than almost any other lever. Per-SKU elasticity data is what closes that gap, turning "raise prices before the holidays" from a calendar habit into a decision grounded in how each specific product actually responds.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>A raise/lower/hold recommendation with a confidence score tells you which products can absorb a seasonal increase before you commit to it catalog-wide.</figcaption>
+</figure>
+
+<h2>How Much Should You Discount Slow-Moving Inventory Before It Hurts Your Margin</h2>
+<p>The goal of a clearance discount is to move the inventory at the smallest possible cost to margin, not to hit a round, comfortable-sounding number like 20% or 30% off.</p>
+<p>A simple starting rule that shows up consistently in the research: trigger a markdown after a set window of no sales (seven days is a common starting point) rather than letting slow stock sit indefinitely at full price while it ages toward becoming a total write-off. That is a reasonable default for a merchant who does not yet have better data to work from.</p>
+<p>But a flat percentage applied to every slow SKU is still a guess. Two products that have both been sitting for two weeks can have very different discount depths needed to actually move them, depending on how sensitive their specific demand is to price. Discounting a genuinely low-elasticity product by 30% when 10% would have cleared it is margin given away for nothing. Discounting a highly elastic product by only 10% when it needed 25% to move at all just means it keeps sitting there, tying up cash and shelf space.</p>
+<p>This is the same elasticity logic as the holiday pricing question, run in reverse. Instead of estimating how much a price can go up without losing volume, the question is how far a price needs to come down before volume actually responds. A profit-lift estimate built on the product's own sales history gives a specific number to work from instead of defaulting to whatever discount percentage feels customary. For a deeper look at the mechanics, <a href="/blog/how-to-price-a-discount-without-losing-your-margin">our guide on pricing discounts without wrecking margin</a> walks through how to set the floor before you start marking down.</p>
+
+<h2>Do You Need an App for Seasonal Pricing, or Can You Adjust Prices Manually</h2>
+<p>For a small catalog, manually changing a handful of prices in Shopify takes seconds. Shopify supports scheduled discount automations natively, and Shopify Plus stores can go further with Shopify Scripts for more complex, rule-based logic. The mechanical act of updating a price is not the bottleneck for most merchants.</p>
+<p>The actual bottleneck is knowing which SKU to change and by how much. A merchant with 40 or 400 products does not struggle to click "edit price." They struggle to know, with any confidence, which fifteen products are worth touching this month and which are better left alone. That is a data problem, not a tooling problem, and no amount of app automation fixes it if the underlying price decisions are still guesses.</p>
+<p>This is worth being direct about: Zorin is not a real-time repricing engine that changes prices on its own every few minutes the way some algorithmic Amazon repricers do. It is decision support. It reads a store's own sales history, models how each SKU's demand responds to price, and returns a raise, lower, or hold recommendation with a confidence score and an estimated profit impact. The merchant still decides what to do with that and still executes the change, whether manually in Shopify's admin or through a discount automation already in place. For most sellers, that combination (a clear recommendation plus manual or semi-automated execution) is a more trustworthy way to run seasonal and dynamic pricing than handing the whole loop to a black-box algorithm. <a href="/signup">Start a free trial</a> to see the recommendations on your actual catalog.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Dynamic pricing has a trust problem that sales don't, because it reads as reactive to the individual customer rather than a transparent, time-limited offer to everyone.</li>
+<li>A sale is one visible form of dynamic pricing, sitting alongside markups, segment pricing, and inventory-based markdowns that rarely get announced the same way.</li>
+<li>Price change frequency is not the real risk factor. Consistency and a clear, understandable reason matter more than how often a price moves.</li>
+<li>Holiday price increases should follow elasticity, not the calendar. A blanket seasonal markup treats every product like it responds the same way, which it does not.</li>
+<li>Clearance discounts should be as shallow as they can be while still working. A flat percentage is a guess; the right depth depends on the specific product's demand sensitivity.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know when it's the right time to raise prices for the holidays?</h3>
+<p>The right time is when your sales data shows a product's demand is climbing and its elasticity is low enough to absorb a higher price without a meaningful drop in volume, not simply because a holiday is approaching on the calendar. Products with genuinely rising seasonal demand, like winter apparel heading into Q4, are better candidates than products with flat or falling demand at that time of year.</p>
+</div>
+<div class="faq-item">
+<h3>Will customers get upset if my prices change too often?</h3>
+<p>They are more likely to get upset by inconsistency and a lack of clear reasoning than by frequency alone. A predictable, explainable pattern (seasonal adjustments, inventory clearance, cost-driven increases) reads as normal. Repeated, unexplained changes to the same product in a short window reads as manipulation, even if each change is small.</p>
+</div>
+<div class="faq-item">
+<h3>How much should I discount slow-moving inventory before it hurts my margin?</h3>
+<p>Enough to actually move the product, and no more than that. A common starting heuristic is triggering a markdown after about seven days without a sale, but the right depth beyond that depends on the specific product's price sensitivity. A flat 20-30% discount across every slow SKU usually gives away more margin than necessary on some products while still not moving others.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need an app to do seasonal pricing, or can I adjust prices manually?</h3>
+<p>You can adjust prices manually in Shopify for a small catalog without any issue. Shopify also supports native scheduled discount automations, and Shopify Plus stores have access to Shopify Scripts for more advanced rules. The harder problem is not the mechanics of changing a price, it is knowing which products to change and by how much, which is where elasticity data helps regardless of whether execution ends up manual or automated.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between dynamic pricing and just running a sale?</h3>
+<p>A sale is a scheduled, publicly announced, time-limited discount. Dynamic pricing is the broader category that includes sales but also covers seasonal markups, segment or tiered pricing, inventory-based markdowns, and quiet elasticity-based adjustments that are never labeled as a promotion at all.</p>
+</div>
+<div class="faq-item">
+<h3>Is dynamic pricing legal for ecommerce stores?</h3>
+<p>Yes, in most jurisdictions. Dynamic pricing has been used legally by airlines, hotels, and ride-sharing services for decades. The main legal boundaries are that you cannot base price differences on protected characteristics, you must honor prices you have advertised, and some regions have specific price transparency requirements worth checking against local regulations.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a flash sale and regular dynamic pricing?</h3>
+<p>A flash sale is a short-duration, heavily time-boxed discount, typically lasting 2 to 24 hours, designed to create urgency and drive an immediate purchase decision. Regular dynamic pricing adjustments, like a seasonal markup or an elasticity-based price change, tend to be longer-lasting and less tied to a visible countdown.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if a discount is too deep?</h3>
+<p>If a markdown clears inventory but the margin given away was larger than necessary to move it, the discount was too deep. Comparing a product's actual elasticity to the discount applied is the most reliable way to check this after the fact, and to calibrate future markdowns on similar products more precisely.</p>
+</div>
+<div class="faq-item">
+<h3>Should every product in my catalog get the same seasonal price increase?</h3>
+<p>No. Treating an entire catalog as if every product shares the same seasonal demand curve usually means some items get raised further than their demand can support, quietly losing sales, while others could have absorbed more increase than they got. Per-SKU elasticity data helps identify which products are actually strong candidates for a seasonal raise.</p>
+</div>
+<div class="faq-item">
+<h3>Can personalized pricing hurt customer trust more than a sale?</h3>
+<p>Generally yes, because it removes the sense that everyone is paying the same price for the same product, which research shows most shoppers explicitly value. Segment-based pricing (like wholesale or loyalty tiers) tends to be more accepted because the segment and the reason for the price difference are usually clear and disclosed upfront, unlike individualized pricing based on browsing behavior.</p>
+</div>
+</section>
+
+<p class="conclusion">Knowing when to raise a price, how often you can safely adjust one, and how deep a markdown needs to go are all the same underlying question: how does this specific product's demand respond to a change in price. Zorin answers that using a store's own sales history instead of a seasonal rule of thumb or a flat discount percentage, so pricing decisions come from data the customer never has to see, only the fair, consistent price that results from it.</p>
+`,
+  },
+  {
     slug: "ecommerce-profit-margins-what-to-target-and-how-to-track-them",
     title: "Ecommerce Profit Margins: What to Target and How to Track Them",
     excerpt:
