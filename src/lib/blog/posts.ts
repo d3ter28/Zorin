@@ -14,6 +14,151 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "should-you-price-the-same-on-shopify-and-amazon",
+    title: "Should You Price the Same on Shopify and Amazon? A Channel Pricing Guide",
+    excerpt:
+      "Same price on every channel sounds simple. It isn't. Amazon's fees, Buy Box monitoring, and per-channel demand all mean that uniform pricing is quietly losing you margin.",
+    date: "2026-08-21",
+    readingTime: "10 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Most multi-channel sellers eventually try to price their Shopify store lower than Amazon to recover the fee difference. Then they discover that Amazon monitors external prices, including their own DTC site, and suppresses their Buy Box within hours of finding a lower price elsewhere. This guide explains why same pricing costs you margin, why different pricing carries its own risks, and what the working framework looks like for sellers managing Shopify, Amazon, and Etsy simultaneously.</p>
+
+<h2>Why You Can't Just Charge the Same Price Everywhere</h2>
+<p>The appeal of uniform pricing is real. One price per SKU, no spreadsheet to maintain, no risk of a customer noticing a discrepancy between channels. But charging the same price on Shopify and Amazon does not produce the same margin on each. It produces the same revenue and very different amounts of money kept.</p>
+<p>Amazon charges referral fees of 9-15% depending on category, plus FBA fulfillment fees if you are using Amazon's warehousing. Shopify Payments charges 2.9% + $0.30 per transaction on the Basic plan, with lower rates on higher tiers. On a $100 order, that fee structure difference is roughly $19 in cash retained per sale. According to Eightx's 2026 analysis across 35+ DTC brands, the same SKU at the same selling price nets approximately $63 on Shopify and approximately $44 on Amazon when channel fees are treated as variable costs.</p>
+<p>That $19 gap is what uniform pricing ignores. If you charge the same $100 on both channels, you are either accepting a 30% lower margin on every Amazon sale, or you are not actually recovering the fee differential anywhere. The <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">ecommerce profit margins guide</a> covers how quickly the gap between gross and net margin compounds across a cost stack. Channel fees are the single largest variable in that gap for multi-channel merchants.</p>
+
+<h3>Worked fee comparison on a $50 product</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Cost line</th>
+      <th>Shopify</th>
+      <th>Amazon (FBA)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Selling price</td><td>$50.00</td><td>$50.00</td></tr>
+    <tr><td>Referral fee</td><td>$0</td><td>$7.50 (15%)</td></tr>
+    <tr><td>FBA fulfillment</td><td>$0</td><td>$3.22 (mid-tier)</td></tr>
+    <tr><td>Payment processing</td><td>$1.75 (2.9% + $0.30)</td><td>Included in FBA</td></tr>
+    <tr><td>Platform subscription (per unit)</td><td>~$0.10</td><td>~$0.13</td></tr>
+    <tr><td><strong>Net retained</strong></td><td><strong>~$48.15</strong></td><td><strong>~$39.15</strong></td></tr>
+  </tbody>
+</table>
+
+<p>The $9 gap on a $50 product scales linearly across your catalog. At 500 units a month on each channel, that is $4,500 a month in margin left on the table by pricing both channels the same.</p>
+
+<h2>The Buy Box Suppression Trap (and Why It Catches Most Multi-Channel Sellers)</h2>
+<p>The natural response to the fee math is to charge more on Amazon and less on Shopify. Pass the fee saving to DTC customers, recover it on Amazon. That logic is sound on paper and dangerous in practice.</p>
+<p>Amazon's Marketplace Fair Pricing Policy replaced an older explicit price parity clause after regulatory pressure, but what replaced it is broader and harder to manage. Amazon's automated systems crawl the web, including your own Shopify store, and compare your Amazon price against what the same product sells for anywhere else online. If your Amazon price sits meaningfully above your DTC price, Amazon can suppress your Buy Box.</p>
+<p>Suppression means your offer disappears from the Featured Offer position. Sponsored Products stop serving. On most listings, that cuts sales by 80% or more overnight, with no notification and no obvious explanation in your Seller Central reports.</p>
+<p>Industry guidance from Feedvisor puts Amazon's tolerance at roughly 2-5% above the lowest comparable offer found externally, though Amazon does not publish an official threshold. The mechanism is opaque. A seller can list a product at $27.99 on Shopify and $32.99 on Amazon, which seems reasonable to cover the referral fee differential, and Amazon's bots can flag that $5 gap as a Fair Pricing violation within hours.</p>
+
+<h3>What suppression actually means for your revenue</h3>
+<p>The Buy Box is how most Amazon sales happen. A suppressed listing does not disappear entirely, but the purchase button moves to a secondary location most shoppers never find. Sponsored Products tied to that ASIN stop delivering, so paid traffic dries up alongside organic. A listing that was doing $8,000 a month can drop to near zero in a week, for a pricing decision that was financially rational on its own terms.</p>
+<p>The practical ceiling this creates: you cannot price Amazon high enough to fully recover the referral fee differential if doing so requires your Shopify price to be meaningfully lower. The two channels are linked by Amazon's monitoring, even though Shopify has no equivalent enforcement mechanism in the other direction.</p>
+
+<h2>Does the Same Product Have Different Price Sensitivity on Different Platforms?</h2>
+<p>Yes, and the difference is meaningful enough to affect your pricing decisions per channel, not just your fee recovery math.</p>
+<p>Amazon shoppers arrive in a comparison context. They searched a category, they can see multiple listings side by side, and they are making a decision partly on price against visible alternatives. That environment produces more elastic demand. The same product can lose volume faster from a price increase on Amazon than it would on your Shopify store, because competitors are one scroll away.</p>
+<p>DTC shoppers on Shopify arrived through a different path: brand awareness, a recommendation, an email, a social ad. They are buying from you specifically, not from whoever has the cheapest listing in the category. That context tends to produce less elastic demand, meaning your own customers on your own store are often willing to pay more than an Amazon buyer would for the same product.</p>
+<p>Etsy buyers are a third profile. They are specifically seeking handmade, unique, or vintage goods, and they are less comparison-focused than Amazon shoppers. Price sensitivity on Etsy tends to be lower still for products that fit the platform's aesthetic, because the perceived uniqueness of the product is already part of why the buyer is there.</p>
+<p>This matters for how you use <a href="/guide">Zorin's elasticity model</a>: it reads your Shopify or WooCommerce sales history to estimate how your own customers' demand responds to price. That is your DTC elasticity signal, the demand curve for buyers who chose your store. It is a more actionable number than a blended marketplace average, because it tells you what your own customer base will bear, which is the anchor for everything else. A product with an elasticity of -0.8 on your Shopify store can likely absorb a price increase there, and probably needs to be priced higher on Amazon anyway to recover the fee differential.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/dashboard-overview.png" alt="Zorin dashboard showing per-SKU pricing recommendations across a product catalog" loading="lazy" />
+  <figcaption>Your DTC sales history is the anchor for multi-channel pricing. Zorin models demand per SKU so you know which products can absorb a price increase before committing to it on any channel.</figcaption>
+</figure>
+
+<h2>The Practical Framework: How to Price Across Channels Without Losing the Buy Box or Your Margin</h2>
+<p>The working consensus across practitioners who sell on multiple channels is to price Amazon 10-20% higher than DTC to recover the fee differential, while staying close enough to avoid triggering suppression. That range is narrower than it looks. A 15% DTC-to-Amazon price gap is about where the fee math breaks even on most mid-range categories. A 20% gap starts to push into suppression risk territory depending on Amazon's read of the external price.</p>
+
+<p><strong>Price Amazon 10-15% above your Shopify DTC price.</strong> This recovers most of the referral fee differential without creating a gap large enough to reliably trigger suppression. Run a real fee comparison on your top 20 SKUs to find the exact breakeven gap for your category and price point.</p>
+
+<p><strong>Use coupons and Lightning Deals for Amazon promotions, not base price reductions.</strong> Amazon coupons and Lightning Deals are native to the platform, they do not change the listed base price, and they do not trigger the Fair Pricing comparison in the same way a permanent price reduction does. If you want to run a sale on Amazon, this is the mechanism. A base price reduction that undercuts your Shopify price is the mechanism that gets listings suppressed.</p>
+
+<p><strong>Keep exclusive SKUs or bundles DTC-only.</strong> A bundle that exists only on your Shopify store never appears on Amazon at all. It cannot create a parity problem because there is no equivalent Amazon listing to compare against. DTC-exclusive bundles are also the most effective way to differentiate the channel without a raw price gap, because the customer on Shopify gets something they genuinely cannot get on Amazon rather than just a lower price on the same item.</p>
+
+<p><strong>Never price your Shopify store more than 2-5% below your Amazon price.</strong> Based on Feedvisor's threshold guidance and seller experience, this is roughly where Amazon's automated systems start flagging discrepancies. If you want to offer DTC customers a better deal, do it through a loyalty discount code or an email subscriber offer, not a publicly visible lower price.</p>
+
+<h3>Etsy's different context</h3>
+<p>Etsy operates on a different fee structure: a 6.5% transaction fee, a $0.20 listing fee per item, and payment processing of 3% + $0.25. Total fees land around 10-12% of the selling price, higher than Shopify but lower than Amazon FBA for most categories.</p>
+<p>More importantly, Etsy's buyer intent is different. Shoppers on Etsy are searching for handmade, artisan, or vintage goods. They are not in a direct comparison environment the same way Amazon buyers are. A product that sells for $45 on Shopify can often carry $48-52 on Etsy without meaningful volume loss, not because of a fee calculation but because the platform's buyers accept premium pricing on unique goods. Etsy also does not monitor your prices on external channels, so you are not facing suppression risk in the same direction.</p>
+<p>If you sell on all three channels, the rough hierarchy for a physical goods product is: Etsy at a slight premium for the uniqueness positioning, Shopify as your DTC base price, Amazon at 10-15% above Shopify to recover the fee differential, while staying within the 2-5% tolerance of your Shopify price from Amazon's monitoring perspective.</p>
+
+<h2>Managing the Three Channels Week to Week</h2>
+<p>Cross-channel pricing is not a setup-and-forget decision. It needs a weekly check because four things can break the balance without warning.</p>
+<p><strong>Your own promotions:</strong> A Shopify sale that drops your DTC price below the Amazon threshold triggers suppression. Review your promotional calendar against your Amazon listings before activating any discount.</p>
+<p><strong>Supplier cost changes:</strong> If your COGS goes up and you raise your Amazon price to protect margin, but you do not adjust Shopify proportionally, the gap can shift. Both channels need to move together.</p>
+<p><strong>Unauthorized resellers:</strong> If a third-party reseller picks up your product at wholesale and lists it on Amazon at a lower price, Amazon's system sees that lower price and can suppress your own listing even though you did not change anything. This is a brand registry and MAP enforcement issue, not a pricing strategy issue, but it has pricing consequences.</p>
+<p><strong>Currency and international pricing:</strong> If you sell internationally, exchange rate movement can create price gaps across channels that are invisible in your home currency but visible to Amazon's cross-channel monitoring. Review international pricing separately from domestic.</p>
+<p>The monitoring cadence that shows up consistently in practitioner guidance is weekly at minimum for high-volume SKUs, monthly for slower movers. The <a href="/blog/should-you-price-differently-on-shopify-vs-amazon">channel pricing decision guide</a> covers the logic for sellers deciding whether to expand to Amazon in the first place, before the fee math becomes a live concern.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Same price everywhere does not mean same margin everywhere. Amazon's fee structure takes roughly $9-19 more per $100 sale than Shopify's. Uniform pricing means accepting that gap as a permanent margin leak.</li>
+<li>Pricing DTC lower than Amazon triggers Buy Box suppression. Amazon monitors your Shopify store and can suppress your listing within hours if the gap exceeds roughly 2-5%.</li>
+<li>Price sensitivity differs by channel. Amazon shoppers are comparison buyers, DTC shoppers are brand buyers, Etsy shoppers are uniqueness buyers. The same product's elasticity is not the same across all three.</li>
+<li>The working framework is Amazon at 10-15% above DTC. This recovers most of the fee differential while staying within suppression tolerance. Use coupons and exclusive bundles for further differentiation rather than raw price gaps.</li>
+<li>Cross-channel pricing needs a weekly review. Promotions, cost changes, unauthorized resellers, and exchange rates can all break the balance without warning.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Should I charge the same price on Shopify and Amazon?</h3>
+<p>No, and for two reasons. First, Amazon's fees are 15-20% of revenue vs Shopify's 3%, so the same price produces a dramatically different margin on each channel. Second, if you try to price Shopify lower to recover the fee difference, Amazon's Fair Pricing Policy can suppress your Buy Box within hours of detecting the gap.</p>
+</div>
+<div class="faq-item">
+<h3>How do Amazon's fees affect what I should charge compared to my Shopify store?</h3>
+<p>On a $50 product, Amazon takes roughly $10-11 in combined referral and FBA fees vs Shopify's roughly $1.75 in payment processing. To earn the same net margin on both channels, your Amazon price needs to be approximately 10-20% higher than your Shopify price, depending on your product category and weight tier.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if my Shopify price is lower than my Amazon price?</h3>
+<p>Amazon's automated systems crawl external sites, including your own Shopify store, and compare prices. If your Amazon price is meaningfully higher than your Shopify price (the practical threshold appears to be around 2-5% based on seller experience), Amazon can remove you from the Buy Box and suppress your listing. This cuts sales by 80% or more overnight on most listings.</p>
+</div>
+<div class="faq-item">
+<h3>Does the same product have different price sensitivity depending on where I sell it?</h3>
+<p>Yes. Amazon shoppers are in a comparison environment with competitors one scroll away, which tends to make demand more elastic (more sensitive to price). DTC shoppers on Shopify arrived through brand-specific channels and tend to be less price-sensitive. Etsy buyers seeking unique goods tend to be the least price-sensitive of the three. The elasticity you measure from your own Shopify sales history reflects your DTC customers specifically, which is the most useful baseline for understanding what your own customer base will pay.</p>
+</div>
+<div class="faq-item">
+<h3>How do I manage pricing across Shopify, Amazon, and Etsy without creating channel conflict?</h3>
+<p>The practical framework: price Amazon 10-15% above your Shopify DTC base price to recover the fee differential. Keep that gap within 2-5% of your DTC price from Amazon's monitoring perspective. Use Amazon coupons and Lightning Deals for Amazon-specific promotions rather than base price reductions. Keep exclusive bundles or SKUs DTC-only so they never appear on Amazon at all. Review all three channels weekly, especially before running any promotion on any single channel.</p>
+</div>
+<div class="faq-item">
+<h3>Can Amazon actually see my Shopify prices?</h3>
+<p>Yes. Amazon's automated systems crawl external websites, including sellers' own DTC stores. Seller experience consistently shows that a lower DTC price can trigger Buy Box suppression within hours. Treat your Shopify store as in scope for Amazon's monitoring, not as a separate, invisible channel.</p>
+</div>
+<div class="faq-item">
+<h3>What's the safest way to offer DTC customers a better price than Amazon without triggering suppression?</h3>
+<p>Use a loyalty discount code or an email subscriber offer that requires a login or code to access, rather than a publicly visible lower price on the product page. Amazon's monitoring crawls publicly accessible prices. A code-gated discount that does not change the listed price is less likely to trigger the comparison. DTC-exclusive bundles are the cleaner mechanism: a product that does not exist on Amazon at all cannot create a parity problem.</p>
+</div>
+<div class="faq-item">
+<h3>Should I sell exclusive products on each channel?</h3>
+<p>Yes, where possible. A bundle or variant that exists only on your Shopify store creates zero parity conflict with Amazon, because there is no equivalent listing to compare against. It also gives DTC customers a genuine reason to buy from your store rather than Amazon, which is more durable than a price discount that could disappear at any time.</p>
+</div>
+<div class="faq-item">
+<h3>How does Etsy fit into a multi-channel pricing strategy?</h3>
+<p>Etsy's fees land at roughly 10-12% of the selling price, between Shopify and Amazon FBA. More importantly, Etsy's buyer intent is different: shoppers there are seeking handmade or unique goods and tend to be less price-sensitive than Amazon buyers in the same category. Products that fit Etsy's aesthetic often carry a slight premium there without meaningful volume loss. Etsy also does not monitor external channel prices, so you are not facing suppression risk in that direction.</p>
+</div>
+<div class="faq-item">
+<h3>What happens to my Amazon pricing if a third-party reseller lists my product cheaper?</h3>
+<p>A reseller listing your product on Amazon at a lower price can suppress your own Buy Box, even if you have not changed your price at all. Amazon sees the lower-priced listing on the same ASIN and may deprioritize your offer. Enrolling in Amazon Brand Registry and enforcing a Minimum Advertised Price policy with wholesale partners is the mechanism to address it.</p>
+</div>
+</section>
+
+<p class="conclusion">Knowing what your own customers will pay on your DTC channel is the anchor for everything else in a multi-channel pricing strategy. Your Shopify or WooCommerce sales history holds that answer for your specific products and your specific customers. Zorin reads that history, models the elasticity per SKU, and gives you a raise, lower, or hold recommendation with an estimated profit lift and a confidence score, so your DTC base price is grounded in real demand data rather than a guess, and your Amazon price has something solid to be built on top of.</p>
+`,
+  },
+  {
     slug: "dynamic-pricing-vs-sales-a-shopify-sellers-guide",
     title: "Dynamic Pricing vs Sales: A Shopify Seller's Guide",
     excerpt:
