@@ -14,6 +14,174 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-price-a-new-product-from-launch-to-end-of-life",
+    title: "How to Price a New Product: From Launch to End of Life",
+    excerpt:
+      "The hardest pricing decision isn't which price to pick, it's making a defensible choice when you have no data. Here's how to set a launch price, when to raise it, how to bundle without eroding margin, and how to retire a product cleanly.",
+    date: "2026-08-22",
+    readingTime: "11 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">The hardest pricing decision isn't which price to pick: it's making a defensible choice when you have no data to work from. A new SKU has no elasticity history, no reviews, no evidence of what customers will actually pay at scale. This guide walks through how to set a launch price without sales history, why the low-vs-high decision depends on your category rather than your preference, what signals tell you it's safe to raise a price that's already working, how to price bundles that protect margin instead of eroding it, and how to retire a product without creating a sale-waiting customer base.</p>
+
+<h2>The Launch Pricing Problem: What You Can and Can't Know on Day One</h2>
+<p>Three things are knowable at launch and one thing isn't. Knowing which is which keeps you from mistaking a reasonable guess for a defensible price.</p>
+<p><strong>What you can know:</strong> Your cost floor (COGS plus target margin), what competitors charge (a ceiling reference, not a target), and what customers say they'd pay (a Van Westendorp survey, if you run one before launch).</p>
+<p><strong>What you can't know yet:</strong> How your specific customers' demand responds to price at scale. That's what an elasticity model needs months of real sales data to answer. Your launch price is the placeholder you set while that data accumulates.</p>
+
+<h3>Setting the cost floor</h3>
+<p>COGS plus your target gross margin gives you the minimum viable price. Nothing below this is a price; it's a deliberate, time-limited investment in market share that needs to be treated as such.</p>
+<p>A worked example: a product with $12 in COGS and a 50% gross margin target has a minimum price of $24. The formula is: minimum price = COGS / (1 - target margin). At $24, every dollar below is margin you're choosing to give up. At $22, you're at a 45% gross margin. At $18, you're below 33%. Know the number before you pick the launch price, because the further below your margin floor you go, the harder the raise is later.</p>
+<p>If you're not sure what a good gross margin target looks like for your category, the <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">profit margins by category benchmarks</a> cover the typical gross and net margin ranges across eight ecommerce verticals.</p>
+
+<h3>The three things you can actually know at launch</h3>
+<p><strong>Your cost floor:</strong> COGS plus target margin sets the minimum price that doesn't lose money. This is the one number that's entirely in your control.</p>
+<p><strong>Competitor reference:</strong> What similar products sell for sets a ceiling reference and a buyer expectation baseline. This is useful context, not a target. Your cost structure, your brand, and your customers aren't identical to your competitors'.</p>
+<p><strong>Stated customer preference:</strong> A <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">Van Westendorp price sensitivity survey</a> asks respondents four questions about price perception and returns an acceptable price range, an optimal price point, and an indifference price. It's the one demand signal available before you have real sales data, and it's worth running on a waitlist or early audience if you have one.</p>
+<p>Zorin's elasticity model activates once a SKU has at least 6 months of sales history with some price variation in it. For a brand-new product, the most useful proxy is comparable SKUs already in your catalog: if you sell three existing skincare products and their elasticities cluster around -0.9, a new skincare SKU launching into the same customer base is likely to behave similarly. That's a category signal, not a certainty, but it's better than no signal at all. For a deeper look at pricing when you're starting from zero, the <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">new product pricing guide</a> covers the first 90 days specifically.</p>
+
+<h2>Penetration vs Price Skimming: Which Launch Strategy Fits Your Product</h2>
+<p>The choice between starting low and starting high isn't about whether you prefer market share or margin. It's about where your product sits on the demand curve and what your category's competitive structure looks like.</p>
+<p><strong>Penetration pricing</strong> means launching at a low price to build a customer base quickly, accumulate reviews, and establish the social proof needed to raise the price later. It works best when your category is elastic (buyers are comparison shopping), when competitors are well-established with large review bases, and when you're willing to treat early margin as a customer acquisition cost rather than profit. The risk is that raising the price later is harder than it sounds. Customers who came in at the low price have a reference point, and exceeding it meaningfully can trigger backlash even if the new price is fair.</p>
+<p><strong>Price skimming</strong> means launching at a premium and reducing the price over time to open the product to more price-sensitive buyers. It works best when your product is genuinely differentiated (unique material, exclusive design, proprietary method), when your category has low price visibility (buyers can't easily compare you to three identical competitors), and when early adopters are willing to pay a premium to have the product first. The risk is that it invites competitors to undercut you immediately, and that a later price reduction can feel like a signal of failure rather than market maturation.</p>
+<p>The question that resolves the decision is: how price-sensitive are buyers in this specific category? In elastic categories, a premium launch price loses volume to cheaper alternatives faster than the margin gain compensates. In inelastic categories, a low launch price leaves money on the table that's nearly impossible to recapture later because the reference price is already set in the customer's mind.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Signal</th>
+      <th>Points to penetration pricing</th>
+      <th>Points to price skimming</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Competitive density</strong></td>
+      <td>Many similar products at similar prices</td>
+      <td>Few direct comparisons, unique positioning</td>
+    </tr>
+    <tr>
+      <td><strong>Category price visibility</strong></td>
+      <td>Buyers compare prices easily (marketplaces, Google Shopping)</td>
+      <td>Price comparison is difficult or uncommon</td>
+    </tr>
+    <tr>
+      <td><strong>Brand recognition at launch</strong></td>
+      <td>New brand, no existing audience</td>
+      <td>Established following, waitlist, or loyal base</td>
+    </tr>
+    <tr>
+      <td><strong>Category elasticity</strong></td>
+      <td>Elastic (demand drops fast when price rises)</td>
+      <td>Inelastic (demand holds when price rises)</td>
+    </tr>
+    <tr>
+      <td><strong>Review baseline needed</strong></td>
+      <td>Yes, to compete</td>
+      <td>No, brand trust substitutes for social proof</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>When to Raise the Price on a Product That's Already Selling</h2>
+<p>Three observable signals tell you the launch price was set too low and it's time to move up.</p>
+<p><strong>You're selling through inventory faster than planned.</strong> If your reorder rate is higher than your initial model predicted, demand is stronger than your price implied. That's the most direct market signal that you priced below the demand curve.</p>
+<p><strong>Social proof is established.</strong> Penetration pricing's core logic is that you trade early margin for the reviews and ratings that make a later price increase defensible. Once you have 30-50 substantive reviews and a 4.5-star average, the price floor that justified discounting to build the review base is no longer doing the same job. The product can stand on its own.</p>
+<p><strong>A Van Westendorp survey or price test shows room above the current price.</strong> If the acceptable price range from a survey extends meaningfully above where you're currently priced, you have stated-preference evidence that customers aren't near their ceiling. If you run a price test on a subset of traffic at a higher price point and conversion doesn't drop proportionally, you have revealed-preference evidence.</p>
+<p>Once you have 3-6 months of sales data at the launch price, Zorin can run an elasticity model on the SKU. A Strong confidence raise recommendation with a specific estimated profit lift replaces the gut feel check with a number you can act on and defend: "your elasticity is -0.7, raising to $38 lifts estimated profit 12%, Strong confidence." That's the data-grounded version of "it's safe to go up." A Weak confidence label at the same stage means the model doesn't yet have enough price variation in the history to be certain: hold the price a little longer and let more data accumulate before moving.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <figcaption>A Strong confidence raise recommendation with an estimated profit lift is the data-grounded alternative to gut-checking whether a launch price is ready to move up.</figcaption>
+</figure>
+
+<p>When you do raise, raise in one clear move rather than incremental creep. A single transparent increase is easier for customers to process than a series of small unexplained adjustments. If you have an email list, a brief note explaining the price reflects real production costs or market positioning reads as honest rather than opportunistic.</p>
+
+<h2>Bundle Pricing: How to Increase Order Value Without Eroding Margin</h2>
+<p>Bundles work when they shift the customer's mental frame from "should I buy this?" to "which bundle gives me the best deal?" Once a buyer is choosing between bundle tiers rather than between buying and not buying, the conversion question is already answered. The only open question is how much they spend.</p>
+<p>Stores implementing strategic bundling see average order value increases of 20-35%, according to bundling strategy research across Shopify merchants. The reason it doesn't always work is that merchants price bundles before calculating whether the discount leaves enough margin to be worth running. The <a href="/blog/how-to-price-product-bundles-without-giving-away-your-margin">bundle pricing guide</a> covers the full mechanics; the key formula here is:</p>
+<p><strong>Bundle Price = (Sum of Individual Retail Prices) x (1 - Bundle Discount Rate)</strong></p>
+<p>The right discount rate depends on the gross margin of the items inside. Shopify's own bundling guidance puts the range at 10-20% for brands with gross margins above 50%, and 5-10% for brands with gross margins at or below 50%. Deeper than that and you're giving away margin for an AOV lift that doesn't compensate. The target is to keep bundle gross margin between 25-40% of the bundle price.</p>
+<p><strong>Three bundle-specific rules worth keeping:</strong></p>
+<p><strong>Keep the hero product at full price.</strong> The highest-margin or highest-selling item in the bundle should stay at its normal price. Apply the discount to supporting products (accessories, refills, complementary items) rather than to the core SKU. This protects the hero's reference price and prevents the bundle from training customers to expect the main product at a discount.</p>
+<p><strong>Use anchor pricing.</strong> Show the total individual retail value next to the bundle price. "Valued at $87, bundle price $69" does more work than "$69" alone because it makes the saving concrete and immediate. Without the anchor, buyers have to calculate the saving themselves; most won't.</p>
+<p><strong>Mix-and-match over fixed bundles where possible.</strong> Fixed bundles (pre-set combinations the customer can't change) are simpler to set up, but mix-and-match bundles (the customer selects items from a defined set) convert better because they reduce the feeling that the store picked the combination for its own margin reasons rather than the customer's needs. Where both options are operationally viable, mix-and-match outperforms.</p>
+<p>Bundles are also one of the most effective tools for a new product launch. Pairing a new SKU with a proven bestseller gives the new product immediate credibility and built-in demand, while giving you purchase data on the new SKU faster than a standalone listing would generate.</p>
+
+<h2>End-of-Life Markdowns: How to Clear Stock Without Creating a Sale-Waiting Audience</h2>
+<p>The markdown trap isn't a single steep cut: it's the pattern. Predictable, public, repeated discounts on the same products teach customers that waiting for the sale is the rational move. Once that pattern is established, full-price sell-through on that product is gone, and the behavior tends to generalize to other products in the store.</p>
+<p>The signals that a product is moving into end-of-life aren't subtle: declining sales over multiple consecutive periods, rising return rates or customer complaints, increasing cost pressure relative to the margin the product generates, and newer alternatives in the market that have overtaken it. When two or three of these appear together, it's time to plan the exit rather than wait until the inventory becomes a write-off.</p>
+<p><strong>Gradual step-down markdowns outperform single steep cuts.</strong> A product moving from $45 to $36 to $27 over three months clears inventory more profitably than going straight to $27 in month one, because the early markdown still captures buyers who were close to purchasing anyway at a higher margin. Retalon's markdown research confirms that pre-planned step-down sequences consistently outperform reactive deep cuts on both sell-through and total margin recovered.</p>
+<p><strong>Bundle EOL stock with full-price items rather than marking down standalone.</strong> An EOL product at $27 standalone reads as a distressed item. The same product bundled with a full-price bestseller at $65 reads as added value. The customer pays more, you recover more margin, and the full-price hero product's reference price stays intact. This is the mechanism retailers use to retire end-of-life products without the clearance association following the whole catalog.</p>
+<p><strong>Scarcity framing creates urgency without setting a discount precedent.</strong> "Final stock, discontinuing soon" communicates that this is the end of this product, not the beginning of a sale cycle. It creates genuine urgency (the product won't come back after this) without signaling that the price will fall further if the customer waits. A flat clearance discount signals: "wait and it might go lower." A scarcity frame signals: "this is your last chance at any price."</p>
+
+<h3>Markdown vs discount: which mechanism to use for EOL stock</h3>
+<p>A <strong>markdown</strong> is a permanent price reduction. The product stays at the new price until it sells out. Use this for end-of-life stock you're clearing for good. A <strong>discount</strong> is a temporary reduction, with the original price returning afterward. Use this for promotions, seasonal events, or loyalty offers on products you intend to keep selling.</p>
+<p>EOL stock gets a markdown, not a discount. Running a temporary discount on a product you're retiring still brings the price back up at the end, which creates confusion and wastes the urgency the price drop could have generated. A permanent step-down with clear "discontinuing" messaging is the cleaner exit. For more on how to run discounts on products you intend to keep selling, the guide on <a href="/blog/how-to-price-a-discount-without-losing-your-margin">pricing discounts without losing margin</a> covers the discount mechanics separately.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Your launch price is a hypothesis, not a discovery. Set a defensible cost floor, reference competitors as a ceiling, and treat the launch price as the placeholder you'll refine once sales data accumulates.</li>
+<li>Penetration vs skimming is a category decision, not a preference. Elastic categories punish premium launch prices. Inelastic categories leave money on the table with low ones.</li>
+<li>Three signals tell you it's safe to raise: faster-than-planned sell-through, established social proof, and price test or survey evidence showing room above the current price.</li>
+<li>Bundle discount depth depends on your gross margin. Above 50% gross margin: discount 10-20%. Below 50%: discount 5-10%. Always keep bundle gross margin above 25%.</li>
+<li>EOL markdowns work best as gradual step-downs with scarcity framing, not a single steep cut that trains customers to wait for clearance events.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I price a new product when I have no sales history to go on?</h3>
+<p>Start with your cost floor: COGS divided by (1 minus your target gross margin) gives the minimum viable price. Then anchor against competitor prices as a ceiling reference and run a Van Westendorp survey on your existing audience if you have one. Those three inputs give you a defensible launch range. The elasticity data that would tell you exactly where to price within that range takes 3-6 months of real sales to accumulate.</p>
+</div>
+<div class="faq-item">
+<h3>Should I start low to get sales or price high and come down later?</h3>
+<p>It depends on your category's price sensitivity, not your preference. Elastic categories (competitive, commodity, easy to compare) reward starting lower because a premium launch price loses volume to alternatives faster than the margin compensates. Inelastic categories (differentiated, unique, low price visibility) support starting higher because buyers aren't comparing you directly to cheaper alternatives.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know when it's safe to raise the price on a product that's already selling well?</h3>
+<p>Three observable signals: you're selling through faster than planned (demand is stronger than your price implied), you have 30-50 solid reviews that establish social proof, and a price test or Van Westendorp survey shows room above the current price. Once you have 3-6 months of sales history with some price variation, Zorin can model the elasticity and give you a specific raise recommendation with an estimated profit lift.</p>
+</div>
+<div class="faq-item">
+<h3>What's the best way to price a product bundle without giving away my margin?</h3>
+<p>Use the formula: Bundle Price = (Sum of Individual Retail Prices) x (1 - Discount Rate). Apply a 10-20% discount if your gross margin is above 50%. Apply 5-10% if it's below 50%. Keep the hero product at full price and apply the discount only to supporting items. Target a bundle gross margin of 25-40%.</p>
+</div>
+<div class="faq-item">
+<h3>How do I markdown end-of-life inventory without training customers to wait for sales?</h3>
+<p>Use a gradual step-down markdown rather than a single steep cut, bundle EOL stock with full-price items to avoid the clearance association, and frame the pricing around scarcity ("final stock, discontinuing soon") rather than a promotion. The markdown is permanent: don't run it as a temporary discount that brings the price back up, which creates confusion and undermines the urgency.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use Zorin on a brand-new product with no sales history?</h3>
+<p>Not directly: Zorin's elasticity model needs at least 6 months of sales history with some price variation to fit reliably. For a new SKU, the most useful approach is to look at comparable existing products in your catalog already in Zorin. If similar products in the same category show an elasticity clustered around a certain range, that's a proxy signal for how the new SKU is likely to behave. Once the new product builds enough history, Zorin picks it up automatically.</p>
+</div>
+<div class="faq-item">
+<h3>How long should I keep a launch price before considering a change?</h3>
+<p>Give it at least 90 days before drawing conclusions. Less than that and you're reacting to noise (launch spikes, early adopter behavior, initial ad performance) rather than the underlying demand signal. At 6 months with some intentional price variation, you have enough data for a reliable elasticity read. If you're on a penetration pricing strategy, the trigger for raising isn't a timeline: it's the signals: fast sell-through, established reviews, survey evidence of room above the current price.</p>
+</div>
+<div class="faq-item">
+<h3>Is it bad to raise prices after launch?</h3>
+<p>Not if you do it once, clearly, and at the right moment. Customers who came in at the launch price have a reference point, so the raise needs to be defensible on its own terms (the launch price was introductory, costs have changed, the product's value is now established by reviews). What damages trust is incremental, unexplained creep: small repeated raises with no stated reason. One clear raise with transparent context lands very differently.</p>
+</div>
+<div class="faq-item">
+<h3>When should I consider bundling vs just discounting a slow-moving product?</h3>
+<p>Bundle first, discount second. A bundle that pairs the slow SKU with a popular product moves inventory without touching the standalone price or creating a discount reference point for the slow SKU. A discount on a standalone slow mover changes the product's price history, which affects any elasticity modeling and can anchor future customer expectations at the lower number. Use discounting for clearance once bundling has moved what it can.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know when a product is ready to be retired?</h3>
+<p>Declining sales over two or more consecutive quarters, rising return rates, increasing COGS pressure on a shrinking margin, and the appearance of newer alternatives with stronger review bases are the four signals that tend to cluster at end-of-life. When two or three appear together, start planning the exit rather than waiting for inventory to become a write-off. The earlier you plan the step-down markdown sequence, the more margin you recover from the remaining stock.</p>
+</div>
+</section>
+
+<p class="conclusion">Every product starts as a pricing hypothesis. Your existing catalog's elasticity data is the best proxy for how a new product's demand is likely to behave in the same category, and once the new SKU builds 3-6 months of history, Zorin can give you the raise, lower, or hold signal the launch price was never able to. The goal isn't a perfect launch price: it's building the data fast enough to replace the guess with something real. <a href="/signup">Start a free trial</a> to see what your existing catalog's elasticity looks like while the new product's history accumulates.</p>
+`,
+  },
+  {
     slug: "should-you-price-the-same-on-shopify-and-amazon",
     title: "Should You Price the Same on Shopify and Amazon? A Channel Pricing Guide",
     excerpt:
