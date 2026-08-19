@@ -26,6 +26,10 @@ const badges: Badge[] = [
   { href: "https://fazier.com", src: "/badges/fazier-featured.svg", alt: "Zorin — Featured on Fazier", width: 182, height: 43 },
 ];
 
+const textLinks: { href: string; label: string }[] = [
+  { href: "https://www.robinrank.ai", label: "RobinRank" },
+];
+
 export function FeaturedOnBadges() {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
@@ -67,6 +71,17 @@ export function FeaturedOnBadges() {
                 height={badge.height}
                 className="h-10 w-auto opacity-90 transition-opacity hover:opacity-100"
               />
+            </a>
+          ))}
+          {textLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noopener"
+              className="shrink-0 flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm font-medium text-zinc-500 opacity-90 transition-opacity hover:opacity-100"
+            >
+              {link.label}
             </a>
           ))}
         </div>
