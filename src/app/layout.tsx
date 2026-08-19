@@ -29,6 +29,22 @@ const organizationJsonLd = {
   logo: "https://www.tryzorin.com/logo.png",
 };
 
+const softwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Zorin",
+  description:
+    "ML-powered pricing intelligence for Shopify and WooCommerce merchants. Fits a per-SKU demand curve from your sales history and returns raise/lower/hold recommendations with estimated profit lift.",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: "https://www.tryzorin.com",
+  offers: {
+    "@type": "Offer",
+    price: "39",
+    priceCurrency: "USD",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,6 +59,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
         />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
