@@ -15,9 +15,9 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     slug: "how-to-price-a-new-product-from-launch-to-end-of-life",
-    title: "How to Price a New Product: From Launch to End of Life",
+    title: "Pricing a New Product: From Launch to End of Life",
     excerpt:
-      "The hardest pricing decision isn't which price to pick, it's making a defensible choice when you have no data. Here's how to set a launch price, when to raise it, how to bundle without eroding margin, and how to retire a product cleanly.",
+      "Set a launch price when you have no data, know when to raise it, price bundles without killing margin, and retire a product cleanly.",
     date: "2026-08-22",
     readingTime: "11 min read",
     category: "Pricing Strategy",
@@ -42,7 +42,7 @@ export const posts: BlogPost[] = [
 <p><strong>Your cost floor:</strong> COGS plus target margin sets the minimum price that doesn't lose money. This is the one number that's entirely in your control.</p>
 <p><strong>Competitor reference:</strong> What similar products sell for sets a ceiling reference and a buyer expectation baseline. This is useful context, not a target. Your cost structure, your brand, and your customers aren't identical to your competitors'.</p>
 <p><strong>Stated customer preference:</strong> A <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">Van Westendorp price sensitivity survey</a> asks respondents four questions about price perception and returns an acceptable price range, an optimal price point, and an indifference price. It's the one demand signal available before you have real sales data, and it's worth running on a waitlist or early audience if you have one.</p>
-<p>Zorin's elasticity model activates once a SKU has at least 6 months of sales history with some price variation in it. For a brand-new product, the most useful proxy is comparable SKUs already in your catalog: if you sell three existing skincare products and their elasticities cluster around -0.9, a new skincare SKU launching into the same customer base is likely to behave similarly. That's a category signal, not a certainty, but it's better than no signal at all. For a deeper look at pricing when you're starting from zero, the <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">new product pricing guide</a> covers the first 90 days specifically.</p>
+<p>Zorin's <a href="/blog/what-does-price-elasticity-actually-mean">elasticity model</a> activates once a SKU has at least 6 months of sales history with some price variation in it. For a brand-new product, the most useful proxy is comparable SKUs already in your catalog: if you sell three existing skincare products and their elasticities cluster around -0.9, a new skincare SKU launching into the same customer base is likely to behave similarly. That's a category signal, not a certainty, but it's better than no signal at all. For a deeper look at pricing when you're starting from zero, the <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">new product pricing guide</a> covers the first 90 days specifically.</p>
 
 <h2>Penetration vs Price Skimming: Which Launch Strategy Fits Your Product</h2>
 <p>The choice between starting low and starting high isn't about whether you prefer market share or margin. It's about where your product sits on the demand curve and what your category's competitive structure looks like.</p>
@@ -183,9 +183,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "should-you-price-the-same-on-shopify-and-amazon",
-    title: "Should You Price the Same on Shopify and Amazon? A Channel Pricing Guide",
+    title: "Should You Price the Same on Shopify and Amazon?",
     excerpt:
-      "Same price on every channel sounds simple. It isn't. Amazon's fees, Buy Box monitoring, and per-channel demand all mean that uniform pricing is quietly losing you margin.",
+      "Same price on every channel sounds simple. It isn't. Per-channel fees and demand differences mean uniform pricing quietly costs you margin.",
     date: "2026-08-21",
     readingTime: "10 min read",
     category: "Pricing Strategy",
@@ -330,7 +330,7 @@ export const posts: BlogPost[] = [
     slug: "dynamic-pricing-vs-sales-a-shopify-sellers-guide",
     title: "Dynamic Pricing vs Sales: A Shopify Seller's Guide",
     excerpt:
-      "Most shoppers dislike dynamic pricing but accept sales without complaint. The difference isn't the price change, it's whether it felt fair. Here's how to use both without losing trust.",
+      "Most shoppers dislike dynamic pricing but accept sales. The difference is whether it felt fair. Here's how to use both without killing trust.",
     date: "2026-08-20",
     readingTime: "9 min read",
     category: "Pricing Strategy",
@@ -491,7 +491,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "ecommerce-profit-margins-what-to-target-and-how-to-track-them",
-    title: "Ecommerce Profit Margins: What to Target and How to Track Them",
+    title: "Ecommerce Profit Margins: What to Target",
     excerpt:
       "Most merchants overestimate their margins by 50-70%. See healthy margin benchmarks by category and how to track the gap between gross and net.",
     date: "2026-08-19",
@@ -636,9 +636,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "pricing-skincare-products-on-shopify-charging-enough",
-    title: "Pricing Skincare Products on Shopify: How to Know If You're Charging Enough",
+    title: "Are You Underpricing Your Shopify Skincare Products?",
     excerpt:
-      "Most DTC skincare brands underprice, and the fix is rarely to cut costs. Learn what healthy beauty margins look like, how to structure entry/core/premium tiers, and how to price new and existing SKUs with real demand data.",
+      "Most DTC skincare brands underprice. Learn what healthy margins look like, how to structure pricing tiers, and how to price SKUs with real demand data.",
     date: "2026-08-18",
     readingTime: "11 min read",
     category: "Pricing Strategy",
@@ -769,9 +769,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-to-price-product-bundles-without-giving-away-your-margin",
-    title: "How to Price Product Bundles Without Giving Away Your Margin",
+    title: "How to Price Bundles Without Giving Away Your Margin",
     excerpt:
-      "Bundle discounts boost AOV, but the wrong depth erases the gain. Learn how to price bundles profitably and how Zorin flags which SKUs can absorb a discount.",
+      "Bundle discounts boost AOV, but the wrong depth erases the gain. Learn how to price bundles profitably and which SKUs can actually absorb a discount.",
     date: "2026-08-17",
     readingTime: "10 min read",
     category: "Pricing Strategy",
@@ -922,7 +922,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "do-you-need-a-competitor-price-tracking-app",
-    title: "Do You Actually Need a Competitor Price Tracking App?",
+    title: "Do You Need a Competitor Price Tracking App?",
     excerpt:
       "Not every store needs to watch competitors. Learn when to track rivals vs. price from your own data, and how Zorin reads your sales history per SKU.",
     date: "2026-08-16",
@@ -1081,7 +1081,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "best-pricing-optimization-tools-for-shopify-stores-2026",
-    title: "Best Pricing Optimization Tools for Shopify Stores (2026)",
+    title: "Best Pricing Optimization Tools for Shopify (2026)",
     excerpt:
       "Compare the top Shopify pricing tools of 2026 and see how per-SKU elasticity modeling finds your optimal price from your own sales data.",
     date: "2026-08-15",
@@ -1236,7 +1236,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "price-elasticity-tools-for-ecommerce-how-to-find-your-best-price",
-    title: "Price Elasticity Tools for Ecommerce: How to Find Your Best Price",
+    title: "Price Elasticity Tools: How to Find Your Best Price",
     excerpt:
       "Your Shopify or WooCommerce order history already has what you need to find your best price, no data science degree or competitor spreadsheet required.",
     date: "2026-08-14",
@@ -1500,7 +1500,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "price-elasticity-vs-repricing-software",
-    title: "Price Elasticity vs Repricing Software: Which Ecommerce Tool Fits?",
+    title: "Price Elasticity vs Repricing Software: Which Fits?",
     excerpt:
       "Repricing software watches competitors. Elasticity software reads your own sales history. Picking the wrong one for your store can quietly cost you margin.",
     date: "2026-08-12",
@@ -1616,7 +1616,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "price-increase-killed-your-sales-heres-the-real-reason",
-    title: "Price Increase Killed Your Sales? Here's the Real Reason",
+    title: "Price Increase Killed Your Sales? The Real Reason",
     excerpt:
       "A 5-10% price increase can trigger a 15-20% drop in sales. It usually comes down to one of three causes, and each one has a different fix.",
     date: "2026-08-11",
@@ -1751,9 +1751,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-to-calculate-price-elasticity-for-your-shopify-store",
-    title: "How to Calculate Price Elasticity for Your Shopify Store",
+    title: "How to Calculate Price Elasticity for Shopify",
     excerpt:
-      "The formula takes ten seconds. Pulling clean before-and-after numbers out of Shopify Analytics, and knowing whether to trust the result, is where it actually gets hard.",
+      "The formula takes ten seconds. Getting clean data from Shopify and knowing whether to trust the result is where it actually gets hard.",
     date: "2026-08-10",
     readingTime: "9 min read",
     category: "Education",
@@ -1908,7 +1908,7 @@ export const posts: BlogPost[] = [
     slug: "best-price-optimization-app-for-small-shopify-stores",
     title: "Best Price Optimization App for Small Shopify Stores",
     excerpt:
-      "Not a competitor repricer, not a discount rule plugin. Here's what to actually look for in a price optimization tool when you're a lean team with no analyst on staff.",
+      "Not a competitor repricer, not a discount rule plugin. Here's what to look for in a pricing tool when you're a lean team with no in-house analyst.",
     date: "2026-08-09",
     readingTime: "9 min read",
     category: "Product",
@@ -2036,9 +2036,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist",
-    title: "How Do I Calculate My Own Price Elasticity Without a Data Scientist?",
+    title: "Calculate Price Elasticity Without a Data Scientist",
     excerpt:
-      "You don't need a statistics degree to get a usable elasticity number, just two price points, the sales they produced, and a formula you can run in a spreadsheet.",
+      "You don't need a statistics degree. Just two price points, the sales they produced, and a formula you can run in a spreadsheet.",
     date: "2026-08-08",
     readingTime: "8 min read",
     category: "Education",
@@ -2153,9 +2153,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-to-automate-pricing-updates-across-your-shopify-store",
-    title: "How to Automate Pricing Updates Across Your Shopify Store",
+    title: "How to Automate Pricing Updates on Shopify",
     excerpt:
-      "Getting a pricing recommendation is one thing. Acting on it across 200 SKUs is another. Here's how to automate the workflow around the decision, not the decision itself.",
+      "Getting a pricing recommendation is one thing. Acting on it across 200 SKUs is another. Here's how to automate the workflow, not the decision itself.",
     date: "2026-08-07",
     readingTime: "8 min read",
     category: "Product",
@@ -2377,7 +2377,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "why-do-some-products-have-more-elastic-demand-than-others",
-    title: "Why Do Some Products Have More Elastic Demand Than Others?",
+    title: "Why Do Some Products Have More Elastic Demand?",
     excerpt:
       "Elasticity isn't random. Five real drivers determine why one product in your catalog can absorb a price increase and another can't.",
     date: "2026-08-05",
@@ -2631,7 +2631,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "price-elasticity-explained-a-guide-for-ecommerce-sellers",
-    title: "Price Elasticity Explained: A Guide for Ecommerce Sellers",
+    title: "Price Elasticity Explained for Ecommerce Sellers",
     excerpt:
       "Learn how price elasticity works, with real examples and formulas. Zorin calculates it automatically from your own sales history.",
     date: "2026-08-03",
@@ -2946,9 +2946,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-do-i-know-what-price-my-customers-are-willing-to-pay",
-    title: "How Do I Know What Price My Customers Are Actually Willing to Pay?",
+    title: "What Price Are Your Customers Willing to Pay?",
     excerpt:
-      "Sales history tells you what customers did. A short, direct survey tells you what they'd actually accept, especially useful before you have sales history at all.",
+      "Sales history tells you what customers did. A short survey tells you what they'd actually accept, especially useful before you have any sales data.",
     date: "2026-08-01",
     readingTime: "8 min read",
     category: "Product",
@@ -3060,9 +3060,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "should-you-price-below-at-or-above-your-competitors",
-    title: "Should You Price Below, At, or Above Your Competitors?",
+    title: "Should You Price Below, At, or Above Competitors?",
     excerpt:
-      "Below, at, or above is a real framework worth knowing. It's just the wrong place to start, since a competitor's price was never calculated from your customers' behavior.",
+      "Below, at, or above is a real framework. It's just the wrong place to start: a competitor's price was never set from your customers' behavior.",
     date: "2026-07-31",
     readingTime: "8 min read",
     category: "Pricing Strategy",
@@ -3232,7 +3232,7 @@ export const posts: BlogPost[] = [
 
 <h2>A Practical Sequence</h2>
 <ol>
-  <li><strong>Find your actual optimal price first</strong>, using your product's own elasticity, not a charm-pricing rule applied before you know the real number.</li>
+  <li><strong>Find your actual optimal price first</strong>, using your product's own <a href="/blog/elastic-vs-inelastic-demand-whats-the-difference">elasticity</a>, not a charm-pricing rule applied before you know the real number.</li>
   <li><strong>Segment by product type</strong>, lower-priced and impulse-driven items are the better candidates for a .99 ending; premium or considered-purchase items may do better rounded.</li>
   <li><strong>Test rather than assume</strong>, especially for anything mid-catalog or ambiguous, since published research is an average, not a guarantee for your store.</li>
   <li><strong>Watch total profit, not just the conversion rate</strong>, the same discipline that applies to <a href="/blog/why-did-my-sales-drop-when-i-raised-my-price">any other price change</a> you evaluate.</li>
@@ -3276,9 +3276,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "woocommerce-pricing-apps-what-to-look-for",
-    title: "WooCommerce Pricing Apps: What to Look for Before You Buy",
+    title: "WooCommerce Pricing Apps: What to Look For",
     excerpt:
-      "Dynamic pricing plugins, wholesale role rules, and competitor repricers all call themselves pricing apps. Here's how they actually differ, and what's missing from all of them.",
+      "Competitor repricers, dynamic pricing plugins, and wholesale rules all call themselves pricing apps. Here's how they differ and what they're missing.",
     date: "2026-07-30",
     readingTime: "9 min read",
     category: "Product",
@@ -3410,7 +3410,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies",
-    title: "Why Do My Bestsellers and Slow Sellers Need Different Pricing Strategies?",
+    title: "Pricing Bestsellers vs Slow Sellers Differently",
     excerpt:
       "Treating your whole catalog with one pricing rule ignores that a hot seller and a stale SKU are answering completely different questions.",
     date: "2026-07-30",
@@ -3807,7 +3807,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one",
-    title: "How Do I Set Prices for My Whole Catalog Without Doing It One by One?",
+    title: "How to Price Your Whole Catalog at Once",
     excerpt:
       "Reviewing hundreds of SKUs individually doesn't scale for a lean team. Here's how to price a whole catalog without burning a week on it.",
     date: "2026-07-30",
@@ -3911,7 +3911,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-much-should-i-trust-an-ai-pricing-recommendation",
-    title: "How Much Should I Trust an AI Pricing Recommendation?",
+    title: "Should I Trust an AI Pricing Recommendation?",
     excerpt:
       "Blind trust and blind rejection are both wrong. Here's how to actually evaluate an AI price recommendation before you act on it.",
     date: "2026-07-29",
@@ -4713,7 +4713,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "shopify-pricing-apps-what-to-look-for",
-    title: "Shopify Pricing Apps: What to Look for Before You Buy",
+    title: "Shopify Pricing Apps: What to Look For",
     excerpt:
       "Most pricing apps guess or copy competitors. Here's what actually matters: your own data, a confidence score, and a review step.",
     date: "2026-07-28",

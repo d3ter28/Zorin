@@ -5,7 +5,7 @@ import { IntegrationLanding } from "@/components/marketing/IntegrationLanding";
 export const metadata = {
   title: "Shopify Pricing Intelligence Integration - Zorin",
   description:
-    "Connect your Shopify store to Zorin in 2 minutes. Products, orders, and price changes sync automatically so you always get profit-maximizing price recommendations.",
+    "Connect your Shopify store to Zorin in 2 minutes. Products, orders, and price changes sync automatically for profit-maximizing price recommendations.",
 };
 
 export default function ShopifyIntegrationPage() {

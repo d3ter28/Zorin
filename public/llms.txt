@@ -1,0 +1,73 @@
+# Zorin
+
+> Zorin is a pricing intelligence tool for Shopify and WooCommerce merchants. It fits a per-SKU demand curve from your sales history using log-log OLS elasticity regression and returns raise/lower/hold recommendations with a confidence score and estimated profit lift. Pricing campaigns let merchants schedule and auto-revert bulk price changes across their catalog. A profit tracking dashboard shows monthly P&L, per-product gross profit, and campaign performance. A Van Westendorp Price Sensitivity survey lets merchants ask customers directly what they would pay. A Launch Planner provides deterministic pricing for products with no sales history yet. Competitor prices can be tracked per product and feed into the Launch Planner automatically.
+
+## Core pages
+
+- [Home](https://www.tryzorin.com): Marketing landing page with feature overview and pricing.
+- [Features](https://www.tryzorin.com/features): Full feature grid — elasticity modeling, pricing campaigns, profit tracking, competitor benchmarking, price sensitivity surveys, and Launch Planner.
+- [Shopify integration](https://www.tryzorin.com/integrations/shopify): Connect your Shopify store via Admin API.
+- [WooCommerce integration](https://www.tryzorin.com/integrations/woocommerce): Connect your WooCommerce store via REST API keys.
+- [Free profit margin calculator](https://www.tryzorin.com/shopify-profit-margin-calculator): Free tool — enter selling price, unit cost, and shipping to get profit and margin instantly.
+- [Terms of Service](https://www.tryzorin.com/terms): Plain-English terms of service.
+
+## Features
+
+- **Elasticity modeling**: Log-log OLS regression fitted per SKU from your order history. Requires at least 6 months of sales data with price variation. Returns a RAISE / LOWER / HOLD recommendation with confidence (Strong / Fair / Weak) based on R² and data-point count.
+- **Pricing campaigns**: Rules engine with four modes — flat percentage change, ML recommendation, competitor match, or fixed price. Campaigns are scheduled, execute automatically in 30-product chunks via a cron job, and auto-revert when the campaign window ends. Conflict detection prevents two campaigns from owning the same product simultaneously.
+- **Profit tracking dashboard**: Monthly P&L trend chart (revenue, COGS, gross profit) for the last 24 months. Per-product profit leaderboard with configurable 30/90/365-day windows. Campaign performance comparison vs prior-period baseline with honesty flags for incomplete data.
+- **Competitor price benchmarking**: Add competitor names, prices, and URLs per product. View min/median/max stats. Competitor prices prefill the Launch Planner automatically.
+- **Van Westendorp Price Sensitivity survey**: Generate a shareable, no-login survey link per product. Customers answer four classic Van Westendorp questions (too cheap / good value / getting expensive / too expensive). Results show the Optimal Price Point, Indifference Price Point, and acceptable price range with a confidence tier based on response count.
+- **Launch Planner**: Deterministic pricing tool for products with no sales history. Takes unit cost, target margin, fulfillment cost, competitor prices, and positioning choice (budget / mid-market / premium). Returns a recommended launch price, minimum viable price, break-even plan, and plain-English rationale. Works from day one — no historical data required.
+- **Multi-user teams**: Owner and Member roles. Owners manage billing and team; Members get full product and pricing access. Email invite flow with token-based accept.
+- **Promotion flagging**: Auto-detects promotional sales spikes using z-score outlier analysis and excludes flagged records from elasticity model fitting to prevent skewed recommendations.
+- **Shopify sync**: Real-time webhook receiver (HMAC-verified, delivery-deduped) for product and order updates. Manual sync also available.
+- **WooCommerce sync**: Full product refresh and incremental order sync via REST API. Real-time webhook receiver for product and order updates.
+- **Price write-back**: Applied prices push directly to Shopify (blocking, rolls back on failure) and WooCommerce (non-blocking).
+
+## About
+
+Zorin is built for independent and small-to-midsize Shopify and WooCommerce sellers who want data-backed pricing without a data science background. The elasticity model is transparent — merchants can see the demand curve and the math behind every recommendation. The Van Westendorp survey works from day one with no sales history required. Plans start at $39/month with a 7-day free trial (no credit card required).
+
+## Blog posts
+
+- [What does price elasticity actually mean?](https://www.tryzorin.com/blog/what-does-price-elasticity-actually-mean)
+- [Elastic vs. inelastic demand explained](https://www.tryzorin.com/blog/elastic-vs-inelastic-demand-whats-the-difference)
+- [Price elasticity examples by ecommerce category](https://www.tryzorin.com/blog/price-elasticity-examples-by-ecommerce-category)
+- [Price elasticity explained: a guide for ecommerce sellers](https://www.tryzorin.com/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers)
+- [How to calculate price elasticity for your Shopify store](https://www.tryzorin.com/blog/how-to-calculate-price-elasticity-for-your-shopify-store)
+- [How do I calculate my own price elasticity without a data scientist?](https://www.tryzorin.com/blog/how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist)
+- [Price elasticity tools for ecommerce: how to find your best price](https://www.tryzorin.com/blog/price-elasticity-tools-for-ecommerce-how-to-find-your-best-price)
+- [Price elasticity vs repricing software](https://www.tryzorin.com/blog/price-elasticity-vs-repricing-software)
+- [Why do some products have more elastic demand than others?](https://www.tryzorin.com/blog/why-do-some-products-have-more-elastic-demand-than-others)
+- [Why did my sales drop when I raised my price?](https://www.tryzorin.com/blog/why-did-my-sales-drop-when-i-raised-my-price)
+- [Price increase killed your sales? Here's the real reason](https://www.tryzorin.com/blog/price-increase-killed-your-sales-heres-the-real-reason)
+- [How to price a new product with no sales history](https://www.tryzorin.com/blog/how-do-i-price-a-new-product-with-no-sales-history)
+- [How to price a new product from launch to end-of-life](https://www.tryzorin.com/blog/how-to-price-a-new-product-from-launch-to-end-of-life)
+- [Should you price the same on Shopify and Amazon?](https://www.tryzorin.com/blog/should-you-price-the-same-on-shopify-and-amazon)
+- [Should you price differently on Shopify vs Amazon?](https://www.tryzorin.com/blog/should-you-price-differently-on-shopify-vs-amazon)
+- [Dynamic pricing vs sales: a Shopify seller's guide](https://www.tryzorin.com/blog/dynamic-pricing-vs-sales-a-shopify-sellers-guide)
+- [How to run a sale without wrecking your margin](https://www.tryzorin.com/blog/how-to-run-a-sale-without-wrecking-your-margin)
+- [How to price a discount without losing your margin](https://www.tryzorin.com/blog/how-to-price-a-discount-without-losing-your-margin)
+- [Ecommerce profit margins: what to target and how to track them](https://www.tryzorin.com/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them)
+- [What's a good profit margin for an online store?](https://www.tryzorin.com/blog/whats-a-good-profit-margin-for-an-online-store)
+- [Should I raise prices to cover rising costs?](https://www.tryzorin.com/blog/should-i-raise-prices-to-cover-rising-costs)
+- [Best pricing optimization tools for Shopify (2026)](https://www.tryzorin.com/blog/best-pricing-optimization-tools-for-shopify-stores-2026)
+- [Best price optimization app for small Shopify stores](https://www.tryzorin.com/blog/best-price-optimization-app-for-small-shopify-stores)
+- [Shopify pricing apps: what to look for](https://www.tryzorin.com/blog/shopify-pricing-apps-what-to-look-for)
+- [WooCommerce pricing apps: what to look for](https://www.tryzorin.com/blog/woocommerce-pricing-apps-what-to-look-for)
+- [Do you need a competitor price tracking app?](https://www.tryzorin.com/blog/do-you-need-a-competitor-price-tracking-app)
+- [Should you price below, at, or above your competitors?](https://www.tryzorin.com/blog/should-you-price-below-at-or-above-your-competitors)
+- [How much should I trust an AI pricing recommendation?](https://www.tryzorin.com/blog/how-much-should-i-trust-an-ai-pricing-recommendation)
+- [Do I need a data analyst to price my products well?](https://www.tryzorin.com/blog/do-i-need-a-data-analyst-to-price-my-products-well)
+- [How to automate pricing updates across your Shopify store](https://www.tryzorin.com/blog/how-to-automate-pricing-updates-across-your-shopify-store)
+- [How often should I change my prices?](https://www.tryzorin.com/blog/how-often-should-i-change-my-prices)
+- [How do I set prices for my whole catalog without doing it one by one?](https://www.tryzorin.com/blog/how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one)
+- [What do I price my products?](https://www.tryzorin.com/blog/how-do-i-know-what-to-price-my-products)
+- [Is your store leaving money on the table?](https://www.tryzorin.com/blog/is-your-store-leaving-money-on-the-table)
+- [What price are your customers willing to pay?](https://www.tryzorin.com/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay)
+- [Does charm pricing (9.99) actually work?](https://www.tryzorin.com/blog/does-charm-pricing-999-actually-work)
+- [Why do my bestsellers and slow sellers need different pricing strategies?](https://www.tryzorin.com/blog/why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies)
+- [How to know if your prices are too high or too low](https://www.tryzorin.com/blog/how-to-know-if-your-prices-are-too-high-or-too-low)
+- [How to price product bundles without giving away your margin](https://www.tryzorin.com/blog/how-to-price-product-bundles-without-giving-away-your-margin)
+- [Pricing skincare products on Shopify: charging enough?](https://www.tryzorin.com/blog/pricing-skincare-products-on-shopify-charging-enough)

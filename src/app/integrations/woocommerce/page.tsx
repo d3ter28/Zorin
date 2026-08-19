@@ -5,7 +5,7 @@ import { IntegrationLanding } from "@/components/marketing/IntegrationLanding";
 export const metadata = {
   title: "WooCommerce Pricing Intelligence Integration - Zorin",
   description:
-    "Connect your WooCommerce store to Zorin in 2 minutes. Products, orders, and price changes sync automatically so you always get profit-maximizing price recommendations.",
+    "Connect your WooCommerce store to Zorin in 2 minutes. Products, orders, and price changes sync automatically for profit-maximizing price recommendations.",
 };
 
 export default function WooCommerceIntegrationPage() {

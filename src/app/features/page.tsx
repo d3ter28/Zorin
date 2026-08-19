@@ -6,7 +6,7 @@ import { FeaturesGrid } from "@/components/marketing/FeaturesGrid";
 export const metadata: Metadata = {
   title: "Features - Zorin",
   description:
-    "Everything Zorin does: elasticity modeling, price sensitivity surveys, competitor tracking, bulk pricing campaigns, profit tracking, and team tools for Shopify and WooCommerce sellers.",
+    "Everything Zorin does: elasticity modeling, price sensitivity surveys, bulk pricing, profit tracking, and team tools for Shopify and WooCommerce merchants.",
 };
 
 export default function FeaturesPage() {
@@ -25,6 +25,16 @@ export default function FeaturesPage() {
         </div>
 
         <FeaturesGrid />
+
+        <div className="mt-16 border-t border-zinc-100 pt-12">
+          <p className="text-xs font-medium uppercase tracking-wider text-zinc-400">Learn more</p>
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-500">
+            <a href="/shopify-profit-margin-calculator" className="hover:text-zinc-900 hover:underline">Shopify profit margin calculator</a>
+            <a href="/blog/what-does-price-elasticity-actually-mean" className="hover:text-zinc-900 hover:underline">What price elasticity means</a>
+            <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026" className="hover:text-zinc-900 hover:underline">Best Shopify pricing tools (2026)</a>
+            <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them" className="hover:text-zinc-900 hover:underline">Ecommerce profit margin benchmarks</a>
+          </div>
+        </div>
 
         <div className="mt-20 flex flex-col items-center rounded-2xl border border-zinc-200 bg-zinc-50/70 px-6 py-12 text-center">
           <h2 className="text-xl font-bold tracking-tight text-zinc-900">
