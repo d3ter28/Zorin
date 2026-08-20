@@ -27,6 +27,22 @@ const organizationJsonLd = {
   name: "Zorin",
   url: "https://www.tryzorin.com",
   logo: "https://www.tryzorin.com/logo.png",
+  sameAs: [
+    "https://www.linkedin.com/company/tryzorin",
+    "https://x.com/tryzorin",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Zorin",
+  url: "https://www.tryzorin.com",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://www.tryzorin.com/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
 };
 
 const softwareJsonLd = {
@@ -63,6 +79,19 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prerender: [{ urls: ["/signup", "/features", "/blog"] }],
+              prefetch: [{ source: "document", where: { href_matches: "/blog/*" }, eagerness: "moderate" }],
+            }),
+          }}
         />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>

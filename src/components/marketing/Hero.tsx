@@ -9,8 +9,8 @@ export function Hero() {
     <section className="relative overflow-hidden pt-16">
       <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-16 md:grid-cols-2 md:items-center md:gap-16 md:py-20 lg:py-24">
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={reduce ? false : { y: 20 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">

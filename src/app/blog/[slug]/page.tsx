@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   const ogImage = post.ogImage ?? "/og-default.png";
-  const canonicalUrl = `${BASE_URL}/blog/${post.slug}`;
+  const canonicalUrl = `${BASE_URL}/blog/${post.canonicalSlug ?? post.slug}`;
 
   return {
     title: `${post.title} — Zorin`,

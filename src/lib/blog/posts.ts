@@ -7,6 +7,7 @@ export type BlogPost = {
   readingTime: string;
   category: string;
   ogImage?: string; // absolute URL or root-relative path, e.g. "/images/blog/my-post-og.png" (1200×630)
+  canonicalSlug?: string; // set on older duplicate posts to point canonical to the newer slug
   content: string; // HTML string
   author?: {
     name: string;
@@ -613,7 +614,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How often should I recalculate my margins?</h3>
-<p>Monthly at minimum. Costs shift: supplier prices change, ad CPMs fluctuate seasonally, shipping carrier rates adjust. A margin that was healthy in January may not be by June. Set a monthly review cadence and flag any product whose net margin has dropped more than 5 points since the last check.</p>
+<p>Monthly at minimum. Costs shift: supplier prices change, ad CPMs fluctuate seasonally, shipping carrier rates adjust. A margin that was healthy in January may not be by June. Set a monthly review cadence and flag any product whose net margin has dropped more than 5 points since the last check. For how often those margin findings should translate into actual price changes, see the <a href="/blog/how-often-should-i-change-my-prices">pricing review cadence guide</a>.</p>
 </div>
 <div class="faq-item">
 <h3>Is a 50% gross margin good for a Shopify store?</h3>
@@ -2775,7 +2776,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How often should I recalculate elasticity for my products?</h3>
-<p>Elasticity can shift meaningfully over time due to competition and market changes, so revisit it at least annually or right after a significant price change.</p>
+<p>Elasticity can shift meaningfully over time due to competition and market changes, so revisit it at least annually or right after a significant price change. The <a href="/blog/how-often-should-i-change-my-prices">pricing review cadence guide</a> covers how to decide when those updated readings should trigger an actual price move.</p>
 </div>
 </section>
 
@@ -4077,7 +4078,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How often should I run a catalog-wide pricing review?</h3>
-<p>On a regular cadence, commonly monthly for a small catalog, rather than as a one-time cleanup, since costs and demand continue shifting over time.</p>
+<p>On a regular cadence, commonly monthly for a small catalog, rather than as a one-time cleanup, since costs and demand continue shifting over time. The <a href="/blog/how-often-should-i-change-my-prices">pricing review cadence guide</a> covers both the fixed schedule and the signals that should trigger an off-cycle review.</p>
 </div>
 <div class="faq-item">
 <h3>What size catalog actually needs this instead of manual review?</h3>
@@ -4396,6 +4397,7 @@ export const posts: BlogPost[] = [
     title: "Why Did My Sales Drop When I Raised My Price?",
     excerpt:
       "A volume drop after a price increase isn't automatically a mistake. Here's how to tell the difference from an actual problem.",
+    canonicalSlug: "price-increase-killed-your-sales-heres-the-real-reason",
     date: "2026-07-29",
     readingTime: "8 min read",
     category: "Pricing Strategy",
@@ -4799,6 +4801,7 @@ export const posts: BlogPost[] = [
     title: "Should You Price Differently on Shopify vs Amazon?",
     excerpt:
       "Amazon and Shopify don't just have different fees, they often bring you genuinely different customers. Here's how to tell.",
+    canonicalSlug: "should-you-price-the-same-on-shopify-and-amazon",
     date: "2026-07-28",
     readingTime: "8 min read",
     category: "Pricing Strategy",

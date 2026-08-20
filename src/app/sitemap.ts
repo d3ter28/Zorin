@@ -5,61 +5,22 @@ const BASE_URL = "https://www.tryzorin.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/features`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/features/price-elasticity-modeling`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/features/competitor-price-tracking`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/features/promotion-detection`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/guide`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/launch-planner`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
+    { url: BASE_URL,                                              lastModified: new Date("2026-08-01") },
+    { url: `${BASE_URL}/blog`,                                    lastModified: new Date("2026-08-22") },
+    { url: `${BASE_URL}/features`,                                lastModified: new Date("2026-07-15") },
+    { url: `${BASE_URL}/features/price-elasticity-modeling`,      lastModified: new Date("2026-07-01") },
+    { url: `${BASE_URL}/features/competitor-price-tracking`,      lastModified: new Date("2026-07-01") },
+    { url: `${BASE_URL}/features/promotion-detection`,            lastModified: new Date("2026-07-01") },
+    { url: `${BASE_URL}/integrations/shopify`,                    lastModified: new Date("2026-06-01") },
+    { url: `${BASE_URL}/integrations/woocommerce`,                lastModified: new Date("2026-06-01") },
+    { url: `${BASE_URL}/shopify-profit-margin-calculator`,        lastModified: new Date("2026-07-01") },
+    { url: `${BASE_URL}/terms`,                                   lastModified: new Date("2026-06-01") },
+    { url: `${BASE_URL}/privacy`,                                 lastModified: new Date("2026-06-01") },
   ];
 
   const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "monthly",
-    priority: 0.7,
+    lastModified: new Date(post.updatedDate ?? post.date),
   }));
 
   return [...staticRoutes, ...blogRoutes];

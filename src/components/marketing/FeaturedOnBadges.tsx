@@ -59,7 +59,7 @@ export function FeaturedOnBadges() {
               key={badge.href}
               href={badge.href}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title={badge.title}
               className="shrink-0"
             >
@@ -78,7 +78,7 @@ export function FeaturedOnBadges() {
               key={link.href}
               href={link.href}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="shrink-0 flex h-10 items-center rounded-lg border border-zinc-200 px-4 text-sm font-medium text-zinc-500 opacity-90 transition-opacity hover:opacity-100"
             >
               {link.label}
