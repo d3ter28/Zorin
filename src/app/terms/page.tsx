@@ -4,6 +4,7 @@ import { Footer } from "@/components/marketing/Footer";
 export const metadata = {
   title: "Terms of Service - Zorin",
   description: "The terms for using Zorin's pricing tool, in plain English.",
+  alternates: { canonical: "https://www.tryzorin.com/terms" },
 };
 
 export default function TermsPage() {

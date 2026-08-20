@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { requireSessionPage } from "@/lib/auth/requireSession";
 
+export const metadata: Metadata = {
+  title: "In-App Guide — Zorin",
+  description: "How to use Zorin: dashboard, elasticity, surveys, competitor prices, campaigns, and integrations.",
+  robots: { index: false, follow: false },
+};
 
 const TOC = [
   { id: "what-is-zorin", label: "What is Zorin?" },

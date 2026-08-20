@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
@@ -14,14 +16,16 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      // unsafe-eval needed for Next.js dev/HMR; googletagmanager.com serves the GA4 gtag.js loader
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
+      // unsafe-eval only needed for Next.js dev/HMR — omitted in production
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://cdn.simpleicons.org",
       "font-src 'self'",
       // GA4 sends hit data to google-analytics.com/analytics.google.com; googletagmanager.com serves gtag config
       "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
       "frame-ancestors 'none'",
+      "object-src 'none'",
+      "base-uri 'self'",
     ].join("; "),
   },
 ];

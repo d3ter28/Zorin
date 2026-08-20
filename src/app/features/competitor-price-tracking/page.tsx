@@ -6,6 +6,7 @@ export const metadata = {
   title: "Competitor Price Tracking for Shopify & WooCommerce - Zorin",
   description:
     "Track competitor prices per product, see min/median/max market stats, and feed live competitive data into your pricing recommendations — without manual spreadsheets.",
+  alternates: { canonical: "https://www.tryzorin.com/features/competitor-price-tracking" },
 };
 
 export default function CompetitorPriceTrackingPage() {

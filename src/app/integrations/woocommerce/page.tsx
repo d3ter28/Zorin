@@ -6,6 +6,7 @@ export const metadata = {
   title: "WooCommerce Pricing Intelligence Integration - Zorin",
   description:
     "Connect your WooCommerce store to Zorin in 2 minutes. Products, orders, and price changes sync automatically for profit-maximizing price recommendations.",
+  alternates: { canonical: "https://www.tryzorin.com/integrations/woocommerce" },
 };
 
 export default function WooCommerceIntegrationPage() {

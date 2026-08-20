@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Features - Zorin",
   description:
     "Everything Zorin does: elasticity modeling, price sensitivity surveys, bulk pricing, profit tracking, and team tools for Shopify and WooCommerce merchants.",
+  alternates: { canonical: "https://www.tryzorin.com/features" },
 };
 
 export default function FeaturesPage() {

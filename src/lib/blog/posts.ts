@@ -24,7 +24,7 @@ export const posts: BlogPost[] = [
     date: "2026-08-23",
     readingTime: "9 min read",
     category: "Product",
-    ogImage: "/images/blog/survey-results-chart.png",
+    ogImage: "/images/blog/survey-results-chart.webp",
     author: {
       name: "Dexter",
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
@@ -51,7 +51,7 @@ export const posts: BlogPost[] = [
 <p>The four questions are asked in Zorin's interface exactly as the method specifies: too cheap to trust the quality, a bargain, starting to feel expensive, and too expensive to buy. You send the link to actual customers or prospects for that specific product, through email, a post-purchase message, a social post, or wherever you'd normally reach your audience.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/survey-public-page.png" alt="A customer-facing Zorin price sensitivity survey page showing the four classic Van Westendorp questions with a dollar-amount input for each" loading="lazy" />
+  <img src="/images/blog/survey-public-page.webp" alt="A customer-facing Zorin price sensitivity survey page showing the four classic Van Westendorp questions with a dollar-amount input for each" width="900" height="900" loading="eager" fetchpriority="high" />
   <figcaption>The four questions as a customer actually sees them, no login required, no email collected.</figcaption>
 </figure>
 
@@ -105,7 +105,7 @@ export const posts: BlogPost[] = [
 <p><strong>The indifference price point.</strong> The point where "a bargain" and "getting expensive" curves intersect. Roughly equal numbers of respondents see the price as a good deal versus starting to feel steep at this point.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/survey-results-chart.png" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" loading="lazy" />
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" width="736" height="519" loading="lazy" />
   <figcaption>Seven real responses producing an acceptable range, an optimal price, and an honest low-confidence label, not false certainty.</figcaption>
 </figure>
 
@@ -258,7 +258,7 @@ export const posts: BlogPost[] = [
 <p>Once you have 3-6 months of sales data at the launch price, Zorin can run an elasticity model on the SKU. A Strong confidence raise recommendation with a specific estimated profit lift replaces the gut feel check with a number you can act on and defend: "your elasticity is -0.7, raising to $38 lifts estimated profit 12%, Strong confidence." That's the data-grounded version of "it's safe to go up." A Weak confidence label at the same stage means the model doesn't yet have enough price variation in the history to be certain: hold the price a little longer and let more data accumulate before moving.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A Strong confidence raise recommendation with an estimated profit lift is the data-grounded alternative to gut-checking whether a launch price is ready to move up.</figcaption>
 </figure>
 
@@ -403,7 +403,7 @@ export const posts: BlogPost[] = [
 <p>This matters for how you use <a href="/guide">Zorin's elasticity model</a>: it reads your Shopify or WooCommerce sales history to estimate how your own customers' demand responds to price. That is your DTC elasticity signal, the demand curve for buyers who chose your store. It is a more actionable number than a blended marketplace average, because it tells you what your own customer base will bear, which is the anchor for everything else. A product with an elasticity of -0.8 on your Shopify store can likely absorb a price increase there, and probably needs to be priced higher on Amazon anyway to recover the fee differential.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/dashboard-overview.png" alt="Zorin dashboard showing per-SKU pricing recommendations across a product catalog" loading="lazy" />
+  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard showing per-SKU pricing recommendations across a product catalog" width="1440" height="900" loading="eager" fetchpriority="high" />
   <figcaption>Your DTC sales history is the anchor for multi-channel pricing. Zorin models demand per SKU so you know which products can absorb a price increase before committing to it on any channel.</figcaption>
 </figure>
 
@@ -579,7 +579,7 @@ export const posts: BlogPost[] = [
 <p>This is a place where gut-feel and competitor-matching both fall short. Most sellers do not actually know which five products in their catalog could take a price increase tomorrow with zero drop in sales, and which five would lose a quarter of their volume from a single dollar of movement. That gap between automating everything else in the business and still setting prices on instinct is <a href="https://digitalmagazines.online/articles/ecommerce-ai-pricing-elasticity-gap" target="_blank" rel="noopener noreferrer">a pattern worth naming directly</a>: stores that have automated marketing, support, and content still tend to price by gut feel or by copying a competitor's number, even though pricing is where a McKinsey study found a 1% improvement moves operating profit more than almost any other lever. Per-SKU elasticity data is what closes that gap, turning "raise prices before the holidays" from a calendar habit into a decision grounded in how each specific product actually responds.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A raise/lower/hold recommendation with a confidence score tells you which products can absorb a seasonal increase before you commit to it catalog-wide.</figcaption>
 </figure>
 
@@ -726,7 +726,7 @@ export const posts: BlogPost[] = [
 <p>This is where <a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">per-SKU elasticity data</a> turns a gut call into a calculated one. A merchant running Zorin can see which products tolerate a raise and which don't before committing to anything. When the tool shows you an elasticity of -0.8 with a Strong confidence label and says "raise to $42, estimated profit lift 11%," that recommendation only makes sense if you know your true margin at the current price. Margin is the context. Elasticity is the action.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A raise recommendation only means something once you know your true margin at the current price, not just the elasticity behind the call.</figcaption>
 </figure>
 
@@ -857,7 +857,7 @@ export const posts: BlogPost[] = [
 <p>Zorin's Van Westendorp Price Sensitivity survey does this with four questions that calculate an acceptable price range, an optimal price point, and critically, a "too cheap" threshold. The too-cheap finding is especially valuable in beauty because it identifies the price below which customers start questioning product quality. For a clinical-grade serum, discovering that your target audience considers anything below $35 "too cheap to trust" is a pricing signal worth more than any cost-plus formula.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/survey-results-chart.png" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" loading="lazy" />
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" width="736" height="519" loading="eager" fetchpriority="high" />
   <figcaption>The "too cheap" threshold this survey surfaces is especially useful in beauty, where pricing too low can signal low quality rather than a good deal.</figcaption>
 </figure>
 
@@ -975,7 +975,7 @@ export const posts: BlogPost[] = [
 <p>This is where per-SKU margin and demand data becomes valuable. If you're using Zorin, <a href="/blog/what-does-price-elasticity-actually-mean">the elasticity model tells you which products in a potential bundle can handle a lower price</a> and which ones can't. A product flagged as "lower" with strong confidence means the data shows a price cut would drive enough additional volume to increase total profit. That product is a natural bundle candidate. A product flagged as "hold" or "raise" is one you should protect at full price, not discount into a bundle unless the bundle drives enough incremental volume on other items to compensate.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A "lower" call with strong confidence flags a natural bundle candidate. A "raise" or "hold" call is one to protect at full price instead.</figcaption>
 </figure>
 
@@ -1153,7 +1153,7 @@ export const posts: BlogPost[] = [
 <p>That last point matters. A thin-data product never gets presented with the same certainty as a well-established one. If Zorin doesn't have enough data to give you a confident answer, it tells you so, rather than presenting a guess with false precision.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A thin-data product never gets presented with the same certainty as a well-established one.</figcaption>
 </figure>
 
@@ -1312,7 +1312,7 @@ export const posts: BlogPost[] = [
 <p>A thin-data product is never presented with the same certainty as a well-established one. That honesty about confidence is something I've found missing from most pricing tools, which tend to present every recommendation with equal conviction regardless of the data behind it.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A confidence label of Strong, Fair, or Weak sits next to every recommendation, not equal conviction regardless of the data behind it.</figcaption>
 </figure>
 
@@ -1470,7 +1470,7 @@ export const posts: BlogPost[] = [
 <p>Zorin connects to your Shopify or WooCommerce store, or takes a sales history upload, and fits a log-log regression per SKU rather than treating your whole catalog as one blended average. Each SKU gets its own elasticity estimate, a confidence score based on how much clean price variation is in the data, and a raise, lower, or hold recommendation with an estimated profit lift. It deliberately does not scrape or compare against competitor prices. The recommendation is grounded entirely in what your own customers did when your prices moved, not in what a rival storefront happens to be charging this week.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>Each SKU gets its own elasticity estimate and confidence score, not one blended number for the whole catalog.</figcaption>
 </figure>
 
@@ -1592,7 +1592,7 @@ export const posts: BlogPost[] = [
 <p>This is where Zorin's mechanism comes in. You connect your Shopify or WooCommerce store, or upload a CSV of sales history, and Zorin fits a price elasticity model per SKU using your own historical price-and-quantity data. Each product gets one of three plain outputs: raise, lower, or hold, along with an estimated profit lift and a confidence label based on how much real data actually supports that read. Promotional spikes get automatically flagged and excluded from the model fit, so a discount weekend doesn't quietly distort the baseline number.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The confidence label matters as much as the recommendation itself, an honest "we don't know yet" beats false certainty.</figcaption>
 </figure>
 
@@ -1689,7 +1689,7 @@ export const posts: BlogPost[] = [
 <p>This is the mechanism Zorin runs, specifically: connect your Shopify or WooCommerce store, or upload a sales history CSV, and Zorin fits a log-log regression per SKU. You get a raise, lower, or hold recommendation, an estimated profit lift, and <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence score based on how much real price variation actually supports the read</a>. A thin-data product never gets presented with the same certainty as a well-established one. Nothing here touches or compares against competitor prices, that mechanism was deliberately left out in favor of reading first-party demand only.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A repricer would show you a competitor's number. This is what your own demand model shows instead.</figcaption>
 </figure>
 
@@ -1822,7 +1822,7 @@ export const posts: BlogPost[] = [
 <p>This checklist gets you a rough read. Zorin turns the same underlying signals into an actual number: it fits a price elasticity model from your own sales history per SKU, and returns your elasticity coefficient alongside <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence label based on how much real price variation is in that history</a>. A product that's never had its price moved before shows up with a lower confidence score, which is often the exact situation behind a price increase that hurt more than expected. You're not just told the product is "probably elastic," you get the coefficient and how much you should trust it.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The coefficient and the confidence label sit side by side, so a thin-data guess never looks as certain as a well-supported one.</figcaption>
 </figure>
 
@@ -1999,7 +1999,7 @@ export const posts: BlogPost[] = [
 <p>This is the exact gap Zorin was built to close. Instead of computing PED by hand, product by product, Zorin connects to your Shopify or WooCommerce store, or reads an uploaded CSV of sales history, and fits a price elasticity model per SKU using your own historical price-and-quantity data. Each product gets a plain raise, lower, or hold recommendation, an estimated profit lift, and <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence label that reflects how much real data and price variation actually support the number</a>, so a thin-data SKU is never presented with the same certainty as a well-established one. It also automatically detects likely promotional spikes in your sales history and excludes them from the model fit, solving the exact discount-contamination problem a manual calculation can't catch. It doesn't watch or match competitor prices, every recommendation is grounded in what your own customers have actually done.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/dashboard-overview.png" alt="Zorin dashboard showing raise, lower, and hold recommendations across a full product catalog" loading="lazy" />
+  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard showing raise, lower, and hold recommendations across a full product catalog" width="1440" height="900" loading="eager" fetchpriority="high" />
   <figcaption>The same formula, run automatically across every SKU instead of one spreadsheet tab at a time.</figcaption>
 </figure>
 
@@ -2117,7 +2117,7 @@ export const posts: BlogPost[] = [
 <p>A point estimate on its own is incomplete. A wide range of uncertainty around that estimate usually points to a data quality problem or too small a sample to draw a firm conclusion from, and that's exactly the kind of thing that should temper how much weight you put on the number. A merchant with six months of steady sales and real price variation in that history has a very different basis for trust than a merchant with three weeks of flat pricing on a new product.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The confidence tier sits right alongside the recommendation, not buried in a separate report you have to go dig up.</figcaption>
 </figure>
 
@@ -2253,7 +2253,7 @@ export const posts: BlogPost[] = [
 <p>The midpoint version gives a slightly different, more consistent number, and it's the version economists actually use when reporting elasticity from two observed points. If you're doing this in a spreadsheet, build the midpoint formula once and reuse it, it's the same handful of cells for every product.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/price-history.png" alt="Zorin price history view showing past price changes for a product alongside the sales volume at each price point" loading="lazy" />
+  <img src="/images/blog/price-history.webp" alt="Zorin price history view showing past price changes for a product alongside the sales volume at each price point" width="1440" height="1969" loading="eager" fetchpriority="high" />
   <figcaption>A two-point calculation needs exactly this: a price that changed, and the sales before and after it.</figcaption>
 </figure>
 
@@ -2363,7 +2363,7 @@ export const posts: BlogPost[] = [
 <p>The key detail is that your export format needs to match what your pricing tool expects. Zorin parses quantities, prices, and dates from your CSV. If your automated export includes extra columns or different headers, add a transformation step, a simple Google Sheets formula or a Zapier formatter, to clean the file before it hits the model.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact for a specific SKU" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact for a specific SKU" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The recommendation and confidence score are the output of step 2. Steps 1 and 3, getting data in and prices out, are what automation actually needs to handle.</figcaption>
 </figure>
 
@@ -2486,7 +2486,7 @@ export const posts: BlogPost[] = [
 <p>This is exactly why <a href="/blog/why-did-my-sales-drop-when-i-raised-my-price">a price increase that seemed reasonable can tank sales</a> on one SKU while an identical percentage increase quietly pads margin on another. The products weren't priced wrong in some absolute sense, they were just sitting on opposite sides of the elastic/inelastic line, and the same rule was applied to both.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>Which side of the elastic/inelastic line a product sits on is exactly what a raise, lower, or hold recommendation is built to answer.</figcaption>
 </figure>
 
@@ -2601,7 +2601,7 @@ export const posts: BlogPost[] = [
 <p>Loyalty isn't purely emotional, either. Real switching costs, a customer's data locked into a platform, a subscription tied to years of history, a learning curve for a new tool, function the same way loyalty does: they make the substitute less attractive even when one exists.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing different products in the same store with different margins, model confidence, and raise or lower recommendations" loading="lazy" />
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing different products in the same store with different margins, model confidence, and raise or lower recommendations" width="1440" height="1987" loading="eager" fetchpriority="high" />
   <figcaption>Even products sitting side by side in the same catalog can land on opposite ends of the elasticity spectrum for reasons that have nothing to do with their category.</figcaption>
 </figure>
 
@@ -2722,7 +2722,7 @@ export const posts: BlogPost[] = [
 <p>But not every electronics purchase behaves the same way. A well-known flagship brand with a loyal customer base can hold price more confidently than a generic accessory in the same broad category, because customers aren't comparing it against every alternative the same way they would a commodity charger cable or phone case.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a calculated elasticity coefficient, demand curve, and confidence badge, fit from a product's own sales history rather than a competitor's price" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing a calculated elasticity coefficient, demand curve, and confidence badge, fit from a product's own sales history rather than a competitor's price" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>Zorin's core mechanism, fitting an elasticity model from a product's own sales history, is especially useful in a category like electronics, where real price variation gives the model plenty to work with.</figcaption>
 </figure>
 
@@ -2872,7 +2872,7 @@ export const posts: BlogPost[] = [
 <p>One sanity check worth knowing: if your calculated elasticity comes out above roughly 3.5 in absolute value, that's usually a sign of a data quality issue rather than genuinely extreme consumer behavior. Before you act on a wild number, double check that you're not comparing mismatched time periods or conflating a promotional price with your base price. This is exactly why <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">flagging and excluding promotional spikes</a> from your baseline sales history matters before trusting an elasticity read.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a calculated elasticity coefficient of -1.46, a demand curve, and a confidence badge, computed automatically from the product's own sales history" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing a calculated elasticity coefficient of -1.46, a demand curve, and a confidence badge, computed automatically from the product's own sales history" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>This is the exact coefficient Zorin calculates automatically, fit from your own sales history, not a category benchmark, alongside an R-squared fit and a confidence label.</figcaption>
 </figure>
 
@@ -3042,7 +3042,7 @@ export const posts: BlogPost[] = [
 <p>I've seen BOGO offers work beautifully as a clearance tool on high-margin, low-cost-of-goods items, and I've seen the same format quietly lose money for months when applied to something with a 30% margin and a hopeful shrug instead of a calculation. The format itself isn't the risk. Skipping the math is.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing an elasticity coefficient, a demand curve, and a raise recommendation with expected profit lift, calculated from the product's own sales history" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing an elasticity coefficient, a demand curve, and a raise recommendation with expected profit lift, calculated from the product's own sales history" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The same discipline this guide applies to discounts and BOGO math, know the real number before you commit to a price, is what Zorin calculates for everyday pricing: elasticity from your own sales history, not a competitor's price or a guess.</figcaption>
 </figure>
 
@@ -3152,7 +3152,7 @@ export const posts: BlogPost[] = [
 <p>Each answer is a single dollar figure, no ranking, no multiple choice, just four prices reflecting how one person perceives the product's value.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/survey-public-page.png" alt="A customer-facing Zorin price sensitivity survey page showing the four classic Van Westendorp questions with a dollar-amount input for each" loading="lazy" />
+  <img src="/images/blog/survey-public-page.webp" alt="A customer-facing Zorin price sensitivity survey page showing the four classic Van Westendorp questions with a dollar-amount input for each" width="900" height="900" loading="eager" fetchpriority="high" />
   <figcaption>The four questions as a customer actually sees them, no login required, no email collected.</figcaption>
 </figure>
 
@@ -3163,7 +3163,7 @@ export const posts: BlogPost[] = [
 <p>The math runs on any number of responses above zero, but a result from 3 responses and a result from 30 don't deserve the same trust. Fewer than 5 responses produces no usable read at all. Five to 19 responses gives a low-confidence estimate, worth treating as directional. Twenty or more gives a good-confidence estimate you can lean on with more certainty. This mirrors the same honesty principle already used for elasticity confidence scoring: show the result plainly, but label how much data actually supports it, rather than hiding a thin-data estimate behind a wall until it magically becomes trustworthy.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/survey-results-chart.png" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" loading="lazy" />
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" width="736" height="519" loading="lazy" />
   <figcaption>Seven real responses producing an acceptable range, an optimal price, and an honest low-confidence label, not false certainty.</figcaption>
 </figure>
 
@@ -3277,7 +3277,7 @@ export const posts: BlogPost[] = [
 <p>Rather than picking one position for your entire catalog, let each product's own elasticity, calculated from its own sales history, tell you which position it can actually support. A product with low elasticity (customers not very price-sensitive) can often sustain a position above the market without losing meaningful volume. A product with high elasticity may only hold its ground at or below the market, regardless of what a premium-positioning instinct would suggest. This is the same mechanism behind <a href="/blog/what-does-price-elasticity-actually-mean">calculating price elasticity from your own sales history</a>, applied specifically to the competitive-positioning question instead of a standalone pricing decision.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing different products with different raise or lower recommendations, illustrating that no single competitive position fits an entire catalog" loading="lazy" />
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing different products with different raise or lower recommendations, illustrating that no single competitive position fits an entire catalog" width="1440" height="1987" loading="eager" fetchpriority="high" />
   <figcaption>Different products in the same catalog can rationally sit in different competitive positions. The data, not a single catalog-wide rule, tells you which.</figcaption>
 </figure>
 
@@ -3385,7 +3385,7 @@ export const posts: BlogPost[] = [
 <p>In practice, the two questions are sequential, not competing. First, use your own sales history to find the price that actually maximizes profit for a specific product. Then, separately, decide how to present that number, .99, a round figure, or something else, based on where the product actually sits: impulse and lower-priced, or considered and premium.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a recommended price of $35.32 based on the product's own elasticity, before any decision about how to format or end the number" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing a recommended price of $35.32 based on the product's own elasticity, before any decision about how to format or end the number" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The number comes from your own demand data first. How you format the ending is a separate decision layered on top.</figcaption>
 </figure>
 
@@ -3491,7 +3491,7 @@ export const posts: BlogPost[] = [
 <p>The fourth category, and the one most of the WooCommerce plugin ecosystem doesn't cover at all, reads your own historical sales at different prices and calculates price elasticity: how much your demand actually shifts when your price shifts. This is the mechanism Zorin runs. You connect your WooCommerce store or upload a sales history CSV, and it fits a log-log regression per product, returning an elasticity coefficient, an R-squared fit score, and a plain raise, lower, or hold recommendation with an estimated profit lift, not a rule you configured or a competitor's number you copied.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/settings-integrations.png" alt="Zorin settings page showing a WooCommerce Connection form with store URL, consumer key, and consumer secret fields for syncing products and orders" loading="lazy" />
+  <img src="/images/blog/settings-integrations.webp" alt="Zorin settings page showing a WooCommerce Connection form with store URL, consumer key, and consumer secret fields for syncing products and orders" width="1440" height="1292" loading="eager" fetchpriority="high" />
   <figcaption>Connecting a WooCommerce store directly is what lets a tool read your own sales history instead of a competitor's price or a fixed rule.</figcaption>
 </figure>
 
@@ -3618,7 +3618,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <figure class="post-image">
-  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing every product's margin, model status, and raise or lower recommendation in one sortable table" loading="lazy" />
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing every product's margin, model status, and raise or lower recommendation in one sortable table" width="1440" height="1987" loading="eager" fetchpriority="high" />
   <figcaption>A real catalog view: bestsellers and slow sellers get different recommendations side by side, not one blanket rule.</figcaption>
 </figure>
 
@@ -3900,7 +3900,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a plain raise recommendation with the elasticity number, expected profit lift, and a confidence badge, not a raw statistical output" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing a plain raise recommendation with the elasticity number, expected profit lift, and a confidence badge, not a raw statistical output" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>What the automation actually hands you: a plain recommendation, not a regression you have to interpret yourself.</figcaption>
 </figure>
 
@@ -3989,7 +3989,7 @@ export const posts: BlogPost[] = [
 <p>These figures are general industry benchmarks, not a guarantee for any specific store; actual healthy margins vary by product category and business model.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing the margin percentage for every product in a store's catalog alongside price and cost of goods" loading="lazy" />
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing the margin percentage for every product in a store's catalog alongside price and cost of goods" width="1440" height="1987" loading="eager" fetchpriority="high" />
   <figcaption>Margin varies a lot product to product even within one store, which is exactly why a single benchmark number can't tell you your own.</figcaption>
 </figure>
 
@@ -4090,7 +4090,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <figure class="post-image">
-  <img src="/images/blog/price-history.png" alt="Zorin product page showing a price change history entry: a price raised from $32.00 to $35.32, timestamped" loading="lazy" />
+  <img src="/images/blog/price-history.webp" alt="Zorin product page showing a price change history entry: a price raised from $32.00 to $35.32, timestamped" width="1440" height="1969" loading="eager" fetchpriority="high" />
   <figcaption>A real, applied price change with its own history entry, not a hypothetical number.</figcaption>
 </figure>
 
@@ -4191,7 +4191,7 @@ export const posts: BlogPost[] = [
 <p>This table is illustrative of the format, not a claim about any specific catalog; actual recommendations depend entirely on each product's own sales history.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/products-table.png" alt="Zorin catalog view with several products checked for a bulk price update, showing a sticky bar reading '7 changes selected' with an Apply button" loading="lazy" />
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view with several products checked for a bulk price update, showing a sticky bar reading '7 changes selected' with an Apply button" width="1440" height="1987" loading="eager" fetchpriority="high" />
   <figcaption>A real catalog-wide view: recommendations for every SKU in one list, ready to bulk apply.</figcaption>
 </figure>
 
@@ -4296,7 +4296,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing a Weak fit confidence badge alongside a raise recommendation, with the elasticity coefficient and profit lift stated plainly" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing a Weak fit confidence badge alongside a raise recommendation, with the elasticity coefficient and profit lift stated plainly" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The confidence badge is the whole point: a Weak-fit call is flagged as a hypothesis to test, not a settled answer.</figcaption>
 </figure>
 
@@ -4389,13 +4389,13 @@ export const posts: BlogPost[] = [
 
 <h2>Why This Beats Gut Feel or Copying a Competitor</h2>
 <p>Gut feel tells you nothing about whether $79 or $89 makes more money, because there's no data behind the instinct either way. Copying a competitor's price assumes your customers behave identically to theirs, which is rarely true since they arrived through different channels with different expectations, the same reason <a href="/blog/price-elasticity-vs-repricing-software">a repricer and an elasticity model answer fundamentally different questions</a>. Elasticity is the only one of the three that's actually grounded in how your specific customers respond, because it's calculated from their actual past behavior, not a guess about it.</p>
-<p>Just as price elasticity uses past sales data to optimize pricing strategies, Indexly leverages competitor analysis to <a href="https://useindexly.com" target="_blank" rel="noopener noreferrer">automate SEO content creation</a>, helping businesses enhance their search rankings without manual effort.</p>
+<p>Just as price elasticity uses past sales data to optimize pricing strategies, Indexly leverages competitor analysis to <a href="https://useindexly.com" target="_blank" rel="sponsored noopener noreferrer">automate SEO content creation</a>, helping businesses enhance their search rankings without manual effort.</p>
 
 <h2>How the Calculation Actually Works</h2>
 <p>The underlying method is a log-log regression across your historical price and quantity data, which fits a line describing the relationship between the two on a percentage basis. You don't need to run this by hand. A model does the regression automatically from an uploaded sales history or a live Shopify or WooCommerce sync, and returns the elasticity coefficient alongside an R-squared score, which tells you how well the model actually fits your data, not just what the number is.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing an elasticity coefficient of -1.46, a demand curve chart, and a raise recommendation with expected profit lift" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing an elasticity coefficient of -1.46, a demand curve chart, and a raise recommendation with expected profit lift" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A real elasticity output: the demand curve, the coefficient, and the confidence badge shown together.</figcaption>
 </figure>
 
@@ -4503,14 +4503,14 @@ export const posts: BlogPost[] = [
 </table>
 
 <figure class="post-image">
-  <img src="/images/blog/product-empty-state.png" alt="Zorin product page for a new product with no sales history yet, showing 'No recommendation yet' and 'No demand curve yet' empty states with prompts to upload data and fit a model" loading="lazy" />
+  <img src="/images/blog/product-empty-state.webp" alt="Zorin product page for a new product with no sales history yet, showing 'No recommendation yet' and 'No demand curve yet' empty states with prompts to upload data and fit a model" width="1440" height="1295" loading="eager" fetchpriority="high" />
   <figcaption>The honest pre-launch state: no sales history means no elasticity yet, not a hidden number waiting to be revealed.</figcaption>
 </figure>
 
 <h2>A Practical Sequence for a New Product</h2>
 <ol>
   <li><strong>Set a cost-plus floor</strong> first, so no launch price can accidentally sell at a loss.</li>
-  <li><strong>Anchor a value-based starting price</strong> above that floor, reasoning through what the customer is comparing it against.</li>
+  <li><strong>Anchor a value-based starting price</strong> above that floor, reasoning through what the customer is comparing it against. Once you have that number, <a href="/blog/does-charm-pricing-999-actually-work">whether to end it in .99 or round it</a> is a separate, smaller decision layered on top.</li>
   <li><strong>Avoid underpricing purely to feel safe</strong> without a deliberate plan to test higher soon after.</li>
   <li><strong>Test a second price point</strong> within the first few weeks to generate real variation.</li>
   <li><strong>Let a confidence-scored elasticity estimate take over</strong> once there's enough history, and stop relying on the initial guess.</li>
@@ -4608,7 +4608,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <figure class="post-image">
-  <img src="/images/blog/price-history.png" alt="Zorin product page showing a price change history entry recording a price raised from $32.00 to $35.32" loading="lazy" />
+  <img src="/images/blog/price-history.webp" alt="Zorin product page showing a price change history entry recording a price raised from $32.00 to $35.32" width="1440" height="1969" loading="eager" fetchpriority="high" />
   <figcaption>Every applied change gets its own history entry, so you can go back and compare the actual outcome against what elasticity predicted.</figcaption>
 </figure>
 
@@ -4709,7 +4709,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <figure class="post-image">
-  <img src="/images/blog/products-table.png" alt="Zorin catalog view showing a model health mix across products: some fitted with Weak confidence, others with no model yet" loading="lazy" />
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing a model health mix across products: some fitted with Weak confidence, others with no model yet" width="1440" height="1987" loading="eager" fetchpriority="high" />
   <figcaption>Not every product is on the same clock. Confidence per SKU tells you which ones need a closer look this cycle.</figcaption>
 </figure>
 
@@ -4805,7 +4805,7 @@ export const posts: BlogPost[] = [
 <p>No spreadsheet, no data science background, and no competitor scraping required. The model reads your data, not anyone else's.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.png" alt="Zorin product page showing the full elasticity output: coefficient, demand curve chart, confidence badge, and a raise recommendation with expected profit lift" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing the full elasticity output: coefficient, demand curve chart, confidence badge, and a raise recommendation with expected profit lift" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>The full loop in one view: elasticity, demand curve, confidence, and the recommendation it produces.</figcaption>
 </figure>
 
@@ -4903,7 +4903,7 @@ export const posts: BlogPost[] = [
 <p>Checking isn't guessing harder. It's reading your own price-and-quantity history to calculate elasticity per product, the measurable relationship between a price change and the resulting change in demand. Zorin runs this calculation automatically from an uploaded sales history (or a live Shopify or WooCommerce sync) and returns a raise, lower, or hold recommendation for every SKU, along with an estimated profit lift and a confidence score based on how much reliable data supports it.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/dashboard-overview.png" alt="Zorin dashboard overview showing 8 actionable recommendations across a 23-product catalog, an average profit lift of 30%, and a ranked list of raise and lower opportunities" loading="lazy" />
+  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard overview showing 8 actionable recommendations across a 23-product catalog, an average profit lift of 30%, and a ranked list of raise and lower opportunities" width="1440" height="900" loading="eager" fetchpriority="high" />
   <figcaption>A real catalog view: raise and lower recommendations ranked by profit opportunity, calculated per SKU.</figcaption>
 </figure>
 
@@ -5005,7 +5005,7 @@ export const posts: BlogPost[] = [
 <p><strong>A practical way to separate them:</strong> when you're comparing net profit per channel, use your realized price after fees as the number that feeds into your margin math. Use the raw customer-facing price as the number that feeds into elasticity, since that's what the customer actually reacted to.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/settings-integrations.png" alt="Zorin settings page showing separate Shopify Connection and WooCommerce Connection forms, each with its own store domain and access token fields" loading="lazy" />
+  <img src="/images/blog/settings-integrations.webp" alt="Zorin settings page showing separate Shopify Connection and WooCommerce Connection forms, each with its own store domain and access token fields" width="1440" height="1292" loading="eager" fetchpriority="high" />
   <figcaption>Shopify and WooCommerce connect separately, which is what makes it possible to read each channel's sales history on its own.</figcaption>
 </figure>
 
@@ -5120,7 +5120,7 @@ export const posts: BlogPost[] = [
 <p>Neither approach is wrong for every use case, but they answer different questions. A repricer answers "what is the market doing." An elasticity tool answers "what will my customers actually pay."</p>
 
 <figure class="post-image">
-  <img src="/images/blog/settings-integrations.png" alt="Zorin settings page showing the Shopify Connection form with shop domain and access token fields for syncing products and orders" loading="lazy" />
+  <img src="/images/blog/settings-integrations.webp" alt="Zorin settings page showing the Shopify Connection form with shop domain and access token fields for syncing products and orders" width="1440" height="1292" loading="eager" fetchpriority="high" />
   <figcaption>Connecting Shopify or WooCommerce directly is what lets a tool read your own sales data instead of a competitor's price.</figcaption>
 </figure>
 
@@ -5217,7 +5217,7 @@ export const posts: BlogPost[] = [
     <tr><td>High elasticity (customers very price-sensitive)</td><td>A meaningful discount can plausibly lift total profit through volume, worth testing with the simulator first</td></tr>
   </tbody>
 </table>
-<p>Either way, the point is testing against your own data rather than picking a round number because it sounds generous.</p>
+<p>Either way, the point is testing against your own data rather than picking a round number because it sounds generous. Once you've settled on the discount depth, <a href="/blog/does-charm-pricing-999-actually-work">how you present the resulting number</a> (a round figure versus a .99 ending) is a separate, smaller decision.</p>
 
 <h2>Not Every Product Needs the Same Discount</h2>
 <p>Bestsellers already converting at full price rarely need a discount to move units, so discounting them mainly gives away margin you didn't need to give up. Slow-moving inventory has more room for a deeper cut, since unsold stock sitting in a warehouse often costs more over time than the margin given up to clear it. Treating every product in a catalog with one blanket discount percentage ignores this difference entirely.</p>
@@ -5227,7 +5227,7 @@ export const posts: BlogPost[] = [
 <p>Zorin's model automatically detects statistical outliers in your sales history, most commonly promotional spikes, and flags them for exclusion so your baseline elasticity estimate reflects ordinary buying behavior, not sale-week behavior. You can also manually confirm or override a flag if you know a spike had a different cause.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/promotion-flags.png" alt="Zorin product page showing a promotion flags table listing each sales record by date, price, and units, with a 'Flag' link per row and an Auto-detect button" loading="lazy" />
+  <img src="/images/blog/promotion-flags.webp" alt="Zorin product page showing a promotion flags table listing each sales record by date, price, and units, with a 'Flag' link per row and an Auto-detect button" width="736" height="432" loading="eager" fetchpriority="high" />
   <figcaption>Flagged records are excluded from model fitting, so a discount week doesn't get baked into your baseline elasticity.</figcaption>
 </figure>
 

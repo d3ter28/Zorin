@@ -6,6 +6,7 @@ export const metadata = {
   title: "Free Price Elasticity Calculator - Zorin",
   description:
     "Calculate your price elasticity of demand in seconds. Enter two price and unit-sold data points to see your elasticity coefficient and revenue impact - free, no signup required.",
+  alternates: { canonical: "https://www.tryzorin.com/price-elasticity-calculator" },
 };
 
 export default function PriceElasticityCalculatorPage() {

@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AppShell } from "@/components/AppShell";
 import { LaunchPlanner } from "@/components/LaunchPlanner";
 import { requireSessionPage } from "@/lib/auth/requireSession";
 import { prisma } from "@/lib/db";
+
+export const metadata: Metadata = {
+  title: "Launch Planner — Zorin",
+  description: "Plan and track a new product launch pricing strategy in Zorin.",
+  robots: { index: false, follow: false },
+};
 
 export default async function LaunchPlannerPage() {
   const user = await requireSessionPage();

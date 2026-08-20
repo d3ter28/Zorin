@@ -6,6 +6,7 @@ export const metadata = {
   title: "Shopify Profit Margin Calculator (Free) - Zorin",
   description:
     "Calculate your exact profit margin per unit in seconds. Enter your selling price, unit cost, and shipping cost - free, no signup required.",
+  alternates: { canonical: "https://www.tryzorin.com/shopify-profit-margin-calculator" },
 };
 
 export default function ProfitMarginCalculatorPage() {

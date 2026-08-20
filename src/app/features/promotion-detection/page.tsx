@@ -6,6 +6,7 @@ export const metadata = {
   title: "Promotion Detection for Ecommerce Pricing - Zorin",
   description:
     "Zorin automatically identifies promotional sales spikes in your order history using z-score analysis and excludes them from elasticity model fitting, so your price recommendations reflect real demand — not sale-day noise.",
+  alternates: { canonical: "https://www.tryzorin.com/features/promotion-detection" },
 };
 
 export default function PromotionDetectionPage() {

@@ -5,6 +5,7 @@ export const metadata = {
   title: "About Zorin",
   description:
     "Zorin is built by a small team focused on one problem: helping Shopify and WooCommerce merchants price with data instead of guesswork.",
+  alternates: { canonical: "https://www.tryzorin.com/about" },
 };
 
 export default function AboutPage() {

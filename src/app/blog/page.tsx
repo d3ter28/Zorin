@@ -13,6 +13,7 @@ function formatDate(dateStr: string) {
 export const metadata = {
   title: "Blog — Zorin",
   description: "Pricing strategy, elasticity explainers, and product updates from Zorin.",
+  alternates: { canonical: "https://www.tryzorin.com/blog" },
 };
 
 export default function BlogPage() {
