@@ -28,6 +28,8 @@ const badges: Badge[] = [
 
 const textLinks: { href: string; label: string }[] = [
   { href: "https://www.robinrank.ai", label: "RobinRank" },
+  { href: "https://www.capterra.com/p/10054838/Zorin/", label: "Capterra" },
+  { href: "https://www.g2.com/products/zorin-2026-08-03/reviews", label: "G2" },
 ];
 
 export function FeaturedOnBadges() {
