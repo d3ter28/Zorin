@@ -26,12 +26,24 @@ export function buildArticleSchema(post: BlogPost) {
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
+    image: post.ogImage
+      ? `${BASE_URL}${post.ogImage.startsWith("/") ? "" : "/"}${post.ogImage}`
+      : `${BASE_URL}/og-default.png`,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updatedDate ?? post.date,
     author: post.author
-      ? { "@type": "Person", name: post.author.name }
-      : { "@type": "Organization", name: "Zorin" },
-    publisher: { "@type": "Organization", name: "Zorin" },
+      ? {
+          "@type": "Person",
+          name: post.author.name,
+          url: `${BASE_URL}/about`,
+        }
+      : { "@type": "Organization", name: "Zorin", url: BASE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "Zorin",
+      url: BASE_URL,
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/logo.png` },
+    },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/${post.slug}` },
   };
 }

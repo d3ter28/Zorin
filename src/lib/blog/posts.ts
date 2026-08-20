@@ -1,10 +1,12 @@
 export type BlogPost = {
   slug: string;
-  title: string;
-  excerpt: string;
-  date: string;
+  title: string;   // keep ≤51 chars — renders as "{title} — Zorin" in <title>, max 60 total
+  excerpt: string; // keep ≤155 chars — used as meta description
+  date: string;        // ISO date of first publish: "YYYY-MM-DD"
+  updatedDate?: string; // ISO date of last substantive edit — sets dateModified in Article schema
   readingTime: string;
   category: string;
+  ogImage?: string; // absolute URL or root-relative path, e.g. "/images/blog/my-post-og.png" (1200×630)
   content: string; // HTML string
   author?: {
     name: string;
@@ -3511,9 +3513,9 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "what-your-price-elasticity-score-actually-means",
-    title: "What Your Price Elasticity Score Actually Means (and What to Do With It)",
+    title: "What Your Price Elasticity Score Actually Means",
     excerpt:
-      "Most merchants who get an elasticity number either act on it blindly or ignore it. Here's how to read it correctly, know if it's reliable, and actually use it to improve profit.",
+      "What your elasticity number means, how to know if it's solid enough to act on, and why products in the same category can have completely different scores.",
     date: "2026-08-21",
     readingTime: "14 min read",
     category: "Pricing Strategy",
