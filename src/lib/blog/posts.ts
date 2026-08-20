@@ -1087,8 +1087,9 @@ export const posts: BlogPost[] = [
     slug: "do-you-need-a-competitor-price-tracking-app",
     title: "Do You Need a Competitor Price Tracking App?",
     excerpt:
-      "Not every store needs to watch competitors. Learn when to track rivals vs. price from your own data, and how Zorin reads your sales history per SKU.",
+      "Not every store needs automated competitor price intelligence. Learn when to track rivals vs. price from your own data, and how Zorin handles both.",
     date: "2026-08-16",
+    updatedDate: "2026-08-21",
     readingTime: "9 min read",
     category: "Product",
     author: {
@@ -1096,9 +1097,9 @@ export const posts: BlogPost[] = [
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
     },
     content: `
-<p class="intro">If you sell the exact same product as other stores and compete on price, yes. A competitor tracking app like Prisync will save you hours of manual checking and help you stay visible. But if you sell your own branded products, or your real pricing question is "am I charging the right amount for this product," a competitor tracker can't answer that. It was never built to.</p>
+<p class="intro">If you sell the exact same product as other stores and compete on price, an automated competitor price intelligence app like Prisync will save you hours of manual checking and help you stay visible. But if you sell your own branded products, or your real pricing question is "am I charging the right amount for this product," automated competitor scraping can't answer that. It was never built to.</p>
 
-<p>Most Shopify merchants default to competitor tracking because it's the most visible category of pricing app and the easiest to understand. But there's a second category of tool that most merchants don't know exists: apps that read your own sales data and tell you what your customers would actually pay, product by product, without looking at what anyone else charges. This post breaks down when each type works, when it doesn't, and how to pick the right one for your store.</p>
+<p>Most Shopify merchants default to competitor tracking because it's the most visible category of pricing app and the easiest to understand. But there's a second category of tool that most merchants don't know exists: apps that read your own sales data and tell you what your customers would actually pay, product by product, rather than reacting to what anyone else charges. This post breaks down when each type works, when it doesn't, and how to pick the right one for your store.</p>
 
 <h2>Why Most Stores Default to Competitor Tracking</h2>
 <p>Open the Shopify App Store, search "pricing," and you'll find hundreds of results. The vast majority fall into two buckets: discount schedulers and competitor price trackers. The discount apps help you run sales. The trackers scrape competitor websites, match products to your catalog, and tell you when prices change.</p>
@@ -1159,7 +1160,7 @@ export const posts: BlogPost[] = [
 
 <p>Separately, Zorin ships <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">a Van Westendorp Price Sensitivity survey</a>: a four-question, no-login customer survey that calculates an acceptable price range, an optimal price point, and an indifference price point. This is a stated-preference signal (what customers say they'd pay), deliberately kept separate from the elasticity model's revealed-preference signal (what they actually did). You read them side by side to triangulate, not blended into a single number.</p>
 <p>Nothing applies automatically. You review each recommendation, adjust it with a slider or by typing your own price, preview the resulting margin using the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a>, and apply changes one product at a time or in bulk. The decision is always yours.</p>
-<p>The key difference from competitor tracking: Zorin explicitly does not scrape or compare against competitor prices. This isn't a limitation. It's the point. A competitor's price was set based on their costs, their brand, and their audience. Matching it tells you nothing about what your specific customers are willing to pay.</p>
+<p>The key difference from a dedicated <a href="/features/competitor-price-tracking">competitor price intelligence</a> app: Zorin doesn't automatically scrape competitor sites or run live monitoring. You can record competitor prices manually on a product page, name, price, and an optional URL, and Zorin calculates the min, median, and max across whatever you've entered, then feeds it straight into the Launch Planner. It's market context you add on your terms, not an automated feed. A competitor's price was still set based on their costs, their brand, and their audience, so even with that context recorded, matching it tells you nothing about what your specific customers are willing to pay. That's what the elasticity model is for.</p>
 
 <h2>When Matching Competitors Quietly Costs You Money</h2>
 <p>Price matching feels safe. If your competitor charges $45 and you match $45, you're at least "in the game." But that logic assumes the competitor's price is correct for your store, which it almost never is.</p>
@@ -1227,7 +1228,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Can I use a competitor tracker and a demand-based tool together?</h3>
-<p>Yes. The two serve different functions. A competitor tracker gives you market context: what others charge, when they change prices, whether they're running a sale. A demand-based tool gives you the pricing answer for your own store, grounded in your own customers' behavior. Using both means you're informed about the market and optimizing for your own demand, rather than choosing one data source over the other.</p>
+<p>Yes. The two serve different functions. A competitor tracker gives you market context: what others charge, when they change prices, whether they're running a sale. A demand-based tool gives you the pricing answer for your own store, grounded in your own customers' behavior. Using both means you're informed about the market and optimizing for your own demand, rather than choosing one data source over the other. Zorin also has a lightweight version of this built in: you can manually record competitor prices per product and see min/median/max stats, without needing a separate automated tracking subscription, if you just need occasional market context rather than continuous live monitoring.</p>
 </div>
 <div class="faq-item">
 <h3>What if I just launched my store and don't have much sales data yet?</h3>
