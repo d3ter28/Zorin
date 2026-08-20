@@ -24,11 +24,6 @@ export function Footer() {
               </h4>
               <ul className="mt-3 flex flex-col gap-2">
                 <li>
-                  <a href="/#how-it-works" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    How it works
-                  </a>
-                </li>
-                <li>
                   <a href="/features" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Features
                   </a>
@@ -41,6 +36,11 @@ export function Footer() {
                 <li>
                   <a href="/shopify-profit-margin-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Profit margin calculator
+                  </a>
+                </li>
+                <li>
+                  <a href="/price-elasticity-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Price elasticity calculator
                   </a>
                 </li>
                 <li>
