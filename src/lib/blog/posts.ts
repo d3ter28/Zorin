@@ -3510,6 +3510,183 @@ export const posts: BlogPost[] = [
     `.trim(),
   },
   {
+    slug: "what-your-price-elasticity-score-actually-means",
+    title: "What Your Price Elasticity Score Actually Means (and What to Do With It)",
+    excerpt:
+      "Most merchants who get an elasticity number either act on it blindly or ignore it. Here's how to read it correctly, know if it's reliable, and actually use it to improve profit.",
+    date: "2026-08-21",
+    readingTime: "14 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Most merchants who get an elasticity number do one of two things: act on it immediately without knowing if it's reliable, or ignore it because they're not sure what -1.4 actually means in practice. Neither is right. This guide walks through how to read the number correctly, how to know whether it's solid enough to act on, why your catalog shows wildly different scores across products, and whether elasticity or competitor pricing should be driving your decisions.</p>
+
+<h2>What Your Elasticity Score Is Actually Telling You</h2>
+<p>An elasticity score is a ratio. For every 1% you move your price, it tells you how much your sales volume moves in the opposite direction. The sign is almost always negative — higher price, lower demand — so what matters practically is the absolute value of the number and whether it falls above or below 1.</p>
+<p>The revenue direction rule is the single most useful thing to take from an elasticity score:</p>
+<ul>
+  <li><strong>If the absolute value is above 1 (elastic):</strong> raising your price shrinks total revenue. Customers are responsive enough to price that the volume you lose outpaces the higher margin per unit. Lowering price increases total revenue because the volume gain more than compensates.</li>
+  <li><strong>If the absolute value is below 1 (inelastic):</strong> raising your price increases total revenue. Customers are not responsive enough to price for the volume loss to cancel out the margin gain. Lowering price decreases total revenue.</li>
+  <li><strong>If the absolute value is exactly 1 (unit elastic):</strong> a price change in either direction leaves total revenue roughly unchanged.</li>
+</ul>
+<p>That rule answers the revenue question. It does not answer the profit question, which also requires knowing your margin — covered in the next section.</p>
+
+<h3>A plain-English elasticity reference table</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Score range</th>
+      <th>Label</th>
+      <th>What a price raise does</th>
+      <th>What a price cut does</th>
+      <th>Typical products</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0 to -0.5</td>
+      <td>Highly inelastic</td>
+      <td>Volume barely moves, revenue and profit both rise</td>
+      <td>Volume barely moves, revenue falls</td>
+      <td>Medications, essential consumables, strong brand loyalists</td>
+    </tr>
+    <tr>
+      <td>-0.5 to -1.0</td>
+      <td>Inelastic</td>
+      <td>Volume drops less than price rises, net revenue increases</td>
+      <td>Volume rises less than price drops, net revenue falls</td>
+      <td>Branded goods with moderate differentiation, niche categories</td>
+    </tr>
+    <tr>
+      <td>-1.0</td>
+      <td>Unit elastic</td>
+      <td>Revenue unchanged in either direction</td>
+      <td>Revenue unchanged in either direction</td>
+      <td>Rare in practice, theoretical boundary</td>
+    </tr>
+    <tr>
+      <td>-1.0 to -2.0</td>
+      <td>Elastic</td>
+      <td>Volume drops more than price rises, revenue falls</td>
+      <td>Volume rises more than price drops, revenue increases</td>
+      <td>Competitive categories, moderate substitutes available</td>
+    </tr>
+    <tr>
+      <td>Below -2.0</td>
+      <td>Highly elastic</td>
+      <td>Even a small price raise causes significant volume loss</td>
+      <td>Even a small price cut drives large volume gains</td>
+      <td>Commodity products, marketplace listings with direct competitors</td>
+    </tr>
+  </tbody>
+</table>
+<p>A product at -1.4 sits in the elastic zone. If you raise the price 10%, you would expect roughly 14% less volume. Total revenue falls. The right move, from a revenue standpoint, is to hold or lower — not raise. But whether that's the right move for profit depends on your margin, which is where the full calculation lives.</p>
+
+<h2>Before You Act: How to Know If the Number Is Reliable</h2>
+<p>An unreliable elasticity estimate is worse than no estimate, because it produces false confidence. You might raise a price on a product that looks inelastic but whose estimate is based on three months of data during a seasonal spike — and the actual demand response turns out to be completely different.</p>
+<p>Two failure modes make an elasticity number unreliable.</p>
+<p><strong>Insufficient data.</strong> An elasticity model needs enough observations of the same product at different price points to distinguish a genuine demand response from noise. Enterprise retail research from RELEX Solutions puts the minimum at two years of consistent pricing and sales history before calculations become reliable at that scale. For a smaller ecommerce catalog with less volume, the practical minimum is at least 6 months of sales data that includes genuine price variation — not a product that's been at the same price for every one of those months.</p>
+<p><strong>Contaminated data.</strong> Promotions, seasonal demand spikes, stockouts, and external demand shocks (a viral mention, a news cycle, a platform algorithm change) all distort the relationship between price and quantity during the period they occur. If your price dropped 20% during a flash sale while you were also running your biggest ad campaign of the year, the sales data from that period doesn't cleanly isolate the price effect. Using it in an elasticity calculation gives you a number that's partly measuring the price sensitivity and partly measuring the ad campaign — and you can't separate the two after the fact.</p>
+<p>A well-known accuracy problem in elasticity modeling is applying a catalog-wide average to individual SKU decisions. If your overall store elasticity is -0.8, that average can mask individual products ranging from -0.3 to -1.6 within the same category. Acting on the average as if it applies to each product is one of the fastest ways to move the wrong products in the wrong direction.</p>
+<p>This is what Zorin's confidence label is measuring. It's not a marketing feature — it's the model being honest about what the underlying data supports.</p>
+<ul>
+  <li><strong>Strong confidence</strong> means the model had sufficient sales history, genuine price variation across that history, and a clean enough data period to fit a reliable demand curve. Act on this.</li>
+  <li><strong>Moderate confidence</strong> means the model had enough data to produce a directionally useful estimate, but some limitation exists — lower volume, a shorter history, or a period with some noise. The direction is likely right; the exact magnitude is less certain.</li>
+  <li><strong>Weak confidence</strong> means the model doesn't have enough clean data to give a number worth acting on. The SKU either hasn't been at enough different price points, or the history is too short, or too much of the data is contaminated. Hold the price where it is and let more clean data accumulate.</li>
+</ul>
+<p>If you see a Weak confidence label on a product, the right response isn't to find a way to override it. It's to wait, or to run a deliberate price test to generate the variation the model needs.</p>
+
+<h2>Once You Trust the Number: What to Do With It</h2>
+<p>Revenue direction is the first filter. Profit impact is the second. A product with an elasticity of -0.7 (inelastic) can absorb a price increase and grow total revenue — but whether that revenue growth translates to profit depends on how large the margin is on each unit and how much volume you lose.</p>
+<p>The formal relationship between elasticity and optimal pricing comes from the Lerner pricing rule:</p>
+<p><strong>Optimal Price = (Elasticity / (Elasticity + 1)) × Marginal Cost</strong></p>
+<p>For a product with an elasticity of -2.0 and a marginal cost (COGS plus fulfillment) of $25:</p>
+<p>Optimal Price = (-2 / (-2 + 1)) × $25 = (-2 / -1) × $25 = $50</p>
+<p>For a product with an elasticity of -0.7 and the same $25 marginal cost:</p>
+<p>Optimal Price = (-0.7 / (-0.7 + 1)) × $25 = (-0.7 / 0.3) × $25 = $58.33</p>
+<p>The formula gives you the mathematically profit-maximizing price given the elasticity and cost structure. It's a starting point — your actual price also needs to account for competitor positioning, psychological price points, and minimum margin requirements. But it anchors the decision in demand data rather than intuition.</p>
+<p>In practice, Zorin runs this calculation per SKU using your actual margin data and returns a specific raise, lower, or hold recommendation with an estimated profit lift attached. Instead of doing the Lerner calculation manually for each product, the output reads: "raise to $42, estimated 11% profit lift, Strong confidence." That number is the elasticity math plus your cost structure combined into a single actionable direction.</p>
+<p>One thing the revenue direction rule doesn't tell you: the right size of the move. An inelastic product can absorb a price increase, but it can't absorb an unlimited one. Every product has a ceiling beyond which even inelastic demand breaks. The profit-lift estimate accounts for this — a recommendation to raise $2 on a $38 product reflects both the elasticity and the estimated point at which further raises stop adding profit and start losing it.</p>
+
+<h2>Why Different Products in Your Store Have Such Different Scores</h2>
+<p>A catalog of 50 products can have elasticities ranging from -0.3 to -2.5. That variation isn't random — it's driven by five factors that determine how sensitive a specific product's buyers are to price.</p>
+<p><strong>Availability of substitutes.</strong> The more easily a customer can get the same thing from someone else, the more elastic the demand. A commodity phone case on Amazon with 400 identical-looking competitors has highly elastic demand. A handmade leather wallet from a maker with a loyal following has few real substitutes, so demand is more inelastic. This single factor explains most of the variation in a typical catalog.</p>
+<p><strong>Degree of brand differentiation.</strong> Branded goods with strong identity and recognition hold price better than unbranded equivalents. Apple's iPhone elasticity sits around -0.6 to -0.8 despite being the premium-priced option in its category — brand loyalty insulates demand from price sensitivity. An unbranded equivalent in the same category might run -1.5 to -2.0.</p>
+<p><strong>Necessity vs discretionary.</strong> Products buyers need — consumables, replacement parts, essential supplies — tend to be inelastic because there is no "not buying" option. Products buyers want but don't need are more elastic because deferring or skipping the purchase is always available.</p>
+<p><strong>Price visibility.</strong> If a buyer can easily check three competitor prices before hitting your checkout button, your demand is more elastic because the comparison is frictionless. A product category with low price visibility (unusual specifications, niche use case, low search volume) tends to be less elastic because buyers have fewer comparison anchors.</p>
+<p><strong>Buyer intent and channel.</strong> As covered in the <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">multi-channel pricing guide</a>, the same product can have different elasticity depending on where it's sold. Amazon marketplace buyers arrive in a comparison context and tend to be more price-sensitive than DTC buyers who arrived through a brand-specific channel.</p>
+
+<h3>Two similar products, very different elasticity</h3>
+<p>Consider two moisturizers in the same Shopify store. The first is an unbranded basic formula — fragrance-free, simple ingredient list, no distinguishing story. The second is the store's own-branded hero SKU with 300+ reviews, a proprietary ingredient angle, and the product featured in two press placements.</p>
+<p>Both are moisturizers. Both sit in the same category. But the first has elastic demand: buyers can find a dozen near-identical products at similar prices with a quick search, so a $3 price increase sends them elsewhere. The second has inelastic demand: the reviews, the brand story, and the perception of uniqueness mean buyers are willing to pay for this specific product rather than a generic alternative.</p>
+<p>If you applied the same price move to both products because they share a category, you would grow revenue on the branded hero and lose it on the unbranded basic. Catalog-level elasticity averaging is precisely the mistake that per-SKU modeling exists to avoid.</p>
+
+<h2>Elasticity vs Competitor Pricing: Which Signal Should Drive Your Decision</h2>
+<p>Competitor pricing and elasticity answer different questions. Using one as a substitute for the other is one of the most common pricing mistakes in ecommerce.</p>
+<p><strong>Competitor pricing tells you what the market is charging.</strong> It's an externally visible reference point that reflects your competitor's costs, their brand, their audience, and whatever pricing strategy they happen to be running at this moment. It tells you nothing about how your specific customers respond to price.</p>
+<p><strong>Elasticity tells you how your customers respond to price.</strong> It's derived from your own sales history and reflects your actual buyers' behavior. It's specific to your product, your brand positioning, and your customer base.</p>
+<p>The mistake that RELEX Solutions documents in their retailer research is common: merchants assume competitors have done the elasticity math correctly and that matching their price is equivalent to finding the optimal price for their own store. In practice, defaulting to competitor pricing as the primary signal creates pricing that doesn't reflect what your own customers will bear, often leaving margin on the table where you're actually differentiated and losing volume where you're not.</p>
+<p>That said, competitor pricing is not irrelevant. It influences your elasticity: if a competitor drops their price significantly, your effective elasticity increases even if you haven't changed anything, because the substitution option for your buyers just got more attractive. Monitoring competitor prices is useful context. It just shouldn't be the decision rule.</p>
+<p>The practical synthesis: use competitor pricing to understand the range your market operates in and to flag when a competitor move might have shifted your elasticity. Use your own elasticity data as the decision rule for where within that range to price. On true commodity SKUs on marketplaces where buy-box visibility is determined by price, the balance shifts — those products often need to match or beat the lowest visible competitor price to retain any sales at all. For everything else, particularly on your own DTC store with your own brand, elasticity is the more reliable signal. The <a href="/blog/price-elasticity-vs-repricing-software">price elasticity vs repricing software</a> post covers this tradeoff in more depth if you're deciding between the two approaches.</p>
+
+<div class="key-takeaways">
+<h2>Key Takeaways</h2>
+<ul>
+  <li><strong>The revenue direction rule is the core:</strong> elasticity above 1 in absolute value means a price raise shrinks revenue; below 1 means a price raise grows revenue. Profit requires also knowing your margin.</li>
+  <li><strong>Confidence matters as much as the number itself.</strong> An estimate based on insufficient or contaminated data is worse than no estimate. Strong confidence means act on it; Weak confidence means wait.</li>
+  <li><strong>Catalog elasticity variation is driven by five factors:</strong> substitutes, brand differentiation, necessity vs discretionary, price visibility, and buyer channel. Two products in the same category can have opposite elasticity profiles.</li>
+  <li><strong>Competitor pricing and elasticity are complements, not substitutes.</strong> Competitor prices are context. Your own demand data is the decision rule.</li>
+  <li><strong>The right move is elasticity direction plus margin math.</strong> The Lerner pricing rule gives you the theoretically optimal price; Zorin's profit-lift estimate applies it per SKU automatically.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>My price elasticity is -1.4 — what does that actually mean for my pricing decisions?</h3>
+<p>It means your product sits in the elastic zone: for every 1% you raise the price, you can expect roughly 1.4% less volume. Raising price shrinks total revenue; lowering price grows it. Whether lowering price actually improves profit depends on your margin — you need to gain enough additional volume to compensate for the lower margin per unit. An elasticity of -1.4 with a healthy gross margin may still support a price hold or modest raise if the profit math works out, which is why elasticity and margin need to be evaluated together rather than the elasticity number alone.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my elasticity estimate is accurate enough to act on?</h3>
+<p>Check two things: how much data is behind it and how clean that data is. A reliable estimate needs at least 6 months of sales history with genuine price variation across that period. If most of that history was at the same price, the model is extrapolating rather than measuring. If the period included a major promotion, a viral traffic spike, or a stockout, those events distort the price-demand relationship in ways that are hard to separate afterward. Zorin's confidence label (Strong, Moderate, Weak) encodes this assessment directly — a Weak label means the data isn't there yet, and acting on it anyway is riskier than holding the price and waiting.</p>
+</div>
+<div class="faq-item">
+<h3>How do I run a price test on my Shopify store to measure my own elasticity?</h3>
+<p>The cleanest method is to move the price on a single product, hold it there for at least 4–6 weeks (long enough to smooth out week-to-week noise), and compare sales volume during that period to an equivalent prior period with the original price, controlling for any major seasonal differences. Change only the price during the test — don't run promotions, change ad spend, or modify the product listing at the same time, or the sales change will reflect all those variables, not just the price. A before-and-after test is less precise than a true A/B test (which would require showing different prices to different visitors simultaneously) but is operationally simpler and produces usable data for most SKUs within one to two months.</p>
+</div>
+<div class="faq-item">
+<h3>Why do different products in my store have such different price elasticity scores?</h3>
+<p>Five factors drive the variation: how many substitutes exist for the product, how strongly differentiated your brand or product is from alternatives, whether the product is a necessity or a discretionary purchase, how easily buyers can compare your price to competitors before buying, and which channel or platform the purchase happens on. Two products in the same category can have opposite elasticity profiles — a branded hero SKU with strong reviews and a loyal customer base often shows inelastic demand, while an unbranded equivalent in the same category can show highly elastic demand because buyers have no reason to prefer it at a higher price.</p>
+</div>
+<div class="faq-item">
+<h3>Should I use price elasticity or just match my competitors' prices?</h3>
+<p>They answer different questions. Competitor pricing tells you what others are charging — useful context, but based on their costs, their audience, and their strategy, not yours. Elasticity tells you how your customers specifically respond to price changes, which is the more relevant signal for your own store. In practice, use competitor prices as a range reference and to flag when a competitor move might be shifting your effective elasticity. Use your own elasticity data as the actual decision rule within that range. The exception is true commodity SKUs on marketplaces where buy-box position is determined by lowest visible price — there, competitor pricing matters more.</p>
+</div>
+<div class="faq-item">
+<h3>What's a good elasticity score for an ecommerce product?</h3>
+<p>There is no universally good score — it depends on your category and business model. A highly inelastic score (close to 0) means you have strong pricing power and can raise without significant volume loss, which is valuable. A highly elastic score (below -2.0) means price changes have an outsized volume effect, which makes pricing precision critical in both directions. Most independent ecommerce stores see product elasticities ranging from -0.4 to -1.8 across their catalogs, with the most differentiated and branded SKUs at the inelastic end and the most commodity-like SKUs at the elastic end.</p>
+</div>
+<div class="faq-item">
+<h3>Can elasticity change over time?</h3>
+<p>Yes, and ignoring this is a common mistake. A product that was highly differentiated (inelastic) when it launched can become elastic as competitors copy it, reviews accumulate on alternatives, and price comparison becomes easier. Seasonal shifts can temporarily move elasticity in either direction. A product that goes viral gets a burst of inelastic demand from people who want it specifically, then reverts to its baseline when the novelty fades. Best practice is to refresh your elasticity read at least every 6–12 months on high-volume SKUs, or any time there's a meaningful change in the competitive landscape.</p>
+</div>
+<div class="faq-item">
+<h3>What if my elasticity estimate is positive?</h3>
+<p>A positive elasticity is unusual and usually indicates a data problem rather than a genuine demand relationship. Positive elasticity would mean higher prices lead to higher demand, which can occasionally happen with Veblen goods (luxury items where higher price signals status and increases desirability), but is rare in typical ecommerce categories. More commonly, a positive estimate means the data period contained a confounding event — a promotion, a traffic spike, or a competitor stockout — that created an artificial correlation between a price change and a demand increase that had nothing to do with the price. Treat a positive elasticity as a signal to review the underlying data rather than an actionable estimate.</p>
+</div>
+<div class="faq-item">
+<h3>How does margin interact with elasticity when deciding whether to raise a price?</h3>
+<p>Elasticity tells you the revenue direction. Margin tells you whether the revenue change translates to a profit improvement. A product with an elasticity of -0.8 (inelastic) and a 60% gross margin has a lot of room to absorb a small volume loss from a price increase and still come out ahead on profit. The same elasticity on a product with a 15% gross margin has almost no room — the volume you lose from a price increase quickly erodes the thin margin on remaining sales. The <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">profit margins by category guide</a> covers what typical gross and net margins look like across ecommerce verticals, which gives you a reference for where your own products stand before running the elasticity math.</p>
+</div>
+</section>
+
+<p class="conclusion">Knowing the number is step one. Trusting it is step two. Acting on it correctly — with the right price move, sized to your actual margin, on the SKUs where the data actually supports a decision — is what turns an elasticity score into a revenue improvement. Zorin shows the elasticity, the confidence, and the estimated profit lift in one place so none of those three steps require a separate calculation.</p>
+    `.trim(),
+  },
+  {
     slug: "do-i-need-a-data-analyst-to-price-my-products-well",
     title: "Do I Need a Data Analyst to Price My Products Well?",
     excerpt:
