@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/integrations/woocommerce`,                lastModified: new Date("2026-06-01") },
     { url: `${BASE_URL}/shopify-profit-margin-calculator`,        lastModified: new Date("2026-07-01") },
     { url: `${BASE_URL}/price-elasticity-calculator`,             lastModified: new Date("2026-08-20") },
+    { url: `${BASE_URL}/about`,                                   lastModified: new Date("2026-08-20") },
     { url: `${BASE_URL}/terms`,                                   lastModified: new Date("2026-06-01") },
     { url: `${BASE_URL}/privacy`,                                 lastModified: new Date("2026-06-01") },
   ];

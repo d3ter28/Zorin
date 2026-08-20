@@ -69,6 +69,18 @@ export function Footer() {
             </div>
             <div>
               <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
+                Company
+              </h4>
+              <ul className="mt-3 flex flex-col gap-2">
+                <li>
+                  <a href="/about" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    About
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
                 Account
               </h4>
               <ul className="mt-3 flex flex-col gap-2">

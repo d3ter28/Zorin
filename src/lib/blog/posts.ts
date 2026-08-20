@@ -17,6 +17,166 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-run-a-price-sensitivity-survey",
+    title: "How to Run a Price Sensitivity Survey",
+    excerpt:
+      "Zorin's built-in Van Westendorp survey shows you what customers would actually pay, before you set a price. Here's how to run one and read the results.",
+    date: "2026-08-23",
+    readingTime: "9 min read",
+    category: "Product",
+    ogImage: "/images/blog/survey-results-chart.png",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">If you're launching a new product and have no sales history to work from, setting a price can feel like a guess dressed up as a decision. Cost-plus math gives you a floor, and a competitor's price gives you a reference point, but neither tells you what your own customers would actually be willing to pay. A method called the Van Westendorp Price Sensitivity Meter solves exactly this problem. It asks real customers four simple questions about price and turns their answers into a defensible range, even when you have zero sales data to fall back on. Zorin runs this survey natively for any product in your catalog, no separate tool or export required. This guide covers how the method works, how many responses you actually need, who to send it to, and how to read the results once they come in.</p>
+
+<h2>What a Price Sensitivity Survey Actually Measures</h2>
+<p>The Van Westendorp Price Sensitivity Meter was developed by Dutch economist Peter van Westendorp in 1976. It asks each respondent four open-ended pricing questions about the same product:</p>
+<ol>
+  <li>At what price would this product be so cheap that you'd question its quality?</li>
+  <li>At what price would this product be a bargain, a great value for the money?</li>
+  <li>At what price would this product start to feel expensive, but you'd still consider buying it?</li>
+  <li>At what price would this product be too expensive to consider buying at all?</li>
+</ol>
+<p>Plotting the answers across enough respondents produces four curves that intersect to define an acceptable price range, an optimal price point, and an indifference price point, the price at which roughly equal numbers of people see the product as a bargain and as getting expensive.</p>
+<p>A related method, Gabor-Granger, is worth knowing about even though Zorin doesn't run it. Instead of asking open-ended price questions, Gabor-Granger shows respondents a specific price and asks a direct yes-or-no purchase intent question, then adjusts the price up or down based on the answer. It's better suited to an established product where you already have a reasonable price range in mind and want to validate a specific number. Van Westendorp is the better fit when the price is genuinely unknown, which is exactly the situation a new product launch puts you in.</p>
+
+<h3>Stated Preference vs Revealed Preference</h3>
+<p>A survey measures stated preference: what customers say they'd pay when asked directly. <a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">Price elasticity</a>, by contrast, measures revealed preference: what customers actually did when your price changed in the real world. These are different signals, and it's worth knowing they don't always agree. Research on Van Westendorp results across categories has found that stated price thresholds tend to run 10-20% lower than actual purchase behavior. People are often willing to pay more than they claim they will in a hypothetical survey question. That gap doesn't make the survey useless. It means the survey result is a starting point and a sanity check, not a number to treat as gospel on its own.</p>
+
+<h2>Running the Survey Inside Zorin</h2>
+<p>Zorin includes the Van Westendorp survey as a built-in feature, not a separate integration or a third-party tool you need to configure. From any product in your catalog, you generate a shareable survey link. The link requires no customer login or account to answer, and no email, name, or IP address is stored with a response.</p>
+<p>The four questions are asked in Zorin's interface exactly as the method specifies: too cheap to trust the quality, a bargain, starting to feel expensive, and too expensive to buy. You send the link to actual customers or prospects for that specific product, through email, a post-purchase message, a social post, or wherever you'd normally reach your audience.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-public-page.png" alt="A customer-facing Zorin price sensitivity survey page showing the four classic Van Westendorp questions with a dollar-amount input for each" loading="lazy" />
+  <figcaption>The four questions as a customer actually sees them, no login required, no email collected.</figcaption>
+</figure>
+
+<p>Because it's built into the same platform where your elasticity data already lives, you don't need to export survey results into a separate spreadsheet and cross-reference them manually against your sales history. Both signals sit side by side on the same product.</p>
+
+<h2>How Many Responses You Need</h2>
+<p>Response volume determines how much you can trust the result, and Zorin surfaces this directly rather than showing you a range that looks precise before it actually is.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Responses</th>
+      <th>Confidence Tier</th>
+      <th>What It Means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Under 5</td>
+      <td>No tier shown</td>
+      <td>Not enough data yet to plot a meaningful curve</td>
+    </tr>
+    <tr>
+      <td>5 to 19</td>
+      <td>Low confidence</td>
+      <td>Directional range, useful for a first read</td>
+    </tr>
+    <tr>
+      <td>20 or more</td>
+      <td>Good confidence</td>
+      <td>Reliable enough to inform an actual pricing decision</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For context, broader market research practice for a directional read typically targets 100-200 respondents, and 300 or more for a high-confidence business decision at scale. Those numbers come from research designed to represent an entire market. Zorin's thresholds are calibrated for a single SKU rather than a market-wide study, which is why the useful range starts meaningfully lower. You're not trying to model an entire market, just get a read on how this specific product's price is perceived by the people most likely to buy it.</p>
+
+<h3>Where to Source Respondents</h3>
+<p>The survey is only as useful as the people answering it. A generic, disconnected audience with no real interest in the product tends to produce a wide, unhelpful range, because respondents are guessing at a hypothetical rather than reasoning from real purchase intent. A few sources tend to produce more reliable responses:</p>
+<ul>
+  <li><strong>Existing customers of related products.</strong> People who've already bought from your store have context for your brand and pricing tier that a stranger doesn't.</li>
+  <li><strong>Email subscribers who haven't purchased yet.</strong> They have interest without the anchor of already knowing your current price for this exact product.</li>
+  <li><strong>Post-purchase follow-up for a related or upcoming product.</strong> A customer who just bought something adjacent is a reasonable proxy for the audience of a new or related launch.</li>
+</ul>
+<p>Avoid recruiting responses from a general audience with no connection to your brand or category. The Van Westendorp method depends on respondents having genuine purchase intent for a product like this one, not a hypothetical opinion from someone who would never buy it regardless of price.</p>
+
+<h2>Reading Your Results</h2>
+<p>Once you hit the 20-response threshold, Zorin calculates three numbers from the response curves.</p>
+<p><strong>The acceptable price range.</strong> The band between where "too cheap" and "too expensive" perceptions cross the "bargain" and "getting expensive" perceptions. Pricing outside this range in either direction risks losing the sale, either from a quality doubt at the low end or a hard no at the high end.</p>
+<p><strong>The optimal price point.</strong> The point where the "too cheap" and "too expensive" curves intersect. This is often read as the price with the lowest resistance across the sample, not necessarily the price that maximizes revenue.</p>
+<p><strong>The indifference price point.</strong> The point where "a bargain" and "getting expensive" curves intersect. Roughly equal numbers of respondents see the price as a good deal versus starting to feel steep at this point.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.png" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" loading="lazy" />
+  <figcaption>Seven real responses producing an acceptable range, an optimal price, and an honest low-confidence label, not false certainty.</figcaption>
+</figure>
+
+<p>These three numbers together give you a defensible starting price, particularly useful for a product with no sales history yet, and a range to reference when a price change is under consideration for an existing product.</p>
+
+<h2>Why This Runs Alongside Elasticity, Not Blended Into It</h2>
+<p>Zorin deliberately keeps the price sensitivity survey as a separate advisory panel rather than folding its output into the raise, lower, or hold elasticity recommendation. Stated preference and revealed preference are different signals, and collapsing them into one number would hide a genuine discrepancy that's often worth noticing.</p>
+<p>If your elasticity model says a product can absorb a price increase based on actual purchase behavior, and your survey respondents also indicate room above your current price, that's two independent signals agreeing. If they disagree, that's worth investigating rather than averaging away. A gap between what people say they'd pay and what your sales data shows they actually pay can point to something specific: maybe your checkout experience is losing price-sensitive buyers before they complete a purchase, or maybe your survey respondents don't represent your actual buyer base as closely as you assumed.</p>
+<p>Reading both side by side, rather than as a single blended figure, is what lets you catch that kind of discrepancy instead of averaging it into invisibility. For a shorter walkthrough of the four questions and what a completed survey card looks like, see <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">what price your customers are willing to pay</a>.</p>
+
+<h2>When to Use a Survey Instead of Waiting for Elasticity Data</h2>
+<p>A price elasticity model needs real sales history with genuine price variation to produce a reliable estimate, typically at least 6 months of data. A price sensitivity survey doesn't have that requirement. It works from day one, before a product has sold a single unit.</p>
+<p>That makes it the right tool specifically for <a href="/blog/how-to-price-a-new-product-from-launch-to-end-of-life">new product launches</a>, where you have no revealed-preference data to model from and need a defensible starting price rather than a guess anchored only to cost-plus math or a competitor's number. It's also useful for validating a planned price change on an existing product before committing, particularly when the change is large enough that waiting for post-change sales data to confirm it went well feels too risky to attempt blind.</p>
+
+<p>Run your own Van Westendorp survey from any product in your Zorin catalog. <a href="/signup">Start a free trial</a> to generate a shareable link and see results update as responses come in.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li><strong>The Van Westendorp method asks four questions</strong> covering too cheap, a bargain, getting expensive, and too expensive, and plots the answers into an acceptable range and two price points.</li>
+<li><strong>It's the right tool when you have no sales history</strong>, since it measures stated preference from real customers rather than requiring past purchase data to model from.</li>
+<li><strong>Zorin runs this survey natively per product</strong>, with a shareable, no-login link and no personal data stored with responses.</li>
+<li><strong>Confidence scales with response volume:</strong> no tier under 5 responses, low confidence at 5-19, good confidence at 20 or more.</li>
+<li><strong>Survey data and elasticity data stay separate on purpose.</strong> Reading stated preference and revealed preference side by side lets you catch a disagreement between them instead of averaging it away.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I run a price sensitivity survey for my Shopify or WooCommerce store?</h3>
+<p>If you're using Zorin, generate a shareable survey link directly from any product in your catalog. The link asks the four standard Van Westendorp questions and requires no customer login. Send it to existing customers, email subscribers, or post-purchase audiences with genuine interest in that product category.</p>
+</div>
+<div class="faq-item">
+<h3>How many responses do I need for a reliable result?</h3>
+<p>At least 20 responses for what Zorin labels good confidence. Between 5 and 19 responses gives a directional read labeled low confidence, useful as an early signal but not a number to commit a final price to. Under 5 responses, no confidence tier is shown because there isn't enough data yet.</p>
+</div>
+<div class="faq-item">
+<h3>What are the four Van Westendorp questions?</h3>
+<p>At what price is this product so cheap you'd question its quality? At what price is it a bargain? At what price does it start to feel expensive, but you'd still consider it? At what price is it too expensive to consider buying? Each respondent answers all four for the same product.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a price sensitivity survey and price elasticity?</h3>
+<p>A survey measures stated preference, what customers say they'd pay, and works even for products with no sales history. Elasticity measures revealed preference, what customers actually did when the price changed historically, and requires real sales data with price variation, typically at least 6 months worth. Both are useful and Zorin keeps them as separate signals rather than blending them into one number.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use a price sensitivity survey for a brand-new product with no sales history?</h3>
+<p>Yes, this is one of the strongest use cases. A Van Westendorp survey doesn't require any past sales data, since it asks customers directly about price perception. It's a useful input for setting a defensible launch price before an elasticity model has enough history to run.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between Van Westendorp and Gabor-Granger?</h3>
+<p>Van Westendorp asks open-ended questions to find a price range when the right price is genuinely unknown, which is why it fits new product launches well. Gabor-Granger shows respondents specific prices and asks a direct yes-or-no purchase question, which works better for validating a number on an established product where you already have a reasonable range in mind. Zorin runs Van Westendorp.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin store any personal information from survey respondents?</h3>
+<p>No. The survey link requires no login or account, and no email, name, or IP address is stored with a response.</p>
+</div>
+<div class="faq-item">
+<h3>What do I do if my survey results and my elasticity data disagree?</h3>
+<p>Investigate rather than average the two together. A disagreement can point to something specific worth checking, such as your survey respondents not closely matching your actual buyer base, or a gap between what people say and what happens at your actual checkout. Zorin keeps the two signals separate specifically so a discrepancy like this stays visible instead of getting smoothed over.</p>
+</div>
+<div class="faq-item">
+<h3>How is the optimal price point different from the acceptable price range?</h3>
+<p>The acceptable price range is the band between where quality doubt and price rejection start to dominate, essentially the safe zone. The optimal price point is a single number inside that range, where resistance to the price is lowest across your respondents. The range tells you the boundaries; the optimal point tells you where within those boundaries perceived resistance is smallest.</p>
+</div>
+</section>
+
+<p class="conclusion">Whether you're setting a launch price with no sales history to lean on, or sanity-checking a planned increase before you commit to it, hearing directly from the people who'd actually buy the product is a signal worth having next to your own sales data, not instead of it. Zorin runs the survey and the elasticity model on the same platform, so both numbers are there when you're ready to decide.</p>
+`,
+  },
+  {
     slug: "how-to-price-a-new-product-from-launch-to-end-of-life",
     title: "Pricing a New Product: From Launch to End of Life",
     excerpt:
