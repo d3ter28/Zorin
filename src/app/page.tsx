@@ -22,7 +22,7 @@ export const metadata = {
   title: "Zorin - Pricing Intelligence for E-Commerce Sellers",
   description:
     "Turn your sales history into profit-maximizing price recommendations. Upload, model, optimize.",
-  alternates: { canonical: "https://www.tryzorin.com/" },
+  alternates: { canonical: "https://www.tryzorin.com" },
 };
 
 // Plain-text mirror of the FAQ component's Q&A, for FAQPage schema — the

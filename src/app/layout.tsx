@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { PLAN_CATALOG } from "@/lib/billing/planCatalog";
 import "./globals.css";
 
 const GA_ID = "G-BF8DJYWE15";
@@ -56,7 +57,7 @@ const softwareJsonLd = {
   url: "https://www.tryzorin.com",
   offers: {
     "@type": "Offer",
-    price: "39",
+    price: PLAN_CATALOG[0].price.replace("$", ""),
     priceCurrency: "USD",
   },
 };

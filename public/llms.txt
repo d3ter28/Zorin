@@ -1,5 +1,8 @@
 # Zorin
 
+> Last updated: 2026-08-21
+> License: This content is licensed under RSL 1.0 (https://rslstandard.org/rsl). Summarization and citation with attribution are permitted; reproduction of full blog post text without attribution is not.
+
 > Zorin is a pricing intelligence tool for Shopify and WooCommerce merchants. It fits a per-SKU demand curve from your sales history using log-log OLS elasticity regression and returns raise/lower/hold recommendations with a confidence score and estimated profit lift. Pricing campaigns let merchants schedule and auto-revert bulk price changes across their catalog. A profit tracking dashboard shows monthly P&L, per-product gross profit, and campaign performance. A Van Westendorp Price Sensitivity survey lets merchants ask customers directly what they would pay. A Launch Planner provides deterministic pricing for products with no sales history yet. Competitor prices can be tracked per product and feed into the Launch Planner automatically.
 
 ## Core pages

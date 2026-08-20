@@ -21,7 +21,7 @@ export const posts: BlogPost[] = [
     title: "How to Run a Price Sensitivity Survey",
     excerpt:
       "Zorin's built-in Van Westendorp survey shows you what customers would actually pay, before you set a price. Here's how to run one and read the results.",
-    date: "2026-08-23",
+    date: "2026-08-21",
     readingTime: "9 min read",
     category: "Product",
     ogImage: "/images/blog/survey-results-chart.webp",
@@ -181,7 +181,7 @@ export const posts: BlogPost[] = [
     title: "Pricing a New Product: From Launch to End of Life",
     excerpt:
       "Set a launch price when you have no data, know when to raise it, price bundles without killing margin, and retire a product cleanly.",
-    date: "2026-08-22",
+    date: "2026-08-21",
     readingTime: "11 min read",
     category: "Pricing Strategy",
     author: {
