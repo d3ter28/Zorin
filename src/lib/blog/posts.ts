@@ -140,7 +140,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-to-run-a-price-sensitivity-survey",
-    title: "How to Run a Price Sensitivity Survey",
+    title: "How to Run a Van Westendorp Survey",
     excerpt:
       "Zorin's built-in Van Westendorp survey shows you what customers would actually pay, before you set a price. Here's how to run one and read the results.",
     date: "2026-08-21",
