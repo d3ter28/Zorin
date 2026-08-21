@@ -17,6 +17,128 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "ecommerce-pricing-strategy-the-complete-guide",
+    title: "Ecommerce Pricing Strategy: The Complete Guide",
+    excerpt:
+      "Every ecommerce pricing strategy explained, how to pick the right one for your store, and the biggest mistake sellers make when setting prices.",
+    date: "2026-08-21",
+    readingTime: "12 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Most merchants set a price once, usually with cost-plus math or a glance at a competitor, and then never touch it again. That's not a pricing strategy, it's a launch decision that quietly becomes permanent. A real pricing strategy is a deliberate, ongoing framework for how you set and adjust prices as your store, your costs, and your customers change. This guide covers the main types of ecommerce pricing strategies, how to choose the right one for your store, how to actually build a strategy instead of guessing, the biggest mistake sellers make, and how often a pricing strategy needs to be revisited.</p>
+
+<h2>The Main Types of Ecommerce Pricing Strategies</h2>
+<p>There's no single correct pricing strategy for every store. Each of the strategies below solves a different problem, and most established ecommerce businesses end up blending more than one across their catalog rather than picking just one and applying it everywhere.</p>
+
+<table>
+  <thead>
+    <tr><th>Strategy</th><th>What it means</th><th>Best fit</th><th>Learn more</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Cost-based (cost-plus)</strong></td><td>Set price by adding a fixed margin on top of your total cost</td><td>New products with no sales history, simple catalogs, a safety floor for any other strategy</td><td><a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">Profit margins and cost-based pricing</a></td></tr>
+    <tr><td><strong>Competitor-based</strong></td><td>Price relative to what similar products cost across the market</td><td>Highly visible, easily compared categories (electronics, commodity goods, marketplace listings)</td><td><a href="/blog/should-you-price-the-same-on-shopify-and-amazon">Multi-channel pricing</a></td></tr>
+    <tr><td><strong>Value-based</strong></td><td>Price according to what customers actually demonstrate they're willing to pay, using real demand data</td><td>Differentiated or branded products where elasticity data is available</td><td><a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">Price elasticity explained</a></td></tr>
+    <tr><td><strong>Dynamic/demand-based</strong></td><td>Adjust prices in response to demand signals, season, or inventory levels</td><td>Products with genuine seasonal or demand swings</td><td><a href="/blog/dynamic-pricing-vs-sales-a-shopify-sellers-guide">Dynamic and seasonal pricing</a></td></tr>
+    <tr><td><strong>Penetration pricing</strong></td><td>Launch low to build volume and reviews, raise later</td><td>New entrants in competitive, elastic categories</td><td><a href="/blog/how-to-price-a-new-product-from-launch-to-end-of-life">Pricing for launches</a></td></tr>
+    <tr><td><strong>Price skimming</strong></td><td>Launch high, lower over time as the market matures</td><td>Genuinely differentiated products with low price visibility</td><td><a href="/blog/how-to-price-a-new-product-from-launch-to-end-of-life">Pricing for launches</a></td></tr>
+    <tr><td><strong>Psychological (charm) pricing</strong></td><td>Use price framing and endings (like $19.99) to influence perception</td><td>Nearly universal as a display tactic layered on top of any base strategy</td><td><a href="/blog/does-charm-pricing-999-actually-work">Pricing psychology and tactics</a></td></tr>
+    <tr><td><strong>Bundle pricing</strong></td><td>Price a set of products together below the sum of individual prices</td><td>Increasing average order value, moving slower SKUs alongside bestsellers</td><td><a href="/blog/how-to-price-product-bundles-without-giving-away-your-margin">Bundle pricing without losing margin</a></td></tr>
+  </tbody>
+</table>
+
+<p>A few of these aren't mutually exclusive. Cost-based pricing sets your floor regardless of which other strategy you layer on top. Psychological pricing tactics (like ending a price in .99) get applied to whatever number your primary strategy produces. Most real-world pricing setups combine two or three of these rather than choosing exactly one from the list.</p>
+
+<h2>Should You Use Cost-Plus, Competitor-Based, or Value-Based Pricing?</h2>
+<p>These three are the foundational starting points most merchants choose between when they're first setting up a real pricing approach, and the right one depends on what data you actually have available, not personal preference.</p>
+<p><strong>Cost-plus pricing</strong> is the default when you have nothing else to go on. Take your total cost (product, shipping, packaging, a share of overhead), add a target margin, and that's your price. It's simple, and it guarantees you're not selling at a loss. Its weakness is that it tells you nothing about what customers will actually pay. A product with cost-plus pricing can be priced well below what the market would bear, or above what it will tolerate, and the formula has no way of telling you which.</p>
+<p><strong>Competitor-based pricing</strong> works when you're in a category where customers can and do compare prices easily, marketplace listings, commodity electronics, anything with a lot of visible alternatives. The risk is that it ties your price to your competitor's cost structure and strategy, not your own. If a competitor is running a loss-leader promotion or has a fundamentally different cost base, matching their price can quietly put you in a worse position than staying independent.</p>
+<p><strong>Value-based pricing</strong> is the strongest option once you have real demand data to work from, because it prices according to what your specific customers have actually demonstrated they'll pay, rather than a formula or a competitor's number. This is what <a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">price elasticity data</a> operationalizes directly: instead of guessing at value, an elasticity model reads your own sales history and shows you where demand actually starts resisting a price increase. The tradeoff is that it requires sales history to work, so it's not available for a brand-new product on day one.</p>
+<p>The practical sequence most stores follow: start with cost-plus to set a safe floor, use competitor pricing as a sanity check on the range you're operating in, and shift toward value-based pricing as real sales data accumulates and tells you more than either of the other two methods can.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>Once sales history accumulates, value-based pricing replaces the guesswork with a specific, confidence-scored recommendation.</figcaption>
+</figure>
+
+<h2>How to Actually Build a Pricing Strategy (Instead of Just Setting Prices)</h2>
+<p>A pricing strategy is a repeatable process, not a single number you land on once. Building one means putting four pieces in place.</p>
+<p><strong>A cost floor.</strong> Know the minimum price for every product below which you're losing money once all real costs, not just the supplier invoice, are counted. This is your non-negotiable baseline regardless of which pricing approach you layer on top of it.</p>
+<p><strong>A chosen primary approach.</strong> Pick from the taxonomy above based on what data you have and what category you're in. This doesn't need to be the same choice for every product in your catalog; a differentiated hero SKU and a commodity accessory can reasonably use different approaches.</p>
+<p><strong>A review trigger.</strong> Decide in advance what causes you to revisit a price: a cost increase from a supplier, a competitor's price move, a certain amount of new sales data accumulating, or a fixed calendar check. Without a trigger, prices tend to drift into the "set once, never touched" pattern that's the single most common failure mode covered in the next section.</p>
+<p><strong>A documented decision rule for common scenarios.</strong> Write down, even briefly, what you'll do when a specific cost goes up, when a competitor undercuts you, or when a new product launches with no sales history. Having the rule decided in advance means you're not making a reactive, emotional pricing call in the moment a cost increase or competitor move actually happens.</p>
+<p>None of this needs to be complicated to count as a real strategy. A one-page document covering these four pieces is a genuine pricing strategy. A price you set six months ago and haven't looked at since is not, no matter how much thought went into it originally.</p>
+
+<h2>The Biggest Mistake Ecommerce Sellers Make With Pricing</h2>
+<p>Across independent sources covering ecommerce pricing mistakes, the same underlying failure shows up described in different words: pricing gets treated as a one-time launch decision instead of an ongoing practice. Two specific patterns account for most of it.</p>
+<p><strong>Underpricing out of fear at launch.</strong> New sellers often set prices too low because they're worried customers won't buy otherwise. It's an understandable instinct, but it tends to compress the entire pricing ladder for everything that comes after, since a first product priced too low sets a reference point that makes every future price increase feel larger than it actually is.</p>
+<p><strong>Sticky prices that never get revisited.</strong> The opposite failure happens after launch: a price gets set and then left alone indefinitely, regardless of what happens to costs, demand, or the competitive landscape around it. Pricing software company Pricen (formerly Sniffie, rebranded 2025) has noted in their own analysis that many Shopify store owners never test their prices at all. They assume the number they picked at some point in the past is still the right one and never check.</p>
+<p>Both patterns come from the same root cause: treating pricing as a decision made once rather than a practice maintained continuously. A cost-plus price set at launch and left untouched for a year doesn't reflect a year of accumulated sales data telling you whether it was actually right. An elasticity model that reads ongoing sales history, rather than a number picked once and never revisited, is what turns pricing from a launch decision back into an active practice.</p>
+
+<h2>How Often Should You Review Your Pricing Strategy?</h2>
+<p>Most guidance on this question is vague, some version of "regularly" or "as needed" without a specific answer. A more useful approach ties your review cadence to how much new data you have, not a fixed date on the calendar.</p>
+<p><strong>Per product, review whenever meaningful new sales data has accumulated since the last price check.</strong> For most ecommerce products, that's roughly every 3-6 months, enough time to see a real pattern rather than noise from a single unusual week. A high-volume product can reach that threshold faster; a slow-moving one takes longer.</p>
+<p><strong>At the strategy level, review at least twice a year regardless of individual product data.</strong> This is where you check whether your overall approach (cost-plus vs value-based vs a blend) still fits your business. A store that launched entirely on cost-plus pricing a year ago and now has substantial sales history across its catalog has an opportunity to shift toward value-based pricing on its best-established products, even if no single product's price technically "needs" a change yet.</p>
+<p><strong>Immediately, outside the regular cadence, when a trigger event happens.</strong> A significant supplier cost increase, a major competitor price move, or a product's demand pattern shifting noticeably (a viral moment, a seasonal swing, a new competitor entering the category) all warrant an off-cycle review rather than waiting for the next scheduled check.</p>
+<p>The common thread across all three: review cadence should be driven by whether you actually have new information to act on, not by an arbitrary interval. Checking a product's price every month when nothing about its sales pattern has changed just adds noise. Waiting a full year when three months of clear data already points to a change leaves money on the table in the meantime.</p>
+
+<p>Run your own pricing review continuously instead of once a year. <a href="/signup">Start a free trial</a> and see whether Zorin's elasticity model agrees with your current prices.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li><strong>There's no single correct pricing strategy.</strong> Cost-based, competitor-based, value-based, dynamic, penetration, skimming, psychological, and bundle pricing each solve different problems, and most stores blend more than one.</li>
+<li><strong>Cost-plus, competitor-based, and value-based pricing form the foundational choice.</strong> The right one depends on what data you have, not preference; most stores start with cost-plus and shift toward value-based as sales history accumulates.</li>
+<li><strong>A real strategy has four parts:</strong> a cost floor, a chosen primary approach, a review trigger, and a documented decision rule for common scenarios.</li>
+<li><strong>The biggest mistake is treating pricing as a one-time decision.</strong> Underpricing out of launch fear and never revisiting a set price are the two most common forms of this same failure.</li>
+<li><strong>Review cadence should follow data, not the calendar.</strong> Roughly 3-6 months per product as sales history accumulates, twice a year at the strategy level, and immediately when a real trigger event happens.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What are the main types of pricing strategies for ecommerce, and how do I know which one fits my store?</h3>
+<p>The main types are cost-based, competitor-based, value-based, dynamic/demand-based, penetration, price skimming, psychological pricing, and bundle pricing. Which fits your store depends on your category and what data you have: cost-based is the safe default with no sales history, competitor-based suits highly visible commodity categories, and value-based is strongest once you have real sales data showing what your specific customers will pay. Most stores end up blending more than one strategy across their catalog rather than picking a single approach for everything.</p>
+</div>
+<div class="faq-item">
+<h3>Should I use cost-plus, competitor-based, or value-based pricing for my Shopify store?</h3>
+<p>Start with cost-plus to establish a safe price floor, especially for new products with no sales history. Use competitor pricing as a sanity check on the range you're operating in, particularly in categories where customers compare prices easily. Shift toward value-based pricing, grounded in your own elasticity data, as real sales history accumulates, since it reflects what your specific customers actually demonstrate they'll pay rather than a formula or someone else's price.</p>
+</div>
+<div class="faq-item">
+<h3>How do I actually build a pricing strategy instead of just setting prices as I go?</h3>
+<p>Put four things in place: a cost floor below which you never price, a chosen primary pricing approach based on your category and available data, a review trigger that defines when you'll revisit a price, and a documented decision rule for common scenarios like a cost increase or a competitor's price move. A brief one-page document covering these four elements is a genuine strategy. A price set once and left alone is not, regardless of how carefully it was chosen originally.</p>
+</div>
+<div class="faq-item">
+<h3>What's the biggest mistake ecommerce sellers make with pricing strategy?</h3>
+<p>Treating pricing as a one-time launch decision instead of an ongoing practice. This shows up in two common forms: underpricing out of fear when a product first launches, which compresses the pricing ladder for everything that follows, and sticky prices that never get revisited once set, regardless of what happens to costs or demand afterward. Both stem from the same root cause, pricing decided once rather than maintained continuously.</p>
+</div>
+<div class="faq-item">
+<h3>How often should a pricing strategy be reviewed or updated as a store grows?</h3>
+<p>Review individual product prices roughly every 3-6 months once enough new sales data has accumulated since the last check, faster for high-volume products and slower for slow movers. Review your overall strategy at least twice a year regardless. Outside that regular cadence, review immediately whenever a trigger event happens, a significant cost increase, a major competitor move, or a noticeable shift in a product's demand pattern.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between penetration pricing and price skimming?</h3>
+<p>Penetration pricing launches a product at a low price to build volume and reviews quickly, with the intention of raising the price once demand and social proof are established. Price skimming launches high and lowers the price over time as the market matures. Penetration fits competitive, elastic categories where volume and reviews are the priority; skimming fits genuinely differentiated products where early adopters are willing to pay a premium.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use more than one pricing strategy at the same time?</h3>
+<p>Yes, and most established stores do. A cost floor applies to every product regardless of other strategy. Psychological pricing tactics like charm pricing get layered on top of whatever base price your primary strategy produces. A single catalog might use value-based pricing on established hero products, cost-plus on newly launched items with no sales history yet, and competitor-based pricing on commodity accessories, all at the same time.</p>
+</div>
+<div class="faq-item">
+<h3>Is competitor-based pricing a bad strategy?</h3>
+<p>Not inherently, but it works best as a reference point rather than the sole decision rule. Competitor pricing tells you what the market is charging, which reflects their costs and strategy, not necessarily what your own customers would pay for your specific product. It's most useful in categories with high price visibility, where customers are actively comparing options, and least reliable as a standalone approach for differentiated or branded products where your own demand data would give a more accurate answer.</p>
+</div>
+</section>
+
+<p class="conclusion">Choosing a strategy from the list above is the starting point. Turning it into a real, ongoing practice grounded in your own sales data is what separates a pricing decision made once at launch from a pricing strategy that actually grows with your store. Zorin reads your Shopify or WooCommerce sales history and shows you, per product, whether the price you set is still the right one, so the review happens continuously instead of once a year if you remember to check.</p>
+`,
+  },
+  {
     slug: "how-to-run-a-price-sensitivity-survey",
     title: "How to Run a Price Sensitivity Survey",
     excerpt:
