@@ -183,6 +183,24 @@ describe("LaunchPlanner", () => {
     expect(fetch).toHaveBeenCalledWith("/api/products/p1/competitor-prices");
   });
 
+  it("prefills payment fee percent from a region preset, editable afterward", async () => {
+    const user = userEvent.setup();
+    render(<LaunchPlanner />);
+
+    const paymentFee = screen.getByRole("spinbutton", { name: "Payment fee percent" }) as HTMLInputElement;
+    expect(paymentFee.value).toBe("3");
+
+    await user.selectOptions(
+      screen.getByRole("combobox", { name: "Payment fee region (preset)" }),
+      "United Kingdom"
+    );
+    expect(paymentFee.value).toBe("2.5");
+
+    await user.clear(paymentFee);
+    await user.type(paymentFee, "1.9");
+    expect(paymentFee.value).toBe("1.9");
+  });
+
   it("leaves competitor prices empty when no productId is present", () => {
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);

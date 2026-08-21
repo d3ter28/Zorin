@@ -47,6 +47,14 @@ interface SavedLaunchScenario {
 
 const DEFAULT_SCENARIO_NAMES = ["Conservative launch", "Base launch", "Aggressive launch"];
 
+const PAYMENT_FEE_REGIONS: Record<string, { label: string; paymentFeePct: string }> = {
+  us: { label: "United States", paymentFeePct: "2.9" },
+  uk: { label: "United Kingdom", paymentFeePct: "2.5" },
+  eu: { label: "European Union", paymentFeePct: "2.5" },
+  ca: { label: "Canada", paymentFeePct: "2.9" },
+  au: { label: "Australia", paymentFeePct: "2.6" },
+};
+
 function integerValue(value: string): number {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? Math.min(999, Math.max(0, Math.floor(parsed))) : 0;
@@ -102,8 +110,15 @@ export function LaunchPlanner() {
   const [shipping, setShipping] = useState("3");
   const [packaging, setPackaging] = useState("1");
   const [otherCosts, setOtherCosts] = useState("0");
+  const [feeRegion, setFeeRegion] = useState("custom");
   const [paymentFee, setPaymentFee] = useState("3");
   const [platformFee, setPlatformFee] = useState("2");
+
+  function handleFeeRegionChange(next: string) {
+    setFeeRegion(next);
+    const preset = PAYMENT_FEE_REGIONS[next];
+    if (preset) setPaymentFee(preset.paymentFeePct);
+  }
   const [requiredMargin, setRequiredMargin] = useState("35");
   const [positioning, setPositioning] = useState<LaunchPositioning>("mid-market");
   const [roundingMode, setRoundingMode] = useState<LaunchRoundingMode>("ninety-nine");
@@ -271,6 +286,21 @@ export function LaunchPlanner() {
           <Field label="Shipping per order" prefix="$" value={shipping} onChange={setShipping} />
           <Field label="Packaging per order" prefix="$" value={packaging} onChange={setPackaging} />
           <Field label="Other unit costs" prefix="$" value={otherCosts} onChange={setOtherCosts} />
+          <label className="grid gap-1 text-xs font-medium text-muted">
+            Payment fee region (preset)
+            <select
+              value={feeRegion}
+              onChange={(event) => handleFeeRegionChange(event.target.value)}
+              className="field text-sm"
+            >
+              <option value="custom">Custom</option>
+              {Object.entries(PAYMENT_FEE_REGIONS).map(([id, r]) => (
+                <option key={id} value={id}>
+                  {r.label}
+                </option>
+              ))}
+            </select>
+          </label>
           <Field label="Payment fee percent" value={paymentFee} onChange={setPaymentFee} />
           <Field label="Platform fee percent" value={platformFee} onChange={setPlatformFee} />
           <Field label="Required margin percent" value={requiredMargin} onChange={setRequiredMargin} />
