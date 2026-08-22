@@ -1,13 +1,13 @@
 # Zorin Blog: Structure & Workflow
 
-Reference doc for how the Zorin blog is built, styled, and maintained. Last updated 2026-08-21.
+Reference doc for how the Zorin blog is built, styled, and maintained. Last updated 2026-08-21 (cluster/pagination architecture added).
 
 ## Where it lives
 
 - Content: `src/lib/blog/posts.ts` — a static TypeScript array (`BlogPost[]`), not a CMS. Add a post by prepending an object to the `posts` array.
 - `BlogPost` fields beyond the basics: `updatedDate?` (sets `dateModified` in Article schema and sitemap `lastModified` — set this when substantively editing an old post), `ogImage?` (root-relative path, falls back to `/og-default.png`, which does not yet exist as an asset), `canonicalSlug?` (set on an older duplicate/cannibal post to point its canonical tag at the newer post instead of itself).
-- Rendering: `src/app/blog/page.tsx` (listing) and `src/app/blog/[slug]/page.tsx` (individual post). The post page also auto-inserts a mid-article CTA banner (added 2026-08-21) for any post with 4+ `<h2>` sections, splitting the content at the middle `<h2>` — no per-post markup needed, this is template-level.
-- Sitemap: `src/app/sitemap.ts` auto-generates blog routes from `posts.ts` (`lastModified` = `updatedDate ?? date`) plus a hardcoded list of static marketing pages. **Keep post dates ≤ today** — a future-dated post can defer Googlebot crawling; this bit twice already (2026-08-21) from posts pre-dated for a staggered-publish look.
+- Rendering (restructured 2026-08-21, see "Topic clusters & pagination" below): `src/app/blog/page.tsx` is now a pure topic browser (cluster cards only), `src/app/blog/all/page.tsx` holds the full paginated chronological list, `src/app/blog/cluster/[slug]/page.tsx` is a per-cluster hub, and `src/app/blog/[slug]/page.tsx` is the individual post. The post page also auto-inserts a mid-article CTA banner (added 2026-08-21) for any post with 4+ `<h2>` sections, splitting the content at the middle `<h2>` — no per-post markup needed, this is template-level.
+- Sitemap: `src/app/sitemap.ts` auto-generates blog routes from `posts.ts` (`lastModified` = `updatedDate ?? date`), cluster hub routes from `clusters.ts`, plus `/blog/all` and a hardcoded list of static marketing pages. **Keep post dates ≤ today** — a future-dated post can defer Googlebot crawling; this bit twice already (2026-08-21) from posts pre-dated for a staggered-publish look.
 - Schema: `src/lib/blog/schema.ts` auto-generates `Article` and `FAQPage` JSON-LD per post using `cheerio` to parse the `.faq-item` markup out of the post's HTML. Wired into `src/app/blog/[slug]/page.tsx` alongside a `BreadcrumbList` block (added 2026-08-21). This runs for every post automatically, but it depends on the FAQ markup structure being exact (see below).
 - Every public page (blog posts and marketing pages) now carries `alternates: { canonical: ... }` (site-wide pass completed 2026-08-21) — home, `/blog`, `/features` + subpages, integrations, calculators, `/terms`, `/privacy`, `/about`. No trailing slash on the homepage canonical, matching the sitemap's `BASE_URL` convention.
 - Styling: all post CSS classes are pre-defined in `src/app/globals.css` (search `.prose-content`). Posts should never use inline `style=` attributes — write plain semantic HTML and let the site's CSS handle it.
@@ -49,7 +49,7 @@ Other hard rules:
 - Renders a bio card ("Written by {name}" + bio text) after the article content.
 - `schema.ts`'s Article JSON-LD uses a real `Person` author instead of falling back to the `Zorin` Organization.
 
-All 36 current posts are attributed to `{ name: "Dexter", bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork." }` — this is now the default for every new post unless a real guest author is specified. The field exists specifically to support guest-post attribution; use a different name/bio when a post is genuinely guest-written.
+All 47 current posts are attributed to `{ name: "Dexter", bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork." }` — this is now the default for every new post unless a real guest author is specified. The field exists specifically to support guest-post attribution; use a different name/bio when a post is genuinely guest-written.
 
 ## Internal linking policy (updated 2026-08-08, reinforced 2026-08-16)
 
@@ -65,26 +65,44 @@ Previous posts (through 2026-08-08) defaulted almost every non-blog link to `/si
   - `/signup` — still fine as one of the links, just not the only non-blog destination every time
 - **On 2026-08-12, all 30 posts published up to that point were audited and fixed**: 11 posts were orphaned (zero incoming internal blog links) and 6 had only the `/signup` link with no blog-to-blog links at all. Fixed by adding contextual links from the under-linked posts to the orphans. As of that audit, every post has at least one incoming and one outgoing blog-to-blog link, and there are zero broken internal links. Re-run this kind of audit periodically as new posts accumulate — it's a simple regex pass over `posts.ts` extracting `href="/blog/..."` links and cross-referencing against the slug list (see conversation history for the exact script if needed).
 
-## Pillar / cluster content map (established 2026-08-16)
+## Topic clusters & pagination (built 2026-08-21)
 
-The blog has four real topic clusters, of uneven strength:
+The informal pillar/cluster map that used to live only in this doc is now real, live site architecture in `src/lib/blog/clusters.ts` — a `Cluster[]` array of `{ slug, name, description, postSlugs }`. This is the **single source of truth** for cluster membership; update this doc's summary below if it drifts, but `clusters.ts` is what actually renders.
 
-1. **Price Elasticity** (the strongest cluster by far — one post alone accounted for 46% of the site's total search impressions in the third GSC pull). Pillar: `what-does-price-elasticity-actually-mean` (11+ other posts already link to it, making it the de facto hub) plus its deeper companion `price-elasticity-explained-a-guide-for-ecommerce-sellers` (the two are now cross-linked). Cluster: `price-elasticity-examples-by-ecommerce-category`, `why-do-some-products-have-more-elastic-demand-than-others`, `elastic-vs-inelastic-demand-whats-the-difference`, `how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist`, `how-to-calculate-price-elasticity-for-your-shopify-store`, `how-to-know-if-your-prices-are-too-high-or-too-low`, `why-did-my-sales-drop-when-i-raised-my-price`, `price-increase-killed-your-sales-heres-the-real-reason`, `how-much-should-i-trust-an-ai-pricing-recommendation`, `do-i-need-a-data-analyst-to-price-my-products-well`.
-2. **Pricing Tools / Software Buyer's Guides**. Pillar: `best-pricing-optimization-tools-for-shopify-stores-2026` (the most comprehensive, 4-category roundup; as of 2026-08-16 it has inbound links from all the other posts in this cluster). Cluster: `shopify-pricing-apps-what-to-look-for`, `woocommerce-pricing-apps-what-to-look-for`, `best-price-optimization-app-for-small-shopify-stores`, `price-elasticity-vs-repricing-software`, `price-elasticity-tools-for-ecommerce-how-to-find-your-best-price`, `do-you-need-a-competitor-price-tracking-app`.
-3. **Discount / Promotional Pricing**. Pillar: `how-to-run-a-sale-without-wrecking-your-margin`. Cluster: `how-to-price-a-discount-without-losing-your-margin`, `how-to-price-product-bundles-without-giving-away-your-margin` (added 2026-08-17), `dynamic-pricing-vs-sales-a-shopify-sellers-guide` (added 2026-08-20). Bundle pricing is also covered in `how-to-price-a-new-product-from-launch-to-end-of-life` (added 2026-08-22) with a cross-link.
-4. **Margin & Profit Fundamentals**. Pillar candidate: `whats-a-good-profit-margin-for-an-online-store` or `is-your-store-leaving-money-on-the-table` (no single clear hub yet). Loosely tied: `should-i-raise-prices-to-cover-rising-costs`, `why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies`, `how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one`.
+**8 clusters, all 47 posts accounted for exactly once** (cross-checked with a script — no duplicates, no orphans left out):
 
-True orphans with no supporting cluster (not broken, just topically isolated): `does-charm-pricing-999-actually-work`, `how-often-should-i-change-my-prices`, `how-do-i-know-what-to-price-my-products` (broad enough to become its own pillar someday). `how-do-i-know-what-price-my-customers-are-willing-to-pay` (the Van Westendorp survey post) is a legitimate mini-pillar for that specific feature but doesn't have a real cluster around it yet. `should-you-price-differently-on-shopify-vs-amazon` is no longer a true orphan: it now has an incoming link from `should-you-price-the-same-on-shopify-and-amazon` (added 2026-08-21), which is its natural companion post. The two together form a loose "channel pricing" mini-cluster.
+1. **Price Elasticity** (13 posts) — the core/largest cluster. Pillar: `what-does-price-elasticity-actually-mean`.
+2. **Pricing Tools & Software** (8 posts) — buyer's guides and comparisons, including `how-to-evaluate-a-shopify-pricing-app`.
+3. **Discounts & Promotions** (4 posts) — sales, bundles, dynamic pricing.
+4. **Margin & Profit Fundamentals** (6 posts) — gross/net margin benchmarks and where profit leaks.
+5. **Price Sensitivity Surveys** (4 posts) — the Van Westendorp cluster: `how-do-i-know-what-price-my-customers-are-willing-to-pay`, `how-to-run-a-price-sensitivity-survey`, `how-to-interpret-van-westendorp-results`, `price-survey-vs-price-testing`. No longer a single orphan post — this is now a real 4-post cluster.
+6. **Multi-Channel & Launch Pricing** (4 posts) — Shopify vs Amazon pricing, new-product launch pricing.
+7. **Pricing Fundamentals & Strategy** (6 posts) — the catch-all for broad strategy questions (charm pricing, review cadence, competitor positioning), anchored by the new pillar `ecommerce-pricing-strategy-the-complete-guide`.
+8. **Vertical-Specific Pricing** (2 posts) — `pricing-skincare-products-on-shopify-charging-enough`, `how-to-price-clothing-on-shopify`. Small but real; a natural place to add apparel/supplements/home-goods follow-ons.
 
-**How to apply:** when planning new posts, prefer strengthening an existing cluster (especially #3 and #4, which are thin) over starting a fifth. When writing a new post, check whether it belongs to an existing pillar and link back to it explicitly.
+**Site architecture built on top of this:**
+- `/blog` — pure topic browser now: 8 cluster cards (name, description, post count) plus a "View all posts" button. No longer shows the chronological list directly.
+- `/blog/all` — the full chronological list, paginated 12/page via a shared `Pagination` component (`src/components/marketing/Pagination.tsx`).
+- `/blog/cluster/[slug]` — one hub page per cluster, same 12/page pagination, own `BreadcrumbList` schema and per-page canonical (`?page=N` for page 2+).
+- All cluster + `/blog/all` URLs are in the sitemap.
 
-## Current post list (40 posts, newest first, as of 2026-08-22)
+**How to apply when adding a new post:** after adding the post to `posts.ts`, also add its slug to the matching cluster's `postSlugs` array in `clusters.ts`. This is a manual step with nothing enforcing it — a post left out of every cluster still lives at its own URL and in `/blog/all`, but won't surface under any topic page. Worth periodically re-running the cross-check (every `posts.ts` slug appears in exactly one cluster) as the count grows; a build-time check that fails on an unclustered post has been discussed but not yet built.
+
+## Current post list (47 posts, newest first, as of 2026-08-21)
 
 | Date | Slug | Category |
 |---|---|---|
-| 2026-08-22 | `how-to-price-a-new-product-from-launch-to-end-of-life` | Pricing Strategy |
+| 2026-08-21 | `price-survey-vs-price-testing` | Product |
+| 2026-08-21 | `how-to-interpret-van-westendorp-results` | Product |
+| 2026-08-21 | `how-to-price-clothing-on-shopify` | Pricing Strategy |
+| 2026-08-21 | `how-to-evaluate-a-shopify-pricing-app` | Product |
+| 2026-08-21 | `ecommerce-pricing-strategy-the-complete-guide` | Pricing Strategy |
+| 2026-08-21 | `how-to-run-a-price-sensitivity-survey` (retitled "How to Run a Van Westendorp Survey", slug unchanged) | Product |
+| 2026-08-21 | `how-to-price-a-new-product-from-launch-to-end-of-life` | Pricing Strategy |
 | 2026-08-21 | `should-you-price-the-same-on-shopify-and-amazon` | Pricing Strategy |
+| 2026-08-21 | `what-your-price-elasticity-score-actually-means` | Pricing Strategy |
 | 2026-08-20 | `dynamic-pricing-vs-sales-a-shopify-sellers-guide` | Pricing Strategy |
+| 2026-08-19 | `ecommerce-profit-margins-what-to-target-and-how-to-track-them` | Pricing Strategy |
 | 2026-08-18 | `pricing-skincare-products-on-shopify-charging-enough` | Pricing Strategy |
 | 2026-08-17 | `how-to-price-product-bundles-without-giving-away-your-margin` | Pricing Strategy |
 | 2026-08-16 | `do-you-need-a-competitor-price-tracking-app` | Product |
@@ -107,37 +125,33 @@ True orphans with no supporting cluster (not broken, just topically isolated): `
 | 2026-07-31 | `does-charm-pricing-999-actually-work` | Education |
 | 2026-07-30 | `woocommerce-pricing-apps-what-to-look-for` | Product |
 | 2026-07-30 | `why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies` | Pricing Strategy |
+| 2026-07-30 | `do-i-need-a-data-analyst-to-price-my-products-well` | Education |
 | 2026-07-30 | `whats-a-good-profit-margin-for-an-online-store` | Education |
 | 2026-07-30 | `should-i-raise-prices-to-cover-rising-costs` | Pricing Strategy |
 | 2026-07-30 | `how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one` | Product |
-| 2026-07-30 | `do-i-need-a-data-analyst-to-price-my-products-well` | Education |
-| 2026-07-29 | `why-did-my-sales-drop-when-i-raised-my-price` | Pricing Strategy |
-| 2026-07-29 | `what-does-price-elasticity-actually-mean` | Education |
-| 2026-07-29 | `how-often-should-i-change-my-prices` | Pricing Strategy |
 | 2026-07-29 | `how-much-should-i-trust-an-ai-pricing-recommendation` | Education |
+| 2026-07-29 | `what-does-price-elasticity-actually-mean` | Education |
 | 2026-07-29 | `how-do-i-price-a-new-product-with-no-sales-history` | Pricing Strategy |
+| 2026-07-29 | `why-did-my-sales-drop-when-i-raised-my-price` | Pricing Strategy |
+| 2026-07-29 | `how-often-should-i-change-my-prices` | Pricing Strategy |
+| 2026-07-28 | `how-do-i-know-what-to-price-my-products` | Education |
+| 2026-07-28 | `is-your-store-leaving-money-on-the-table` | Pricing Strategy |
 | 2026-07-28 | `should-you-price-differently-on-shopify-vs-amazon` | Pricing Strategy |
 | 2026-07-28 | `shopify-pricing-apps-what-to-look-for` | Product |
-| 2026-07-28 | `is-your-store-leaving-money-on-the-table` | Pricing Strategy |
 | 2026-07-28 | `how-to-run-a-sale-without-wrecking-your-margin` | Pricing Strategy |
-| 2026-07-28 | `how-do-i-know-what-to-price-my-products` | Education |
 
 ## Content cluster backlog
 
-**Elasticity/education cluster**: essentially complete as a cluster — see the pillar/cluster map above. One originally-queued topic never written: **"Why Did My Price Increase Not Hurt Sales At All?"** (cross-elastic/inelastic follow-up).
+The Price Elasticity, Discounts & Promotions, and Margin & Profit Fundamentals clusters are all well-developed (see cluster list above). Genuinely thin spots:
 
-**Looser 5-topic list**: "Does Bundle Pricing Actually Increase Average Order Value?" — done, published as `how-to-price-product-bundles-without-giving-away-your-margin` (2026-08-17). Not yet written: "How Do I Know If My Last Price Increase Actually Worked?" (profit-per-visitor framework), "How Much Profit Am I Losing by Underpricing My Bestsellers?", "How Do I Price Products With High Return Rates?" (true-landed-cost angle).
+- **Vertical-Specific Pricing** — only 2 posts (skincare, apparel). Natural next categories: supplements, home goods, jewelry/accessories.
+- Older unwritten backlog items, still open: **"Why Did My Price Increase Not Hurt Sales At All?"** (elasticity cluster follow-up), **"How Do I Know If My Last Price Increase Actually Worked?"** (profit-per-visitor framework), **"How Much Profit Am I Losing by Underpricing My Bestsellers?"**, **"How Do I Price Products With High Return Rates?"** (true-landed-cost angle).
 
-**New posts added outside the original backlog (2026-08-20 to 2026-08-22):**
-- `dynamic-pricing-vs-sales-a-shopify-sellers-guide` (2026-08-20) — Cluster #3 (discounting/promotional pricing)
-- `should-you-price-the-same-on-shopify-and-amazon` (2026-08-21) — channel pricing companion to the existing `should-you-price-differently-on-shopify-vs-amazon`; links to it and gives it its first incoming blog-to-blog link
-- `how-to-price-a-new-product-from-launch-to-end-of-life` (2026-08-22) — covers launch pricing, penetration vs skimming, bundle mechanics, and EOL markdowns; cross-links to `how-do-i-price-a-new-product-with-no-sales-history`, `how-to-price-product-bundles-without-giving-away-your-margin`, and `how-to-price-a-discount-without-losing-your-margin`
-
-**New topic added outside the original backlog**: `pricing-skincare-products-on-shopify-charging-enough` (2026-08-18) — a vertical-specific (DTC skincare/beauty) pricing post, not part of any prior cluster plan. Could seed a future "vertical-specific pricing" cluster if more categories (apparel, supplements, etc.) get similar treatment.
+**5 posts added 2026-08-21** (same day, via 3 separate user-supplied drafts plus 2 written from scratch): `ecommerce-pricing-strategy-the-complete-guide` (new pillar for the Pricing Fundamentals & Strategy cluster), `how-to-evaluate-a-shopify-pricing-app`, `how-to-price-clothing-on-shopify` (required correcting a stale tariff claim — see git history), `how-to-interpret-van-westendorp-results` (first post with an original hand-built SVG diagram), `price-survey-vs-price-testing` (corrected an imprecise Robinson-Patman Act claim from the source draft; second post with an original diagram).
 
 **Guest post submitted**: an article on price elasticity for ecommerce was submitted to Bridge Homies (bridgehomies.com) as a guest post with a dofollow backlink to tryzorin.com using the anchor text "price elasticity software" — a query already showing Zorin at position 9.8 in GSC. Post body link only; author bio is plain text. Pending publication.
 
-Per the pillar/cluster map, clusters #3 (discounting) and #4 (margin fundamentals) are now both stronger. Remaining thin areas: the Van Westendorp/survey feature cluster (single post, no companions) and the vertical-specific pricing direction (one skincare post, no follow-up categories yet).
+**4 more guest posts written but not yet submitted anywhere** (one per target site — SaaSClue, eCommerce Nation, tryforward.io, SaasTrac), each with one dofollow link to a specific Zorin post per that site's link policy. tryforward.io explicitly screens for AI-written content, so that one likely needs a human rewrite pass before submission.
 
 ## Publishing cadence
 
