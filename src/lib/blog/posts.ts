@@ -17,6 +17,224 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-price-clothing-on-shopify",
+    title: "How to Price Clothing: Markup, Returns, Tariffs",
+    excerpt:
+      "A 55% gross margin can still mean 7% profit for apparel brands. The real markup benchmarks and what's actually eating your clothing store's margin.",
+    date: "2026-08-21",
+    readingTime: "12 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/products-table.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A healthy gross margin and a healthy business are not the same thing in apparel, and the gap between them is bigger here than in almost any other ecommerce category. Across public apparel comps, a 55.3% median gross margin converts to just 6.7% median operating margin once the real costs of running a clothing business are paid. This guide covers what markup and margin actually look like for clothing brands right now, why gross margin collapses so dramatically on the way to profit, how returns and tariffs specifically drive that collapse, and how to price consistently across wholesale, DTC, and marketplace channels.</p>
+
+<h2>What's a Good Markup or Margin for a Clothing Brand?</h2>
+<p>Keystone pricing, doubling your cost to set your retail price, has been the default apparel formula for decades. It's no longer enough. Industry data on apparel pricing now treats 2x as a floor to beat, not a target to aim for.</p>
+<p>Current working markup averages run higher and vary meaningfully by channel: roughly 2.1 to 2.4x production cost blended across a typical brand's sales mix, 1.9 to 2.2x for wholesale specifically, and 3 to 5x for pure DTC. That spread exists because DTC carries costs wholesale doesn't, customer acquisition, fulfillment, and a much higher return rate, so a DTC price needs a larger multiple just to reach the same operating outcome.</p>
+<p>On the margin side, TrueProfit's analysis of 600+ clothing stores puts healthy 2026 benchmarks at 60-70% gross margin, 20-30% operating margin, and 10-20% net profit margin. Other sources report gross margins in a similar 55-65% range for standard apparel, with premium and luxury brands reaching 70-80%. A garment costing $15 to produce landing at $30-40 wholesale or $60-80 DTC is a common real-world example of what those multiples look like in practice.</p>
+<p>These numbers are a useful starting reference, not a guarantee. As the next section covers, a gross margin that sits comfortably inside these ranges can still leave a brand with almost nothing at the operating line.</p>
+
+<table>
+  <thead>
+    <tr><th>Channel</th><th>Typical markup</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Wholesale</td><td>1.9-2.2x production cost</td><td>Retailer brings the customer and adds their own margin on top</td></tr>
+    <tr><td>Blended (mixed channels)</td><td>2.1-2.4x production cost</td><td>Average across a brand's typical sales mix</td></tr>
+    <tr><td>Pure DTC</td><td>3-5x production cost</td><td>Brand absorbs full acquisition, fulfillment, and return cost directly</td></tr>
+  </tbody>
+</table>
+
+<h2>Why Does My Apparel Store Have Healthy Gross Margin But Barely Any Profit?</h2>
+<p>This is one of the most common, and most confusing, experiences for apparel sellers: the gross margin looks fine, sometimes even good, and the business still isn't making real money.</p>
+<p>The answer is in the order costs get paid. Gross margin only accounts for the cost of the product itself, materials, manufacturing, and direct labor. Everything else, returns, customer acquisition, marketing, fulfillment, and increasingly tariffs, gets paid out of what's left after that. In apparel specifically, what's left after that turns out to be a lot smaller than the gross margin number suggests.</p>
+<p>Across eight public apparel company comps, a 55.3% median gross margin converted to just a 6.7% median operating margin, a gap of roughly 48 percentage points lost between the two lines. That's not one underperforming brand; that's the category median. A pricing approach that only protects gross margin is solving the wrong problem, because gross margin was never the number that determines whether the business is actually profitable.</p>
+<p>This is also why a fixed markup number, applied uniformly across a catalog, can be misleading. Two products can carry the identical 2.5x markup and land in very different places once returns and acquisition cost are factored in, because return rates and ad performance differ by product, not just by category. A per-SKU view of what's actually happening after gross margin, not just a blanket markup target, is what closes that gap between what the spreadsheet says and what the bank account shows.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing different products in the same store with different margins, model confidence, and raise or lower recommendations" width="1440" height="1987" loading="eager" fetchpriority="high" />
+  <figcaption>A per-SKU view of margin and recommendation, since return rates and demand differ by product, not just by category.</figcaption>
+</figure>
+
+<h2>How Returns Affect Pricing for Clothing and Apparel Brands</h2>
+<p>Fashion has the highest return rate of any ecommerce category. Depending on the source and subcategory, US apparel return rates commonly run 25-35% overall, with shoes and fit-dependent items like fitted tops and pants running toward the higher end, and basics or accessories running lower. Every one of those returns costs money to process, commonly cited in the $10-30 per-item range for standard reverse logistics (return shipping, inspection, restocking), with the fully loaded cost, including markdown on items that can't be resold at full price, sometimes running higher.</p>
+<p>Run the math and the impact on margin is direct and substantial. Returns alone can meaningfully compress a healthy gross margin, industry analyses commonly cite a drop into the low-to-mid 40s from a mid-50s starting point, before any other cost is even considered. A product priced to hit a target margin without accounting for its actual return rate is priced against a number that doesn't reflect how the product actually performs in the real world.</p>
+<p>The practical implication for pricing: categories and styles with higher return rates (fit-dependent items like pants and fitted tops tend to run higher than accessories or basics) need either a higher markup to absorb the expected return cost, or a genuine investment in reducing returns through better sizing information and product photography. Sizing and fit issues alone are commonly cited as the majority driver of apparel returns, which is why better fit data moves the number more than return policy changes do. Pricing every product in a catalog identically, without accounting for the fact that a fitted blazer returns at a meaningfully different rate than a basic t-shirt, means some products are quietly subsidizing others.</p>
+
+<h2>How Tariffs Affect What You Should Charge for Apparel</h2>
+<p>Tariffs have been the most volatile input cost in apparel pricing over the past two years, and the situation has genuinely moved more than once, which is exactly why a specific number quoted today is worth double-checking before you plan around it rather than treating it as settled.</p>
+<p>The average effective US apparel import tariff spiked sharply, from around 14.7% in December 2024 to a reported 35.1% in December 2025, driven largely by a round of reciprocal tariffs that applied steep, country-specific rates on top of existing duties. That spike didn't hold. A Supreme Court ruling struck down the 2025 reciprocal tariff structure, and by mid-2026 the landscape had shifted again: a flatter 10% Section 122 rate plus each product's underlying Most Favored Nation duty (commonly 10-32% for apparel) applies to most sourcing countries, with several notable exceptions, USMCA-qualifying goods from Mexico at 0%, China carrying an additional Section 301 layer on top of its base rate, and the EU moved to a 15% all-inclusive ceiling under a separate trade arrangement.</p>
+<p>The pattern that matters more than any single number: this is an actively moving policy area, not a fixed cost you can plan against once and forget. If you're pricing against a specific tariff figure, verify the current rate for your specific sourcing country and product category before treating it as still accurate, since the rate that applied even six months ago may no longer hold.</p>
+<p>The <a href="/blog/dynamic-pricing-vs-sales-a-shopify-sellers-guide">pass-through versus absorb decision</a> that applies to any cost increase, not raise every price uniformly, but check which specific products can tolerate a price increase without losing meaningful volume, applies directly here. A tariff-driven cost increase is still a cost increase, and the products with more inelastic demand are the ones that can absorb more of it without the price change costing you more in lost sales than it saves in margin.</p>
+
+<h2>Should You Price the Same on Shopify DTC, Wholesale, and Marketplaces?</h2>
+<p>No, and the channel-conflict conversation that apparel brands often have internally is really a margin-architecture conversation in disguise. Once each channel is priced to its own operating line, rather than to a single blended number applied everywhere, most of the perceived conflict resolves itself, because nobody is using DTC discounts to quietly paper over a wholesale margin problem, or vice versa.</p>
+<p>The working multiples reflect this directly: wholesale typically runs 1.9-2.2x production cost, while pure DTC runs 3-5x. That's not brands being inconsistent, it's brands pricing each channel for the costs specific to that channel. Wholesale carries lower acquisition cost (the retailer brings the customer) but a lower price ceiling, since the retailer needs their own margin on top. DTC carries the full acquisition and fulfillment cost but commands a higher price, since the brand is selling directly with no intermediary margin to protect.</p>
+<p>If you're selling apparel on Shopify alongside Amazon or another marketplace, the <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">multi-channel pricing framework</a> covers the mechanics in more depth, including the Buy Box suppression risk that can result from pricing your DTC store meaningfully lower than a marketplace listing. The same underlying principle applies: price each channel to reflect its own fee structure and margin requirements, rather than defaulting to one number everywhere and hoping it works out evenly across all of them.</p>
+
+<p>Run your own margin math instead of a category-wide benchmark. <a href="/signup">Start a free trial</a> and see which of your products have room to move and which are already priced right.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li><strong>Keystone (2x markup) is now a floor, not a target.</strong> Current working averages run 2.1-2.4x blended, 1.9-2.2x wholesale, and 3-5x pure DTC, varying by channel because each channel carries different costs.</li>
+<li><strong>Gross margin and operating margin are very different numbers in apparel.</strong> A 55.3% median gross margin converts to just 6.7% median operating margin across public apparel comps, a roughly 48-point gap.</li>
+<li><strong>Returns alone can cut margin by double digits.</strong> A 25-35% return rate at $10-30 in reverse logistics per return can meaningfully compress a mid-50s gross margin into the low-to-mid 40s.</li>
+<li><strong>Tariffs are an actively moving policy area, not a fixed number.</strong> The effective rate spiked in 2025, was partly reversed by a Supreme Court ruling, and shifted again by mid-2026, varying by sourcing country. Verify current rates before pricing against a specific figure.</li>
+<li><strong>Price each channel to its own operating line, not to one blended number.</strong> DTC, wholesale, and marketplace pricing all carry different cost structures, and matching them intentionally resolves most channel-conflict concerns.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's a good markup or margin for a clothing brand on Shopify?</h3>
+<p>Current working markup averages run 2.1-2.4x production cost blended across channels, with wholesale closer to 1.9-2.2x and pure DTC running 3-5x due to higher acquisition and fulfillment costs. On margin, healthy 2026 benchmarks land around 60-70% gross, 20-30% operating, and 10-20% net for clothing businesses, though standard apparel gross margins commonly fall in the 55-65% range, with premium and luxury brands reaching 70-80%.</p>
+</div>
+<div class="faq-item">
+<h3>Why does my apparel store have healthy gross margin but barely any profit?</h3>
+<p>Gross margin only accounts for product cost. Everything else, returns, customer acquisition, fulfillment, and tariffs, gets paid out of what's left, and in apparel specifically, that leaves much less than the gross margin number suggests. Across public apparel comps, a 55.3% median gross margin converts to just a 6.7% median operating margin, a gap driven mainly by high return rates and rising acquisition costs.</p>
+</div>
+<div class="faq-item">
+<h3>How do returns affect pricing for clothing and apparel brands?</h3>
+<p>Significantly. Fashion has the highest return rate of any ecommerce category, commonly cited in the 25-35% range depending on subcategory, and each return costs roughly $10-30 in reverse logistics. Returns alone can compress a mid-50s gross margin into the low-to-mid 40s net. Products with higher expected return rates, fit-dependent items especially, need either a higher markup to absorb that cost or investment in reducing returns through better sizing and photography.</p>
+</div>
+<div class="faq-item">
+<h3>Should I price my clothing the same on my Shopify store as wholesale or Amazon?</h3>
+<p>No. Each channel carries a different cost structure, so pricing them identically usually means underpricing one channel or overpricing another. Wholesale typically runs 1.9-2.2x production cost since the retailer brings the customer and takes their own margin; DTC runs 3-5x since the brand absorbs full acquisition and fulfillment cost directly. Price each channel to its own operating line rather than a single number applied everywhere.</p>
+</div>
+<div class="faq-item">
+<h3>How do tariffs and import costs affect what I should charge for apparel?</h3>
+<p>Significantly, and unpredictably. The average effective US apparel import tariff spiked from around 14.7% to 35.1% between late 2024 and late 2025, then partly reversed after a Supreme Court ruling struck down the reciprocal tariff structure driving much of that spike, with rates shifting again by mid-2026 depending on sourcing country. Because this is an actively moving policy area, verify current rates for your specific sourcing country before pricing decisions rather than relying on any single fixed figure, including the ones in this article.</p>
+</div>
+<div class="faq-item">
+<h3>Is keystone pricing (2x markup) still a viable strategy for apparel?</h3>
+<p>As a sanity check, yes, it's a reasonable floor to make sure you're not pricing too low. As a full strategy, no. A 2x markup produces roughly a 50% gross margin, and in apparel that typically converts to a low-single-digit operating margin once returns and acquisition costs are paid. Treat keystone as the minimum you need to beat, not the number you're aiming to land on.</p>
+</div>
+<div class="faq-item">
+<h3>Why do DTC apparel brands charge so much more than the same product wholesale?</h3>
+<p>Because DTC absorbs costs that wholesale doesn't. A wholesale buyer brings their own customer base, so the brand's acquisition cost on that sale is close to zero, and the retailer applies their own markup on top before it reaches the end customer. A DTC sale means the brand pays for the entire acquisition, fulfillment, and (often) return cost directly, and needs a meaningfully higher multiple to reach a comparable operating outcome per unit sold.</p>
+</div>
+</section>
+
+<p class="conclusion">Markup and margin benchmarks are a useful floor, not a guarantee that a given price is actually working. Returns, tariffs, and channel mix all pull differently on different products in the same catalog, which means the products that can safely absorb a price increase and the ones that can't rarely line up neatly with a single category-wide target. Zorin reads your Shopify or WooCommerce sales history per SKU and shows you which specific products have room to move and which don't, so the pricing decision reflects how each product is actually performing rather than a markup number applied evenly across very different items.</p>
+`,
+  },
+  {
+    slug: "how-to-evaluate-a-shopify-pricing-app",
+    title: "How to Evaluate a Shopify Pricing App",
+    excerpt:
+      "How to tell a real Shopify pricing tool from a discount app, and check if its recommendations are actually reliable.",
+    date: "2026-08-21",
+    readingTime: "10 min read",
+    category: "Product",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">The Shopify App Store lists well over a hundred apps under "pricing optimization," and the overwhelming majority of them are discount, bundle, or flash-sale tools wearing a pricing label. Before you install anything, it's worth knowing what you're actually buying: a tool that executes a promotion you already decided on, or a tool that helps you decide what the right price is in the first place. This guide covers the questions worth asking, the real difference between a discount app and a pricing intelligence tool, how margin floor protection works, how to judge whether a tool's recommendations are trustworthy, and what setup actually requires.</p>
+
+<h2>Discount App or Pricing Optimization Tool: What's the Actual Difference</h2>
+<p>A discount app executes a promotion you've already decided to run, a percentage off, a bundle price, a flash sale, a volume tier. It's a tool for applying a markdown you chose, not a tool for figuring out what your price should be in the first place.</p>
+<p>A pricing optimization tool does the opposite job: it helps you decide what your base price should be, using cost data, demand data, or margin targets. That's a meaningfully different function, even though both categories get filed under the same "pricing" label on the Shopify App Store.</p>
+<p>The category listing itself makes the imbalance obvious. Scroll through the apps under Shopify's pricing optimization category and the overwhelming majority are volume discount tools, bundle builders, flash sale schedulers, and bulk price editors. These are useful tools for what they do, but what they do is execute a decision you've already made, not help you make it. Genuine pricing intelligence, tools that tell you what a product's price should actually be based on data rather than a rule you configured yourself, is a much smaller slice of that category than the label suggests.</p>
+
+<h3>A quick way to tell which one you're looking at</h3>
+<p>Ask one question: does the app change how much a customer pays as part of a promotion you configured, or does it recommend what your underlying price should be based on data it analyzed? If it's the former, discount, bundle, tiered pricing, flash sale, it's a discount app, regardless of what the App Store listing calls itself. If it's the latter, an actual recommendation grounded in your sales history or cost structure, it's a pricing intelligence tool. Your pricing model matters more than which category name an app filed itself under.</p>
+
+<table>
+  <thead>
+    <tr><th>Question</th><th>Why it matters</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Does it show its data source?</td><td>A recommendation based on your own sales history is a fundamentally different claim than one based on generic category assumptions or a competitor's price.</td></tr>
+    <tr><td>Can you set a hard margin floor it won't cross?</td><td>Prevents stacked discounts or a bad recommendation from selling below your actual cost.</td></tr>
+    <tr><td>Does it explain why it's recommending a change?</td><td>A number with no visible reasoning is harder to trust and harder to catch if the underlying data is wrong.</td></tr>
+    <tr><td>Can you test a recommendation on a small scale first?</td><td>Validating on one product or a short window is a lower-risk way to build trust in a new tool.</td></tr>
+    <tr><td>Does it stay current automatically?</td><td>A tool that needs manual reconfiguration every time costs or sales patterns shift adds ongoing work rather than removing it.</td></tr>
+  </tbody>
+</table>
+
+<h2>Can a Pricing App Set a Floor So It Never Goes Below Your Margin?</h2>
+<p>Yes, and this is a specific, well-documented mechanism, not a vague safety claim vendors make without substance behind it.</p>
+<p>Margin floor protection works by checking any proposed price change against a formula before it executes. A common baseline formula is cost times a minimum multiplier, for example, cost x 1.10 as a floor that guarantees at least a 10% margin on top of cost regardless of what discount or promotion is layered on top. If a proposed price, after any stacked coupons or promotional rules, would fall below that floor, the change is blocked before it reaches the customer.</p>
+<p>This matters most in situations where multiple discount mechanisms can stack unexpectedly, a coupon code combined with an automatic volume discount, for instance, can produce a final price nobody explicitly approved. Without floor protection, a single SKU can spiral toward break-even or worse across repeated promotional cycles, since each individual discount looked reasonable in isolation but the combination wasn't checked against the actual cost.</p>
+<p>When evaluating a tool on this specific question, ask exactly how the floor is calculated (a fixed markup, a fixed dollar minimum, or your actual per-SKU cost data) and whether it's enforced automatically at the point of sale or only as a warning you'd need to notice and act on manually. Zorin's approach folds margin data into the recommendation itself: a raise, lower, or hold suggestion already reflects your actual cost structure, rather than generating a price first and requiring you to separately configure a floor to catch a mistake after the fact.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>A margin-aware recommendation already reflects your cost structure, rather than requiring a separately configured floor.</figcaption>
+</figure>
+
+<h2>How Do You Know If a Pricing Tool's Recommendations Are Actually Reliable?</h2>
+<p>A star rating and review count are a reasonable starting signal, but they're a weaker check than two things that matter more directly: whether the tool tells you how confident it is in a specific recommendation, and whether you can validate a recommendation before trusting it across your whole catalog.</p>
+<p><strong>Confidence signaling.</strong> Not every recommendation a pricing tool generates rests on equally solid data. A product with six months of sales history and real price variation supports a much more reliable estimate than a product that launched three weeks ago. A tool that presents every number with the same flat confidence, without distinguishing a well-supported recommendation from a thin-data guess, is asking you to trust things it can't actually verify itself. Look specifically for whether a tool labels its own confidence level per recommendation rather than delivering every number with identical, unearned certainty.</p>
+<p><strong>Validation before commitment.</strong> The lower-risk way to trust a new pricing tool is to test a recommendation on a small scale, one product, a short time window, before applying its logic across your full catalog. Price-testing approaches that let you preview a change end-to-end before it goes live, rather than requiring a leap of faith on day one, are a meaningful trust-building feature worth checking for.</p>
+<p><strong>Review count nuance.</strong> A 5-star rating built on three reviews is a materially weaker signal than a 4.7-star rating built on six hundred. When comparing tools by their App Store rating, weight the review count as much as the star average, since a small sample can look perfect by chance in a way a large one can't.</p>
+<p>Zorin's confidence label (Strong, Moderate, or Weak) is a direct answer to the first check: it tells you explicitly whether a given SKU's recommendation is backed by sufficient, clean sales history, rather than presenting every product's suggestion with the same borrowed certainty. The <a href="/blog/what-your-price-elasticity-score-actually-means">elasticity confidence guide</a> covers what each confidence tier means and what to do differently at each level.</p>
+
+<h2>Do You Need a Developer to Set Up a Pricing App?</h2>
+<p>For most Shopify pricing apps, including Zorin, no. Setup is typically a store connection through Shopify's standard app installation flow, followed by configuration inside the app's own interface, not custom development work. You connect your store, the app reads your existing sales and product data, and you're working within its dashboard from there.</p>
+<p>The exception tends to be enterprise-tier margin protection or highly customized pricing rule engines, which are sometimes quoted per store with a more involved onboarding process and pricing that requires contacting sales directly rather than a self-serve signup. If a tool's pricing page says "contact sales" instead of showing a visible plan and price, that's usually a signal the setup is more involved than a standard app install, worth factoring into your evaluation if speed to launch matters to you.</p>
+<p>For a straightforward pricing intelligence tool reading your existing Shopify or WooCommerce sales data, expect to be live and seeing recommendations within your own account without needing outside technical help. <a href="/signup">Start a free trial</a> to see what a real recommendation looks like against your own catalog.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li><strong>Most "pricing" apps on the Shopify App Store are discount execution tools, not pricing intelligence.</strong> Ask whether an app recommends what your price should be, or just applies a promotion you already decided on.</li>
+<li><strong>A useful evaluation checklist covers data source, safety, explainability, and testability.</strong> Where does the recommendation come from, is there a margin floor, does the tool explain itself, and can you validate before committing.</li>
+<li><strong>Margin floor protection is a specific mechanism, not a vague promise.</strong> It checks a proposed price against a formula (often cost times a minimum multiplier) and blocks anything that would breach it.</li>
+<li><strong>Confidence labeling and small-scale validation matter more than a star rating alone.</strong> A tool that tells you how reliable a specific recommendation is, and lets you test before committing fully, is more trustworthy than one presenting every number with equal certainty.</li>
+<li><strong>Most pricing apps, including Zorin, don't require a developer to set up.</strong> Watch for "contact sales" pricing as a signal that a tool's setup is more involved than a standard self-serve install.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What questions should I ask before buying a pricing app for my Shopify store?</h3>
+<p>Ask where its recommendations come from (your own sales data vs generic assumptions), whether you can set a hard margin floor it won't cross, whether it explains its reasoning or just presents a number, whether you can test a recommendation on a small scale before rolling it out fully, and whether it stays current automatically or requires ongoing manual reconfiguration.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a discount app and a real pricing optimization tool?</h3>
+<p>A discount app executes a promotion you've already decided on, a percentage off, a bundle, a flash sale. A pricing optimization tool helps you decide what your underlying price should actually be, based on cost or demand data. Most apps filed under Shopify's "pricing optimization" category are the former; genuine pricing intelligence tools are a smaller subset.</p>
+</div>
+<div class="faq-item">
+<h3>Can a pricing app set a price floor so it never goes below my margin?</h3>
+<p>Yes, this is a real and specific feature, typically implemented as a formula (commonly cost times a minimum multiplier) that any proposed price is checked against before it executes. If a discount or price change would fall below that floor, the tool blocks it. Ask a vendor exactly how their floor is calculated and whether it's enforced automatically or just flagged as a warning.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if a pricing tool's recommendations are actually reliable?</h3>
+<p>Check two things beyond the star rating: whether the tool labels its confidence in each specific recommendation (distinguishing well-supported estimates from thin-data guesses), and whether you can validate a recommendation on a small scale before trusting it across your whole catalog. A tool that presents every number with identical certainty regardless of the underlying data quality is a weaker signal than one that's upfront about its own confidence.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a developer to set up a pricing app, or can I do it myself?</h3>
+<p>For most Shopify pricing apps, no developer is needed. Setup is typically a standard Shopify app install followed by configuration through the app's own dashboard. Enterprise-tier or highly customized margin protection tools, often the ones with "contact sales" pricing instead of a visible self-serve plan, tend to involve more setup complexity.</p>
+</div>
+<div class="faq-item">
+<h3>Are Shopify App Store ratings a reliable way to judge a pricing app?</h3>
+<p>They're a reasonable starting signal but incomplete on their own. Weight the review count alongside the star average, since a 5-star rating built on a handful of reviews is a much weaker signal than a slightly lower rating built on hundreds. A high rating with very few reviews is worth treating cautiously.</p>
+</div>
+<div class="faq-item">
+<h3>What's the risk of using a discount app when I actually need a pricing tool?</h3>
+<p>The main risk is that a discount app has no independent view of whether your underlying price is right in the first place, it only executes whatever markdown rule you configure. If your base price was already too low or too high, stacking discount automation on top of it doesn't fix that, and repeated discounting without a margin floor can erode profitability over successive promotional cycles.</p>
+</div>
+<div class="faq-item">
+<h3>Is there a difference between a pricing tool and a competitor repricer?</h3>
+<p>Yes. A competitor repricer adjusts your price in response to what competitors are charging, most common on marketplaces like Amazon where buy-box position depends on price. A pricing intelligence tool like Zorin, by contrast, models your own product's demand from your own sales history rather than reacting to competitor movement. The <a href="/blog/price-elasticity-vs-repricing-software">elasticity vs repricing software comparison</a> covers this distinction in more depth.</p>
+</div>
+</section>
+
+<p class="conclusion">The Shopify App Store makes nearly every pricing-adjacent app look like the same category. The real distinction that matters is whether a tool is executing a decision you already made or helping you make a better one in the first place, backed by your own data, a visible confidence level, and a margin floor that actually holds. Zorin reads your Shopify or WooCommerce sales history directly and builds all three into every recommendation it gives.</p>
+`,
+  },
+  {
     slug: "ecommerce-pricing-strategy-the-complete-guide",
     title: "Ecommerce Pricing Strategy: The Complete Guide",
     excerpt:
