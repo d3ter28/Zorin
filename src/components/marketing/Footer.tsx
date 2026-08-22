@@ -35,7 +35,12 @@ export function Footer() {
                 </li>
                 <li>
                   <a href="/shopify-profit-margin-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Profit margin calculator
+                    Shopify profit margin calculator
+                  </a>
+                </li>
+                <li>
+                  <a href="/woocommerce-profit-margin-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    WooCommerce profit margin calculator
                   </a>
                 </li>
                 <li>
