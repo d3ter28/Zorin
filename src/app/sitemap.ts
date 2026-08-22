@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog/posts";
+import { clusters } from "@/lib/blog/clusters";
 
 const BASE_URL = "https://www.tryzorin.com";
 
@@ -7,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL,                                              lastModified: new Date("2026-08-01") },
     { url: `${BASE_URL}/blog`,                                    lastModified: new Date("2026-08-21") },
+    { url: `${BASE_URL}/blog/all`,                                lastModified: new Date("2026-08-21") },
     { url: `${BASE_URL}/features`,                                lastModified: new Date("2026-07-15") },
     { url: `${BASE_URL}/features/price-elasticity-modeling`,      lastModified: new Date("2026-07-01") },
     { url: `${BASE_URL}/features/competitor-price-tracking`,      lastModified: new Date("2026-07-01") },
@@ -26,5 +28,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.updatedDate ?? post.date),
   }));
 
-  return [...staticRoutes, ...blogRoutes];
+  const clusterRoutes: MetadataRoute.Sitemap = clusters.map((cluster) => ({
+    url: `${BASE_URL}/blog/cluster/${cluster.slug}`,
+    lastModified: new Date("2026-08-21"),
+  }));
+
+  return [...staticRoutes, ...blogRoutes, ...clusterRoutes];
 }

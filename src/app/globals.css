@@ -275,6 +275,14 @@ body {
   border-radius: 0.75rem;
   display: block;
 }
+.prose-content figure.post-image svg {
+  width: 100%;
+  height: auto;
+  border: 1px solid #e4e4e7; /* zinc-200 */
+  border-radius: 0.75rem;
+  display: block;
+  background: #ffffff;
+}
 .prose-content figure.post-image figcaption {
   margin-top: 0.6rem;
   font-size: 0.8125rem;

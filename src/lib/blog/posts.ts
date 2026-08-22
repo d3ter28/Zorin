@@ -17,6 +17,324 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "price-survey-vs-price-testing",
+    title: "Price Survey vs. Price Testing",
+    excerpt:
+      "How stated vs revealed preference differ, the real risks of live price testing, and how to combine a survey with a test for a reliable price.",
+    date: "2026-08-21",
+    readingTime: "10 min read",
+    category: "Product",
+    ogImage: "/images/blog/survey-results-chart.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A price survey asks customers what they'd pay. A price test shows real customers a real price and measures what they actually do. These sound like two versions of the same question, but they measure fundamentally different things, and mixing them up leads to either over-trusting a survey result or taking on more risk with a live test than the situation calls for. This guide covers the real distinction between the two, the specific risks that come with testing live prices on real customers, and how the two methods work best together rather than as a choice between them.</p>
+
+<h2>The Core Distinction: Stated Preference vs Revealed Preference</h2>
+<p>A survey measures stated preference: what a respondent says they'd pay when asked directly, with no real money changing hands and no real consequence to their answer. A price test measures revealed preference: what a real customer actually does when a real price is sitting in front of them at checkout, backed by an actual purchase decision.</p>
+<p>The distinction matters because these two things don't always match. A classic illustration from pricing research: someone might say they exclusively listen to public radio, that's their stated preference, but if you pull up next to them in traffic and hear them singing along to a pop song on a commercial station, that's their revealed preference, and it's a more reliable signal precisely because it wasn't something they had time to curate or misremember. The same gap shows up in pricing. People are often willing to pay more than they claim they will in a hypothetical survey question, and <a href="/blog/how-to-interpret-van-westendorp-results">survey results tend to run 10-20% below actual purchase behavior</a>, a gap worth knowing about rather than treating a survey number as a guarantee.</p>
+<p>Neither method is simply better than the other in every situation. A survey is available before you have any real purchase data to work from. A price test requires an actual product, an actual price, and actual customers willing to transact, which means it's only available once those things exist, and it comes with risks a survey doesn't carry.</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Price Survey</th><th>Price Test</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Measures</td><td>Stated preference (what people say)</td><td>Revealed preference (what people do)</td></tr>
+    <tr><td>Available from</td><td>Day one, no sales history needed</td><td>Only once you have a real product and real customers</td></tr>
+    <tr><td>Risk to customers</td><td>None, no real transaction occurs</td><td>Real, especially the trust and fairness risk covered below</td></tr>
+    <tr><td>Reliability</td><td>Directionally useful, tends to run 10-20% below actual behavior</td><td>The most reliable signal available, since it's actual behavior</td></tr>
+  </tbody>
+</table>
+
+<h2>What a Price Survey Gets You (and What It Doesn't)</h2>
+<p>A survey, the Van Westendorp method being the standard approach, asks respondents directly about price perception across four questions and produces an acceptable price range along with specific price points inside it. The core advantage is availability: it works from day one, before a product has sold a single unit, which makes it the only option for setting a defensible launch price when no sales history exists yet. It also carries zero risk to real customers or real revenue, since no actual transaction happens during the survey itself.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" width="736" height="519" loading="eager" fetchpriority="high" />
+  <figcaption>A survey produces a real acceptable range and price points, with an honest confidence label based on response count, not a guaranteed final price.</figcaption>
+</figure>
+
+<p>What it doesn't give you is certainty. A stated answer, however thoughtfully given, can diverge from what the same person would actually do at checkout with a real price and a real credit card in hand. Treat survey results as a strong, genuinely useful starting signal rather than a guaranteed final number. For the mechanics of running a Van Westendorp survey and reading its results in depth, <a href="/blog/how-to-run-a-price-sensitivity-survey">How to Run a Price Sensitivity Survey</a> and <a href="/blog/how-to-interpret-van-westendorp-results">How to Interpret Van Westendorp Results</a> cover that ground directly; this post focuses on how the method compares to and combines with live testing.</p>
+
+<h2>What a Price Test Gets You (and the Real Risks That Come With It)</h2>
+<p>A live price test, showing a real price to real customers and measuring what they actually do, gives you the most reliable signal available: actual behavior rather than a stated intention. That reliability comes with genuine risk that a survey simply doesn't carry, and it's worth understanding both risks precisely before running one.</p>
+<p>One of the clearest cautionary examples in ecommerce history is <a href="https://www.cnn.com/2000/TECH/computing/09/28/amazon.reut/" target="_blank" rel="noopener noreferrer">Amazon's price testing experiment in September 2000</a>, when the company randomly varied discounts between 20% and 40% across 68 DVD titles over a five-day test, meaning two customers buying the identical title at the same time could pay meaningfully different prices, in one documented case, the same X-Files box set at anywhere from $89.99 to $104.99 against a $149 list price. Shoppers compared notes, discovered the discrepancy, and the backlash was immediate and public, forcing Amazon to refund the difference to the roughly 6,900 affected customers and publicly commit to never testing prices based on customer identity again. Over two decades later, companies still make some version of this same mistake: two customers, sometimes at the same company or in the same social circle, discover they were shown different prices for the identical product at the same time, and the resulting trust damage tends to spread faster and further than the test itself ever did.</p>
+
+<h3>The trust and fairness risk</h3>
+<p>This is the larger practical risk, and it doesn't take many customers noticing to become a real problem. Shoppers generally expect price consistency. Discovering that someone else paid less for the exact same item at the exact same time reads as unfair, even when the difference was small and the test was well-intentioned. Once that trust is damaged, it's expensive and slow to rebuild, often costing far more in long-term loyalty than whatever the test was designed to optimize.</p>
+
+<h3>The legal risk, stated precisely</h3>
+<p>Live price testing is generally legal in most jurisdictions, and it's been used widely and openly for decades in categories like airlines, hotels, and ride-sharing. The specific legal concern most often raised in the US is the Robinson-Patman Act, which does technically extend to consumer sales of commodities, not only business-to-business transactions, a distinction worth being precise about rather than assuming it doesn't apply at all. In practice, though, a Robinson-Patman claim requires showing the price difference caused real competitive injury between the two purchasers, and that element is difficult to establish when the buyers are individual consumers rather than competing resellers, which is a large part of why enforcement against consumer-facing price tests has historically been rare. This isn't legal advice, and the specific facts of a given pricing program matter, but for most ecommerce sellers the bigger practical risk isn't legal exposure, it's the reputational and trust damage described above, which carries no clean legal remedy once it happens.</p>
+
+<h2>The Safer Alternative: Test the Framing, Not the Raw Price</h2>
+<p>Several practitioners in this space converge on the same workaround, and it's worth taking seriously: instead of showing two customers two different prices for the identical product at the same moment, test how the price is presented rather than the number itself. Does a bold price anchor at the top of the page outperform revealing price after building context for the product? Does a three-tier pricing table convert better than a single clean offer? Does "save $120 a year" outperform "just $10 a month" for the same underlying price?</p>
+<p>This approach yields genuinely useful behavioral data, insight into perception, framing, and how customers process a price, without introducing the core fairness problem of literally charging two people different amounts for the same thing at the same time. For many ecommerce sellers, testing presentation rather than the raw price delivers most of the insight a full price experiment was hoping to provide, with meaningfully less risk attached.</p>
+
+<h2>How to Combine a Survey and a Price Test (Rather Than Choosing One)</h2>
+<p>The most reliable path to a price isn't picking a survey or a live test as the single method to trust. It's triangulating across a few inputs, each of which covers a gap the others leave open.</p>
+<p>Start with the acceptable price range from a survey, which narrows the field before you've risked anything with a real customer. Apply your margin floor next, ruling out any candidate price that wouldn't be profitable regardless of how customers perceive it. What's left is a small set of realistic candidates, often just one or two, worth testing further rather than an unbounded range of possible prices.</p>
+
+<figure class="post-image">
+<svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing four pricing signals narrowing progressively: survey acceptable range, margin floor, presentation test candidates, then a single confirmed price from elasticity data">
+  <text x="30" y="75" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">1. Survey range</text>
+  <text x="30" y="135" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">2. Margin floor</text>
+  <text x="30" y="195" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">3. Presentation test</text>
+  <text x="30" y="255" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">4. Elasticity data</text>
+
+  <path d="M85,90 L85,108" stroke="#a1a1aa" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M85,150 L85,168" stroke="#a1a1aa" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M85,210 L85,228" stroke="#a1a1aa" stroke-width="2" marker-end="url(#arrow)" />
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#a1a1aa" />
+    </marker>
+  </defs>
+
+  <text x="214" y="50" font-size="12" fill="#3f3f46" font-family="sans-serif">$29</text>
+  <text x="555" y="50" font-size="12" fill="#3f3f46" font-family="sans-serif">$79</text>
+  <rect x="214" y="57" width="357" height="26" rx="13" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" />
+
+  <text x="329" y="110" font-size="12" fill="#3f3f46" font-family="sans-serif">$45</text>
+  <text x="555" y="110" font-size="12" fill="#3f3f46" font-family="sans-serif">$79</text>
+  <rect x="329" y="117" width="242" height="26" rx="13" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5" />
+
+  <line x1="357" y1="190" x2="429" y2="190" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="3,3" />
+  <circle cx="357" cy="190" r="7" fill="#2563eb" />
+  <circle cx="429" cy="190" r="7" fill="#2563eb" />
+  <text x="357" y="172" text-anchor="middle" font-size="12" font-weight="600" fill="#18181b" font-family="sans-serif">$49</text>
+  <text x="429" y="172" text-anchor="middle" font-size="12" font-weight="600" fill="#18181b" font-family="sans-serif">$59</text>
+
+  <circle cx="393" cy="250" r="9" fill="#16a34a" stroke="#ffffff" stroke-width="2" />
+  <text x="393" y="228" text-anchor="middle" font-size="12.5" font-weight="700" fill="#166534" font-family="sans-serif">$54, confirmed</text>
+
+  <line x1="150" y1="295" x2="650" y2="295" stroke="#d4d4d8" stroke-width="1" />
+  <g font-size="10.5" fill="#71717a" font-family="sans-serif" text-anchor="middle">
+    <text x="150" y="312">$20</text>
+    <text x="221" y="312">$30</text>
+    <text x="293" y="312">$40</text>
+    <text x="364" y="312">$50</text>
+    <text x="436" y="312">$60</text>
+    <text x="507" y="312">$70</text>
+    <text x="579" y="312">$80</text>
+    <text x="650" y="312">$90</text>
+  </g>
+  <text x="400" y="332" text-anchor="middle" font-size="12" fill="#52525b" font-family="sans-serif">Price</text>
+</svg>
+  <figcaption>Each signal narrows the field: a survey's range, then a margin floor, then a presentation test, then ongoing elasticity data. Illustrative numbers.</figcaption>
+</figure>
+
+<p>From there, if a live test is warranted, keep it narrow and, where possible, favor testing framing and presentation on the surviving candidates rather than direct price discrimination between customers, for the trust reasons covered above. And once a product has accumulated real sales history at a given price, <a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">per-SKU elasticity data</a> becomes available as an additional, ongoing signal. Elasticity is itself a form of revealed preference, gathered passively from how customers actually behaved at the price you've already set, rather than requiring a deliberate experiment to produce it. In practice, this gives a merchant four inputs building on each other over a product's life: a survey's acceptable range before launch, a margin floor throughout, an optional narrow test of presentation on top candidates, and ongoing elasticity data once enough real sales history has accumulated to make that signal reliable.</p>
+<p>No single one of these methods should be setting your final price in isolation. Each one covers a blind spot the others have.</p>
+
+<p>Run a Van Westendorp survey on your own catalog, then let elasticity data confirm it once you have sales history. <a href="/signup">Start a free trial</a> to see both signals side by side.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li><strong>A survey measures stated preference; a price test measures revealed preference.</strong> What customers say they'd pay and what they actually do at checkout aren't always the same thing.</li>
+<li><strong>A survey works before you have sales data and carries no risk to real customers.</strong> A live price test requires a real product and real customers, and carries genuine trust and reputational risk.</li>
+<li><strong>The trust risk from live testing is real and well-documented.</strong> Customers discovering they paid different prices for the same product at the same time is the core problem, and it can spread and damage trust faster than the test itself.</li>
+<li><strong>Testing price framing and presentation is a safer alternative to testing the raw number.</strong> It yields useful behavioral insight without the direct fairness problem of charging different customers differently for the identical item.</li>
+<li><strong>The most reliable price comes from triangulating multiple signals, not choosing one method.</strong> A survey's acceptable range, a margin floor, an optional presentation test, and eventually elasticity data from real sales history all cover different blind spots.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the difference between a price survey and price testing?</h3>
+<p>A price survey, like the Van Westendorp method, asks customers directly what they'd pay and measures stated preference, an intention with no real transaction attached. Price testing shows real customers a real price and measures revealed preference, what they actually do when the decision has real consequences. Revealed preference is generally the more reliable signal, but it requires exposing real customers to real prices, which a survey doesn't.</p>
+</div>
+<div class="faq-item">
+<h3>Is A/B testing prices legal?</h3>
+<p>Generally yes, in most jurisdictions, and it's been used openly for decades in categories like airlines and hotels. In the US, the main legal reference is the Robinson-Patman Act, which does technically extend to consumer commodity sales, not just B2B, though a claim also requires showing real competitive injury between the purchasers, an element that's difficult to establish for individual consumers rather than competing resellers. This isn't legal advice. The bigger practical risk for most sellers is reputational and trust-related, not legal.</p>
+</div>
+<div class="faq-item">
+<h3>What happened when Amazon tested different prices in 2000?</h3>
+<p>Amazon randomly varied discounts between 20% and 40% across 68 DVD titles over a five-day test in September 2000. Customers compared notes, discovered the discrepancy, and the resulting backlash forced Amazon to refund the difference to roughly 6,900 affected customers and publicly commit to never testing prices based on customer identity again. It remains one of the most cited cautionary examples of live price testing damaging customer trust.</p>
+</div>
+<div class="faq-item">
+<h3>How do I test pricing without the customer trust risk?</h3>
+<p>Test how the price is presented rather than the raw number itself. Comparing a bold price anchor against a context-first reveal, or a tiered pricing table against a single offer, gives you useful behavioral insight into how customers respond to framing, without charging two customers different amounts for the same product at the same time.</p>
+</div>
+<div class="faq-item">
+<h3>Should I use a price survey or run a live price test?</h3>
+<p>Ideally both, in sequence, rather than choosing one. Use a survey's acceptable price range to narrow your options before you've risked anything with real customers, apply your margin floor to rule out unprofitable candidates, and then, if warranted, test framing or presentation on the one or two candidates that survive both filters.</p>
+</div>
+<div class="faq-item">
+<h3>Can I skip the survey and just run a price test if I already have some sales data?</h3>
+<p>If you have real sales history with genuine price variation, elasticity data derived from that history is itself a form of revealed preference and can be more directly useful than a new survey. A survey earns its place specifically when that sales history doesn't exist yet, most commonly for a new product launch, or when you want a second, independent signal before a high-stakes price change.</p>
+</div>
+<div class="faq-item">
+<h3>Why does Zorin only offer the survey and not live price testing?</h3>
+<p>A Van Westendorp survey gathers stated preference safely, with no risk to real customers or real transactions, and works from day one before any sales history exists. Live price testing carries genuine trust and fairness risk, as covered above, and Zorin's elasticity model already provides a revealed-preference signal once a product has real sales history, without requiring a deliberate live experiment that exposes different customers to different prices.</p>
+</div>
+</section>
+
+<p class="conclusion">A survey and a live test aren't competing methods fighting for the same job. They answer different questions at different points in a product's life, one works before you have any sales data, the other requires it and carries real risk if handled carelessly. The most reliable price comes from combining what a survey tells you customers say, what your margin actually allows, and, once available, what your real sales history shows customers do. Zorin keeps the survey and the elasticity model on the same platform so both signals are there when you're ready to decide.</p>
+`,
+  },
+  {
+    slug: "how-to-interpret-van-westendorp-results",
+    title: "How to Interpret Van Westendorp Results",
+    excerpt:
+      "Learn what the four Van Westendorp price points actually mean, how to read a narrow vs wide range, and why the optimal price point isn't your final price.",
+    date: "2026-08-21",
+    readingTime: "11 min read",
+    category: "Product",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Running a Van Westendorp survey is the easy half. Reading what the results actually mean, and knowing what to do with them, is where most of the real value gets left on the table. This guide breaks down the four price points a completed survey produces, what a narrow versus wide acceptable range tells you about your market, why the optimal price point is a starting point and not a final answer, and what to do when your results don't come out clean.</p>
+
+<p>This is a companion piece to <a href="/blog/how-to-run-a-price-sensitivity-survey">How to Run a Van Westendorp Survey</a>, which covers setting up a Van Westendorp survey in Zorin and reading the three summary outputs at a practical level. This post goes one level deeper into what those numbers actually mean and how to act on them correctly.</p>
+
+<h2>The Four Price Points a Van Westendorp Survey Produces</h2>
+<p>Each of the four original Van Westendorp questions, too cheap, a bargain, getting expensive, too expensive, produces its own cumulative response curve when plotted across all respondents. Where those curves cross defines four specific price points, each with a distinct, well-established meaning.</p>
+
+<figure class="post-image">
+<svg viewBox="0 0 700 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Van Westendorp diagram showing four cumulative response curves crossing at the Point of Marginal Cheapness, Optimal Price Point, Indifference Price Point, and Point of Marginal Expensiveness">
+  <line x1="70" y1="55" x2="70" y2="350" stroke="#a1a1aa" stroke-width="1.5" />
+  <line x1="70" y1="350" x2="650" y2="350" stroke="#a1a1aa" stroke-width="1.5" />
+  <text x="360" y="378" text-anchor="middle" font-size="14" fill="#52525b" font-family="sans-serif">Price (low to high) &#8594;</text>
+  <text x="28" y="205" text-anchor="middle" font-size="14" fill="#52525b" font-family="sans-serif" transform="rotate(-90 28 205)">% of respondents</text>
+
+  <path d="M70,90 C110,90 150,180 190,180 C233.3,180 276.7,260 320,260 C430,260 540,330 650,330" fill="none" stroke="#2563eb" stroke-width="2.5" />
+  <path d="M70,130 C180,130 290,140 400,140 C440,140 480,200 520,200 C563.3,200 606.7,290 650,290" fill="none" stroke="#16a34a" stroke-width="2.5" />
+  <path d="M70,330 C110,330 150,180 190,180 C260,180 330,140 400,140 C483.3,140 566.7,70 650,70" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+  <path d="M70,338 C153.3,338 236.7,260 320,260 C386.7,260 453.3,200 520,200 C563.3,200 606.7,120 650,120" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+  <line x1="190" y1="368" x2="520" y2="368" stroke="#18181b" stroke-width="1.5" />
+  <line x1="190" y1="362" x2="190" y2="368" stroke="#18181b" stroke-width="1.5" />
+  <line x1="520" y1="362" x2="520" y2="368" stroke="#18181b" stroke-width="1.5" />
+  <text x="355" y="386" text-anchor="middle" font-size="12.5" fill="#18181b" font-family="sans-serif" font-weight="600">Acceptable price range (PMC&#8211;PME)</text>
+
+  <line x1="190" y1="180" x2="190" y2="350" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="3,3" />
+  <line x1="320" y1="260" x2="320" y2="350" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="3,3" />
+  <line x1="400" y1="140" x2="400" y2="350" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="3,3" />
+  <line x1="520" y1="200" x2="520" y2="350" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="3,3" />
+
+  <circle cx="190" cy="180" r="5.5" fill="#18181b" stroke="#ffffff" stroke-width="2" />
+  <circle cx="320" cy="260" r="5.5" fill="#18181b" stroke="#ffffff" stroke-width="2" />
+  <circle cx="400" cy="140" r="5.5" fill="#18181b" stroke="#ffffff" stroke-width="2" />
+  <circle cx="520" cy="200" r="5.5" fill="#18181b" stroke="#ffffff" stroke-width="2" />
+
+  <text x="190" y="165" text-anchor="middle" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">PMC</text>
+  <text x="320" y="245" text-anchor="middle" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">OPP</text>
+  <text x="400" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">IPP</text>
+  <text x="520" y="185" text-anchor="middle" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">PME</text>
+
+  <g font-family="sans-serif" font-size="12.5" fill="#3f3f46">
+    <line x1="90" y1="410" x2="115" y2="410" stroke="#2563eb" stroke-width="3" /><text x="121" y="414">Too cheap</text>
+    <line x1="210" y1="410" x2="235" y2="410" stroke="#16a34a" stroke-width="3" /><text x="241" y="414">A bargain</text>
+    <line x1="330" y1="410" x2="355" y2="410" stroke="#f59e0b" stroke-width="3" /><text x="361" y="414">Getting expensive</text>
+    <line x1="500" y1="410" x2="525" y2="410" stroke="#dc2626" stroke-width="3" /><text x="531" y="414">Too expensive</text>
+  </g>
+</svg>
+  <figcaption>Where the four cumulative response curves cross defines PMC, OPP, IPP, and PME. Illustrative curve shapes, not a specific dataset.</figcaption>
+</figure>
+
+<h3>Point of Marginal Cheapness (PMC) and Point of Marginal Expensiveness (PME)</h3>
+<p>The Point of Marginal Cheapness is where the "too cheap" curve crosses the "expensive" curve. This is the lower bound of your acceptable price range. Price below this point and quality doubt starts to dominate, enough respondents start wondering what's wrong with a product priced this low that it works against you rather than for you.</p>
+<p>The Point of Marginal Expensiveness is where the "too expensive" curve crosses the "cheap" (bargain) curve. This is the upper bound. Price above this point and cost resistance starts to dominate, enough respondents rule the product out on price alone that you're losing more sales than the higher price is worth.</p>
+<p>Together, PMC and PME define your acceptable price range, the corridor where price is broadly perceived as fair by your respondents. This is the range Zorin surfaces directly from a completed survey.</p>
+
+<h3>Optimal Price Point (OPP) and Indifference Price Point (IPP)</h3>
+<p>The Optimal Price Point is where the "too cheap" curve crosses the "too expensive" curve. At this specific price, the share of respondents rejecting the product as too cheap and the share rejecting it as too expensive are equal, which makes it the point of lowest overall resistance across your sample.</p>
+<p>The Indifference Price Point is where the "cheap" (bargain) curve crosses the "expensive" curve. At this price, roughly equal numbers of respondents see the product as a good deal versus starting to feel expensive. It sits inside the acceptable range and represents a kind of psychological midpoint, neither clearly a bargain nor clearly pushing into expensive territory.</p>
+<p>These four points, PMC, PME, OPP, and IPP, are what a completed Van Westendorp analysis produces. Everything else in reading the results well comes from understanding what these numbers do and don't tell you.</p>
+
+<table>
+  <thead>
+    <tr><th>Point</th><th>Where it comes from</th><th>What it marks</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>PMC</td><td>"Too cheap" &times; "getting expensive"</td><td>Lower bound of the acceptable price range</td></tr>
+    <tr><td>OPP</td><td>"Too cheap" &times; "too expensive"</td><td>Point of lowest overall price resistance</td></tr>
+    <tr><td>IPP</td><td>"A bargain" &times; "getting expensive"</td><td>Psychological midpoint inside the acceptable range</td></tr>
+    <tr><td>PME</td><td>"A bargain" &times; "too expensive"</td><td>Upper bound of the acceptable price range</td></tr>
+  </tbody>
+</table>
+
+<h2>What a Narrow vs Wide Acceptable Range Actually Tells You</h2>
+<p>The width of your acceptable range, the gap between PMC and PME, is itself a signal worth reading carefully, not just a boundary to note and move past.</p>
+<p>A narrow range, something like $39 to $49, means your respondents largely agree on what the product should cost. That agreement is useful, but it also means the market is more price-sensitive within that band: a price move even a few dollars outside the range is likely to trigger a real, fairly sharp reaction, since there isn't much room for disagreement about value to absorb the change.</p>
+<p>A wide range, something like $29 to $79, is less straightforward to read, and it can mean one of two fairly different things. It can genuinely reflect pricing flexibility: your product might reasonably appeal to different segments (some buyers wanting a stripped-down version, others willing to pay more for a premium tier or bundle), and a wide range means you have real room to price differently across those segments or channels without breaking anyone's sense of fairness. Alternatively, a wide range can reflect market confusion, respondents genuinely don't have a clear read on what a fair price for this product is, either because it's a new category with no established reference points or because the product concept itself wasn't clearly communicated in the survey.</p>
+<p>Telling these two readings apart usually comes down to context you already have. If your product sits in an established category with clear competitor pricing, a wide range is more likely confusion worth investigating, possibly by refining how the product was described to respondents. If you're pricing something genuinely new, or something that legitimately serves distinct customer segments differently, a wide range is more likely real flexibility you can put to use. This is directly relevant if you're <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">pricing the same product across multiple channels</a>, a wide acceptable range is exactly the kind of signal that supports pricing differently on Shopify versus Amazon or Etsy without alienating buyers on any one channel, since the survey data itself suggests the market tolerates more than one price point.</p>
+
+<h2>The Optimal Price Point Is a Starting Point, Not a Final Price</h2>
+<p>The single most common misreading of Van Westendorp results is treating the OPP as the number to charge. It isn't, and understanding why matters more than any other part of this guide.</p>
+<p>The OPP tells you where resistance to your price is lowest, based purely on how your respondents perceive fairness and value. It has no information about your margin requirements, your channel structure, your competitive position, or the psychological pricing conventions in your category ($X.99 vs a round number, for instance). It's a genuinely useful anchor for a pricing conversation, not a finished answer to it.</p>
+<p>Turning an OPP into an actual list price means layering several things on top of it: whether the price still clears your cost floor and target margin, whether it needs to shift for a specific channel's fee structure, whether a promotional or launch strategy calls for starting somewhere else temporarily, and whether nudging the number to a more conventional price ending improves conversion without meaningfully changing perceived value.</p>
+<p>This is also exactly why Zorin treats survey results and elasticity data as separate signals rather than blending them into one number. The OPP tells you what customers say feels fair, a stated-preference read, useful especially before you have any sales history to work from. <a href="/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers">Elasticity data</a>, once a product has enough real sales history, tells you what customers actually do at a given price, a revealed-preference read. Neither one alone is the final price. The OPP, your margin, your channel context, and (once available) your elasticity data together are what a real pricing decision is built from.</p>
+
+<h2>When Your Curves Don't Intersect Cleanly</h2>
+<p>Sometimes a Van Westendorp analysis doesn't produce the clean, textbook crossing pattern the four-curve diagram suggests it should. This usually happens with a small sample size, or with a product respondents genuinely find hard to price, an unfamiliar category, an unclear concept description, or a product with very few comparable references in the market.</p>
+<p>This isn't a failure of the method. It's a signal to read the result more cautiously, not to throw it out. A few things help: if curves are close but don't cross exactly, you can approximate the intersection point through interpolation rather than treating the absence of a perfect crossing as meaningless. If curves are nearly parallel rather than crossing at all, that itself is informative, it suggests the market doesn't have clear price boundaries for this specific product yet, which is a legitimate finding, not a broken survey. In either case, increasing the sample size is the most direct fix, since noisy, unstable intersections are far more common with small samples than large ones.</p>
+<p>This is precisely why Zorin shows no confidence tier at all under 5 responses and only a low confidence tier between 5 and 19. A messy or inconclusive result at a low response count isn't a sign something went wrong with your survey setup, it's an expected consequence of not yet having enough data for the curves to settle into a clean, reliable pattern. Wait for more responses, or treat an early low-confidence read as directional rather than final.</p>
+
+<h2>Common Mistakes When Reading Van Westendorp Results</h2>
+<p>A short list of the misreadings that come up most often, several of which are covered in more depth above:</p>
+<p><strong>Treating the OPP as the final price.</strong> Covered in detail above. The OPP is an anchor for a pricing decision, not the decision itself.</p>
+<p><strong>Ignoring range width as a signal.</strong> A narrow range and a wide range mean genuinely different things about your market's price sensitivity and flexibility. Reading only the range's boundaries, without considering what its width implies, leaves useful information on the table.</p>
+<p><strong>Over-trusting a small sample.</strong> A result from 6 or 7 responses can look precise on a chart while actually being highly unstable. Treat low-response results as directional, and let the sample grow before making a significant pricing decision based on the curves alone.</p>
+<p><strong>Forgetting that stated preference isn't the same as actual behavior.</strong> Van Westendorp measures what respondents say they'd pay, not what they've actually paid. Research on this gap has found stated price thresholds tend to run 10-20% lower than real purchase behavior, covered in more depth in the <a href="/blog/how-to-run-a-price-sensitivity-survey">companion post on running the survey</a>. Treat the results as a strong starting signal, not a guaranteed final number.</p>
+
+<p>Run a Van Westendorp survey on your own catalog and read the results alongside your elasticity data. <a href="/signup">Start a free trial</a> to see both signals on the same product.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li><strong>A completed survey produces four price points:</strong> PMC and PME define the acceptable range's lower and upper bounds; OPP marks the point of lowest overall resistance; IPP marks the point where bargain and expensive perceptions balance.</li>
+<li><strong>Range width is itself a signal.</strong> A narrow range signals strong consensus and higher price sensitivity; a wide range can mean genuine flexibility across segments, or it can mean the market is unclear on the product's value, and telling the two apart usually depends on context you already have.</li>
+<li><strong>The OPP is a starting point, not a final price.</strong> It needs to be layered with margin requirements, channel context, and (once available) elasticity data before it becomes an actual price you'd charge.</li>
+<li><strong>Curves that don't intersect cleanly aren't a failure.</strong> They're most often a small-sample or hard-to-price-product signal, fixable with a larger sample or read cautiously as directional.</li>
+<li><strong>Stated preference and revealed preference aren't the same thing.</strong> Survey results tend to run lower than actual purchase behavior, so treat them as a strong starting signal rather than a guaranteed number.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What do PMC, PME, OPP, and IPP stand for?</h3>
+<p>PMC is the Point of Marginal Cheapness, the lower bound of the acceptable price range. PME is the Point of Marginal Expensiveness, the upper bound. OPP is the Optimal Price Point, where resistance to being too cheap and too expensive are equal. IPP is the Indifference Price Point, where roughly equal numbers of respondents see the price as a bargain versus getting expensive.</p>
+</div>
+<div class="faq-item">
+<h3>Is the optimal price point (OPP) the price I should actually charge?</h3>
+<p>Not directly. The OPP tells you where price resistance is lowest based purely on how respondents perceive fairness, but it doesn't account for your margin requirements, channel-specific costs, competitive positioning, or common pricing conventions in your category. Use it as a well-informed starting point, then adjust for those factors to arrive at an actual price.</p>
+</div>
+<div class="faq-item">
+<h3>What does a narrow acceptable price range mean?</h3>
+<p>A narrow range, for example $39 to $49, means your respondents largely agree on what the product should cost. That consensus also means the market is more price-sensitive within that band, moving even slightly outside the range is likely to trigger a noticeably sharper reaction than it would in a market with a wider range.</p>
+</div>
+<div class="faq-item">
+<h3>What does a wide acceptable price range mean?</h3>
+<p>A wide range, for example $29 to $79, can mean one of two things: genuine pricing flexibility, where different customer segments have different willingness to pay and you have room to price differently across them or across channels, or market confusion, where respondents don't have a clear sense of what the product should cost. Whether it's flexibility or confusion usually depends on whether your product sits in an established category with clear reference prices or a newer, less familiar one.</p>
+</div>
+<div class="faq-item">
+<h3>What should I do if my Van Westendorp curves don't intersect cleanly?</h3>
+<p>This usually happens with a small sample size or a product respondents find genuinely hard to price. You can approximate the intersection points through interpolation if curves are close but don't cross exactly, or treat nearly parallel curves as a signal that the market doesn't yet have clear price boundaries for this product. In either case, growing your sample size is the most reliable fix, and a low-confidence result should be treated as directional rather than final.</p>
+</div>
+<div class="faq-item">
+<h3>Why does Zorin keep Van Westendorp results and elasticity data separate instead of combining them?</h3>
+<p>Because they measure different things. The survey measures stated preference, what customers say they'd pay, which is useful even for a brand-new product with no sales history. Elasticity measures revealed preference, what customers actually do when a real price is in front of them, which requires real sales data to calculate. Keeping them separate lets you see when the two signals agree, which builds confidence, or disagree, which is worth investigating rather than quietly averaging away.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a large sample size to trust my Van Westendorp results?</h3>
+<p>Larger samples produce cleaner, more stable curve intersections, but you don't need hundreds of responses to get directional value. In Zorin, 20 or more responses is labeled good confidence, enough for the acceptable range and price points to be reasonably reliable for a single-product decision. Below that, treat results as an early, directional signal rather than a number to commit a final price to.</p>
+</div>
+</section>
+
+<p class="conclusion">The four price points a Van Westendorp survey produces tell you how your market perceives fairness at different prices, which is genuinely useful information you don't have before running one. Turning that into an actual price still takes margin data, channel context, and, once real sales history exists, elasticity data layered on top. Zorin keeps the survey results and the elasticity model side by side on the same platform, so both pieces of the decision are in front of you when you're ready to set the price.</p>
+`,
+  },
+  {
     slug: "how-to-price-clothing-on-shopify",
     title: "How to Price Clothing: Markup, Returns, Tariffs",
     excerpt:
