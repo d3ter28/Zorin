@@ -29,6 +29,11 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="/pricing" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Pricing
+                  </a>
+                </li>
+                <li>
                   <a href="/blog" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Blog
                   </a>

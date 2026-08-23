@@ -7,7 +7,8 @@
 
 ## Core pages
 
-- [Home](https://www.tryzorin.com): Marketing landing page with feature overview and pricing.
+- [Home](https://www.tryzorin.com): Marketing landing page with feature overview.
+- [Pricing](https://www.tryzorin.com/pricing): Plans and pricing - 7-day free trial, no credit card required.
 - [Features](https://www.tryzorin.com/features): Full feature grid — elasticity modeling, pricing campaigns, profit tracking, competitor benchmarking, price sensitivity surveys, and Launch Planner.
 - [Shopify integration](https://www.tryzorin.com/integrations/shopify): Connect your Shopify store via Admin API.
 - [WooCommerce integration](https://www.tryzorin.com/integrations/woocommerce): Connect your WooCommerce store via REST API keys.
