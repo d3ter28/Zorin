@@ -3,7 +3,7 @@ import { prisma } from "@/lib/db";
 import { HttpError, withErrorHandling } from "@/lib/api/errors";
 import { requireSessionApi } from "@/lib/auth/requireSession";
 import { encryptToken } from "@/lib/shopify/crypto";
-import { ShopifyClient } from "@/lib/shopify/client";
+import { ShopifyClient, SHOPIFY_WEBHOOK_TOPICS } from "@/lib/shopify/client";
 import { getAppUrl } from "@/lib/appConfig";
 
 function normalizeDomain(raw: string): string {
@@ -16,8 +16,6 @@ function normalizeDomain(raw: string): string {
   }
   return domain;
 }
-
-const WEBHOOK_TOPICS = ["products/update", "orders/create", "app/uninstalled"];
 
 export const POST = withErrorHandling(async (req: Request) => {
   const { merchantId } = await requireSessionApi();
@@ -58,7 +56,7 @@ export const POST = withErrorHandling(async (req: Request) => {
   // blast radius pre-launch); revisit if this shows up as leaked webhooks.
   const webhookAddress = `${getAppUrl()}/api/webhooks/shopify`;
   const webhookIds: string[] = [];
-  for (const topic of WEBHOOK_TOPICS) {
+  for (const topic of SHOPIFY_WEBHOOK_TOPICS) {
     const id = await client.createWebhook(topic, webhookAddress);
     webhookIds.push(id);
   }

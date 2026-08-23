@@ -42,6 +42,10 @@ const API_VERSION = '2024-01';
 const MAX_RETRIES = 3;
 const MAX_RETRY_DELAY_MS = 10_000;
 
+// Shared by both the manual-token connect route and the OAuth callback route
+// so the two connection paths can never register different webhook sets.
+export const SHOPIFY_WEBHOOK_TOPICS = ['products/update', 'orders/create', 'app/uninstalled'];
+
 export class ShopifyClient {
   private readonly baseUrl: string;
   private readonly headers: Record<string, string>;

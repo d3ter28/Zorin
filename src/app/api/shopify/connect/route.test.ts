@@ -27,6 +27,7 @@ vi.mock("@/lib/shopify/client", () => ({
     verifyConnection = mockVerifyConnection;
     createWebhook = mockCreateWebhook;
   },
+  SHOPIFY_WEBHOOK_TOPICS: ["products/update", "orders/create", "app/uninstalled"],
 }));
 
 vi.mock("@/lib/auth/requireSession", () => ({

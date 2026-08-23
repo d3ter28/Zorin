@@ -20,11 +20,36 @@ export function ShopifyConnectionCard() {
   const [shopDomain, setShopDomain] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [apiSecret, setApiSecret] = useState("");
+  const [oauthShopDomain, setOauthShopDomain] = useState("");
   const [connectedDomain, setConnectedDomain] = useState<string | undefined>();
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null | undefined>();
   const [webhooksActive, setWebhooksActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [syncResult, setSyncResult] = useState<SyncResult | null>(null);
+
+  // Surface an error redirected back from /api/shopify/oauth/callback, then
+  // strip it from the URL so it doesn't reappear on refresh — same pattern
+  // as the walkthrough tour clearing its own query param on dismiss.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const oauthError = params.get("shopify_error");
+    if (oauthError) {
+      setError(oauthError);
+      params.delete("shopify_error");
+      const next = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ""}`;
+      window.history.replaceState(null, "", next);
+    } else if (params.get("shopify_connected")) {
+      params.delete("shopify_connected");
+      const next = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ""}`;
+      window.history.replaceState(null, "", next);
+    }
+  }, []);
+
+  function handleOAuthConnect(e: React.FormEvent) {
+    e.preventDefault();
+    if (!oauthShopDomain.trim()) return;
+    window.location.href = `/api/shopify/oauth/start?shop=${encodeURIComponent(oauthShopDomain.trim())}`;
+  }
 
   async function fetchStatus(signal?: AbortSignal) {
     setError(null);
@@ -130,6 +155,34 @@ export function ShopifyConnectionCard() {
       )}
 
       {(uiState === "disconnected" || uiState === "connecting") && (
+        <form onSubmit={handleOAuthConnect} className="mt-4 space-y-3">
+          <p className="text-xs text-muted">
+            Connect your Shopify store in one click — no need to create a custom app yourself.
+          </p>
+          <div>
+            <label htmlFor="oauthShopDomain" className="block text-xs font-medium text-ink mb-1">
+              Store URL
+            </label>
+            <input
+              id="oauthShopDomain"
+              type="text"
+              placeholder="mystore.myshopify.com"
+              value={oauthShopDomain}
+              onChange={(e) => setOauthShopDomain(e.target.value)}
+              className="w-full rounded-lg border border-line bg-panel px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+            />
+          </div>
+          <button type="submit" className="btn">
+            Connect with Shopify
+          </button>
+        </form>
+      )}
+
+      {(uiState === "disconnected" || uiState === "connecting") && (
+        <div className="mt-6 border-t border-line pt-4">
+          <p className="mb-2 text-xs font-medium text-muted">
+            Advanced: connect with a custom app token instead
+          </p>
         <form onSubmit={handleConnect} className="mt-4 space-y-3">
           <p className="text-xs text-muted">
             Connect your Shopify store to sync products and orders.{" "}
@@ -195,6 +248,7 @@ export function ShopifyConnectionCard() {
             {uiState === "connecting" ? "Connecting…" : "Connect"}
           </button>
         </form>
+        </div>
       )}
 
       {(uiState === "connected" || uiState === "syncing") && (
