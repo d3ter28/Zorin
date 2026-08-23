@@ -19,7 +19,7 @@ const securityHeaders = [
       // unsafe-eval only needed for Next.js dev/HMR — omitted in production
       `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://cdn.simpleicons.org",
+      "img-src 'self' data: blob:",
       "font-src 'self'",
       // GA4 sends hit data to google-analytics.com/analytics.google.com; googletagmanager.com serves gtag config
       "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",

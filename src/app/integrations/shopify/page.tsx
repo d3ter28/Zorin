@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import { IntegrationLanding } from "@/components/marketing/IntegrationLanding";
+import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 
 export const metadata = {
   title: "Shopify Pricing Intelligence Integration - Zorin",
@@ -9,9 +10,19 @@ export const metadata = {
   alternates: { canonical: "https://www.tryzorin.com/integrations/shopify" },
 };
 
+// No /integrations hub page exists yet, so the trail stays two levels
+// (Home -> this page) rather than referencing a non-existent middle crumb.
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Shopify Integration", path: "/integrations/shopify" },
+]);
+
 export default function ShopifyIntegrationPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
       <IntegrationLanding
         platform="Shopify"

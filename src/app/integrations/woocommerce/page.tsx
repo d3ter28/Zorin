@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import { IntegrationLanding } from "@/components/marketing/IntegrationLanding";
+import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 
 export const metadata = {
   title: "WooCommerce Pricing Intelligence Integration - Zorin",
@@ -9,9 +10,17 @@ export const metadata = {
   alternates: { canonical: "https://www.tryzorin.com/integrations/woocommerce" },
 };
 
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "WooCommerce Integration", path: "/integrations/woocommerce" },
+]);
+
 export default function WooCommerceIntegrationPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
       <IntegrationLanding
         platform="WooCommerce"

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, posts } from "@/lib/blog/posts";
+import { getClusterForPost } from "@/lib/blog/clusters";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/blog/schema";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
@@ -70,15 +71,30 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { before, after } = splitContentForMidArticleCta(post.content);
   const articleSchema = buildArticleSchema(post);
   const faqSchema = buildFaqSchema(post);
+  const cluster = getClusterForPost(post.slug);
+
+  const breadcrumbItems = [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+    ...(cluster
+      ? [{ "@type": "ListItem", position: 3, name: cluster.name, item: `${BASE_URL}/blog/cluster/${cluster.slug}` }]
+      : []),
+    { "@type": "ListItem", position: cluster ? 4 : 3, name: post.title, item: `${BASE_URL}/blog/${post.slug}` },
+  ];
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
-      { "@type": "ListItem", position: 3, name: post.title, item: `${BASE_URL}/blog/${post.slug}` },
-    ],
+    itemListElement: breadcrumbItems,
   };
+
+  const moreInCluster = cluster
+    ? cluster.postSlugs
+        .filter((s) => s !== post.slug)
+        .map((s) => getPostBySlug(s))
+        .filter((p): p is NonNullable<typeof p> => Boolean(p))
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3)
+    : [];
 
   return (
     <>
@@ -106,9 +122,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </a>
 
         <div className="mt-4">
-          <span className="inline-flex w-fit rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-600">
-            {post.category}
-          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex w-fit rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-600">
+              {post.category}
+            </span>
+            {cluster && (
+              <a
+                href={`/blog/cluster/${cluster.slug}`}
+                className="inline-flex w-fit items-center gap-1 rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs font-medium text-zinc-500 transition-colors hover:border-blue-200 hover:text-blue-600"
+              >
+                Part of: {cluster.name}
+              </a>
+            )}
+          </div>
           <h1 className="mt-3 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
             {post.title}
           </h1>
@@ -158,7 +184,39 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         )}
 
-        <div className="mt-16 border-t border-zinc-100 pt-8">
+        {cluster && moreInCluster.length > 0 && (
+          <div className="mt-16 border-t border-zinc-100 pt-10">
+            <div className="flex items-center justify-between gap-4">
+              <h2 className="text-sm font-semibold text-zinc-900">
+                More in {cluster.name}
+              </h2>
+              <a
+                href={`/blog/cluster/${cluster.slug}`}
+                className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"
+              >
+                View all →
+              </a>
+            </div>
+            <div className="mt-5 grid gap-4 sm:grid-cols-3">
+              {moreInCluster.map((p) => (
+                <a
+                  key={p.slug}
+                  href={`/blog/${p.slug}`}
+                  className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-4 transition-shadow hover:shadow-md"
+                >
+                  <h3 className="text-sm font-semibold leading-snug text-zinc-900 group-hover:text-blue-600">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-zinc-500">
+                    {p.excerpt}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="mt-10 border-t border-zinc-100 pt-8">
           <a
             href="/blog"
             className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"

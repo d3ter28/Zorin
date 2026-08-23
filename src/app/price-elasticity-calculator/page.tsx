@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import { PriceElasticityCalculator } from "@/components/marketing/PriceElasticityCalculator";
+import { buildCalculatorSchema } from "@/lib/seo/toolSchema";
 
 export const metadata = {
   title: "Free Price Elasticity Calculator - Zorin",
@@ -9,9 +10,23 @@ export const metadata = {
   alternates: { canonical: "https://www.tryzorin.com/price-elasticity-calculator" },
 };
 
+const { webApplicationSchema, breadcrumbSchema } = buildCalculatorSchema({
+  name: "Price Elasticity Calculator",
+  path: "/price-elasticity-calculator",
+  description: metadata.description,
+});
+
 export default function PriceElasticityCalculatorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
       <main className="mx-auto max-w-2xl px-6 pb-24 pt-32 md:pb-32">
         <h1 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">

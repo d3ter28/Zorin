@@ -123,3 +123,7 @@ export const clusters: Cluster[] = [
 export function getClusterBySlug(slug: string) {
   return clusters.find((c) => c.slug === slug);
 }
+
+export function getClusterForPost(postSlug: string) {
+  return clusters.find((c) => c.postSlugs.includes(postSlug));
+}

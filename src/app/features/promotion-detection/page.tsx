@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import Link from "next/link";
+import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 
 export const metadata = {
   title: "Promotion Detection for Ecommerce Pricing - Zorin",
@@ -9,9 +10,18 @@ export const metadata = {
   alternates: { canonical: "https://www.tryzorin.com/features/promotion-detection" },
 };
 
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Features", path: "/features" },
+  { name: "Promotion Detection", path: "/features/promotion-detection" },
+]);
+
 export default function PromotionDetectionPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
       <main className="flex-1">
         <section className="py-20 px-6 max-w-4xl mx-auto">

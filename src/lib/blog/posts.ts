@@ -446,7 +446,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The four price points a Van Westendorp survey produces tell you how your market perceives fairness at different prices, which is genuinely useful information you don't have before running one. Turning that into an actual price still takes margin data, channel context, and, once real sales history exists, elasticity data layered on top. Zorin keeps the survey results and the elasticity model side by side on the same platform, so both pieces of the decision are in front of you when you're ready to set the price.</p>
+<p class="conclusion">The four price points a Van Westendorp survey produces tell you how your market perceives fairness at different prices, which is genuinely useful information you don't have before running one. Turning that into an actual price still takes margin data, channel context, and, once real sales history exists, elasticity data layered on top. Zorin keeps the survey results and the elasticity model side by side on the same platform, so both pieces of the decision are in front of you when you're ready to set the price. For a deeper look at how a survey's stated-preference read compares to actually testing a live price with real customers, see <a href="/blog/price-survey-vs-price-testing">price survey vs price testing</a>.</p>
 `,
   },
   {
@@ -509,7 +509,7 @@ export const posts: BlogPost[] = [
 <p>The working multiples reflect this directly: wholesale typically runs 1.9-2.2x production cost, while pure DTC runs 3-5x. That's not brands being inconsistent, it's brands pricing each channel for the costs specific to that channel. Wholesale carries lower acquisition cost (the retailer brings the customer) but a lower price ceiling, since the retailer needs their own margin on top. DTC carries the full acquisition and fulfillment cost but commands a higher price, since the brand is selling directly with no intermediary margin to protect.</p>
 <p>If you're selling apparel on Shopify alongside Amazon or another marketplace, the <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">multi-channel pricing framework</a> covers the mechanics in more depth, including the Buy Box suppression risk that can result from pricing your DTC store meaningfully lower than a marketplace listing. The same underlying principle applies: price each channel to reflect its own fee structure and margin requirements, rather than defaulting to one number everywhere and hoping it works out evenly across all of them.</p>
 
-<p>Run your own margin math instead of a category-wide benchmark. <a href="/signup">Start a free trial</a> and see which of your products have room to move and which are already priced right.</p>
+<p>Run your own margin math instead of a category-wide benchmark. <a href="/signup">Start a free trial</a> and see which of your products have room to move and which are already priced right. If skincare or another beauty category is also part of your catalog, <a href="/blog/pricing-skincare-products-on-shopify-charging-enough">the margin structure and launch-pricing approach look quite different</a>, worth a separate read rather than assuming apparel benchmarks carry over.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
@@ -660,7 +660,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Is there a difference between a pricing tool and a competitor repricer?</h3>
-<p>Yes. A competitor repricer adjusts your price in response to what competitors are charging, most common on marketplaces like Amazon where buy-box position depends on price. A pricing intelligence tool like Zorin, by contrast, models your own product's demand from your own sales history rather than reacting to competitor movement. The <a href="/blog/price-elasticity-vs-repricing-software">elasticity vs repricing software comparison</a> covers this distinction in more depth.</p>
+<p>Yes. A competitor repricer adjusts your price in response to what competitors are charging, most common on marketplaces like Amazon where buy-box position depends on price. A pricing intelligence tool like Zorin, by contrast, models your own product's demand from your own sales history rather than reacting to competitor movement. The <a href="/blog/price-elasticity-vs-repricing-software">elasticity vs repricing software comparison</a> covers this distinction in more depth, and <a href="/blog/do-you-need-a-competitor-price-tracking-app">whether a dedicated competitor tracking app is worth adding at all</a> is worth answering before you evaluate either category.</p>
 </div>
 </section>
 
@@ -722,7 +722,7 @@ export const posts: BlogPost[] = [
 <p><strong>A chosen primary approach.</strong> Pick from the taxonomy above based on what data you have and what category you're in. This doesn't need to be the same choice for every product in your catalog; a differentiated hero SKU and a commodity accessory can reasonably use different approaches.</p>
 <p><strong>A review trigger.</strong> Decide in advance what causes you to revisit a price: a cost increase from a supplier, a competitor's price move, a certain amount of new sales data accumulating, or a fixed calendar check. Without a trigger, prices tend to drift into the "set once, never touched" pattern that's the single most common failure mode covered in the next section.</p>
 <p><strong>A documented decision rule for common scenarios.</strong> Write down, even briefly, what you'll do when a specific cost goes up, when a competitor undercuts you, or when a new product launches with no sales history. Having the rule decided in advance means you're not making a reactive, emotional pricing call in the moment a cost increase or competitor move actually happens.</p>
-<p>None of this needs to be complicated to count as a real strategy. A one-page document covering these four pieces is a genuine pricing strategy. A price you set six months ago and haven't looked at since is not, no matter how much thought went into it originally.</p>
+<p>None of this needs to be complicated to count as a real strategy. A one-page document covering these four pieces is a genuine pricing strategy. A price you set six months ago and haven't looked at since is not, no matter how much thought went into it originally. Which primary approach belongs in that one-page document also isn't fixed forever, it should shift as your store accumulates real sales history; <a href="/blog/ecommerce-pricing-strategy-by-growth-stage">how that shift plays out from a store's first sale through thousands of orders</a> maps the trajectory in more depth than fits here.</p>
 
 <h2>The Biggest Mistake Ecommerce Sellers Make With Pricing</h2>
 <p>Across independent sources covering ecommerce pricing mistakes, the same underlying failure shows up described in different words: pricing gets treated as a one-time launch decision instead of an ongoing practice. Two specific patterns account for most of it.</p>
@@ -737,7 +737,7 @@ export const posts: BlogPost[] = [
 <p><strong>Immediately, outside the regular cadence, when a trigger event happens.</strong> A significant supplier cost increase, a major competitor price move, or a product's demand pattern shifting noticeably (a viral moment, a seasonal swing, a new competitor entering the category) all warrant an off-cycle review rather than waiting for the next scheduled check.</p>
 <p>The common thread across all three: review cadence should be driven by whether you actually have new information to act on, not by an arbitrary interval. Checking a product's price every month when nothing about its sales pattern has changed just adds noise. Waiting a full year when three months of clear data already points to a change leaves money on the table in the meantime.</p>
 
-<p>Run your own pricing review continuously instead of once a year. <a href="/signup">Start a free trial</a> and see whether Zorin's elasticity model agrees with your current prices.</p>
+<p>Run your own pricing review continuously instead of once a year. <a href="/signup">Start a free trial</a> and see whether Zorin's elasticity model agrees with your current prices. If you're pricing a category with its own specific quirks, <a href="/blog/how-to-price-clothing-on-shopify">apparel</a> and <a href="/blog/pricing-skincare-products-on-shopify-charging-enough">skincare</a> each have a dedicated breakdown that goes beyond the general strategies covered here.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
@@ -946,7 +946,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Whether you're setting a launch price with no sales history to lean on, or sanity-checking a planned increase before you commit to it, hearing directly from the people who'd actually buy the product is a signal worth having next to your own sales data, not instead of it. Zorin runs the survey and the elasticity model on the same platform, so both numbers are there when you're ready to decide.</p>
+<p class="conclusion">Whether you're setting a launch price with no sales history to lean on, or sanity-checking a planned increase before you commit to it, hearing directly from the people who'd actually buy the product is a signal worth having next to your own sales data, not instead of it. Zorin runs the survey and the elasticity model on the same platform, so both numbers are there when you're ready to decide. A survey is one way to reduce that uncertainty before you commit to a price; <a href="/blog/price-survey-vs-price-testing">how it compares to actually testing a live price with real customers</a> is worth reading before you decide which one to run first.</p>
 `,
   },
   {
@@ -1647,7 +1647,7 @@ export const posts: BlogPost[] = [
 <p>Start by identifying the 5-10 products where Zorin shows a "raise" recommendation with strong confidence and low elasticity. These are the products where the data says your customers can absorb an increase without meaningful volume loss. Raise these first by 10-15%. Measure the impact over 4-6 weeks.</p>
 <p>Then move to the medium-confidence products and test smaller increases (5-10%). Hold off on the high-elasticity and weak-confidence products until you have more data.</p>
 <p>This sequenced approach is less risky than a blanket price increase across your entire catalog, and it lets you learn which product types and price bands your audience is most sensitive to. You can preview the margin impact of any price change using the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before committing.</p>
-<p>For more on the mechanics and psychology of raising prices, see our post on <a href="/blog/should-i-raise-prices-to-cover-rising-costs">whether you should raise prices to cover rising costs</a>.</p>
+<p>For more on the mechanics and psychology of raising prices, see our post on <a href="/blog/should-i-raise-prices-to-cover-rising-costs">whether you should raise prices to cover rising costs</a>. Skincare isn't the only category with its own pricing quirks either. <a href="/blog/how-to-price-clothing-on-shopify">Apparel carries a different set of pressures entirely, from size-run economics to return rates</a>, worth a look if you sell across categories.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
@@ -1964,7 +1964,8 @@ export const posts: BlogPost[] = [
 <p>A few practical notes.</p>
 <p>These categories aren't mutually exclusive. A store that resells commodity products and also carries its own branded line could reasonably use a competitor tracker for the commodity products and an elasticity tool for the branded ones. The tracker gives you market context. The elasticity tool gives you the pricing answer.</p>
 <p>Data requirements matter. Elasticity modeling needs at least a few months of sales history with some price variation in it. If you launched last week, you don't have enough data yet. Start with cost-plus or value-based pricing, and revisit demand modeling once you have a real sales history to read. In the meantime, Zorin's Van Westendorp survey can give you a stated-preference read even before you have sales data.</p>
-<p>Budget differs by mechanism. Competitor trackers start around $49 to $99/month. A/B price testing with Intelligems starts at $499/month for the plan that includes price tests. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, accessible to merchants who don't have enterprise budgets or dedicated pricing analysts. For a fuller breakdown of every category, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full pricing tools comparison</a>.</p>
+<p>Budget differs by mechanism. Competitor trackers start around $49 to $99/month. A/B price testing with Intelligems starts at $499/month for the plan that includes price tests. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, accessible to merchants who don't have enterprise budgets or dedicated pricing analysts. For a fuller breakdown of every category, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full pricing tools comparison</a>, and if you land on a demand-based tool specifically, <a href="/blog/price-elasticity-tools-for-ecommerce-how-to-find-your-best-price">a closer look at the elasticity-tool category on its own</a> covers more ground on picking between options within it.</p>
+<p>Whichever category you land in, install decisions are easy to rush. <a href="/blog/how-to-evaluate-a-shopify-pricing-app">A short checklist for evaluating any Shopify pricing app before you connect it to your store</a> applies regardless of whether you end up with a tracker, a repricer, or a demand-based tool.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
@@ -2092,7 +2093,7 @@ export const posts: BlogPost[] = [
 
 <p>Separately, Zorin ships <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">a Van Westendorp Price Sensitivity survey</a>: a four-question, no-login customer survey that calculates an acceptable price range, an optimal price point, and an indifference price point. This is a stated-preference signal (what customers say they'd pay), deliberately kept separate from the elasticity model's revealed-preference signal (what customers actually did). You read them side by side, not blended together.</p>
 <p>Nothing applies automatically. You review each recommendation, adjust it with a slider or by typing your own price, preview the resulting margin, and apply it one product at a time or in bulk. The decision is always yours. You can use the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> to sanity-check the margin math before committing.</p>
-<p>The key difference from the competitor trackers above: Zorin explicitly does not scrape or compare against competitor prices. The recommendation is grounded entirely in your own customers' demonstrated behavior. A competitor's price was set based on their costs, their brand, and their audience, not yours. Matching it tells you nothing about what your specific buyers are actually willing to pay.</p>
+<p>The key difference from the competitor trackers above: Zorin doesn't automatically scrape or live-monitor competitor sites. The core recommendation is grounded entirely in your own customers' demonstrated behavior, not the market. Zorin does have a lightweight manual version of competitor data for when you want it: add a competitor's name, price, and an optional URL per product, and Zorin computes the min, median, and max across what you've entered and feeds it into the Launch Planner, without needing a separate automated tracking subscription. A competitor's price was set based on their costs, their brand, and their audience, not yours, so matching it tells you nothing about what your specific buyers are actually willing to pay.</p>
 
 <h2>How to Match the Right Tool to Your Store</h2>
 <p>There's no single "best" pricing tool. The right one depends on the pricing question you're trying to answer and the resources you have.</p>
@@ -2115,7 +2116,7 @@ export const posts: BlogPost[] = [
 <p>First, these categories aren't always mutually exclusive. A store could reasonably use a competitor tracker to monitor the market and an elasticity tool to set its own prices. The competitor data gives you context. The elasticity data gives you the answer.</p>
 <p>Second, data requirements matter. Elasticity modeling needs at least a few months of sales history with some price variation in it. If you launched last week, you don't have enough data yet. Start with a cost-plus or competitive approach, and revisit elasticity modeling once you have a real sales history to read.</p>
 <p>Third, budget scales with mechanism complexity. Competitor trackers start around $49 to $99/month. A/B price testing for prices starts at $499/month with Intelligems. Enterprise elasticity platforms are custom-quoted at five to six figures. Zorin sits in the SMB gap between the basic trackers and the enterprise platforms, accessible to merchants who don't have dedicated pricing analysts.</p>
-<p>If you're unsure where to start, ask yourself one question: is my pricing problem about watching other stores, or about understanding my own customers? The answer points you to the right category.</p>
+<p>If you're unsure where to start, ask yourself one question: is my pricing problem about watching other stores, or about understanding my own customers? The answer points you to the right category. If you're still weighing the first option specifically, <a href="/blog/do-you-need-a-competitor-price-tracking-app">whether a dedicated competitor price tracking app is actually worth adding to your stack</a> is worth reading on its own. And whichever category you land in, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">a practical checklist for evaluating any Shopify pricing app before you install it</a> applies regardless of which tool you're considering.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
@@ -2241,7 +2242,7 @@ export const posts: BlogPost[] = [
 <p>Competitor tracking tells you where the market is. It doesn't tell you what your customers will actually do if you match, undercut, or ignore that price. A competitor's price says nothing about your brand's specific demand curve, your customer base's loyalty, or your product's actual substitutability. Elasticity modeling and price sensitivity surveys both look at your demand directly instead, just from two different angles: one from what customers actually did (revealed preference), the other from what they say they'd pay (stated preference).</p>
 
 <h2>Per-SKU Elasticity Tools Built for Shopify and WooCommerce</h2>
-<p>Zorin connects to your Shopify or WooCommerce store, or takes a sales history upload, and fits a log-log regression per SKU rather than treating your whole catalog as one blended average. Each SKU gets its own elasticity estimate, a confidence score based on how much clean price variation is in the data, and a raise, lower, or hold recommendation with an estimated profit lift. It deliberately does not scrape or compare against competitor prices. The recommendation is grounded entirely in what your own customers did when your prices moved, not in what a rival storefront happens to be charging this week.</p>
+<p>Zorin connects to your Shopify or WooCommerce store, or takes a sales history upload, and fits a log-log regression per SKU rather than treating your whole catalog as one blended average. Each SKU gets its own elasticity estimate, a confidence score based on how much clean price variation is in the data, and a raise, lower, or hold recommendation with an estimated profit lift. It doesn't automatically scrape or live-monitor competitor prices; the core recommendation is grounded entirely in what your own customers did when your prices moved, not in what a rival storefront happens to be charging this week. If you still want market context, Zorin also lets you manually log a competitor's name, price, and an optional URL per product and rolls that into a min/median/max view, without a separate tracking subscription.</p>
 
 <figure class="post-image">
   <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
@@ -2488,7 +2489,7 @@ export const posts: BlogPost[] = [
 
 <h2>Do You Actually Need Elasticity Data, or Is Repricing Enough</h2>
 <p>Ask yourself one direct question: is your product a commodity where the customer is actively comparing your price to five other identical listings right now, or is it something where your own customer's behavior, not the competitor's number, actually decides the sale?</p>
-<p>For true commodity SKUs on competitive marketplaces, repricing is doing real work. For most independent stores with their own brand and audience, the more useful question isn't "what is everyone else charging," it's "what has my own data already told me my customers will pay." A rule copied from a discount plugin's defaults or a reflexive match against a competitor's number isn't a pricing strategy, it's an assumption standing in for one.</p>
+<p>For true commodity SKUs on competitive marketplaces, repricing is doing real work. For most independent stores with their own brand and audience, the more useful question isn't "what is everyone else charging," it's "what has my own data already told me my customers will pay." A rule copied from a discount plugin's defaults or a reflexive match against a competitor's number isn't a pricing strategy, it's an assumption standing in for one. If competitor visibility is still part of the decision, <a href="/blog/do-you-need-a-competitor-price-tracking-app">whether you actually need a dedicated competitor price tracking app</a> is worth answering separately from the elasticity question. And if you've settled on elasticity as the right signal, <a href="/blog/price-elasticity-tools-for-ecommerce-how-to-find-your-best-price">a roundup of the tools that actually calculate it</a> is the natural next read.</p>
 
 <h2>Where Zorin Fits</h2>
 <p>Zorin is the elasticity engine built specifically for that second group. Connect your Shopify or WooCommerce store, or upload a CSV, and Zorin fits a price elasticity model per SKU from your own sales history, then hands you a plain raise, lower, or hold call with the reasoning attached: the elasticity, the estimated profit lift, and a confidence label so you know how much data actually backs the number. Nothing applies automatically. You review each recommendation, adjust it with a slider or your own number, preview the margin impact, and apply it one product at a time or in bulk. Alongside the elasticity read, <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">Zorin also offers a separate Van Westendorp price sensitivity survey</a>, a four-question, no-login customer survey that gives you a second, stated-preference signal to read next to your own sales data, not blended into it.</p>
@@ -2528,7 +2529,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Does Zorin compare my prices against competitors?</h3>
-<p>No. Zorin explicitly does not scrape or compare competitor prices. Every recommendation is grounded in your own sales history, not the market.</p>
+<p>Not automatically. Zorin doesn't scrape or live-monitor competitor sites, and every core recommendation is grounded in your own sales history, not the market. It does have a manual option: you can add a competitor's name, price, and an optional URL per product, and Zorin computes the min, median, and max across what you've entered, without a separate tracking subscription.</p>
 </div>
 <div class="faq-item">
 <h3>How much sales history do I need before Zorin's recommendations are reliable?</h3>
@@ -2615,7 +2616,7 @@ export const posts: BlogPost[] = [
 <li><strong>Check your traffic, not just your conversion rate.</strong> A drop in visits with a stable conversion rate points to a demand-side or marketing issue. A stable traffic number with a falling conversion rate points more clearly at the price itself.</li>
 <li><strong>Check what your direct competitors did that same week</strong>, if you have any visibility into it. A rival running a flash sale or restocking a popular item can pull share away from you in a way that looks, on your dashboard, exactly like a bad reaction to your own price change.</li>
 </ul>
-<p>This is one reason <a href="/blog/should-you-price-below-at-or-above-your-competitors">Zorin's elasticity model doesn't scrape or compare against competitor prices</a> in the first place. It fits its recommendation from your own sales history, your own customers, your own demand curve, so the raise, lower, or hold call you get isn't quietly reacting to a competitor's pricing move mixed in with the data. That separation matters most exactly in a situation like this one: when you're trying to figure out whether a drop was really your price, or something happening one tab over on a rival's storefront.</p>
+<p>This is one reason <a href="/blog/should-you-price-below-at-or-above-your-competitors">Zorin's elasticity model doesn't automatically scrape or live-monitor competitor prices</a> for its core recommendation in the first place. It fits its recommendation from your own sales history, your own customers, your own demand curve, so the raise, lower, or hold call you get isn't quietly reacting to a competitor's pricing move mixed in with the data. That separation matters most exactly in a situation like this one: when you're trying to figure out whether a drop was really your price, or something happening one tab over on a rival's storefront.</p>
 
 <h2>How to Raise Prices Without Losing Customers Next Time</h2>
 <p><strong>A safer price increase combines three things: sizing the increase to what your actual elasticity can absorb, staging it incrementally instead of all at once, and communicating the change in a way that resets the customer's reference price instead of leaving it exposed as a pure loss.</strong></p>
@@ -2792,7 +2793,7 @@ export const posts: BlogPost[] = [
 </ul>
 </div>
 
-<p>If you'd like to see this calculated automatically across your own catalog rather than product by product in a spreadsheet, you can <a href="/integrations/shopify">connect your Shopify store</a> or <a href="/integrations/woocommerce">connect WooCommerce</a> and Zorin will fit an elasticity model to your actual sales history. You can also check your current margins first with the free <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before deciding where to test a price change.</p>
+<p>If you'd like to see this calculated automatically across your own catalog rather than product by product in a spreadsheet, you can <a href="/integrations/shopify">connect your Shopify store</a> or <a href="/integrations/woocommerce">connect WooCommerce</a> and Zorin will fit an elasticity model to your actual sales history. You can also check your current margins first with the free <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before deciding where to test a price change. If you want to compare Zorin against the rest of the elasticity-tool category first, <a href="/blog/price-elasticity-tools-for-ecommerce-how-to-find-your-best-price">a roundup of the tools that actually calculate elasticity</a> covers the field.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2883,7 +2884,7 @@ export const posts: BlogPost[] = [
 
 <h2>How a Price Elasticity Model Reads Your Own Sales Data</h2>
 <p><a href="/blog/what-does-price-elasticity-actually-mean">Price elasticity measures how much demand shifts when price shifts</a>. If a 10% price increase causes a 5% drop in units sold, that product has an elasticity of roughly -0.5, meaning demand is fairly inelastic and a price increase likely raises overall profit even with some volume loss. If the same 10% increase caused a 25% drop in units, the product is highly elastic, and raising price would likely cost you more in lost sales than you'd gain per unit.</p>
-<p>Zorin connects to your Shopify or WooCommerce store, or accepts a CSV upload of your sales history, and fits a log-log regression per SKU, measuring exactly how demand has moved with price in the past. It returns a plain raise, lower, or hold recommendation for each product, along with an estimated profit lift and the elasticity number behind the call. It doesn't scrape or compare against competitor prices. The recommendation is grounded entirely in your own customers' demonstrated behavior.</p>
+<p>Zorin connects to your Shopify or WooCommerce store, or accepts a CSV upload of your sales history, and fits a log-log regression per SKU, measuring exactly how demand has moved with price in the past. It returns a plain raise, lower, or hold recommendation for each product, along with an estimated profit lift and the elasticity number behind the call. It doesn't automatically scrape or live-monitor competitor prices. The recommendation is grounded entirely in your own customers' demonstrated behavior.</p>
 <p>This matters more for a small catalog than a large one, because you don't have hundreds of SKUs to average errors out across. Every individual pricing call carries real weight.</p>
 
 <h2>Why a Confidence Score Matters More Than a Bare Recommendation</h2>
@@ -2928,7 +2929,7 @@ export const posts: BlogPost[] = [
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
 <h3>What's the best pricing tool for Shopify stores that uses my own sales data instead of competitor prices?</h3>
-<p>Look for a tool built specifically for demand-based pricing rather than competitor tracking. Zorin fits a price elasticity model to your own Shopify or WooCommerce sales history per SKU and never compares against competitor prices.</p>
+<p>Look for a tool built specifically for demand-based pricing rather than competitor tracking. Zorin fits a price elasticity model to your own Shopify or WooCommerce sales history per SKU, and its core recommendation never automatically pulls in competitor prices.</p>
 </div>
 <div class="faq-item">
 <h3>How do I know if I should raise or lower my prices without losing sales?</h3>
@@ -2944,7 +2945,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>What's a good alternative to competitor price tracking apps for merchants who want demand-based pricing?</h3>
-<p>Zorin is built specifically as an alternative to competitor repricers. It explicitly does not scrape or compare against competitor prices, reading your own sales history instead.</p>
+<p>Zorin is built specifically as an alternative to automated competitor repricers. It doesn't scrape or live-monitor competitor sites, reading your own sales history instead, though you can still manually log a competitor's price per product if you want that context alongside the elasticity read.</p>
 </div>
 <div class="faq-item">
 <h3>Do I need a data science background to use a price elasticity tool?</h3>
@@ -3563,7 +3564,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Every category in this guide reacts to price differently, but the underlying question is always the same: does this customer have an easy alternative, and how much do they actually care about comparing you to it. Fashion and standard electronics answer yes on both counts. Loyal skincare buyers and handmade gift shoppers usually answer no. Knowing which answer applies to your product is worth more than any single elasticity formula. Across every category, elastic or not, Zorin calculates this exact elasticity automatically from your own sales history, so you're reading your own customers' real behavior instead of guessing which end of the spectrum your catalog falls on.</p>
+<p class="conclusion">Every category in this guide reacts to price differently, but the underlying question is always the same: does this customer have an easy alternative, and how much do they actually care about comparing you to it. Fashion and standard electronics answer yes on both counts. Loyal skincare buyers and handmade gift shoppers usually answer no. Knowing which answer applies to your product is worth more than any single elasticity formula. Across every category, elastic or not, Zorin calculates this exact elasticity automatically from your own sales history, so you're reading your own customers' real behavior instead of guessing which end of the spectrum your catalog falls on. If fashion or skincare specifically is your category, <a href="/blog/how-to-price-clothing-on-shopify">apparel pricing</a> and <a href="/blog/pricing-skincare-products-on-shopify-charging-enough">skincare pricing</a> each get a dedicated, category-specific breakdown beyond the general patterns covered here.</p>
     `.trim(),
   },
   {
@@ -3992,7 +3993,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Reading your own sales history tells you what customers actually did. A short, direct survey tells you what they say they'd accept, and it works even before you have any sales to read. Neither replaces the other. Used together, they give you a fuller, more honest picture than either signal alone.</p>
+<p class="conclusion">Reading your own sales history tells you what customers actually did. A short, direct survey tells you what they say they'd accept, and it works even before you have any sales to read. Neither replaces the other. Used together, they give you a fuller, more honest picture than either signal alone. For a closer look at exactly where a survey's stated-preference read and a live price test's revealed-preference read agree and diverge, see <a href="/blog/price-survey-vs-price-testing">price survey vs price testing</a>.</p>
     `.trim(),
   },
   {
@@ -4719,7 +4720,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The statistics behind good pricing are real, but running them by hand was always the bottleneck, not a requirement you personally need to meet. Automate the calculation, bring your own judgment to the recommendation, and the analyst-sized gap closes without an analyst-sized hire.</p>
+<p class="conclusion">The statistics behind good pricing are real, but running them by hand was always the bottleneck, not a requirement you personally need to meet. Automate the calculation, bring your own judgment to the recommendation, and the analyst-sized gap closes without an analyst-sized hire. Not needing a dedicated analyst doesn't mean the approach stays the same as your store grows, though; <a href="/blog/ecommerce-pricing-strategy-by-growth-stage">how the underlying strategy should evolve from a store's first sale to thousands of orders</a> covers that progression directly.</p>
     `.trim(),
   },
   {
@@ -5526,7 +5527,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The right pricing cadence isn't a universal number, it's whatever catches real drift in your costs and demand without chasing every short-term fluctuation. A regular review, adjusted by confidence score per product and layered with off-cycle checks for real triggers, does that better than either extreme.</p>
+<p class="conclusion">The right pricing cadence isn't a universal number, it's whatever catches real drift in your costs and demand without chasing every short-term fluctuation. A regular review, adjusted by confidence score per product and layered with off-cycle checks for real triggers, does that better than either extreme. That cadence itself tends to shift as a store grows, too; <a href="/blog/ecommerce-pricing-strategy-by-growth-stage">how pricing strategy evolves from a store's first sale through thousands of orders</a> covers how review discipline changes alongside the data you have to work with.</p>
     `.trim(),
   },
   {
@@ -5915,7 +5916,7 @@ export const posts: BlogPost[] = [
   <li><strong>Expand to the rest of your catalog</strong> once you trust the pattern of recommendations against real results.</li>
 </ol>
 <p>The trust-building step matters more than any single feature. The value of an AI-assisted recommendation holds up because you can see the reasoning and test it before it goes live, not because you're asked to believe it on faith.</p>
-<p>Once you've picked a tool, <a href="/blog/is-your-store-leaving-money-on-the-table">check whether your current prices are already leaving profit on the table</a>. If a sale is coming up, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to discount without corrupting your pricing data</a>. Running WooCommerce instead of Shopify? <a href="/blog/woocommerce-pricing-apps-what-to-look-for">The same evaluation criteria apply, with a few platform-specific differences worth knowing</a>. For a fuller breakdown of every pricing tool category, not just elasticity-based ones, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full 2026 pricing tools comparison</a>.</p>
+<p>Once you've picked a tool, <a href="/blog/is-your-store-leaving-money-on-the-table">check whether your current prices are already leaving profit on the table</a>. If a sale is coming up, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to discount without corrupting your pricing data</a>. Running WooCommerce instead of Shopify? <a href="/blog/woocommerce-pricing-apps-what-to-look-for">The same evaluation criteria apply, with a few platform-specific differences worth knowing</a>. For a fuller breakdown of every pricing tool category, not just elasticity-based ones, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full 2026 pricing tools comparison</a>. And for a more structured, step-by-step version of this same evaluation, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">a dedicated checklist for evaluating a Shopify pricing app</a> walks through the same criteria in a repeatable order.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>

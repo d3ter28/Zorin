@@ -12,6 +12,12 @@ const disallow = [
   "/reset-password",
   "/guide",
   "/launch-planner",
+  "/billing",
+  "/campaigns",
+  "/product",
+  "/profit",
+  "/survey",
+  "/invite",
 ];
 
 export default function robots(): MetadataRoute.Robots {

@@ -1,18 +1,13 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
+// Server component: the hero contains the page's LCP element (the H1), so
+// its entrance motion is plain CSS (see .hero-enter-* in globals.css) rather
+// than Framer Motion — pulling that library into the eagerly-loaded bundle
+// here was adding parse/execute time that delayed first paint on mobile.
 
 export function Hero() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative overflow-hidden pt-16">
       <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-16 md:grid-cols-2 md:items-center md:gap-16 md:py-20 lg:py-24">
-        <motion.div
-          initial={reduce ? false : { y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="hero-enter-up">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
             <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
             7-day free trial - no credit card required
@@ -41,14 +36,9 @@ export function Hero() {
           <p className="mt-3 text-xs text-zinc-500">
             Your sales data is never shared, sold, or used to train other merchants&apos; models. Deleted on request.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={reduce ? false : { opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="relative"
-        >
+        <div className="hero-enter-side relative">
           <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-2xl shadow-zinc-900/10">
             <div className="flex items-center gap-1.5 border-b border-zinc-100 px-4 py-3">
               <div className="h-2.5 w-2.5 rounded-full bg-zinc-200" />
@@ -83,7 +73,7 @@ export function Hero() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

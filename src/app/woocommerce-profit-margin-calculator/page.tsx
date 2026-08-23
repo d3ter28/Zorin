@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import { WooCommerceProfitMarginCalculator } from "@/components/marketing/WooCommerceProfitMarginCalculator";
+import { buildCalculatorSchema } from "@/lib/seo/toolSchema";
 
 export const metadata = {
   title: "WooCommerce Profit Margin Calculator (Free) - Zorin",
@@ -9,9 +10,23 @@ export const metadata = {
   alternates: { canonical: "https://www.tryzorin.com/woocommerce-profit-margin-calculator" },
 };
 
+const { webApplicationSchema, breadcrumbSchema } = buildCalculatorSchema({
+  name: "WooCommerce Profit Margin Calculator",
+  path: "/woocommerce-profit-margin-calculator",
+  description: metadata.description,
+});
+
 export default function WooCommerceProfitMarginCalculatorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
       <main className="mx-auto max-w-2xl px-6 pb-24 pt-32 md:pb-32">
         <h1 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
