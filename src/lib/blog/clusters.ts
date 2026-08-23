@@ -19,6 +19,7 @@ export const clusters: Cluster[] = [
       "elastic-vs-inelastic-demand-whats-the-difference",
       "how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist",
       "how-to-calculate-price-elasticity-for-your-shopify-store",
+      "how-to-calculate-price-elasticity-for-your-woocommerce-store",
       "how-to-know-if-your-prices-are-too-high-or-too-low",
       "why-did-my-sales-drop-when-i-raised-my-price",
       "price-increase-killed-your-sales-heres-the-real-reason",
