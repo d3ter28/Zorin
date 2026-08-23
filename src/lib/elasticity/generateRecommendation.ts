@@ -17,6 +17,11 @@ export interface PricingRecommendation {
   deltaPct: number;
   reasoning: string;
   expectedProfitLiftPct: number;
+  currentUnitsEstimate: number;
+  projectedUnitsEstimate: number;
+  currentProfitCents: number;
+  projectedProfitCents: number;
+  profitLiftCents: number;
 }
 
 export function generateRecommendation(
@@ -94,11 +99,27 @@ export function generateRecommendation(
       `${action === "raise" ? "Raising" : "Lowering"} price ${pricePctStr} ${unitChangePct >= 0 ? "increases" : "reduces"} units by ~${Math.abs(unitChangePct).toFixed(0)}% ` +
       `but ${parseFloat(profitChangePct) >= 0 ? "grows" : "reduces"} gross profit by ~${Math.abs(parseFloat(profitChangePct))}%.${confidenceNote}`;
 
+  const finalPriceCents = action === "hold" ? currentPriceCents : bestPriceCents;
+  const projectedSim = action === "hold"
+    ? currentSim
+    : simulateProfit({
+        elasticity: model.elasticity,
+        intercept: model.intercept,
+        currentPriceCents,
+        candidatePriceCents: finalPriceCents,
+        cogsCents,
+      });
+
   return {
     action,
-    suggestedPriceCents: action === "hold" ? currentPriceCents : bestPriceCents,
+    suggestedPriceCents: finalPriceCents,
     deltaPct,
     reasoning,
     expectedProfitLiftPct,
+    currentUnitsEstimate: currentSim.predictedUnits,
+    projectedUnitsEstimate: projectedSim.predictedUnits,
+    currentProfitCents: currentSim.predictedGrossProfitCents,
+    projectedProfitCents: projectedSim.predictedGrossProfitCents,
+    profitLiftCents: projectedSim.predictedGrossProfitCents - currentSim.predictedGrossProfitCents,
   };
 }

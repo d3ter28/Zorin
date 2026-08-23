@@ -64,4 +64,82 @@ describe("RecommendationCard", () => {
     render(<RecommendationCard rec={rec({ reasoning: "Lower your price to match the market." })} />);
     expect(screen.getByText("Lower your price to match the market.")).toBeTruthy();
   });
+
+  it("why this price: omitted when currentPriceCents is not passed", () => {
+    render(
+      <RecommendationCard
+        rec={rec({
+          action: "raise",
+          currentUnitsEstimate: 58,
+          projectedUnitsEstimate: 42,
+          currentProfitCents: 100000,
+          projectedProfitCents: 118300,
+          profitLiftCents: 18300,
+        })}
+      />
+    );
+    expect(screen.queryByText("Why this price?")).toBeNull();
+  });
+
+  it("why this price: omitted when the recommendation lacks unit/profit data", () => {
+    render(<RecommendationCard rec={rec({ action: "raise" })} currentPriceCents={7999} />);
+    expect(screen.queryByText("Why this price?")).toBeNull();
+  });
+
+  it("why this price: raise shows current vs projected units/profit and a profit gain", () => {
+    render(
+      <RecommendationCard
+        rec={rec({
+          action: "raise",
+          suggestedPriceCents: 8999,
+          currentUnitsEstimate: 58,
+          projectedUnitsEstimate: 42,
+          currentProfitCents: 100000,
+          projectedProfitCents: 118300,
+          profitLiftCents: 18300,
+        })}
+        currentPriceCents={7999}
+      />
+    );
+    expect(screen.getByText("Why this price?")).toBeTruthy();
+    expect(screen.getByText(/~58 units/)).toBeTruthy();
+    expect(screen.getByText(/~42 units/)).toBeTruthy();
+    expect(screen.getByText("+$183.00 projected monthly gross profit gain")).toBeTruthy();
+  });
+
+  it("why this price: negative lift shows a profit change, not a gain", () => {
+    render(
+      <RecommendationCard
+        rec={rec({
+          action: "lower",
+          suggestedPriceCents: 6999,
+          currentUnitsEstimate: 42,
+          projectedUnitsEstimate: 58,
+          currentProfitCents: 118300,
+          projectedProfitCents: 100000,
+          profitLiftCents: -18300,
+        })}
+        currentPriceCents={7999}
+      />
+    );
+    expect(screen.getByText("-$183.00 projected monthly gross profit change")).toBeTruthy();
+  });
+
+  it("why this price: hold shows only the current-price stat, no lift line", () => {
+    render(
+      <RecommendationCard
+        rec={rec({
+          action: "hold",
+          currentUnitsEstimate: 50,
+          projectedUnitsEstimate: 50,
+          currentProfitCents: 110000,
+          projectedProfitCents: 110000,
+          profitLiftCents: 0,
+        })}
+        currentPriceCents={7999}
+      />
+    );
+    expect(screen.getByText(/already close to the profit-maximizing price/)).toBeTruthy();
+    expect(screen.queryByText(/projected monthly gross profit/)).toBeNull();
+  });
 });

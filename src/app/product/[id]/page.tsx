@@ -36,6 +36,11 @@ function parseRecView(rec: RecData): MLRecView | null {
       r2: number;
       dataPoints: number;
       confidenceScore?: number;
+      currentUnitsEstimate?: number;
+      projectedUnitsEstimate?: number;
+      currentProfitCents?: number;
+      projectedProfitCents?: number;
+      profitLiftCents?: number;
     };
     return {
       action: rec.action,
@@ -45,6 +50,11 @@ function parseRecView(rec: RecData): MLRecView | null {
       dataPoints: rules.dataPoints,
       expectedProfitLiftPct: rules.expectedProfitLiftPct,
       confidenceScore: rules.confidenceScore ?? null,
+      currentUnitsEstimate: rules.currentUnitsEstimate ?? null,
+      projectedUnitsEstimate: rules.projectedUnitsEstimate ?? null,
+      currentProfitCents: rules.currentProfitCents ?? null,
+      projectedProfitCents: rules.projectedProfitCents ?? null,
+      profitLiftCents: rules.profitLiftCents ?? null,
     };
   } catch {
     return null;
@@ -215,7 +225,7 @@ export default function ProductPage({
               <MLActionButtons productId={d.id} onComplete={loadData} />
             </div>
 
-            <RecommendationCard rec={mlRec} />
+            <RecommendationCard rec={mlRec} currentPriceCents={d.currentPrice} />
 
             <PriceSurveyCard productId={d.id} />
 

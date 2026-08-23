@@ -1,6 +1,7 @@
 "use client";
 
 import { ModelHealthBadge } from "./ModelHealthBadge";
+import { formatCents } from "@/lib/money";
 
 export interface MLRecView {
   action: "raise" | "lower" | "hold";
@@ -10,6 +11,46 @@ export interface MLRecView {
   dataPoints: number;
   expectedProfitLiftPct: number;
   confidenceScore?: number | null;
+  currentUnitsEstimate?: number | null;
+  projectedUnitsEstimate?: number | null;
+  currentProfitCents?: number | null;
+  projectedProfitCents?: number | null;
+  profitLiftCents?: number | null;
+}
+
+function WhyThisPrice({ rec, currentPriceCents }: { rec: MLRecView; currentPriceCents: number }) {
+  if (
+    rec.currentUnitsEstimate == null ||
+    rec.projectedUnitsEstimate == null ||
+    rec.currentProfitCents == null ||
+    rec.projectedProfitCents == null ||
+    rec.profitLiftCents == null
+  ) {
+    return null;
+  }
+
+  const currentUnits = Math.round(rec.currentUnitsEstimate);
+  const projectedUnits = Math.round(rec.projectedUnitsEstimate);
+  const liftCents = rec.profitLiftCents;
+  const liftIsGain = liftCents >= 0;
+
+  const headline =
+    rec.action === "hold"
+      ? `At ${formatCents(currentPriceCents)}, you're projected to sell ~${currentUnits} units for ~${formatCents(rec.currentProfitCents)} gross profit — already close to the profit-maximizing price.`
+      : `At ${formatCents(currentPriceCents)}, you're projected to sell ~${currentUnits} units for ~${formatCents(rec.currentProfitCents)} gross profit. At ${formatCents(rec.suggestedPriceCents)}, that shifts to ~${projectedUnits} units for ~${formatCents(rec.projectedProfitCents)} gross profit.`;
+
+  return (
+    <div className="mt-3 rounded-lg border border-line bg-panel p-3">
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-faint">Why this price?</h3>
+      <p className="mt-2 text-sm leading-relaxed text-ink">{headline}</p>
+      {rec.action !== "hold" && (
+        <p className={`mt-2 text-sm font-semibold ${liftIsGain ? "text-positive" : "text-warning"}`}>
+          {liftIsGain ? "+" : ""}
+          {formatCents(liftCents)} projected monthly gross profit {liftIsGain ? "gain" : "change"}
+        </p>
+      )}
+    </div>
+  );
 }
 
 /**
@@ -17,7 +58,13 @@ export interface MLRecView {
  * The price control and Apply action live in WhatIfSlider; this card
  * just explains what the engine suggests.
  */
-export function RecommendationCard({ rec }: { rec: MLRecView | null }) {
+export function RecommendationCard({
+  rec,
+  currentPriceCents,
+}: {
+  rec: MLRecView | null;
+  currentPriceCents?: number;
+}) {
   if (!rec) {
     return (
       <div className="rounded-xl border border-dashed border-line bg-surface p-5">
@@ -66,6 +113,7 @@ export function RecommendationCard({ rec }: { rec: MLRecView | null }) {
         <span className="text-xs text-faint">{liftLabel}</span>
       </div>
       <p className="mt-2 text-ink">{rec.reasoning}</p>
+      {currentPriceCents != null && <WhyThisPrice rec={rec} currentPriceCents={currentPriceCents} />}
       <div className="mt-3">
         <ModelHealthBadge r2={rec.r2} dataPoints={rec.dataPoints} confidenceScore={rec.confidenceScore ?? null} />
       </div>

@@ -63,4 +63,23 @@ describe("generateRecommendation", () => {
     const rec = generateRecommendation(model, 1000, 400, 0.1, 0.9);
     expect(rec.reasoning).not.toMatch(/limited data/i);
   });
+
+  it("returns current/projected units and profit consistent with profitLiftCents", () => {
+    const rec = generateRecommendation(model, 1000, 400, 0.1);
+    expect(rec.currentUnitsEstimate).toBeGreaterThan(0);
+    expect(rec.projectedUnitsEstimate).toBeGreaterThan(0);
+    expect(rec.profitLiftCents).toBeCloseTo(
+      rec.projectedProfitCents - rec.currentProfitCents,
+      6
+    );
+  });
+
+  it("hold: projected units/profit equal current units/profit and lift is zero", () => {
+    const elasticModel = { ...model, elasticity: -2.0 };
+    const rec = generateRecommendation(elasticModel, 1000, 500, 0.0);
+    expect(rec.action).toBe("hold");
+    expect(rec.projectedUnitsEstimate).toBeCloseTo(rec.currentUnitsEstimate, 6);
+    expect(rec.projectedProfitCents).toBeCloseTo(rec.currentProfitCents, 6);
+    expect(rec.profitLiftCents).toBeCloseTo(0, 6);
+  });
 });

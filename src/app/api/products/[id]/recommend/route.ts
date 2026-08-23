@@ -34,6 +34,11 @@ export const POST = withErrorHandling(
       r2: product.elasticityModel.r2,
       dataPoints: product.elasticityModel.dataPoints,
       confidenceScore,
+      currentUnitsEstimate: rec.currentUnitsEstimate,
+      projectedUnitsEstimate: rec.projectedUnitsEstimate,
+      currentProfitCents: rec.currentProfitCents,
+      projectedProfitCents: rec.projectedProfitCents,
+      profitLiftCents: rec.profitLiftCents,
     });
 
     await prisma.recommendation.upsert({
