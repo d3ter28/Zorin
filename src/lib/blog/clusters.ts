@@ -100,6 +100,7 @@ export const clusters: Cluster[] = [
       "Broader strategy questions: how often to review prices, whether to price above or below competitors, and the core frameworks every pricing decision comes back to.",
     postSlugs: [
       "ecommerce-pricing-strategy-the-complete-guide",
+      "ecommerce-pricing-strategy-by-growth-stage",
       "does-charm-pricing-999-actually-work",
       "how-often-should-i-change-my-prices",
       "how-do-i-know-what-to-price-my-products",
