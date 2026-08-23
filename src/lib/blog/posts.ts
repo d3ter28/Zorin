@@ -17,6 +17,143 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-much-should-you-discount-without-killing-your-margin",
+    title: "How Much Should You Discount Without Killing Margin?",
+    excerpt:
+      "The real break-even math for discounts, BOGO vs percentage-off tradeoffs, and how to stop a sale from distorting your future pricing data.",
+    date: "2026-08-23",
+    readingTime: "9 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/promotion-flags.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A 10% discount sounds harmless. On a product with a 40% margin, a 20% discount alone means needing to sell double the units just to land back where you started, before making a single extra dollar of profit. Most merchants never run that math before launching a sale, they pick a round number that feels generous and hope volume covers it. This guide covers the actual break-even math, how to pick between clearance and sitewide discounts, why BOGO and percentage-off hit margin differently, and how to stop a promotion from quietly corrupting your pricing data after it ends.</p>
+
+<h2>The Math Nobody Runs Before Launching a Sale</h2>
+<p>Here's the calculation that should come before any discount decision: the extra sales volume needed just to break even is the discount percentage divided by your margin minus the discount percentage.</p>
+<p>Square's own breakdown of discounting strategy <a href="https://squareup.com/us/en/the-bottom-line/reaching-customers/discounting-strategies-profitability" target="_blank" rel="noopener noreferrer">walks through a worked example</a>: a product selling at $100 with a $60 cost (a 40% margin) discounted by 20% drops to an $80 selling price. The unit cost hasn't changed, so profit per unit falls from $40 to $20, half of what it was. To generate the same total profit as before, that store needs to sell 100 additional units, doubling total volume. The same source notes that at a thinner 20% margin, a 15% discount requires a 300% increase in sales just to hold the same margin.</p>
+
+<table>
+  <thead>
+    <tr><th>Starting margin</th><th>Discount</th><th>Extra volume needed to break even</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>40%</td><td>20%</td><td>100% more units (double)</td></tr>
+    <tr><td>20%</td><td>15%</td><td>300% more units</td></tr>
+  </tbody>
+</table>
+
+<p>The damage doesn't scale in a straight line with the discount size, it accelerates. A thinner margin has far less room to absorb the same percentage cut, which is exactly why a blanket "20% off everything" rule applied evenly across a catalog with mixed margins quietly costs more on the low-margin products than the math looks like it should on paper.</p>
+
+<h2>How Much of a Discount Is Too Much for Your Store</h2>
+<p>There's no universal answer, "too much" depends entirely on your margin and how much volume lift is realistic for your specific audience. But there's a practical way to check yourself: run the break-even formula above for your planned discount, then ask honestly whether your store has ever driven that much extra volume from a single promotion.</p>
+<p>If the answer is no, the discount is too deep for what it's likely to return. The math gets uncomfortable fast: a 30%+ discount on a mid-margin product can require several times the normal sales volume just to avoid losing money outright, not to profit from the sale.</p>
+<p>The margin you're working with matters more than the product category. A thin-margin product can't absorb the same discount as a high-margin one, even if they sit next to each other in the same catalog under one sitewide rule.</p>
+
+<h2>Clearance Sale or Sitewide Discount: Which Fits Your Inventory Problem</h2>
+<p>These solve two different problems, and picking the wrong one wastes margin on inventory that never needed it.</p>
+<p>A <strong>sitewide discount</strong> pulls forward demand across your whole catalog, including products that were already selling fine at full price. You're giving up margin on your bestsellers to move the same volume you'd have moved anyway, unless the discount is specifically timed to a genuine demand event.</p>
+<p>A <strong>clearance sale</strong> targets specific dead or aging stock. The goal isn't profit maximization, it's capital recovery, freeing up cash and shelf space tied up in inventory that isn't moving at any reasonable price. A common approach is progressive markdown: start at 30% off for a week, then drop to 60% off the following week for whatever's left, letting genuinely price-sensitive buyers self-select in at a shallower discount first.</p>
+<p>The practical test: if products aren't selling for reasons unrelated to price, a discount won't fix that. If they're not selling because the price is genuinely too high for the demand that exists, a clearance markdown is the right tool, and a blanket sitewide discount is the wrong one.</p>
+
+<h2>BOGO vs Percentage Off: Which Protects Margin Better</h2>
+<p>They look similar to a customer but land very differently on your books, and the deciding factor is your margin, not a preference for one format over the other.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/promotion-flags.webp" alt="Zorin product page showing a promotion flags table listing each sales record by date, price, and units, with a 'Flag' link per row and an Auto-detect button" width="736" height="432" loading="eager" fetchpriority="high" />
+  <figcaption>Whichever discount structure you run, the promotional period still needs to be flagged afterward so it doesn't distort your baseline elasticity read.</figcaption>
+</figure>
+
+<p>A <a href="https://www.growthsuite.net/resources/shopify-discount/buy-x-get-y-bogo-guide/bogo-vs-percentage-discount" target="_blank" rel="noopener noreferrer">comparison of BOGO and percentage-off structures</a> puts it plainly: at margins under 40%, both discount types can destroy profitability, and the guidance below that threshold is to be very careful with BOGO specifically, since giving away a full free unit is harder for a thin margin to absorb than a smaller percentage cut.</p>
+
+<table>
+  <thead>
+    <tr><th>Structure</th><th>Best fit</th><th>Risk</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>BOGO (buy one, get one)</td><td>Margin above 40%, moving inventory volume matters more than per-unit revenue</td><td>On thin margins, a free unit can erase profit entirely</td></tr>
+    <tr><td>Percentage off</td><td>Flexible across margin bands if kept shallow (10-15%)</td><td>Scales badly on high-ticket items, since 20% off a $300 item costs six times as much as 20% off a $30 item</td></tr>
+    <tr><td>Dollar-off with minimum purchase</td><td>Margins under 40% where BOGO and deep percentage cuts aren't affordable</td><td>Less exciting to customers than a round percentage, needs clear framing</td></tr>
+  </tbody>
+</table>
+
+<p>At a 50% effective discount, BOGO and a straight 50%-off deal cost roughly the same per unit, the difference is that BOGO moves two units to get there while percentage-off moves one. That makes BOGO a stronger inventory-clearing tool when you genuinely need volume, and a more dangerous one when your margin can't absorb giving away a full free unit.</p>
+
+<h2>Stopping Discount Codes From Stacking on Sale Items</h2>
+<p>This is one of the most common ways a promotion goes unprofitable without anyone deciding that on purpose. A customer applies a sitewide discount code on top of a product that's already marked down for clearance, and the resulting price falls well below what anyone intended, sometimes below cost.</p>
+<p>Most platforms don't make this easy to prevent by default. The practical fixes: exclude sale-tagged collections from discount code eligibility at the code level, or, if that's not directly supported, maintain a separate collection for already-discounted items and configure codes to explicitly exclude it. Whichever fix you use, a discount code and a clearance markdown are two separate pricing decisions, and neither should silently combine without you choosing that outcome.</p>
+
+<h2>How Much of Your Revenue Should Come From Discounts</h2>
+<p>This is a number worth tracking over time, not just per-sale. Guidance on <a href="https://esellsphere.com/conversions/discount-strategy/" target="_blank" rel="noopener noreferrer">avoiding an ecommerce discount dependency problem</a> flags that if discounted orders are consistently driving 30-40% or more of total revenue, that cadence is already too high regardless of how few individual "sale events" it feels like you're running.</p>
+<p>The risk here isn't any single promotion, it's what happens gradually: customers learn to wait for the next discount instead of buying at full price, and your effective average margin quietly erodes month over month even though no single decision looks reckless in isolation. Checking this ratio on a regular cadence, not just reacting to how any one sale performed, catches the drift before it shows up as a surprise in a profit review.</p>
+
+<h2>What a Sale Does to Your Pricing Data After It Ends</h2>
+<p>The part most discount guides skip entirely: what happens to your pricing decisions after the sale is over.</p>
+<p>A spike in sales during a discount period doesn't reflect how customers behave at your normal price. If that spike gets folded into your regular sales history untouched, it distorts your read on how price-sensitive your customers actually are, and future pricing decisions end up built on a skewed picture. Zorin automatically detects likely promotional spikes in your sales history and flags them for exclusion, so a discount week doesn't get baked into your baseline elasticity estimate. You can also confirm or override a flag manually if you know a spike had a different cause.</p>
+<p>This matters most exactly when you're deciding whether a past discount actually worked. Zorin reads your own sales history, product by product, and returns a raise, lower, or hold recommendation with the elasticity behind it and a confidence label reflecting how much real data supports the estimate, so you're working from your own customers' demonstrated behavior rather than a generic rule of thumb applied across every SKU the same way. If you're running a sale on a specific product, <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">testing the discount against that product's demand curve first</a> beats picking a percentage because it feels generous.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A discount's real cost is the extra volume needed to break even, and it accelerates faster than the discount percentage does. A 20% discount at a 40% margin needs double the sales volume just to stay flat.</li>
+<li>"Too much" depends on your margin, not a universal percentage. Run the break-even math for your specific margin before committing to a number.</li>
+<li>Clearance sales and sitewide discounts solve different problems. Match the tool to whether the issue is dead stock or general demand.</li>
+<li>BOGO and percentage-off hit margin differently. Below roughly 40% margin, avoid BOGO in favor of a smaller percentage or dollar-off threshold.</li>
+<li>Track discounted revenue as a share of total revenue over time. At 30-40% or higher, that's a warning sign worth investigating, not just a busy sales calendar.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How much can I discount before it hurts my profit margin?</h3>
+<p>It depends on your margin, but the break-even math is what matters: a 20% discount at a 40% margin needs double the sales volume just to stay flat. Run that calculation for your specific margin before committing to a percentage.</p>
+</div>
+<div class="faq-item">
+<h3>What's a safe discount percentage for most ecommerce stores?</h3>
+<p>It depends heavily on your margin. A thinner margin can absorb far less than a wide one, a 15% discount at a 20% margin already requires a 300% increase in sales volume just to hold the same total margin.</p>
+</div>
+<div class="faq-item">
+<h3>Should I run a clearance sale or a sitewide discount?</h3>
+<p>A clearance sale targets specific slow-moving inventory and prioritizes capital recovery over margin. A sitewide discount pulls demand across your whole catalog, including products that were already selling fine, so it usually costs more margin unless it's tied to a genuine demand event.</p>
+</div>
+<div class="faq-item">
+<h3>Is BOGO better than a percentage discount for protecting margin?</h3>
+<p>It depends on your margin. Above roughly 40% margin, BOGO can move more volume at comparable per-unit cost to a straight percentage discount. Below 40%, giving away a full free unit is harder to afford, and a smaller percentage or dollar-off threshold is usually safer.</p>
+</div>
+<div class="faq-item">
+<h3>How do I stop a discount code from stacking on top of an item that's already on sale?</h3>
+<p>Exclude sale-tagged collections from discount code eligibility, or maintain a separate collection for discounted items and configure codes to skip it. This prevents an unintended combined discount that can push a price below cost.</p>
+</div>
+<div class="faq-item">
+<h3>How much of my revenue coming from discounts is a warning sign?</h3>
+<p>If discounted orders consistently make up 30-40% or more of total revenue, that's worth investigating. It usually signals customers have started waiting for sales instead of buying at full price.</p>
+</div>
+<div class="faq-item">
+<h3>Does running a sale mess up my future pricing recommendations?</h3>
+<p>It can, if the promotional spike isn't excluded from your sales history. Zorin automatically flags likely promotional spikes and excludes them from the elasticity model fit, so a discount period doesn't distort your baseline read on price sensitivity.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a data science background to figure out if my discount worked?</h3>
+<p>No. Zorin fits the elasticity model automatically and returns a plain raise, lower, or hold recommendation with the reasoning and a confidence label, not a raw statistical output you have to interpret yourself.</p>
+</div>
+<div class="faq-item">
+<h3>Can I test a discount before running it storewide?</h3>
+<p>Reviewing a product's elasticity and confidence score first gives you a data-grounded sense of how sensitive that specific SKU's customers are to price, which is more reliable than applying the same discount percentage across a whole catalog regardless of each product's actual price sensitivity.</p>
+</div>
+<div class="faq-item">
+<h3>What's the biggest mistake merchants make with discounting?</h3>
+<p>Picking a discount percentage because it feels generous rather than running the break-even math first, and then not excluding the resulting sales spike from future pricing decisions afterward.</p>
+</div>
+</section>
+
+<p class="conclusion">Running a discount without checking the math is a common way to turn a "successful" sale into a quiet loss. Set your floor first, match the discount structure to your margin, and once the sale ends, make sure the data it generated doesn't distort what you do next. <a href="/signup">Start a free trial</a> and see what Zorin's elasticity model says about your own catalog, discounted or not.</p>
+    `.trim(),
+  },
+  {
     slug: "ecommerce-pricing-strategy-by-growth-stage",
     title: "Ecommerce Pricing Strategy by Growth Stage",
     excerpt:
@@ -3879,7 +4016,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Every question in this guide comes back to the same habit: know your margin floor before you touch a price, whether that's a seasonal discount, a BOGO offer, or a bundle built to move dead stock. The math takes minutes to run and it's the difference between a sale that grows your business and one that quietly funds it away. Building that check into your everyday pricing, not just your big promotions, is exactly what elasticity, calculated from your own sales history, is for.</p>
+<p class="conclusion">Every question in this guide comes back to the same habit: know your margin floor before you touch a price, whether that's a seasonal discount, a BOGO offer, or a bundle built to move dead stock. The math takes minutes to run and it's the difference between a sale that grows your business and one that quietly funds it away. Building that check into your everyday pricing, not just your big promotions, is exactly what elasticity, calculated from your own sales history, is for. For the full break-even math behind exactly how much a given discount actually costs, see <a href="/blog/how-much-should-you-discount-without-killing-your-margin">how much you should discount without killing your margin</a>.</p>
     `.trim(),
   },
   {
