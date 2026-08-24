@@ -24,6 +24,7 @@ const badges: Badge[] = [
   { href: "https://dang.ai", src: "/badges/dang-featured.png", alt: "Zorin — Verified on DANG!", width: 260, height: 94 },
   { href: "https://startupfa.me/s/zorin?utm_source=www.tryzorin.com", src: "/badges/startupfame-featured.webp", alt: "Zorin — Featured on Startup Fame", width: 224, height: 36 },
   { href: "https://fazier.com", src: "/badges/fazier-featured.svg", alt: "Zorin — Featured on Fazier", width: 182, height: 43 },
+  { href: "https://submitaitools.org", src: "/badges/submitaitools-featured.png", alt: "Zorin — Featured on Submit AI Tools", width: 200, height: 60 },
 ];
 
 const textLinks: { href: string; label: string }[] = [
