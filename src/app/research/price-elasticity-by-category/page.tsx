@@ -309,13 +309,13 @@ export default function PriceElasticityByCategoryPage() {
         </h1>
         <p className="mt-3 text-sm text-zinc-400">Last updated {formatDate(LAST_UPDATED)}</p>
 
-        <p className="mt-6 max-w-[65ch] text-lg leading-relaxed text-zinc-600">
+        <p className="mt-6 text-lg leading-relaxed text-zinc-600">
           A sourced reference of real price elasticity of demand coefficients across ecommerce
           product categories, compiled from peer-reviewed academic research and government
           economic data. Every figure below links to its original source. Categories where we
           could not find verifiable data are listed separately rather than filled in with a guess.
         </p>
-        <p className="mt-4 max-w-[65ch] text-sm leading-relaxed text-zinc-600">
+        <p className="mt-4 text-sm leading-relaxed text-zinc-600">
           Price elasticity is one of the most cited concepts in pricing strategy, and one of the
           most poorly sourced in practice. Search &ldquo;price elasticity by category&rdquo; and
           you'll find dozens of blog posts asserting numbers with no attribution, homework-exercise
@@ -435,7 +435,7 @@ export default function PriceElasticityByCategoryPage() {
         </p>
         <div className="mt-6 flex flex-col gap-3">
           {NOT_VERIFIED.map((row) => (
-            <div key={row.category} className="rounded-xl border border-zinc-100 bg-zinc-50 p-4">
+            <div key={row.category} className="rounded-xl border border-zinc-300 bg-zinc-100 p-4">
               <h3 className="text-sm font-semibold text-zinc-700">{row.category}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">{row.reason}</p>
             </div>
@@ -443,7 +443,7 @@ export default function PriceElasticityByCategoryPage() {
         </div>
 
         <h2 className="mt-12 text-xl font-semibold text-zinc-900">Limitations</h2>
-        <p className="mt-3 max-w-[65ch] text-sm leading-relaxed text-zinc-600">
+        <p className="mt-3 text-sm leading-relaxed text-zinc-600">
           Most of the studies behind this page measure elasticity at the market or category level,
           not the brand or individual-SKU level. As the appliances and footwear entries above show,
           brand-level elasticity for the same broad category runs two to three times higher.
@@ -459,7 +459,7 @@ export default function PriceElasticityByCategoryPage() {
         </p>
 
         <h2 className="mt-12 text-xl font-semibold text-zinc-900">What This Means for Your Own Store</h2>
-        <p className="mt-3 max-w-[65ch] text-sm leading-relaxed text-zinc-600">
+        <p className="mt-3 text-sm leading-relaxed text-zinc-600">
           These are market-wide averages, blended across many brands, price points, and customer
           bases. Treat them as a starting reference, not a substitute for your own data. A specific
           product in your catalog can behave differently from its category average depending on
