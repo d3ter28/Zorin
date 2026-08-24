@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog/posts";
 import { clusters } from "@/lib/blog/clusters";
+import { research } from "@/lib/research";
 
 const BASE_URL = "https://www.tryzorin.com";
 
@@ -19,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/shopify-profit-margin-calculator`,        lastModified: new Date("2026-07-01") },
     { url: `${BASE_URL}/woocommerce-profit-margin-calculator`,    lastModified: new Date("2026-08-22") },
     { url: `${BASE_URL}/price-elasticity-calculator`,             lastModified: new Date("2026-08-20") },
-    { url: `${BASE_URL}/research/price-elasticity-by-category`,   lastModified: new Date("2026-08-23") },
     { url: `${BASE_URL}/about`,                                   lastModified: new Date("2026-08-20") },
     { url: `${BASE_URL}/terms`,                                   lastModified: new Date("2026-06-01") },
     { url: `${BASE_URL}/privacy`,                                 lastModified: new Date("2026-06-01") },
@@ -35,5 +35,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date("2026-08-21"),
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...clusterRoutes];
+  const researchRoutes: MetadataRoute.Sitemap = research.map((item) => ({
+    url: `${BASE_URL}/research/${item.slug}`,
+    lastModified: new Date(item.updatedDate ?? item.date),
+  }));
+
+  return [...staticRoutes, ...blogRoutes, ...clusterRoutes, ...researchRoutes];
 }

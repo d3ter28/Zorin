@@ -23,6 +23,7 @@ type CategoryRow = {
   category: string;
   coefficient: string;
   classification: string;
+  explanation: string;
   note?: string;
   sources: { label: string; url: string; publisher: string }[];
 };
@@ -32,6 +33,8 @@ const TIER_1: CategoryRow[] = [
     category: "Food & grocery staples",
     coefficient: "Near 0 (flour, rice, pasta, biscuits); -1.10 (citrus)",
     classification: "Perfectly inelastic to elastic, varies sharply by staple vs. non-staple",
+    explanation:
+      "Staple grains and prepared flour products sit at the inelastic extreme of this dataset because they meet the two conditions economists treat as the strongest predictors of low elasticity: no meaningful substitute, and a habitual rather than deliberated purchase. A shopper doesn't compare five brands of flour before an occasional bake. They buy what they always buy, and a moderate price change rarely disrupts that. Citrus breaks the pattern for a structural reason: a shopper can switch to a different fruit, or buy less, without losing anything from their routine, and citrus prices also swing with growing-season supply shocks in a way flour doesn't. Both push measured elasticity higher. For a grocery or specialty-food seller, the category-level average hides a wide internal range. How replaceable a specific SKU feels to a specific customer predicts its elasticity, not which broad food category it sits in.",
     note: "Staple grains and baked goods are almost perfectly inelastic; fresh citrus is the most elastic food category measured in this dataset.",
     sources: [
       {
@@ -45,6 +48,8 @@ const TIER_1: CategoryRow[] = [
     category: "Alcohol (beer, wine, spirits)",
     coefficient: "Beer -0.17 to -0.30, wine -0.23 to -0.66, spirits -0.39 to -0.65",
     classification: "Inelastic, spirits somewhat more elastic than beer",
+    explanation:
+      "Alcohol is one of the most heavily studied categories in applied demand economics, because governments use these coefficients to model the revenue and consumption effects of excise tax changes. That's why the sourcing here is unusually strong: three separate meta-analyses, each aggregating dozens of underlying studies, arrive at the same ranking even though their corrected point estimates differ. Beer being the least price-sensitive of the three and spirits the most tracks with habitual, low-consideration purchasing for beer against a wider field of close substitutes for hard liquor. One thing to flag for anyone citing this category: elasticity estimates for alcohol ran higher in uncorrected literature reviews than in analyses that adjust for publication bias and outlier studies. The corrected figures here are 28 to 29 percent less elastic than the older consensus averages still circulating in some secondary sources.",
     note: "Three independent meta-analyses converge on the same ranking (beer least elastic, spirits most) even though absolute values differ by correction method.",
     sources: [
       {
@@ -63,6 +68,8 @@ const TIER_1: CategoryRow[] = [
     category: "Soft drinks & sugar-sweetened beverages",
     coefficient: "-1.06 to -1.37",
     classification: "Elastic",
+    explanation:
+      "Soft drinks sit firmly on the elastic side. The two country-level studies behind this figure, Mexico and Chile, were both conducted around proposed or enacted sugar taxes, so the underlying data captures real consumer behavior under an actual price shock, not a hypothetical one. Soft drinks compete against a wide field of close substitutes, including plain water: one of the underlying studies measured that a 10 percent increase in soft drink prices pushed water consumption up by 6.3 percent. That cross-price relationship matters for a beverage seller beyond the headline number. A price increase on a sugar-sweetened product shrinks total volume and pushes customers toward a specific, identifiable alternative, a more actionable signal than an aggregate elasticity coefficient alone.",
     note: "Consistent across two independent country-level studies (Mexico, Chile).",
     sources: [
       {
@@ -76,6 +83,8 @@ const TIER_1: CategoryRow[] = [
     category: "Apparel & clothing",
     coefficient: "-1.17 (t-shirts) to -2.86 (casual/athletic wear)",
     classification: "Elastic, more so for casual/athletic than basics",
+    explanation:
+      "Apparel is the widest-ranging category in this dataset, and the range itself is the finding. Casual and athletic wear, at a coefficient near -2.86, sits among the most elastic goods measured anywhere in this reference. Basics like t-shirts, at -1.17, are elastic but far less so. Substitutability at the point of purchase likely drives the gap: an athletic-wear SKU competes against dozens of near-identical alternatives across brands the customer already trusts, while a basic t-shirt purchase is closer to routine replenishment than a considered comparison. One dataset also found a gender gap: a matched price change moved men's clothing demand more than women's (2.83 percent versus 2.13 percent), which the underlying study attributes to differences in brand loyalty between the two segments, not any difference in the garments themselves. Averaging elasticity across an entire apparel catalog will mislead. A hero athletic-wear SKU and a basics staple in the same store are different pricing problems.",
     note: "Wide range across sub-categories and studies; men's clothing measured somewhat more elastic than women's in one dataset (-2.83% vs -2.13% for a matched price change).",
     sources: [
       {
@@ -89,6 +98,8 @@ const TIER_1: CategoryRow[] = [
     category: "Household appliances",
     coefficient: "Refrigerators -0.40, clothes washers -0.31, dishwashers -0.32 (avg -0.35)",
     classification: "Inelastic",
+    explanation:
+      "Major appliances behave inelastically for a reason that has nothing to do with brand loyalty or habit and everything to do with timing: these are need-triggered purchases. A refrigerator gets bought because the old one failed or a household moved, not because a discount happened to be running, which caps how much a price change can pull demand forward or push it back. The two sources behind this figure, a US Department of Energy study and a Lawrence Berkeley National Laboratory analysis, work from real market-level sales data rather than surveys, a stronger evidentiary basis than most consumer-goods elasticity research relies on. One caveat from the underlying research: brand-level elasticity for the same appliance categories runs higher, often -2.0 or more. A customer who has already decided to buy a refrigerator this month will switch between brands over price, even though the decision to buy a refrigerator at all barely responds to price. That distinction, category-level versus brand-level elasticity, matters beyond appliances too.",
     sources: [
       {
         label: "An Analysis of the Price Elasticity of Demand for Household Appliances",
@@ -105,7 +116,9 @@ const TIER_1: CategoryRow[] = [
   {
     category: "Books",
     coefficient: "-1.4 aggregate; e-books -0.20 to -0.27 (trending less elastic over time)",
-    classification: "Elastic, e-books notably less so and becoming more inelastic year over year",
+    classification: "Elastic, e-books far less so and growing more inelastic year over year",
+    explanation:
+      "Physical book demand is elastic overall, but the e-book figure inside this same research is one of the more interesting findings in this dataset. E-book elasticity measured -0.270 in January 2011 and drifted to -0.201 by December 2012, a decline of about 0.003 per month: digital book buyers grew less price-sensitive over the study period, not more. The likely explanation is platform lock-in. As a reader accumulates a library inside one ecosystem (annotations, purchase history, a specific device), the switching cost of comparison-shopping a single new title rises even if the sticker price doesn't. The same research found that bestseller titles draw a more price-sensitive customer than the broader catalog, which is why retailers discount bestsellers specifically rather than applying a flat markdown across the whole category.",
     sources: [
       {
         label: "Retail Consolidation and the Price Elasticity of Demand for Books",
@@ -121,6 +134,8 @@ const TIER_2: CategoryRow[] = [
     category: "Furniture & home goods",
     coefficient: "-0.42 (moderate price increases) to -0.56 (larger increases); -1.3 is the commonly-cited textbook figure",
     classification: "Inelastic to unitary, depending on methodology",
+    explanation:
+      "Furniture is a contested category in the literature, and we're presenting that disagreement directly rather than resolving it artificially. The -1.3 figure in most introductory economics material traces back to older, broader estimates and gets repeated because it's easy to cite, not necessarily because it's the most reliable current number. A more recent industry-cycle analysis, built from real furniture sales data tracked against actual price movements since 1965, found a less elastic response: -0.42 in years with moderate price increases, widening to -0.56 in years with sharper increases. That same analysis found something that matters for a seller thinking about macro timing as much as individual pricing decisions. In years when existing home sales rose by a median of 9 percent, furniture demand increased alongside furniture prices, a positive elasticity reading, because a strengthening housing market pulls new-home furniture purchases forward hard enough to overwhelm the normal price effect. Elasticity read from a single time window can mislead without accounting for what else was happening in the broader market.",
     note: "Real-market industry-cycle analysis and the standard textbook estimate disagree meaningfully. We show both rather than picking one.",
     sources: [
       {
@@ -132,8 +147,10 @@ const TIER_2: CategoryRow[] = [
   },
   {
     category: "Footwear",
-    coefficient: "-0.7 general market; premium/branded footwear notably more elastic",
+    coefficient: "-0.7 general market; premium/branded footwear much more elastic",
     classification: "Inelastic overall, elastic at the premium-brand tier",
+    explanation:
+      "The general footwear market reads as inelastic at the category level, the same logic that applies to apparel basics: most footwear purchases replace a worn-out pair rather than respond to a price signal. That aggregate figure hides a sharp split once brand enters the picture. Sources discussing premium and heavily-branded footwear describe demand as more elastic than the category average, the same category-versus-brand distinction seen in household appliances above. A customer who has decided to buy shoes this month isn't very price-sensitive about whether to buy shoes at all, but grows more price-sensitive once comparing a specific premium brand against its close substitutes. We're marking this Tier 2 because the numeric estimates we found trace to a single frequently-cited figure, not a corroborating meta-analysis like food, alcohol, or appliances above.",
     sources: [
       {
         label: "Price elasticity estimate for US footwear market",
@@ -148,30 +165,32 @@ const NOT_VERIFIED = [
   {
     category: "Skincare & cosmetics",
     reason:
-      "Despite being a common ecommerce vertical, we could not find a real, numeric elasticity coefficient anywhere in the published literature, only vague directional claims (asymmetric response to price cuts vs. increases). We'd rather flag the gap than fabricate a number.",
+      "Skincare and cosmetics are among the most common ecommerce verticals, and a category we cover on our own blog, but we found no real, numeric elasticity coefficient anywhere in the published literature. What exists is directional: one peer-reviewed study found skincare buyers respond more strongly to price cuts than to price increases, an asymmetric pattern rather than a single coefficient, and separate research on organic cosmetics used conjoint analysis to identify price thresholds without producing a standard elasticity figure comparable to the categories above. We named the gap rather than converting a qualitative finding into a number. It's also the kind of category where a merchant's own sales history beats any published average, since brand positioning swings skincare price sensitivity in ways a category-wide figure would wash out.",
   },
   {
     category: "Jewelry & luxury goods",
     reason:
-      "Sources actively contradict each other on whether luxury demand is elastic or inelastic, with no empirical coefficient we could verify.",
+      "The published sources on luxury goods elasticity contradict each other. Some frame luxury demand as inelastic (rare, high-status goods with weak substitutes), others as elastic (discretionary, easily postponed purchases), and neither side offers an empirical coefficient we could verify. Secondary sources describe jewelry as price-sensitive because it's optional spending, but again without a number behind the claim. Given the direct contradiction in the literature, excluding a number entirely seemed more honest than picking whichever side of the debate produced a more citable figure.",
   },
   {
     category: "Dietary supplements",
-    reason: "No category-specific published research found.",
+    reason:
+      "No category-specific published elasticity research surfaced in our search. The closest adjacent literature covers food and nutrient price elasticities broadly, relevant to grocery pricing policy research, but doesn't isolate supplements as their own category. Applying a general food coefficient to supplements would misrepresent research that was never designed to describe that market.",
   },
   {
     category: "Toys",
     reason:
-      "The only numeric figure we found (-1.2 to -1.5) is for video game consoles specifically, arguably an electronics category, not general toys. General toy claims in circulation are qualitative only.",
+      "The one numeric figure that surfaces repeatedly in searches for this category, -1.2 to -1.5, is measured for video game consoles, a category most economists would classify under consumer electronics, not general toys. Broader toy-category commentary in circulation is qualitative only. We found the claim \"toys have a lot of price elasticity\" stated outright with no coefficient attached, exactly the kind of unsourced assertion this page exists to stop repeating.",
   },
   {
     category: "Sporting goods",
-    reason: "No category-specific published research found.",
+    reason:
+      "We found no study that isolates sporting goods or equipment as its own measured category. Secondary sources describe the category as more elastic because of high price points and many available substitutes, a reasonable theoretical prior, but not something we'll present as a sourced figure.",
   },
   {
     category: "Pet products",
     reason:
-      "The one figure commonly repeated online (a 0.8 coefficient for dog food) traces back to a textbook homework exercise, not empirical research, and does not belong in a sourced dataset.",
+      "This one is the clearest example of why methodology matters here. A dog food elasticity figure of 0.8 circulates widely enough in search results that it initially looked usable. Tracing it back, it turns out to be a textbook homework exercise, a hypothetical \"Canine Ville\" problem set used to teach the elasticity formula itself, not a finding from any real study of pet food purchasing behavior. A number that looks precise and gets repeated across multiple sites isn't the same as a number backed by real data. Catching that distinction is most of what this page is for.",
   },
 ];
 
@@ -217,6 +236,14 @@ const faqSchema = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "We only publish a coefficient when we found real, sourced research behind it. Several common ecommerce categories, including skincare, jewelry, and supplements, don't have verifiable published elasticity data yet, so we've listed them separately as gaps rather than filling them with a guess.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What's the difference between category-level and brand-level elasticity?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Category-level elasticity measures how total demand for a broad category (all refrigerators, all sneakers) responds to price. Brand-level elasticity measures how demand for one specific brand responds, holding the category decision constant. Brand-level elasticity is consistently higher across the categories in this dataset, since a customer who has already decided to buy within a category is far more willing to switch brands over price than to abandon the purchase entirely.",
       },
     },
     {
@@ -288,18 +315,50 @@ export default function PriceElasticityByCategoryPage() {
           economic data. Every figure below links to its original source. Categories where we
           could not find verifiable data are listed separately rather than filled in with a guess.
         </p>
+        <p className="mt-4 max-w-[65ch] text-sm leading-relaxed text-zinc-600">
+          Price elasticity is one of the most cited concepts in pricing strategy, and one of the
+          most poorly sourced in practice. Search &ldquo;price elasticity by category&rdquo; and
+          you'll find dozens of blog posts asserting numbers with no attribution, homework-exercise
+          figures presented as empirical findings, and the same handful of decades-old textbook
+          examples repeated without context. This page fixes that for the categories where it's
+          possible. We searched the published economics literature and government data, kept only
+          figures we could trace to a real study, and organized the result by how strong that
+          sourcing is. Where the literature disagrees with itself, we show the disagreement instead
+          of picking a side. Where nothing verifiable exists, we say so instead of leaving a gap for
+          someone else to fill with a guess.
+        </p>
 
         <div className="mt-10 rounded-xl border border-zinc-200 bg-zinc-50 p-6">
           <h2 className="text-sm font-semibold text-zinc-900">Methodology</h2>
           <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-            We searched for published elasticity estimates across ecommerce-relevant categories,
-            prioritizing peer-reviewed academic studies, government economic data (USDA, US
-            Department of Energy), and multi-study meta-analyses over single blog posts or
-            secondary summaries. Where multiple credible studies disagree, we show the range
-            rather than averaging them into one number. Categories are split into two tiers based
-            on source strength, and a third list names categories we searched for but could not
-            verify. This page does not include any of Zorin&apos;s own merchant data, only
-            independently published third-party research.
+            We searched for published elasticity estimates across categories relevant to
+            independent and small-to-midsize ecommerce sellers, prioritizing sources in this
+            order: peer-reviewed meta-analyses that aggregate multiple underlying studies, single
+            peer-reviewed academic studies, government economic data (USDA Economic Research
+            Service, US Department of Energy, Lawrence Berkeley National Laboratory), and
+            industry research built from real transaction data. We excluded figures that trace
+            back to hypothetical textbook exercises, unsourced blog assertions, or claims we
+            couldn't connect to an underlying dataset or study, even when those figures appear
+            frequently in search results.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-600">
+            Categories split into three groups. <strong>Strongly sourced</strong> categories have
+            multiple corroborating studies, typically including at least one meta-analysis or
+            government dataset. <strong>Moderately sourced</strong> categories have one usable,
+            traceable figure from a thinner evidence base than the first tier. We include these
+            with a caveat rather than omitting them, since a single well-sourced study still beats
+            nothing. <strong>Not verified</strong> categories are ones we searched for and couldn't
+            find defensible published data on, listed for transparency rather than silently
+            omitted.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-600">
+            Where multiple credible sources disagree, we report the range and explain the likely
+            reason (different correction methods, different time periods, category-level versus
+            brand-level measurement) instead of averaging conflicting numbers into a single figure
+            that would misrepresent the actual state of the research. This page contains no data
+            from Zorin's own merchant base, only independently published third-party research.
+            That distinction matters: the point of this page is to be verifiable by a reader who
+            has never used Zorin at all.
           </p>
         </div>
 
@@ -316,8 +375,8 @@ export default function PriceElasticityByCategoryPage() {
                 </span>
               </div>
               <p className="mt-2 font-mono text-sm text-zinc-700">{row.coefficient}</p>
-              {row.note && <p className="mt-2 text-sm leading-relaxed text-zinc-500">{row.note}</p>}
-              <div className="mt-3 flex flex-col gap-1">
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600">{row.explanation}</p>
+              <div className="mt-4 flex flex-col gap-1">
                 {row.sources.map((s) => (
                   <a
                     key={s.url}
@@ -350,8 +409,8 @@ export default function PriceElasticityByCategoryPage() {
                 </span>
               </div>
               <p className="mt-2 font-mono text-sm text-zinc-700">{row.coefficient}</p>
-              {row.note && <p className="mt-2 text-sm leading-relaxed text-zinc-500">{row.note}</p>}
-              <div className="mt-3 flex flex-col gap-1">
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600">{row.explanation}</p>
+              <div className="mt-4 flex flex-col gap-1">
                 {row.sources.map((s) => (
                   <a
                     key={s.url}
@@ -370,27 +429,45 @@ export default function PriceElasticityByCategoryPage() {
 
         <h2 className="mt-12 text-xl font-semibold text-zinc-900">Categories We Couldn&apos;t Verify Yet</h2>
         <p className="mt-2 text-sm leading-relaxed text-zinc-500">
-          We searched for each of these and either found no empirical data, or found numbers we
-          judged unreliable enough to exclude. Listed here for transparency, not as a promise
-          they&apos;ll never be filled in.
+          We searched for each of these specifically and either found no empirical data, or found
+          numbers we judged unreliable enough to exclude. Each entry below explains what we found
+          and why it fell short.
         </p>
         <div className="mt-6 flex flex-col gap-3">
           {NOT_VERIFIED.map((row) => (
             <div key={row.category} className="rounded-xl border border-zinc-100 bg-zinc-50 p-4">
               <h3 className="text-sm font-semibold text-zinc-700">{row.category}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-zinc-500">{row.reason}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">{row.reason}</p>
             </div>
           ))}
         </div>
 
+        <h2 className="mt-12 text-xl font-semibold text-zinc-900">Limitations</h2>
+        <p className="mt-3 max-w-[65ch] text-sm leading-relaxed text-zinc-600">
+          Most of the studies behind this page measure elasticity at the market or category level,
+          not the brand or individual-SKU level. As the appliances and footwear entries above show,
+          brand-level elasticity for the same broad category runs two to three times higher.
+          Several figures come from a single country or study period, Mexico and Chile for soft
+          drinks, a specific US furniture-price cycle since 1965, and may not transfer cleanly to a
+          different market or era. Academic elasticity research is also unevenly distributed across
+          categories for reasons that have nothing to do with ecommerce relevance: alcohol and food
+          get studied heavily because governments use the data for tax policy, while categories
+          like skincare or supplements attract comparatively little rigorous economic research
+          despite being large, real ecommerce markets. That imbalance in the literature explains
+          why six categories on this page have no verified figure. It has nothing to do with
+          whether those categories matter.
+        </p>
+
         <h2 className="mt-12 text-xl font-semibold text-zinc-900">What This Means for Your Own Store</h2>
         <p className="mt-3 max-w-[65ch] text-sm leading-relaxed text-zinc-600">
           These are market-wide averages, blended across many brands, price points, and customer
-          bases. They&apos;re a useful starting reference, not a substitute for your own data. A
-          specific product in your catalog can behave very differently from its category average
-          depending on your brand positioning, your customers, and your competitive set. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits an elasticity model directly to your own sales history</a>,
-          per SKU, so the number you act on reflects your actual customers rather than a category-wide
-          blend. If you want the mechanics of running that calculation yourself first, <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store" className="text-blue-600 hover:underline">the Shopify walkthrough</a> and <a href="/blog/how-to-calculate-price-elasticity-for-your-woocommerce-store" className="text-blue-600 hover:underline">the WooCommerce walkthrough</a> cover
+          bases. Treat them as a starting reference, not a substitute for your own data. A specific
+          product in your catalog can behave differently from its category average depending on
+          your brand positioning, your customers, and your competitive set. The appliances and
+          apparel sections above both show category-level and brand-level elasticity diverging
+          sharply within the same product type. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits an elasticity model directly to your own sales history</a>,
+          per SKU, so the number you act on reflects your actual customers, not a category-wide
+          blend. If you want to run the calculation yourself first, <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store" className="text-blue-600 hover:underline">the Shopify walkthrough</a> and <a href="/blog/how-to-calculate-price-elasticity-for-your-woocommerce-store" className="text-blue-600 hover:underline">the WooCommerce walkthrough</a> cover
           the same formula used to produce the figures above.
         </p>
 
