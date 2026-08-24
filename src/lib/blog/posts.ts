@@ -569,21 +569,15 @@ export const posts: BlogPost[] = [
 <p>Each of the four original Van Westendorp questions, too cheap, a bargain, getting expensive, too expensive, produces its own cumulative response curve when plotted across all respondents. Where those curves cross defines four specific price points, each with a distinct, well-established meaning.</p>
 
 <figure class="post-image">
-<svg viewBox="0 0 700 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Van Westendorp diagram showing four cumulative response curves crossing at the Point of Marginal Cheapness, Optimal Price Point, Indifference Price Point, and Point of Marginal Expensiveness">
+<svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Van Westendorp diagram showing four cumulative response curves crossing at the Point of Marginal Cheapness, Optimal Price Point, Indifference Price Point, and Point of Marginal Expensiveness">
   <line x1="70" y1="55" x2="70" y2="350" stroke="#a1a1aa" stroke-width="1.5" />
   <line x1="70" y1="350" x2="650" y2="350" stroke="#a1a1aa" stroke-width="1.5" />
-  <text x="360" y="378" text-anchor="middle" font-size="14" fill="#52525b" font-family="sans-serif">Price (low to high) &#8594;</text>
   <text x="28" y="205" text-anchor="middle" font-size="14" fill="#52525b" font-family="sans-serif" transform="rotate(-90 28 205)">% of respondents</text>
 
   <path d="M70,90 C110,90 150,180 190,180 C233.3,180 276.7,260 320,260 C430,260 540,330 650,330" fill="none" stroke="#2563eb" stroke-width="2.5" />
   <path d="M70,130 C180,130 290,140 400,140 C440,140 480,200 520,200 C563.3,200 606.7,290 650,290" fill="none" stroke="#16a34a" stroke-width="2.5" />
   <path d="M70,330 C110,330 150,180 190,180 C260,180 330,140 400,140 C483.3,140 566.7,70 650,70" fill="none" stroke="#f59e0b" stroke-width="2.5" />
   <path d="M70,338 C153.3,338 236.7,260 320,260 C386.7,260 453.3,200 520,200 C563.3,200 606.7,120 650,120" fill="none" stroke="#dc2626" stroke-width="2.5" />
-
-  <line x1="190" y1="368" x2="520" y2="368" stroke="#18181b" stroke-width="1.5" />
-  <line x1="190" y1="362" x2="190" y2="368" stroke="#18181b" stroke-width="1.5" />
-  <line x1="520" y1="362" x2="520" y2="368" stroke="#18181b" stroke-width="1.5" />
-  <text x="355" y="386" text-anchor="middle" font-size="12.5" fill="#18181b" font-family="sans-serif" font-weight="600">Acceptable price range (PMC&#8211;PME)</text>
 
   <line x1="190" y1="180" x2="190" y2="350" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="3,3" />
   <line x1="320" y1="260" x2="320" y2="350" stroke="#a1a1aa" stroke-width="1" stroke-dasharray="3,3" />
@@ -600,11 +594,18 @@ export const posts: BlogPost[] = [
   <text x="400" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">IPP</text>
   <text x="520" y="185" text-anchor="middle" font-size="13" font-weight="700" fill="#18181b" font-family="sans-serif">PME</text>
 
+  <text x="360" y="374" text-anchor="middle" font-size="14" fill="#52525b" font-family="sans-serif">Price (low to high) &#8594;</text>
+
+  <line x1="190" y1="398" x2="520" y2="398" stroke="#18181b" stroke-width="1.5" />
+  <line x1="190" y1="392" x2="190" y2="398" stroke="#18181b" stroke-width="1.5" />
+  <line x1="520" y1="392" x2="520" y2="398" stroke="#18181b" stroke-width="1.5" />
+  <text x="355" y="416" text-anchor="middle" font-size="12.5" fill="#18181b" font-family="sans-serif" font-weight="600">Acceptable price range (PMC&#8211;PME)</text>
+
   <g font-family="sans-serif" font-size="12.5" fill="#3f3f46">
-    <line x1="90" y1="410" x2="115" y2="410" stroke="#2563eb" stroke-width="3" /><text x="121" y="414">Too cheap</text>
-    <line x1="210" y1="410" x2="235" y2="410" stroke="#16a34a" stroke-width="3" /><text x="241" y="414">A bargain</text>
-    <line x1="330" y1="410" x2="355" y2="410" stroke="#f59e0b" stroke-width="3" /><text x="361" y="414">Getting expensive</text>
-    <line x1="500" y1="410" x2="525" y2="410" stroke="#dc2626" stroke-width="3" /><text x="531" y="414">Too expensive</text>
+    <line x1="90" y1="450" x2="115" y2="450" stroke="#2563eb" stroke-width="3" /><text x="121" y="454">Too cheap</text>
+    <line x1="210" y1="450" x2="235" y2="450" stroke="#16a34a" stroke-width="3" /><text x="241" y="454">A bargain</text>
+    <line x1="330" y1="450" x2="355" y2="450" stroke="#f59e0b" stroke-width="3" /><text x="361" y="454">Getting expensive</text>
+    <line x1="500" y1="450" x2="525" y2="450" stroke="#dc2626" stroke-width="3" /><text x="531" y="454">Too expensive</text>
   </g>
 </svg>
   <figcaption>Where the four cumulative response curves cross defines PMC, OPP, IPP, and PME. Illustrative curve shapes, not a specific dataset.</figcaption>
