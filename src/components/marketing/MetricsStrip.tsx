@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 
 const stats = [
-  { value: "18%", label: "avg profit lift from first optimization" },
+  { value: "Up to 15%", label: "modeled profit lift from price optimization" },
   { value: "5 min", label: "from CSV upload to first recommendation" },
   { value: "Zero", label: "integrations needed to get started" },
   { value: "100%", label: "powered by your own sales data" },
