@@ -101,39 +101,41 @@ export function Footer() {
                 </li>
               </ul>
             </div>
-            <div>
-              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                Account
-              </h4>
-              <ul className="mt-3 flex flex-col gap-2">
-                <li>
-                  <a href="/login" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Log in
-                  </a>
-                </li>
-                <li>
-                  <a href="/signup" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Sign up
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                Legal
-              </h4>
-              <ul className="mt-3 flex flex-col gap-2">
-                <li>
-                  <a href="/privacy" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="/terms" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Terms of Service
-                  </a>
-                </li>
-              </ul>
+            <div className="flex gap-x-16">
+              <div>
+                <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
+                  Account
+                </h4>
+                <ul className="mt-3 flex flex-col gap-2">
+                  <li>
+                    <a href="/login" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                      Log in
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/signup" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                      Sign up
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
+                  Legal
+                </h4>
+                <ul className="mt-3 flex flex-col gap-2">
+                  <li>
+                    <a href="/privacy" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/terms" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                      Terms of Service
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
