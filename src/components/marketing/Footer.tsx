@@ -62,6 +62,18 @@ export function Footer() {
             </div>
             <div>
               <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
+                Research
+              </h4>
+              <ul className="mt-3 flex flex-col gap-2">
+                <li>
+                  <a href="/research/price-elasticity-by-category" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Price elasticity by category
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
                 Integrations
               </h4>
               <ul className="mt-3 flex flex-col gap-2">
