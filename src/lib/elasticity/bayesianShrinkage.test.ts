@@ -1,14 +1,23 @@
 import { describe, it, expect } from "vitest";
-import { bayesianShrinkage } from "./bayesianShrinkage";
+import { bayesianShrinkage, GLOBAL_PRIOR_ELASTICITY } from "./bayesianShrinkage";
 
 describe("bayesianShrinkage", () => {
-  const PRIOR = -1.2;
+  const PRIOR = GLOBAL_PRIOR_ELASTICITY;
   const K = 5; // priorStrength
+
+  it("exports GLOBAL_PRIOR_ELASTICITY as -1.2", () => {
+    expect(GLOBAL_PRIOR_ELASTICITY).toBe(-1.2);
+  });
 
   it("returns prior when effectiveSampleSize is 0", () => {
     const { shrunkElasticity, priorApplied } = bayesianShrinkage(0, 0);
     expect(shrunkElasticity).toBeCloseTo(PRIOR);
     expect(priorApplied).toBe(true);
+  });
+
+  it("uses GLOBAL_PRIOR_ELASTICITY as the default priorElasticity", () => {
+    const { shrunkElasticity } = bayesianShrinkage(-3.0, K, undefined, K);
+    expect(shrunkElasticity).toBeCloseTo(0.5 * (-3.0) + 0.5 * GLOBAL_PRIOR_ELASTICITY);
   });
 
   it("returns midpoint when effectiveSampleSize equals priorStrength", () => {

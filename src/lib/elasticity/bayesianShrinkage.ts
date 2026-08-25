@@ -3,6 +3,9 @@ export interface ShrinkageResult {
   priorApplied: boolean;
 }
 
+/** Retail-wide default prior elasticity used when no better estimate is available. */
+export const GLOBAL_PRIOR_ELASTICITY = -1.2;
+
 /**
  * James-Stein shrinkage toward a retail prior elasticity.
  *
@@ -15,7 +18,7 @@ export interface ShrinkageResult {
 export function bayesianShrinkage(
   elasticity: number,
   effectiveSampleSize: number,
-  priorElasticity = -1.2,
+  priorElasticity = GLOBAL_PRIOR_ELASTICITY,
   priorStrength = 5
 ): ShrinkageResult {
   if (effectiveSampleSize <= 0) {
