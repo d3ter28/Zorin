@@ -30,12 +30,10 @@ export interface MLRecView {
 }
 
 /**
- * When a recommendation was produced from the category/catalog/global
- * fallback cascade (no per-SKU model was possible), replaces the raw
- * backend `reasoning` string with level-specific copy that makes clear
- * this is a borrowed estimate, not a fit on this SKU's own sales history.
- * Caller is expected to only invoke this once `rec.fallbackLevel` is known
- * to be set — it renders the plain `rec.reasoning` line otherwise.
+ * Renders the recommendation's reasoning line. Shows fallback-specific
+ * phrasing (per fallbackLevel) when the rec is fallback-sourced — making
+ * clear this is a borrowed estimate, not a fit on this SKU's own sales
+ * history — otherwise falls through to the plain `rec.reasoning` text.
  */
 function FallbackReasoningLine({ rec }: { rec: MLRecView }) {
   let text: string;
