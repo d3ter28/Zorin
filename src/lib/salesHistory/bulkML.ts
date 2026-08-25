@@ -12,9 +12,6 @@ export interface BulkMLResult {
   recommendSkipped: string[];
 }
 
-/** Confidence assigned to recommendations built from a borrowed (fallback) elasticity — never a real per-SKU fit. */
-const FALLBACK_CONFIDENCE_SCORE = 0.3;
-
 type PrismaSurface = Pick<PrismaClient, "product" | "salesRecord" | "elasticityModel" | "recommendation">;
 
 export async function runBulkML(
@@ -43,7 +40,7 @@ export async function runBulkML(
         : null;
       const baselineUnits = avgUnits ?? product.estUnits ?? null;
 
-      if (baselineUnits == null) {
+      if (baselineUnits == null || baselineUnits <= 0) {
         result.fitSkipped.push(product.title);
         continue;
       }
@@ -61,17 +58,19 @@ export async function runBulkML(
         product.currentPrice,
         product.cogs,
         0.10,
-        FALLBACK_CONFIDENCE_SCORE,
+        0,
       );
 
       const fallbackRulesJson = JSON.stringify({
         suggestedPriceCents: fallbackRec.suggestedPriceCents,
         expectedProfitLiftPct: fallbackRec.expectedProfitLiftPct,
         elasticity: fallback.elasticity,
+        r2: null,
+        dataPoints: 0,
+        confidenceScore: 0,
         fallbackLevel: fallback.level,
         fallbackSourceCount: fallback.sourceCount,
         fallbackCategoryName: fallback.categoryName,
-        confidenceScore: FALLBACK_CONFIDENCE_SCORE,
         currentUnitsEstimate: fallbackRec.currentUnitsEstimate,
         projectedUnitsEstimate: fallbackRec.projectedUnitsEstimate,
         currentProfitCents: fallbackRec.currentProfitCents,

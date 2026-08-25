@@ -175,6 +175,38 @@ describe("runBulkML", () => {
     expect(rulesJson.fallbackLevel).toBe("category");
     expect(rulesJson.fallbackSourceCount).toBe(3);
     expect(rulesJson.fallbackCategoryName).toBe("Widgets");
+    expect(rulesJson.r2).toBeNull();
+    expect(rulesJson.dataPoints).toBe(0);
+    expect(rulesJson.confidenceScore).toBe(0);
+    expect(mocks.generateRecommendation).toHaveBeenCalledWith(
+      expect.objectContaining({ elasticity: -1.2 }),
+      1500,
+      800,
+      0.10,
+      0,
+    );
+  });
+
+  it("treats an avgUnits of exactly 0 as no baseline (guards against Math.log(0))", async () => {
+    mocks.productFindMany.mockResolvedValue([
+      { id: "p7", title: "All-Zero Sales Product", currentPrice: 1500, cogs: 800, merchantId: "m1", estUnits: null },
+    ]);
+    mocks.salesRecordFindMany.mockResolvedValue([
+      { priceCents: 1000, unitsSold: 0, date: new Date() },
+      { priceCents: 1200, unitsSold: 0, date: new Date() },
+    ]);
+    mocks.fitElasticityModel.mockReturnValue(null);
+
+    const result = await runBulkML(fakePrisma, ["p7"]);
+
+    expect(result).toEqual({
+      fitted: 0,
+      recommended: 0,
+      fitSkipped: ["All-Zero Sales Product"],
+      recommendSkipped: [],
+    });
+    expect(mocks.computeCategoryFallback).not.toHaveBeenCalled();
+    expect(mocks.recommendationUpsert).not.toHaveBeenCalled();
   });
 
   it("falls back using estUnits as the baseline when there are no real sales records", async () => {
