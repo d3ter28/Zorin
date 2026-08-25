@@ -92,8 +92,16 @@ function MLActionButtons({
       setFitting(false);
       onComplete();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Fit model failed");
+      const message = e instanceof Error ? e.message : "Fit model failed";
       setFitting(false);
+      if (message.includes("Insufficient data")) {
+        // No baseline model could be fit from this product's own sales data —
+        // fall straight through to Get Recommendation, which can still succeed
+        // via the category/catalog/global fallback cascade.
+        await getRecommendation();
+        return;
+      }
+      setError(message);
     }
   }
 
