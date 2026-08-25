@@ -93,14 +93,18 @@ function MLActionButtons({
       onComplete();
     } catch (e) {
       const message = e instanceof Error ? e.message : "Fit model failed";
-      setFitting(false);
       if (message.includes("Insufficient data")) {
         // No baseline model could be fit from this product's own sales data —
         // fall straight through to Get Recommendation, which can still succeed
-        // via the category/catalog/global fallback cascade.
+        // via the category/catalog/global fallback cascade. Keep `fitting` true
+        // until the chained call resolves so the Fit Model button stays disabled
+        // for the whole window, closing the re-entrancy gap a premature
+        // setFitting(false) would otherwise open.
         await getRecommendation();
+        setFitting(false);
         return;
       }
+      setFitting(false);
       setError(message);
     }
   }
