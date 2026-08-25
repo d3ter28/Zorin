@@ -38,11 +38,11 @@ export const posts: BlogPost[] = [
 
 <h2>What Actually Makes a Review Trustworthy</h2>
 <p>A star rating by itself tells you almost nothing. What tells you something is the process behind it: how the platform confirms a reviewer really used the product, how much detail the review contains, and how many submissions get rejected before anything goes live.</p>
-<p>TrustRadius is a useful benchmark here. Its research team checks reviewer identity through LinkedIn or a verified work email before publishing anything, no auto-publish path exists, and roughly 48% of submissions get rejected for quality or authenticity concerns. The reviews that survive average more than 400 words, with specific detail about the reviewer's actual use case rather than generic praise.</p>
+<p>TrustRadius is a useful benchmark here. Its research team checks reviewer identity through LinkedIn or a verified work email before publishing anything, no auto-publish path exists, and <a href="https://solutions.trustradius.com/vendor/b2b-reviews/why-weve-rejected-reviews-ratings/" target="_blank" rel="noopener">roughly 48% of submissions get rejected</a> for quality or authenticity concerns. The reviews that survive average more than 400 words, with specific detail about the reviewer's actual use case rather than generic praise.</p>
 <p>That level of friction is unusual. It's also exactly why a platform with heavy verification tends to carry more weight than one that publishes anything a logged-in user submits.</p>
 
 <h2>G2, Capterra, and TrustRadius: How Each One Actually Works</h2>
-<p>These three platforms get treated interchangeably in a lot of buying guides, but they run on different verification standards and different business models, and that difference shapes what a listing on each one actually means.</p>
+<p>These three platforms get treated interchangeably in a lot of buying guides, but they run on different verification standards and different business models, and that difference shapes what a listing on each one actually means. The pricing and verification figures below are drawn from each platform's own disclosed practices and a <a href="https://toolradar.com/blog/software-review-websites" target="_blank" rel="noopener">2026 comparison audit of major software review sites</a>.</p>
 
 <table>
   <thead>
@@ -60,11 +60,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
-<p>Worth noting: in early 2026, G2 acquired Capterra, Software Advice, and GetApp from Gartner, putting four of the largest B2B review platforms under one company. That doesn't make any of them unreliable, but it means "I checked three different sites" carries less independence than it used to. Cross-checking against a platform that's still genuinely separate, like TrustRadius, matters more now, not less.</p>
+<p>Worth noting: in early 2026, <a href="https://www.prnewswire.com/news-releases/g2-to-acquire-capterra-software-advice-and-getapp-from-gartner-302673901.html" target="_blank" rel="noopener">G2 acquired Capterra, Software Advice, and GetApp from Gartner</a>, putting four of the largest B2B review platforms under one company. That doesn't make any of them unreliable, but it means "I checked three different sites" carries less independence than it used to. Cross-checking against a platform that's still genuinely separate, like TrustRadius, matters more now, not less.</p>
 <p>On Capterra specifically, the platform works best as a discovery and shortlisting tool rather than a final-decision resource. Treat it as a wide lens for orientation, then pair it with a deeper, more independently verified source before you actually commit.</p>
 
 <h2>How to Spot Manipulated or Fake Reviews</h2>
-<p>This isn't a hypothetical risk. In 2026, the FTC brought an enforcement action against LendEDU, a site that compared consumer financial products while presenting itself as an objective source. According to the FTC's complaint, companies that paid moved up the rankings, with one email from LendEDU's own CEO promising to restore a company's first-place position if it paid $9.50 per click. The complaint also found that roughly 90% of the site's Trustpilot reviews were written or fabricated by LendEDU employees or people with personal ties to the company. LendEDU settled for $350,000.</p>
+<p>This isn't a hypothetical risk. In 2020, the <a href="https://www.ftc.gov/news-events/news/press-releases/2020/05/ftc-finalizes-settlement-lendedu-case-related-deceptive-rankings-fake-reviews" target="_blank" rel="noopener">FTC settled an enforcement action against LendEDU</a>, a site that compared consumer financial products while presenting itself as objective, accurate, and unbiased. According to the FTC's complaint, LendEDU adjusted its rankings based on how much a financial company paid, giving better placement to higher-paying vendors regardless of actual quality, and it misrepresented reviews on its own site and on third-party platforms as coming from impartial customers when many were actually written by LendEDU employees or people with personal or professional ties to the company. LendEDU settled for $350,000.</p>
 <p>That's the financial-products category, not pricing software specifically, but the pattern generalizes directly: a site presenting itself as neutral while quietly running a pay-for-placement model behind the scenes, and reviews that turn out to be written by people connected to the vendor rather than actual customers.</p>
 <p>A few concrete signals to check for, on any review site, in any category:</p>
 <ul>
@@ -96,7 +96,7 @@ export const posts: BlogPost[] = [
 <li>A star rating alone tells you little. What matters is the verification process behind it: identity checks, rejection rate, and review detail.</li>
 <li>TrustRadius rejects roughly 48% of submissions and has no pay-to-play rankings. G2 and Capterra both run paid visibility models alongside their organic ratings.</li>
 <li>G2's 2026 acquisition of Capterra, Software Advice, and GetApp means four major review platforms are now one company, making genuinely independent cross-checks (like TrustRadius) more valuable, not less.</li>
-<li>The FTC's 2026 case against LendEDU, a $350,000 settlement over pay-for-placement rankings and fabricated reviews, shows manipulation is a real, prosecuted risk, not a theoretical one.</li>
+<li>The FTC's 2020 case against LendEDU, a $350,000 settlement over pay-for-placement rankings and fabricated reviews, shows manipulation is a real, prosecuted risk, not a theoretical one.</li>
 <li>For pricing software specifically, apply the same "show the math" test to the product as you do to the reviews: a tool that displays its actual reasoning is easier to trust than one asking you to take a recommendation on faith.</li>
 </ul>
 </div>
@@ -123,7 +123,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>What happens if I choose pricing software based on fake or paid reviews?</h3>
-<p>You risk picking a tool that doesn't actually do what its reviews claimed, and because pricing software sits directly on top of your revenue, a bad pick can quietly cost margin on every order for months before the problem becomes obvious. The FTC's 2026 case against LendEDU, a review site fined $350,000 for pay-for-placement rankings and fabricated reviews, shows this isn't a rare failure mode.</p>
+<p>You risk picking a tool that doesn't actually do what its reviews claimed, and because pricing software sits directly on top of your revenue, a bad pick can quietly cost margin on every order for months before the problem becomes obvious. The FTC's 2020 case against LendEDU, a review site fined $350,000 for pay-for-placement rankings and fabricated reviews, shows this isn't a rare failure mode.</p>
 </div>
 <div class="faq-item">
 <h3>Is Capterra owned by the same company as G2?</h3>
