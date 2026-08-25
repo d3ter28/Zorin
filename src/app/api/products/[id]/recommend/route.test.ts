@@ -156,6 +156,7 @@ describe("POST /api/products/[id]/recommend", () => {
     expect(rulesJson.fallbackLevel).toBe("category");
     expect(rulesJson.fallbackCategoryName).toBe("Skincare");
     expect(rulesJson.fallbackSourceCount).toBe(3);
+    expect(rulesJson.elasticity).toBe(-2.0);
   });
 
   it("falls back to a catalog-sourced recommendation when the category has too few qualifying siblings", async () => {
