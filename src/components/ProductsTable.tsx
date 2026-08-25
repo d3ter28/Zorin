@@ -19,6 +19,7 @@ interface Row {
   recommendedAction: "raise" | "lower" | "hold" | null;
   suggestedPrice: number | null;
   modelHealth: { r2: number; dataPoints: number; confidenceScore: number } | null;
+  isFallback: boolean;
 }
 
 const FLOOR = 0.15;
@@ -254,6 +255,7 @@ export function ProductsTable({ refreshToken }: { refreshToken: number }) {
                       r2={r.modelHealth?.r2 ?? null}
                       dataPoints={r.modelHealth?.dataPoints ?? null}
                       confidenceScore={r.modelHealth?.confidenceScore ?? null}
+                      isFallback={r.isFallback}
                       size="sm"
                     />
                   </td>

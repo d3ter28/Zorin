@@ -15,11 +15,16 @@ export const GET = withErrorHandling(async () => {
   const rows = products.map((p) => {
     let recommendedAction: "raise" | "lower" | "hold" | null = null;
     let suggestedPrice: number | null = null;
+    let isFallback = false;
     if (p.recommendation) {
       recommendedAction = p.recommendation.action as "raise" | "lower" | "hold";
       try {
-        const rules = JSON.parse(p.recommendation.rulesJson) as { suggestedPriceCents: number };
+        const rules = JSON.parse(p.recommendation.rulesJson) as {
+          suggestedPriceCents: number;
+          fallbackLevel?: string | null;
+        };
         suggestedPrice = rules.suggestedPriceCents ?? null;
+        isFallback = rules.fallbackLevel != null;
       } catch {
         console.error(`[products] Failed to parse rulesJson for product ${p.id}`);
         recommendedAction = null;
@@ -42,6 +47,10 @@ export const GET = withErrorHandling(async () => {
             confidenceScore: p.elasticityModel.confidenceScore,
           }
         : null,
+      // A fallback-sourced recommendation has no ElasticityModel row at all —
+      // this flag lets the UI render "Estimated" instead of "No model" next
+      // to an otherwise-actionable suggested price.
+      isFallback,
       recommendedAction,
       suggestedPrice,
     };

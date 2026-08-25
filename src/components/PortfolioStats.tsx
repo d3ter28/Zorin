@@ -6,7 +6,7 @@ interface PortfolioData {
   totalProducts: number;
   avgMargin: number | null;
   avgProfitLiftPct: number | null;
-  modelHealth: { strong: number; fair: number; weak: number; none: number };
+  modelHealth: { strong: number; fair: number; weak: number; estimated: number; none: number };
   actions: { raise: number; lower: number; hold: number };
   belowFloor: number;
   profitOpportunityCents: number;
@@ -164,6 +164,12 @@ export function PortfolioStats({
                 style={{ width: `${(modelHealth.weak / totalProducts) * 100}%` }}
               />
             )}
+            {modelHealth.estimated > 0 && (
+              <div
+                className="h-full bg-accent/60"
+                style={{ width: `${(modelHealth.estimated / totalProducts) * 100}%` }}
+              />
+            )}
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
             {modelHealth.strong > 0 && (
@@ -182,6 +188,12 @@ export function PortfolioStats({
               <span className="flex items-center gap-1">
                 <span className="inline-block h-2 w-2 rounded-full bg-warning" />
                 {modelHealth.weak} weak
+              </span>
+            )}
+            {modelHealth.estimated > 0 && (
+              <span className="flex items-center gap-1">
+                <span className="inline-block h-2 w-2 rounded-full bg-accent/60" />
+                {modelHealth.estimated} estimated
               </span>
             )}
             {modelHealth.none > 0 && (
