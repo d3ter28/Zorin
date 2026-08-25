@@ -42,6 +42,7 @@ export const clusters: Cluster[] = [
       "price-elasticity-tools-for-ecommerce-how-to-find-your-best-price",
       "do-you-need-a-competitor-price-tracking-app",
       "how-to-evaluate-a-shopify-pricing-app",
+      "are-software-review-sites-reliable-for-pricing-tools",
     ],
   },
   {

@@ -17,6 +17,132 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "are-software-review-sites-reliable-for-pricing-tools",
+    title: "Are Software Review Sites Reliable for Pricing?",
+    excerpt:
+      "Not all software review sites work the same way. Here's how G2, Capterra, and TrustRadius actually verify reviews, and what to check before trusting one.",
+    date: "2026-08-25",
+    readingTime: "11 min read",
+    category: "Product",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Some software review sites are meaningfully more reliable than others, and the difference has nothing to do with brand recognition. It comes down to how a platform verifies who's writing, how much a vendor can pay to influence what you see, and how many submissions actually get rejected. Pricing software is a category worth being especially careful about, since a bad pick doesn't just waste a subscription fee, it can quietly cost you margin on every sale for months before you notice. This guide breaks down how the major review platforms actually work, what a real FTC enforcement case teaches about manipulated rankings, and what to check before you let a star rating decide anything.</p>
+
+<h2>Why Review Sites Matter More for Pricing Software Than Most SaaS</h2>
+<p>Most software categories fail quietly if you pick wrong. A mediocre project management tool means some friction and a cancelled subscription six months later. Pricing software is different: it sits directly on top of your revenue. A tool that recommends the wrong price, or one that's really just a competitor-price scraper dressed up as "intelligence," can cost you real margin on every order it touches before you catch the problem.</p>
+<p>That's exactly the kind of decision where third-party validation should matter most, and exactly the kind of decision where it's worth understanding how that validation actually gets produced.</p>
+
+<h2>What Actually Makes a Review Trustworthy</h2>
+<p>A star rating by itself tells you almost nothing. What tells you something is the process behind it: how the platform confirms a reviewer really used the product, how much detail the review contains, and how many submissions get rejected before anything goes live.</p>
+<p>TrustRadius is a useful benchmark here. Its research team checks reviewer identity through LinkedIn or a verified work email before publishing anything, no auto-publish path exists, and roughly 48% of submissions get rejected for quality or authenticity concerns. The reviews that survive average more than 400 words, with specific detail about the reviewer's actual use case rather than generic praise.</p>
+<p>That level of friction is unusual. It's also exactly why a platform with heavy verification tends to carry more weight than one that publishes anything a logged-in user submits.</p>
+
+<h2>G2, Capterra, and TrustRadius: How Each One Actually Works</h2>
+<p>These three platforms get treated interchangeably in a lot of buying guides, but they run on different verification standards and different business models, and that difference shapes what a listing on each one actually means.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Verification</th>
+      <th>Revenue model</th>
+      <th>What it's best for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>G2</td><td>LinkedIn or business email required, human moderation (up to 3 business days)</td><td>Paid subscriptions ($3,000 to $87,000+/year) for enhanced profiles, buyer-intent data, and badges like "Leader"</td><td>Deep, mid-to-final-stage research once you have a shortlist</td></tr>
+    <tr><td>Capterra</td><td>Verification process before publication, but lighter friction than G2 or TrustRadius</td><td>Pay-per-click category placement, starting around $2/click, vendor budgets from $200 to $20,000+/month</td><td>Early-stage discovery and broad category browsing</td></tr>
+    <tr><td>TrustRadius</td><td>Identity checked by researchers, ~48% of submissions rejected, no auto-publish</td><td>No pay-to-play rankings, no incentivized reviews</td><td>Reading detailed, hard-to-fake reviewer accounts</td></tr>
+  </tbody>
+</table>
+
+<p>Worth noting: in early 2026, G2 acquired Capterra, Software Advice, and GetApp from Gartner, putting four of the largest B2B review platforms under one company. That doesn't make any of them unreliable, but it means "I checked three different sites" carries less independence than it used to. Cross-checking against a platform that's still genuinely separate, like TrustRadius, matters more now, not less.</p>
+<p>On Capterra specifically, the platform works best as a discovery and shortlisting tool rather than a final-decision resource. Treat it as a wide lens for orientation, then pair it with a deeper, more independently verified source before you actually commit.</p>
+
+<h2>How to Spot Manipulated or Fake Reviews</h2>
+<p>This isn't a hypothetical risk. In 2026, the FTC brought an enforcement action against LendEDU, a site that compared consumer financial products while presenting itself as an objective source. According to the FTC's complaint, companies that paid moved up the rankings, with one email from LendEDU's own CEO promising to restore a company's first-place position if it paid $9.50 per click. The complaint also found that roughly 90% of the site's Trustpilot reviews were written or fabricated by LendEDU employees or people with personal ties to the company. LendEDU settled for $350,000.</p>
+<p>That's the financial-products category, not pricing software specifically, but the pattern generalizes directly: a site presenting itself as neutral while quietly running a pay-for-placement model behind the scenes, and reviews that turn out to be written by people connected to the vendor rather than actual customers.</p>
+<p>A few concrete signals to check for, on any review site, in any category:</p>
+<ul>
+<li><strong>Does the platform disclose how rankings are determined?</strong> A platform that clearly separates paid visibility (badges, sponsored placement) from the underlying rating is more trustworthy than one that doesn't say.</li>
+<li><strong>Are reviews specific or generic?</strong> "Great tool, highly recommend" tells you nothing. A review describing a specific use case, a specific problem it solved, or a specific limitation is much harder to fabricate at scale.</li>
+<li><strong>Is there a visible rejection or verification standard?</strong> A platform that publishes a rejection rate or an identity-check process, the way TrustRadius does, is telling you something a platform that stays silent on the topic isn't.</li>
+<li><strong>Does the review date and reviewer history check out?</strong> A wave of five-star reviews posted in the same week, from accounts with no other review history, is a pattern worth being suspicious of.</li>
+</ul>
+
+<h2>What to Check Before Trusting a Review of a Pricing App</h2>
+<p>Beyond the general checks above, pricing software has a category-specific test that most SaaS categories don't: does the review, or the tool itself, actually show its reasoning?</p>
+<p>A vague "this raised our revenue" claim in a review is worth far less than a review, or a product demo, that shows the actual mechanism behind a recommendation. If a pricing tool claims to know your optimal price, ask what's driving that number. Is it a regression fit to your own sales history, with a visible confidence score? Or is it a black-box output you're asked to trust on faith?</p>
+<p>That same "show the math" standard is worth applying to review sites and to pricing software equally. If a platform can't explain how it verifies reviewers, and a tool can't explain how it calculated a recommendation, you're being asked to trust the same kind of unverifiable claim twice.</p>
+<p>Merchants also lean on sources outside the big three review platforms, independent bloggers, forum threads, and personal recommendation sites that cover a wide range of business tools alongside other topics. <a href="https://ericsaloreviews.click/" target="_blank" rel="noopener">Eric Salo's review site</a> is one example of that broader, more general ecosystem, worth reading for a personal take, but not a substitute for a specialist software-review platform when the decision is specifically about a pricing tool and the stakes involve your margin.</p>
+
+<h2>Where Zorin Fits Into This</h2>
+<p>Zorin is early-stage, with a small but real listing on both Capterra and G2, not the thousands of reviews a more established category leader carries. That's worth stating plainly rather than implying a depth of third-party validation that doesn't exist yet.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>The same "show the math" standard worth demanding from a review site applies here: an elasticity coefficient, an R-squared fit, and a confidence label, not a bare recommendation.</figcaption>
+</figure>
+
+<p>What Zorin can offer instead is the same transparency principle this whole guide is about, applied to the product itself. Every recommendation comes with the actual elasticity coefficient behind it, an R-squared fit, and a confidence label of Strong, Fair, or Weak, so you're never asked to trust a raise or lower call on faith. <a href="/blog/how-to-evaluate-a-shopify-pricing-app">A separate checklist covers what to check before connecting any pricing app to your store</a>, and <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full comparison of pricing tool categories</a> goes deeper on where a demand-based model like Zorin's fits against repricers and competitor-tracking tools.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A star rating alone tells you little. What matters is the verification process behind it: identity checks, rejection rate, and review detail.</li>
+<li>TrustRadius rejects roughly 48% of submissions and has no pay-to-play rankings. G2 and Capterra both run paid visibility models alongside their organic ratings.</li>
+<li>G2's 2026 acquisition of Capterra, Software Advice, and GetApp means four major review platforms are now one company, making genuinely independent cross-checks (like TrustRadius) more valuable, not less.</li>
+<li>The FTC's 2026 case against LendEDU, a $350,000 settlement over pay-for-placement rankings and fabricated reviews, shows manipulation is a real, prosecuted risk, not a theoretical one.</li>
+<li>For pricing software specifically, apply the same "show the math" test to the product as you do to the reviews: a tool that displays its actual reasoning is easier to trust than one asking you to take a recommendation on faith.</li>
+</ul>
+</div>
+
+<p>Reading reviews carefully is worth the extra ten minutes it takes. <a href="/signup">Start a free trial</a> and see the actual elasticity math behind your own catalog's recommendations, no review site required to verify that part.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know if reviews of a pricing software tool are trustworthy?</h3>
+<p>Check the platform's verification process, not just the star rating. Look for identity checks, a stated rejection rate, and reviews with specific use-case detail rather than generic praise. TrustRadius publishes its rejection rate (around 48%); G2 requires LinkedIn or business email verification.</p>
+</div>
+<div class="faq-item">
+<h3>Should I trust G2 and Capterra ratings when picking an ecommerce pricing app?</h3>
+<p>They're a reasonable starting point, especially for early-stage discovery, but they aren't equally rigorous. G2 has stronger verification than Capterra, and both run paid visibility models. Treat their ratings as one input, then cross-check against a platform with no pay-to-play rankings, like TrustRadius.</p>
+</div>
+<div class="faq-item">
+<h3>What should I look for in a review of a Shopify pricing optimization tool?</h3>
+<p>Specificity. A useful review describes what the reviewer's store actually looked like, what problem the tool solved, and any real limitations, not just "great tool." For pricing software specifically, look for reviews that mention whether the tool showed its reasoning (an elasticity coefficient, a confidence score) or just handed over a number to trust blindly.</p>
+</div>
+<div class="faq-item">
+<h3>How can I tell if a software review site is legit before buying a pricing app?</h3>
+<p>Check whether the platform discloses its ranking methodology and separates paid placement from the underlying rating. A platform that stays vague about how vendors can pay for visibility is a weaker source than one that publishes its rejection rate and verification standard clearly.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if I choose pricing software based on fake or paid reviews?</h3>
+<p>You risk picking a tool that doesn't actually do what its reviews claimed, and because pricing software sits directly on top of your revenue, a bad pick can quietly cost margin on every order for months before the problem becomes obvious. The FTC's 2026 case against LendEDU, a review site fined $350,000 for pay-for-placement rankings and fabricated reviews, shows this isn't a rare failure mode.</p>
+</div>
+<div class="faq-item">
+<h3>Is Capterra owned by the same company as G2?</h3>
+<p>As of early 2026, yes. G2 acquired Capterra, Software Advice, and GetApp from Gartner, putting four of the largest B2B review platforms under one parent company. Cross-checking against a genuinely independent platform, like TrustRadius, is more useful now that several major sites share ownership.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between G2, Capterra, and TrustRadius?</h3>
+<p>G2 has the largest review database and requires LinkedIn or business-email verification. Capterra is a lighter-friction discovery tool, best for early browsing rather than a final decision. TrustRadius has the strictest verification, roughly 48% of submissions get rejected, and it runs no pay-to-play rankings.</p>
+</div>
+<div class="faq-item">
+<h3>Are review site star ratings reliable on their own?</h3>
+<p>Not fully. Aggregate scores weigh review recency and volume alongside sentiment, so a high score can partly reflect how many recent reviews a vendor has, not purely how good the product is. Reading a sample of individual reviews tells you more than the headline number alone.</p>
+</div>
+</section>
+
+<p class="conclusion">Review sites are a genuinely useful signal for pricing software, but only once you know which ones actually verify what they publish. Check the process behind the rating, not just the number, and apply the same standard to the software itself: a tool that shows its reasoning is easier to trust than one asking for blind faith in a recommendation.</p>
+`,
+  },
+  {
     slug: "how-to-calculate-price-elasticity-for-your-woocommerce-store",
     title: "How to Calculate Price Elasticity for WooCommerce",
     excerpt:
