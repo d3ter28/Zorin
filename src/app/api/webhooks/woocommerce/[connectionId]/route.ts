@@ -15,9 +15,11 @@ interface RawWebhookProduct {
   sku: string;
   regular_price: string;
   images?: Array<{ src: string }>;
+  categories?: Array<{ id: number; name: string; slug: string }>;
 }
 
 function mapProductPayload(raw: RawWebhookProduct): WooNormalizedProduct {
+  const categoryName = raw.categories?.[0]?.name?.trim();
   return {
     id: raw.id,
     parentId: null,
@@ -25,6 +27,7 @@ function mapProductPayload(raw: RawWebhookProduct): WooNormalizedProduct {
     sku: raw.sku,
     regularPriceDollars: raw.regular_price,
     imageUrl: raw.images?.[0]?.src ?? null,
+    category: categoryName ? categoryName : null,
   };
 }
 

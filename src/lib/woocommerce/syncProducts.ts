@@ -69,7 +69,7 @@ export async function syncWooProducts(
           woocommerceVariantId,
           woocommerceParentId,
           imageUrl: p.imageUrl,
-          category: "WooCommerce",
+          category: p.category?.trim() || "Uncategorized",
         },
       });
       created++;

@@ -106,6 +106,7 @@ describe("WooCommerceClient", () => {
             sku: "WID-1",
             regular_price: "9.99",
             images: [{ src: "https://example.com/wp-content/widget.jpg" }],
+            categories: [{ id: 1, name: "Widgets", slug: "widgets" }],
           },
         ]),
       );
@@ -124,6 +125,7 @@ describe("WooCommerceClient", () => {
           sku: "WID-1",
           regularPriceDollars: "9.99",
           imageUrl: "https://example.com/wp-content/widget.jpg",
+          category: "Widgets",
         },
       ]);
     });
@@ -150,6 +152,28 @@ describe("WooCommerceClient", () => {
       expect((pages[0] as Array<{ imageUrl: string | null }>)[0].imageUrl).toBeNull();
     });
 
+    it("sets category to null for a simple product with no categories", async () => {
+      vi.mocked(fetch).mockResolvedValueOnce(
+        mockResponse([
+          {
+            id: 3,
+            type: "simple",
+            name: "No Category",
+            sku: "NC-1",
+            regular_price: "5.00",
+            categories: [],
+          },
+        ]),
+      );
+
+      const pages: unknown[] = [];
+      for await (const page of client.fetchAllProducts()) {
+        pages.push(page);
+      }
+
+      expect((pages[0] as Array<{ category: string | null }>)[0].category).toBeNull();
+    });
+
     it("fetches variations for variable products, each variation using its own image", async () => {
       vi.mocked(fetch)
         .mockResolvedValueOnce(
@@ -161,6 +185,7 @@ describe("WooCommerceClient", () => {
               sku: "",
               regular_price: "",
               images: [{ src: "https://example.com/tshirt-parent.jpg" }],
+              categories: [{ id: 5, name: "Apparel", slug: "apparel" }],
             },
           ]),
         )
@@ -197,6 +222,7 @@ describe("WooCommerceClient", () => {
           sku: "TS-S",
           regularPriceDollars: "19.99",
           imageUrl: "https://example.com/tshirt-small.jpg",
+          category: "Apparel",
         },
         {
           id: 102,
@@ -205,6 +231,7 @@ describe("WooCommerceClient", () => {
           sku: "TS-L",
           regularPriceDollars: "19.99",
           imageUrl: "https://example.com/tshirt-large.jpg",
+          category: "Apparel",
         },
       ]);
 
@@ -249,6 +276,39 @@ describe("WooCommerceClient", () => {
       expect((pages[0] as Array<{ imageUrl: string | null }>)[0].imageUrl).toBe(
         "https://example.com/mug-parent.jpg",
       );
+    });
+
+    it("falls back to null category for a parent product with no categories, whitespace name trimmed", async () => {
+      vi.mocked(fetch)
+        .mockResolvedValueOnce(
+          mockResponse([
+            {
+              id: 30,
+              type: "variable",
+              name: "Blank Category Parent",
+              sku: "",
+              regular_price: "",
+              categories: [{ id: 9, name: "   ", slug: "blank" }],
+            },
+          ]),
+        )
+        .mockResolvedValueOnce(
+          mockResponse([
+            {
+              id: 301,
+              sku: "BCP-1",
+              regular_price: "9.00",
+              attributes: [],
+            },
+          ]),
+        );
+
+      const pages: unknown[] = [];
+      for await (const page of client.fetchAllProducts()) {
+        pages.push(page);
+      }
+
+      expect((pages[0] as Array<{ category: string | null }>)[0].category).toBeNull();
     });
 
     it("follows Link header pagination for products", async () => {

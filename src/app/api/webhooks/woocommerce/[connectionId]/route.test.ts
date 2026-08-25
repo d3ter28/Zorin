@@ -112,7 +112,7 @@ describe("POST /api/webhooks/woocommerce/[connectionId]", () => {
     expect(syncWooProducts).toHaveBeenCalledWith(
       prisma,
       "m1",
-      [{ id: 42, parentId: null, name: "Widget", sku: "SKU1", regularPriceDollars: "9.99", imageUrl: "https://cdn.example.com/w.jpg" }],
+      [{ id: 42, parentId: null, name: "Widget", sku: "SKU1", regularPriceDollars: "9.99", imageUrl: "https://cdn.example.com/w.jpg", category: null }],
     );
   });
 

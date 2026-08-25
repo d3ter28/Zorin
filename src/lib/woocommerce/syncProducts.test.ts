@@ -21,8 +21,9 @@ function product(over: Partial<WooNormalizedProduct> = {}): WooNormalizedProduct
     sku: "SHIRT-001",
     regularPriceDollars: "19.99",
     imageUrl: null,
+    category: null,
     ...over,
-  };
+  } as WooNormalizedProduct;
 }
 
 describe("syncWooProducts", () => {
@@ -43,10 +44,51 @@ describe("syncWooProducts", () => {
         woocommerceVariantId: "101",
         woocommerceParentId: null,
         imageUrl: null,
-        category: "WooCommerce",
+        category: "Uncategorized",
       },
     });
     expect(result).toEqual({ created: 1, updated: 0, skipped: 0, skippedReasons: [] });
+  });
+
+  // ── Category persistence ──────────────────────────────────────────────────
+
+  it("persists the real category from the product on create", async () => {
+    const prisma = mockPrisma([]);
+    await syncWooProducts(prisma as never, "m1", [
+      product({ category: "Shirts" }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ category: "Shirts" }),
+      }),
+    );
+  });
+
+  it("falls back to Uncategorized when category is null", async () => {
+    const prisma = mockPrisma([]);
+    await syncWooProducts(prisma as never, "m1", [
+      product({ category: null }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ category: "Uncategorized" }),
+      }),
+    );
+  });
+
+  it("falls back to Uncategorized when category is empty/whitespace", async () => {
+    const prisma = mockPrisma([]);
+    await syncWooProducts(prisma as never, "m1", [
+      product({ category: "   " }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ category: "Uncategorized" }),
+      }),
+    );
   });
 
   // ── SKU skip logic ────────────────────────────────────────────────────────
