@@ -9,6 +9,7 @@ const mocks = vi.hoisted(() => ({
   bayesianShrinkage: vi.fn(),
   computeConfidenceScore: vi.fn(),
   generateRecommendation: vi.fn(),
+  computeCategoryFallback: vi.fn(),
 }));
 
 vi.mock("@/lib/elasticity/fitElasticityModel", () => ({
@@ -22,6 +23,9 @@ vi.mock("@/lib/elasticity/confidenceScore", () => ({
 }));
 vi.mock("@/lib/elasticity/generateRecommendation", () => ({
   generateRecommendation: mocks.generateRecommendation,
+}));
+vi.mock("@/lib/elasticity/categoryFallback", () => ({
+  computeCategoryFallback: mocks.computeCategoryFallback,
 }));
 
 import { runBulkML } from "./bulkML";
@@ -101,13 +105,11 @@ describe("runBulkML", () => {
     );
   });
 
-  it("collects product titles in fitSkipped when fitElasticityModel returns null", async () => {
+  it("collects product titles in fitSkipped when fitElasticityModel returns null and there is no units baseline", async () => {
     mocks.productFindMany.mockResolvedValue([
-      { id: "p2", title: "Sparse Product", currentPrice: 1500, cogs: 800 },
+      { id: "p2", title: "Sparse Product", currentPrice: 1500, cogs: 800, merchantId: "m1", estUnits: null },
     ]);
-    mocks.salesRecordFindMany.mockResolvedValue([
-      { priceCents: 1000, unitsSold: 10, date: new Date() },
-    ]);
+    mocks.salesRecordFindMany.mockResolvedValue([]);
     mocks.fitElasticityModel.mockReturnValue(null);
 
     const result = await runBulkML(fakePrisma, ["p2"]);
@@ -119,6 +121,117 @@ describe("runBulkML", () => {
       recommendSkipped: [],
     });
     expect(mocks.elasticityModelUpsert).not.toHaveBeenCalled();
+    expect(mocks.recommendationUpsert).not.toHaveBeenCalled();
+    expect(mocks.computeCategoryFallback).not.toHaveBeenCalled();
+  });
+
+  it("falls back to a borrowed elasticity and creates a recommendation when fit fails but cogs + a real sales baseline exist", async () => {
+    mocks.productFindMany.mockResolvedValue([
+      { id: "p4", title: "Fallback Product", currentPrice: 1500, cogs: 800, merchantId: "m1", estUnits: null },
+    ]);
+    mocks.salesRecordFindMany.mockResolvedValue([
+      { priceCents: 1000, unitsSold: 10, date: new Date() },
+      { priceCents: 1200, unitsSold: 8, date: new Date() },
+    ]);
+    mocks.fitElasticityModel.mockReturnValue(null);
+    mocks.computeCategoryFallback.mockResolvedValue({
+      elasticity: -1.2,
+      level: "category",
+      sourceCount: 3,
+      categoryName: "Widgets",
+    });
+    mocks.generateRecommendation.mockReturnValue({
+      action: "raise",
+      suggestedPriceCents: 1600,
+      deltaPct: 0.0667,
+      reasoning: "fallback reasoning",
+      expectedProfitLiftPct: 0.05,
+      currentUnitsEstimate: 9,
+      projectedUnitsEstimate: 8,
+      currentProfitCents: 6300,
+      projectedProfitCents: 6400,
+      profitLiftCents: 100,
+    });
+    mocks.recommendationUpsert.mockResolvedValue({});
+
+    const result = await runBulkML(fakePrisma, ["p4"]);
+
+    expect(result).toEqual({
+      fitted: 0,
+      recommended: 1,
+      fitSkipped: [],
+      recommendSkipped: [],
+    });
+    expect(mocks.computeCategoryFallback).toHaveBeenCalledWith(fakePrisma, "m1", "p4");
+    expect(mocks.elasticityModelUpsert).not.toHaveBeenCalled();
+    expect(mocks.recommendationUpsert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: { productId: "p4" },
+        create: expect.objectContaining({ productId: "p4", action: "raise" }),
+      }),
+    );
+    const call = mocks.recommendationUpsert.mock.calls[0][0];
+    const rulesJson = JSON.parse(call.create.rulesJson);
+    expect(rulesJson.fallbackLevel).toBe("category");
+    expect(rulesJson.fallbackSourceCount).toBe(3);
+    expect(rulesJson.fallbackCategoryName).toBe("Widgets");
+  });
+
+  it("falls back using estUnits as the baseline when there are no real sales records", async () => {
+    mocks.productFindMany.mockResolvedValue([
+      { id: "p5", title: "No History Product", currentPrice: 1500, cogs: 800, merchantId: "m1", estUnits: 12 },
+    ]);
+    mocks.salesRecordFindMany.mockResolvedValue([]);
+    mocks.fitElasticityModel.mockReturnValue(null);
+    mocks.computeCategoryFallback.mockResolvedValue({
+      elasticity: -0.8,
+      level: "global",
+      sourceCount: 0,
+    });
+    mocks.generateRecommendation.mockReturnValue({
+      action: "hold",
+      suggestedPriceCents: 1500,
+      deltaPct: 0,
+      reasoning: "fallback reasoning",
+      expectedProfitLiftPct: 0,
+      currentUnitsEstimate: 12,
+      projectedUnitsEstimate: 12,
+      currentProfitCents: 8400,
+      projectedProfitCents: 8400,
+      profitLiftCents: 0,
+    });
+    mocks.recommendationUpsert.mockResolvedValue({});
+
+    const result = await runBulkML(fakePrisma, ["p5"]);
+
+    expect(result).toEqual({
+      fitted: 0,
+      recommended: 1,
+      fitSkipped: [],
+      recommendSkipped: [],
+    });
+    expect(mocks.recommendationUpsert).toHaveBeenCalled();
+    const call = mocks.recommendationUpsert.mock.calls[0][0];
+    const rulesJson = JSON.parse(call.create.rulesJson);
+    expect(rulesJson.fallbackLevel).toBe("global");
+  });
+
+  it("does not attempt a fallback recommendation when fit fails and cogs is null, even with a baseline", async () => {
+    mocks.productFindMany.mockResolvedValue([
+      { id: "p6", title: "No Cogs Fallback Product", currentPrice: 1500, cogs: null, merchantId: "m1", estUnits: 12 },
+    ]);
+    mocks.salesRecordFindMany.mockResolvedValue([]);
+    mocks.fitElasticityModel.mockReturnValue(null);
+
+    const result = await runBulkML(fakePrisma, ["p6"]);
+
+    expect(result).toEqual({
+      fitted: 0,
+      recommended: 0,
+      fitSkipped: [],
+      recommendSkipped: ["No Cogs Fallback Product"],
+    });
+    expect(mocks.computeCategoryFallback).not.toHaveBeenCalled();
     expect(mocks.recommendationUpsert).not.toHaveBeenCalled();
   });
 

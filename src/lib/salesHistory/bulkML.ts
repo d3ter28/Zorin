@@ -3,6 +3,7 @@ import { fitElasticityModel } from "@/lib/elasticity/fitElasticityModel";
 import { bayesianShrinkage } from "@/lib/elasticity/bayesianShrinkage";
 import { computeConfidenceScore } from "@/lib/elasticity/confidenceScore";
 import { generateRecommendation } from "@/lib/elasticity/generateRecommendation";
+import { computeCategoryFallback } from "@/lib/elasticity/categoryFallback";
 
 export interface BulkMLResult {
   fitted: number;
@@ -10,6 +11,9 @@ export interface BulkMLResult {
   fitSkipped: string[];
   recommendSkipped: string[];
 }
+
+/** Confidence assigned to recommendations built from a borrowed (fallback) elasticity — never a real per-SKU fit. */
+const FALLBACK_CONFIDENCE_SCORE = 0.3;
 
 type PrismaSurface = Pick<PrismaClient, "product" | "salesRecord" | "elasticityModel" | "recommendation">;
 
@@ -22,7 +26,7 @@ export async function runBulkML(
 
   const products = await prisma.product.findMany({
     where: { id: { in: productIds } },
-    select: { id: true, title: true, currentPrice: true, cogs: true },
+    select: { id: true, title: true, currentPrice: true, cogs: true, merchantId: true, estUnits: true },
   });
 
   for (const product of products) {
@@ -34,7 +38,65 @@ export async function runBulkML(
 
     const raw = fitElasticityModel(records);
     if (!raw) {
-      result.fitSkipped.push(product.title);
+      const avgUnits = records.length > 0
+        ? records.reduce((sum, r) => sum + r.unitsSold, 0) / records.length
+        : null;
+      const baselineUnits = avgUnits ?? product.estUnits ?? null;
+
+      if (baselineUnits == null) {
+        result.fitSkipped.push(product.title);
+        continue;
+      }
+
+      if (product.cogs == null) {
+        result.recommendSkipped.push(product.title);
+        continue;
+      }
+
+      const fallback = await computeCategoryFallback(prisma, product.merchantId, product.id);
+      const intercept = Math.log(baselineUnits) - fallback.elasticity * Math.log(product.currentPrice);
+
+      const fallbackRec = generateRecommendation(
+        { elasticity: fallback.elasticity, intercept, r2: 0, dataPoints: 0 },
+        product.currentPrice,
+        product.cogs,
+        0.10,
+        FALLBACK_CONFIDENCE_SCORE,
+      );
+
+      const fallbackRulesJson = JSON.stringify({
+        suggestedPriceCents: fallbackRec.suggestedPriceCents,
+        expectedProfitLiftPct: fallbackRec.expectedProfitLiftPct,
+        elasticity: fallback.elasticity,
+        fallbackLevel: fallback.level,
+        fallbackSourceCount: fallback.sourceCount,
+        fallbackCategoryName: fallback.categoryName,
+        confidenceScore: FALLBACK_CONFIDENCE_SCORE,
+        currentUnitsEstimate: fallbackRec.currentUnitsEstimate,
+        projectedUnitsEstimate: fallbackRec.projectedUnitsEstimate,
+        currentProfitCents: fallbackRec.currentProfitCents,
+        projectedProfitCents: fallbackRec.projectedProfitCents,
+        profitLiftCents: fallbackRec.profitLiftCents,
+      });
+
+      await prisma.recommendation.upsert({
+        where: { productId: product.id },
+        create: {
+          productId: product.id,
+          action: fallbackRec.action,
+          deltaPct: fallbackRec.deltaPct,
+          phrasing: fallbackRec.reasoning,
+          rulesJson: fallbackRulesJson,
+        },
+        update: {
+          action: fallbackRec.action,
+          deltaPct: fallbackRec.deltaPct,
+          phrasing: fallbackRec.reasoning,
+          rulesJson: fallbackRulesJson,
+          generatedAt: new Date(),
+        },
+      });
+      result.recommended++;
       continue;
     }
 
