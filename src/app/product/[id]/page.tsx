@@ -5,7 +5,7 @@ import { WhatIfSlider } from "@/components/WhatIfSlider";
 import { DemandCurve } from "@/components/DemandCurve";
 import { PriceHistory } from "@/components/PriceHistory";
 import { PromotionFlags } from "@/components/PromotionFlags";
-import { RecommendationCard } from "@/components/RecommendationCard";
+import { RecommendationCard, VAN_WESTENDORP_ANCHOR_ID } from "@/components/RecommendationCard";
 import type { MLRecView } from "@/components/RecommendationCard";
 import { SalesHistoryUpload } from "@/components/SalesHistoryUpload";
 import { PriceSurveyCard } from "@/components/PriceSurveyCard";
@@ -233,7 +233,8 @@ export default function ProductPage({
 
             <RecommendationCard rec={mlRec} currentPriceCents={d.currentPrice} />
 
-            <div id="van-westendorp-survey" className="scroll-mt-8">
+            {/* id matches VAN_WESTENDORP_ANCHOR_ID in RecommendationCard.tsx, which links here */}
+            <div id={VAN_WESTENDORP_ANCHOR_ID} className="scroll-mt-8">
               <PriceSurveyCard productId={d.id} />
             </div>
 

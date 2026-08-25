@@ -3,6 +3,14 @@
 import { ModelHealthBadge } from "./ModelHealthBadge";
 import { formatCents } from "@/lib/money";
 
+/**
+ * Anchor id for the Van Westendorp survey section (PriceSurveyCard) on the
+ * product detail page. Shared with src/app/product/[id]/page.tsx so the
+ * suggestion link below and the section it targets can't silently drift
+ * apart into two independently-maintained string literals.
+ */
+export const VAN_WESTENDORP_ANCHOR_ID = "van-westendorp-survey";
+
 export interface MLRecView {
   action: "raise" | "lower" | "hold";
   suggestedPriceCents: number;
@@ -26,18 +34,19 @@ export interface MLRecView {
  * fallback cascade (no per-SKU model was possible), replaces the raw
  * backend `reasoning` string with level-specific copy that makes clear
  * this is a borrowed estimate, not a fit on this SKU's own sales history.
- * Returns null when the rec is not fallback-sourced.
+ * Caller is expected to only invoke this once `rec.fallbackLevel` is known
+ * to be set — it renders the plain `rec.reasoning` line otherwise.
  */
 function FallbackReasoningLine({ rec }: { rec: MLRecView }) {
-  if (rec.fallbackLevel == null) return null;
-
   let text: string;
   if (rec.fallbackLevel === "category") {
     text = `Estimated from your ${rec.fallbackCategoryName ?? "product"} category (${rec.fallbackSourceCount ?? 0} similar products)`;
   } else if (rec.fallbackLevel === "catalog") {
     text = `Estimated from your whole catalog (${rec.fallbackSourceCount ?? 0} products)`;
-  } else {
+  } else if (rec.fallbackLevel === "global") {
     text = "Estimated from typical retail elasticity (no comparable products yet)";
+  } else {
+    text = rec.reasoning;
   }
 
   return <p className="mt-2 text-ink">{text}</p>;
@@ -57,7 +66,7 @@ function FallbackSuggestions({ rec }: { rec: MLRecView }) {
     <div className="mt-3 space-y-1 text-xs text-muted">
       <p>
         Or ask customers directly →{" "}
-        <a href="#van-westendorp-survey" className="text-accent underline underline-offset-2 hover:opacity-80">
+        <a href={`#${VAN_WESTENDORP_ANCHOR_ID}`} className="text-accent underline underline-offset-2 hover:opacity-80">
           Create a Van Westendorp survey
         </a>
       </p>
@@ -160,11 +169,7 @@ export function RecommendationCard({
         <span className="text-faint">·</span>
         <span className="text-xs text-faint">{liftLabel}</span>
       </div>
-      {rec.fallbackLevel != null ? (
-        <FallbackReasoningLine rec={rec} />
-      ) : (
-        <p className="mt-2 text-ink">{rec.reasoning}</p>
-      )}
+      <FallbackReasoningLine rec={rec} />
       {currentPriceCents != null && <WhyThisPrice rec={rec} currentPriceCents={currentPriceCents} />}
       <div className="mt-3">
         <ModelHealthBadge

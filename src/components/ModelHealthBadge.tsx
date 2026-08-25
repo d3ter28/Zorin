@@ -46,10 +46,10 @@ export function ModelHealthBadge({ r2, dataPoints, confidenceScore, isFallback, 
     tier === "estimated"
       ? "Estimated from similar products — not this SKU's own sales history"
       : tier === "none"
-      ? "No elasticity model fitted yet"
-      : confidenceScore != null
-        ? `Confidence: ${Math.round(confidenceScore * 100)}% · R²=${r2?.toFixed(2) ?? "?"}, ${dataPoints} data points`
-        : `R²=${r2?.toFixed(2) ?? "?"}, ${dataPoints} data points`;
+        ? "No elasticity model fitted yet"
+        : confidenceScore != null
+          ? `Confidence: ${Math.round(confidenceScore * 100)}% · R²=${r2?.toFixed(2) ?? "?"}, ${dataPoints} data points`
+          : `R²=${r2?.toFixed(2) ?? "?"}, ${dataPoints} data points`;
 
   if (size === "sm") {
     return (
