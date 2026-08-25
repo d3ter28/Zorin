@@ -1,14 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { findFirst, upsert } = vi.hoisted(() => ({
+const { findFirst, upsert, findManySalesRecords, computeCategoryFallback } = vi.hoisted(() => ({
   findFirst: vi.fn(),
   upsert: vi.fn(),
+  findManySalesRecords: vi.fn(),
+  computeCategoryFallback: vi.fn(),
 }));
 
 vi.mock("@/lib/db", () => ({
   prisma: {
     product: { findFirst },
     recommendation: { upsert },
+    salesRecord: { findMany: findManySalesRecords },
   },
 }));
 
@@ -17,6 +20,10 @@ vi.mock("@/lib/auth/requireSession", () => ({
     merchantId: "m1",
     user: { id: "u1", email: "demo@zorin.example", merchantId: "m1" },
   })),
+}));
+
+vi.mock("@/lib/elasticity/categoryFallback", () => ({
+  computeCategoryFallback,
 }));
 
 import { POST } from "./route";
@@ -39,12 +46,16 @@ const productWithModel = {
   merchantId: "m1",
   currentPrice: 1000,
   cogs: 400,
+  category: "Skincare",
+  estUnits: null,
   elasticityModel,
 };
 
 beforeEach(() => {
   findFirst.mockReset();
   upsert.mockReset();
+  findManySalesRecords.mockReset().mockResolvedValue([]);
+  computeCategoryFallback.mockReset();
 });
 
 describe("POST /api/products/[id]/recommend", () => {
@@ -116,5 +127,106 @@ describe("POST /api/products/[id]/recommend", () => {
     const body = await res.json();
     expect(body.error).toMatch(/cogs/i);
     expect(upsert).not.toHaveBeenCalled();
+  });
+
+  it("falls back to a category-sourced recommendation when no elasticityModel exists but sales records and cogs do", async () => {
+    findFirst.mockResolvedValue({
+      ...productWithModel,
+      elasticityModel: null,
+    });
+    findManySalesRecords.mockResolvedValue([
+      { priceCents: 1000, unitsSold: 5, date: new Date() },
+      { priceCents: 1000, unitsSold: 7, date: new Date() },
+    ]);
+    computeCategoryFallback.mockResolvedValue({
+      elasticity: -2.0,
+      level: "category",
+      sourceCount: 3,
+      categoryName: "Skincare",
+    });
+    upsert.mockResolvedValue({});
+
+    const res = await POST(req(), ctx("p1"));
+    expect(res.status).toBe(200);
+
+    expect(computeCategoryFallback).toHaveBeenCalledWith(expect.anything(), "m1", "p1");
+
+    const call = upsert.mock.calls[0][0];
+    const rulesJson = JSON.parse(call.create.rulesJson);
+    expect(rulesJson.fallbackLevel).toBe("category");
+    expect(rulesJson.fallbackCategoryName).toBe("Skincare");
+    expect(rulesJson.fallbackSourceCount).toBe(3);
+  });
+
+  it("falls back to a catalog-sourced recommendation when the category has too few qualifying siblings", async () => {
+    findFirst.mockResolvedValue({
+      ...productWithModel,
+      elasticityModel: null,
+    });
+    findManySalesRecords.mockResolvedValue([
+      { priceCents: 1000, unitsSold: 5, date: new Date() },
+    ]);
+    computeCategoryFallback.mockResolvedValue({
+      elasticity: -2.5,
+      level: "catalog",
+      sourceCount: 3,
+    });
+    upsert.mockResolvedValue({});
+
+    const res = await POST(req(), ctx("p1"));
+    expect(res.status).toBe(200);
+
+    const rulesJson = JSON.parse(upsert.mock.calls[0][0].create.rulesJson);
+    expect(rulesJson.fallbackLevel).toBe("catalog");
+  });
+
+  it("uses estUnits as the baseline when there are zero sales records", async () => {
+    findFirst.mockResolvedValue({
+      ...productWithModel,
+      elasticityModel: null,
+      estUnits: 20,
+    });
+    findManySalesRecords.mockResolvedValue([]);
+    computeCategoryFallback.mockResolvedValue({
+      elasticity: -1.2,
+      level: "global",
+      sourceCount: 0,
+    });
+    upsert.mockResolvedValue({});
+
+    const res = await POST(req(), ctx("p1"));
+    expect(res.status).toBe(200);
+
+    const rulesJson = JSON.parse(upsert.mock.calls[0][0].create.rulesJson);
+    expect(rulesJson.fallbackLevel).toBe("global");
+  });
+
+  it("still 400s when there is no elasticityModel AND no sales records AND no estUnits", async () => {
+    findFirst.mockResolvedValue({
+      ...productWithModel,
+      elasticityModel: null,
+      estUnits: null,
+    });
+    findManySalesRecords.mockResolvedValue([]);
+
+    const res = await POST(req(), ctx("p1"));
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error).toMatch(/model/i);
+    expect(upsert).not.toHaveBeenCalled();
+  });
+
+  it("checks cogs before attempting a fallback", async () => {
+    findFirst.mockResolvedValue({
+      ...productWithModel,
+      elasticityModel: null,
+      cogs: null,
+    });
+
+    const res = await POST(req(), ctx("p1"));
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error).toMatch(/cogs/i);
+    expect(findManySalesRecords).not.toHaveBeenCalled(); // never got as far as checking baseline
   });
 });
