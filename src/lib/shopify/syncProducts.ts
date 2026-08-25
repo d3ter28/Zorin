@@ -85,7 +85,7 @@ export async function syncProducts(
           currentPrice: priceCents,
           shopifyVariantId,
           imageUrl: v.imageUrl,
-          category: "Shopify",
+          category: v.productType?.trim() || "Uncategorized",
         },
       });
       created++;

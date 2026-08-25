@@ -7,6 +7,7 @@ export interface ShopifyVariant {
   price: string;           // "29.99"
   inventory_quantity: number;
   imageUrl: string | null; // product's featured image (product.image.src), or null if the product has no photo
+  productType: string | null; // parent product's product_type, or null if not set
 }
 
 export interface ShopifyOrder {
@@ -34,6 +35,7 @@ interface RawVariant {
 interface RawProduct {
   id: number;
   title: string;
+  product_type?: string | null;
   image?: { src: string };
   variants: RawVariant[];
 }
@@ -148,6 +150,7 @@ export class ShopifyClient {
           price: v.price,
           inventory_quantity: v.inventory_quantity,
           imageUrl: product.image?.src ?? null,
+          productType: product.product_type ?? null,
         })),
       );
 

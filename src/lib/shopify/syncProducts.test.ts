@@ -23,6 +23,7 @@ function variant(over: Partial<ShopifyVariant> = {}): ShopifyVariant {
     price: "29.99",
     inventory_quantity: 10,
     imageUrl: null,
+    productType: "Shirts",
     ...over,
   };
 }
@@ -97,7 +98,7 @@ describe("syncProducts", () => {
         currentPrice: 2999,
         shopifyVariantId: "1001",
         imageUrl: null,
-        category: "Shopify",
+        category: "Shirts",
       },
     });
     expect(result.created).toBe(1);
@@ -113,6 +114,57 @@ describe("syncProducts", () => {
         data: expect.objectContaining({ currentPrice: 4999 }),
       }),
     );
+  });
+
+  // ── Category from product_type ─────────────────────────────────────────────
+
+  it("uses the trimmed productType as category on create", async () => {
+    const prisma = mockPrisma([]);
+    await syncProducts(prisma as never, "m1", [
+      variant({ productType: "  Outerwear  " }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ category: "Outerwear" }),
+      }),
+    );
+  });
+
+  it("falls back to Uncategorized when productType is null on create", async () => {
+    const prisma = mockPrisma([]);
+    await syncProducts(prisma as never, "m1", [
+      variant({ productType: null }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ category: "Uncategorized" }),
+      }),
+    );
+  });
+
+  it("falls back to Uncategorized when productType is empty/whitespace on create", async () => {
+    const prisma = mockPrisma([]);
+    await syncProducts(prisma as never, "m1", [
+      variant({ productType: "   " }),
+    ]);
+
+    expect(prisma.product.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ category: "Uncategorized" }),
+      }),
+    );
+  });
+
+  it("does not include category when updating an existing product", async () => {
+    const prisma = mockPrisma([{ id: "p1", sku: "TEE-100" }]);
+    await syncProducts(prisma as never, "m1", [
+      variant({ sku: "TEE-100", productType: "Outerwear" }),
+    ]);
+
+    const updateCall = prisma.product.update.mock.calls[0][0];
+    expect(updateCall.data).not.toHaveProperty("category");
   });
 
   // ── Update existing products (SKU match) ──────────────────────────────────

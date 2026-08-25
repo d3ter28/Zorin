@@ -82,6 +82,7 @@ describe('ShopifyClient', () => {
             {
               id: 1,
               title: 'Widget',
+              product_type: 'Widgets',
               image: { src: 'https://cdn.shopify.com/widget.jpg' },
               variants: [
                 {
@@ -114,6 +115,7 @@ describe('ShopifyClient', () => {
           price: '9.99',
           inventory_quantity: 50,
           imageUrl: 'https://cdn.shopify.com/widget.jpg',
+          productType: 'Widgets',
         },
       ]);
     });

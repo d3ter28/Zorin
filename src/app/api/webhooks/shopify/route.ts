@@ -11,6 +11,7 @@ import type { ShopifyVariant, ShopifyOrder } from "@/lib/shopify/client";
 interface RawWebhookProduct {
   id: number;
   title: string;
+  product_type?: string | null;
   image?: { src: string };
   variants: Array<{
     id: number;
@@ -24,6 +25,7 @@ interface RawWebhookProduct {
 
 function mapProductPayload(raw: RawWebhookProduct): ShopifyVariant[] {
   const imageUrl = raw.image?.src ?? null;
+  const productType = raw.product_type ?? null;
   return raw.variants.map((v) => ({
     id: v.id,
     product_id: v.product_id,
@@ -33,6 +35,7 @@ function mapProductPayload(raw: RawWebhookProduct): ShopifyVariant[] {
     price: v.price,
     inventory_quantity: v.inventory_quantity,
     imageUrl,
+    productType,
   }));
 }
 
