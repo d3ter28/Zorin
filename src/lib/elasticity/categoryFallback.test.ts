@@ -31,15 +31,19 @@ describe("selectFallbackElasticity", () => {
       { elasticity: -1.5, confidenceScore: 0.9 },
     ];
     // sorted: -2.0, -1.5, -1.0 -> median -1.5
-    expect(selectFallbackElasticity(siblings)).toBeCloseTo(-1.5);
+    const result = selectFallbackElasticity(siblings);
+    expect(result.elasticity).toBeCloseTo(-1.5);
+    expect(result.qualifyingCount).toBe(3);
   });
 
-  it("returns null when fewer than 3 siblings qualify", () => {
+  it("returns null elasticity when fewer than 3 siblings qualify", () => {
     const siblings: SiblingElasticity[] = [
       { elasticity: -1.0, confidenceScore: 0.5 },
       { elasticity: -2.0, confidenceScore: 0.6 },
     ];
-    expect(selectFallbackElasticity(siblings)).toBeNull();
+    const result = selectFallbackElasticity(siblings);
+    expect(result.elasticity).toBeNull();
+    expect(result.qualifyingCount).toBe(2);
   });
 
   it("excludes low-confidence siblings even when raw count would be enough", () => {
@@ -50,7 +54,21 @@ describe("selectFallbackElasticity", () => {
       { elasticity: -1.2, confidenceScore: 0.05 },
     ];
     // only one qualifies (0.9 >= 0.4) -> insufficient
-    expect(selectFallbackElasticity(siblings)).toBeNull();
+    const result = selectFallbackElasticity(siblings);
+    expect(result.elasticity).toBeNull();
+    expect(result.qualifyingCount).toBe(1);
+  });
+
+  it("includes a sibling with confidenceScore exactly at the 0.4 boundary", () => {
+    const siblings: SiblingElasticity[] = [
+      { elasticity: -1.0, confidenceScore: 0.4 },
+      { elasticity: -2.0, confidenceScore: 0.6 },
+      { elasticity: -1.5, confidenceScore: 0.9 },
+    ];
+    // sorted: -2.0, -1.5, -1.0 -> median -1.5, all 3 qualify (0.4 >= 0.4)
+    const result = selectFallbackElasticity(siblings);
+    expect(result.elasticity).toBeCloseTo(-1.5);
+    expect(result.qualifyingCount).toBe(3);
   });
 
   it("returns the average of the two middle values for an even qualifying count", () => {
@@ -61,7 +79,9 @@ describe("selectFallbackElasticity", () => {
       { elasticity: -3.0, confidenceScore: 0.45 },
     ];
     // sorted: -3.0, -2.0, -1.5, -1.0 -> mid values -2.0 and -1.5 -> avg -1.75
-    expect(selectFallbackElasticity(siblings)).toBeCloseTo(-1.75);
+    const result = selectFallbackElasticity(siblings);
+    expect(result.elasticity).toBeCloseTo(-1.75);
+    expect(result.qualifyingCount).toBe(4);
   });
 });
 

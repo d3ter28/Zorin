@@ -6,19 +6,32 @@ export interface SiblingElasticity {
   confidenceScore: number;
 }
 
+/** Minimum confidenceScore a sibling's ElasticityModel must have to count toward a fallback. */
+export const MIN_SIBLING_CONFIDENCE = 0.4;
+
+export interface FallbackSelection {
+  elasticity: number | null;
+  qualifyingCount: number;
+}
+
 /**
  * Picks a fallback elasticity from sibling products' real ElasticityModel data.
  *
- * Requires at least 3 siblings with confidenceScore >= 0.4; returns the median
- * elasticity of those qualifying siblings, or null if fewer than 3 qualify.
+ * Requires at least 3 siblings with confidenceScore >= MIN_SIBLING_CONFIDENCE;
+ * returns the median elasticity of those qualifying siblings (elasticity: null
+ * if fewer than 3 qualify), plus the qualifying count so callers never have to
+ * re-filter/re-count separately and risk it drifting out of sync.
  */
-export function selectFallbackElasticity(siblings: SiblingElasticity[]): number | null {
-  const qualifying = siblings.filter((s) => s.confidenceScore >= 0.4);
-  if (qualifying.length < 3) return null;
+export function selectFallbackElasticity(siblings: SiblingElasticity[]): FallbackSelection {
+  const qualifying = siblings.filter((s) => s.confidenceScore >= MIN_SIBLING_CONFIDENCE);
+  if (qualifying.length < 3) {
+    return { elasticity: null, qualifyingCount: qualifying.length };
+  }
 
   const sorted = [...qualifying].sort((a, b) => a.elasticity - b.elasticity).map((s) => s.elasticity);
   const mid = Math.floor(sorted.length / 2);
-  return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+  const elasticity = sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+  return { elasticity, qualifyingCount: qualifying.length };
 }
 
 export interface CategoryFallbackResult {
@@ -46,6 +59,10 @@ function toSiblingElasticities(rows: SiblingRow[]): SiblingElasticity[] {
 /**
  * Computes a fallback elasticity for a SKU that can't be fit on its own,
  * cascading category siblings -> whole-catalog siblings -> global prior.
+ *
+ * Trust boundary: callers must already have verified that `productId` belongs
+ * to `merchantId` (e.g. via `assertProductOwned`) before calling this — it does
+ * not re-verify ownership itself.
  */
 export async function computeCategoryFallback(
   prisma: PrismaSurface,
@@ -69,13 +86,12 @@ export async function computeCategoryFallback(
     select: { elasticityModel: { select: { elasticity: true, confidenceScore: true } } },
   });
   const categorySiblings = toSiblingElasticities(categorySiblingRows);
-  const categoryElasticity = selectFallbackElasticity(categorySiblings);
-  if (categoryElasticity !== null) {
-    const sourceCount = categorySiblings.filter((s) => s.confidenceScore >= 0.4).length;
+  const categoryResult = selectFallbackElasticity(categorySiblings);
+  if (categoryResult.elasticity !== null) {
     return {
-      elasticity: categoryElasticity,
+      elasticity: categoryResult.elasticity,
       level: "category",
-      sourceCount,
+      sourceCount: categoryResult.qualifyingCount,
       categoryName: product.category,
     };
   }
@@ -88,13 +104,12 @@ export async function computeCategoryFallback(
     select: { elasticityModel: { select: { elasticity: true, confidenceScore: true } } },
   });
   const catalogSiblings = toSiblingElasticities(catalogSiblingRows);
-  const catalogElasticity = selectFallbackElasticity(catalogSiblings);
-  if (catalogElasticity !== null) {
-    const sourceCount = catalogSiblings.filter((s) => s.confidenceScore >= 0.4).length;
+  const catalogResult = selectFallbackElasticity(catalogSiblings);
+  if (catalogResult.elasticity !== null) {
     return {
-      elasticity: catalogElasticity,
+      elasticity: catalogResult.elasticity,
       level: "catalog",
-      sourceCount,
+      sourceCount: catalogResult.qualifyingCount,
     };
   }
 
