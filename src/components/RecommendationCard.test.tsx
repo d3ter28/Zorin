@@ -142,4 +142,76 @@ describe("RecommendationCard", () => {
     expect(screen.getByText(/already close to the profit-maximizing price/)).toBeTruthy();
     expect(screen.queryByText(/projected monthly gross profit/)).toBeNull();
   });
+
+  describe("fallback recommendations", () => {
+    it("category fallback: shows category-specific reasoning text", () => {
+      render(
+        <RecommendationCard
+          rec={rec({
+            fallbackLevel: "category",
+            fallbackCategoryName: "Skincare",
+            fallbackSourceCount: 3,
+          })}
+        />
+      );
+      expect(
+        screen.getByText("Estimated from your Skincare category (3 similar products)")
+      ).toBeTruthy();
+    });
+
+    it("catalog fallback: shows catalog-specific reasoning text", () => {
+      render(
+        <RecommendationCard
+          rec={rec({
+            fallbackLevel: "catalog",
+            fallbackSourceCount: 25,
+          })}
+        />
+      );
+      expect(
+        screen.getByText("Estimated from your whole catalog (25 products)")
+      ).toBeTruthy();
+    });
+
+    it("global fallback: shows global-specific reasoning text", () => {
+      render(<RecommendationCard rec={rec({ fallbackLevel: "global" })} />);
+      expect(
+        screen.getByText("Estimated from typical retail elasticity (no comparable products yet)")
+      ).toBeTruthy();
+    });
+
+    it("fallback: badge receives isFallback and shows Estimated tier regardless of r2", () => {
+      render(
+        <RecommendationCard
+          rec={rec({ fallbackLevel: "category", fallbackCategoryName: "Widgets", fallbackSourceCount: 2, r2: 0.95, dataPoints: 50 })}
+        />
+      );
+      expect(screen.getByTitle(/similar products/i)).toBeTruthy();
+    });
+
+    it("fallback: renders secondary suggestions with Van Westendorp link and price test copy", () => {
+      render(
+        <RecommendationCard
+          rec={rec({ fallbackLevel: "catalog", fallbackSourceCount: 10 })}
+        />
+      );
+      const surveyLink = screen.getByText(/Create a Van Westendorp survey/);
+      expect(surveyLink).toBeTruthy();
+      expect(surveyLink.closest("a")?.getAttribute("href")).toBe("#van-westendorp-survey");
+      expect(screen.getByText(/run a 2-week price test to get a real reading/)).toBeTruthy();
+    });
+
+    it("non-fallback: does not render secondary suggestions", () => {
+      render(<RecommendationCard rec={rec()} />);
+      expect(screen.queryByText(/Van Westendorp survey/)).toBeNull();
+      expect(screen.queryByText(/price test/)).toBeNull();
+    });
+
+    it("non-fallback: rendering is unchanged (original reasoning text shown, no Estimated tier)", () => {
+      render(<RecommendationCard rec={rec({ reasoning: "You are competitively positioned.", r2: 0.82, dataPoints: 12 })} />);
+      expect(screen.getByText("You are competitively positioned.")).toBeTruthy();
+      expect(screen.getByText(/Fair fit/)).toBeTruthy();
+      expect(screen.queryByText(/Estimated/)).toBeNull();
+    });
+  });
 });

@@ -41,6 +41,9 @@ function parseRecView(rec: RecData): MLRecView | null {
       currentProfitCents?: number;
       projectedProfitCents?: number;
       profitLiftCents?: number;
+      fallbackLevel?: "category" | "catalog" | "global";
+      fallbackCategoryName?: string;
+      fallbackSourceCount?: number;
     };
     return {
       action: rec.action,
@@ -55,6 +58,9 @@ function parseRecView(rec: RecData): MLRecView | null {
       currentProfitCents: rules.currentProfitCents ?? null,
       projectedProfitCents: rules.projectedProfitCents ?? null,
       profitLiftCents: rules.profitLiftCents ?? null,
+      fallbackLevel: rules.fallbackLevel ?? null,
+      fallbackCategoryName: rules.fallbackCategoryName ?? null,
+      fallbackSourceCount: rules.fallbackSourceCount ?? null,
     };
   } catch {
     return null;
@@ -227,7 +233,9 @@ export default function ProductPage({
 
             <RecommendationCard rec={mlRec} currentPriceCents={d.currentPrice} />
 
-            <PriceSurveyCard productId={d.id} />
+            <div id="van-westendorp-survey" className="scroll-mt-8">
+              <PriceSurveyCard productId={d.id} />
+            </div>
 
             <CompetitorPricesCard productId={d.id} />
 

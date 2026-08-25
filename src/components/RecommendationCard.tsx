@@ -16,6 +16,54 @@ export interface MLRecView {
   currentProfitCents?: number | null;
   projectedProfitCents?: number | null;
   profitLiftCents?: number | null;
+  fallbackLevel?: "category" | "catalog" | "global" | null;
+  fallbackCategoryName?: string | null;
+  fallbackSourceCount?: number | null;
+}
+
+/**
+ * When a recommendation was produced from the category/catalog/global
+ * fallback cascade (no per-SKU model was possible), replaces the raw
+ * backend `reasoning` string with level-specific copy that makes clear
+ * this is a borrowed estimate, not a fit on this SKU's own sales history.
+ * Returns null when the rec is not fallback-sourced.
+ */
+function FallbackReasoningLine({ rec }: { rec: MLRecView }) {
+  if (rec.fallbackLevel == null) return null;
+
+  let text: string;
+  if (rec.fallbackLevel === "category") {
+    text = `Estimated from your ${rec.fallbackCategoryName ?? "product"} category (${rec.fallbackSourceCount ?? 0} similar products)`;
+  } else if (rec.fallbackLevel === "catalog") {
+    text = `Estimated from your whole catalog (${rec.fallbackSourceCount ?? 0} products)`;
+  } else {
+    text = "Estimated from typical retail elasticity (no comparable products yet)";
+  }
+
+  return <p className="mt-2 text-ink">{text}</p>;
+}
+
+/**
+ * Secondary suggestions shown only for fallback-sourced recommendations,
+ * pointing the merchant toward ways to get a real reading instead of the
+ * borrowed estimate: a Van Westendorp survey (linking to the existing
+ * PriceSurveyCard section further down this same product page) or a
+ * straightforward price test.
+ */
+function FallbackSuggestions({ rec }: { rec: MLRecView }) {
+  if (rec.fallbackLevel == null) return null;
+
+  return (
+    <div className="mt-3 space-y-1 text-xs text-muted">
+      <p>
+        Or ask customers directly →{" "}
+        <a href="#van-westendorp-survey" className="text-accent underline underline-offset-2 hover:opacity-80">
+          Create a Van Westendorp survey
+        </a>
+      </p>
+      <p>Or run a 2-week price test to get a real reading</p>
+    </div>
+  );
 }
 
 function WhyThisPrice({ rec, currentPriceCents }: { rec: MLRecView; currentPriceCents: number }) {
@@ -112,11 +160,21 @@ export function RecommendationCard({
         <span className="text-faint">·</span>
         <span className="text-xs text-faint">{liftLabel}</span>
       </div>
-      <p className="mt-2 text-ink">{rec.reasoning}</p>
+      {rec.fallbackLevel != null ? (
+        <FallbackReasoningLine rec={rec} />
+      ) : (
+        <p className="mt-2 text-ink">{rec.reasoning}</p>
+      )}
       {currentPriceCents != null && <WhyThisPrice rec={rec} currentPriceCents={currentPriceCents} />}
       <div className="mt-3">
-        <ModelHealthBadge r2={rec.r2} dataPoints={rec.dataPoints} confidenceScore={rec.confidenceScore ?? null} />
+        <ModelHealthBadge
+          r2={rec.r2}
+          dataPoints={rec.dataPoints}
+          confidenceScore={rec.confidenceScore ?? null}
+          isFallback={rec.fallbackLevel != null}
+        />
       </div>
+      <FallbackSuggestions rec={rec} />
     </div>
   );
 }
