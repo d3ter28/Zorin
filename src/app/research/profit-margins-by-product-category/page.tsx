@@ -3,12 +3,20 @@ import { Footer } from "@/components/marketing/Footer";
 
 const BASE_URL = "https://www.tryzorin.com";
 const PAGE_URL = `${BASE_URL}/research/profit-margins-by-product-category`;
+const FIRST_PUBLISHED = "2026-08-25";
 const LAST_UPDATED = "2026-08-25";
+const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
   title: "Gross Profit Margins by Product Category (Sourced Data) - Zorin",
   description:
-    "A sourced reference of real gross profit margins by ecommerce product category, compiled from public company SEC filings and annual reports. Updated periodically.",
+    "Real gross profit margins by ecommerce product category, sourced from public company SEC filings. Citable, with links to every source.",
+  keywords: [
+    "gross profit margin by category",
+    "ecommerce profit margin data",
+    "average profit margin by industry",
+    "product category margin statistics",
+  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Gross Profit Margins by Ecommerce Product Category",
@@ -16,6 +24,16 @@ export const metadata = {
       "Real, sourced gross margin figures across 10 ecommerce categories, compiled from public company financial filings.",
     url: PAGE_URL,
     type: "article",
+    publishedTime: FIRST_PUBLISHED,
+    modifiedTime: LAST_UPDATED,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Gross Profit Margins by Ecommerce Product Category" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gross Profit Margins by Ecommerce Product Category",
+    description:
+      "Real, sourced gross margin figures across 10 ecommerce categories, compiled from public company financial filings.",
+    images: [OG_IMAGE],
   },
 };
 
@@ -306,9 +324,18 @@ const datasetSchema = {
   description:
     "A sourced compilation of gross profit margin figures across ecommerce-relevant product categories, drawn from public company SEC filings and investor relations disclosures.",
   url: PAGE_URL,
+  datePublished: FIRST_PUBLISHED,
   dateModified: LAST_UPDATED,
   creator: { "@type": "Organization", name: "Zorin", url: BASE_URL },
+  publisher: { "@type": "Organization", name: "Zorin", url: BASE_URL },
   license: "https://www.tryzorin.com/terms",
+  isAccessibleForFree: true,
+  keywords: [
+    "gross profit margin",
+    "profit margin by category",
+    "ecommerce margin benchmarks",
+    "product category margin data",
+  ],
   variableMeasured: "Gross profit margin (percentage of revenue)",
   spatialCoverage: "United States and select international public companies",
 };

@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: BASE_URL,                                              lastModified: new Date("2026-08-01") },
     { url: `${BASE_URL}/blog`,                                    lastModified: new Date("2026-08-21") },
     { url: `${BASE_URL}/blog/all`,                                lastModified: new Date("2026-08-21") },
+    { url: `${BASE_URL}/research`,                                lastModified: new Date("2026-08-25") },
     { url: `${BASE_URL}/features`,                                lastModified: new Date("2026-07-15") },
     { url: `${BASE_URL}/pricing`,                                  lastModified: new Date("2026-08-22") },
     { url: `${BASE_URL}/features/price-elasticity-modeling`,      lastModified: new Date("2026-07-01") },

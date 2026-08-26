@@ -3,12 +3,20 @@ import { Footer } from "@/components/marketing/Footer";
 
 const BASE_URL = "https://www.tryzorin.com";
 const PAGE_URL = `${BASE_URL}/research/price-elasticity-by-category`;
+const FIRST_PUBLISHED = "2026-08-23";
 const LAST_UPDATED = "2026-08-23";
+const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
   title: "Price Elasticity by Product Category (Sourced Data) - Zorin",
   description:
-    "A sourced reference of real price elasticity of demand coefficients by ecommerce product category, compiled from peer-reviewed studies and government data. Updated periodically.",
+    "Real price elasticity coefficients by ecommerce product category, sourced from peer-reviewed studies and government data. Citable, with links to every source.",
+  keywords: [
+    "price elasticity by category",
+    "price elasticity of demand data",
+    "ecommerce price elasticity statistics",
+    "elasticity coefficient by product category",
+  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Price Elasticity of Demand by Product Category",
@@ -16,6 +24,16 @@ export const metadata = {
       "Real, sourced elasticity coefficients across 8 ecommerce categories, compiled from peer-reviewed research and government data.",
     url: PAGE_URL,
     type: "article",
+    publishedTime: FIRST_PUBLISHED,
+    modifiedTime: LAST_UPDATED,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Price Elasticity of Demand by Product Category" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Price Elasticity of Demand by Product Category",
+    description:
+      "Real, sourced elasticity coefficients across 8 ecommerce categories, compiled from peer-reviewed research and government data.",
+    images: [OG_IMAGE],
   },
 };
 
@@ -264,9 +282,18 @@ const datasetSchema = {
   description:
     "A sourced compilation of published price elasticity of demand coefficients across ecommerce-relevant product categories, drawn from peer-reviewed academic research and government economic data.",
   url: PAGE_URL,
+  datePublished: FIRST_PUBLISHED,
   dateModified: LAST_UPDATED,
   creator: { "@type": "Organization", name: "Zorin", url: BASE_URL },
+  publisher: { "@type": "Organization", name: "Zorin", url: BASE_URL },
   license: "https://www.tryzorin.com/terms",
+  isAccessibleForFree: true,
+  keywords: [
+    "price elasticity of demand",
+    "price elasticity by category",
+    "ecommerce pricing data",
+    "elasticity coefficient",
+  ],
   variableMeasured: "Price elasticity of demand coefficient",
   spatialCoverage: "United States (primary), with some international study data",
 };
