@@ -106,7 +106,7 @@ export function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="flex gap-x-16">
+            <div className="flex gap-x-16 md:ml-auto">
               <div>
                 <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
                   Account
