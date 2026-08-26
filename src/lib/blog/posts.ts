@@ -17,6 +17,122 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "whats-a-good-profit-margin-for-a-supplement-brand",
+    title: "What's a Good Profit Margin for a Supplement Brand?",
+    excerpt:
+      "DTC supplement margins typically run 60-80%. See how to price new SKUs with no sales history, structure subscribe-and-save, and find your real number with Zorin.",
+    date: "2026-08-25",
+    readingTime: "11 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/survey-results-chart.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A healthy DTC supplement brand should be targeting 60-80% gross margin, not the 30-50% figure that gets cited as an industry-wide average. That broader number blends in wholesale and retail channels, where margins are structurally thinner than direct online sales. If your supplement brand is sitting below 60% gross margin on your Shopify store, you're likely underpriced, or your cost structure needs a hard look before you touch price at all. This guide covers what healthy margins actually look like by channel, how to price a brand-new supplement with zero sales history, how to size a subscribe-and-save discount without giving away your margin, and why racing to the bottom on a crowded supplement shelf usually backfires.</p>
+
+<h2>The Short Answer: What Healthy Supplement Margins Look Like</h2>
+<p>Target gross margins of roughly 60-80% for direct-to-consumer sales, 50-65% if you're also selling on Amazon, and 40-50% for wholesale. Most Shopify-based supplement brands land in the 40-60% range after accounting for COGS, packaging, and fulfillment, a wide band that usually reflects where a brand sits on the pricing-tier scale rather than a flaw in the category itself.</p>
+<p>Supplement unit COGS are typically low, often $3 to $15 per unit depending on dosage form, ingredient sourcing, and order volume. A $35 bottle costing $7-10 to produce generates $25-28 in gross profit per unit before marketing, fulfillment, and overhead. That gap between COGS and price is what makes supplements a genuinely attractive category to sell in, and also why underpricing is such an easy trap: the product still looks "profitable" at a much lower price than it should be.</p>
+
+<h2>How to Price a Brand-New Supplement With Zero Sales Data</h2>
+<p>Launching a new SKU is the hardest pricing decision in any category, and supplements have a specific complication most other verticals don't: there's no reliable, published, category-wide elasticity benchmark to lean on. A skincare serum or a piece of apparel at least has some general price-sensitivity research floating around. For supplements specifically, most of the "elasticity" numbers repeated online trace back to unverified or informal sources rather than real published studies, worth being skeptical of any specific coefficient you see quoted for the category.</p>
+<p>That gap makes the standard fallback options more important than usual. Cost-plus gives you a floor: if your capsule costs $6 to produce (ingredients, packaging, fill, label), a straightforward markup puts you somewhere in a defensible range, but it tells you nothing about whether that number is too low, too high, or exactly right for your specific audience.</p>
+<p>Competitor benchmarking gives you noise, not signal, the same problem it creates in every category. A "similar" product at another supplement brand was priced against their costs, their brand story, and their audience, not yours.</p>
+<p>The more useful approach for a pre-launch SKU is stated-preference research, asking your own target customers what they'd actually pay, using a structured method rather than a casual guess. Zorin's Van Westendorp Price Sensitivity survey runs four questions and calculates an acceptable price range, an optimal price point, and a "too cheap" threshold, the price below which customers start doubting the product actually works. That threshold matters in supplements specifically, where efficacy is invisible at the point of purchase and price is one of the only quality signals a first-time buyer has to go on.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" width="736" height="519" loading="lazy" />
+  <figcaption>The "too cheap" threshold is especially useful for a new supplement launch, where there's no track record yet to reassure a first-time buyer.</figcaption>
+</figure>
+
+<p>Once the product has a few months of sales, including subscription reorders, Zorin's elasticity model picks up with a revealed-preference signal: how customers actually responded to the launch price through their real purchasing behavior, not their survey answers. You end up with both signals side by side rather than betting the launch on one guess. For more on pricing a product before you have any history at all, see our post on <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">how to price a new product with no sales history</a>.</p>
+
+<h2>Setting a Margin Structure Once You're Actually Selling</h2>
+<p>Once a supplement is on the shelf and selling, the channel-specific targets above become the working benchmarks: 60-80% DTC, 50-65% Amazon, 40-50% wholesale. The gap between channels exists because DTC is the only one where you control the full customer relationship and aren't handing margin to a marketplace fee or a wholesale buyer's own markup.</p>
+<p>A common mistake is pricing the DTC channel as if it were competing with the wholesale price a retail buyer expects to see. If your wholesale price assumes a 40-50% brand-side margin because a retailer will double it at shelf, and you then use that same number as your DTC price, you've handed away margin you didn't need to give up, since there's no retailer markup happening on your own store.</p>
+<p>A useful gut check: if your bare unit COGS (ingredients, capsule or bottle, label, cap) is under $10 and your DTC retail price is also under $20, you're very likely underpriced for the category. That $10-under-$20 band is also the most crowded part of the supplement shelf, competing there means competing on the thinnest margins against the largest number of near-identical alternatives.</p>
+
+<table>
+  <thead>
+    <tr><th>Channel</th><th>Target gross margin</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>DTC (your own Shopify store)</td><td>60-80%</td><td>You control pricing and own the full customer relationship, no marketplace fee or wholesale markup to give up</td></tr>
+    <tr><td>Amazon / marketplace</td><td>50-65%</td><td>Referral fees and fulfillment costs eat into the margin a direct sale would keep</td></tr>
+    <tr><td>Wholesale / retail</td><td>40-50%</td><td>Your price has to leave room for the retailer's own markup at shelf</td></tr>
+  </tbody>
+</table>
+
+<h2>The Subscribe-and-Save Math</h2>
+<p>Subscription is central to supplement economics in a way it isn't for most other product categories, since replenishment is predictable and reorder frequency is high. A one-time buyer is typically worth meaningfully less over time than a subscriber, since the subscriber reorders repeatedly instead of churning after one purchase.</p>
+<p>The standard subscribe-and-save discount clusters at 10-15% off the one-time price. That range isn't arbitrary: it's usually large enough to meaningfully change a buyer's decision at checkout, but small enough that the increased order frequency and reduced acquisition cost per order more than offset the per-order discount. Going deeper than 15-20% starts eating into margin faster than the retention benefit typically justifies, unless a specific bundle or loyalty mechanic is doing extra work to earn it.</p>
+<p>The mistake to avoid is picking a subscription discount the same way you'd pick a markup: by copying what a competitor offers. Your churn rate, your reorder cadence, and your acquisition cost are specific to your brand. A 15% discount that's comfortably margin-positive for a brand with a 60-day reorder cycle and low churn might not be for a brand with a 30-day cycle and higher monthly churn. Size the discount against your own numbers, not a category-wide default.</p>
+<p>Ingredient sourcing also affects this math more directly than in most categories. Base tariff rates on most nutritional ingredients are relatively low, generally in the low single digits, but ingredients sourced from China can carry significant additional duties on top of that base rate, while a number of common vitamin and mineral ingredients have specific tariff exemptions. If your COGS assumptions were set before a sourcing or tariff change, it's worth rechecking them before you lock in a subscription discount against a stale cost basis.</p>
+
+<h2>Don't Chase the Bottom of a Crowded Shelf</h2>
+<p>The supplement category is enormous and crowded, with a huge number of near-identical formulations competing on the same handful of ingredients. The instinct when facing that much competition is often to price low and try to win on being the cheapest option. That instinct usually backfires for the same reason it backfires in skincare: price functions as a quality and efficacy signal, and a supplement priced noticeably below the category norm can read as "cheap ingredients" or "probably doesn't contain what it claims" rather than "good deal."</p>
+<p>Competing on trust, formulation transparency, and a clear story about sourcing or third-party testing tends to hold up better over time than competing purely on price. This doesn't mean supplements should be priced arbitrarily high with nothing to back it up. It means the default reaction to a crowded market, undercut everyone, is usually the wrong instinct in a category where consumers already have to take efficacy on faith. The category shares this dynamic closely enough with beauty that the same underlying logic applies: see our post on <a href="/blog/pricing-skincare-products-on-shopify-charging-enough">pricing skincare products without underpricing your brand</a> for the fuller version of this argument.</p>
+
+<h2>Where Zorin Fits Once You Have Real Sales Data</h2>
+<p>Once a supplement SKU has sales history, including subscription reorders that accumulate meaningfully faster than one-time purchases alone, <a href="/features">Zorin</a> fits a demand model per SKU from your <a href="/integrations/shopify">Shopify</a> or WooCommerce sales history. Each product gets a raise, lower, or hold recommendation with the elasticity coefficient behind it, along with a confidence label of Strong, Fair, or Weak.</p>
+<p>That confidence label matters especially in this category. A supplement SKU that's been at the same price since launch, with no real price variation to learn from, gets flagged as weak-confidence rather than a false recommendation dressed up as certainty. That's the honest version of "we don't have enough data yet to tell you," which matters more in a category where no reliable published elasticity benchmark exists to fall back on instead.</p>
+<p>A practical sequence: once you have both a Van Westendorp read from launch and a few months of real sales (subscription and one-time combined), identify the SKUs where Zorin shows a raise recommendation with strong confidence and low elasticity. Those are the products where the data says your customers can absorb an increase without meaningful volume loss. Test the increase, measure over a full reorder cycle rather than just a few weeks, and expand from there. You can preview the margin impact of any change with the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before committing to it.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Target 60-80% gross margin for DTC supplement sales, 50-65% for Amazon, and 40-50% for wholesale. The often-cited 30-50% industry average blends in the thinner-margin channels.</li>
+<li>Supplement unit COGS typically run $3-15, which makes underpricing an easy trap: the product can look profitable at a price well below what it should actually be.</li>
+<li>There's no reliable published elasticity benchmark for the supplement category specifically, treat any specific coefficient you see quoted online with skepticism. A Van Westendorp survey gives a real customer-informed launch price without needing one.</li>
+<li>Subscribe-and-save discounts of 10-15% are standard and usually margin-positive once increased reorder frequency and lower per-order acquisition cost are counted, size it against your own churn and reorder data, not a competitor's number.</li>
+<li>Once real sales data exists, per-SKU elasticity and a confidence label identify which supplements can absorb a price increase and which can't. <a href="/signup">Start a free trial of Zorin</a> to see raise, lower, and hold recommendations across your own catalog.</li>
+</ul>
+</div>
+
+<p>Underpricing is the easiest mistake to make in this category, not because founders don't care about margin, but because low COGS makes almost any price look "profitable" at first glance. <a href="/signup">Start a free trial</a> and see what your own supplement catalog's numbers actually support.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's a good profit margin for a supplement or vitamin brand?</h3>
+<p>Target 60-80% gross margin for direct-to-consumer sales on your own Shopify store, 50-65% if you also sell on Amazon, and 40-50% for wholesale. The lower 30-50% figure often cited as an industry average blends in those thinner-margin channels rather than reflecting DTC pricing power specifically.</p>
+</div>
+<div class="faq-item">
+<h3>How do I price a new supplement with no sales history yet?</h3>
+<p>Use cost-plus to set a floor, then validate with stated-preference research rather than guessing. A Van Westendorp survey asks target customers four structured questions and produces an acceptable price range plus a "too cheap" threshold, useful in supplements where low price can read as low efficacy to a first-time buyer.</p>
+</div>
+<div class="faq-item">
+<h3>Should I price my supplements to match competitors or based on my own costs?</h3>
+<p>Neither alone is reliable. Cost-plus gives you a margin floor but not a market-informed number. Competitor pricing imports their cost structure and brand positioning, not yours. The more reliable inputs are stated-preference survey data before launch and revealed-preference elasticity data once you have real sales history.</p>
+</div>
+<div class="faq-item">
+<h3>How much of a subscribe-and-save discount can I offer without killing my margin?</h3>
+<p>10-15% off the one-time price is the standard range, usually margin-positive once you count the increased reorder frequency and lower acquisition cost per order that subscriptions produce. Size the exact number against your own churn rate and reorder cadence rather than copying a competitor's discount.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if I price my supplements too low to compete on a crowded shelf?</h3>
+<p>Underpricing on a crowded shelf usually backfires, since price functions as a quality and efficacy signal in a category where the actual ingredients and effectiveness aren't visible before purchase. A price well below the category norm can read as "cheap ingredients" rather than "good deal," and it also removes the margin needed to fund customer acquisition.</p>
+</div>
+<div class="faq-item">
+<h3>Is there a reliable price elasticity number for the supplement category?</h3>
+<p>No widely verified, published elasticity coefficient exists specifically for supplements as a category. Treat any specific number you see quoted online with skepticism unless it links to a real source. The more reliable path is measuring your own SKUs directly, through a pre-launch survey and, once you have sales history, a per-SKU elasticity model.</p>
+</div>
+<div class="faq-item">
+<h3>Why do supplement brands underprice so often?</h3>
+<p>Unit COGS in supplements are typically low, often $3-15 per unit, so almost any reasonable retail price looks "profitable" on paper. That makes it easy to under-shoot the actual margin the category can support, especially when a cost-plus formula is the only input used to set the price.</p>
+</div>
+<div class="faq-item">
+<h3>Does subscription pricing work differently for supplements than for other DTC categories?</h3>
+<p>Yes, more than most categories, because supplement replenishment is predictable and reorder frequency is high. That makes subscription revenue a larger share of total customer value than in categories with irregular repurchase cycles, and it's why sizing the subscribe-and-save discount against real reorder data matters more here than in most verticals.</p>
+</div>
+</section>
+
+<p class="conclusion">Supplement margins should run higher than a lot of founders assume, especially on your own DTC store where there's no wholesale markup to give away. Price a new launch with real customer data instead of a guess, size your subscription discount against your own reorder economics, and once you have sales history, let per-SKU elasticity tell you which products can actually absorb an increase. <a href="/signup">Start a free trial</a> to see where your own catalog stands.</p>
+`,
+  },
+  {
     slug: "are-software-review-sites-reliable-for-pricing-tools",
     title: "Are Software Review Sites Reliable for Pricing?",
     excerpt:
@@ -2029,7 +2145,7 @@ export const posts: BlogPost[] = [
 <p>Start by identifying the 5-10 products where Zorin shows a "raise" recommendation with strong confidence and low elasticity. These are the products where the data says your customers can absorb an increase without meaningful volume loss. Raise these first by 10-15%. Measure the impact over 4-6 weeks.</p>
 <p>Then move to the medium-confidence products and test smaller increases (5-10%). Hold off on the high-elasticity and weak-confidence products until you have more data.</p>
 <p>This sequenced approach is less risky than a blanket price increase across your entire catalog, and it lets you learn which product types and price bands your audience is most sensitive to. You can preview the margin impact of any price change using the <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before committing.</p>
-<p>For more on the mechanics and psychology of raising prices, see our post on <a href="/blog/should-i-raise-prices-to-cover-rising-costs">whether you should raise prices to cover rising costs</a>. Skincare isn't the only category with its own pricing quirks either. <a href="/blog/how-to-price-clothing-on-shopify">Apparel carries a different set of pressures entirely, from size-run economics to return rates</a>, worth a look if you sell across categories.</p>
+<p>For more on the mechanics and psychology of raising prices, see our post on <a href="/blog/should-i-raise-prices-to-cover-rising-costs">whether you should raise prices to cover rising costs</a>. Skincare isn't the only category with its own pricing quirks either. <a href="/blog/how-to-price-clothing-on-shopify">Apparel carries a different set of pressures entirely, from size-run economics to return rates</a>, and <a href="/blog/whats-a-good-profit-margin-for-a-supplement-brand">supplements have their own margin structure and subscription economics</a>, worth a look if you sell across categories.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>

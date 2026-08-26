@@ -119,6 +119,7 @@ export const clusters: Cluster[] = [
     postSlugs: [
       "pricing-skincare-products-on-shopify-charging-enough",
       "how-to-price-clothing-on-shopify",
+      "whats-a-good-profit-margin-for-a-supplement-brand",
     ],
   },
 ];
