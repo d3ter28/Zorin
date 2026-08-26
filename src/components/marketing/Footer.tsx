@@ -70,6 +70,11 @@ export function Footer() {
                     Price elasticity by category
                   </a>
                 </li>
+                <li>
+                  <a href="/research/profit-margins-by-product-category" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Profit margins by category
+                  </a>
+                </li>
               </ul>
             </div>
             <div>

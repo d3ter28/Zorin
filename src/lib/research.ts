@@ -14,4 +14,11 @@ export const research: ResearchItem[] = [
       "A sourced reference compiling real price elasticity coefficients across ecommerce product categories, drawn from peer-reviewed studies and government data.",
     date: "2026-08-23",
   },
+  {
+    slug: "profit-margins-by-product-category",
+    title: "Gross Profit Margins by Ecommerce Product Category",
+    description:
+      "A sourced reference compiling real gross profit margins across ecommerce product categories, drawn from public company SEC filings and investor relations disclosures.",
+    date: "2026-08-25",
+  },
 ];
