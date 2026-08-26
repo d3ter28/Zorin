@@ -17,7 +17,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-x-16 gap-y-10">
+          <div className="flex flex-wrap gap-x-12 gap-y-10">
             <div>
               <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
                 Product
