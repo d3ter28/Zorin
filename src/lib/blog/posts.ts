@@ -3396,7 +3396,7 @@ export const posts: BlogPost[] = [
 </ul>
 </div>
 
-<p>If you'd like to see this calculated automatically across your own catalog rather than product by product in a spreadsheet, you can <a href="/integrations/shopify">connect your Shopify store</a> or <a href="/integrations/woocommerce">connect WooCommerce</a> and Zorin will fit an elasticity model to your actual sales history. You can also check your current margins first with the free <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before deciding where to test a price change. If you want to compare Zorin against the rest of the elasticity-tool category first, <a href="/blog/price-elasticity-tools-for-ecommerce-how-to-find-your-best-price">a roundup of the tools that actually calculate elasticity</a> covers the field.</p>
+<p>If you'd like to see this calculated automatically across your own catalog rather than product by product in a spreadsheet, you can <a href="/integrations/shopify">connect your Shopify store</a> or <a href="/integrations/woocommerce">connect WooCommerce</a> and Zorin will fit an elasticity model to your actual sales history. You can also check your current margins first with the free <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before deciding where to test a price change. If you want to compare Zorin against the rest of the elasticity-tool category first, <a href="/blog/price-elasticity-tools-for-ecommerce-how-to-find-your-best-price">a roundup of the tools that actually calculate elasticity</a> covers the field. This guide covered getting the data out of Shopify specifically and running the calculation on it; <a href="/blog/how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist">the formula on its own, platform-agnostic and worked through a plain example</a>, is worth a read if you sell across more than one channel.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -3689,7 +3689,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">You don't need a data scientist to get a usable elasticity number, just two price points, the sales they produced, and the formula above. It won't be as clean as a full regression, but it's often enough to tell you whether a product can take a price increase, which is the question you're actually trying to answer.</p>
+<p class="conclusion">You don't need a data scientist to get a usable elasticity number, just two price points, the sales they produced, and the formula above. It won't be as clean as a full regression, but it's often enough to tell you whether a product can take a price increase, which is the question you're actually trying to answer. If most of your sales run through one platform, <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store">the Shopify-specific walkthrough</a> covers exactly where to pull the numbers from and how to run this across your whole catalog rather than one product at a time.</p>
     `.trim(),
   },
   {
@@ -6437,6 +6437,7 @@ export const posts: BlogPost[] = [
     title: "Shopify Pricing Apps: What to Look For",
     excerpt:
       "Most pricing apps guess or copy competitors. Here's what actually matters: your own data, a confidence score, and a review step.",
+    canonicalSlug: "how-to-evaluate-a-shopify-pricing-app",
     date: "2026-07-28",
     readingTime: "9 min read",
     category: "Product",

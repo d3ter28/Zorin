@@ -46,6 +46,20 @@ export function buildCalculatorSchema({
   return { webApplicationSchema, breadcrumbSchema };
 }
 
+// FAQPage schema for a calculator or tool page. Pass the same Q&A pairs
+// rendered in the page body so schema and visible content never drift apart.
+export function buildFaqSchema(qa: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: qa.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  };
+}
+
 // Generic BreadcrumbList builder for non-blog pages (features, integrations)
 // that don't otherwise carry any page-specific schema.
 export function buildBreadcrumbSchema(trail: Array<{ name: string; path: string }>) {
