@@ -17,6 +17,111 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "do-you-need-a-survey-if-you-have-sales-data",
+    title: "Do You Need a Survey If You Have Sales Data?",
+    excerpt:
+      "A pricing survey and your sales history measure different things. See when a Van Westendorp survey beats elasticity data, and when it doesn't.",
+    date: "2026-08-25",
+    readingTime: "10 min read",
+    category: "Product",
+    ogImage: "/images/blog/survey-results-chart.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Your sales history and a pricing survey measure two different things, so the real question isn't which one to trust, it's which one is the stronger signal for the specific product in front of you right now. A survey (stated preference: what people say they'd pay) is your only option for a brand-new SKU with no sales history. Your own sales data (revealed preference: what people actually did) becomes the stronger signal the moment you have enough real price variation to read it. This guide covers when each one earns its place, how many survey responses you actually need before trusting the result, and how to run a survey on your own store without a dedicated research team.</p>
+
+<h2>The Short Answer</h2>
+<p>Run a survey when you don't have enough sales history to trust yet, a new product, a recent price that's never moved, or a thin data window. Trust your sales data once it exists in enough volume with real price variation in it. The two aren't competing methods you pick once and stick with. They're two signals that take turns being the stronger one as a product moves from launch to established seller.</p>
+
+<h2>When Your Sales Data Is Enough on Its Own</h2>
+<p>An established SKU with a real pricing history, meaning the price has actually moved at some point and you have enough units sold at each price point, doesn't need a survey layered on top. Revealed preference, what customers actually did with real money on the line, is the more reliable signal once it exists. A stated answer on a survey, however thoughtfully given, can diverge from what the same person does at checkout with a real price and a real credit card in hand. Once your own sales data can support a confident elasticity read, that's the number to act on.</p>
+<p><a href="/features/price-elasticity-modeling">Zorin fits a demand model per SKU</a> from your Shopify or WooCommerce sales history, and flags exactly when a product has enough real price variation to trust the resulting elasticity coefficient versus when it doesn't, rather than presenting every estimate with the same false confidence.</p>
+
+<h2>When a Survey Earns Its Place</h2>
+<p>A survey is the only option in a specific, common situation: a product with no sales history yet, or with a price that's never moved enough to reveal anything about demand. New launches, products you're about to reprice for the first time since they went live, and any SKU where the historical data is too thin to model confidently are exactly the cases a Van Westendorp survey is built for. It works from day one, with zero real transactions and zero risk to actual customers or revenue, which is precisely what a live price test or a wait-and-see approach with your own sales data can't offer.</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Your Sales Data</th><th>A Pricing Survey</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Measures</td><td>Revealed preference (what customers actually did)</td><td>Stated preference (what respondents say they'd pay)</td></tr>
+    <tr><td>Available from</td><td>Only once real price variation exists in your history</td><td>Day one, no sales history needed</td></tr>
+    <tr><td>Strongest for</td><td>Established SKUs with real price movement behind them</td><td>New launches and SKUs with thin or no price history</td></tr>
+    <tr><td>Risk</td><td>None beyond the normal risk of any price change</td><td>None, no real transaction occurs during the survey</td></tr>
+  </tbody>
+</table>
+
+<p>For the mechanics of running a Van Westendorp survey itself, <a href="/blog/how-to-run-a-price-sensitivity-survey">How to Run a Price Sensitivity Survey</a> and <a href="/blog/how-to-interpret-van-westendorp-results">How to Interpret Van Westendorp Results</a> cover that ground in depth. This post focuses on the decision of which signal to lean on and when, not the survey mechanics themselves. It's also worth knowing that <a href="/blog/price-survey-vs-price-testing">survey results tend to run below actual purchase behavior</a> once a real price is in front of a real customer, a separate comparison from the one covered here, since that post is about a survey versus a live price test, not a survey versus your own historical sales data.</p>
+
+<h2>How Many Responses You Actually Need to Trust the Result</h2>
+<p>Published guidance on this disagrees more than most pricing research does, worth naming directly rather than picking one number and presenting it as settled. Conjointly, a survey research platform, <a href="https://conjointly.com/faq/guidance-on-sample-size/" target="_blank" rel="noopener">recommends at least 200 responses in total and at least 100 within each segment</a> if you plan to cut the data by customer type or use case. A separate, more detailed breakdown from pricing researcher Mike Pritchard, <a href="https://www.5circles.com/van-westendorp-pricing-the-price-sensitivity-meter/" target="_blank" rel="noopener">cited on 5 Circles Research, puts large-scale study minimums at 400 for consumer products and 200 for business buyers</a>, with the lower B2B number reflecting how much harder and more expensive that sample is to acquire. The same source is explicit that anything below roughly 50 responses should be treated as directional only, not a number you'd act on with confidence, and flags 10-20 responses, sometimes cited casually as "enough," as a real departure from any rigorous standard.</p>
+<p>For a small merchant without a research budget, the practical takeaway is: below 50 responses, treat the result as a rough direction, not a number. Between 50 and 200, you have a genuinely useful directional read. Above 200, especially above the 400 mark for a consumer product, you're in range of what a professional research team would consider solid. Zorin's own survey results carry a confidence label based on response count for exactly this reason, so you're never looking at a 7-response result presented with the same certainty as a 250-response one.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing an optimal price of $24.00, an indifference point of $31.50, an acceptable price range of $24.00 to $32.00, and a low confidence label based on 7 responses" width="736" height="519" loading="lazy" />
+  <figcaption>A 7-response result gets an honest low-confidence label instead of being presented with the same certainty as a 250-response one.</figcaption>
+</figure>
+
+<h2>Running the Survey on Your Own Store</h2>
+<p>You don't need a dedicated research team or a panel-recruitment budget to run a Van Westendorp survey on a Shopify or WooCommerce store. Zorin generates a shareable survey link with no login required from respondents, which you can send through your existing customer channels, an email to recent buyers, a post-purchase follow-up, or a link shared with your email list or social audience. The four questions themselves take a respondent well under a minute to answer, which keeps completion rates high compared to a longer, more traditional research instrument.</p>
+<p>Whichever channel you use, the response count matters more than the channel. A well-crafted email to 2,000 past customers that gets 40 responses is less useful than a slightly less polished ask that gets 150, so optimize for completions over presentation.</p>
+
+<h2>Reading a Low-Confidence Result Honestly</h2>
+<p>A survey that comes back with a small number of responses isn't a wasted effort, but it does need to be read differently than a well-powered one. A low-confidence result is still telling you something directionally, the rough shape of your acceptable price range and roughly where resistance starts to build, but it shouldn't be the only input into a launch price, and it's worth treating any specific number inside it as an estimate rather than a precise target.</p>
+<p>The practical move with a low-confidence result: use it as your starting price, then watch what your actual sales data says once real transactions start coming in. That's the same revealed-versus-stated-preference relationship covered above, just compressed into a single product's timeline instead of a general rule. A weak survey plus real sales data arriving quickly is a perfectly workable path, it just means leaning on the survey less and your own numbers more as soon as they exist.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Your sales data and a pricing survey measure different things: revealed preference (what customers did) versus stated preference (what they say they'd pay). Neither replaces the other, they take turns being the stronger signal.</li>
+<li>Run a survey for new SKUs or thin price history. Trust your own sales data once it has real price variation and enough volume behind it.</li>
+<li>Sample-size guidance genuinely disagrees: Conjointly recommends at least 200 total responses (100 per segment), while a large-scale study benchmark puts consumer products at 400 and B2B at 200. Below roughly 50 responses, treat any result as directional only.</li>
+<li>A low-confidence survey result still has value, use it as a starting point, then let real sales data take over as it accumulates.</li>
+<li>Zorin runs both signals on the same platform, the Van Westendorp survey and per-SKU elasticity modeling, each with its own confidence label so you know which one to lean on for a given product. <a href="/signup">Start a free trial</a> to see both for your own catalog.</li>
+</ul>
+</div>
+
+<p>Whether you're setting a launch price with no sales history to lean on, or deciding whether your existing sales data is already enough to act on, the two signals are meant to be read together, not chosen between once and forgotten. <a href="/signup">Start a free trial</a> and see what both look like for your own store.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How many responses do I need before I can trust a Van Westendorp survey result?</h3>
+<p>Guidance varies: Conjointly recommends at least 200 total responses (100 per segment if you're cutting the data by customer type), while a separate large-scale study benchmark puts consumer products at 400 minimum and B2B at 200. Below roughly 50 responses, treat the result as directional only, not a number to act on with confidence.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a pricing survey if I already have sales history to calculate elasticity from?</h3>
+<p>Not if that sales history includes real price variation and enough volume to support a confident elasticity read. A survey earns its place specifically when sales history is thin, new, or the price has never moved enough to reveal anything about demand.</p>
+</div>
+<div class="faq-item">
+<h3>How do I send a price sensitivity survey to my Shopify or WooCommerce customers?</h3>
+<p>Generate a shareable survey link (no login required from respondents) and send it through your existing customer channels, a post-purchase email, a note to your list, or a social share. Completion rate matters more than the channel, since the four Van Westendorp questions take under a minute to answer.</p>
+</div>
+<div class="faq-item">
+<h3>What does it mean if my price sensitivity survey results come back low-confidence?</h3>
+<p>It means the result is directionally useful but shouldn't be treated as a precise number. Use it as a starting price, then let your own sales data take over as real transactions accumulate. A low-confidence result isn't wasted, it just needs less weight than a well-powered one.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a Van Westendorp survey and just asking customers what they'd pay?</h3>
+<p>A Van Westendorp survey uses four specific, structured questions (too cheap, a bargain, getting expensive, too expensive) that together produce an acceptable price range and specific price points, not a single vague number. A casual "what would you pay" question doesn't triangulate across multiple price perceptions the way the structured method does, and is far easier for a respondent to answer inconsistently.</p>
+</div>
+<div class="faq-item">
+<h3>Is my own sales data more reliable than a pricing survey?</h3>
+<p>Once it exists in enough volume with real price variation, yes, revealed preference (what customers actually did) is a stronger signal than stated preference (what people say they'd do). Before that data exists, a survey is the only option, and it's better than pricing on cost-plus or competitor guesswork alone.</p>
+</div>
+<div class="faq-item">
+<h3>Can I run both a survey and use my sales data on the same product?</h3>
+<p>Yes, and that's the ideal setup rather than an edge case. Run a survey at launch when there's no sales history yet, then let elasticity modeling take over as real sales data accumulates. Zorin keeps both signals, each with its own confidence label, on the same platform so you're never forced to pick one permanently.</p>
+</div>
+</section>
+
+<p class="conclusion">A pricing survey and your own sales data aren't competing answers to the same question, they're two different signals that matter most at different points in a product's life. Lean on a survey when you don't have real sales history yet, and let your own data take over once it does. <a href="/signup">Start a free trial</a> to see both, with honest confidence labels, for your own catalog.</p>
+`,
+  },
+  {
     slug: "whats-a-good-profit-margin-for-a-supplement-brand",
     title: "What's a Good Profit Margin for a Supplement Brand?",
     excerpt:

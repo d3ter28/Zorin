@@ -82,6 +82,7 @@ export const clusters: Cluster[] = [
       "how-to-run-a-price-sensitivity-survey",
       "how-to-interpret-van-westendorp-results",
       "price-survey-vs-price-testing",
+      "do-you-need-a-survey-if-you-have-sales-data",
     ],
   },
   {
