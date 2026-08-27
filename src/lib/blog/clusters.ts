@@ -70,6 +70,7 @@ export const clusters: Cluster[] = [
       "should-i-raise-prices-to-cover-rising-costs",
       "why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies",
       "how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one",
+      "are-woocommerces-fees-actually-better-margin",
     ],
   },
   {

@@ -17,6 +17,114 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "are-woocommerces-fees-actually-better-margin",
+    title: "Are WooCommerce's Fees Actually Better Margin?",
+    excerpt:
+      "No platform fee doesn't automatically mean better margin. See how WooCommerce and Shopify costs really compare, and how to calculate your real net profit.",
+    date: "2026-08-26",
+    readingTime: "11 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">WooCommerce charges no per-transaction platform fee, which sounds like an automatic margin win over Shopify. It isn't automatic. Once you count hosting, plugins, and the same payment processing rates most stores pay either way, the real gap between the two platforms is narrower than "zero fees" suggests, and which one actually protects your margin better depends on your sales volume and your product's own numbers, not the sticker price of either platform. This guide breaks down what each platform actually costs, why WooCommerce doesn't track your margin for you the way Shopify's fee structure at least makes visible, how to calculate your real net profit, and what a discount actually does to that number once you run it.</p>
+
+<h2>The Short Answer</h2>
+<p>No monthly transaction fee doesn't mean no cost. WooCommerce merchants still pay a payment processor (WooPayments, Stripe, PayPal, or similar) roughly the same rate a Shopify merchant using Shopify Payments pays, plus hosting, plugins, and often a developer or agency to keep everything running. Shopify's fee structure is more visible (a plan price plus a clearly stated processing rate), which makes it easier to calculate but not necessarily cheaper at every volume level. The honest comparison has to include both platforms' full cost stack, not just the headline "transaction fee" line.</p>
+
+<h2>What Each Platform Actually Costs</h2>
+<p>Shopify's pricing is straightforward to quote: Basic runs $39/month, Grow $105/month, and Advanced $399/month (billed monthly; annual billing brings each down further), each with an online card rate and, if you use a payment gateway other than Shopify Payments, an additional surcharge on top of that rate. That surcharge scales down as you move up plans: 2% on Basic, 1% on Grow, 0.6% on Advanced, and 0.2% on Shopify Plus. Using Shopify Payments itself removes that surcharge entirely, which is why most smaller Shopify stores end up on Shopify Payments rather than a third-party gateway.</p>
+<p>WooCommerce has no equivalent plan fee or gateway surcharge, since it's self-hosted WordPress software, not a hosted platform charging for the privilege of running your store. What it does have: managed WordPress hosting capable of handling ecommerce traffic typically runs $30 to $100 a month, premium plugins (many stores need several: a page builder, SEO, backups, security, a checkout or subscriptions extension) can add $300 to $2,000 a year depending on what your store needs, and security plus backup services often run another $100 to $300 a year on top of that. None of that is optional in practice, even though none of it appears on a WooCommerce pricing page the way a Shopify plan price does.</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Shopify</th><th>WooCommerce</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Platform cost</td><td>$39-$399/month by plan</td><td>$0 (self-hosted software)</td></tr>
+    <tr><td>Payment processing</td><td>Shopify Payments rate, or a third-party gateway plus a 0.2-2% surcharge by plan</td><td>WooPayments/Stripe/PayPal at standard market rates, no platform surcharge</td></tr>
+    <tr><td>Hosting</td><td>Included in plan price</td><td>$30-$100/month, paid separately</td></tr>
+    <tr><td>Plugins/extensions</td><td>Many core features built in</td><td>$300-$2,000/year for the extensions most stores need</td></tr>
+    <tr><td>Security/backups</td><td>Included</td><td>$100-$300/year, often a separate service</td></tr>
+  </tbody>
+</table>
+
+<p>Run the full stack for both and the gap narrows considerably from "zero fees versus a monthly bill." At lower sales volumes, Shopify's all-in plan price can come out ahead once you count everything WooCommerce charges separately. At higher volumes, where Shopify's percentage-based surcharges start compounding into real dollars, WooCommerce's flat hosting and plugin costs stop scaling with revenue the way a percentage fee does, which is where the "no transaction fee" argument actually starts to hold up.</p>
+
+<h2>Why WooCommerce Doesn't Track Margin for You</h2>
+<p>Here's the part that matters more than the fee comparison for most stores already running on one platform or the other: WooCommerce shows you revenue by default, not cost, not margin. Unlike Shopify, where a processing fee at least shows up as a visible line on every transaction, WooCommerce simply doesn't know what a product cost you to acquire or make unless you tell it, through a cost-of-goods plugin or manual tracking outside the platform entirely. A store can look highly profitable on a WooCommerce revenue dashboard while actually losing money on every order, and the platform itself gives no warning.</p>
+<p>This isn't a flaw exactly, WooCommerce is ecommerce software, not accounting software, but it does mean the fee-comparison question above is almost the wrong question to be asking first. The more useful one is whether you actually know your real net profit margin on either platform, since neither one calculates it for you automatically out of the box.</p>
+
+<h2>How to Calculate Your Real Net Profit Margin</h2>
+<p>Start from your selling price and subtract everything that's actually tied to making and delivering that sale: cost of goods sold (what you paid a supplier or spent on materials and labor), payment processing fees, a proportional share of your monthly hosting and plugin costs allocated per order, an estimated refund cost based on your store's actual refund rate, and any ad spend directly attributed to that sale if you want net profit after marketing rather than just gross-of-marketing margin. Skipping any one of these, especially the proportional hosting/plugin allocation, is the most common way a WooCommerce store's revenue looks healthier than its actual profit.</p>
+<p>Worked example: a product sells for $45, costs $16 in COGS, processing runs about $1.61 (2.9% + $0.30 on a standard rate), and you allocate roughly $2 per order toward hosting and plugin costs based on your typical order volume. That's $45 minus $16 minus $1.61 minus $2 = $25.39, a margin of about 56.4% before ad spend, or lower once marketing cost per order is factored in. Running this once for a representative product tells you more about your real economics than any platform-fee comparison does on its own.</p>
+
+<h2>What a Discount Actually Costs Your Margin</h2>
+<p>Here's the math that catches merchants off guard: a 20% coupon on a product with a 30% gross margin doesn't leave you at 10% margin after the discount, it leaves you closer to that once you also count the other costs still sitting between gross and net. If a $50 product with 30% gross margin ($15 profit before other costs) takes a 20% discount, the new selling price is $40, and that same $15 in absolute product-cost gap is now a much thinner share of a smaller number, before payment fees, hosting allocation, and refund risk get subtracted at all. Run the actual math on your own products before running a sale, not after, the free <a href="/shopify-profit-margin-calculator">Shopify</a> or <a href="/woocommerce-profit-margin-calculator">WooCommerce profit margin calculator</a> does this in seconds for a specific product and discount level.</p>
+
+<h2>What's a Good Margin to Target</h2>
+<p>Physical goods on a typical WooCommerce or Shopify store commonly land in a 20-40% net margin range once every real cost is counted, while digital products (courses, downloads, software) can run 70-90% net since there's no COGS, shipping, or fulfillment cost eating into the number. Where your own products fall inside that range depends heavily on category, and it's worth treating these as directional starting points rather than a universal target, category-specific benchmarks vary meaningfully, and <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">a fuller breakdown of margin targets by category</a> covers that ground in more depth.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>Whichever platform your store runs on, the recommendation and confidence score come from the same sales-history model.</figcaption>
+</figure>
+
+<h2>Where Zorin Fits</h2>
+<p>Whichever platform's fee structure comes out ahead on paper for your specific volume, the more useful question is what your real net profit margin actually is right now, and which of your products can absorb a price increase without losing the customers that make the margin worth having. <a href="/features">Zorin</a> connects to <a href="/integrations/shopify">Shopify</a> or <a href="/integrations/woocommerce">WooCommerce</a> equally and computes real profit tracking automatically from your actual sales history, cost of goods, and fees, alongside a per-SKU raise, lower, or hold recommendation with a confidence score. The platform-fee comparison matters for choosing where to build your store. It matters much less once the store exists and the real question becomes what to charge.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>WooCommerce's lack of a platform transaction fee doesn't automatically mean better margin once hosting ($30-100/month), plugins ($300-2,000/year), and standard payment processing rates are counted.</li>
+<li>Shopify's third-party gateway surcharge scales down by plan (2% on Basic to 0.2% on Plus), and disappears entirely if you use Shopify Payments directly.</li>
+<li>WooCommerce shows revenue by default, not cost or margin, a real gap that means most stores need to calculate their real net profit manually or with a dedicated tool rather than reading it off a dashboard.</li>
+<li>A 20% discount on a 30%-gross-margin product cuts into profit faster than the percentage suggests once payment fees, hosting allocation, and refund risk are subtracted from a now-smaller selling price.</li>
+<li>Zorin computes real profit tracking and per-SKU pricing recommendations from either platform's sales history. <a href="/signup">Start a free trial</a> to see your own numbers regardless of which platform you're on.</li>
+</ul>
+</div>
+
+<p>The platform-fee question is worth answering once, when you're choosing where to build. The margin question needs answering continuously, on every product, regardless of which platform you picked. <a href="/signup">Start a free trial</a> and see what your own catalog's real numbers look like.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I calculate my real net profit margin on WooCommerce?</h3>
+<p>Subtract cost of goods sold, payment processing fees, a proportional share of your monthly hosting and plugin costs, an estimated refund cost, and any directly attributed ad spend from your selling price. WooCommerce doesn't calculate this automatically, so most stores need a cost-of-goods plugin or a dedicated tool to track it per order.</p>
+</div>
+<div class="faq-item">
+<h3>Does WooCommerce track my profit margin automatically?</h3>
+<p>No. WooCommerce shows revenue by default, not cost or margin, since it's ecommerce software rather than accounting software. Unless you add a cost-of-goods plugin or track costs separately, a WooCommerce dashboard can look profitable while individual products are actually losing money.</p>
+</div>
+<div class="faq-item">
+<h3>How much does a discount actually cost my margin on WooCommerce?</h3>
+<p>More than the discount percentage alone suggests. A 20% discount reduces your selling price, and the same absolute product-cost gap becomes a thinner share of that smaller number, before payment fees, hosting allocation, and refund risk are even subtracted. Run the numbers on a specific product before running a sale, not after.</p>
+</div>
+<div class="faq-item">
+<h3>Are WooCommerce's lower fees actually better for my margin than Shopify's?</h3>
+<p>Not automatically. WooCommerce has no platform transaction fee, but hosting ($30-100/month) and plugins ($300-2,000/year) replace that cost, and payment processing rates are similar on both platforms. At lower sales volumes, Shopify's all-in plan price can come out ahead; at higher volumes, WooCommerce's flat costs (which don't scale with revenue the way a percentage surcharge does) tend to pull ahead instead.</p>
+</div>
+<div class="faq-item">
+<h3>What's a good profit margin for a WooCommerce store?</h3>
+<p>Physical goods commonly land in a 20-40% net margin range once every real cost is counted; digital products can run 70-90% since there's no COGS or shipping to subtract. Treat these as directional starting points, since actual healthy margins vary meaningfully by product category.</p>
+</div>
+<div class="faq-item">
+<h3>Does Shopify or WooCommerce have lower payment processing fees?</h3>
+<p>The base processing rates are similar on both platforms when using their native payment options (Shopify Payments or WooPayments). The real difference is Shopify's additional surcharge (0.2% to 2%, depending on plan) if you use a third-party gateway instead of Shopify Payments, a cost WooCommerce simply doesn't have since it isn't tied to one payment provider.</p>
+</div>
+<div class="faq-item">
+<h3>Should I switch platforms to get better margin?</h3>
+<p>Rarely on fee structure alone. The full cost comparison is closer than "zero fees versus a monthly bill" suggests once hosting, plugins, and processing rates are counted on both sides, and a platform migration carries real cost and risk of its own. Calculating your actual real net profit margin on your current platform is almost always a faster, lower-risk way to improve profitability than switching platforms.</p>
+</div>
+</section>
+
+<p class="conclusion">No platform fee sounds like an automatic advantage, but WooCommerce's real costs just show up in different places, hosting, plugins, and the same processing rates most stores pay anyway. The platform comparison matters once, when you're choosing where to build. Knowing your real net profit margin on whichever platform you're already using matters every day after that. <a href="/signup">Start a free trial</a> to see your own numbers.</p>
+`,
+  },
+  {
     slug: "do-you-need-a-survey-if-you-have-sales-data",
     title: "Do You Need a Survey If You Have Sales Data?",
     excerpt:
