@@ -56,6 +56,8 @@ export const clusters: Cluster[] = [
       "how-much-should-you-discount-without-killing-your-margin",
       "how-to-price-product-bundles-without-giving-away-your-margin",
       "dynamic-pricing-vs-sales-a-shopify-sellers-guide",
+      "should-you-raise-prices-before-black-friday",
+      "how-to-run-a-price-ab-test-the-right-way",
     ],
   },
   {

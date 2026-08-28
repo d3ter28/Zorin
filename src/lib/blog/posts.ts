@@ -17,6 +17,184 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-run-a-price-ab-test-the-right-way",
+    title: "How to Run a Price A/B Test the Right Way",
+    excerpt:
+      "Sample size, test duration, and how much to change the price. The mechanics of a real price test, no data scientist required.",
+    date: "2026-08-26",
+    readingTime: "11 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/price-history.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A price test you can actually trust needs three things working together: a price change large enough to produce a real signal, a duration long enough to smooth out normal day-to-day noise, and enough traffic to reach genuine statistical significance rather than a result that looks meaningful but isn't. Most small stores get one or two of these right and skip the third without realizing it. This guide covers how long to run a price test, how much to actually change the price, what statistical significance means in plain terms, the real difference between a true A/B test and a simple before/after price change, and whether you need a developer to do any of this. For the trust, fairness, and legal considerations around showing different prices to different customers, <a href="/blog/price-survey-vs-price-testing">price survey vs price testing</a> covers that ground in depth; this post focuses on getting the test itself right.</p>
+
+<h2>How Long Should You Run a Price Test</h2>
+<p>Two weeks is the most commonly cited minimum, and it's a reasonable floor for most stores with meaningful traffic. Guidance varies past that point: some sources recommend running through at least one full business cycle, generally 2 to 4 weeks, to smooth out the normal difference between weekday and weekend shopping behavior, while lower-traffic stores are often advised to run 4 to 8 weeks simply because they need more calendar time to accumulate enough orders to say anything with confidence. There's no single universal number here, the real constraint isn't the calendar, it's whether you've accumulated enough orders to reach significance, which is a volume question as much as a duration one.</p>
+
+<h2>Is Your Result Significant Enough to Trust</h2>
+<p>Statistical significance is really just a measure of how likely your result is to be a real effect rather than random noise. A 95% confidence level, standard for most ecommerce tests, means there's roughly a 5% chance the difference you're seeing is a false positive rather than a genuine response to the price change. For a high-stakes decision like a permanent price change, some practitioners recommend tightening that to 99% confidence before acting, since the cost of being wrong is higher than it is for a smaller UI test.</p>
+<p>Here's where a lot of guidance aimed at large ecommerce brands stops being useful for a small store: some sources cite sample-size thresholds like 30,000 visitors per variant with at least 3,000 conversions before a result counts as valid. That number describes a high-traffic enterprise store, not a typical independent Shopify or WooCommerce seller, and treating it as a universal requirement would mean most small stores could never run a valid price test at all. The more practical bar for a smaller store: at minimum, aim for 100 or more conversions per price variant before drawing a conclusion, and treat anything below that as directional rather than a settled result, similar to how a low-response survey should be read as a rough signal, not a precise number.</p>
+
+<h2>How Much to Change the Price</h2>
+<p>Test a meaningful move, not a token one. Guidance converges around a 5% to 20% price change as the range large enough to produce a detectable shift in customer behavior; smaller moves risk getting lost in normal day-to-day noise regardless of how long you run the test. A $50 product tested at $52 is unlikely to tell you much of anything useful. The same product tested at $55 to $60 gives you a real chance at reading an actual response.</p>
+<p>Volume matters as much as the size of the move. A meaningful price change on your highest-volume product will reach a trustworthy sample size faster than the same percentage move on a slow-selling SKU, simply because more orders accumulate in the same calendar window. If you can only run one test at a time, run it on a product with real, steady sales volume rather than a thin one, even if the thin one is the product you're most curious about.</p>
+
+<h2>True A/B Test vs Before/After Price Change</h2>
+<p>These get talked about interchangeably, but they're methodologically different, and it's worth being precise about which one you're actually running. A true A/B test shows two different prices to comparable slices of traffic at the same time, randomly assigning visitors to one price or the other so both groups experience identical market conditions (season, promotions, traffic source) simultaneously. A before/after price change, more common in practice for a small store, moves the price once and compares sales in the period after against a prior period at the old price.</p>
+<p>The before/after method is operationally far simpler, no traffic-splitting infrastructure required, but it's inherently noisier: anything else that changed between the two periods (seasonality, a competitor's move, a marketing push) gets mixed into the result along with the price effect, and there's no clean way to separate them after the fact. A true split test controls for that by running both prices at once. For most independent stores without the traffic volume or technical setup a true split test requires, the before/after method, run carefully and for long enough to average out short-term noise, is the realistic option, just one that calls for more caution in how confidently you read the result.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/price-history.webp" alt="Zorin price history view showing past price changes for a product alongside the sales volume at each price point" width="1440" height="1969" loading="lazy" />
+  <figcaption>The before/after method needs exactly this: a real price change, and clean sales data on either side of it.</figcaption>
+</figure>
+
+<h2>Running This Without a Developer or Data Scientist</h2>
+<p>No-code price-testing apps exist for Shopify specifically if you want to run a true simultaneous split test without engineering help. For most small stores, though, the more practical path is the before/after method applied to sales history you already have, no new app, no traffic-splitting setup, just clean before-and-after data around a real price change. The tradeoff covered above still applies: it's simpler to run, but noisier to interpret, which is exactly why the significance and duration guidance earlier in this post matters more for this method than for a true split test.</p>
+
+<h2>Where Zorin Fits</h2>
+<p><a href="/features/price-elasticity-modeling">Zorin's elasticity model</a> runs the before/after method automatically and at scale: it fits a regression across every real price point in your <a href="/integrations/shopify">Shopify</a> or <a href="/integrations/woocommerce">WooCommerce</a> sales history, not just one before/after comparison, and attaches a confidence label (Strong, Fair, or Weak) that does the same job statistical significance does in a manual test, telling you honestly whether the underlying data supports acting on the result. If you're already thinking in terms of a price test's duration and significance, that's the same question Zorin is answering for every SKU in your catalog automatically.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Run a price test for at least 2 weeks, longer (4-8 weeks) for lower-traffic stores, and treat the duration as a volume question as much as a calendar one.</li>
+<li>Test a meaningful price change, 5-20% is the commonly cited range, on a high-volume product rather than a token move on a thin one.</li>
+<li>Enterprise-scale sample-size guidance (30,000+ visitors per variant) doesn't apply to most independent stores. Aim for at least 100 conversions per variant as a practical bar, and treat anything below that as directional.</li>
+<li>A true A/B test splits traffic simultaneously; a before/after price change compares periods and is noisier but far more practical for most small stores.</li>
+<li>Zorin runs the before/after method automatically across your full sales history with a confidence label standing in for statistical significance. <a href="/signup">Start a free trial</a> to see it for your own catalog.</li>
+</ul>
+</div>
+
+<p>A price test is only as trustworthy as its weakest link, a change too small, a duration too short, or a sample too thin can each quietly undermine an otherwise well-run test. Get all three right, or let Zorin handle the calculation automatically from data you already have. <a href="/signup">Start a free trial</a> to see your own results.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How long should I run a price test before trusting the result?</h3>
+<p>Two weeks is a common minimum, with 4 to 8 weeks recommended for lower-traffic stores. The real constraint is whether you've accumulated enough orders to reach statistical significance, which is a volume question as much as a duration one, not a fixed number of days that works for every store.</p>
+</div>
+<div class="faq-item">
+<h3>How much should I actually change the price when testing?</h3>
+<p>A 5% to 20% change is the commonly cited range for producing a detectable shift in customer behavior. Smaller moves risk getting lost in normal day-to-day sales noise, regardless of how long the test runs. Test on a high-volume product where possible, since more orders accumulate faster.</p>
+</div>
+<div class="faq-item">
+<h3>Can I A/B test prices without a developer or data scientist?</h3>
+<p>Yes. No-code price-testing apps exist for a true simultaneous split test, but for most small stores the more practical path is the before/after method applied to sales history you already have, no new tooling required, just clean data around a real price change.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a true A/B price test and a before/after price change?</h3>
+<p>A true A/B test shows two prices to comparable traffic at the same time, controlling for anything else that changes. A before/after price change moves the price once and compares periods, which is simpler to run but mixes in any other factor (seasonality, a competitor move) that changed between the two periods along with the price effect.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my price test result is statistically significant enough to act on?</h3>
+<p>A 95% confidence level is standard for most ecommerce tests, tightened to 99% for a high-stakes permanent price change. For a small store, aim for at least 100 conversions per price variant as a practical minimum before drawing a conclusion; enterprise-scale sample-size guidance (30,000+ visitors per variant) describes a different kind of store entirely.</p>
+</div>
+<div class="faq-item">
+<h3>Is a before/after price test as reliable as a true A/B test?</h3>
+<p>No, it's noisier, since anything else that changed between the two periods gets mixed into the result along with the price effect. It's also far more practical for most small stores without the traffic volume or technical setup a true simultaneous split test requires, which is why running it carefully, with the duration and significance guidance above, matters more for this method than for a true split test.</p>
+</div>
+</section>
+
+<p class="conclusion">Getting a price test right comes down to three things working together: a meaningful price change, enough time, and enough volume to trust the result. Skip any one of those and the test tells you less than it looks like it does. <a href="/signup">Start a free trial</a> and let Zorin run this calculation automatically from your own sales history.</p>
+`,
+  },
+  {
+    slug: "should-you-raise-prices-before-black-friday",
+    title: "Should You Raise Prices Before Black Friday?",
+    excerpt:
+      "Fake discount anchoring backfires with customers and courts. See how much to actually discount for BFCM without wrecking your margin.",
+    date: "2026-08-26",
+    readingTime: "11 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/promotion-flags.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">No, raising a price right before Black Friday just to cross it out and show a bigger discount is a real risk, not a harmless marketing trick, and it's worth understanding exactly why before BFCM planning starts. This guide covers how much to actually discount for Black Friday and Cyber Monday, the specific legal and trust risk behind fake discount anchoring, which products in your catalog should go on sale versus stay at full price, how to check whether a discount actually protected your margin, and how to get back to normal pricing once the event ends.</p>
+
+<h2>How Much to Discount for BFCM</h2>
+<p>A flat 25% off across the board is common enough to be treated as a default in a lot of BFCM guides, but the more useful framing is sizing the discount against your own margin rather than matching what everyone else runs. A product with a 65% gross margin can absorb a deeper discount than one running at 25%, and running the same flat percentage across a whole catalog with mixed margins guarantees some products lose money on every sale during the event.</p>
+<p>Timing matters as much as depth. Several BFCM retrospectives from the 2025 season found that starting the sale window earlier, sometimes a full week before Black Friday with early access for existing customers, captured more revenue than discounting more deeply over a shorter window. Depth and duration are two separate levers, and going deeper isn't the only way, or even the most effective way, to compete for BFCM spend.</p>
+
+<h2>The Short Answer on Raising Prices First</h2>
+<p>Don't. Inflating a price for a day or two specifically so a subsequent "sale" price looks like a bigger discount than it actually is isn't a gray-area marketing tactic. It's a specific, named practice that consumer protection law and multiple real lawsuits have already addressed directly, covered in detail below.</p>
+
+<h2>The Real Risk: Fake Discount Anchoring</h2>
+<p>The FTC's Guides Against Deceptive Pricing, codified at <a href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-233" target="_blank" rel="noopener">16 CFR Part 233</a>, set out a specific standard for when a "was" price is legitimate to advertise: the former price has to be a bona fide price the item was actually, openly offered at for a reasonably substantial period in the regular course of business, not a price set for a day or two purely to manufacture a bigger-looking markdown. A price that only ever existed to be crossed out doesn't meet that bar, and the guidance is explicit that doing so misrepresents the bargain a shopper thinks they're getting.</p>
+<p>This isn't a theoretical risk. <a href="https://www.lexology.com/library/detail.aspx?g=bc25b7b9-e049-4785-8413-685695ae4226" target="_blank" rel="noopener">Kohl's settled a class action for $6.15 million</a> (Russell et al. v. Kohl's Department Stores) over allegations that it advertised a 30% discount off a false "regular" or "original" price that didn't reflect what the product had actually sold for. The FTC itself hasn't actively enforced these guides in recent years, but that gap has been filled by state attorneys general and class action litigation instead, several major retailers have faced similar suits over the same underlying practice, fictitious reference pricing used to inflate the appearance of a BFCM-style discount.</p>
+<p>The practical takeaway for a smaller store: use your actual regular price as the "before" number, always. If a product has genuinely been selling at $40 for the past two months, a BFCM price of $30 is a real, defensible 25% discount. If you quietly moved that same product to $50 the week before the sale specifically to advertise it as 40% off, you're doing exactly what got larger retailers sued, just without their legal budget to absorb the consequences.</p>
+
+<h2>Which Products to Discount, and Which to Hold at Full Price</h2>
+<p>Treat this as a per-product decision, not a storewide one. A blanket 25%-off-everything sale discounts products that would have sold at full price anyway, giving away margin you didn't need to give away, and it can under-discount the specific products that actually needed a push to move. The products worth discounting hardest are the ones with real elastic demand, where a lower price meaningfully changes how many units move. The products worth protecting at full price, or discounting only lightly, are the ones with inelastic demand and strong existing sell-through, since a discount there mostly just gives away margin on sales that would have happened regardless.</p>
+<p><a href="/features/price-elasticity-modeling">Zorin's per-SKU elasticity model</a> answers this directly: a product flagged as elastic with strong confidence is a genuine candidate for a deeper BFCM discount, while an inelastic, steady-selling product is usually better held at or near full price, or given a smaller, margin-protective discount instead of matching the storewide number.</p>
+
+<h2>Did the Discount Actually Protect Your Margin?</h2>
+<p>After the event, the check is the same margin math that applies to any discount, run against your actual BFCM numbers rather than a projection. Compare total gross profit during the sale window against what those same products would have generated at full price over a comparable prior period, not just total revenue, which can look strong even when margin quietly collapsed. A discount that moved a lot of units but generated less total profit than a smaller, better-targeted discount would have isn't a win just because the top-line revenue number looked good on the day.</p>
+
+<h2>Getting Back to Normal Pricing After BFCM</h2>
+<p>Rolling prices back cleanly matters for two separate reasons. The obvious one is margin, staying at BFCM pricing longer than planned quietly erodes profit on every sale after the event's actual justification (urgency, event timing) has expired. The less obvious one is data quality: BFCM sales volume, driven by a temporary discount and a burst of promotional traffic, doesn't reflect normal price sensitivity, and if that period gets fed into a future elasticity calculation without being flagged as promotional, it will distort the read on how your customers actually respond to price outside of a sale event.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/promotion-flags.webp" alt="Zorin product page showing a promotion flags table listing each sales record by date, price, and units, with a 'Flag' link per row and an Auto-detect button" width="736" height="432" loading="lazy" />
+  <figcaption>BFCM sales need to be flagged as promotional the same way any other sale period does, so the spike doesn't quietly distort your baseline elasticity read afterward.</figcaption>
+</figure>
+
+<p>Zorin's promotion detection flags exactly this kind of period automatically, so a BFCM sales spike gets excluded from the baseline elasticity fit rather than silently treated as evidence that your regular-price customers are more price-sensitive than they actually are. For the underlying margin math behind any discount, seasonal or otherwise, <a href="/blog/how-much-should-you-discount-without-killing-your-margin">how much you should discount without killing your margin</a> covers that ground in full.</p>
+
+<h2>Where Zorin Fits</h2>
+<p>BFCM decisions come down to the same two questions covered above: which products can actually absorb a discount without giving away margin you didn't need to, and how do you keep the event from distorting your pricing data afterward. <a href="/features">Zorin</a> answers both from your connected <a href="/integrations/shopify">Shopify</a> or <a href="/integrations/woocommerce">WooCommerce</a> sales history, a per-SKU elasticity read to guide the discount decision, and automatic promotion detection to keep the resulting sales spike from corrupting your model once the event is over.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Don't raise a price before BFCM just to advertise a bigger-looking discount. The FTC's own Guides Against Deceptive Pricing (16 CFR Part 233) require a "was" price to be genuine, and Kohl's paid $6.15 million to settle a class action over exactly this practice.</li>
+<li>A flat storewide discount percentage isn't the most profitable approach. Size the discount against each product's own margin and elasticity, not a round number everyone else is using.</li>
+<li>Discount your elastic, price-sensitive products hardest. Hold inelastic, steady-selling products at or near full price, since a discount there mostly just gives away margin.</li>
+<li>Check profit, not just revenue, after the event. A discount that moved more units but generated less total profit than a smaller, targeted one isn't actually a win.</li>
+<li>Flag the BFCM sales spike as promotional before it feeds into any future elasticity calculation, or it will distort how price-sensitive your regular customers look. <a href="/signup">Start a free trial</a> to see per-SKU BFCM recommendations for your own catalog.</li>
+</ul>
+</div>
+
+<p>The safest BFCM pricing strategy is also the most defensible one: real regular prices, discounts sized to each product's actual margin and elasticity, and a clean flag on the sales spike once the event ends. <a href="/signup">Start a free trial</a> and see what that looks like for your own store.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How much should I discount for Black Friday and Cyber Monday?</h3>
+<p>There's no single right number. A flat 25% off is common, but sizing the discount against each product's own margin and elasticity produces a more profitable result than matching a storewide default. Products with elastic demand can typically support deeper discounts; products with inelastic, steady demand are usually better protected at or near full price.</p>
+</div>
+<div class="faq-item">
+<h3>Should I raise my prices before Black Friday to make the discount look bigger?</h3>
+<p>No. The FTC's Guides Against Deceptive Pricing require a "was" price to be genuine, actually offered for a substantial period, not inflated for a day or two purely to manufacture a bigger discount. Kohl's paid $6.15 million to settle a class action over this exact practice. Use your real, actual regular price as the baseline.</p>
+</div>
+<div class="faq-item">
+<h3>Which products should go on sale for BFCM, and which should stay full price?</h3>
+<p>Discount products with elastic demand, where a lower price meaningfully increases units sold, and hold inelastic, steady-selling products at or near full price, since discounting them mostly gives away margin on sales that would have happened anyway. A per-SKU elasticity read is a more reliable guide here than a storewide flat discount.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if a BFCM discount actually hurt my margin?</h3>
+<p>Compare total gross profit during the sale, not just revenue, against what the same products would have generated at full price over a comparable prior period. Strong revenue during a sale can still represent a net loss in profit if the discount was deeper than the elasticity of that product actually justified.</p>
+</div>
+<div class="faq-item">
+<h3>Should I go back to normal prices right after BFCM, or ease into it?</h3>
+<p>Roll back cleanly and promptly once the event's actual justification (urgency, a limited-time event) has passed. Staying at BFCM pricing longer than planned quietly erodes margin, and it's worth flagging the BFCM sales window as promotional in your records so the temporary spike doesn't distort future price-sensitivity calculations.</p>
+</div>
+<div class="faq-item">
+<h3>Is it illegal to advertise a fake "was" price?</h3>
+<p>It runs against the FTC's Guides Against Deceptive Pricing (16 CFR Part 233), and while the FTC itself hasn't actively enforced these guides in recent years, state attorneys general and class action lawsuits have filled that gap. Several major retailers have paid real settlements over fictitious reference pricing, so "the FTC doesn't enforce this anymore" isn't the same as "there's no real risk."</p>
+</div>
+</section>
+
+<p class="conclusion">The safest, most profitable BFCM strategy is also the most honest one: real prices as the baseline, discounts sized to what each product can actually absorb, and a clean flag on the promotional period once it's over. <a href="/signup">Start a free trial</a> to see which of your products are the strongest BFCM candidates.</p>
+`,
+  },
+  {
     slug: "are-woocommerces-fees-actually-better-margin",
     title: "Are WooCommerce's Fees Actually Better Margin?",
     excerpt:
