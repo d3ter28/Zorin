@@ -504,6 +504,9 @@ export default function ProfitMarginsByProductCategoryPage() {
           losing the volume that makes the increase worthwhile. If your category shows up as
           unverified above, or you want to see how elasticity and margin interact directly,{" "}
           <a href="/research/price-elasticity-by-category" className="text-blue-600 hover:underline">the price elasticity by category reference</a> is the companion page to this one.
+          Margin is only half the profit equation, <a href="/research/marketing-spend-by-product-category" className="text-blue-600 hover:underline">the marketing spend by category reference</a> covers
+          the other half: how much of that margin typically gets spent acquiring the customer in
+          the first place.
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">

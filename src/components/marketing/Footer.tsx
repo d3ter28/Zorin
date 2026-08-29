@@ -75,6 +75,11 @@ export function Footer() {
                     Profit margins by category
                   </a>
                 </li>
+                <li>
+                  <a href="/research/marketing-spend-by-product-category" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Marketing spend by category
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
