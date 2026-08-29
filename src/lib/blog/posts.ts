@@ -17,6 +17,91 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "is-price-anchoring-manipulative-or-just-smart-pricing",
+    title: "Is Price Anchoring Manipulative or Just Smart Pricing?",
+    excerpt:
+      "Anchoring works, but only when the reference price is real. How to use compare-at pricing honestly, plus what actually moves sales.",
+    date: "2026-08-26",
+    readingTime: "11 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Price anchoring itself isn't manipulative. It's a genuine, well-documented cognitive effect, the first price a customer sees really does shape how they judge every price after it. What makes an anchor honest or deceptive comes down to one thing entirely: whether the reference price is real. This guide covers exactly where that line sits, how to anchor prices honestly using Shopify's own pricing fields, whether three-tier pricing actually outperforms two options, whether framing a price as a daily cost actually increases sales, and how to know if any of this is working on your specific catalog rather than just trusting a tactic's reputation.</p>
+
+<h2>The Short Answer</h2>
+<p>Anchoring is not inherently manipulative. Psychologists Amos Tversky and Daniel Kahneman documented the underlying cognitive bias decades ago: people don't judge a price in isolation, they judge it relative to whatever reference point they saw first. Showing a real original price next to a real sale price uses that bias honestly, it gives a shopper accurate context for the deal they're being offered. Showing a price that was never actually charged, inflated specifically to make a markdown look bigger, uses the same bias dishonestly. The tactic is neutral. What you anchor against is the entire question.</p>
+
+<h2>Where the Line Actually Is</h2>
+<p>This is the same standard covered in more depth in <a href="/blog/should-you-raise-prices-before-black-friday">whether you should raise prices before Black Friday</a>: the FTC's Guides Against Deceptive Pricing require a reference price to be one the product was genuinely, openly sold at for a substantial period, not a number that existed for a day or two purely to be crossed out. That standard doesn't only apply to holiday sales. It applies to every compare-at price on every product page, all year round. If a product has actually sold at $60 for the past two months, anchoring a $45 sale price against that $60 is honest and effective. If you quietly bumped a $45 product to $60 last week specifically to advertise 25% off, you're doing the exact thing that's cost larger retailers real settlements.</p>
+
+<h2>How to Anchor Honestly on Shopify</h2>
+<p>Shopify's product pricing has two relevant fields: Price, what the customer actually pays, and Compare-at price, the reference number shown crossed out above or beside it. When both are populated, most themes automatically render a strikethrough on the compare-at price and often a sale badge alongside it. The mechanic is simple. The discipline is entirely about what you put in that Compare-at field: only ever a price the product genuinely, recently sold at, never a number invented to make the gap look bigger. If a product has never actually sold at a higher price, the honest move is to leave Compare-at price empty rather than fabricate one.</p>
+
+<h2>Do Three Pricing Tiers Actually Convert Better Than Two</h2>
+<p>Often, yes, and one of the clearest demonstrations of why comes from outside ecommerce entirely. Behavioral economist Dan Ariely ran a now-classic experiment (detailed in his book Predictably Irrational) offering 100 MIT students a choice between three subscription options modeled on a real Economist magazine offer: digital-only for $59, print-only for $125, and print-plus-digital for the same $125. With all three options present, 84% chose the $125 combo. Ariely then removed the print-only option, the one nobody was actually choosing, and repeated the experiment with a new set of 100 students. With only two options left, digital at $59 and the combo at $125, just 32% chose the $125 combo.</p>
+<p>The print-only option, seemingly pointless since almost nobody picked it, wasn't pointless at all. It was a decoy: priced identically to the combo but clearly worse, it made the combo look like an obvious win by comparison, more than doubling how often shoppers chose the higher-priced option. The lesson translates directly to a three-tier ecommerce pricing page: a middle or "decoy" tier priced close to your premium tier, but offering meaningfully less, can make the premium tier look like the obvious smart choice rather than an indulgence.</p>
+
+<h2>Does "Per Day" Framing Actually Increase Sales</h2>
+<p>Research from Stephen Atlas (University of Rhode Island) and Daniel Bartels (University of Chicago Booth) on periodic pricing found that breaking a cost into small recurring increments changes how people feel about the same total price, not the math, the perception. Across several studies, they found consistent effects: people were more willing to donate to charity when a $350 annual ask was framed as "$1 a day," MBA students showed higher signup rates for subscriptions when pricing was framed daily rather than as a lump sum, and in a real-world meal delivery test, framing the price as "$16 a day" instead of "$99 a month" produced 77% more meals purchased for the identical underlying cost.</p>
+<p>This works because the math doesn't actually lie, $99 a month genuinely is about $3.30 a day, it's not a manufactured number the way a fake compare-at price would be. It's honest reframing of a real total, which is exactly what separates it from the deceptive-anchoring problem covered above.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>Whether a specific anchor, tier, or framing choice actually moved units on your own catalog is the same question elasticity data is built to answer.</figcaption>
+</figure>
+
+<h2>Where Zorin Fits</h2>
+<p>Every tactic above has a real, published effect on average, across the studies that documented it. Whether any of them actually moved units for your specific products is a separate question, and the honest way to answer it is with your own data rather than borrowed confidence from someone else's study. <a href="/features/price-elasticity-modeling">Zorin's elasticity model</a> fits a demand curve to your own <a href="/integrations/shopify">Shopify</a> or <a href="/integrations/woocommerce">WooCommerce</a> sales history, so if you introduce a new tier structure, change how a price is framed, or adjust an anchor price, the resulting change in demand shows up in your own numbers, not just in someone else's research.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Anchoring itself isn't manipulative. It's honest when the reference price is real, and deceptive when it's fabricated, the same FTC standard covered for BFCM pricing applies year-round to every compare-at price.</li>
+<li>On Shopify, only ever populate the Compare-at price field with a number the product genuinely, recently sold at. Leave it empty rather than invent one.</li>
+<li>A decoy middle tier, priced close to your premium option but offering clearly less, can more than double how often shoppers choose the premium tier, per Dan Ariely's Economist subscription study (32% to 84%).</li>
+<li>Framing a real total price as a daily cost is honest reframing, not deception, and can meaningfully increase conversion (77% more meals sold in one real-world test) for the identical underlying price.</li>
+<li>Whether any of these tactics actually work on your own catalog is a question your own sales data answers better than a borrowed statistic. <a href="/signup">Start a free trial</a> to see what your own elasticity data says.</li>
+</ul>
+</div>
+
+<p>Pricing psychology isn't a trick to feel guilty about using. It only becomes one the moment the reference price stops being real. Anchor honestly, structure tiers thoughtfully, frame the real total clearly, and let your own data confirm what's actually working. <a href="/signup">Start a free trial</a> to see it for your own store.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Does showing a "compare at" price actually increase sales on Shopify?</h3>
+<p>Yes, when the reference price is genuine. Price anchoring is a well-documented cognitive effect, showing a real prior price gives customers accurate context that makes a discount feel concrete rather than abstract. It only becomes deceptive, and risky, when the compare-at price was never actually charged.</p>
+</div>
+<div class="faq-item">
+<h3>Why do three pricing tiers convert better than two options?</h3>
+<p>A middle "decoy" tier priced close to the premium option, but offering clearly less, makes the premium tier look like the obvious smart choice by comparison. Dan Ariely's Economist subscription study found this shifted premium-tier selection from 32% to 84% simply by adding the decoy option back in.</p>
+</div>
+<div class="faq-item">
+<h3>Does breaking a price into a "per day" cost actually make people buy more?</h3>
+<p>Research on periodic pricing found consistent effects across donation asks, subscription signups, and a real-world meal delivery test, where framing $99 a month as $16 a day produced 77% more purchases for the identical total price. It works because it's honest reframing of a real number, not a fabricated one.</p>
+</div>
+<div class="faq-item">
+<h3>Is price anchoring manipulative, or does it just help customers decide faster?</h3>
+<p>It depends entirely on whether the reference price is real. A genuine former price used as an anchor gives customers accurate context. A fabricated reference price used only to make a discount look bigger is deceptive, and the FTC's Guides Against Deceptive Pricing (16 CFR Part 233) address exactly this practice directly.</p>
+</div>
+<div class="faq-item">
+<h3>What price should I actually anchor against, MSRP, a competitor, or my own regular price?</h3>
+<p>Your own genuine regular price is the safest and most defensible anchor, since you control whether it's real. A manufacturer's suggested retail price or a competitor's price can work as a reference point too, but only if it's an accurate, current figure, not one you've selected because it happens to make your price look better.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if a pricing psychology tactic is actually working for my store?</h3>
+<p>Published research shows an average effect across the studies that documented it, but your own products, customers, and price points are specific to you. Per-SKU elasticity data, measured from your own sales history before and after a change, is a more reliable answer than assuming a tactic that worked in someone else's study will work identically for you.</p>
+</div>
+</section>
+
+<p class="conclusion">The tactics themselves are neutral. Anchoring, tiered pricing, and framing all work because they help customers process a real price more clearly, not because they trick anyone, as long as what you're anchoring against is genuine. <a href="/signup">Start a free trial</a> and see what your own sales data says about what's actually moving units.</p>
+`,
+  },
+  {
     slug: "how-to-run-a-price-ab-test-the-right-way",
     title: "How to Run a Price A/B Test the Right Way",
     excerpt:

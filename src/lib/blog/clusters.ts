@@ -113,6 +113,7 @@ export const clusters: Cluster[] = [
       "how-do-i-know-what-to-price-my-products",
       "should-you-price-below-at-or-above-your-competitors",
       "how-to-automate-pricing-updates-across-your-shopify-store",
+      "is-price-anchoring-manipulative-or-just-smart-pricing",
     ],
   },
   {
