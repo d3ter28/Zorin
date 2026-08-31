@@ -184,7 +184,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Getting a price test right comes down to three things working together: a meaningful price change, enough time, and enough volume to trust the result. Skip any one of those and the test tells you less than it looks like it does. <a href="/signup">Start a free trial</a> and let Zorin run this calculation automatically from your own sales history.</p>
+<p class="conclusion">Getting a price test right comes down to three things working together: a meaningful price change, enough time, and enough volume to trust the result. Skip any one of those and the test tells you less than it looks like it does. A price test is one of several ways to run a controlled discount, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to run a sale without wrecking your margin</a> for the broader playbook on protecting margin and data quality during any promotional period. <a href="/signup">Start a free trial</a> and let Zorin run this calculation automatically from your own sales history.</p>
 `,
   },
   {
@@ -276,7 +276,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The safest, most profitable BFCM strategy is also the most honest one: real prices as the baseline, discounts sized to what each product can actually absorb, and a clean flag on the promotional period once it's over. <a href="/signup">Start a free trial</a> to see which of your products are the strongest BFCM candidates.</p>
+<p class="conclusion">The safest, most profitable BFCM strategy is also the most honest one: real prices as the baseline, discounts sized to what each product can actually absorb, and a clean flag on the promotional period once it's over. The same discipline applies to <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">running any sale without wrecking your margin</a>, BFCM just raises the stakes and the legal scrutiny. <a href="/signup">Start a free trial</a> to see which of your products are the strongest BFCM candidates.</p>
 `,
   },
   {
@@ -384,7 +384,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">No platform fee sounds like an automatic advantage, but WooCommerce's real costs just show up in different places, hosting, plugins, and the same processing rates most stores pay anyway. The platform comparison matters once, when you're choosing where to build. Knowing your real net profit margin on whichever platform you're already using matters every day after that. <a href="/signup">Start a free trial</a> to see your own numbers.</p>
+<p class="conclusion">No platform fee sounds like an automatic advantage, but WooCommerce's real costs just show up in different places, hosting, plugins, and the same processing rates most stores pay anyway. The platform comparison matters once, when you're choosing where to build. Knowing your real net profit margin on whichever platform you're already using matters every day after that, see <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">what to target and how to track it</a> regardless of which platform you're on. <a href="/signup">Start a free trial</a> to see your own numbers.</p>
 `,
   },
   {
@@ -731,7 +731,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Review sites are a genuinely useful signal for pricing software, but only once you know which ones actually verify what they publish. Check the process behind the rating, not just the number, and apply the same standard to the software itself: a tool that shows its reasoning is easier to trust than one asking for blind faith in a recommendation.</p>
+<p class="conclusion">Review sites are a genuinely useful signal for pricing software, but only once you know which ones actually verify what they publish. Check the process behind the rating, not just the number, and apply the same standard to the software itself: a tool that shows its reasoning is easier to trust than one asking for blind faith in a recommendation. For a direct comparison once you've narrowed the field, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the current roundup of Shopify pricing optimization tools</a>.</p>
 `,
   },
   {
@@ -849,7 +849,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The formula for price elasticity is simple arithmetic you can run on one product in a spreadsheet. Where it gets genuinely hard is doing it accurately across a real catalog, with promotional noise filtered out and a confidence level attached to every number. <a href="/integrations/woocommerce">Connect your WooCommerce store</a> and see your own catalog's elasticity read automatically, or start with the free <a href="/woocommerce-profit-margin-calculator">WooCommerce profit margin calculator</a> to check your current margins first.</p>
+<p class="conclusion">The formula for price elasticity is simple arithmetic you can run on one product in a spreadsheet. Where it gets genuinely hard is doing it accurately across a real catalog, with promotional noise filtered out and a confidence level attached to every number. For the general version of this walkthrough, or if you're evaluating Shopify instead, see <a href="/blog/what-does-price-elasticity-actually-mean">what price elasticity actually means</a> and <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store">the Shopify-specific calculation guide</a>. <a href="/integrations/woocommerce">Connect your WooCommerce store</a> and see your own catalog's elasticity read automatically, or start with the free <a href="/woocommerce-profit-margin-calculator">WooCommerce profit margin calculator</a> to check your current margins first.</p>
     `.trim(),
   },
   {
@@ -1263,7 +1263,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">A survey and a live test aren't competing methods fighting for the same job. They answer different questions at different points in a product's life, one works before you have any sales data, the other requires it and carries real risk if handled carelessly. The most reliable price comes from combining what a survey tells you customers say, what your margin actually allows, and, once available, what your real sales history shows customers do. Zorin keeps the survey and the elasticity model on the same platform so both signals are there when you're ready to decide.</p>
+<p class="conclusion">A survey and a live test aren't competing methods fighting for the same job. They answer different questions at different points in a product's life, one works before you have any sales data, the other requires it and carries real risk if handled carelessly. The most reliable price comes from combining what a survey tells you customers say, what your margin actually allows, and, once available, what your real sales history shows customers do. Zorin keeps the survey and the elasticity model on the same platform so both signals are there when you're ready to decide. Already have sales data and wondering if a survey still adds anything? <a href="/blog/do-you-need-a-survey-if-you-have-sales-data">here's when it's still worth running one</a>.</p>
 `,
   },
   {
@@ -2541,7 +2541,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Knowing your real margin is step one. Knowing which prices to move, and by how much, is step two. Zorin connects both by reading your sales history per SKU, calculating the elasticity, and showing you the estimated profit lift before you commit to a change. No guessing, no copying a competitor's number, just your own data telling you where the margin opportunity actually is. <a href="/signup">Start a free trial</a> to see what your own catalog's numbers say.</p>
+<p class="conclusion">Knowing your real margin is step one. Knowing which prices to move, and by how much, is step two. Zorin connects both by reading your sales history per SKU, calculating the elasticity, and showing you the estimated profit lift before you commit to a change. No guessing, no copying a competitor's number, just your own data telling you where the margin opportunity actually is. If you're on WooCommerce specifically, <a href="/blog/are-woocommerces-fees-actually-better-margin">here's how its fee structure actually compares</a> before you assume a no-platform-fee setup means better margin by default. <a href="/signup">Start a free trial</a> to see what your own catalog's numbers say.</p>
     `.trim(),
   },
   {
@@ -3143,7 +3143,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">There's no universal best pricing tool, only the right mechanism for the question you're actually asking. If that question is "what would my own customers pay," <a href="/signup">start a free trial</a> and see what Zorin's elasticity model says about your catalog.</p>
+<p class="conclusion">There's no universal best pricing tool, only the right mechanism for the question you're actually asking. Before trusting any tool's star rating on this list, it's worth knowing <a href="/blog/are-software-review-sites-reliable-for-pricing-tools">how much review sites actually verify before publishing a score</a>. If that question is "what would my own customers pay," <a href="/signup">start a free trial</a> and see what Zorin's elasticity model says about your catalog.</p>
     `.trim(),
   },
   {
@@ -5183,7 +5183,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Charm pricing is a real, researched effect, not a myth, but it's narrower and more conditional than the common advice suggests. It works best on lower-priced, impulse purchases and weakens or reverses for premium ones, and it never substitutes for actually knowing what your price should be in the first place. Get the underlying number right from your own data, then decide how to format it.</p>
+<p class="conclusion">Charm pricing is a real, researched effect, not a myth, but it's narrower and more conditional than the common advice suggests. It works best on lower-priced, impulse purchases and weakens or reverses for premium ones, and it never substitutes for actually knowing what your price should be in the first place. Get the underlying number right from your own data, then decide how to format it. A related question worth asking honestly: <a href="/blog/is-price-anchoring-manipulative-or-just-smart-pricing">is price anchoring manipulative or just smart pricing</a>, since a compare-at price only works as a real anchor if the reference number is genuine.</p>
     `.trim(),
   },
   {
@@ -6996,6 +6996,7 @@ export const posts: BlogPost[] = [
   <li><strong>Give the post-sale period time</strong> before reading a temporary dip as a signal your regular price is wrong.</li>
 </ol>
 <p>If you're pricing across more than one storefront, the same discipline applies per channel, see <a href="/blog/should-you-price-differently-on-shopify-vs-amazon">should you price differently on Shopify vs Amazon</a>. And if you haven't checked your baseline elasticity recently, start with <a href="/blog/how-do-i-know-what-to-price-my-products">how to know what to price your products</a>.</p>
+<p>Three related situations worth a closer look: if you're trying to figure out how deep a discount can go before it eats into margin, see <a href="/blog/how-much-should-you-discount-without-killing-your-margin">how much you should discount without killing your margin</a>. If Black Friday or a similar seasonal event is what's prompting the sale, <a href="/blog/should-you-raise-prices-before-black-friday">should you raise prices before Black Friday</a> covers the legal and trust risks of inflating a price just to discount it back down. And if you want to measure a price change properly rather than just eyeballing before/after sales, <a href="/blog/how-to-run-a-price-ab-test-the-right-way">how to run a price A/B test the right way</a> covers the mechanics.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>

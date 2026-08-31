@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getPostBySlug, posts } from "@/lib/blog/posts";
 import { getClusterForPost } from "@/lib/blog/clusters";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/blog/schema";
@@ -67,6 +67,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
+  if (post.canonicalSlug && post.canonicalSlug !== slug) {
+    permanentRedirect(`/blog/${post.canonicalSlug}`);
+  }
 
   const { before, after } = splitContentForMidArticleCta(post.content);
   const articleSchema = buildArticleSchema(post);

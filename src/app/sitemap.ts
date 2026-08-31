@@ -26,10 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/privacy`,                                 lastModified: new Date("2026-06-01") },
   ];
 
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.updatedDate ?? post.date),
-  }));
+  const blogRoutes: MetadataRoute.Sitemap = posts
+    .filter((post) => !post.canonicalSlug)
+    .map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedDate ?? post.date),
+    }));
 
   const clusterRoutes: MetadataRoute.Sitemap = clusters.map((cluster) => ({
     url: `${BASE_URL}/blog/cluster/${cluster.slug}`,
