@@ -2134,7 +2134,7 @@ export const posts: BlogPost[] = [
 
 <h2>The Buy Box Suppression Trap (and Why It Catches Most Multi-Channel Sellers)</h2>
 <p>The natural response to the fee math is to charge more on Amazon and less on Shopify. Pass the fee saving to DTC customers, recover it on Amazon. That logic is sound on paper and dangerous in practice.</p>
-<p>Amazon's Marketplace Fair Pricing Policy replaced an older explicit price parity clause after regulatory pressure, but what replaced it is broader and harder to manage. Amazon's automated systems crawl the web, including your own Shopify store, and compare your Amazon price against what the same product sells for anywhere else online. If your Amazon price sits meaningfully above your DTC price, Amazon can suppress your Buy Box.</p>
+<p>Amazon's Marketplace Fair Pricing Policy replaced an older explicit price parity clause after regulatory pressure, but what replaced it is broader and harder to manage. Amazon's automated systems crawl the web, including your own Shopify store, and compare your Amazon price against what the same product sells for anywhere else online. If your Amazon price sits meaningfully above your DTC price, Amazon can suppress your Buy Box. That's a separate risk from whether an actual human customer notices and cares about the gap, which is a question worth answering on its own, see <a href="/blog/do-customers-care-if-your-amazon-price-beats-your-website">does a lower Amazon price actually hurt customer trust</a>.</p>
 <p>Suppression means your offer disappears from the Featured Offer position. Sponsored Products stop serving. On most listings, that cuts sales by 80% or more overnight, with no notification and no obvious explanation in your Seller Central reports.</p>
 <p>Industry guidance from Feedvisor puts Amazon's tolerance at roughly 2-5% above the lowest comparable offer found externally, though Amazon does not publish an official threshold. The mechanism is opaque. A seller can list a product at $27.99 on Shopify and $32.99 on Amazon, which seems reasonable to cover the referral fee differential, and Amazon's bots can flag that $5 gap as a Fair Pricing violation within hours.</p>
 
@@ -6926,6 +6926,123 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">Picking the right pricing app isn't about the one with the most reviews. It's about whether the recommendation is grounded in your own customers' actual behavior, comes with an honest confidence level, and lets you test before you trust it with your whole catalog.</p>
+    `.trim(),
+  },
+  {
+    slug: "do-customers-care-if-your-amazon-price-beats-your-website",
+    title: "Does a Lower Amazon Price Hurt Customer Trust?",
+    excerpt:
+      "See how Zorin helps you decide when pricing lower on Amazon than your own store risks trust, and when shoppers won't notice.",
+    date: "2026-08-31",
+    readingTime: "10 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/dashboard-overview.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Yes, customers notice a price gap between your Amazon listing and your own store, but only past a real threshold, and the bigger risk isn't the gap itself. It's leaving it unexplained. Research on cross-channel shopping behavior found that 45% of in-store shoppers will walk away and buy the same product online for a discount as small as 2.5%, and 60% will leave for a 5% discount (GroupM Next, 2012). If you sell on both Shopify and Amazon, you likely already have a gap well above that line, which makes how you handle it more important than whether it exists.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Customers act on price gaps as small as 2.5%, and more than half will switch channels at a 5% gap (GroupM Next, 2012). Most Amazon fee-recovery gaps run 10-15%, well above that threshold.</li>
+<li>The gap itself isn't the trust risk. An unexplained gap is. A short, factual note about marketplace fees turns silence into transparency.</li>
+<li>Showrooming and webrooming aren't new behaviors. Amazon-to-website comparison is just the current version of a decades-old shopping instinct.</li>
+<li>Your own DTC elasticity, read from your Shopify or WooCommerce sales history, tells you how price-sensitive your direct customers actually are before you assume a gap will cost you anything.</li>
+<li>Retention tactics that don't depend on winning a price comparison protect your Shopify sales more reliably than chasing price parity ever will.</li>
+</ul>
+</div>
+
+<h2>How Big of a Price Gap Do Shoppers Actually Notice?</h2>
+<p>Customers don't clock every cent of difference between your Amazon listing and your own store. But the threshold where they start acting on it is smaller than most sellers expect.</p>
+<p>The most cited data point here comes from GroupM Next's showrooming study, which surveyed 1,000 US shoppers across ten product categories at varying price points. Their finding: 45% of shoppers will leave and complete the purchase online for a discount as low as 2.5%. That number climbs to 60% at a 5% discount. The study is older, but it remains the standard reference point in retail pricing literature because the underlying behavior, people acting on small, visible price gaps once they notice them, hasn't changed.</p>
+
+<table>
+  <thead>
+    <tr><th>Visible price gap</th><th>Share of shoppers who switch channels</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2.5%</td><td>45%</td></tr>
+    <tr><td>5%</td><td>60%</td></tr>
+    <tr><td>10-15% (typical Amazon fee-recovery gap)</td><td>Above the studied range, treat as clearly noticeable</td></tr>
+  </tbody>
+</table>
+
+<p>Here's the practical problem: the typical fee-recovery gap between Shopify and Amazon runs 10-15%, well above the point where shoppers start reacting. If you're pricing to protect margin on Amazon the way the fee math suggests, as covered in <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">why you can't just charge the same price everywhere</a>, you're very likely already above the threshold where a customer checking both listings will notice.</p>
+<p>The gap size matters less than whether the customer understands why it exists. A 12% difference that's silently there feels like a bait-and-switch if a customer stumbles onto it. The same 12% difference, framed as "Amazon takes a cut we don't have to pass on to you here," reads as transparency instead of inconsistency.</p>
+
+<h2>Why Retailers End Up With a Channel Price Gap in the First Place</h2>
+<p>The gap isn't arbitrary. It's almost always a direct pass-through of what each channel actually costs you to sell on. Amazon charges referral fees of 9-15% depending on category, plus FBA fulfillment fees if you use Amazon's warehousing, against roughly 3% in Shopify Payments processing. Price the same on both channels and you're either accepting a meaningfully lower margin on every Amazon sale, or not recovering the fee difference anywhere.</p>
+<p>This is where knowing your own numbers matters more than guessing at a universal rule. <a href="/integrations/shopify">Zorin's elasticity model reads your Shopify or WooCommerce sales history</a> and fits a price elasticity estimate per SKU, telling you how much demand actually shifts when your DTC price moves. That's a direct answer to a question this whole post is really about: how price-sensitive are the specific customers who might notice a gap between your store and Amazon in the first place. A product with inelastic DTC demand can likely absorb a modest price increase on your own site with little pushback, which changes how much of the Amazon fee gap you actually need to pass through.</p>
+
+<h3>Showrooming and Webrooming, Defined</h3>
+<p>Two terms explain most of the cross-channel comparison behavior at play here. Showrooming is when a customer examines a product in one place, a physical store, or increasingly, one online listing, and then buys it somewhere cheaper. Webrooming is the reverse: researching online, then buying in person or through a preferred channel. Amazon-to-Shopify comparison shopping is a digital version of the same instinct. A customer sees your product on Amazon, searches your brand name, finds your own store, and compares the two prices side by side. The behavior isn't new, only the channels are.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard showing per-SKU elasticity and pricing recommendations across a product catalog" width="1440" height="900" loading="eager" fetchpriority="high" />
+  <figcaption>Your DTC sales history tells you how price-sensitive your direct customers actually are, before you assume a channel price gap will cost you anything.</figcaption>
+</figure>
+
+<h2>Does a Lower Amazon Price Actually Hurt Your Brand's Trust?</h2>
+<p>Not automatically. Trust erosion tracks with inconsistency and silence, not with the mere existence of a price difference.</p>
+<p>Look at how Minimum Advertised Price (MAP) policies work in traditional retail. A manufacturer sets a floor price that every retailer has to advertise at or above, specifically because consistent pricing across sellers signals a stable, trustworthy value for the product. The logic isn't that the price must be identical everywhere. It's that the price shouldn't feel arbitrary or manipulated depending on where you happen to look. A customer who sees your product at a different price on Amazon than on your own store isn't necessarily thinking you're dishonest. They're more likely wondering whether something is wrong: is one of these listings fake, is a sale about to end, is your own store overpriced.</p>
+<p>That confusion is the actual trust risk, and it's fixable without matching prices exactly. A customer who understands why Amazon costs more, marketplace fees, faster shipping, buyer protection they're paying into, doesn't feel misled. A customer with no explanation at all, just two different numbers, is the one who starts questioning the brand.</p>
+
+<h2>Should You Explain the Price Difference to Customers?</h2>
+<p>Yes, and it costs you almost nothing to do it. Silence is the riskier option, not disclosure. A short, factual line does the job:</p>
+<ul>
+<li><strong>On your product page:</strong> "Prices may vary by platform due to marketplace fees. This is our direct price."</li>
+<li><strong>In a customer service reply:</strong> "Amazon charges us a fee we don't pass on when you buy directly, which is why our site price is lower."</li>
+<li><strong>In your FAQ or About page:</strong> a plain sentence noting that your own store's price reflects buying direct, with no marketplace markup built in to cover third-party fees.</li>
+</ul>
+<p>None of this requires justifying your margin in detail. It requires acknowledging the gap exists on purpose, which is the single thing that turns an unexplained discrepancy into an understood one.</p>
+
+<h2>How to Keep Customers Buying Direct Anyway</h2>
+<p>Price isn't the only lever that decides where a customer buys, and it's often not even the deciding one once a gap is explained.</p>
+<p><strong>Make a reason to buy direct that isn't just price.</strong> A bundle, a color variant, or a limited SKU that only exists on your Shopify store gives a customer a real reason to choose you, separate from any price comparison at all. It also sidesteps the gap-detection question, since there's nothing on Amazon to compare it against.</p>
+<p><strong>Use loyalty pricing instead of a public discount.</strong> A code-gated offer for email subscribers or repeat customers lets you give your best customers a better deal on your own site without publishing a lower list price that a first-time visitor, or Amazon's own price-monitoring systems, would flag as the real price.</p>
+<p><strong>Test whether your own customers are price-driven at all.</strong> This is where <a href="/blog/how-to-run-a-price-sensitivity-survey">Zorin's Van Westendorp Price Sensitivity Meter</a> is a useful tool, separate from the elasticity model. It's a short, four-question survey you send to your own customers, producing a range of prices they'd consider fair, expensive, or too cheap, based on what they say rather than what they've historically done. If your DTC buyers turn out to be more brand-loyal than price-sensitive, a small channel price gap was never going to move them in the first place.</p>
+<p>The retention math here often works in a merchant's favor more than the anxiety about it suggests. A customer who found you through a direct channel already has a reason to prefer buying from you that has nothing to do with the Amazon listing they'd have to specifically go looking for to compare against.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Will customers get upset if they notice my product costs more on my own website than on Amazon?</h3>
+<p>Not automatically. Customers react to unexplained gaps more than to the existence of a gap. A brief note about marketplace fees on your product page or in customer service responses usually resolves the concern before it becomes one.</p>
+</div>
+<div class="faq-item">
+<h3>Should I explain the price difference to customers when my Amazon price and my own site's price don't match?</h3>
+<p>Yes. A short, factual explanation, marketplace fees, faster fulfillment, buyer protection built into the Amazon price, costs you nothing and prevents customers from assuming the discrepancy is a mistake or a manipulation.</p>
+</div>
+<div class="faq-item">
+<h3>How much of a price gap between my website and Amazon will shoppers actually notice?</h3>
+<p>Research from GroupM Next found 45% of shoppers will switch channels for a discount as small as 2.5%, and 60% will switch at 5%. Most Amazon fee-recovery gaps run 10-15%, well above that threshold.</p>
+</div>
+<div class="faq-item">
+<h3>Does selling for less on Amazon than my own store hurt my brand's trust with customers?</h3>
+<p>Not inherently. Trust erosion comes from inconsistency and silence, not from a price difference on its own. Brands that explain the gap, the same logic behind Minimum Advertised Price policies, generally avoid the trust hit entirely.</p>
+</div>
+<div class="faq-item">
+<h3>How do I keep customers buying direct from my store when they can find my product cheaper on Amazon?</h3>
+<p>Give them a reason that isn't price: an exclusive bundle or variant, loyalty pricing through a code rather than a public discount, or faster direct shipping. A Van Westendorp survey can also tell you whether your own customers are price-driven enough for this to matter at all.</p>
+</div>
+<div class="faq-item">
+<h3>Is it legal or normal to charge different prices on different sales channels?</h3>
+<p>Yes. Charging different prices across channels is standard retail practice and reflects real differences in fees, fulfillment costs, and buyer expectations per platform. It isn't price discrimination in the legal sense as long as you aren't selectively pricing individual customers differently based on protected characteristics.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between showrooming and webrooming?</h3>
+<p>Showrooming is examining a product in one channel and buying it cheaper elsewhere. Webrooming is researching online first, then buying through a preferred channel, often in person. Amazon-to-website price comparison is a digital version of showrooming.</p>
+</div>
+<div class="faq-item">
+<h3>Should I match my Amazon price exactly to avoid any customer confusion?</h3>
+<p>Usually not, since matching means accepting a much lower margin on every Amazon sale to cover its higher fees. A better approach is pricing to protect margin on each channel and being upfront about why the numbers differ, rather than erasing the gap at the cost of profitability.</p>
+</div>
+</section>
+
+<p class="conclusion">Getting the channel-gap decision right isn't about eliminating the difference between your Amazon and Shopify prices. It's about knowing whether your own customers would notice or care in the first place, and being straightforward when they do. <a href="/signup">Start a free trial</a> and see what your own elasticity data says before you assume a customer is watching the gap at all.</p>
     `.trim(),
   },
   {

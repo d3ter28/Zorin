@@ -96,6 +96,7 @@ export const clusters: Cluster[] = [
     postSlugs: [
       "should-you-price-differently-on-shopify-vs-amazon",
       "should-you-price-the-same-on-shopify-and-amazon",
+      "do-customers-care-if-your-amazon-price-beats-your-website",
       "how-do-i-price-a-new-product-with-no-sales-history",
       "how-to-price-a-new-product-from-launch-to-end-of-life",
     ],
