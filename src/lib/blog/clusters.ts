@@ -99,6 +99,7 @@ export const clusters: Cluster[] = [
       "do-customers-care-if-your-amazon-price-beats-your-website",
       "how-do-i-price-a-new-product-with-no-sales-history",
       "how-to-price-a-new-product-from-launch-to-end-of-life",
+      "how-to-raise-your-price-after-a-product-launch",
     ],
   },
   {

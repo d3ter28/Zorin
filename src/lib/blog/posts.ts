@@ -17,6 +17,121 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-raise-your-price-after-a-product-launch",
+    title: "How to Raise Your Price After a Product Launch",
+    excerpt:
+      "A step-by-step guide to raising your launch price at the right time, sized with your own elasticity data instead of a guess.",
+    date: "2026-09-01",
+    readingTime: "10 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Raise your launch price once you have enough real sales data to know how customers actually respond to your price, not on a fixed calendar date. In practice that means waiting for 3-6 months of sales history with some price movement in it, sizing the increase from your own elasticity rather than a round industry number, and giving early customers enough notice that the change feels planned instead of sprung on them. The launch price was never meant to be permanent: it was a placeholder set before you had the data to do better.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>An introductory price is a temporary tool to reduce first-purchase friction, not a promise to hold that price forever.</li>
+<li>The right time to raise is a data signal, not a date on the calendar: once your sales history has enough price variation, an elasticity model can tell you the increase is safe rather than you guessing.</li>
+<li>Generic tolerance rules (commonly cited around 10% to 15% for a single move) come from SaaS subscription pricing research and don't transfer cleanly to a physical product with its own demand curve.</li>
+<li>Raising too soon on thin data and raising too much in one move are different failure modes with different fixes, and both are avoidable with a preview before you commit.</li>
+<li>Advance notice and a grandfather window for early buyers turn a price increase into a planned event instead of a trust problem.</li>
+</ul>
+</div>
+
+<h2>Why Your Launch Price Isn't Supposed to Be Permanent</h2>
+<p>An introductory price does a specific job: it lowers the risk of a first purchase for a product with no reviews, no track record, and no proof it's worth the money yet. That job has a natural end point. Once the product has reviews, repeat buyers, and a sales history to point to, the price is no longer carrying the weight of "trust me, this is worth it" on its own.</p>
+<p>Most merchants know this intellectually and still hesitate to move, because the launch price becomes the reference point in a customer's head the moment they buy at it. That's a real concern, not a reason to avoid raising the price. It's a reason to raise it deliberately, with a clear signal for timing and a defensible number for size, instead of either freezing the price indefinitely or picking a new number by feel.</p>
+
+<h2>Step 1: Set a Timeline Before You Even Launch</h2>
+<p>Decide the intro-price window before you launch, not after you're already uncomfortable with how long it's been running. A fixed endpoint, either a calendar date or an order-count threshold ("intro pricing through our first 500 orders"), gives you a default to fall back on and gives early buyers an implicit expectation that the price won't stay this low forever.</p>
+<p>This timeline is a starting plan, not a hard rule. Treat it the way you'd treat a first draft: useful for setting expectations, but subject to revision once real data starts coming in during Step 2.</p>
+
+<h2>Step 2: Watch for the Real Signal, Not the Calendar</h2>
+<p>The calendar date from Step 1 is a fallback, not the actual trigger. The real signal is whether you have enough sales history, with enough price movement in it, for a demand model to say anything meaningful about how your customers respond to your price.</p>
+<p>This is the mechanical core of the whole decision, and it's where most launch-pricing advice stays vague. Zorin's elasticity model needs roughly 3-6 months of sales history with some price variation to fit a reliable estimate, and it labels every recommendation with a confidence score (commonly Strong, Fair, or Weak) that reflects exactly how much of that data actually exists. A Weak confidence label right after launch isn't a bug: it's the model correctly telling you the data doesn't support a strong call yet, which is a more honest answer than a tool that gives you a number regardless of how thin the evidence is.</p>
+<p>If you launched with no sales history at all and are still in the earliest weeks, the <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">guide to pricing a new product with no sales history</a> covers how to set that initial number. This step picks up once you have enough orders behind you for a model to start reading, not before.</p>
+
+<h2>Step 3: Calculate How Much to Raise, Not Just Whether To</h2>
+<p>Once the signal says it's time, the next question is size, and this is where a lot of pricing advice reaches for a generic rule of thumb that doesn't actually fit an ecommerce product. A commonly cited SaaS benchmark, drawing on Price Intelligently's pricing research, puts typical subscription demand elasticity between -1.5 and -2.5, meaning a 10% price increase in that world costs roughly 15% to 25% of demand. That's a real number, but it describes recurring software subscriptions, not a physical product with its own category, its own customer base, and its own demand curve.</p>
+<p>Borrowing that percentage wholesale is exactly the kind of guess a merchant should be trying to replace. Your product's actual elasticity, the number that says how much your specific demand moves when your specific price moves, comes from your own sales history, not a benchmark built on a different category of business entirely.</p>
+
+<table>
+  <thead>
+    <tr><th>Approach</th><th>What it tells you</th><th>Where it falls short</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Generic industry percentage (e.g. 10-15%)</td><td>A rough starting ceiling for how large a single increase can be before risk rises sharply</td><td>Built on SaaS subscription data; doesn't reflect your product's actual demand curve</td></tr>
+    <tr><td>Your own elasticity estimate</td><td>How much your specific demand shifts when your specific price moves, from your own sales history</td><td>Needs enough real data (3-6 months, some price variation) to be reliable</td></tr>
+    <tr><td>Comparable SKUs in your catalog</td><td>A useful proxy while the new SKU's own data is still thin</td><td>A signal, not a certainty: your existing products may not behave identically</td></tr>
+  </tbody>
+</table>
+
+<p>In practice, use the generic ceiling as a rough sanity check on the outer bound, and let your own elasticity set the actual number. Zorin's recommendation pairs the raise, lower, or hold call with the elasticity coefficient and an estimated profit lift in one line, something like "your elasticity is -0.8, raising to $34 lifts estimated profit 11%, Strong confidence." That's a specific, worked number tied to your own customers, not a percentage borrowed from a different industry's pricing playbook.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>A raise recommendation pairs the new price with its elasticity and estimated profit lift, so the size of the increase is a calculated number instead of a guess.</figcaption>
+</figure>
+
+<h2>Step 4: Stress-Test the Increase Before You Commit</h2>
+<p>Before applying the new price, preview what it actually does to your margin and profit, not just your top-line revenue. A raise that looks reasonable as a percentage can still be the wrong number once you see the resulting margin next to it, especially if costs have shifted since launch.</p>
+<p>There are two distinct ways this step goes wrong, and they need different fixes. Raising too soon, before the data has enough confidence behind it, means you're really just guessing with extra steps: hold the price and let more orders accumulate instead. Raising too much in one move, even with good confidence behind the timing, risks the kind of visible price jump that reads as opportunistic rather than earned. If a first attempt turns out to have been too aggressive, <a href="/blog/why-did-my-sales-drop-when-i-raised-my-price">a real, checkable process for finding out why sales dropped after a price change</a> is worth working through before assuming the increase itself was the mistake. Sometimes it is; sometimes something else moved at the same time.</p>
+
+<h2>Step 5: Communicate the Increase So It Doesn't Cost You Customers</h2>
+<p>The price increase itself rarely causes the damage. An increase that arrives with no notice and no explanation is what erodes trust, because it reads as opportunistic rather than planned, even when it isn't. Two things fix most of that risk before it happens.</p>
+<p><strong>Give advance notice.</strong> Slack's widely cited 2021 price adjustment gave customers 90 days' notice, and pricing research aggregating multiple SaaS benchmarks generally points to 60 or more days as the range where increases land well. An ecommerce product doesn't need to match that exactly, but the underlying principle holds: a silent, same-day price jump feels different from one a customer saw coming.</p>
+<p><strong>Grandfather your earliest buyers where it's practical.</strong> A short window where existing customers can reorder at the old price, or a small loyalty discount that offsets part of the increase, converts "the price went up on me" into "I got a fair heads-up and a way to lock in the old price if I acted." Not every product or margin structure can support this, but where it's possible, it's the single most effective goodwill move available.</p>
+<p>Lead with what's changed, not with the fact that it costs more. A short, factual note, "we're moving off our launch price now that we have real production volume behind us" or "this reflects the ingredient costs that have gone up since we launched", gives the increase a reason a customer can accept rather than question.</p>
+
+<h2>Step 6: Apply the Price and Keep Watching</h2>
+<p>A price change isn't a one-time event you set and forget. Once the new price is live, watch whether actual sales behavior matches what the elasticity estimate predicted. If the confidence label was Strong and the estimate holds, the data has now validated itself and the same process repeats the next time it's warranted. If sales moved more than the model expected, that's new information worth feeding back into the next decision rather than a sign the whole approach failed. <a href="/blog/how-to-run-a-price-ab-test-the-right-way">A proper price A/B test</a> is the more rigorous version of this same watch-and-confirm step, if you want a controlled read rather than a before-and-after comparison.</p>
+<p>For the fuller picture beyond this one transition moment, including how to set the very first launch price and what to do at the other end of a product's life, the <a href="/blog/how-to-price-a-new-product-from-launch-to-end-of-life">launch-to-end-of-life pricing guide</a> covers the full arc this post's Steps 1 through 6 sit inside of.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How long should I keep my introductory launch price before raising it to my regular price?</h3>
+<p>Treat the window as a starting plan, not a hard rule: many merchants set an initial target of a few months or an order-count threshold, then confirm the actual timing with real sales data once it accumulates. Zorin's elasticity model generally needs 3 to 6 months of sales history with some price variation before it can give a confident raise recommendation.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know when it's the right time to raise my price after a product launch?</h3>
+<p>Watch for a data signal rather than a date: once you have enough sales history with some price movement in it, an elasticity model can label a raise recommendation with a confidence score. A Weak confidence label means hold and wait for more data; a Strong one means the recommendation is backed by real evidence.</p>
+</div>
+<div class="faq-item">
+<h3>How do I use my first few weeks of sales data to figure out how much to raise my launch price?</h3>
+<p>In the first few weeks, sales history is usually too thin for a reliable elasticity estimate. Comparable SKUs already in your catalog, if you have any, are a reasonable proxy in the meantime. Once you cross roughly 3 to 6 months of history with price variation, your own elasticity coefficient replaces the proxy with a specific number.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if I raise my price too soon after launching a new product?</h3>
+<p>Raising before you have enough data means the increase is really just a guess with extra steps, and if it's wrong you won't have a clear signal for why. The fix is to hold the price and let more sales history accumulate rather than pushing another change on top of an already-uncertain one.</p>
+</div>
+<div class="faq-item">
+<h3>How do I raise my price without losing the customers who bought at my launch price?</h3>
+<p>Give advance notice (many pricing benchmarks point to 60 or more days), lead with the reason for the change rather than just the new number, and grandfather your earliest buyers with a short reorder window at the old price where your margin allows it. Silence, not the increase itself, is usually what damages trust.</p>
+</div>
+<div class="faq-item">
+<h3>Is a 10% to 15% price increase a safe number to use for my ecommerce store?</h3>
+<p>That range comes from SaaS subscription pricing research, not ecommerce products, and typically describes recurring software demand elasticity rather than physical goods. Use it as a rough outer-bound sanity check at most, and rely on your own product's elasticity, calculated from your actual sales history, for the real number.</p>
+</div>
+<div class="faq-item">
+<h3>Should I raise my price all at once or in small increments?</h3>
+<p>One clear, explained increase is generally easier for customers to process than a series of small, unexplained adjustments. Incremental creep with no stated reason reads as opportunistic even when each individual step is small.</p>
+</div>
+<div class="faq-item">
+<h3>Can I raise my price if I only launched a few weeks ago and don't have much sales data yet?</h3>
+<p>You can, but you're making a lower-confidence decision without enough data to size it precisely. If the launch price is clearly under your cost floor, that's a separate, more urgent case worth fixing immediately rather than waiting for a full data window.</p>
+</div>
+</section>
+
+<p class="conclusion">The launch price was always a placeholder, a reasonable number set before you had the evidence to do better. Once your sales history builds up, the decision stops being a guess: Zorin reads your own data and tells you whether to raise, by how much, and how confident that call actually is. <a href="/signup">Start a free trial</a> and see what your own elasticity says about the price you're still running from launch day.</p>
+    `.trim(),
+  },
+  {
     slug: "is-price-anchoring-manipulative-or-just-smart-pricing",
     title: "Is Price Anchoring Manipulative or Just Smart Pricing?",
     excerpt:
@@ -2009,7 +2124,7 @@ export const posts: BlogPost[] = [
   <figcaption>A Strong confidence raise recommendation with an estimated profit lift is the data-grounded alternative to gut-checking whether a launch price is ready to move up.</figcaption>
 </figure>
 
-<p>When you do raise, raise in one clear move rather than incremental creep. A single transparent increase is easier for customers to process than a series of small unexplained adjustments. If you have an email list, a brief note explaining the price reflects real production costs or market positioning reads as honest rather than opportunistic.</p>
+<p>When you do raise, raise in one clear move rather than incremental creep. A single transparent increase is easier for customers to process than a series of small unexplained adjustments. If you have an email list, a brief note explaining the price reflects real production costs or market positioning reads as honest rather than opportunistic. For a step-by-step walkthrough of this exact moment, including how to size the increase and how much notice to give early buyers, <a href="/blog/how-to-raise-your-price-after-a-product-launch">the dedicated guide to raising your price after launch</a> covers it in full.</p>
 
 <h2>Bundle Pricing: How to Increase Order Value Without Eroding Margin</h2>
 <p>Bundles work when they shift the customer's mental frame from "should I buy this?" to "which bundle gives me the best deal?" Once a buyer is choosing between bundle tiers rather than between buying and not buying, the conversion question is already answered. The only open question is how much they spend.</p>
