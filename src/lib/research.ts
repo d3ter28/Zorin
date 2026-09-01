@@ -28,4 +28,11 @@ export const research: ResearchItem[] = [
       "A sourced reference compiling real advertising and marketing spend as a percentage of revenue across ecommerce product categories, drawn from public company SEC filings.",
     date: "2026-08-26",
   },
+  {
+    slug: "inventory-turnover-by-product-category",
+    title: "Inventory Turnover by Ecommerce Product Category",
+    description:
+      "A sourced reference compiling real inventory turnover ratios and days inventory outstanding across ecommerce product categories, calculated from public company SEC filings.",
+    date: "2026-09-01",
+  },
 ];
