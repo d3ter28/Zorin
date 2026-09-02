@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.tryzorin.com"),
   title: "Zorin",
   description: "Turn your sales history into profit-maximizing price recommendations.",
+  other: {
+    "backlink-exchange-verification": "93d4bb0fd1e495d66301af852ccc45b7",
+  },
 };
 
 const organizationJsonLd = {
