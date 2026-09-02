@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Zorin",
   description: "Turn your sales history into profit-maximizing price recommendations.",
   other: {
-    "backlink-exchange-verification": "93d4bb0fd1e495d66301af852ccc45b7",
+    "netlinkdeal-verification": "b8bf58ae-28f1-4538-9430-64786e4f7aa2",
   },
 };
 
