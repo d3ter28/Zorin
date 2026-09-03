@@ -11,11 +11,111 @@ export type BlogPost = {
   content: string; // HTML string
   author?: {
     name: string;
-    bio: string;
+    bio: string; // rendered via dangerouslySetInnerHTML — safe to include <a> links
+    url?: string; // author's own profile URL for Article schema; falls back to /about
+    sameAs?: string[]; // additional profile URLs (LinkedIn, personal site) for Article schema
   };
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "amazon-vs-your-own-store-pricing",
+    title: "Amazon vs. Your Own Store Pricing",
+    excerpt:
+      "The same price nets very different profit on Amazon vs. your own store. The per-channel margin math, the elasticity gap, and the parity trap to avoid.",
+    date: "2026-09-04",
+    readingTime: "8 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Michael Keeling",
+      bio: 'Michael Keeling is the founder of <a href="https://www.brandgrowthiq.com/about/" target="_blank" rel="noopener noreferrer">Brand GrowthIQ</a> and works as a <a href="https://www.brandgrowthiq.com/fractional-amazon-manager/" target="_blank" rel="noopener noreferrer">fractional Amazon manager</a> for brands scaling past $5M. He\'s ex-Amazon (Sponsored Ads) and previously ran a $70M+ Amazon P&L brand-side.',
+      url: "https://www.brandgrowthiq.com/about/",
+      sameAs: ["https://www.linkedin.com/in/michaelkeeling", "https://www.brandgrowthiq.com/about/"],
+    },
+    content: `
+<p class="intro">The price that maximizes profit on your own store and the price that maximizes profit on Amazon are almost never the same number, because the two channels have different costs and different demand curves. But Amazon's price-parity monitoring means your Amazon price acts as your public floor, so you set it first and position your DTC pricing around it, not the other way around.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>The same $49 sale nets a roughly 14-point margin gap between your own store and Amazon FBA once referral fees, storage, and returns allowance are counted.</li>
+<li>Demand is usually more elastic on Amazon than on your own store, because Amazon puts your product inside a side-by-side comparison engine your own site doesn't have.</li>
+<li>Your Amazon price is a public floor: price meaningfully higher there than on your own store and Amazon can suppress your Buy Box, which kills conversion and stops your ads from serving properly.</li>
+<li>Set your Amazon price first since it's the constrained channel, then price your own store at or slightly below it and win real margin through bundles, subscriptions, and email-only offers Amazon's parity monitoring can't see.</li>
+<li>A blended, single elasticity number across both channels is an average of two different truths, which makes it neither.</li>
+</ul>
+</div>
+
+<h2>Why Is the Same $49 Sale Two Different Businesses?</h2>
+<p>Each channel charges you a different set of tolls on the way to the bank. Say you sell a product at $49 with a $12 landed cost. Run that sale through each channel and watch what happens:</p>
+
+<table>
+  <thead>
+    <tr><th>Cost line</th><th>Your own store</th><th>Amazon (FBA)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Landed cost</td><td>$12.00</td><td>$12.00</td></tr>
+    <tr><td>Referral fee (15%)</td><td>$0</td><td>$7.35</td></tr>
+    <tr><td>Payment processing (~3%)</td><td>$1.50</td><td>$0</td></tr>
+    <tr><td>Fulfillment/shipping</td><td>$6.50</td><td>$6.50</td></tr>
+    <tr><td>Storage + returns allowance</td><td>$0</td><td>~$1.15</td></tr>
+    <tr><td><strong>Pre-ad profit per unit</strong></td><td><strong>~$29 (59% margin)</strong></td><td><strong>~$22 (45% margin)</strong></td></tr>
+  </tbody>
+</table>
+
+<p>Same product, same price, a 14-point margin gap before either channel has spent a dollar on ads. Amazon's fees aren't static either: fulfillment and storage rates change on a schedule, and they only move in one direction. If you're pricing both channels off one spreadsheet line called "margin," that line is fiction for at least one of them. (If you want to see every cost that belongs in the Amazon column, <a href="https://www.brandgrowthiq.com/blog/how-to-calculate-amazon-contribution-margin/" target="_blank" rel="noopener noreferrer">the full per-unit contribution margin calculation is here</a>.)</p>
+<p>The gap doesn't just change what you keep, it changes what you can spend. Your pre-ad margin is the ceiling on your advertising, on Amazon that ceiling is your <a href="https://www.brandgrowthiq.com/blog/break-even-acos-vs-allowable-acos/" target="_blank" rel="noopener noreferrer">break-even ACoS</a>, so a thinner Amazon margin means a tighter ad budget per sale, which means a different growth speed on that channel. One price, two margins, two completely different ad strategies.</p>
+
+<h2>Why Is Demand More Price-Sensitive on Amazon Than on Your Own Store?</h2>
+<p>Because on Amazon, your product sits inside a comparison engine, and on your own store, it doesn't. The cost side is only half the problem. The other half is that your Amazon customer and your DTC customer aren't the same person, even when they're literally the same person.</p>
+<p>On Amazon, the shopper sees you, four competitors, and a "similar item at a lower price" nudge, all on one screen. Price sensitivity runs hot because the alternative is one scroll away. On your own store, the shopper arrived through your ad, your content, or a brand search. There's no competitor row. Willingness to pay is anchored to your brand, not to the category's cheapest option.</p>
+<p>In elasticity terms, the same product usually has more elastic demand on Amazon than on your own site. Raise your DTC price 10% and demand might barely move. Raise your Amazon price 10% and your conversion rate can drop fast.</p>
+<p>This is exactly why gut-feel cross-channel pricing fails. You can't feel two demand curves at once, you have to measure them from your own sales history, per channel, and let each channel's data tell you where its price should sit. <a href="/features/price-elasticity-modeling">Zorin reads your own store's sales history</a> to fit that DTC-side elasticity, independent of whatever's happening on the Amazon listing. If you've modeled it before, the insight that jumps out is usually how differently the same catalog behaves once you separate the two contexts.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>Zorin's elasticity read comes from your own store's sales history, not a blended number averaged across every channel you sell on.</figcaption>
+</figure>
+
+<h2>Can Your Amazon Price Be Higher Than Your Website Price?</h2>
+<p>Technically yes, practically don't. This is the one constraint that keeps the two prices handcuffed together, and it catches merchants who don't know it exists.</p>
+<p>Amazon monitors your product's price across the internet. If your Amazon price is meaningfully higher than the same product on your own store, Amazon can respond by suppressing the Featured Offer (the Buy Box) or making the listing harder to buy. No Buy Box means your ads stop serving properly and your conversion craters. The listing looks alive; commercially, it isn't.</p>
+<p>Which produces the actual rule of multichannel pricing: your Amazon price is your public floor. Price your own store relative to it, not the other way around.</p>
+<p>In practice, most sophisticated brands run their own store at or slightly below their Amazon price, then make the DTC offer win on things Amazon can't see: bundles, subscriptions, loyalty pricing, and email-only discounts. The shelf price stays parity-safe; the effective price on your own store does the margin-maximizing work quietly.</p>
+
+<h2>How Do You Set Prices Across Amazon and Your Own Store?</h2>
+<p>Here's the four-step version of how this actually gets set for brands operating both channels:</p>
+<ol>
+<li><strong>Build a real per-channel P&L per product.</strong> Same SKU, two columns, every channel-specific cost included: referral, FBA, storage, and returns on one side; processing, fulfillment, and shipping on the other. The two margins will not match. That's the point.</li>
+<li><strong>Measure elasticity per channel, not per catalog.</strong> Your sales history already encodes how each channel's buyers respond to price. Model them separately. A blended elasticity number is an average of two truths, which makes it neither.</li>
+<li><strong>Set the Amazon price first.</strong> It's the constrained channel: fees are fixed, parity is monitored, and the competition is on-screen. Find the price that maximizes Amazon contribution margin within what the category will bear.</li>
+<li><strong>Position DTC around it.</strong> Match or slightly undercut the shelf price for parity safety, then push effective price and margin through bundles, subscriptions, and owned-audience offers.</li>
+</ol>
+<p>Then revisit the whole thing quarterly, since Amazon's fee schedule changes, landed costs drift, and last year's optimal price is this year's guess. If you're also deciding whether to expand to Amazon in the first place or trying to keep pricing consistent once you're on both, <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">this companion guide on the fee mechanics and Buy Box mechanics</a> covers that decision in more depth, and <a href="/shopify-profit-margin-calculator">Zorin's free margin calculator</a> is a fast way to check the per-unit numbers above against your own catalog.</p>
+
+<h2>The One-Sentence Version</h2>
+<p>One price across channels optimizes for neatness. Two prices, each built from that channel's real costs and that channel's real demand curve, optimize for profit. Your spreadsheet won't mind the extra column nearly as much as your P&L minds the missing one.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Should my Amazon price be the same as my website price?</h3>
+<p>Your website price should be at or slightly below your Amazon price, never meaningfully above Amazon on your own site's shelf price. Then win margin on your own store through bundles, subscriptions, and email-only offers that Amazon's parity monitoring can't see.</p>
+</div>
+<div class="faq-item">
+<h3>Can Amazon suppress my Buy Box over pricing?</h3>
+<p>Yes. If your Amazon price is meaningfully higher than the same product elsewhere online, including your own store, Amazon can suppress the Featured Offer, which tanks conversion and stops your ads from serving properly.</p>
+</div>
+<div class="faq-item">
+<h3>Which channel's price should I set first?</h3>
+<p>Amazon's. It's the constrained channel: fixed fees, monitored parity, on-screen competition, so find the price that maximizes Amazon contribution margin first, then position your DTC pricing around it.</p>
+</div>
+</section>
+
+<p class="conclusion">One price feels simpler, but it's usually just an unmeasured guess wearing a tidy spreadsheet cell. Once you separate the P&L and the demand curve by channel, the two prices you actually need become obvious rather than debatable. <a href="/signup">Start a free trial</a> and see what your own store's elasticity looks like on the DTC side of the equation.</p>
+    `.trim(),
+  },
   {
     slug: "how-to-raise-your-price-after-a-product-launch",
     title: "How to Raise Your Price After a Product Launch",

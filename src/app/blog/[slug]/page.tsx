@@ -183,7 +183,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {post.author && (
           <div className="mt-12 rounded-xl border border-zinc-100 bg-zinc-50 p-5">
             <p className="text-sm font-semibold text-zinc-900">Written by {post.author.name}</p>
-            <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">{post.author.bio}</p>
+            <p
+              className="mt-1.5 text-sm leading-relaxed text-zinc-500"
+              dangerouslySetInnerHTML={{ __html: post.author.bio }}
+            />
           </div>
         )}
 
