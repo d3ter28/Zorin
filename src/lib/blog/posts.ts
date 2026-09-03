@@ -20,7 +20,7 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     slug: "amazon-vs-your-own-store-pricing",
-    title: "Amazon vs. Your Own Store Pricing",
+    title: "Why One Price Can't Maximize Amazon and Your Store",
     excerpt:
       "The same price nets very different profit on Amazon vs. your own store. The per-channel margin math, the elasticity gap, and the parity trap to avoid.",
     date: "2026-09-04",
