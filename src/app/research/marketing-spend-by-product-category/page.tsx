@@ -406,7 +406,9 @@ export default function MarketingSpendByProductCategoryPage() {
           question once you know roughly what marketing costs in your category is whether your
           margin can actually support that spend and still leave real profit. <a href="/research/profit-margins-by-product-category" className="text-blue-600 hover:underline">Our companion page on gross margin by category</a> covers
           the other half of that equation, and <a href="/research/inventory-turnover-by-product-category" className="text-blue-600 hover:underline">our page on inventory turnover by category</a> covers
-          a third factor that shapes both: how long a product sits unsold before it moves. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits a demand model to your own sales history</a> so
+          a third factor that shapes both: how long a product sits unsold before it moves, and{" "}
+          <a href="/research/discount-impact-on-margin-by-product-category" className="text-blue-600 hover:underline">our page on discount impact on margin by category</a> covers
+          what it costs to clear that stock once it's time to move it. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits a demand model to your own sales history</a> so
           you can see which of your products can support a price increase, room that could fund
           more acquisition spend without eroding the margin you actually need to keep.
         </p>

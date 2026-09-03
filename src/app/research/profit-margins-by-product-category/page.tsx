@@ -507,7 +507,9 @@ export default function ProfitMarginsByProductCategoryPage() {
           Margin is only half the profit equation, <a href="/research/marketing-spend-by-product-category" className="text-blue-600 hover:underline">the marketing spend by category reference</a> covers
           how much of that margin typically gets spent acquiring the customer in the first place,
           and <a href="/research/inventory-turnover-by-product-category" className="text-blue-600 hover:underline">the inventory turnover by category reference</a> covers
-          how long a product sits unsold before either of those numbers even matters.
+          how long a product sits unsold before either of those numbers even matters, while{" "}
+          <a href="/research/discount-impact-on-margin-by-product-category" className="text-blue-600 hover:underline">the discount impact on margin reference</a> covers
+          what it actually costs when that unsold stock gets marked down to move.
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">

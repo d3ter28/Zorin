@@ -411,7 +411,8 @@ export default function InventoryTurnoverByProductCategoryPage() {
           months is tying up cash and carrying real holding cost the whole time it's unsold, which
           is exactly the situation a well-timed discount is meant to solve, moving product before it
           becomes a deeper problem, without guessing at how much of a price cut is actually needed. <a href="/research/profit-margins-by-product-category" className="text-blue-600 hover:underline">Our companion page on gross margin by category</a> covers
-          how much room a discount has to work with, and{" "}
+          how much room a discount has to work with, <a href="/research/discount-impact-on-margin-by-product-category" className="text-blue-600 hover:underline">our page on discount impact on margin by category</a> covers
+          what public companies actually report that markdown costing them, and{" "}
           <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin" className="text-blue-600 hover:underline">our guide to running a sale without wrecking your margin</a> covers
           how to size one. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits a demand model to your own sales history</a> so
           you can see exactly how a specific product responds to a price change, rather than

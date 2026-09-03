@@ -35,4 +35,11 @@ export const research: ResearchItem[] = [
       "A sourced reference compiling real inventory turnover ratios and days inventory outstanding across ecommerce product categories, calculated from public company SEC filings.",
     date: "2026-09-01",
   },
+  {
+    slug: "discount-impact-on-margin-by-product-category",
+    title: "Discount Impact on Margin by Ecommerce Product Category",
+    description:
+      "A sourced reference compiling real gross margin impact from promotional discounting, measured in basis points, across ecommerce product categories, drawn from public company filings.",
+    date: "2026-09-01",
+  },
 ];
