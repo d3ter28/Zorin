@@ -6,7 +6,7 @@ import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 export const metadata = {
   title: "Competitor Price Tracking for Shopify & WooCommerce - Zorin",
   description:
-    "Track competitor prices per product, see min/median/max market stats, and feed live competitive data into your pricing recommendations — without manual spreadsheets.",
+    "Log a competitor name, price, and URL per product and see min, median, and max stats feed into your Launch Planner. Manual entry, not automated tracking.",
   alternates: { canonical: "https://www.tryzorin.com/features/competitor-price-tracking" },
 };
 

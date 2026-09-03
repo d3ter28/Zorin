@@ -10,7 +10,7 @@ const OG_IMAGE = "/og-default.png";
 export const metadata = {
   title: "Marketing Spend by Product Category (Sourced Data) - Zorin",
   description:
-    "Real advertising and marketing spend as a percentage of revenue by ecommerce product category, sourced from public company SEC filings. Citable, with links to every source.",
+    "Real advertising and marketing spend as a percentage of revenue by product category, sourced from public company SEC filings, citable.",
   keywords: [
     "marketing spend by category",
     "advertising expense percent of revenue",

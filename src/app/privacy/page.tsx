@@ -3,7 +3,7 @@ import { Footer } from "@/components/marketing/Footer";
 
 export const metadata = {
   title: "Privacy Policy - Zorin",
-  description: "How Zorin handles your store's sales data, in plain English.",
+  description: "How Zorin handles your store's sales data, in plain English, including what's stored and what never leaves your account.",
   alternates: { canonical: "https://www.tryzorin.com/privacy" },
 };
 

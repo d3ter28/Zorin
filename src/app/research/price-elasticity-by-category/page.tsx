@@ -10,7 +10,7 @@ const OG_IMAGE = "/og-default.png";
 export const metadata = {
   title: "Price Elasticity by Product Category (Sourced Data) - Zorin",
   description:
-    "Real price elasticity coefficients by ecommerce product category, sourced from peer-reviewed studies and government data. Citable, with links to every source.",
+    "Real price elasticity coefficients by product category, sourced from peer-reviewed studies and government data. Citable, fully sourced.",
   keywords: [
     "price elasticity by category",
     "price elasticity of demand data",

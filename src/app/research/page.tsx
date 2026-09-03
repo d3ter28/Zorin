@@ -8,7 +8,7 @@ const PAGE_URL = `${BASE_URL}/research`;
 export const metadata = {
   title: "Ecommerce Pricing Research (Sourced Data) - Zorin",
   description:
-    "Sourced, citable reference data on ecommerce pricing: price elasticity and profit margins by product category, drawn from peer-reviewed research and public company filings.",
+    "Sourced, citable reference data on ecommerce pricing: price elasticity and profit margins by category, from peer-reviewed research and filings.",
   keywords: [
     "ecommerce pricing research",
     "ecommerce pricing statistics",

@@ -16,9 +16,9 @@ export function Pricing() {
   return (
     <section id="pricing" className="scroll-mt-20">
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:py-32">
-        <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
+        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
           Simple, honest pricing
-        </h2>
+        </h1>
         <p className="mt-3 max-w-[45ch] text-base leading-relaxed text-zinc-500">
           Start with a 7-day free trial, no credit card required - available while we&apos;re in beta. Upgrade as your catalog grows.
         </p>
@@ -84,6 +84,45 @@ export function Pricing() {
               </a>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-20 max-w-2xl">
+          <h2 className="text-xl font-semibold text-zinc-900">Pricing questions</h2>
+          <div className="mt-6 flex flex-col gap-6">
+            <div>
+              <h3 className="text-sm font-semibold text-zinc-900">What counts as a product?</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
+                Each unique SKU in your catalog counts as one product. Starter covers up to 25,
+                Growth up to 150, and Scale is unlimited, so you only need to move up a tier once
+                your catalog actually outgrows the current limit.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-zinc-900">Is there a free trial?</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
+                Yes, every plan includes a 7-day free trial with no credit card required. This
+                trial is only available while Zorin is in beta, once beta ends, new signups start
+                billing immediately with no trial period. Early access users also get locked-in
+                pricing when we launch paid plans.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-zinc-900">Can I switch plans later?</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
+                Yes. You can move up or down a tier at any time as your catalog size and feature
+                needs change, there's no lock-in contract on any plan.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-zinc-900">What&apos;s the difference between Growth and Scale?</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
+                Growth covers catalogs up to 150 products with Shopify and WooCommerce sync and
+                the what-if simulator. Scale removes the product limit entirely and adds
+                multi-store support and dedicated support, built for larger catalogs or operators
+                running more than one store.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

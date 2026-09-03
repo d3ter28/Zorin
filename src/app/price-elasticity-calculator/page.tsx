@@ -6,7 +6,7 @@ import { buildCalculatorSchema, buildFaqSchema } from "@/lib/seo/toolSchema";
 export const metadata = {
   title: "Free Price Elasticity Calculator - Zorin",
   description:
-    "Calculate your price elasticity of demand in seconds. Enter two price and unit-sold data points to see your elasticity coefficient and revenue impact - free, no signup required.",
+    "Calculate your price elasticity of demand in seconds. Enter two price and unit-sold points to see your coefficient and revenue impact, free, no signup.",
   alternates: { canonical: "https://www.tryzorin.com/price-elasticity-calculator" },
 };
 

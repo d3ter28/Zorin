@@ -10,7 +10,7 @@ export const clusters: Cluster[] = [
     slug: "price-elasticity",
     name: "Price Elasticity",
     description:
-      "The core concept behind every Zorin recommendation: how demand actually responds when your price moves. Start here to understand elasticity scores, how to calculate them, and what to do once you have one.",
+      "The core concept behind every Zorin recommendation: how demand responds when your price moves. Start here to understand elasticity and what to do with it.",
     postSlugs: [
       "what-does-price-elasticity-actually-mean",
       "price-elasticity-explained-a-guide-for-ecommerce-sellers",
@@ -21,7 +21,6 @@ export const clusters: Cluster[] = [
       "how-to-calculate-price-elasticity-for-your-shopify-store",
       "how-to-calculate-price-elasticity-for-your-woocommerce-store",
       "how-to-know-if-your-prices-are-too-high-or-too-low",
-      "why-did-my-sales-drop-when-i-raised-my-price",
       "price-increase-killed-your-sales-heres-the-real-reason",
       "how-much-should-i-trust-an-ai-pricing-recommendation",
       "do-i-need-a-data-analyst-to-price-my-products-well",
@@ -32,10 +31,9 @@ export const clusters: Cluster[] = [
     slug: "pricing-tools-and-software",
     name: "Pricing Tools & Software",
     description:
-      "Comparisons and buyer's guides for pricing, repricing, and pricing-optimization apps, including where a demand-based tool like Zorin fits and where a different category makes more sense.",
+      "Comparisons and buyer's guides for pricing, repricing, and pricing-optimization apps, including where a demand-based tool like Zorin fits best.",
     postSlugs: [
       "best-pricing-optimization-tools-for-shopify-stores-2026",
-      "shopify-pricing-apps-what-to-look-for",
       "woocommerce-pricing-apps-what-to-look-for",
       "best-price-optimization-app-for-small-shopify-stores",
       "price-elasticity-vs-repricing-software",
@@ -94,7 +92,6 @@ export const clusters: Cluster[] = [
     description:
       "Setting a price with no sales history yet, and deciding whether that price should stay the same across Shopify, Amazon, and other channels.",
     postSlugs: [
-      "should-you-price-differently-on-shopify-vs-amazon",
       "should-you-price-the-same-on-shopify-and-amazon",
       "do-customers-care-if-your-amazon-price-beats-your-website",
       "how-do-i-price-a-new-product-with-no-sales-history",
@@ -106,7 +103,7 @@ export const clusters: Cluster[] = [
     slug: "pricing-fundamentals-and-strategy",
     name: "Pricing Fundamentals & Strategy",
     description:
-      "Broader strategy questions: how often to review prices, whether to price above or below competitors, and the core frameworks every pricing decision comes back to.",
+      "Broader strategy questions: how often to review prices, whether to price above or below competitors, and the core frameworks pricing comes back to.",
     postSlugs: [
       "ecommerce-pricing-strategy-the-complete-guide",
       "ecommerce-pricing-strategy-by-growth-stage",

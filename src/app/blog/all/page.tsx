@@ -21,10 +21,11 @@ export async function generateMetadata({
 }) {
   const { page } = await searchParams;
   const pageNum = Math.max(1, Number(page) || 1);
+  const suffix = pageNum > 1 ? ` — Page ${pageNum}` : "";
 
   return {
-    title: "All Posts — Zorin Blog",
-    description: "Every Zorin blog post, newest first. Browse by topic instead from the main blog page.",
+    title: `All Posts${suffix} — Zorin Blog`,
+    description: `Every Zorin blog post, newest first${pageNum > 1 ? `, page ${pageNum}` : ""}. Browse by topic instead from the main blog page.`,
     alternates: {
       canonical: pageNum > 1 ? `${BASE_URL}/blog/all?page=${pageNum}` : `${BASE_URL}/blog/all`,
     },
@@ -60,7 +61,7 @@ export default async function AllPostsPage({
           ← Browse by topic
         </a>
         <h1 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
-          All Posts
+          All Posts{currentPage > 1 ? ` — Page ${currentPage}` : ""}
         </h1>
         <p className="mt-3 text-base text-zinc-500">
           Every post, newest first. {sorted.length} in total.

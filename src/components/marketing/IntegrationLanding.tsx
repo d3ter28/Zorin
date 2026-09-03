@@ -5,9 +5,10 @@ interface IntegrationLandingProps {
   how: string;
   where: string;
   syncedData: string[];
+  faqs: { q: string; a: string }[];
 }
 
-export function IntegrationLanding({ platform, ctaLabel, intro, how, where, syncedData }: IntegrationLandingProps) {
+export function IntegrationLanding({ platform, ctaLabel, intro, how, where, syncedData, faqs }: IntegrationLandingProps) {
   return (
     <main className="mx-auto max-w-2xl px-6 pb-24 pt-32 md:pb-32">
       <h1 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
@@ -73,6 +74,18 @@ export function IntegrationLanding({ platform, ctaLabel, intro, how, where, sync
         >
           Already have an account? Go to Settings
         </a>
+      </div>
+
+      <div className="mt-16">
+        <h2 className="text-base font-semibold text-zinc-900">{platform} connection questions</h2>
+        <div className="mt-4 flex flex-col gap-5">
+          {faqs.map((faq) => (
+            <div key={faq.q}>
+              <h3 className="text-sm font-semibold text-zinc-900">{faq.q}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">{faq.a}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );

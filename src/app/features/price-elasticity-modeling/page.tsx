@@ -6,7 +6,7 @@ import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 export const metadata = {
   title: "Price Elasticity Modeling for Shopify & WooCommerce - Zorin",
   description:
-    "Zorin fits a per-SKU demand curve from your sales history using log-log OLS regression and returns raise/lower/hold recommendations with estimated profit lift — no data science background required.",
+    "Zorin fits a per-SKU demand curve from your sales history and returns raise, lower, or hold calls with estimated profit lift, no data science required.",
   alternates: { canonical: "https://www.tryzorin.com/features/price-elasticity-modeling" },
 };
 

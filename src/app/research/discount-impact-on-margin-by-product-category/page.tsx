@@ -8,9 +8,9 @@ const LAST_UPDATED = "2026-09-01";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
-  title: "Discount Impact on Margin by Product Category (Sourced Data) - Zorin",
+  title: "Discount Margin Impact by Category (Sourced Data) - Zorin",
   description:
-    "Real, quantified gross margin impact from promotional discounting by ecommerce product category, sourced from public company SEC filings and earnings releases.",
+    "Real, quantified gross margin impact from promotional discounting by product category, sourced from public company SEC filings.",
   keywords: [
     "discount impact on margin by category",
     "promotional markdown gross margin impact",

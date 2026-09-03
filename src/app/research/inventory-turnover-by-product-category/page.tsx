@@ -8,9 +8,9 @@ const LAST_UPDATED = "2026-09-01";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
-  title: "Inventory Turnover by Product Category (Sourced Data) - Zorin",
+  title: "Inventory Turnover by Category (Sourced Data) - Zorin",
   description:
-    "Real inventory turnover ratios and days inventory outstanding by ecommerce product category, calculated from public company SEC filings. Citable, with links to every source.",
+    "Real inventory turnover ratios and days inventory outstanding by product category, calculated from public SEC filings, citable and sourced.",
   keywords: [
     "inventory turnover by category",
     "days inventory outstanding ecommerce",

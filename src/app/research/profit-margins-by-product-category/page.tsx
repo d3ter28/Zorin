@@ -8,7 +8,7 @@ const LAST_UPDATED = "2026-08-25";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
-  title: "Gross Profit Margins by Product Category (Sourced Data) - Zorin",
+  title: "Gross Profit Margins by Category (Sourced Data) - Zorin",
   description:
     "Real gross profit margins by ecommerce product category, sourced from public company SEC filings. Citable, with links to every source.",
   keywords: [
@@ -210,7 +210,7 @@ const TIER_1: CategoryRow[] = [
       },
       {
         label: "Best Buy gross margin data",
-        url: "https://m.macrotrends.net/stocks/charts/BBY/best-buy/gross-margin",
+        url: "https://www.macrotrends.net/stocks/charts/BBY/best-buy/gross-margin",
         publisher: "Macrotrends (derived from Best Buy SEC filings)",
       },
     ],

@@ -424,7 +424,15 @@ function StepBlock({ number, title, children }: { number: number; title: string;
 
 function Screenshot({ src, alt }: { src: string; alt: string }) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={src} alt={alt} className="mt-3 w-full rounded-xl border border-line" />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={1000}
+      height={720}
+      className="mt-3 w-full rounded-xl border border-line"
+    />
+  );
 }
 
 function Callout({ children }: { children: React.ReactNode }) {

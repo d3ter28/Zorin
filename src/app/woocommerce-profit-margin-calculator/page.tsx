@@ -6,7 +6,7 @@ import { buildCalculatorSchema, buildFaqSchema } from "@/lib/seo/toolSchema";
 export const metadata = {
   title: "WooCommerce Profit Margin Calculator (Free) - Zorin",
   description:
-    "Calculate your exact net profit margin per unit in seconds. Enter your selling price, unit cost, shipping, payment processor fee, and ad spend - free, no signup required.",
+    "Calculate your exact net profit margin per unit in seconds. Enter your selling price, unit cost, shipping, payment fees, and ad spend, free, no signup.",
   alternates: { canonical: "https://www.tryzorin.com/woocommerce-profit-margin-calculator" },
 };
 

@@ -34,10 +34,11 @@ export async function generateMetadata({
 
   const pageNum = Math.max(1, Number(page) || 1);
   const baseUrl = `${BASE_URL}/blog/cluster/${cluster.slug}`;
+  const suffix = pageNum > 1 ? ` — Page ${pageNum}` : "";
 
   return {
-    title: `${cluster.name} — Zorin Blog`,
-    description: cluster.description,
+    title: `${cluster.name}${suffix} — Zorin Blog`,
+    description: pageNum > 1 ? `${cluster.description} (Page ${pageNum}.)` : cluster.description,
     alternates: { canonical: pageNum > 1 ? `${baseUrl}?page=${pageNum}` : baseUrl },
   };
 }
@@ -94,7 +95,7 @@ export default async function ClusterPage({
           {allClusterPosts.length} {allClusterPosts.length === 1 ? "post" : "posts"}
         </span>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
-          {cluster.name}
+          {cluster.name}{currentPage > 1 ? ` — Page ${currentPage}` : ""}
         </h1>
         <p className="mt-3 max-w-2xl text-base leading-relaxed text-zinc-500">
           {cluster.description}

@@ -33,6 +33,24 @@ export default function WooCommerceIntegrationPage() {
           "Orders - synced automatically as sales come in, feeding your elasticity model",
           "Price changes you apply in Zorin push straight back to your WooCommerce catalog",
         ]}
+        faqs={[
+          {
+            q: "Do I need a developer to connect WooCommerce?",
+            a: "No. Generating a REST API key is a self-serve step in your own WordPress admin, no code required. Zorin only needs the consumer key and secret from that key to connect.",
+          },
+          {
+            q: "Will connecting WooCommerce slow down my store?",
+            a: "No. Zorin reads your data through WooCommerce's REST API, it doesn't add any script or plugin overhead to your storefront, so page load speed for your customers is unaffected.",
+          },
+          {
+            q: "What happens to my existing order history?",
+            a: "Your full order history imports on the initial connection, which is what your elasticity model needs to fit properly. Zorin generally needs at least 6 months of history with some price variation to produce a confident recommendation.",
+          },
+          {
+            q: "Can I disconnect WooCommerce later?",
+            a: "Yes. Revoking the REST API key in your WordPress admin, or removing the connection in Zorin's settings, stops the sync immediately. Your existing recommendations and data stay in your Zorin account.",
+          },
+        ]}
       />
       <Footer />
     </>

@@ -45,7 +45,7 @@ export function IntegrationTile({
       onClick={onOpen}
       className="flex flex-col items-start rounded-xl border border-line bg-surface p-4 text-left transition-colors hover:bg-panel"
     >
-      <img src={logoSrc} alt={logoAlt} className="h-6 w-6 object-contain" />
+      <img src={logoSrc} alt={logoAlt} width={24} height={24} className="h-6 w-6 object-contain" />
       <p className="mt-2 text-sm font-semibold text-ink">{name}</p>
       <p className="mt-1 text-xs text-muted">{connected && label ? label : description}</p>
       {connected && (
