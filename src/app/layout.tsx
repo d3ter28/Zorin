@@ -32,7 +32,6 @@ const organizationJsonLd = {
   url: "https://www.tryzorin.com",
   logo: "https://www.tryzorin.com/logo.png",
   sameAs: [
-    "https://www.linkedin.com/company/tryzorin",
     "https://x.com/tryzorin",
   ],
 };
