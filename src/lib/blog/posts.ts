@@ -19,6 +19,114 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "which-products-actually-deserve-a-discount",
+    title: "Which Products Actually Deserve a Discount?",
+    excerpt:
+      "Not every product on your store should go on sale. How to use your own sales data to pick discount candidates instead of guessing.",
+    date: "2026-09-04",
+    readingTime: "9 min read",
+    category: "Pricing Strategy",
+    ogImage: "/images/blog/product-recommendation.webp",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A product deserves a discount when cutting its price would bring in meaningfully more buyers, not because it's overstocked, a competitor just marked it down, or the team has a feeling about it. That's a measurable question, not a guess. The answer lives in a product's own price-and-order history, specifically how much its order volume moved the last time its price actually changed, and it's usually a smaller list than the "let's put half the catalog on sale" instinct suggests.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A product's price elasticity, how much demand shifts when price shifts, determines whether a discount earns new buyers or just hands a lower price to people who'd have bought anyway.</li>
+<li>Elasticity varies enormously even within one catalog: real sourced data puts basic t-shirts at -1.17 and athletic wear at -2.86, a gap wide enough that one flat markdown percentage across a whole "sale" collection is close to guaranteed to be wrong for some of the products in it.</li>
+<li>The most reliable signal is a product's own past reaction to a real price change, not intuition about the catalog or what a competitor is doing.</li>
+<li>How deep to discount is a separate decision from which products to discount, and skipping the first question makes the second one unanswerable.</li>
+<li>A sale corrupts future pricing decisions if the promotional period isn't flagged and excluded from the data afterward, so the cleanup step matters as much as the selection step.</li>
+</ul>
+</div>
+
+<h2>Why Some Products Respond to Discounts and Others Don't</h2>
+<p>The technical term for this is price elasticity: how much demand for a specific product changes when its price changes. A product is elastic when a price cut brings in a lot more buyers, usually because there are close alternatives out there and shoppers are actively comparing. A product is inelastic when a discount barely moves the needle, usually because the buyer already wanted that specific item regardless of price.</p>
+<p>Discounting an inelastic product is close to pure margin loss, since the customers who buy it would mostly have bought it anyway at full price. Discounting an elastic product is where a sale actually earns its keep, since the lower price is what convinces new buyers to convert. Picking discount candidates without knowing which category a product falls into means some of the "sale" is really just a discount handed to customers who never needed one.</p>
+
+<h2>A Worked Example: Two Products, Same Discount, Different Outcomes</h2>
+<p>Say a store runs a 15% discount across two products that look similar on paper, both mid-catalog sellers with comparable order volume the month before.</p>
+<p><strong>Product A</strong> is a basic, replenishment-style item, the kind of thing a customer rebuys out of habit. Its elasticity is close to -0.4. A 15% price cut moves order volume up by roughly 6%, not enough extra revenue to cover the margin given up on every unit that would have sold anyway. The sale technically "worked" in that units moved, but it mostly paid existing customers to buy something they were already going to buy.</p>
+<p><strong>Product B</strong> sits in a crowded, comparison-heavy category with several close substitutes. Its elasticity is closer to -2.1. The same 15% cut moves volume up by roughly 30%, and the added unit volume more than covers the margin given up per unit. This is the sale that was worth running.</p>
+<p>Same discount, same starting order volume, opposite outcomes, and the only variable that predicted the difference was each product's own elasticity. That's the number a "which products should we discount" decision actually needs, not a shared instinct applied evenly across the catalog.</p>
+
+<h2>What the Data Shows About the Spread Across Categories</h2>
+<p>The gap between an elastic and inelastic product is bigger than most catalogs assume, and it shows up even within a single category. <a href="/research/price-elasticity-by-category">Our sourced reference on price elasticity by category</a> compiles real, peer-reviewed coefficients across ecommerce verticals, and the range inside apparel alone makes the point: basic t-shirts sit around -1.17, while casual and athletic wear runs as high as -2.86, one of the most elastic figures measured in that entire dataset. Household appliances, by contrast, average closer to -0.35 across refrigerators, washers, and dishwashers, goods people research carefully and don't casually price-compare on a whim.</p>
+<p>Applied to a quarterly discount decision, that spread means a flat 20% markdown across an entire "sale" collection is very likely overcorrecting on some products and undercutting margin on others, since a basic tee and a piece of athletic wear sitting in the same sale bucket don't actually behave the same way once the price drops, even though they're in the "same" apparel category on a spreadsheet.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>A per-product elasticity read, with a stated confidence level, replaces "this whole category is on sale" with a specific answer for each SKU.</figcaption>
+</figure>
+
+<h2>A Simple Way to Pick Candidates From Your Own Catalog</h2>
+<p>Start with the products already generating meaningful volume, since a discount decision on a low-traffic SKU won't move enough units to learn much either way. From there:</p>
+<ol>
+<li><strong>Find the last real price change for each candidate.</strong> Even a small change, a shipping-cost pass-through, a routine adjustment, still tells you something, as long as it wasn't bundled with a sale that also changed other variables at the same time.</li>
+<li><strong>Check whether order volume moved noticeably in response.</strong> A product that barely reacted to a past price change is a weak discount candidate. A product that reacted sharply is a strong one.</li>
+<li><strong>Weight recent data more than old data.</strong> A price reaction from two years ago is a weaker signal than one from the last two quarters, since customer behavior and competitive context shift.</li>
+<li><strong>Don't trust a single data point.</strong> One price change with one noisy result isn't a model, it's an anecdote. The more price variation in a product's history, the more confidently you can call its elasticity.</li>
+</ol>
+<p>Tools built specifically for this, including Zorin for Shopify and WooCommerce stores, run this calculation automatically by fitting an elasticity model to a store's own order history and returning a per-product score along with a confidence level, so the decision doesn't rely on memory of what happened during a promotion six months ago. A Weak confidence label on a candidate is itself useful information: it means the history doesn't yet support a strong call, and that product is a worse bet for this quarter's sale than one with a Strong confidence read behind it.</p>
+
+<h2>How Deep Should the Discount Go, Once You've Picked the Candidates?</h2>
+<p>Selection and depth are two different decisions, and it's easy to answer the first one well and then guess at the second. An elastic product picked correctly can still lose money if the markdown is deeper than the elasticity actually supports, and <a href="/research/discount-impact-on-margin-by-product-category">real, sourced data on discount impact on margin</a> shows this cost is measurable in public companies' own numbers, not just theoretical: GoPro reported a promotional hit of 760 basis points of gross margin in a single quarter tied directly to discounting slower-moving inventory. If you already know a product's elasticity, <a href="/blog/how-much-should-you-discount-without-killing-your-margin">our guide on sizing a discount without killing margin</a> covers the next step, turning that elasticity number into an actual percentage instead of a round figure that feels generous.</p>
+
+<h2>Protecting Your Data for Next Quarter's Decision</h2>
+<p>A sale doesn't just spend margin in the moment, it can quietly corrupt the data you'll use to make this same decision next quarter. Customers respond more aggressively to a visible, marked-down price than to an ordinary price change of the same size, so a promotional spike in the order history reads as much higher elasticity than the product actually has if it isn't flagged and excluded from the baseline afterward. A product that looks highly elastic because of one unflagged holiday sale might actually be closer to average once that spike is removed, which means next quarter's candidate list needs clean data behind it as much as this quarter's does. <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">Our guide on running a sale without wrecking your margin</a> covers the mechanics of excluding a promo period from your baseline correctly.</p>
+
+<table>
+  <thead>
+    <tr><th>Signal</th><th>Good discount candidate</th><th>Weak discount candidate</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Reaction to past price changes</td><td>Order volume moved noticeably</td><td>Order volume barely moved</td></tr>
+    <tr><td>Price history depth</td><td>Multiple price points, recent data</td><td>One data point or stale history</td></tr>
+    <tr><td>Category pattern</td><td>Comparison-heavy, close substitutes exist</td><td>Habitual repurchase, few substitutes</td></tr>
+    <tr><td>Model confidence (if using a tool)</td><td>Strong or Fair</td><td>Weak</td></tr>
+  </tbody>
+</table>
+
+<h2>Presenting the Discount Matters as Much as Picking It</h2>
+<p>Even the right discount candidate underperforms if the sale isn't obvious to a shopper landing on the page. Ecommerce conversion rates broadly sit in the 2.5-3% range as of 2025 according to a convergence of industry analyses, and a poorly surfaced discount, buried below the fold, missing a strikethrough price, or absent from the collection grid entirely, gives up a meaningful chunk of that already-thin baseline before the pricing decision even gets a fair test. If a store's product and collection pages aren't built to make a markdown visually obvious at a glance, that's a layout and <a href="https://rankfly.ca/">website design</a> problem rather than a pricing one, and it's worth fixing before concluding a discount "didn't work."</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know if a product is a good candidate for a discount?</h3>
+<p>Check how its order volume responded the last time its price actually changed, even a small change. A product that barely reacted is a weak candidate. A product that reacted sharply is a strong one. That reaction is a direct read on its price elasticity.</p>
+</div>
+<div class="faq-item">
+<h3>Should I discount my whole catalog the same percentage during a sale?</h3>
+<p>No. Elasticity varies enormously even within one category, real data shows basic t-shirts and athletic wear differing by more than double in how they respond to price. A flat percentage across a mixed catalog is very likely wrong for at least some of the products in it.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between picking discount candidates and sizing the discount?</h3>
+<p>Selection asks which products would sell meaningfully more at a lower price. Sizing asks how much lower that price should actually go. Both need the product's elasticity, but getting selection right and then guessing at depth still risks giving up more margin than the extra volume earns back.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use last year's sale data to pick this quarter's candidates?</h3>
+<p>Older data is a weaker signal than recent data, since customer behavior and competition shift over time. It's still useful, especially combined with more recent price changes, but weight recent history more heavily than a promotion from a year or more ago.</p>
+</div>
+<div class="faq-item">
+<h3>Does running a sale hurt my ability to price this product well later?</h3>
+<p>Only if the promotional period isn't flagged and excluded from your baseline data afterward. Customers react more aggressively to visible discounts than to ordinary price changes, so an unflagged sale spike can make a product look more elastic than it really is the next time you check.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a data analyst to figure out which products to discount?</h3>
+<p>No. Tools like Zorin fit the elasticity model automatically from a store's own Shopify or WooCommerce order history and return a per-product score with a confidence level, which replaces manual spreadsheet digging with a direct answer per SKU.</p>
+</div>
+</section>
+
+<p class="conclusion">Picking discount candidates by instinct treats every product as equally price-sensitive, and most catalogs simply aren't built that way. Checking a product's own price-and-demand history before marking it down turns "let's put this on sale" into a decision backed by evidence, and pairing that with a storefront that actually shows the discount clearly is what lets a well-chosen sale convert the way the data suggested it should. <a href="/signup">Start a free trial</a> and see which of your own products are actually worth discounting this quarter.</p>
+    `.trim(),
+  },
+  {
     slug: "amazon-vs-your-own-store-pricing",
     title: "Why One Price Can't Maximize Amazon and Your Store",
     excerpt:
