@@ -64,6 +64,22 @@ function splitContentForMidArticleCta(html: string) {
   return { before: html.slice(0, splitAt), after: html.slice(splitAt) };
 }
 
+// BOFU posts (comparison pages especially) get a sharper, more direct CTA than
+// the standard educational nudge — the reader has already decided they're
+// evaluating tools, not learning a concept.
+function ctaCopy(post: { funnelStage?: "TOFU" | "MOFU" | "BOFU" }) {
+  if (post.funnelStage === "BOFU") {
+    return {
+      heading: "Ready to see your own numbers?",
+      button: "Start your free trial",
+    };
+  }
+  return {
+    heading: "See what Zorin's elasticity model says about your own catalog.",
+    button: "Start free trial",
+  };
+}
+
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -155,6 +171,57 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
+        {post.comparison && (
+          <div className="mt-8">
+            <div className="flex flex-wrap gap-2">
+              {post.comparison.rows
+                .filter((r) => r.zorinWins)
+                .slice(0, 4)
+                .map((r) => (
+                  <span
+                    key={r.feature}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700"
+                  >
+                    ✓ {r.feature}
+                  </span>
+                ))}
+            </div>
+
+            <div className="mt-6 overflow-x-auto rounded-xl border border-zinc-200">
+              <table className="w-full min-w-[480px] border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-zinc-200 bg-zinc-50">
+                    <th className="px-4 py-3 font-semibold text-zinc-900">Feature</th>
+                    <th className="px-4 py-3 font-semibold text-blue-600">Zorin</th>
+                    <th className="px-4 py-3 font-semibold text-zinc-500">{post.comparison.competitor}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {post.comparison.rows.map((r) => (
+                    <tr key={r.feature} className="border-b border-zinc-100 last:border-0">
+                      <td className="px-4 py-3 font-medium text-zinc-700">{r.feature}</td>
+                      <td className={`px-4 py-3 ${r.zorinWins ? "font-medium text-emerald-700" : "text-zinc-500"}`}>
+                        {r.zorin}
+                      </td>
+                      <td className="px-4 py-3 text-zinc-500">{r.competitor}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-6 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
+              <p className="text-sm text-zinc-700">{post.comparison.verdict}</p>
+              <a
+                href="/signup"
+                className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
+              >
+                {ctaCopy(post).button}
+              </a>
+            </div>
+          </div>
+        )}
+
         <div
           className="prose-content mt-10"
           dangerouslySetInnerHTML={{ __html: before }}
@@ -163,13 +230,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {after && (
           <div className="my-10 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
             <p className="text-sm font-semibold text-zinc-900">
-              See what Zorin's elasticity model says about your own catalog.
+              {ctaCopy(post).heading}
             </p>
             <a
               href="/signup"
               className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
             >
-              Start free trial
+              {ctaCopy(post).button}
             </a>
           </div>
         )}

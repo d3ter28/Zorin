@@ -1,3 +1,12 @@
+export type FunnelStage = "TOFU" | "MOFU" | "BOFU";
+
+export type ComparisonRow = {
+  feature: string;
+  zorin: string;
+  competitor: string;
+  zorinWins: boolean;
+};
+
 export type BlogPost = {
   slug: string;
   title: string;   // keep ≤51 chars — renders as "{title} — Zorin" in <title>, max 60 total
@@ -6,9 +15,18 @@ export type BlogPost = {
   updatedDate?: string; // ISO date of last substantive edit — sets dateModified in Article schema
   readingTime: string;
   category: string;
+  funnelStage?: FunnelStage; // undefined = TOFU. Drives CTA density/copy in the post template.
   ogImage?: string; // absolute URL or root-relative path, e.g. "/images/blog/my-post-og.png" (1200×630)
   canonicalSlug?: string; // set on older duplicate posts to point canonical to the newer slug
   hidden?: boolean; // excluded from sitemap, /blog/all listing, and search indexing — for off-topic reciprocal-link placements that stay live at their URL but shouldn't dilute topical relevance
+  comparison?: {
+    // Presence of this field (not funnelStage) switches the post template into
+    // the comparison layout: feature callouts + table above the fold, denser
+    // CTA, shorter/optional FAQ. See docs/blog-structure-and-workflow.md.
+    competitor: string; // e.g. "Prisync"
+    rows: ComparisonRow[];
+    verdict: string; // 1-2 sentence closing recommendation, rendered above the final CTA
+  };
   content: string; // HTML string
   author?: {
     name: string;
@@ -19,6 +37,245 @@ export type BlogPost = {
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "zorin-vs-symson",
+    title: "Zorin vs Symson: Which Fits Your Store?",
+    excerpt:
+      "Symson also does elasticity modeling, but for a different buyer. Here's an honest look at what actually separates it from Zorin.",
+    date: "2026-09-06",
+    readingTime: "6 min read",
+    category: "Product",
+    funnelStage: "BOFU",
+    comparison: {
+      competitor: "Symson",
+      rows: [
+        {
+          feature: "Elasticity data source",
+          zorin: "Fits its model to your own first-party sales history only, no external data blended in",
+          competitor: "Blends your sales data with scraped competitor prices (Google Shopping, website scrapers) and seasonality",
+          zorinWins: true,
+        },
+        {
+          feature: "Target buyer and buying process",
+          zorin: "Self-serve, connect Shopify or WooCommerce or upload a CSV, no sales call required",
+          competitor: "Mid-market to enterprise, demo request and sales-assisted onboarding, no public self-serve signup",
+          zorinWins: true,
+        },
+        {
+          feature: "Pricing transparency",
+          zorin: "Published tiers, $39 to $249/mo",
+          competitor: "Custom quote only, no published pricing",
+          zorinWins: true,
+        },
+        {
+          feature: "Confidence scoring per recommendation",
+          zorin: "R²-based confidence label on every SKU-level recommendation",
+          competitor: "Configurable Smart Business Rules layered on the model; no public confidence-score mechanism described",
+          zorinWins: true,
+        },
+        {
+          feature: "Competitor price monitoring",
+          zorin: "Manual entry only, name, price, optional URL per product, no automatic scraping",
+          competitor: "Automated tracking via Google Shopping and website scrapers, built directly into the pricing model",
+          zorinWins: false,
+        },
+        {
+          feature: "Cross-category elasticity modeling",
+          zorin: "Per-SKU only",
+          competitor: "Cross-elasticity modeling across category Key Value Items, suited to large commodity assortments",
+          zorinWins: false,
+        },
+        {
+          feature: "Customer price-sensitivity survey",
+          zorin: "Included, a 4-question Van Westendorp survey for a stated-preference read",
+          competitor: "Not offered",
+          zorinWins: true,
+        },
+      ],
+      verdict:
+        "Symson's elasticity modeling is real, not marketing language stretched over a repricer. But it's built for a mid-market or enterprise catalog with a sales-assisted rollout and custom pricing. If you're running a Shopify or WooCommerce store without a pricing team, Zorin gets you a comparable per-SKU elasticity read without a sales cycle.",
+    },
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A merchant running a catalog that's outgrown gut-feel pricing usually notices the pattern before they know what to call it: margin creeping down on some SKUs even as volume holds steady, and no clear read on which products can actually absorb a price increase and which can't. That's the problem before it has a product name attached to it, and it's the same underlying problem that eventually leads a search to both Zorin and Symson.</p>
+
+<h2>What Problem Symson Actually Solves</h2>
+<p>Symson is built for a merchant whose problem has already grown past a single SKU. It gathers your own sales and cost data, then blends in scraped competitor prices from Google Shopping and website scrapers, plus seasonality, and runs cross-elasticity models across what it calls Key Value Items within a category, useful when discounting one product measurably shifts demand for another sitting next to it on the same shelf. That's the specific problem it's aimed at: commodity-heavy assortments where products compete with each other, not just with a competitor's storefront. <a href="https://www.symson.com/price-elasticity" target="_blank" rel="noopener noreferrer">Symson's own product page</a> cites a customer case with over 800,000 prices automated and 273,000 optimized for margin, real scale, but scale that assumes a pricing team is already in place to configure the Smart Business Rules the model feeds into. There's no published pricing; solving this problem starts with a demo request. Reviews are thin but strongly positive: <a href="https://www.capterra.com/p/194693/SYMSON/reviews/" target="_blank" rel="noopener noreferrer">4.9 out of 5 on Capterra, across 11 verified reviews</a>, a small sample worth noting honestly rather than treating as a large-scale signal.</p>
+
+<h2>What Problem Zorin Actually Solves</h2>
+<p>Zorin is built for the version of that same problem that shows up before a store has a pricing team, or headcount for one. Connect Shopify or WooCommerce, or upload a CSV, and it fits a price elasticity model to your own price-and-quantity history only, per SKU, with no competitor data blended into the read. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through manual review first. The problem it's solving isn't just "what's my elasticity," it's "how do I get an answer to that without a sales call or a custom quote standing between me and a first recommendation." Published pricing runs $39 to $249 a month depending on catalog size.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard showing per-SKU pricing recommendations and confidence scores across a product catalog" width="1440" height="900" loading="eager" fetchpriority="high" />
+  <figcaption>Symson's model blends in scraped competitor data. Zorin's read comes from your own sales history alone.</figcaption>
+</figure>
+
+<h2>Reading the Table Above by Problem, Not Feature List</h2>
+<p>The comparison above is easier to read as answers to different questions than as a feature checklist. Pricing transparency and self-serve setup answer "can I get a recommendation today, without a sales cycle." Cross-category elasticity and built-in competitor tracking answer "does my catalog have complexity a single-SKU model can't see." Confidence scoring and the Van Westendorp survey answer "how much should I trust this specific number." None of those questions has a universally right answer, they depend entirely on which problem sent you searching in the first place.</p>
+<p>Worth grounding that in something outside either vendor's own claims: a 2026 benchmark of 939 B2B SaaS companies by <a href="https://optif.ai/learn/questions/sales-cycle-length-benchmark/" target="_blank" rel="noopener noreferrer">Optifai</a> found self-serve deals under $15,000 in annual value typically close in 14 to 30 days, while enterprise deals above $100,000 run 90 to 180-plus days once RFPs, buying committees, and procurement reviews are involved. Symson's demo-and-quote model sits on the slower end of that range by design. If the problem you're solving is urgent, an empty answer for 90 days isn't a neutral tradeoff, it's a cost.</p>
+
+<h2>Where Symson Wins</h2>
+<p>If the problem is cross-category cannibalization inside a large, commodity-heavy assortment, discounting one SKU visibly pulling demand from another in the same category, Symson's cross-elasticity modeling reaches further than a per-SKU-only read. Blending in competitor price data also solves a real problem for commodity categories where market position genuinely affects demand alongside your own price history. For a mid-market or enterprise catalog with a dedicated pricing function already in place, that's a real advantage, not a feature-list checkbox.</p>
+
+<h2>Where Zorin Wins</h2>
+<p>If the problem is access, a Shopify or WooCommerce merchant with no pricing team and no time for a sales cycle before getting a first answer, Zorin solves that directly. Published pricing, no demo requirement, and a confidence label on every recommendation so a newer SKU with thin data isn't presented with false certainty. It's also paired with a separate Van Westendorp price-sensitivity survey, a stated-preference signal Symson doesn't offer, for a second read next to the elasticity model rather than blended into it.</p>
+
+<h2>The Question That Actually Decides This</h2>
+<p>Set the feature list aside for a moment and ask one question instead: does solving this problem require someone on staff to configure and maintain the model, or does it need an answer today from whoever currently owns pricing as one job among several? The first profile fits Symson. The second is exactly who Zorin was built for, and for most independent and SMB merchants, that second profile is the accurate one, whether or not the catalog eventually grows past it.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Is Zorin a Symson alternative?</h3>
+<p>For SMB and independent stores, yes. Both solve elasticity-based pricing, but Symson targets mid-market and enterprise catalogs with a sales-assisted, custom-quoted rollout, while Zorin is self-serve with published pricing built for Shopify and WooCommerce merchants without a pricing team.</p>
+</div>
+<div class="faq-item">
+<h3>Does Symson actually do price elasticity modeling, or is it just competitor tracking with a different name?</h3>
+<p>It's real elasticity modeling, not repricing rebranded. Symson's own product materials describe fitting elasticity from historical sales data, then blending in scraped competitor prices and seasonality, at the SKU level with cross-category support for commodity assortments.</p>
+</div>
+<div class="faq-item">
+<h3>How much does Symson cost compared to Zorin?</h3>
+<p>Symson doesn't publish pricing, access starts with a demo request and a custom quote. Zorin publishes its tiers directly: $39 a month for up to 25 products, up to $249 a month for unlimited products.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin blend competitor prices into its elasticity model the way Symson does?</h3>
+<p>No. Zorin's core elasticity read comes from your own sales history only. You can manually log a competitor's name, price, and an optional URL per product for a min/median/max view, but that's a separate, optional feature, not part of the elasticity model itself.</p>
+</div>
+<div class="faq-item">
+<h3>What problem actually signals it's time to look at something like Symson instead of Zorin?</h3>
+<p>Cross-category discount effects across hundreds of SKUs, a dedicated pricing analyst already on staff, or a need for live competitor-price data woven directly into the model rather than tracked manually per product, usually a mid-market or larger catalog with more organizational structure than a typical independent Shopify or WooCommerce store.</p>
+</div>
+</section>
+
+<p class="conclusion">Symson and Zorin aren't separated by whether the underlying math is real, they both do genuine elasticity modeling. They're separated by which problem, and which buyer, each one was actually built to solve first. If that's a solo store owner or a small team without a pricing analyst, <a href="/signup">Zorin</a> gets you a per-SKU recommendation without a demo call or a custom quote standing in the way.</p>
+    `.trim(),
+  },
+  {
+    slug: "zorin-vs-prisync",
+    title: "Zorin vs Prisync: Which Fits Your Store?",
+    excerpt:
+      "Prisync tracks and matches competitor prices. Zorin models what your own customers will pay. Here's an honest, feature-by-feature comparison.",
+    date: "2026-09-06",
+    readingTime: "7 min read",
+    category: "Product",
+    funnelStage: "BOFU",
+    comparison: {
+      competitor: "Prisync",
+      rows: [
+        {
+          feature: "Core mechanism",
+          zorin: "Fits an elasticity model to your own sales history (log-log regression per SKU)",
+          competitor: "Tracks competitor prices and applies a rule to match or undercut them",
+          zorinWins: true,
+        },
+        {
+          feature: "Competitor price monitoring",
+          zorin: "Manual entry only, name, price, optional URL per product, no automatic scraping",
+          competitor: "Automatic tracking across your own site, Amazon, eBay, Google Shopping, and more, in real time",
+          zorinWins: false,
+        },
+        {
+          feature: "Automatic repricing",
+          zorin: "None, every recommendation requires manual review before it's applied",
+          competitor: "Dynamic pricing rules apply automatically on Premium and Platinum plans",
+          zorinWins: false,
+        },
+        {
+          feature: "Confidence on each recommendation",
+          zorin: "R²-based confidence label on every read, so thin-data SKUs aren't presented with false certainty",
+          competitor: "No statistical confidence score, output is a rule result, not a modeled estimate",
+          zorinWins: true,
+        },
+        {
+          feature: "Entry pricing",
+          zorin: "$39/mo for up to 25 products (Starter)",
+          competitor: "$99/mo for up to 100 products (Professional, URL-based monitoring)",
+          zorinWins: true,
+        },
+        {
+          feature: "Stock and availability monitoring",
+          zorin: "Not offered",
+          competitor: "Included on all plans",
+          zorinWins: false,
+        },
+        {
+          feature: "Customer price-sensitivity survey",
+          zorin: "Included, a 4-question Van Westendorp survey for a stated-preference read alongside the elasticity model",
+          competitor: "Not offered",
+          zorinWins: true,
+        },
+      ],
+      verdict:
+        "If your problem is staying visible against competitor listings on a marketplace, Prisync's automated tracking and repricing rules do that job well. If your problem is figuring out what your own customers will actually pay as your price moves, that's a question only your own sales history can answer, and it's the one Zorin was built to read.",
+    },
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Prisync and Zorin both get filed under "pricing software," but they solve different problems from different data. Prisync watches your competitors and reprices to match or beat them. Zorin reads your own sales history and models how your specific customers respond when your price moves. Picking between them comes down to which question you're actually trying to answer, not which tool has more features.</p>
+
+<h2>What Prisync Actually Does</h2>
+<p><strong>Prisync is a competitor price monitoring and repricing tool, not a demand-modeling one.</strong> It tracks competitor prices across your own storefront, Amazon, eBay, Google Shopping, and general ecommerce sites, alerts you to changes, and, on its Premium and Platinum plans, applies dynamic pricing rules that automatically adjust your price in response. Plans start at $99/month for up to 100 products under URL-based monitoring, scaling to $399/month for 5,000 products on Platinum, with channel-based monitoring running higher still and API access adding a further 20% on top.</p>
+<p>The mechanism is entirely external. Prisync doesn't touch your own sales history at all, it's reading someone else's storefront and telling you where you sit relative to it. That mechanism has real fans: Prisync holds a <a href="https://www.g2.com/products/prisync/reviews" target="_blank" rel="noopener noreferrer">4.7-out-of-5 rating across 168 reviews on G2</a>, with 94% of reviewers rating it positively for ease of use and 92% for ease of setup, most of the praise centers on how quickly it surfaces competitor movement, not on any demand-forecasting capability, which the product doesn't claim to have.</p>
+
+<h2>What Zorin Actually Does</h2>
+<p>Zorin connects to your Shopify or WooCommerce store, or takes a CSV upload, and fits a price elasticity model to your own price-and-quantity history, per SKU. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through your review first. Zorin's plans start at $39/month for up to 25 products, up to $249/month for unlimited products and multi-store support.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>Prisync's output is a price matched or undercut against a competitor's listing. This is what Zorin shows instead: a recommendation grounded in your own demand data.</figcaption>
+</figure>
+
+<h2>Why the Underlying Data Source Matters More Than the Feature List</h2>
+<p>The two tools aren't just different in scope, they're built on different assumptions about what actually moves profit. McKinsey's analysis of S&P 1500 companies found that <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">a 1% price increase, with volume held constant, lifts operating profit by roughly 8%</a>, a bigger swing than an equivalent cut in costs or gain in volume produces. That number is exactly why "get the price right" and "match what everyone else charges" aren't the same goal. Matching a competitor's price tells you where you sit in a lineup; it says nothing about whether that specific number is actually the one that maximizes what your own customers are willing to pay before demand drops off. An elasticity read is aimed directly at that second question. A repricer isn't built to answer it at all.</p>
+
+<h2>Where Prisync Wins</h2>
+<p>If you're selling a genuine commodity, a product that's identical to five other listings and where buy-box visibility on a marketplace decides the sale, Prisync's automatic, real-time competitor tracking and repricing rules are doing exactly the job that situation calls for. Zorin has no equivalent: its competitor feature is a manual per-product entry (name, price, optional URL) that computes a min/median/max, not a live-monitoring subscription. If stock and availability tracking across channels matters to your operation, that's also a Prisync strength Zorin doesn't offer at all.</p>
+
+<h2>The Race-to-the-Bottom Risk Automatic Repricing Doesn't Solve on Its Own</h2>
+<p>Automatic repricing has a known failure mode worth understanding before turning it on. <a href="https://www.price2spy.com/blog/race-to-the-bottom-ecommerce-pricing" target="_blank" rel="noopener noreferrer">Price2Spy's own analysis of the pattern</a> describes it plainly: multiple sellers repeatedly undercut one another, each reduction triggers another, and the cycle continues until margins become unsustainable, usually starting from uncertainty rather than strategy, a retailer sees a competitor's price move, matches it "just to be safe," and the next competitor does the same back. A rule that always matches or undercuts, without a margin floor set underneath it, can walk a whole catalog into exactly that spiral without anyone deciding to start a price war on purpose. Prisync's own dynamic pricing lets you configure a floor to guard against this, but the floor still has to be set from real judgment about what a product can actually absorb, and that's a decision an elasticity read is better positioned to inform than another competitor's price ever is.</p>
+
+<h2>Where Zorin Wins</h2>
+<p>If your store has its own brand and its own customer base, and your real question is "what will my customers actually pay," a competitor's listed price doesn't answer that, it reflects their costs and their audience, not yours. Zorin's elasticity read comes from your own sales history, with a stated confidence level attached to every recommendation, and it's paired with a separate Van Westendorp price-sensitivity survey for a second, stated-preference signal Prisync has no equivalent to. Entry pricing is lower too, $39/month for a store just starting to test data-driven pricing versus Prisync's $99/month floor.</p>
+
+<h2>Can You Use Both</h2>
+<p>Yes, and for some stores that's the right answer. The two tools read different signals, one external, one internal, and nothing about running an elasticity model conflicts with also keeping an eye on marketplace price position for the subset of SKUs where that actually matters. The mistake is assuming either one alone answers the whole pricing question. A store selling a mix of commodity and branded SKUs might reasonably run Prisync on the commodity subset to stay visible on marketplaces, while letting an elasticity read set price on everything with real brand pull. <a href="/blog/price-elasticity-vs-repricing-software">A fuller breakdown of the category difference</a>, including where enterprise elasticity platforms fit into the picture, is worth reading if you're still deciding which category your store needs at all.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Is Zorin a Prisync alternative?</h3>
+<p>Not a direct one. Prisync is competitor price monitoring and repricing; Zorin is elasticity modeling based on your own sales history. They answer different questions, and some stores use both.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin track competitor prices like Prisync does?</h3>
+<p>Not automatically. Zorin doesn't scrape or live-monitor competitor sites. You can manually add a competitor's name, price, and an optional URL per product, and Zorin computes the min, median, and max across what you've entered, but it isn't a subscription tracking service the way Prisync is.</p>
+</div>
+<div class="faq-item">
+<h3>Which is cheaper, Zorin or Prisync?</h3>
+<p>Zorin's entry plan is $39/month for up to 25 products. Prisync's entry plan is $99/month for up to 100 products under URL-based monitoring, rising to $399/month for 5,000 products, with API access adding roughly 20% more.</p>
+</div>
+<div class="faq-item">
+<h3>Does Prisync do price elasticity modeling?</h3>
+<p>No. Prisync's own pricing and feature pages describe dynamic pricing as competitor-based repricing rules, not demand elasticity or a proprietary model built from a merchant's own sales data.</p>
+</div>
+<div class="faq-item">
+<h3>Can automatic repricing hurt my margin if I'm not careful?</h3>
+<p>Yes, if a repricing rule always matches or undercuts without a margin floor, it can pull a whole catalog into a race-to-the-bottom cycle with other sellers doing the same thing. Setting a real floor, informed by what a product can actually absorb rather than a guess, is what keeps automatic repricing from working against you.</p>
+</div>
+<div class="faq-item">
+<h3>Can Zorin automatically change my prices the way Prisync's dynamic pricing does?</h3>
+<p>No. Every Zorin recommendation requires manual review. You can adjust it with a slider or your own number, preview the margin impact, and apply changes one product at a time or in bulk, but nothing changes without you approving it.</p>
+</div>
+</section>
+
+<p class="conclusion">Prisync and Zorin aren't really competing for the same job. If the question is "am I priced right relative to what else is listed for this product," Prisync answers that, and its 4.7-star G2 rating reflects real strength at that specific job. If it's "what would my own customers actually do if I changed this price," that's a question only your own sales history can answer, and <a href="/signup">Zorin</a> was built specifically to read it.</p>
+    `.trim(),
+  },
   {
     slug: "find-your-people-in-online-communities",
     title: "Find Your People in Online Communities",
@@ -3659,6 +3916,7 @@ export const posts: BlogPost[] = [
 </figure>
 
 <p>This matters if you've tried general-purpose pricing tools before. Some platforms lean heavily on live A/B price testing. Intelligems, for example, is a well-regarded Shopify app for running real-time price tests, and its Profit Optimization plan starts around $499 a month scaling with order volume, with plans built around measuring profit per visitor across live test groups. That's a genuinely different approach: you're testing prices in the wild, in real time, which requires meaningful order volume to reach statistical significance before you get an answer. Elasticity modeling instead works retrospectively on data you already have, so you get a starting recommendation before you commit to running a live test on real customers.</p>
+<p>It's also worth knowing that not every tool calling itself an elasticity platform is built for a store your size. Symson, for one, does real elasticity modeling too, but blends it with scraped competitor prices and targets mid-market and enterprise catalogs through a custom-quoted, sales-assisted rollout rather than a self-serve signup. <a href="/blog/zorin-vs-symson">A direct comparison of the two</a> is worth reading if that name has come up in your own research.</p>
 
 <h2>When to Add a Price Sensitivity Survey</h2>
 <p>Elasticity modeling has one obvious blind spot: it needs price variation to work with. A brand-new SKU that's never had its price changed, or a SKU with very low order volume, won't produce a confident elasticity estimate no matter how good the model is.</p>
@@ -3894,7 +4152,7 @@ export const posts: BlogPost[] = [
 <h2>Which One Fits a Small or Mid-Size Store</h2>
 <p>If you're selling on a marketplace where buy-box visibility depends on being the cheapest listed price, a repricer solves a real, immediate problem. That's a legitimate use case and it's what Prisync and its peers are built for.</p>
 <p>If your store has its own brand, its own customer base, and at least 10 to 150+ SKUs with roughly 6 months of sales history that includes some real price movement (elasticity needs price variation to read, it can't work from volume data alone), an elasticity read is going to tell you something a competitor's price never will. That's the profile Zorin is built around: a store owner or a small ops team of one to five people handling pricing as one job among many, not a dedicated analyst.</p>
-<p>Enterprise elasticity platforms like Competera exist too, but they're generally priced and built for retailers with in-house pricing teams already. Zorin sits specifically in the gap between "no pricing intelligence at all" and "enterprise pricing team," aimed at merchants who don't have the headcount for the second option.</p>
+<p>Enterprise elasticity platforms like Competera exist too, but they're generally priced and built for retailers with in-house pricing teams already. <a href="https://www.pricefx.com/" target="_blank" rel="noopener noreferrer">PriceFx</a> is a similar case, a B2B pricing and CPQ platform named a Leader in the 2026 Gartner Magic Quadrant for B2B Pricing and Rebates Optimization, built for manufacturers, distributors, and large retailers with approval workflows and dedicated pricing teams, not a 50-SKU Shopify store. Zorin sits specifically in the gap between "no pricing intelligence at all" and "enterprise pricing team," aimed at merchants who don't have the headcount for the second option.</p>
 
 <h2>Do You Actually Need Elasticity Data, or Is Repricing Enough</h2>
 <p>Ask yourself one direct question: is your product a commodity where the customer is actively comparing your price to five other identical listings right now, or is it something where your own customer's behavior, not the competitor's number, actually decides the sale?</p>
@@ -3937,6 +4195,10 @@ export const posts: BlogPost[] = [
 <p>Repricing is worth it if your product is a commodity where customers are actively price comparing. For most independent stores, elasticity data grounded in your own sales history says more about what your customers will actually pay than any competitor's listed price.</p>
 </div>
 <div class="faq-item">
+<h3>Is PriceFx a good fit for a small Shopify or WooCommerce store?</h3>
+<p>Not usually. PriceFx is a B2B pricing and CPQ platform built for manufacturers, distributors, and large retailers with dedicated pricing teams and approval workflows, a 2026 Gartner Magic Quadrant Leader in its category. That scale and price point is built for a different buyer than an independent or SMB ecommerce merchant.</p>
+</div>
+<div class="faq-item">
 <h3>Does Zorin compare my prices against competitors?</h3>
 <p>Not automatically. Zorin doesn't scrape or live-monitor competitor sites, and every core recommendation is grounded in your own sales history, not the market. It does have a manual option: you can add a competitor's name, price, and an optional URL per product, and Zorin computes the min, median, and max across what you've entered, without a separate tracking subscription.</p>
 </div>
@@ -3958,7 +4220,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Repricing and elasticity modeling aren't competing answers to the same question, they're built to answer two different ones. If your store's pricing problem is "am I visible at the right price point on a marketplace," a repricer earns its keep. If it's "what should this specific product actually cost given how my customers behave," that's a question only your own sales history can answer, and it's the one <a href="/signup">Zorin</a> was built to read.</p>
+<p class="conclusion">Repricing and elasticity modeling aren't competing answers to the same question, they're built to answer two different ones. If your store's pricing problem is "am I visible at the right price point on a marketplace," a repricer earns its keep. If it's "what should this specific product actually cost given how my customers behave," that's a question only your own sales history can answer, and it's the one <a href="/signup">Zorin</a> was built to read. For a direct, feature-by-feature look at one specific repricer, see <a href="/blog/zorin-vs-prisync">Zorin vs Prisync</a>.</p>
     `.trim(),
   },
   {
