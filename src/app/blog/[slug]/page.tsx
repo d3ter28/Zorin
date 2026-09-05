@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${post.title} — Zorin`,
     description: post.excerpt,
     alternates: { canonical: canonicalUrl },
+    ...(post.hidden ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: `${post.title} — Zorin`,
       description: post.excerpt,

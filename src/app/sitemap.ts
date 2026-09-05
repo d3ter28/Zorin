@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogRoutes: MetadataRoute.Sitemap = posts
-    .filter((post) => !post.canonicalSlug)
+    .filter((post) => !post.canonicalSlug && !post.hidden)
     .map((post) => ({
       url: `${BASE_URL}/blog/${post.slug}`,
       lastModified: new Date(post.updatedDate ?? post.date),

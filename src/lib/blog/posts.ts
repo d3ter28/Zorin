@@ -8,6 +8,7 @@ export type BlogPost = {
   category: string;
   ogImage?: string; // absolute URL or root-relative path, e.g. "/images/blog/my-post-og.png" (1200×630)
   canonicalSlug?: string; // set on older duplicate posts to point canonical to the newer slug
+  hidden?: boolean; // excluded from sitemap, /blog/all listing, and search indexing — for off-topic reciprocal-link placements that stay live at their URL but shouldn't dilute topical relevance
   content: string; // HTML string
   author?: {
     name: string;
@@ -18,6 +19,117 @@ export type BlogPost = {
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "find-your-people-in-online-communities",
+    title: "Find Your People in Online Communities",
+    excerpt:
+      "General social media rewards a broad audience over a real connection. Interest-based communities work differently, here's how to find yours.",
+    date: "2026-09-05",
+    readingTime: "6 min read",
+    category: "Education",
+    hidden: true,
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Most social platforms are built to hold your attention, not to connect you with people who actually share your interests. A feed optimized for engagement surfaces whatever performs best across millions of strangers, which is a different goal entirely from putting you in a room with the handful of people who care about the same specific thing you do. Interest-based communities work on the opposite principle: a smaller, more self-selected group, gathered around one shared topic, tends to produce better conversations than a general-purpose feed ever will.</p>
+
+<h2>Shared Interest Is a Shortcut Past Small Talk</h2>
+<p>Two strangers who both know the lore of the same fantasy series, or who've both spent a weekend restoring the same model of vintage bike, skip past the usual getting-to-know-you small talk almost immediately. Shared interest gives a conversation a starting point that doesn't need explaining, which is a big part of why niche forums and interest-based chat spaces tend to produce deeper exchanges than a general social feed, where most interactions are one-off replies to a post that'll be gone from anyone's attention in an hour.</p>
+
+<h2>Finding a Community That Isn't Just Another Feed</h2>
+<p>General platforms bolt "groups" onto a feed-first product, and it shows. A dedicated space built around one topic, a forum, a themed chat room, a subreddit run by people who actually moderate it, tends to have better signal because the platform's whole design points toward that one thing instead of everything at once.</p>
+<p>Chat-first platforms built specifically for interest-based conversation, <a href="https://blablab.chat/" target="_blank" rel="sponsored noopener noreferrer">Blablab</a> is one example, take this further by organizing rooms around specific topics rather than around a follower graph, so a new member can join a conversation already happening instead of having to build an audience first.</p>
+
+<h2>A Few Things That Make These Conversations Work</h2>
+<ul>
+<li><strong>Be specific, not generic.</strong> "I love this genre" starts fewer conversations than "the pacing in the second act of this specific book bothered me." Specifics give someone something to actually respond to.</li>
+<li><strong>Ask a real question and wait for the answer.</strong> Reading the last twenty messages before jumping in matters more online than it does in person, since there's no tone of voice to soften a question that's already been answered.</li>
+<li><strong>Give it time.</strong> Online friendships build the same way in-person ones do, gradually, through repeated small interactions rather than one long first conversation.</li>
+</ul>
+
+<h2>Keep Personal Details Out of It, at Least at First</h2>
+<p>A real advantage of interest-based chat spaces over, say, dating apps or open forums is that a conversation about a shared hobby doesn't require handing over a phone number or a last name to be worthwhile. Full name, address, phone number, financial details, none of that needs to come up for a conversation about a shared interest to go well. Platforms that let you participate under a handle rather than a full profile make it easier to stay engaged without oversharing early, and a platform that offers clear reporting and moderation tools is worth prioritizing over one that doesn't.</p>
+
+<h2>The Upside of Talking to People Outside Your Own Country</h2>
+<p>A niche interest doesn't respect borders, and one of the more interesting side effects of interest-based communities is talking regularly with people from entirely different countries and cultures, connected by nothing but the same specific hobby. That's a different kind of exposure than following international accounts on a general platform, since the conversation is built around something you already care about rather than around geography.</p>
+
+<p class="conclusion">The internet's ability to connect strangers over a shared interest hasn't gone away, it's just moved out of the main feed and into smaller, more specific spaces. Finding one of those spaces, showing up consistently, and being specific instead of generic in how you talk about the thing you care about is most of what it takes to turn a shared interest into an actual friendship.</p>
+    `.trim(),
+  },
+  {
+    slug: "guest-posting-strategy-for-ecommerce-stores",
+    title: "A Store Owner's Guide to Strategic Guest Posting",
+    excerpt:
+      "Guest posting still moves the needle for a store's organic traffic, but only the kind aimed at genuinely relevant sites. What to check before you pitch.",
+    date: "2026-09-05",
+    readingTime: "7 min read",
+    category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Every dollar of traffic that comes from search instead of an ad account is a dollar that isn't eating into margin. That's the actual reason a store owner should care about backlinks at all, not because "SEO" is a box to check, but because organic traffic is one of the few acquisition channels that gets cheaper as it compounds instead of more expensive. Guest posting is still one of the more reliable ways to build that traffic, provided the placement is picked for relevance and not just for the fact that a site said yes.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A handful of backlinks from sites your customers actually read outperforms a pile of links from sites that just accept anything.</li>
+<li>Domain authority matters less than topical overlap: a mid-authority site in your exact niche usually sends more qualified traffic than a high-authority site with no relevance to what you sell.</li>
+<li>A guest post that reads like an ad gets rejected or ignored. One that solves a real problem for the host site's readers is what earns the placement and the click-through.</li>
+<li>Anchor text diversity protects the link. Branded and generic anchors read naturally; the same exact-match keyword phrase repeated across every guest post looks manufactured to both readers and search engines.</li>
+<li>Outreach is the slowest part of this by far, which is why a lot of store owners eventually lean on a guest-post exchange network instead of cold-emailing editors one at a time.</li>
+</ul>
+</div>
+
+<h2>Why a Handful of Relevant Links Beats a Pile of Random Ones</h2>
+<p>It used to be enough to rack up as many backlinks as possible, from wherever would take them. That stopped working years ago. A link from a site with zero overlap to your store's category does close to nothing for rankings and can actively look manufactured if it's part of a pattern. A single link from a site your actual customers read, a niche blog, a trade publication, a creator in your space, carries more weight than a dozen links from generic "write for us" pages that publish anything.</p>
+<p>The practical filter is simple: would a real customer of yours plausibly land on that host site and read that article anyway? If the answer is no, the link isn't going to do much even if the site's domain metrics look impressive on paper.</p>
+
+<h2>What to Check Before You Pitch a Site</h2>
+<p>A few things are worth confirming before spending the time on a pitch or a draft:</p>
+<ul>
+<li><strong>Topical overlap.</strong> Does the site's existing content sit anywhere near your category? A home goods store pitching a home-improvement blog makes sense. Pitching a general tech blog because it has high traffic usually doesn't.</li>
+<li><strong>Real audience engagement.</strong> Comments, social shares, an active newsletter, these are better signals than a domain authority score alone. A site with high DA and no visible audience interaction may just be well-linked without actually being read.</li>
+<li><strong>Editorial standards.</strong> Read a few of the site's existing posts. If they're thin, poorly edited, or clearly written to rank rather than to inform, your post will sit in that same company.</li>
+<li><strong>Whether they disclose paid or exchanged placements.</strong> A site that's upfront about sponsored content is more trustworthy than one that mixes paid links into "organic" posts without saying so.</li>
+</ul>
+
+<h2>Writing a Guest Post That Earns Its Placement</h2>
+<p>A guest post that's obviously an ad for your store gets rejected by good editors and ignored by good readers. The ones that actually get published, shared, and read are the ones that solve a real problem for that specific audience, with your brand mentioned once, naturally, rather than woven through every paragraph.</p>
+<p>What tends to work: a specific number instead of a vague claim, an example instead of a generality, and a takeaway the reader can act on before they finish the article. A host editor can tell within the first two paragraphs whether a pitch is going to be genuinely useful to their readers or just dressed-up promotion, and they'll edit or reject accordingly.</p>
+
+<h2>Anchor Text: Keep It Natural</h2>
+<p>The anchor text on your link matters more than most store owners assume. A guest post that links your exact target keyword phrase every single time reads as manufactured, both to a human reader and to a search engine looking for unnatural link patterns. Mixing branded anchors ("Zorin"), generic ones ("this pricing guide"), and the occasional natural keyword phrase spreads that signal out the way real, organic links actually accumulate over time.</p>
+
+<h2>Finding Partners Without Losing a Month to Outreach</h2>
+<p>Cold outreach works, but it's slow. Finding the right sites, checking their fit, writing a pitch, following up, and waiting on a reply can easily eat a week per placement if you're doing it one email at a time. That's the main reason a lot of store owners end up using a guest-post exchange network instead, <a href="https://pressplaced.com/" target="_blank" rel="sponsored noopener noreferrer">Pressplaced</a> is one, where site owners in relevant niches swap content directly rather than each side hunting for partners cold. It doesn't replace the judgment calls above, relevance and quality still matter just as much, but it cuts a lot of the search time out of the process.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How many guest post backlinks does a small store actually need?</h3>
+<p>There's no fixed number. A handful of genuinely relevant, high-quality links tends to outperform dozens of low-relevance ones, so the better question is whether each individual placement is worth pursuing on its own merits, not how many you've accumulated.</p>
+</div>
+<div class="faq-item">
+<h3>Does guest posting still work for SEO in 2026?</h3>
+<p>Yes, but the version that works is narrower than it used to be: topically relevant sites, genuinely useful content, and natural anchor text. Mass guest posting on unrelated sites for link volume stopped working years ago and can carry real risk.</p>
+</div>
+<div class="faq-item">
+<h3>Should every guest post link back to my homepage?</h3>
+<p>Not necessarily. Linking to the specific page that's most relevant to the guest post's topic, a product category, a blog post, a tool, usually serves the reader better and reads more naturally than defaulting to the homepage every time.</p>
+</div>
+<div class="faq-item">
+<h3>What's the difference between a natural guest post link and a paid one?</h3>
+<p>A natural link is earned purely on the strength of the content. A paid or exchanged placement should be marked with a <code>rel="sponsored"</code> attribute so search engines don't treat it as an organic editorial endorsement. Reputable exchange platforms expect and support this.</p>
+</div>
+</section>
+
+<p class="conclusion">Guest posting hasn't stopped working, it's just gotten pickier about what counts as a good placement. A store's organic traffic grows fastest from a small number of genuinely relevant links built with real editorial standards, not from a large number of placements on whatever site said yes fastest. Every hour spent on outreach and content for the right site is an hour that keeps paying off long after a single ad campaign would have stopped.</p>
+    `.trim(),
+  },
   {
     slug: "which-products-actually-deserve-a-discount",
     title: "Which Products Actually Deserve a Discount?",
