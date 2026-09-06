@@ -38,6 +38,111 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "is-your-store-ready-for-dynamic-pricing-software",
+    title: "Is Your Store Ready for Dynamic Pricing Software?",
+    excerpt:
+      "Dynamic pricing software isn't right for every store yet. See the real readiness signals, and how Zorin fits once you are.",
+    date: "2026-09-06",
+    readingTime: "8 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A store is ready for dynamic pricing software when it has enough order volume and price history for an algorithm to find a real pattern, and when the product mix actually behaves the way dynamic pricing assumes it does, fast turnover, real competition, thin margins. Below that, automation just adds noise to a decision a person could still make more reliably by hand. Here's how to tell which side of that line your store is actually on.</p>
+
+<h2>What Dynamic Pricing Software Actually Does</h2>
+<p>Dynamic pricing software automates price changes based on signals like demand, competitor prices, and inventory levels, using rules or algorithms to continuously look for a better price point than the one currently listed. Most of the tools that show up under this label, Prisync, Price2Spy, Omnia Retail, are built around watching competitor prices and reacting to them, not modeling your own customers' demand. <a href="https://www.shopify.com/blog/dynamic-pricing-software" target="_blank" rel="noopener noreferrer">Shopify's own guide to dynamic pricing tools</a> lays out a size-based ladder: Shopify's native features for the smallest stores, Prisync and Price2Spy for small to mid-sized businesses, Omnia Retail for mid-market retailers, and Quicklizard for enterprises above $10 million in annual revenue.</p>
+<p>That's worth sitting with for a second. "Dynamic pricing software" as a search term mostly returns repricing tools, not demand-modeling tools. If what you actually want is a read on what your own customers will pay, not what a competitor is charging this week, you're looking for a different category entirely, and it's easy to end up evaluating the wrong shortlist without realizing it.</p>
+
+<h2>The Products That Actually Benefit From It</h2>
+<p>Readiness depends more on what you sell than on how big your store is. Dynamic pricing earns its keep on high-velocity products with quick turnover, categories where competitors are actively adjusting prices in real time, seasonal inventory that needs to clear on a deadline, and thin-margin SKUs where a small pricing miss costs real money. A large, unwieldy catalog where manual price review has stopped being realistic is also a genuine signal, once a few hundred SKUs need regular attention, a person checking spreadsheets can't keep pace.</p>
+<p>The inverse matters just as much. A slow-moving, low-competition product with a stable price doesn't need daily algorithmic attention, there's nothing for the algorithm to react to. Running dynamic pricing on a catalog like that mostly produces price changes that don't reflect anything real, just noise dressed up as optimization.</p>
+
+<h2>How Much Order Volume or Revenue You Actually Need</h2>
+<p>There's no single universal number, but the size-based ladder in Shopify's own guide is a useful anchor: entry-level tools like Prisync and Price2Spy target small to mid-sized businesses, while a platform like Quicklizard is explicitly built for businesses above $10 million in annual revenue. Below the enterprise tier, the more useful signal isn't a specific revenue cutoff, it's whether you have enough order volume and price variation in your own history for a model to learn from at all. A gradual rollout, starting with a small set of products and expanding once you've seen real results, is the more common recommendation across the category than flipping the switch storewide on day one.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>A confidence score exists specifically for this problem: telling you when a recommendation has enough data behind it to trust, and when it doesn't yet.</figcaption>
+</figure>
+
+<h2>Is Dynamic Pricing Software the Same as Price Elasticity Software?</h2>
+<p>No, and mixing the two up is the single most common mistake in this research process. Dynamic pricing, in most of its marketed forms, reads external signals, mainly competitor prices, and reacts to them with a rule or an algorithm. Price elasticity software reads your own sales history and models how your specific customers respond when your price moves. <a href="/blog/price-elasticity-vs-repricing-software">A full breakdown of that distinction</a> is worth reading if you're still deciding which category actually solves your problem, since the readiness question looks different depending on which one you're evaluating.</p>
+
+<h2>What Happens If You Turn It On Too Early</h2>
+<p>Automation doesn't fix a data problem, it amplifies it. A repricing rule reacting to a competitor's price on a product you barely sell just moves you around based on noise. An elasticity model fit to a handful of orders with no real price variation in the history produces a coefficient that looks precise but isn't backed by much. This is exactly why Zorin never applies a recommendation automatically, every change goes through manual review, and every recommendation carries an R²-based confidence label, so a thin-data product is never presented with the same certainty as one with a real track record behind it. Turning on full automation before that foundation exists just means the mistakes happen faster and get harder to trace back to a cause.</p>
+<p>Selling across multiple channels adds another layer of risk to acting too early. Keeping prices synced across your own site and a marketplace like Amazon or Etsy is manageable when you're making changes deliberately and infrequently, and gets meaningfully harder the moment an algorithm is changing prices on its own schedule across all of them at once.</p>
+
+<h2>A Quick Readiness Checklist</h2>
+<p>Run your store against these signals before deciding either way:</p>
+
+<table>
+  <thead>
+    <tr><th>Signal</th><th>What It Means</th><th>Likely Ready?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Very low monthly order count for the SKU in question</td><td>Not enough transactions for a model to find a reliable pattern</td><td>Not yet</td></tr>
+    <tr><td>Prices haven't changed in 6-12 months</td><td>No real price variation for any model, elasticity or repricing, to learn from</td><td>Not yet</td></tr>
+    <tr><td>Catalog is mostly high-velocity or commodity SKUs</td><td>Fast-turnover, comparison-heavy products respond well to frequent price moves</td><td>Ready</td></tr>
+    <tr><td>You're already tracking competitor prices by hand</td><td>The manual version of the job is already happening; automation is a scaling step, not a leap</td><td>Ready</td></tr>
+    <tr><td>Revenue is well under $10 million a year</td><td>Most self-serve tools are built for this range; the enterprise tier targets above it</td><td>Doesn't disqualify you</td></tr>
+    <tr><td>You sell on a single channel</td><td>Cross-channel price sync is where automated pricing gets complicated fastest</td><td>Simpler case</td></tr>
+  </tbody>
+</table>
+
+<h2>Where Zorin Fits</h2>
+<p>Zorin is built for the store that's past the "not enough data" stage but nowhere near a $10 million enterprise tier. Connect Shopify or WooCommerce, or upload a CSV of your sales history, and it fits a price elasticity model per SKU, a raise, lower, or hold recommendation with an estimated profit lift and a confidence score, not a rule reacting to a competitor's storefront. Nothing applies automatically, so there's no risk of an automated system compounding a bad read on thin data before you've had a chance to review it. If your store also has SKUs with no price history to model at all, a separate Van Westendorp price sensitivity survey gives you a second, customer-reported signal to work from in the meantime, without waiting for enough transactions to accumulate.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Readiness for dynamic pricing depends more on order volume, price history, and product type than on store size alone.</li>
+<li>Most tools marketed as "dynamic pricing software" are competitor-reactive repricers, a different category from elasticity software that models your own customers' demand.</li>
+<li>High-velocity, thin-margin, and seasonal products benefit most; slow-moving, stable-price products mostly just get noise from automation.</li>
+<li>Turning on automation before you have enough data amplifies mistakes rather than fixing them, which is why manual review and confidence scoring matter.</li>
+<li>A gradual rollout, starting with a subset of products, is the more common recommendation than switching a whole catalog to automated pricing at once.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I know if my store is ready for dynamic pricing software?</h3>
+<p>Check order volume, price history, and product type. With too few transactions per SKU, or with prices unchanged for 6-12 months, there's not enough signal yet. High-velocity, thin-margin, or seasonal products are the strongest fit once you have that data.</p>
+</div>
+<div class="faq-item">
+<h3>What kind of products actually benefit from dynamic pricing?</h3>
+<p>Fast-turnover, comparison-heavy products, seasonal inventory that needs to clear on a deadline, thin-margin SKUs, and catalogs too large to review manually all respond well. Slow-moving, stable-price products mostly don't.</p>
+</div>
+<div class="faq-item">
+<h3>Is dynamic pricing software the same as price elasticity software?</h3>
+<p>No. Dynamic pricing software mostly reacts to external signals like competitor prices. Price elasticity software reads your own sales history and models how your specific customers respond to price changes.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if I turn on automated pricing before I have enough sales data?</h3>
+<p>Automation amplifies a data problem instead of fixing it. A rule or model reacting to too little history produces changes that look precise but aren't backed by a real pattern, and the mistakes compound faster once they're automated.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a certain amount of revenue or order volume before dynamic pricing software is worth it?</h3>
+<p>There's no universal number, but entry-level tools target small to mid-sized businesses while enterprise platforms like Quicklizard are built for $10 million-plus in annual revenue. Below that, order volume and price variation in your own history matter more than a revenue cutoff.</p>
+</div>
+<div class="faq-item">
+<h3>Should I roll out dynamic pricing to my whole catalog at once?</h3>
+<p>No. Starting with a small set of products and expanding once you've seen real results is the more common approach than switching an entire catalog to automated pricing on day one.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin apply price changes automatically?</h3>
+<p>No. Every recommendation requires manual review. You can adjust it with a slider or your own number, preview the margin impact, and apply changes one product at a time or in bulk, but nothing changes without your approval.</p>
+</div>
+</section>
+
+<p class="conclusion">Dynamic pricing software isn't a single tier you either qualify for or don't, it's a fit question between your data, your product mix, and what a specific tool actually does with that data. Get the readiness signals right first, and the choice of tool gets a lot easier. If what you actually need is a read on your own customers' demand rather than a reaction to a competitor's price, <a href="/signup">Zorin</a> is built for exactly that gap.</p>
+    `.trim(),
+  },
+  {
     slug: "competera-alternatives",
     title: "Competera Alternatives for Smaller Stores",
     excerpt:
@@ -6794,7 +6899,7 @@ export const posts: BlogPost[] = [
 </div>
 
 <h2>The Real Question Isn't "AI or Not," It's "How Much Evidence Is Behind This Call"</h2>
-<p>Framing this as a binary, trust AI or don't, misses what actually determines whether a recommendation is reliable. Two recommendations from the exact same model can deserve very different levels of trust if one is backed by a thousand data points across multiple price points and the other by a handful of sales at a single price that's never moved. The model isn't the variable that matters most. The evidence behind the specific recommendation is.</p>
+<p>Framing this as a binary, trust AI or don't, misses what actually determines whether a recommendation is reliable. Two recommendations from the exact same model can deserve very different levels of trust if one is backed by a thousand data points across multiple price points and the other by a handful of sales at a single price that's never moved. The model isn't the variable that matters most. The evidence behind the specific recommendation is. This is really the same question as <a href="/blog/is-your-store-ready-for-dynamic-pricing-software">whether your store is ready for automated pricing tools at all</a>, just asked at the level of a single recommendation instead of the whole rollout.</p>
 
 <h2>What "Explainable" Actually Looks Like</h2>
 <p>Research on AI trust in commercial contexts consistently finds that explainability outranks raw sophistication as a trust factor. People don't just want a recommendation, they want to know why it's being made. A bare instruction like "change this price to $24.99" gives you nothing to evaluate. A recommendation that states "your elasticity is -1.2, raising to $85 is projected to lift profit 14%, based on 1,247 data points with a strong model fit" gives you something you can actually check against your own knowledge of the product and its customers.</p>
