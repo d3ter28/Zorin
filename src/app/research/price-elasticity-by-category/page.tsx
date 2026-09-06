@@ -171,9 +171,9 @@ const TIER_2: CategoryRow[] = [
       "The general footwear market reads as inelastic at the category level, the same logic that applies to apparel basics: most footwear purchases replace a worn-out pair rather than respond to a price signal. That aggregate figure hides a sharp split once brand enters the picture. Sources discussing premium and heavily-branded footwear describe demand as more elastic than the category average, the same category-versus-brand distinction seen in household appliances above. A customer who has decided to buy shoes this month isn't very price-sensitive about whether to buy shoes at all, but grows more price-sensitive once comparing a specific premium brand against its close substitutes. We're marking this Tier 2 because the numeric estimates we found trace to a single frequently-cited figure, not a corroborating meta-analysis like food, alcohol, or appliances above.",
     sources: [
       {
-        label: "Price elasticity estimate for US footwear market",
+        label: "Houthakker and Taylor, Consumer Demand in the United States, US footwear elasticity estimate",
         url: "https://homework.study.com/explanation/according-to-a-study-the-price-elasticity-of-shoes-in-the-united-states-is-0-7-and-the-income-elasticity-is-0-9-a-would-you-suggest-that-the-brown-shoe-company-cut-its-prices-to-increase-its-reven.html",
-        publisher: "Cited academic estimate (secondary source, single figure)",
+        publisher: "Houthakker and Taylor (cited academic estimate, secondary source for public access)",
       },
     ],
   },

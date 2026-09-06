@@ -40,7 +40,7 @@ export default async function AllPostsPage({
   const { page } = await searchParams;
 
   const sorted = [...posts]
-    .filter((post) => !post.hidden)
+    .filter((post) => !post.hidden && !post.canonicalSlug)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const totalPages = Math.max(1, Math.ceil(sorted.length / POSTS_PER_PAGE));

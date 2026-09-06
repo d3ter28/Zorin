@@ -114,7 +114,7 @@ export default function LandingPage() {
         <WhyZorin />
         <HowItWorks />
         <Features />
-        <Pricing />
+        <Pricing headingLevel="h2" />
         <Blog />
         <FAQ />
         <EarlyAccess />

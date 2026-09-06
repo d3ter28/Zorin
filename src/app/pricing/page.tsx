@@ -4,7 +4,7 @@ import { Pricing } from "@/components/marketing/Pricing";
 import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 
 export const metadata = {
-  title: "Pricing - Zorin",
+  title: "Zorin Pricing: Plans and Free Trial",
   description:
     "Simple, honest pricing for Zorin's Shopify and WooCommerce pricing intelligence. Start with a 7-day free trial, no credit card required.",
   alternates: { canonical: "https://www.tryzorin.com/pricing" },

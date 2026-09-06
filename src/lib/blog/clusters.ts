@@ -10,7 +10,7 @@ export const clusters: Cluster[] = [
     slug: "price-elasticity",
     name: "Price Elasticity",
     description:
-      "The core concept behind every Zorin recommendation: how demand responds when your price moves. Start here to understand elasticity and what to do with it.",
+      "The core idea behind every Zorin recommendation: how demand responds when price moves. Start here to understand elasticity.",
     postSlugs: [
       "what-does-price-elasticity-actually-mean",
       "price-elasticity-explained-a-guide-for-ecommerce-sellers",

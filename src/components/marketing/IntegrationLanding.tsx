@@ -21,7 +21,9 @@ export function IntegrationLanding({ platform, ctaLabel, intro, how, where, sync
         <img
           src="/images/guide/settings-integrations.png"
           alt={`Settings page with the ${platform} connection card`}
-          className="w-full"
+          width={1000}
+          height={720}
+          className="h-auto w-full"
         />
         <p className="border-t border-zinc-100 bg-zinc-50 px-4 py-2.5 text-xs text-zinc-500">
           Video walkthrough coming soon - screenshot above shows the real connection screen.

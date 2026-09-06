@@ -6,7 +6,7 @@ import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 export const metadata = {
   title: "WooCommerce Pricing Intelligence Integration - Zorin",
   description:
-    "Connect your WooCommerce store to Zorin in 2 minutes. Products, orders, and price changes sync automatically for profit-maximizing price recommendations.",
+    "Connect your WooCommerce store to Zorin in 2 minutes. Products, orders, and prices sync automatically for profit-maximizing recommendations.",
   alternates: { canonical: "https://www.tryzorin.com/integrations/woocommerce" },
 };
 

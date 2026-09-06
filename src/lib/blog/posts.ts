@@ -65,7 +65,7 @@ export const posts: BlogPost[] = [
 <p>There's no single universal number, but the size-based ladder in Shopify's own guide is a useful anchor: entry-level tools like Prisync and Price2Spy target small to mid-sized businesses, while a platform like Quicklizard is explicitly built for businesses above $10 million in annual revenue. Below the enterprise tier, the more useful signal isn't a specific revenue cutoff, it's whether you have enough order volume and price variation in your own history for a model to learn from at all. A gradual rollout, starting with a small set of products and expanding once you've seen real results, is the more common recommendation across the category than flipping the switch storewide on day one.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>A confidence score exists specifically for this problem: telling you when a recommendation has enough data behind it to trust, and when it doesn't yet.</figcaption>
 </figure>
 
@@ -168,7 +168,7 @@ export const posts: BlogPost[] = [
 <p>Zorin connects to Shopify or WooCommerce, or takes a CSV upload, and fits a price elasticity model to your own sales history per SKU, no ERP integration or model-training period. The output is a raise, lower, or hold recommendation with an estimated profit lift and an R²-based confidence score, and nothing applies automatically, every change goes through manual review first. Pricing is published: $39 to $249 a month depending on catalog size. The real limitation next to Competera: no cross-category effects modeling and no automated competitor tracking, Zorin's competitor feature is a manual per-product entry, not a live monitoring subscription.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing per-product elasticity, confidence, and recommendations across a product catalog" width="1440" height="1987" loading="eager" fetchpriority="high" />
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing per-product elasticity, confidence, and recommendations across a catalog" width="1440" height="1987" loading="eager" fetchpriority="high" />
   <figcaption>Zorin's per-SKU elasticity read, published pricing, no ERP integration required to get started.</figcaption>
 </figure>
 
@@ -283,7 +283,7 @@ export const posts: BlogPost[] = [
 <p>Zorin is built for the version of that same problem that shows up before a store has a pricing team, or headcount for one. Connect Shopify or WooCommerce, or upload a CSV, and it fits a price elasticity model to your own price-and-quantity history only, per SKU, with no competitor data blended into the read. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through manual review first. The problem it's solving isn't just "what's my elasticity," it's "how do I get an answer to that without a sales call or a custom quote standing between me and a first recommendation." Published pricing runs $39 to $249 a month depending on catalog size.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard showing per-SKU pricing recommendations and confidence scores across a product catalog" width="1440" height="900" loading="eager" fetchpriority="high" />
+  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard showing per-SKU pricing recommendations and confidence scores across a catalog" width="1440" height="900" loading="eager" fetchpriority="high" />
   <figcaption>Symson's model blends in scraped competitor data. Zorin's read comes from your own sales history alone.</figcaption>
 </figure>
 
@@ -400,7 +400,7 @@ export const posts: BlogPost[] = [
 <p>Zorin connects to your Shopify or WooCommerce store, or takes a CSV upload, and fits a price elasticity model to your own price-and-quantity history, per SKU. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through your review first. Zorin's plans start at $39/month for up to 25 products, up to $249/month for unlimited products and multi-store support.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
   <figcaption>Prisync's output is a price matched or undercut against a competitor's listing. This is what Zorin shows instead: a recommendation grounded in your own demand data.</figcaption>
 </figure>
 
@@ -603,7 +603,7 @@ export const posts: BlogPost[] = [
 <p>Applied to a quarterly discount decision, that spread means a flat 20% markdown across an entire "sale" collection is very likely overcorrecting on some products and undercutting margin on others, since a basic tee and a piece of athletic wear sitting in the same sale bucket don't actually behave the same way once the price drops, even though they're in the "same" apparel category on a spreadsheet.</p>
 
 <figure class="post-image">
-  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with a confidence score and estimated profit impact" width="1440" height="1963" loading="lazy" />
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="lazy" />
   <figcaption>A per-product elasticity read, with a stated confidence level, replaces "this whole category is on sale" with a specific answer for each SKU.</figcaption>
 </figure>
 
@@ -1720,7 +1720,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "how-much-should-you-discount-without-killing-your-margin",
-    title: "How Much Should You Discount Without Killing Margin?",
+    title: "How Deep Can You Discount Without Killing Margin?",
     excerpt:
       "The real break-even math for discounts, BOGO vs percentage-off tradeoffs, and how to stop a sale from distorting your future pricing data.",
     date: "2026-08-23",

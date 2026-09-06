@@ -10,19 +10,21 @@ const plans = PLAN_CATALOG.map((plan) => ({
   href: `/signup?plan=${plan.tier}`,
 }));
 
-export function Pricing() {
+export function Pricing({ headingLevel = "h1" }: { headingLevel?: "h1" | "h2" }) {
   const reduce = useReducedMotion();
+  const Heading = headingLevel;
 
   return (
     <section id="pricing" className="scroll-mt-20">
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:py-32">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
+        <Heading className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
           Simple, honest pricing
-        </h1>
+        </Heading>
         <p className="mt-3 max-w-[45ch] text-base leading-relaxed text-zinc-500">
           Start with a 7-day free trial, no credit card required - available while we&apos;re in beta. Upgrade as your catalog grows.
         </p>
 
+        <h2 className="sr-only">Plans</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {plans.map((plan, i) => (
             <motion.div

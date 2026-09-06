@@ -4,7 +4,7 @@ import { Footer } from "@/components/marketing/Footer";
 import { FeaturesGrid } from "@/components/marketing/FeaturesGrid";
 
 export const metadata: Metadata = {
-  title: "Features - Zorin",
+  title: "Pricing Intelligence Features - Zorin",
   description:
     "Everything Zorin does: elasticity modeling, price sensitivity surveys, bulk pricing, profit tracking, and team tools for Shopify and WooCommerce merchants.",
   alternates: { canonical: "https://www.tryzorin.com/features" },
