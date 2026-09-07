@@ -38,6 +38,121 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "zorin-vs-omnia-retail",
+    title: "Zorin vs Omnia Retail: Which Fits Your Store?",
+    excerpt:
+      "Omnia markets \"AI Dynamic Pricing,\" language that sounds like demand modeling. It isn't. Here's what Omnia actually does, and where Zorin fits instead.",
+    date: "2026-09-07",
+    readingTime: "5 min read",
+    category: "Product",
+    funnelStage: "BOFU",
+    comparison: {
+      competitor: "Omnia Retail",
+      rows: [
+        {
+          feature: "Core mechanism",
+          zorin: "Elasticity model fit to your own first-party sales history, no competitor data involved",
+          competitor: "Competitor-price monitoring feeding a rule-based repricing engine (\"Pricing Strategy Tree\"), branded as AI Dynamic Pricing",
+          zorinWins: true,
+        },
+        {
+          feature: "Signup process",
+          zorin: "Self-serve, connect Shopify or WooCommerce or upload a CSV, no sales call required",
+          competitor: "Published SMB starting price, but a demo/sales call is still required to actually sign up",
+          zorinWins: true,
+        },
+        {
+          feature: "Multi-marketplace competitor coverage",
+          zorin: "Manual entry only, name, price, optional URL per product, no live monitoring",
+          competitor: "Live monitoring across Amazon, eBay, Google Shopping, Bol.com, Kaufland, and custom domains",
+          zorinWins: false,
+        },
+        {
+          feature: "Rule and strategy customization depth",
+          zorin: "A raise, lower, or hold call per SKU with a confidence label, no nested rule builder",
+          competitor: "Pricing Strategy Tree lets you build and layer custom rules across market, segment, and SKU level",
+          zorinWins: false,
+        },
+        {
+          feature: "Decision transparency",
+          zorin: "R²-based statistical confidence label grounded in how much real price variation backs each recommendation",
+          competitor: "\"Price Explanation\" button and Omnia Agent walk through the rule logic behind a repricing decision",
+          zorinWins: false,
+        },
+        {
+          feature: "Entry pricing",
+          zorin: "Published tiers, $39 to $249/mo",
+          competitor: "SMB tier starts at €399/mo, single shop, up to 5 users; Enterprise is custom-quoted",
+          zorinWins: true,
+        },
+        {
+          feature: "Customer price-sensitivity survey",
+          zorin: "Included, a 4-question Van Westendorp survey for a stated-preference read",
+          competitor: "Not offered",
+          zorinWins: true,
+        },
+      ],
+      verdict:
+        "Omnia's rule-based repricing is real and genuinely sophisticated for merchants selling the same SKUs across many marketplaces. But \"AI Dynamic Pricing\" still means reacting to competitor prices, not modeling what your own customers will pay. If that's the actual question, Zorin reads your own sales history instead, self-serve, published pricing, no demo call required.",
+    },
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Omnia Retail markets itself heavily around "AI Dynamic Pricing," language that sounds a lot like demand modeling. It isn't. Omnia's AI Agent explains and automates competitor-price-driven repricing decisions, not a read on what your own customers will actually pay. That distinction matters more than the marketing copy suggests, and it's the first thing worth clearing up before comparing the two on anything else.</p>
+
+<h2>What Omnia Retail Actually Does</h2>
+<p>Omnia pulls real-time competitor and marketplace data, Amazon, eBay, Google Shopping, Bol.com, Kaufland, and custom domain scraping, then feeds it into what <a href="https://www.omniaretail.com/dynamic-pricing-software" target="_blank" rel="noopener noreferrer">Omnia's own product page calls a "Pricing Strategy Tree"</a>, a rule-based system for automating price changes across markets, segments, and individual SKUs. An "Omnia Agent" and a "Price Explanation" button surface the reasoning behind each repricing move, real transparency, but transparency into rule logic reacting to competitor prices, not a statistical read on your own demand. <a href="https://www.omniaretail.com/pricing" target="_blank" rel="noopener noreferrer">Omnia's SMB tier starts at €399 a month</a> for a single shop and up to 5 users, with Enterprise custom-quoted, and a demo or sales call is required either way, there's no self-serve signup. The platform holds a <a href="https://www.g2.com/products/omnia-retail/reviews" target="_blank" rel="noopener noreferrer">4.4 out of 5 rating on G2 across 110 reviews</a>.</p>
+
+<h2>What Zorin Actually Does</h2>
+<p>Zorin connects to Shopify or WooCommerce, or takes a CSV upload, and fits a price elasticity model to your own price-and-quantity history only, per SKU, with no competitor or marketplace data blended in. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through manual review first. Setup is self-serve, no demo required, and published pricing runs $39 to $249 a month depending on catalog size.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/price-history.webp" alt="Zorin price history view showing past price changes alongside sales volume per price point" width="1440" height="1969" loading="eager" fetchpriority="high" />
+  <figcaption>Omnia's price scraping tools track what competitors charge across marketplaces. Zorin's read comes from your own price-and-sales history instead.</figcaption>
+</figure>
+
+<h2>The Claim vs. The Reality</h2>
+<p>"AI Dynamic Pricing" is the phrase doing the most work in Omnia's marketing, and it's worth taking apart. The AI in Omnia Agent interprets and explains rule-based repricing decisions built on competitor data, a real and useful feature for merchants who need to justify why a price moved, but it's not a demand model. Nothing about it estimates how your specific customers would respond to a price your competitors have never charged. Zorin's "AI" framing, by contrast, refers specifically to the elasticity model itself, fit to your own sales history, with a confidence score attached to every output. Different tools, doing different jobs, both reasonably called AI-powered, which is exactly how the phrase stops meaning much on its own without checking what's actually underneath it.</p>
+
+<h2>Where Omnia Wins</h2>
+<p>If you sell the same SKUs across half a dozen marketplaces, Amazon, eBay, Google Shopping, regional players like Bol.com or Kaufland, and you need prices to react to competitor moves across all of them automatically, Omnia's live multi-marketplace monitoring and nested rule builder reach further than anything Zorin offers. Zorin's competitor feature is a manual per-product entry, not a live-monitoring subscription, and it has no cross-marketplace repricing automation at all. For a catalog where staying priced-in on Amazon and eBay simultaneously is the actual job, that's a real gap.</p>
+
+<h2>Where Zorin Wins</h2>
+<p>If the real question is what your own customers will pay, not what a competitor happens to be charging on a different marketplace, Zorin answers that directly from your own sales history, with a confidence label so a newer SKU isn't presented with false certainty. Setup is self-serve at $39 a month, no demo call standing between signup and a first recommendation, and it's paired with a Van Westendorp price-sensitivity survey for a second, stated-preference signal Omnia doesn't offer. For a Shopify or WooCommerce merchant without a dedicated pricing team, that's the more accessible starting point by a wide margin.</p>
+
+<h2>The Question Underneath the Marketing</h2>
+<p>Both tools can reasonably call themselves AI-powered, and both would be telling the truth. The question that actually decides which one fits isn't which has better AI, it's which data source the AI is working from: a competitor's storefront, or your own sales history. Once that's answered, the rest of the comparison, price, setup process, feature depth, mostly sorts itself.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Is Omnia Retail an AI elasticity or demand-modeling tool?</h3>
+<p>No. Omnia's AI Agent explains and automates rule-based repricing decisions driven by competitor and marketplace data. It doesn't model demand from a merchant's own sales history the way an elasticity tool does.</p>
+</div>
+<div class="faq-item">
+<h3>Does Omnia Retail have a free trial or self-serve signup?</h3>
+<p>No. Omnia publishes a starting price for its SMB tier (€399/month), but signup requires a demo or sales call either way. Zorin's signup is self-serve with no demo required.</p>
+</div>
+<div class="faq-item">
+<h3>Is Zorin an alternative to Omnia Retail?</h3>
+<p>For merchants whose real question is elasticity-based, what will my own customers pay, yes. For merchants who need live multi-marketplace competitor repricing across Amazon, eBay, and similar platforms, Omnia's mechanism reaches further than Zorin's manual competitor-entry feature.</p>
+</div>
+<div class="faq-item">
+<h3>How much does Omnia Retail cost compared to Zorin?</h3>
+<p>Omnia's SMB tier starts at €399/month for a single shop; Enterprise is custom-quoted. Zorin's published tiers run $39 to $249/month depending on catalog size.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin track competitor prices across marketplaces like Omnia does?</h3>
+<p>No. Zorin's competitor feature is a manual per-product entry, name, price, optional URL, computing a min/median/max. It doesn't do live monitoring across Amazon, eBay, or other marketplaces the way Omnia does.</p>
+</div>
+</section>
+
+<p class="conclusion">Omnia and Zorin both get called AI pricing tools, and neither claim is false. But "AI" describes very different mechanisms in each case, one interpreting competitor-driven repricing rules, one modeling your own customers' demand. If it's the second question you're actually trying to answer, <a href="/signup">Zorin</a> was built specifically to read it, without a demo call standing in the way.</p>
+    `.trim(),
+  },
+  {
     slug: "is-your-store-ready-for-dynamic-pricing-software",
     title: "Is Your Store Ready for Dynamic Pricing Software?",
     excerpt:
@@ -4327,7 +4442,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <h2>Which One Fits a Small or Mid-Size Store</h2>
-<p>If you're selling on a marketplace where buy-box visibility depends on being the cheapest listed price, a repricer solves a real, immediate problem. That's a legitimate use case and it's what Prisync and its peers are built for.</p>
+<p>If you're selling on a marketplace where buy-box visibility depends on being the cheapest listed price, a repricer solves a real, immediate problem. That's a legitimate use case and it's what Prisync and its peers are built for. <a href="/blog/zorin-vs-omnia-retail">Omnia Retail is a heavier-duty version of the same idea</a>, live competitor monitoring across Amazon, eBay, and regional marketplaces feeding a rule-based repricing engine, useful if you're managing the same SKUs across several channels at once, but still a different mechanism than an elasticity read.</p>
 <p>If your store has its own brand, its own customer base, and at least 10 to 150+ SKUs with roughly 6 months of sales history that includes some real price movement (elasticity needs price variation to read, it can't work from volume data alone), an elasticity read is going to tell you something a competitor's price never will. That's the profile Zorin is built around: a store owner or a small ops team of one to five people handling pricing as one job among many, not a dedicated analyst.</p>
 <p>Enterprise elasticity platforms like Competera exist too, but they're generally priced and built for retailers with in-house pricing teams already. <a href="https://www.pricefx.com/" target="_blank" rel="noopener noreferrer">PriceFx</a> is a similar case, a B2B pricing and CPQ platform named a Leader in the 2026 Gartner Magic Quadrant for B2B Pricing and Rebates Optimization, built for manufacturers, distributors, and large retailers with approval workflows and dedicated pricing teams, not a 50-SKU Shopify store. Zorin sits specifically in the gap between "no pricing intelligence at all" and "enterprise pricing team," aimed at merchants who don't have the headcount for the second option.</p>
 
