@@ -38,6 +38,121 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "zorin-vs-competera",
+    title: "Zorin vs Competera: Which Fits Your Store?",
+    excerpt:
+      "Competera does real elasticity modeling too, but it's built for enterprise retailers on a quote-only budget. Here's where Zorin fits instead.",
+    date: "2026-09-09",
+    readingTime: "6 min read",
+    category: "Product",
+    funnelStage: "BOFU",
+    comparison: {
+      competitor: "Competera",
+      rows: [
+        {
+          feature: "Core mechanism",
+          zorin: "Elasticity model fit to your own first-party sales history, per SKU",
+          competitor: "\"Second-generation AI pricing\" blending demand forecasting across 20+ factors with real-time competitive market data",
+          zorinWins: false,
+        },
+        {
+          feature: "Omnichannel and promo optimization depth",
+          zorin: "Per-SKU raise, lower, or hold recommendation only, no channel or markdown layer",
+          competitor: "Consistent pricing across online and physical channels, plus promo and markdown optimization with margin protection",
+          zorinWins: false,
+        },
+        {
+          feature: "Target buyer and buying process",
+          zorin: "Self-serve, connect Shopify or WooCommerce or upload a CSV, no sales call required",
+          competitor: "Enterprise-only, request-a-demo and sales-assisted onboarding, no public self-serve signup",
+          zorinWins: true,
+        },
+        {
+          feature: "Pricing transparency",
+          zorin: "Published tiers, $39 to $249/mo",
+          competitor: "Quote-only, no published pricing, scoped to catalog size and market count",
+          zorinWins: true,
+        },
+        {
+          feature: "Confidence scoring per recommendation",
+          zorin: "R²-based confidence label on every SKU-level recommendation",
+          competitor: "No public confidence-score mechanism described",
+          zorinWins: true,
+        },
+        {
+          feature: "Competitor price monitoring",
+          zorin: "Manual entry only, name, price, optional URL per product, no automatic scraping",
+          competitor: "Real-time competitive data monitoring built directly into the pricing model",
+          zorinWins: false,
+        },
+        {
+          feature: "Customer price-sensitivity survey",
+          zorin: "Included, a 4-question Van Westendorp survey for a stated-preference read",
+          competitor: "Not offered",
+          zorinWins: true,
+        },
+      ],
+      verdict:
+        "Competera's modeling is real and reaches further than Zorin's on raw depth, 20+ factors, omnichannel consistency, promo optimization, built for retailers with the catalog complexity to use all of it. But it's a quote-only enterprise sale with ERP-heavy onboarding. If you're a self-serve Shopify or WooCommerce merchant who wants a comparable elasticity read without a sales cycle, Zorin gets you there today, at a published price.",
+    },
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Search long enough for elasticity-based pricing software and Competera shows up next to Zorin, both claiming to model demand rather than just chase a competitor's price. That claim holds up for both: Competera's modeling is genuinely more sophisticated than a repricer with an AI label bolted on. So the real question isn't whether Competera does real elasticity modeling, it does, it's who each tool actually built that modeling for.</p>
+
+<h2>What Competera Actually Does</h2>
+<p>Competera runs a five-step pipeline: integrate internal retail data with external market signals, train and validate ML models against historical patterns, forecast demand using contextual factors beyond price sensitivity alone, keep a human in the loop to set campaign goals and override recommendations, then continuously refine as the market shifts. Real depth comes from combining that demand model with live competitive data monitoring and omnichannel consistency, the same recommended price holding across online and physical stores, plus promo and markdown optimization with margin protection built in. <a href="https://competera.ai/" target="_blank" rel="noopener noreferrer">Competera's own site</a> names retailers like Sephora, Jumia, and AUTODOC among its 50-plus global clients, and explicitly positions the platform for "enterprise-grade scalability" across "complex, multi-channel operations." Pricing is quote-only, no published tiers, access starts with a demo request. The platform holds a <a href="https://www.g2.com/products/competera-pricing-platform/reviews" target="_blank" rel="noopener noreferrer">4.9 out of 5 rating on G2 across 14 reviews</a>.</p>
+
+<h2>What Zorin Actually Does</h2>
+<p>Zorin connects to Shopify or WooCommerce, or takes a CSV upload, and fits a price elasticity model to your own price-and-quantity history only, per SKU, with no competitor or channel data blended into the read. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through manual review first. Setup is self-serve, no demo required, and published pricing runs $39 to $249 a month depending on catalog size.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin Van Westendorp survey results chart showing optimal price and acceptable price range" width="736" height="519" loading="eager" fetchpriority="high" />
+  <figcaption>Competera's modeling goes wider, across channels and competitor data. Zorin pairs its elasticity read with a customer price-sensitivity survey instead.</figcaption>
+</figure>
+
+<h2>Why "Both Do Elasticity Modeling" Isn't the Whole Story</h2>
+<p>When two tools both do real modeling, the differentiator moves from mechanism to access, and access is not a minor detail. A <a href="https://www.gartner.com/en/newsroom/press-releases/2026-03-09-gartner-sales-survey-finds-67-percent-of-b2b-buyers-prefer-a-rep-free-experience" target="_blank" rel="noopener noreferrer">2026 Gartner sales survey found 67% of B2B buyers now prefer a rep-free buying experience</a>, wanting to evaluate and adopt software on their own timeline rather than through a sales process. Competera's onboarding runs the opposite direction by design: enterprise deployments typically integrate with a retailer's ERP system, and <a href="https://www.netsuite.com/portal/resource/articles/erp/erp-statistics.shtml" target="_blank" rel="noopener noreferrer">NetSuite's own ERP statistics cite an average implementation timeline of around 17 months</a> for enterprise-scale rollouts, far beyond the 12 months most teams plan for going in. That's not a knock on Competera, that timeline is the cost of the depth it offers. It's a real cost, though, and one worth weighing honestly against how urgently a pricing answer is actually needed.</p>
+
+<h2>Where Competera Wins</h2>
+<p>If your catalog spans online and physical channels and needs one consistent price across both, or if promo and markdown optimization with margin protection is a real operational need, not a nice-to-have, Competera's depth reaches further than Zorin's per-SKU read. Blending live competitive data directly into the demand model also solves a real problem for categories where market position genuinely shifts customer behavior alongside your own price history. For a retailer at Sephora's or Jumia's scale, with a dedicated pricing team to configure and maintain it, that depth is the actual point.</p>
+
+<h2>Where Zorin Wins</h2>
+<p>If the problem is access rather than depth, a Shopify or WooCommerce merchant who wants a first elasticity-based recommendation today, not after a demo call, a scoping conversation, and an ERP integration project, Zorin solves that directly. Published pricing, no sales process, and a confidence label on every recommendation so a newer SKU with thin data isn't presented with false certainty. It's also paired with a separate Van Westendorp price-sensitivity survey, a stated-preference signal Competera doesn't offer.</p>
+
+<h2>When You'd Outgrow Zorin for Something Like Competera</h2>
+<p>This isn't really a "can you use both" situation, it's a graduation question. A single-channel Shopify or WooCommerce store with a few hundred SKUs rarely needs omnichannel price consistency or a dedicated pricing analyst to configure campaign rules, Zorin's self-serve read covers that job directly. The signal it's time to look at something like Competera instead is usually organizational before it's technical: a dedicated pricing team already exists, or is being hired, and the catalog has grown past what one person reviewing per-SKU recommendations can reasonably manage alone.</p>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Is Zorin a Competera alternative?</h3>
+<p>For self-serve SMB and independent stores, yes. Both do real elasticity or demand modeling, but Competera is built for enterprise retailers with a dedicated pricing team and a quote-only sales process, while Zorin is self-serve with published pricing for Shopify and WooCommerce merchants.</p>
+</div>
+<div class="faq-item">
+<h3>Does Competera actually do elasticity modeling, or is it mostly competitor tracking?</h3>
+<p>It's real demand modeling, not competitor tracking rebranded. Competera's own materials describe forecasting demand from more than 20 pricing and non-pricing factors, then blending in live competitive data and omnichannel consistency on top of that model.</p>
+</div>
+<div class="faq-item">
+<h3>How much does Competera cost compared to Zorin?</h3>
+<p>Competera doesn't publish pricing, access starts with a demo request and a custom enterprise quote. Zorin publishes its tiers directly: $39 a month for up to 25 products, up to $249 a month for unlimited products.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin blend competitor prices into its elasticity model the way Competera does?</h3>
+<p>No. Zorin's elasticity read comes from your own sales history only. You can manually log a competitor's name, price, and an optional URL per product for a min/median/max view, but that's a separate, optional feature, not part of the model itself.</p>
+</div>
+<div class="faq-item">
+<h3>What signals it's time to move from Zorin to something like Competera?</h3>
+<p>Usually an organizational signal before a technical one: a dedicated pricing team already in place, multi-channel catalog consistency becoming a real requirement, or promo and markdown optimization needing to run at a scale beyond what per-SKU manual review can keep up with.</p>
+</div>
+</section>
+
+<p class="conclusion">Competera and Zorin aren't separated by whether the modeling is real, both do genuine elasticity-based pricing. They're separated by which retailer each one was actually built to serve first, and how much sales process stands between signing up and a first recommendation. If that's a solo store owner or a small team without a pricing analyst, <a href="/signup">Zorin</a> gets you a per-SKU read today, published pricing, no demo call required. Weighing more than one option? See <a href="/blog/competera-alternatives">Competera alternatives</a> for a broader shortlist.</p>
+    `.trim(),
+  },
+  {
     slug: "prisync-alternatives",
     title: "Prisync Alternatives for Elasticity-First Pricing",
     excerpt:
@@ -392,7 +507,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Competera's modeling is real, the alternative search usually isn't about doubting the mechanism, it's about pricing and onboarding that don't fit a smaller team. Zorin, Symson, Prisync, and Price2Spy each solve a different piece of what Competera does, at a different price point and level of self-serve access. If the fit you're looking for is elasticity modeling without an enterprise sales process, <a href="/signup">Zorin</a> is built for exactly that gap.</p>
+<p class="conclusion">Competera's modeling is real, the alternative search usually isn't about doubting the mechanism, it's about pricing and onboarding that don't fit a smaller team. Zorin, Symson, Prisync, and Price2Spy each solve a different piece of what Competera does, at a different price point and level of self-serve access. If the fit you're looking for is elasticity modeling without an enterprise sales process, <a href="/signup">Zorin</a> is built for exactly that gap. For a direct, feature-by-feature look, see <a href="/blog/zorin-vs-competera">Zorin vs Competera</a>.</p>
     `.trim(),
   },
   {
