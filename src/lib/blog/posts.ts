@@ -38,6 +38,104 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "is-pricing-software-worth-the-monthly-cost",
+    title: "Is Pricing Software Worth the Monthly Cost?",
+    excerpt:
+      "A simple breakeven framework for whether pricing software pays for itself, using real plan pricing and math instead of invented case studies.",
+    date: "2026-09-10",
+    readingTime: "6 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">"Is pricing software worth it" is the wrong first question, it depends entirely on your store, and no vendor's marketing page can answer it honestly for you. The right first question is narrower and answerable in under a minute: how much of a profit lift does the tool need to generate before its monthly cost is covered? Once you know that number, the "worth it" question mostly answers itself.</p>
+
+<h2>Why Breakeven Is the Right Frame, Not ROI Percentages</h2>
+<p>Vendor pages love to lead with a big ROI percentage. It's the wrong number to anchor on, because it's usually calculated against a best-case scenario, not your store. A more honest starting point is breakeven: the monthly cost of the tool, divided by your current monthly profit, tells you the smallest percentage profit lift that makes the subscription pay for itself. Everything above that is upside. Everything below it is a real cost you're absorbing.</p>
+
+<h2>The Breakeven Math, With Real Numbers</h2>
+<p>Using Zorin's own published tiers as a concrete example, here's what the breakeven threshold actually looks like at a few different store sizes:</p>
+
+<table>
+<thead>
+<tr><th>Plan</th><th>Monthly Cost</th><th>Example Monthly Profit</th><th>Profit Lift Needed to Break Even</th></tr>
+</thead>
+<tbody>
+<tr><td>Starter ($39/mo)</td><td>$39</td><td>$3,000</td><td>1.3%</td></tr>
+<tr><td>Growth ($99/mo)</td><td>$99</td><td>$8,000</td><td>1.2%</td></tr>
+<tr><td>Scale ($249/mo)</td><td>$249</td><td>$20,000</td><td>1.25%</td></tr>
+</tbody>
+</table>
+
+<p>The pattern holds across tiers: the breakeven bar sits at roughly a 1 to 1.5% profit lift, regardless of store size, because pricing tools scale their cost with catalog size too. That's a genuinely low bar. Correcting the price on even one or two meaningfully mispriced SKUs in a catalog of any real size will usually clear it.</p>
+
+<h2>How Big a Profit Lift Is Actually Realistic</h2>
+<p>A well-known McKinsey study of the Global 1200 found that a 1% price increase, if sales volume holds steady, translates to roughly an 11% increase in operating profit on average. The catch is the "if volume holds steady" part, that assumption doesn't hold for every product, and raising the wrong SKU's price can cost you more in lost volume than it gains in margin. That's exactly the gap elasticity data is built to close: instead of guessing whether a specific product can absorb a price change, a confidence-scored recommendation tells you which SKUs can move and by how much before you touch the number.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>A profit-lift estimate attached to a specific recommendation is what turns "pricing software might help" into an actual breakeven calculation.</figcaption>
+</figure>
+
+<h2>What You're Actually Paying For</h2>
+<p>The monthly subscription isn't really what you're buying, the underlying product is a substitute for the time and guesswork a manual pricing review would otherwise cost you. Zorin connects to <a href="/integrations/shopify">Shopify</a> or <a href="/integrations/woocommerce">WooCommerce</a>, or takes a CSV upload, and fits an elasticity model to your own price-and-quantity history per SKU, producing a raise, lower, or hold call with an R²-based confidence score and an estimated profit lift attached to each one. Nothing applies automatically, every recommendation goes through manual review first. That confidence score matters more than it sounds: a thin-data product with only a few weeks of sales history shouldn't be treated with the same certainty as one with two years behind it, and a tool that doesn't distinguish the two is asking you to trust a guess dressed up as an answer.</p>
+
+<h2>Questions Worth Asking Before You Sign Up for Any Pricing Tool</h2>
+<p>Whichever vendor you're evaluating, a few questions cut through the marketing copy fast:</p>
+<ul>
+<li>Does every recommendation come with a confidence signal, or are all SKUs presented with equal certainty regardless of how much sales history backs them?</li>
+<li>Is pricing published, or does getting a real number require a sales call?</li>
+<li>Do changes apply automatically, or does a human review each one before it goes live?</li>
+<li>What does the tool actually need from your store to start working, and how long until you get a first recommendation?</li>
+</ul>
+<p>A longer version of this checklist, covering the full evaluation process rather than just the cost question, is worth reading before you commit to any specific vendor: <a href="/blog/how-to-evaluate-a-shopify-pricing-app">how to evaluate a Shopify pricing app</a>.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>"Is it worth it" is the wrong first question. "What's my breakeven profit lift" is the right one, and it's usually a 1 to 1.5% profit lift across typical plan tiers.</li>
+<li>McKinsey's Global 1200 research found a 1% price increase can lift operating profit roughly 11% on average, if volume holds steady, which is exactly the assumption elasticity data is built to test.</li>
+<li>Confidence scoring matters: a thin-data SKU shouldn't be treated with the same certainty as an established one.</li>
+<li>Published pricing beats a sales-call-gated quote when you're trying to run this exact breakeven math yourself.</li>
+<li>The real cost being replaced isn't the subscription, it's the time and guesswork of a manual pricing review.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I calculate whether pricing software is worth it for my store?</h3>
+<p>Divide the tool's monthly cost by your current monthly profit. That percentage is your breakeven threshold, the smallest profit lift the tool needs to generate before it pays for itself. Anything above that is real upside.</p>
+</div>
+<div class="faq-item">
+<h3>What profit lift can I realistically expect from pricing software?</h3>
+<p>There's no universal number, it depends on how mispriced your current catalog actually is. McKinsey's Global 1200 research found a 1% price increase can lift operating profit roughly 11% on average if volume holds, which is why even a small, well-targeted correction tends to clear a typical breakeven bar.</p>
+</div>
+<div class="faq-item">
+<h3>Is pricing software worth it for a small Shopify or WooCommerce store?</h3>
+<p>Usually yes on the math alone, the breakeven threshold at typical plan pricing is low, roughly 1 to 1.5% profit lift. The bigger question is whether the specific tool gives you a confidence-scored, per-SKU answer or just a generic dashboard you still have to interpret yourself.</p>
+</div>
+<div class="faq-item">
+<h3>Does pricing software apply changes automatically?</h3>
+<p>Depends on the tool. Zorin never applies a recommendation automatically, every change goes through manual review first, with a margin-impact preview before you apply it one at a time or in bulk.</p>
+</div>
+<div class="faq-item">
+<h3>What's the real cost of not using pricing software?</h3>
+<p>Usually invisible rather than zero: SKUs sitting underpriced or overpriced for months because no one had the bandwidth to review them individually, and no reliable way to tell which products could actually absorb a change.</p>
+</div>
+<div class="faq-item">
+<h3>How much does Zorin cost?</h3>
+<p>Published tiers: $39 a month for up to 25 products, $99 a month for up to 150 products with Shopify and WooCommerce sync, and $249 a month for unlimited products with multi-store support.</p>
+</div>
+</section>
+
+<p class="conclusion">The honest answer to "is pricing software worth it" is almost always "it depends on the math, and the math is easy to check yourself." Work out your own breakeven threshold before you read another vendor's ROI claim. If a per-SKU, confidence-scored recommendation sounds like the missing piece, <a href="/signup">start a free trial</a> and see what your own breakeven number actually looks like.</p>
+    `.trim(),
+  },
+  {
     slug: "zorin-vs-competera",
     title: "Zorin vs Competera: Which Fits Your Store?",
     excerpt:
@@ -8098,7 +8196,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Picking the right pricing app isn't about the one with the most reviews. It's about whether the recommendation is grounded in your own customers' actual behavior, comes with an honest confidence level, and lets you test before you trust it with your whole catalog.</p>
+<p class="conclusion">Picking the right pricing app isn't about the one with the most reviews. It's about whether the recommendation is grounded in your own customers' actual behavior, comes with an honest confidence level, and lets you test before you trust it with your whole catalog. Once you've narrowed the list, <a href="/blog/is-pricing-software-worth-the-monthly-cost">a simple breakeven calculation</a> tells you whether the monthly cost actually pencils out for your store.</p>
     `.trim(),
   },
   {
