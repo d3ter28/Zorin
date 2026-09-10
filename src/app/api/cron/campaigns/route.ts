@@ -12,17 +12,6 @@ export async function GET(req: Request): Promise<NextResponse> {
     }
     const authHeader = req.headers.get("authorization");
     if (authHeader !== `Bearer ${secret}`) {
-      // TEMP DIAGNOSTIC — never logs the actual secret or header value, only
-      // shape/length info, to find the auth mismatch without exposing it.
-      // Remove once /api/cron/campaigns is confirmed returning 200 again.
-      console.error("[cron/campaigns] auth mismatch", {
-        headerPresent: authHeader !== null,
-        headerStartsWithBearer: authHeader?.startsWith("Bearer ") ?? false,
-        headerLength: authHeader?.length ?? 0,
-        expectedLength: `Bearer ${secret}`.length,
-        secretEnvLength: secret.length,
-        secretHasWhitespace: /\s/.test(secret),
-      });
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }
