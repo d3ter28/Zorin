@@ -38,6 +38,109 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "minimum-advertised-price-what-sellers-need-to-know",
+    title: "Minimum Advertised Price (MAP): What Sellers Need to Know",
+    excerpt:
+      "Learn how MAP pricing works, why it's legal, and how to enforce it. Zorin helps you price confidently across every channel.",
+    date: "2026-09-11",
+    readingTime: "9 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Minimum advertised price, or MAP, is the lowest price a brand allows a reseller to publicly display for a product. It doesn't control what you actually charge at checkout, only what you're allowed to advertise. If you've ever gotten an email from a supplier laying out a pricing floor for a product you carry, that's a MAP policy, and understanding what it does and doesn't restrict matters before you assume you've broken a rule you haven't.</p>
+
+<h2>Why Your Supplier Cares What You Advertise</h2>
+<p>Most Zorin merchants encounter MAP from the other direction than you'd expect: not as the brand writing the policy, but as the seller who received one. A supplier sets a MAP floor to stop resellers from racing each other to the bottom on the same product, which would otherwise erode the brand's perceived value and everyone's margin at once, including yours. One brand that <a href="https://www.price2spy.com/blog/minimum-advertised-price/" target="_blank" rel="noopener noreferrer">launched a MAP policy and directly contacted violators reduced violations by more than 80% within three months</a>, a real illustration of how much unpoliced advertised-price competition can otherwise creep in.</p>
+<p>The distinction that trips people up: MAP restricts what you publicly display, not what a customer actually pays. A $50 MAP floor doesn't mean you can't sell the product for $42 in a private email offer, a loyalty discount, or a cart-level coupon that isn't visible on the product page itself. It means the advertised, publicly visible price can't show $42.</p>
+
+<h2>What You Can and Can't Do Under a MAP Policy</h2>
+<p>MAP and MSRP get used interchangeably in casual conversation, but they're not the same restriction. <a href="https://www.trackstreet.com/blog/map-pricing-vs-msrp" target="_blank" rel="noopener noreferrer">MSRP is the manufacturer's suggested retail price</a>, a non-binding recommendation for what you actually sell at. MAP is a floor specifically on your advertised price, and unlike MSRP, violating it typically has real consequences spelled out in your reseller agreement.</p>
+<p>The legal basis matters too, because "is this even enforceable" is usually the first real question once a MAP policy shows up in your inbox. In the US, MAP policies are generally legal under what's known as the Colgate Doctrine, from <em>United States v. Colgate & Co.</em> (1919), which established that a manufacturer can unilaterally set and enforce pricing terms with resellers without it counting as illegal price-fixing, as long as the policy is applied independently and enforced the same way against every reseller. That last part is not optional. A brand that enforces MAP against one reseller and lets another slide opens itself up to a discrimination claim, which is exactly why well-run MAP programs document every notice and apply the same escalation path to everyone.</p>
+
+<h2>What Happens If You (or a Competing Reseller) Violates MAP</h2>
+<p>Consequences are rarely instant termination on a first violation. A typical enforcement sequence starts with a written notice, often giving 24 to 48 hours to correct the listed products before anything further happens, and escalates only if the pattern continues.</p>
+
+<table>
+<thead>
+<tr><th>Stage</th><th>What Happens</th><th>Typical Timeline</th></tr>
+</thead>
+<tbody>
+<tr><td>First notice</td><td>Written warning listing the specific product(s) and the correction expected</td><td>24-48 hours to comply</td></tr>
+<tr><td>Continued violation</td><td>Loss of co-op advertising funds, promotional support, or preferred order status</td><td>Documented, applied uniformly</td></tr>
+<tr><td>Repeated or unresolved</td><td>Suspension of product supply, or termination of the reseller relationship</td><td>Brand's discretion, per the written policy</td></tr>
+</tbody>
+</table>
+
+<p>The same protection cuts the other way too. If a competing reseller is undercutting the advertised price you're both bound to, you're generally entitled to report it, and a brand with a well-run program should apply the same notice-and-correct process to them that it would to you.</p>
+
+<h2>If You're the One Setting MAP: A Quick-Start Policy Checklist</h2>
+<p>If you sell your own branded product through wholesale accounts or resellers, the roles flip and you're the one writing the policy. A workable MAP policy needs a few things in place before you send it to a single reseller:</p>
+<ul>
+<li><strong>A clear, per-product floor.</strong> Vague policies ("keep pricing reasonable") aren't enforceable. Name the exact minimum advertised price for each SKU or category.</li>
+<li><strong>A defined scope.</strong> Specify which channels the policy covers, online listings, print ads, marketplace pages, and note any explicit exceptions (clearance, private sales).</li>
+<li><strong>Uniform communication.</strong> Every reseller needs to receive the same policy at the same time, in writing, so enforcement later doesn't look selective.</li>
+<li><strong>A monitoring method.</strong> Someone has to actually check advertised prices across channels regularly, whether that's a manual spot-check routine or a dedicated monitoring tool.</li>
+</ul>
+<p>Shopify has no native MAP-enforcement feature. Most sellers document the floor per product internally and check advertised prices on <a href="/integrations/shopify">Shopify</a> or <a href="/integrations/woocommerce">WooCommerce</a> listings manually, or use a dedicated price-monitoring tool if the reseller network is large enough to make manual checks impractical.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing per-product elasticity, confidence, and recommendations across a catalog" width="1440" height="1987" loading="eager" fetchpriority="high" />
+  <figcaption>Zorin's elasticity read on your own DTC channel is a useful sanity check before you set a MAP floor for resellers.</figcaption>
+</figure>
+
+<h2>Where Zorin Fits Into a MAP Strategy</h2>
+<p>MAP and Zorin's core recommendation answer two different questions, and it's worth being precise about that rather than blurring them together. MAP is a policy decision about what resellers are allowed to advertise, aimed at protecting brand value and margin across a whole distribution network. Zorin's elasticity model answers a narrower, different question: what should this specific product cost for your own store, based on your own sales history, not a competitor's or a reseller's price. A merchant selling wholesale genuinely needs both, one governs the network, the other governs your own number. If you're the one setting a MAP floor for your branded products, Zorin's elasticity read on your own DTC channel is a useful check that the floor you're asking resellers to hold isn't set below what your own data says the product can profitably support. And if you ever want a lightweight way to spot-check what resellers are actually advertising without a dedicated monitoring subscription, Zorin's manual competitor-price log lets you enter a name, price, and optional URL per product and see the min, median, and max across what you've logged.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>MAP restricts what you can publicly advertise, not what a customer actually pays. Private discounts (email, loyalty, cart coupons) generally aren't covered.</li>
+<li>MAP and MSRP are different restrictions: MSRP is a non-binding suggested retail price, MAP is a binding floor on advertised price with real enforcement consequences.</li>
+<li>MAP policies are generally legal in the US under the Colgate Doctrine, but only if applied unilaterally and enforced uniformly across every reseller.</li>
+<li>Enforcement is typically graduated: a written notice with a short correction window first, escalating to lost benefits or supply suspension only if the pattern continues.</li>
+<li>If you're setting your own MAP policy, a clear per-product floor, defined scope, uniform communication, and an actual monitoring method are the minimum requirements for it to hold up.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the difference between MAP and MSRP?</h3>
+<p>MSRP is a non-binding suggested retail price, the number a manufacturer recommends but doesn't enforce. MAP is a binding floor on what you're allowed to publicly advertise a product for, with real consequences for violating it, though it doesn't restrict what you actually charge at checkout.</p>
+</div>
+<div class="faq-item">
+<h3>Is it legal to enforce a minimum advertised price policy?</h3>
+<p>Generally yes in the US, under the Colgate Doctrine, as long as the manufacturer sets the policy unilaterally and enforces it uniformly across every reseller. Enforcing it inconsistently against some resellers and not others is what creates legal risk. Rules differ outside the US, MAP-style policies are restricted in some other markets.</p>
+</div>
+<div class="faq-item">
+<h3>How do I enforce a MAP policy with resellers or wholesale partners?</h3>
+<p>Start with a written notice listing the specific product and the correction expected, typically with a 24-48 hour window. If the violation continues, escalate to losing co-op funds or promotional support, and only move to supply suspension or termination if the pattern doesn't stop. Apply the same sequence to every reseller.</p>
+</div>
+<div class="faq-item">
+<h3>How do I set up minimum advertised pricing on Shopify?</h3>
+<p>Shopify has no built-in MAP-enforcement feature. Most sellers document the per-product floor internally and check advertised prices on their storefront and any reseller listings manually, or use a dedicated price-monitoring tool once the reseller network is too large to check by hand.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if a reseller violates my MAP policy?</h3>
+<p>Consequences are usually graduated rather than immediate. A first violation typically gets a written warning with a short correction window. Continued or repeated violations can mean losing promotional support or co-op funds, and in persistent cases, suspension of product supply or termination of the reseller relationship.</p>
+</div>
+<div class="faq-item">
+<h3>Can a customer still buy a product below the MAP price?</h3>
+<p>Yes. MAP only restricts what's publicly advertised, not the actual transaction price. A private discount through email, a loyalty program, or a cart-level coupon that isn't visibly advertised generally falls outside what a MAP policy covers.</p>
+</div>
+<div class="faq-item">
+<h3>What should a MAP policy actually include?</h3>
+<p>A clear per-product or per-category price floor, a defined scope naming which channels and ad types are covered, uniform written communication sent to every reseller at once, and an actual method for monitoring advertised prices, whether manual or tool-assisted.</p>
+</div>
+</section>
+
+<p class="conclusion">MAP is a narrower restriction than it sounds like from the outside, it governs what you can advertise, not what you can charge, and it only holds up legally when it's applied the same way to everyone. Whether you're complying with a supplier's policy or writing your own, the floor itself should be grounded in real numbers. <a href="/signup">Start a free trial</a> to see what your own sales history says a product can actually support before you set, or agree to, a price floor.</p>
+    `.trim(),
+  },
+  {
     slug: "is-pricing-software-worth-the-monthly-cost",
     title: "Is Pricing Software Worth the Monthly Cost?",
     excerpt:
@@ -3497,7 +3600,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Knowing what your own customers will pay on your DTC channel is the anchor for everything else in a multi-channel pricing strategy. Your Shopify or WooCommerce sales history holds that answer for your specific products and your specific customers. Zorin reads that history, models the elasticity per SKU, and gives you a raise, lower, or hold recommendation with an estimated profit lift and a confidence score, so your DTC base price is grounded in real demand data rather than a guess, and your Amazon price has something solid to be built on top of.</p>
+<p class="conclusion">Knowing what your own customers will pay on your DTC channel is the anchor for everything else in a multi-channel pricing strategy. Your Shopify or WooCommerce sales history holds that answer for your specific products and your specific customers. Zorin reads that history, models the elasticity per SKU, and gives you a raise, lower, or hold recommendation with an estimated profit lift and a confidence score, so your DTC base price is grounded in real demand data rather than a guess, and your Amazon price has something solid to be built on top of. If a supplier or wholesale partner has ever sent you a pricing floor to follow, <a href="/blog/minimum-advertised-price-what-sellers-need-to-know">here's what a MAP policy actually restricts, and what it doesn't</a>.</p>
 `,
   },
   {
