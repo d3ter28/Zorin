@@ -42,4 +42,11 @@ export const research: ResearchItem[] = [
       "A sourced reference compiling real gross margin impact from promotional discounting, measured in basis points, across ecommerce product categories, drawn from public company filings.",
     date: "2026-09-01",
   },
+  {
+    slug: "average-order-value-by-product-category",
+    title: "Average Order Value by Ecommerce Product Category",
+    description:
+      "A sourced reference compiling real average order value figures across ecommerce product categories, drawn directly from public company SEC filings and investor disclosures.",
+    date: "2026-09-12",
+  },
 ];

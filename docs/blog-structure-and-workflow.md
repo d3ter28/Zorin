@@ -153,6 +153,21 @@ The Price Elasticity, Discounts & Promotions, and Margin & Profit Fundamentals c
 
 **4 more guest posts written but not yet submitted anywhere** (one per target site — SaaSClue, eCommerce Nation, tryforward.io, SaasTrac), each with one dofollow link to a specific Zorin post per that site's link policy. tryforward.io explicitly screens for AI-written content, so that one likely needs a human rewrite pass before submission.
 
+## Linkable assets backlog (2026-09-12)
+
+Flagged from an external site audit, sequenced by cheapest-to-ship first. Not yet started except where noted.
+
+1. **Glossary section (`/glossary` or `/terms/*`, currently missing entirely).** No definitional pages exist on the site right now. A glossary of ~20-30 terms (price elasticity, Van Westendorp, charm pricing, MAP pricing, penetration vs. skimming, etc.) is a well-known easy-link magnet, other writers link to definitional pages constantly when they mention a term in passing, and it's low effort per page since the explanations already exist scattered across published blog posts and could be excerpted/adapted rather than written from scratch.
+2. **More entries in the "by category" research series** (highest ROI, proven format — this is the exact content type competitors like Symson/PriceFx/Omnia get organically linked from). Natural next entries, all sourceable the same way as the existing 5 pages:
+   - Average order value by category, done 2026-09-12, see `/research/average-order-value-by-product-category`.
+   - Return rate by category, thinner disclosure than AOV, but a few apparel/footwear companies (Nike, some DTC filers) do report it, worth attempting next.
+   - Discount depth / promotional frequency by category, harder to source cleanly (distinct from the existing `discount-impact-on-margin-by-product-category` page, which measures margin impact in basis points rather than typical discount depth or promo frequency), worth attempting for apparel/electronics where public retailers disclose promotional-sales mix.
+3. **Free templates** (classic linkable asset, cheap to build):
+   - Price increase notice email template, directly reuses the "How to Raise Your Price After a Product Launch" post's Step 5 content, packaged as a copy-paste template page.
+   - Van Westendorp survey template/script, a downloadable version of the 4-question framework, useful even to merchants not using Zorin's tool.
+   - Markdown/clearance price curve spreadsheet, ties into the inventory turnover page's "what to do about slow-moving stock" angle.
+4. **Proprietary State-of-Pricing report.** Needs enough connected merchants to make the data credible, blocked on real usage volume, not a content task, revisit once there's a paying customer base large enough to aggregate anonymized data from (see the BOFU non-comparison rotation's blocked Case Studies pillar in the `zorin-blog-writer` skill for the same underlying blocker, pre-revenue as of this writing).
+
 ## Publishing cadence
 
 Standing decision (made 2026-07-30, overriding an earlier "pause until 2026-08-13" recommendation): publish roughly 1 new post per 1-2 days. This is an informed, deliberate risk acceptance for content velocity given the domain's zero-backlink/young-domain state — not something to re-flag per post.

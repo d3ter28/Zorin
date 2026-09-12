@@ -509,7 +509,10 @@ export default function ProfitMarginsByProductCategoryPage() {
           and <a href="/research/inventory-turnover-by-product-category" className="text-blue-600 hover:underline">the inventory turnover by category reference</a> covers
           how long a product sits unsold before either of those numbers even matters, while{" "}
           <a href="/research/discount-impact-on-margin-by-product-category" className="text-blue-600 hover:underline">the discount impact on margin reference</a> covers
-          what it actually costs when that unsold stock gets marked down to move.
+          what it actually costs when that unsold stock gets marked down to move, and{" "}
+          <a href="/research/average-order-value-by-product-category" className="text-blue-600 hover:underline">the average order value by category reference</a> covers
+          the other side of that same order, how much a typical basket is actually worth in your
+          category before margin is even applied.
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
