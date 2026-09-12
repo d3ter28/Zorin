@@ -8,7 +8,7 @@ const LAST_UPDATED = "2026-09-12";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
-  title: "Average Order Value by Product Category (Sourced Data) - Zorin",
+  title: "Average Order Value by Product Category - Zorin",
   description:
     "Real average order value figures by ecommerce product category, sourced directly from public company filings and investor disclosures, citable.",
   keywords: [

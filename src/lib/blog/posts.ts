@@ -39,7 +39,7 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     slug: "what-changes-when-you-move-from-spreadsheets-to-pricing-software",
-    title: "What Changes When You Move From Spreadsheets to Software",
+    title: "Spreadsheets to Software: What Actually Changes",
     excerpt:
       "Spreadsheets work until they don't. Here's what actually changes when you move pricing decisions to software, and what still doesn't.",
     date: "2026-09-12",
@@ -126,7 +126,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "minimum-advertised-price-what-sellers-need-to-know",
-    title: "Minimum Advertised Price (MAP): What Sellers Need to Know",
+    title: "MAP Pricing: What Sellers Need to Know",
     excerpt:
       "Learn how MAP pricing works, why it's legal, and how to enforce it. Zorin helps you price confidently across every channel.",
     date: "2026-09-11",
