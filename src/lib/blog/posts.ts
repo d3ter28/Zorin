@@ -2734,7 +2734,7 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Running a Van Westendorp survey is the easy half. Reading what the results actually mean, and knowing what to do with them, is where most of the real value gets left on the table. This guide breaks down the four price points a completed survey produces, what a narrow versus wide acceptable range tells you about your market, why the optimal price point is a starting point and not a final answer, and what to do when your results don't come out clean.</p>
 
-<p>This is a companion piece to <a href="/blog/how-to-run-a-price-sensitivity-survey">How to Run a Van Westendorp Survey</a>, which covers setting up a Van Westendorp survey in Zorin and reading the three summary outputs at a practical level. This post goes one level deeper into what those numbers actually mean and how to act on them correctly.</p>
+<p>This is a companion piece to <a href="/blog/how-to-run-a-price-sensitivity-survey">How to Run a Van Westendorp Survey</a>, which covers setting up a Van Westendorp survey in Zorin and reading the three summary outputs at a practical level. This post goes one level deeper into what those numbers actually mean and how to act on them correctly. If you want to see the underlying math itself worked out by hand, <a href="/blog/van-westendorp-calculation-a-worked-example">Van Westendorp Calculation: A Worked Example</a> walks through the full cumulative-frequency calculation on a sample dataset.</p>
 
 <h2>The Four Price Points a Van Westendorp Survey Produces</h2>
 <p>Each of the four original Van Westendorp questions, too cheap, a bargain, getting expensive, too expensive, produces its own cumulative response curve when plotted across all respondents. Where those curves cross defines four specific price points, each with a distinct, well-established meaning.</p>
@@ -8609,6 +8609,176 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">A sale's biggest risk usually isn't the discount you can see, it's the corrupted signal it can leave behind if the promotional period bleeds into your regular pricing data. Test the discount against your own demand curve, flag the promo period afterward, and give the post-sale window time before drawing conclusions from it.</p>
+    `.trim(),
+  },
+  {
+    slug: "van-westendorp-calculation-a-worked-example",
+    title: "Van Westendorp Calculation: A Worked Example",
+    excerpt:
+      "See the actual math behind PMC, PME, OPP, and IPP, worked step by step from real survey data. Zorin calculates this for you automatically.",
+    date: "2026-09-13",
+    readingTime: "9 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A Van Westendorp price sensitivity meter turns four survey questions into four price points: PMC, PME, OPP, and IPP. Almost every guide on the method explains what those letters stand for and stops short of showing the actual math. This post doesn't. Below is a full worked example, ten survey responses, real cumulative percentages, and the exact intersection arithmetic that produces a final acceptable price range.</p>
+
+<h2>Meet the Example: One Product, Ten Survey Responses</h2>
+<p>Say you're a Shopify merchant launching a $50 canvas weekender bag and you have no idea if that price is right. You send a four-question Van Westendorp survey to ten past customers and prospects. Each person answers with a price for each of the four classic questions: too cheap, a bargain, starting to feel expensive, and too expensive.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Respondent</th>
+      <th>Too Cheap</th>
+      <th>Bargain</th>
+      <th>Getting Expensive</th>
+      <th>Too Expensive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>$15</td><td>$25</td><td>$35</td><td>$50</td></tr>
+    <tr><td>2</td><td>$40</td><td>$50</td><td>$60</td><td>$90</td></tr>
+    <tr><td>3</td><td>$20</td><td>$30</td><td>$45</td><td>$60</td></tr>
+    <tr><td>4</td><td>$30</td><td>$40</td><td>$55</td><td>$75</td></tr>
+    <tr><td>5</td><td>$18</td><td>$28</td><td>$42</td><td>$58</td></tr>
+    <tr><td>6</td><td>$35</td><td>$45</td><td>$58</td><td>$82</td></tr>
+    <tr><td>7</td><td>$22</td><td>$33</td><td>$48</td><td>$65</td></tr>
+    <tr><td>8</td><td>$28</td><td>$38</td><td>$52</td><td>$70</td></tr>
+    <tr><td>9</td><td>$32</td><td>$42</td><td>$56</td><td>$78</td></tr>
+    <tr><td>10</td><td>$25</td><td>$36</td><td>$50</td><td>$68</td></tr>
+  </tbody>
+</table>
+
+<p>Respondent 2 is a clear outlier, someone comfortable paying twice what everyone else considers reasonable. Real survey data almost always has at least one respondent like this, and the method is built to absorb it rather than requiring you to throw it out.</p>
+
+<h2>Step 1 to 3: From Raw Answers to Cumulative Percentages</h2>
+<p>The four answer columns don't get compared directly. Each one becomes a cumulative curve first, and the direction of that cumulation depends on which question it answers.</p>
+<ol>
+<li><strong>Too cheap and bargain answers cumulate downward.</strong> For any price P, calculate the percentage of respondents whose answer to that question is P or higher. These start near 100% at low prices and fall as price rises, since fewer people think a high price is still "too cheap" or "a bargain."</li>
+<li><strong>Getting-expensive and too-expensive answers cumulate upward.</strong> For any price P, calculate the percentage of respondents whose answer is P or lower. These start near 0% at low prices and climb as price rises, since more people agree a high price is "expensive" the higher it gets.</li>
+<li><strong>Repeat this at every price point that shows up anywhere in the data.</strong> You don't need every dollar amount, just the values respondents actually gave.</li>
+</ol>
+<p>Running that calculation across the ten responses above, at $5 checkpoints, produces this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Price</th>
+      <th>Too Cheap</th>
+      <th>Bargain</th>
+      <th>Getting Expensive</th>
+      <th>Too Expensive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>$15</td><td>100%</td><td>100%</td><td>0%</td><td>0%</td></tr>
+    <tr><td>$20</td><td>80%</td><td>100%</td><td>0%</td><td>0%</td></tr>
+    <tr><td>$25</td><td>60%</td><td>100%</td><td>0%</td><td>0%</td></tr>
+    <tr><td>$30</td><td>40%</td><td>80%</td><td>0%</td><td>0%</td></tr>
+    <tr><td>$35</td><td>20%</td><td>60%</td><td>10%</td><td>0%</td></tr>
+    <tr><td>$40</td><td>10%</td><td>40%</td><td>10%</td><td>0%</td></tr>
+    <tr><td>$45</td><td>0%</td><td>20%</td><td>30%</td><td>0%</td></tr>
+    <tr><td>$50</td><td>0%</td><td>10%</td><td>50%</td><td>10%</td></tr>
+    <tr><td>$55</td><td>0%</td><td>0%</td><td>70%</td><td>10%</td></tr>
+    <tr><td>$60</td><td>0%</td><td>0%</td><td>100%</td><td>30%</td></tr>
+    <tr><td>$70</td><td>0%</td><td>0%</td><td>100%</td><td>60%</td></tr>
+    <tr><td>$80</td><td>0%</td><td>0%</td><td>100%</td><td>80%</td></tr>
+    <tr><td>$90</td><td>0%</td><td>0%</td><td>100%</td><td>100%</td></tr>
+  </tbody>
+</table>
+<p>At $30, for example, 40% of respondents still consider that price "too cheap" (four of ten gave a too-cheap threshold of $30 or higher), while 0% consider it expensive yet. By $55, nobody thinks it's too cheap anymore, but 70% think it's getting expensive. The story of the whole survey is visible in this one table, you're just watching for where the descending lines cross the ascending ones.</p>
+
+<h2>Step 4: Reading the Intersections</h2>
+<p>Each of the four price points is defined by where two specific curves cross. Where the raw data jumps between two price points without landing exactly on the crossover, interpolate a straight line between the nearest two rows to find the precise price.</p>
+<ul>
+<li><strong>PMC (Point of Marginal Cheapness):</strong> where "too cheap" crosses "getting expensive." Below this price, too many people doubt the product's quality. In this data, that happens between $35 (too cheap 20%, expensive 10%) and $40 (too cheap 10%, expensive 10%), interpolating to <strong>$36</strong>.</li>
+<li><strong>PME (Point of Marginal Expensiveness):</strong> where "bargain" crosses "too expensive." Above this price, rejection accelerates. That happens right at <strong>$50</strong>, where bargain has fallen to 10% and too-expensive has just reached 10%.</li>
+<li><strong>OPP (Optimal Price Point):</strong> where "too cheap" crosses "too expensive," the price where the fewest people object on either extreme. That lands between $40 and $45, interpolating to <strong>$42</strong>.</li>
+<li><strong>IPP (Indifference Price Point):</strong> where "bargain" crosses "getting expensive," the psychological midpoint where equal numbers see the price as a deal or a stretch. That falls between $40 and $45, interpolating to <strong>$43.50</strong>.</li>
+</ul>
+<p>Put together: an acceptable price range of $36 to $50, an optimal price point of $42, and an indifference point of $43.50. The original $50 launch price sits right at the edge of what this sample will tolerate, worth knowing before you commit to it, not after the first month of underwhelming sales.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing optimal price, indifference point, and price range" width="736" height="519" loading="eager" fetchpriority="high" />
+  <figcaption>The same four numbers this worked example calculates by hand, Zorin generates automatically from your survey responses.</figcaption>
+</figure>
+
+<h2>Why This Wobbles With Too Few Responses</h2>
+<p>Ten responses is enough to demonstrate the method, but it's a small sample, and small samples carry real statistical risk that a clean-looking table can hide. The standard margin of error for a proportion is roughly <code>1.96 × √(p(1-p)/n)</code>. At a 50% split with 10 responses, that's a margin of error of about ±31 percentage points. At 100 responses, the same split narrows to about ±10 points. A curve built on 10 responses isn't wrong, but it's far less stable than it looks, and a single unusual respondent, like Respondent 2 in the table above, can shift an intersection more than you'd expect.</p>
+<p>This is also why <a href="/blog/how-to-run-a-price-sensitivity-survey">running the survey correctly</a> matters as much as calculating it correctly. Most practitioners treat 100 or more responses as the practical floor before treating results as defensible, with 150 to 200 preferred if you plan to segment by customer type or plan tier. Below roughly 100, the intersections become unstable enough that a second batch of responses can move them meaningfully, which is exactly why Zorin's own survey feature labels anything under 20 responses as low confidence rather than presenting it with false precision.</p>
+
+<h2>Manual Math vs. Automated Tools: When Each Makes Sense</h2>
+<p>Working through the calculation by hand once, the way this post just did, is genuinely useful. It removes the mystery from a number a tool hands you and makes it easier to sanity-check an output that looks off. But doing it by hand every time you want to test a new product doesn't scale, and it's easy to make a small transcription error across dozens of respondents and hundreds of data points that quietly shifts an intersection without anyone noticing.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Approach</th>
+      <th>Best for</th>
+      <th>Real cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Manual spreadsheet</td><td>Learning the method, auditing a suspicious result, a one-off small survey</td><td>Slow, and error-prone once respondent counts climb past a few dozen</td></tr>
+    <tr><td>Automated tool (Zorin or similar)</td><td>Ongoing use across a catalog, larger response counts, cross-referencing against sales data</td><td>Requires trusting the tool's math, which is exactly what a manual walkthrough like this one lets you verify once</td></tr>
+  </tbody>
+</table>
+<p>Zorin runs this exact calculation automatically. A merchant generates a shareable, no-login survey link per product, and responses feed straight into the same PMC, PME, OPP, and IPP math worked through above, without a spreadsheet, a pivot table, or a chance to mistype a cell reference. The survey stays a separate, stated-preference signal alongside Zorin's elasticity model, which reads what customers actually did with past price changes rather than what they say they'd pay, and the two are deliberately kept side by side rather than blended into one number.</p>
+
+<h2>Setting Your Price: What the Range Does and Doesn't Tell You</h2>
+<p>A $36 to $50 range doesn't hand you a single answer, it hands you boundaries. Where you land inside that range depends on factors the survey doesn't measure: your margin at each price point, how much inventory risk you're carrying, and whether you're optimizing for volume or per-unit profit on this specific launch. The optimal price point, $42 in this example, is a reasonable starting anchor precisely because it's where the fewest people object on either end, but it's a starting point, not a mandate.</p>
+<p>It's also worth treating this as one input rather than the whole decision. <a href="/blog/do-you-need-a-survey-if-you-have-sales-data">Stated preference and revealed preference are different signals</a>, and research on Van Westendorp results has found stated thresholds often run lower than what customers actually pay once a product is live. If you already have comparable sales history, cross-check the survey range against it. If you're launching something genuinely new, the survey is often the only signal you have until real sales data exists.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>PMC and PME cumulate the "too cheap" and "bargain" answers downward, while "getting expensive" and "too expensive" cumulate upward. All four intersections come from crossing a downward curve with an upward one.</li>
+<li>PMC (lower bound) and PME (upper bound) define your acceptable price range. OPP is where the fewest people object on either extreme. IPP is the psychological midpoint between "deal" and "stretch."</li>
+<li>Where two rows bracket the actual crossover, interpolate a straight line between them rather than rounding to the nearest observed price.</li>
+<li>Small samples carry a real, quantifiable margin of error, roughly ±31 points at n=10 versus ±10 points at n=100 for a 50% split. Treat results under 100 responses as directional, not final.</li>
+<li>Doing this calculation by hand once is worth it for understanding the method. Doing it every time for every product is where an automated tool like Zorin earns its keep.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I calculate my Van Westendorp price points from survey responses?</h3>
+<p>Turn each of the four answer columns into a cumulative curve: "too cheap" and "bargain" cumulate downward (percentage answering that price or higher), "getting expensive" and "too expensive" cumulate upward (percentage answering that price or lower). PMC, PME, OPP, and IPP are the four points where a downward curve crosses an upward one.</p>
+</div>
+<div class="faq-item">
+<h3>How many survey responses do I need before my Van Westendorp results are reliable?</h3>
+<p>Most practitioners treat 100 responses as the practical floor, with 150 to 200 preferred for segmented analysis. Below that, the margin of error on any single price point is wide enough that a second batch of responses can move the intersections meaningfully.</p>
+</div>
+<div class="faq-item">
+<h3>Can I calculate a Van Westendorp price sensitivity meter manually in a spreadsheet?</h3>
+<p>Yes, for a small dataset. Build the four cumulative curves as columns, then find where "too cheap" crosses "getting expensive" (PMC), "bargain" crosses "too expensive" (PME), "too cheap" crosses "too expensive" (OPP), and "bargain" crosses "getting expensive" (IPP), interpolating between rows where needed.</p>
+</div>
+<div class="faq-item">
+<h3>What does a Van Westendorp price range actually look like in practice?</h3>
+<p>In this post's worked example of ten responses for a $50 product, the acceptable range came out to $36 to $50, with an optimal price point of $42 and an indifference point of $43.50, meaning the original $50 launch price sat right at the top edge of what the sample would tolerate.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if I price outside the range my Van Westendorp survey identified?</h3>
+<p>Pricing below PMC risks the product being perceived as suspiciously cheap or low quality. Pricing above PME risks accelerating rejection on cost grounds. Neither is an automatic failure, but both mean you're pricing against what the surveyed group told you they'd accept.</p>
+</div>
+<div class="faq-item">
+<h3>Why do the cumulative percentages move in different directions for different questions?</h3>
+<p>Because "too cheap" and "bargain" answers represent a ceiling a respondent is comfortable with (so lower prices always qualify too, pulling the curve down as price rises), while "expensive" and "too expensive" answers represent a floor (so higher prices always qualify too, pushing the curve up as price rises).</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin calculate this automatically, or do I have to do the math myself?</h3>
+<p>Zorin calculates it automatically from your survey responses and shows the resulting range, optimal price point, and indifference point directly on the product, alongside a confidence tier based on response count. The manual method in this post is for understanding what's happening behind that number, not a requirement for using it.</p>
+</div>
+</section>
+
+<p>If you're about to run this survey for the first time, <a href="/blog/how-to-run-a-price-sensitivity-survey">how to run a price sensitivity survey</a> covers designing and distributing the four questions before any of this math applies, and <a href="/blog/how-to-interpret-van-westendorp-results">how to interpret Van Westendorp results</a> covers what to do with the range once you have it. Ready to skip the spreadsheet entirely? <a href="/signup">Generate a survey link in Zorin</a> and let the calculation run itself.</p>
+
+<p class="conclusion">The math behind PMC, PME, OPP, and IPP isn't complicated, it's four cumulative curves and four intersections. What's easy to get wrong is treating a small sample's output as more precise than it is. Run the numbers by hand once to trust what a tool gives you, then let the tool handle it at the volume a real catalog actually needs.</p>
     `.trim(),
   },
 ];
