@@ -38,6 +38,93 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "what-changes-when-you-move-from-spreadsheets-to-pricing-software",
+    title: "What Changes When You Move From Spreadsheets to Software",
+    excerpt:
+      "Spreadsheets work until they don't. Here's what actually changes when you move pricing decisions to software, and what still doesn't.",
+    date: "2026-09-12",
+    readingTime: "8 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Moving pricing decisions out of a spreadsheet doesn't mean handing control to a black box, and it doesn't mean the spreadsheet was doing something wrong the whole time either. What actually changes is narrower than either fear suggests: you get a statistical read your formulas can't produce, a record of what changed and why, and a place to review a recommendation instead of building one from scratch every time. What doesn't change is that you still make the final call.</p>
+
+<h2>Why Spreadsheets Work Until They Don't</h2>
+<p>For a small catalog with infrequent price changes, a spreadsheet is a completely reasonable tool. It's accessible, requires no setup, and works fine for one person doing occasional, ad-hoc pricing math. The friction shows up predictably: as SKU count grows, as more than one person needs to edit pricing, or as price changes need to happen often enough that manually updating formulas becomes its own part-time job. None of that means the spreadsheet habit was wrong at an earlier stage, it means the stage has changed.</p>
+
+<h2>What a Spreadsheet Can't Actually Tell You</h2>
+<p>The real gap isn't speed, it's confidence. A spreadsheet formula can calculate a markup or a margin instantly, but it can't tell you whether a specific product can absorb a price increase without losing customers, because that requires a statistical read on your own demand data, not an if-then rule someone typed in once. A spreadsheet also can't flag its own uncertainty. A formula returns the same confident-looking number whether it's backed by two years of stable sales history or three weeks of a brand-new product, and a merchant working from the sheet has no built-in signal telling them which is which.</p>
+<p>Manual formulas carry their own quiet risk, too. Ray Panko's research reviewing operational spreadsheets in real business use, cited widely in the academic literature on spreadsheet reliability, found that most contained at least one error, and that people are reliably overconfident about their own spreadsheets' accuracy, not because they're careless, but because errors in a working formula are genuinely hard to spot without a separate check. A single broken reference or a formula that didn't update when a row was inserted can sit undetected for months, quietly feeding a wrong number into every pricing decision built on top of it.</p>
+
+<h2>The Real Costs of the Spreadsheet Habit</h2>
+<p>The costs rarely show up as one dramatic mistake. They show up as a slow accumulation: a version emailed between two people with different numbers in it, a formula that got copied to the wrong row, a price that was updated once and never revisited because updating it required reopening the file and remembering the logic behind the last change. None of these are visible in the moment. They're only visible later, as a vague sense that prices feel "probably fine" without anyone being able to point to why.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/price-history.webp" alt="Zorin price history view showing past price changes alongside sales volume per price point" width="1440" height="1969" loading="eager" fetchpriority="high" />
+  <figcaption>A record of what changed, when, and what happened to sales afterward, the part a spreadsheet rarely keeps intact.</figcaption>
+</figure>
+
+<h2>What Actually Changes Once You Switch</h2>
+<p>Three things change in practice, not the whole nature of the decision. First, the recommendation comes from a statistical model fit to your own sales history instead of a manually typed formula, so it reflects actual customer behavior rather than a rule someone set once and forgot. Zorin, for example, fits a price elasticity model per SKU and attaches an R²-based confidence score to every recommendation, so a thin-data product is never presented with the same certainty as an established one, the exact distinction a spreadsheet formula can't make. Second, every change has a record: what the price was, what it changed to, and what happened to sales afterward, so a question six months later has an actual answer instead of a guess. Third, reviewing a catalog stops being a from-scratch exercise every time, since the tool surfaces what changed since the last check instead of requiring a manual recalculation across every row.</p>
+
+<h2>What Doesn't Change</h2>
+<p>The decision itself stays yours. A statistical recommendation is not the same as an automatic price change, and the honest version of this transition keeps a human reviewing every price before it goes live, not a system quietly rewriting your storefront overnight. You also still need to understand your own margin structure. Software can tell you a product's elasticity, but it can't tell you your cost basis if you haven't tracked it, and a tool that outputs a confident number on top of an unreliable cost input is no more trustworthy than the spreadsheet it replaced.</p>
+
+<h2>Questions Worth Asking Before You Make the Switch</h2>
+<ul>
+<li>Do you have enough sales history, and enough price variation in that history, for a statistical model to have something real to read? Less than that, and a tool's output is closer to a guess than the confidence label suggests.</li>
+<li>Does your team actually review recommendations, or would they get rubber-stamped? A tool only improves on a spreadsheet if someone still applies judgment to what it produces.</li>
+<li>Will it connect to where your sales data already lives, or does it require exporting and re-uploading a file every time, which just moves the manual-labor problem rather than removing it?</li>
+</ul>
+<p>If you're not sure your catalog is ready for the first question, <a href="/blog/is-your-store-ready-for-dynamic-pricing-software">this readiness breakdown</a> covers exactly what "enough history" actually means before you commit to any tool. And once you know you're ready, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">a full evaluation checklist</a> covers what to look for beyond this migration question specifically.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Spreadsheets work fine for small catalogs and infrequent changes. The friction shows up as SKU count, team size, or change frequency grows.</li>
+<li>The real gap isn't speed, it's confidence: a formula can't tell you whether a specific product can absorb a price change, or flag how much data actually supports its own answer.</li>
+<li>Manual spreadsheet errors are common and hard to self-detect. Research reviewing real operational spreadsheets found most contained at least one error.</li>
+<li>What changes: a statistical read on your own data, a record of what changed and why, and less from-scratch manual recalculation.</li>
+<li>What doesn't change: you still make the final call, and you still need an accurate cost basis for any recommendation to mean anything.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>When should I stop using a spreadsheet for pricing?</h3>
+<p>When manually updating prices takes real time out of your week, when more than one person edits the same pricing file, or when your catalog has grown large enough that a formula-based approach can no longer account for how differently each product actually behaves.</p>
+</div>
+<div class="faq-item">
+<h3>What can pricing software tell me that a spreadsheet can't?</h3>
+<p>Whether a specific product can absorb a price change without losing customers, based on a statistical read of your own sales history, along with a confidence score showing how much data actually supports that specific answer. A spreadsheet formula can calculate a margin, but it can't tell you how customers will respond to a price change.</p>
+</div>
+<div class="faq-item">
+<h3>Does moving to software mean I lose control over pricing?</h3>
+<p>No, not if the tool is built that way. Zorin's recommendations go through manual review before anything changes, you can adjust any number with a slider or type your own, and nothing applies to your storefront without an explicit approval.</p>
+</div>
+<div class="faq-item">
+<h3>Are spreadsheet pricing errors actually common?</h3>
+<p>Yes. Research reviewing operational spreadsheets in real business use has found that most contain at least one error, and that people are reliably overconfident about their own spreadsheets' accuracy, largely because a working formula that's subtly wrong is hard to detect without a separate check.</p>
+</div>
+<div class="faq-item">
+<h3>How much sales history do I need before switching from spreadsheets?</h3>
+<p>Generally at least a few months of consistent sales history with some real price variation in it. Less than that, and any tool's confidence in its own recommendation should be read skeptically, a statistical model needs enough real signal to have something meaningful to say.</p>
+</div>
+<div class="faq-item">
+<h3>Is switching from spreadsheets to pricing software worth it for a small store?</h3>
+<p>Usually yes once the manual habit starts costing real time or producing version conflicts, but it depends on catalog size and how often prices actually need to change. A very small, stable catalog may not need to switch yet, and that's a reasonable place to stay until the friction shows up.</p>
+</div>
+</section>
+
+<p class="conclusion">The honest way to think about this switch isn't "spreadsheets bad, software good," it's a question of what your current setup can no longer answer confidently. If a spreadsheet formula still gives you a defensible number and updating it doesn't eat real time, there's no rush. If it's become a source of version conflicts, silent errors, or numbers nobody fully trusts anymore, that's the actual signal. <a href="/signup">Start a free trial</a> and see what a statistical read on your own sales history actually looks like next to the spreadsheet you're used to.</p>
+    `.trim(),
+  },
+  {
     slug: "minimum-advertised-price-what-sellers-need-to-know",
     title: "Minimum Advertised Price (MAP): What Sellers Need to Know",
     excerpt:
@@ -639,7 +726,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Dynamic pricing software isn't a single tier you either qualify for or don't, it's a fit question between your data, your product mix, and what a specific tool actually does with that data. Get the readiness signals right first, and the choice of tool gets a lot easier. If what you actually need is a read on your own customers' demand rather than a reaction to a competitor's price, <a href="/signup">Zorin</a> is built for exactly that gap.</p>
+<p class="conclusion">Dynamic pricing software isn't a single tier you either qualify for or don't, it's a fit question between your data, your product mix, and what a specific tool actually does with that data. Get the readiness signals right first, and the choice of tool gets a lot easier. If what you actually need is a read on your own customers' demand rather than a reaction to a competitor's price, <a href="/signup">Zorin</a> is built for exactly that gap. Once you know your catalog is ready, <a href="/blog/what-changes-when-you-move-from-spreadsheets-to-pricing-software">here's what actually changes (and what doesn't) once you make the switch</a>.</p>
     `.trim(),
   },
   {
