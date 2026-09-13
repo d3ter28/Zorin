@@ -144,9 +144,20 @@ export function Pricing({ headingLevel = "h1" }: { headingLevel?: "h1" | "h2" })
           ))}
         </div>
 
-        <div className="mt-20 max-w-2xl">
-          <h2 className="text-xl font-semibold text-zinc-900">Pricing questions</h2>
-          <div className="mt-6 flex flex-col gap-3">
+        <div className="mt-20 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-24">
+          <div>
+            <h2 className="text-xl font-semibold text-zinc-900">Pricing questions</h2>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-500">
+              Anything else you&apos;re weighing before signing up? Reach out and we&apos;ll help you figure out the right plan.
+            </p>
+            <a
+              href="/signup"
+              className="mt-6 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
+            >
+              Start free trial
+            </a>
+          </div>
+          <div className="flex flex-col gap-3">
             {pricingFaqs.map((faq, i) => (
               <PricingFaqCard key={faq.q} q={faq.q} a={faq.a} index={i} />
             ))}
