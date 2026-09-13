@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import { Check } from "@phosphor-icons/react";
+import { useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { Check, Plus, Minus } from "@phosphor-icons/react";
 import { PLAN_CATALOG } from "@/lib/billing/planCatalog";
 
 const plans = PLAN_CATALOG.map((plan) => ({
@@ -9,6 +10,61 @@ const plans = PLAN_CATALOG.map((plan) => ({
   cta: plan.tier === "scale" ? "Talk to us" : "Start free trial",
   href: `/signup?plan=${plan.tier}`,
 }));
+
+const pricingFaqs = [
+  {
+    q: "What counts as a product?",
+    a: "Each unique SKU in your catalog counts as one product. Starter covers up to 25, Growth up to 150, and Scale is unlimited, so you only need to move up a tier once your catalog actually outgrows the current limit.",
+  },
+  {
+    q: "Is there a free trial?",
+    a: "Yes, every plan includes a 7-day free trial with no credit card required. This trial is only available while Zorin is in beta, once beta ends, new signups start billing immediately with no trial period. Early access users also get locked-in pricing when we launch paid plans.",
+  },
+  {
+    q: "Can I switch plans later?",
+    a: "Yes. You can move up or down a tier at any time as your catalog size and feature needs change, there's no lock-in contract on any plan.",
+  },
+  {
+    q: "What's the difference between Growth and Scale?",
+    a: "Growth covers catalogs up to 150 products with Shopify and WooCommerce sync and the what-if simulator. Scale removes the product limit entirely and adds multi-store support and dedicated support, built for larger catalogs or operators running more than one store.",
+  },
+];
+
+function PricingFaqCard({ q, a, index }: { q: string; a: string; index: number }) {
+  const [open, setOpen] = useState(false);
+  const panelId = `pricing-faq-panel-${index}`;
+
+  return (
+    <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
+      <button
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+      >
+        <span className="text-sm font-medium text-zinc-900">{q}</span>
+        <span className="shrink-0 text-zinc-400">
+          {open ? <Minus size={16} /> : <Plus size={16} />}
+        </span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="answer"
+            id={panelId}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <p className="px-5 pb-4 text-sm leading-relaxed text-zinc-500">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export function Pricing({ headingLevel = "h1" }: { headingLevel?: "h1" | "h2" }) {
   const reduce = useReducedMotion();
@@ -90,40 +146,10 @@ export function Pricing({ headingLevel = "h1" }: { headingLevel?: "h1" | "h2" })
 
         <div className="mt-20 max-w-2xl">
           <h2 className="text-xl font-semibold text-zinc-900">Pricing questions</h2>
-          <div className="mt-6 flex flex-col gap-6">
-            <div>
-              <h3 className="text-sm font-semibold text-zinc-900">What counts as a product?</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
-                Each unique SKU in your catalog counts as one product. Starter covers up to 25,
-                Growth up to 150, and Scale is unlimited, so you only need to move up a tier once
-                your catalog actually outgrows the current limit.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-zinc-900">Is there a free trial?</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
-                Yes, every plan includes a 7-day free trial with no credit card required. This
-                trial is only available while Zorin is in beta, once beta ends, new signups start
-                billing immediately with no trial period. Early access users also get locked-in
-                pricing when we launch paid plans.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-zinc-900">Can I switch plans later?</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
-                Yes. You can move up or down a tier at any time as your catalog size and feature
-                needs change, there's no lock-in contract on any plan.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-zinc-900">What&apos;s the difference between Growth and Scale?</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
-                Growth covers catalogs up to 150 products with Shopify and WooCommerce sync and
-                the what-if simulator. Scale removes the product limit entirely and adds
-                multi-store support and dedicated support, built for larger catalogs or operators
-                running more than one store.
-              </p>
-            </div>
+          <div className="mt-6 flex flex-col gap-3">
+            {pricingFaqs.map((faq, i) => (
+              <PricingFaqCard key={faq.q} q={faq.q} a={faq.a} index={i} />
+            ))}
           </div>
         </div>
       </div>
