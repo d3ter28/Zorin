@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 import { Pricing } from "@/components/marketing/Pricing";
+import { FAQ } from "@/components/marketing/FAQ";
 import { buildBreadcrumbSchema } from "@/lib/seo/toolSchema";
 
 export const metadata = {
@@ -22,6 +23,7 @@ export default function PricingPage() {
       <Navbar />
       <main>
         <Pricing />
+        <FAQ />
       </main>
       <Footer />
     </>

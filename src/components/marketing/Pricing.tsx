@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { Check, Plus, Minus } from "@phosphor-icons/react";
+import { motion, useReducedMotion } from "motion/react";
+import { Check } from "@phosphor-icons/react";
 import { PLAN_CATALOG } from "@/lib/billing/planCatalog";
 
 const plans = PLAN_CATALOG.map((plan) => ({
@@ -10,61 +9,6 @@ const plans = PLAN_CATALOG.map((plan) => ({
   cta: plan.tier === "scale" ? "Talk to us" : "Start free trial",
   href: `/signup?plan=${plan.tier}`,
 }));
-
-const pricingFaqs = [
-  {
-    q: "What counts as a product?",
-    a: "Each unique SKU in your catalog counts as one product. Starter covers up to 25, Growth up to 150, and Scale is unlimited, so you only need to move up a tier once your catalog actually outgrows the current limit.",
-  },
-  {
-    q: "Is there a free trial?",
-    a: "Yes, every plan includes a 7-day free trial with no credit card required. This trial is only available while Zorin is in beta, once beta ends, new signups start billing immediately with no trial period. Early access users also get locked-in pricing when we launch paid plans.",
-  },
-  {
-    q: "Can I switch plans later?",
-    a: "Yes. You can move up or down a tier at any time as your catalog size and feature needs change, there's no lock-in contract on any plan.",
-  },
-  {
-    q: "What's the difference between Growth and Scale?",
-    a: "Growth covers catalogs up to 150 products with Shopify and WooCommerce sync and the what-if simulator. Scale removes the product limit entirely and adds multi-store support and dedicated support, built for larger catalogs or operators running more than one store.",
-  },
-];
-
-function PricingFaqCard({ q, a, index }: { q: string; a: string; index: number }) {
-  const [open, setOpen] = useState(false);
-  const panelId = `pricing-faq-panel-${index}`;
-
-  return (
-    <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white">
-      <button
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        aria-controls={panelId}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-      >
-        <span className="text-sm font-medium text-zinc-900">{q}</span>
-        <span className="shrink-0 text-zinc-400">
-          {open ? <Minus size={16} /> : <Plus size={16} />}
-        </span>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="answer"
-            id={panelId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="px-5 pb-4 text-sm leading-relaxed text-zinc-500">{a}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
 
 export function Pricing({ headingLevel = "h1" }: { headingLevel?: "h1" | "h2" }) {
   const reduce = useReducedMotion();
@@ -142,26 +86,6 @@ export function Pricing({ headingLevel = "h1" }: { headingLevel?: "h1" | "h2" })
               </a>
             </motion.div>
           ))}
-        </div>
-
-        <div className="mt-20 grid gap-12 md:grid-cols-[1fr_2fr] md:gap-24">
-          <div>
-            <h2 className="text-xl font-semibold text-zinc-900">Pricing questions</h2>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-500">
-              Anything else you&apos;re weighing before signing up? Reach out and we&apos;ll help you figure out the right plan.
-            </p>
-            <a
-              href="/signup"
-              className="mt-6 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
-            >
-              Start free trial
-            </a>
-          </div>
-          <div className="flex flex-col gap-3">
-            {pricingFaqs.map((faq, i) => (
-              <PricingFaqCard key={faq.q} q={faq.q} a={faq.a} index={i} />
-            ))}
-          </div>
         </div>
       </div>
     </section>

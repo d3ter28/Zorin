@@ -45,6 +45,18 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     q: "Is there a free trial?",
     a: "Yes - every plan includes a 7-day free trial, no credit card required. This trial is only available while Zorin is in beta; once beta ends, new signups start billing immediately with no trial period. Early access users also get locked-in pricing when we launch paid plans.",
   },
+  {
+    q: "What counts as a product?",
+    a: "Each unique SKU in your catalog counts as one product. Starter covers up to 25, Growth up to 150, and Scale is unlimited, so you only need to move up a tier once your catalog actually outgrows the current limit.",
+  },
+  {
+    q: "Can I switch plans later?",
+    a: "Yes. You can move up or down a tier at any time as your catalog size and feature needs change, there's no lock-in contract on any plan.",
+  },
+  {
+    q: "What's the difference between Growth and Scale?",
+    a: "Growth covers catalogs up to 150 products with Shopify and WooCommerce sync and the what-if simulator. Scale removes the product limit entirely and adds multi-store support and dedicated support, built for larger catalogs or operators running more than one store.",
+  },
 ];
 
 function FAQItem({ q, a, index }: { q: string; a: React.ReactNode; index: number }) {
