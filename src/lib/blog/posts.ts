@@ -4882,7 +4882,7 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Repricing software watches your competitors and adjusts your prices to match or beat them. Price elasticity software reads your own sales history and tells you how your own customers respond to price changes. They solve different problems, and picking the wrong one for your store can quietly cost you margin either way.</p>
 
-<p>The confusion between the two is common. The tools all get lumped together under "pricing software," the marketing language overlaps, and most comparison pages don't actually explain the mechanism underneath. So let's fix that.</p>
+<p>The confusion between the two is common. The tools all get lumped together under "pricing software," the marketing language overlaps, and most comparison pages don't actually explain the mechanism underneath. So let's fix that. There's a closely related distinction worth knowing too, <a href="/blog/rule-based-vs-algorithmic-pricing-which-fits-your-store">rule-based vs algorithmic pricing</a>, since not every tool that calculates from data is reading your own sales history the way elasticity software does.</p>
 
 <h2>What Repricing Software Actually Does</h2>
 <p>Tools like Prisync, Price2Spy, and RepricerExpress track what your competitors charge, then apply a rule you configure: match the lowest price, stay 2% under the cheapest listing, never drop below a margin floor. The data source is external. It's your competitor's storefront, not your own store.</p>
@@ -8808,6 +8808,110 @@ export const posts: BlogPost[] = [
 <p>For SaaS teams, the most important SEO metrics are no longer just rankings, impressions, and sessions. Those metrics still matter, but they should be connected to business outcomes such as qualified pipeline, trial signups, product-qualified leads, demo requests, expansion opportunities, and influenced revenue. When SEO is measured this way, it becomes a strategic growth function rather than a content production activity.</p>
 
 <p class="conclusion">The SaaS companies that treat SEO as a compounding growth channel, tied to buyer intent and measured against pipeline rather than raw traffic, tend to get more out of it than those still chasing volume alone.</p>
+    `.trim(),
+  },
+  {
+    slug: "rule-based-vs-algorithmic-pricing-which-fits-your-store",
+    title: "Rule-Based vs Algorithmic Pricing: Which Fits Your Store",
+    excerpt:
+      "Rule-based pricing plugins and algorithmic tools solve different problems. See which fits your catalog, and how Zorin's elasticity model compares.",
+    date: "2026-09-14",
+    readingTime: "9 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Rule-based pricing follows an if/then rule you configure yourself: if a competitor drops 5%, lower your price 3%. Algorithmic pricing calculates a price from data instead of following a fixed rule. Most stores don't actually need to pick one forever, they need to know which job each product in their catalog needs done, because the honest answer usually isn't all-or-nothing.</p>
+
+<h2>The Real Question Isn't Which Tool, It's Which Job</h2>
+<p>Most comparison content frames this as a single purchase decision: pick rule-based or pick algorithmic. That framing misses how catalogs actually work. A 40-SKU store selling one core product line has different needs than a 2,000-SKU store with a long tail of slow movers and a handful of bestsellers. Even within one catalog, a product with a supplier-mandated minimum advertised price needs a different pricing approach than a product with full pricing freedom. The more useful question isn't "which engine do I buy," it's "which engine does this specific pricing decision actually need."</p>
+
+<h2>Rule-Based Pricing: What It's Actually Good At</h2>
+<p>Rule-based tools apply a configuration you set once: match the lowest competitor price, never drop below a fixed margin floor, cut 20% during a clearance window. The logic is fully visible, because you wrote it. That transparency is the real strength. If a supplier or a marketplace ever asks why a price is what it is, you can point to the exact rule.</p>
+<p>Rule-based pricing holds up well for a catalog under roughly 100 SKUs, where a person can keep every rule in their head and adjust manually as conditions change. It also fits situations where a price needs external justification, a MAP agreement, a wholesale contract, a marketplace policy, since a fixed rule is easy to explain and audit. Where it breaks down is complexity and scale: a rule that made sense for one product rarely generalizes cleanly across a catalog with different margins, different demand patterns, and different competitive pressure per SKU. Someone still has to write, test, and maintain every rule, and that labor cost quietly climbs as the catalog grows.</p>
+
+<h2>Algorithmic Pricing: What It's Actually Good At</h2>
+<p>Algorithmic tools calculate a price from data rather than executing a rule a person wrote. Depending on the tool, that data might be competitor prices, inventory levels, demand signals, or a store's own sales history, and the calculation can range from a simple weighted formula to a full machine learning model. The strength here is scale: an algorithm doesn't get tired of writing rules for SKU number 800, and it can respond to conditions a static rule wouldn't catch on its own.</p>
+<p>The honest tradeoff is trust. A merchant handing pricing decisions to a calculation they can't fully see needs to know the calculation is actually sound, not just confident-looking. This is where algorithmic tools vary widely: some ship a stated reason and a confidence level behind every price, others just output a number. That difference matters more than most buyers realize until they're staring at a price change with no explanation attached to it.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>An algorithmic recommendation with the reasoning attached, an elasticity coefficient and confidence score, not just a number to trust blindly.</figcaption>
+</figure>
+
+<h2>The Catalog-Size Threshold Where Rules Stop Working</h2>
+<p>There's a real, if approximate, threshold where rule-based pricing stops being the practical choice. Under about 100 SKUs, a person can reasonably keep every rule current by hand. Somewhere past 500 SKUs, the labor cost of writing, testing, and updating individual rules starts to exceed what a decent algorithmic tool's subscription would cost, and by 1,000+ SKUs, maintaining rule coverage across the whole catalog by hand becomes close to a part-time job on its own.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Catalog Size</th>
+      <th>What Usually Works</th>
+      <th>Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Under 100 SKUs</td><td>Rule-based, managed manually</td><td>Full visibility into every rule, manageable workload</td></tr>
+    <tr><td>100 to 500 SKUs</td><td>Rule-based with regular review, or a hybrid</td><td>Rules still manageable but starting to need a recurring audit cadence</td></tr>
+    <tr><td>500+ SKUs</td><td>Algorithmic, or rules as a floor/ceiling with an algorithm inside them</td><td>Labor cost of maintaining individual rules exceeds a tool's subscription cost</td></tr>
+  </tbody>
+</table>
+<p>These are directional, not exact cutoffs, a highly uniform 300-SKU catalog might stay comfortable on rules well past that point, and a highly varied 150-SKU catalog might outgrow rules earlier. Catalog size is a proxy for the real variable, which is how much per-SKU judgment the pricing decision actually requires.</p>
+
+<h2>Why "Dynamic Pricing Plugin" Doesn't Always Mean What You Think</h2>
+<p>A lot of Shopify and WooCommerce apps marketed as "dynamic pricing" are rule-based tools wearing algorithmic-sounding names. Bulk discount rules, role-based wholesale pricing, and scheduled sales automation all execute a configuration a merchant set, they don't calculate anything from data. That's not a knock on those tools, rule execution is a legitimate and often exactly right job. But it's worth checking what a "dynamic pricing" app actually does before assuming it's reading your sales data the way an elasticity model or a true algorithmic pricing engine would. If the app's setup screen asks you to define the rule yourself, it's rule-based, whatever the marketing copy calls it.</p>
+
+<h2>What You Risk by Staying on Fixed Rules Too Long</h2>
+<p>The risk of overstaying on rule-based pricing isn't dramatic, it's quiet. A rule that made sense when it was written slowly drifts out of sync with actual demand as a product ages, as competitors shift, or as costs change, and nobody notices because the rule is still technically running. A slow-moving product might sit on a discount rule that's eating margin it doesn't need to give up, while a bestseller might be underpriced relative to what customers would actually pay, simply because the rule was set once and never revisited. The cost shows up as a slow accumulation of missed margin across a catalog, not as one visible failure.</p>
+
+<h2>Where Zorin Fits: Neither Bucket, a Third Read on the Same Data</h2>
+<p>Zorin doesn't fit cleanly into either category above. It isn't rule-based, there's no if/then logic to configure. It also isn't a repricer or a generic algorithmic tool reacting to competitor prices or inventory levels. Zorin fits a price elasticity model to a merchant's own historical price and quantity data per SKU, measuring how that specific product's demand actually responded when its price moved in the past, then returns a raise, lower, or hold recommendation with an estimated profit lift and a confidence score based on how much real data supports it.</p>
+<p>That confidence score directly addresses the trust gap that comes up with algorithmic pricing generally: a thin-data product is never presented with the same certainty as one with a long, stable sales history, so a merchant knows how much weight to put on a given recommendation before acting on it. And nothing applies automatically. Every recommendation goes through merchant review, with a live margin and profit-lift preview before anything changes, whether that's one product or a full catalog applied in bulk. For a catalog crossing that 500-SKU threshold where hand-maintained rules stop scaling, that's the practical alternative to either writing more rules or trusting an unexplained algorithmic number.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Rule-based pricing means you configure the logic yourself. Algorithmic pricing calculates a price from data. Neither is universally better, they solve different jobs.</li>
+<li>Rule-based pricing holds up well under roughly 100 SKUs and for prices that need external justification, like a MAP agreement. It breaks down as catalog size and complexity grow.</li>
+<li>Past roughly 500 SKUs, the labor cost of maintaining individual rules typically exceeds what an algorithmic tool's subscription would cost.</li>
+<li>Many Shopify and WooCommerce apps marketed as "dynamic pricing" are actually rule-based, worth checking what a tool calculates versus what it executes before assuming otherwise.</li>
+<li>Zorin fits neither bucket: it's an elasticity model reading your own sales history, with a stated reason and confidence score behind every recommendation, and nothing applies without merchant review.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the difference between rule-based dynamic pricing and algorithmic pricing software?</h3>
+<p>Rule-based pricing executes an if/then configuration a merchant sets manually. Algorithmic pricing calculates a price from data, competitor prices, inventory, or a store's own sales history depending on the tool, rather than following a fixed rule.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if fixed pricing rules are enough for my store, or do I need something smarter?</h3>
+<p>If you can keep every rule current in your head and your catalog is under roughly 100 SKUs, rules are usually enough. Past a few hundred SKUs, or once you're spending real time maintaining rules instead of running your store, it's worth evaluating an algorithmic or elasticity-based tool.</p>
+</div>
+<div class="faq-item">
+<h3>At what catalog size do manual pricing rules stop working?</h3>
+<p>There's no exact cutoff, but past roughly 500 SKUs, the labor cost of writing, testing, and updating individual rules typically exceeds the subscription cost of a decent algorithmic pricing tool. Catalog uniformity matters too, a highly varied smaller catalog can outgrow rules earlier.</p>
+</div>
+<div class="faq-item">
+<h3>Are Shopify or WooCommerce dynamic pricing plugins the same thing as pricing optimization software?</h3>
+<p>Not always. Many apps marketed as "dynamic pricing" are rule-based tools executing bulk discounts, wholesale tiers, or scheduled sales, not calculating a price from demand data. Check whether the app asks you to define the rule yourself, if so, it's rule-based regardless of what the listing calls it.</p>
+</div>
+<div class="faq-item">
+<h3>What's the risk of relying only on fixed pricing rules as my catalog grows?</h3>
+<p>The risk is quiet, not dramatic. Rules drift out of sync with actual demand as products age and competitors shift, and nobody notices because the rule is still technically running. The cost shows up as slow, accumulated missed margin rather than one visible failure.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin use rules or an algorithm to set prices?</h3>
+<p>Neither in the traditional sense. Zorin fits a price elasticity model to each product's own historical price and quantity data, returning a raise, lower, or hold recommendation with a confidence score. Nothing applies automatically, every recommendation goes through merchant review first.</p>
+</div>
+</section>
+
+<p>If you're closer to deciding your catalog has genuinely outgrown manual rules, <a href="/blog/is-your-store-ready-for-dynamic-pricing-software">is your store ready for dynamic pricing software</a> walks through the readiness diagnostics in more depth, and <a href="/blog/price-elasticity-vs-repricing-software">price elasticity vs repricing software</a> covers the closely related distinction between reading your own data and watching competitors. Curious what Zorin's elasticity model would say about your own catalog? <a href="/signup">See your first recommendations</a> after connecting your store.</p>
+
+<p class="conclusion">Rule-based and algorithmic pricing aren't competing philosophies, they're tools for different jobs, and most growing catalogs end up needing both at different points. The real work isn't picking a side once, it's noticing when a specific pricing decision has outgrown the tool currently handling it.</p>
     `.trim(),
   },
 ];
