@@ -3256,7 +3256,7 @@ export const posts: BlogPost[] = [
   <figcaption>The four questions as a customer actually sees them, no login required, no email collected.</figcaption>
 </figure>
 
-<p>Because it's built into the same platform where your elasticity data already lives, you don't need to export survey results into a separate spreadsheet and cross-reference them manually against your sales history. Both signals sit side by side on the same product.</p>
+<p>Because it's built into the same platform where your elasticity data already lives, you don't need to export survey results into a separate spreadsheet and cross-reference them manually against your sales history. Both signals sit side by side on the same product. Prefer to run this yourself first, or don't have a Zorin account yet? Grab the exact four-question wording from the <a href="/van-westendorp-survey-template">free Van Westendorp survey template</a> and send it however you'd like.</p>
 
 <h2>How Many Responses You Need</h2>
 <p>Response volume determines how much you can trust the result, and Zorin surfaces this directly rather than showing you a range that looks precise before it actually is.</p>
@@ -8776,7 +8776,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p>If you're about to run this survey for the first time, <a href="/blog/how-to-run-a-price-sensitivity-survey">how to run a price sensitivity survey</a> covers designing and distributing the four questions before any of this math applies, and <a href="/blog/how-to-interpret-van-westendorp-results">how to interpret Van Westendorp results</a> covers what to do with the range once you have it. Ready to skip the spreadsheet entirely? <a href="/signup">Generate a survey link in Zorin</a> and let the calculation run itself.</p>
+<p>If you're about to run this survey for the first time, grab the exact four-question wording from the <a href="/van-westendorp-survey-template">free Van Westendorp survey template</a>, and <a href="/blog/how-to-run-a-price-sensitivity-survey">how to run a price sensitivity survey</a> covers distributing it before any of this math applies. <a href="/blog/how-to-interpret-van-westendorp-results">How to interpret Van Westendorp results</a> covers what to do with the range once you have it. Ready to skip the spreadsheet entirely? <a href="/signup">Generate a survey link in Zorin</a> and let the calculation run itself.</p>
 
 <p class="conclusion">The math behind PMC, PME, OPP, and IPP isn't complicated, it's four cumulative curves and four intersections. What's easy to get wrong is treating a small sample's output as more precise than it is. Run the numbers by hand once to trust what a tool gives you, then let the tool handle it at the volume a real catalog actually needs.</p>
     `.trim(),

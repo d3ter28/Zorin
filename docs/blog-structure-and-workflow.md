@@ -1,6 +1,10 @@
 # Zorin Blog: Structure & Workflow
 
-Reference doc for how the Zorin blog is built, styled, and maintained. Last updated 2026-08-21 (cluster/pagination architecture added).
+Reference doc for how the Zorin blog is built, styled, and maintained. Last updated 2026-09-14 (post count, funnel-stage completeness policy, proven-structure requirement).
+
+**Post count as of 2026-09-14: 76 total** (was 47 at the 2026-08-21 architecture update, was pinned in this doc's stale "Current post list" table below at 47 — that table is a historical snapshot only, `src/lib/blog/posts.ts` is the only authoritative source). 7 MOFU, 6 BOFU (4 comparison layout, 2 alternatives format, owned by the separate `zorin-comparison-writer` skill), 2 hidden (noindex/off-nav guest-exchange posts, excluded from all counts).
+
+**Proven high-performing structure + funnel-stage completeness policy (added 2026-09-13, now hard requirements in `zorin-blog-writer`'s Step 3):** AI-citation data showed two posts (`how-to-price-a-new-product-from-launch-to-end-of-life`, `how-to-price-a-discount-without-losing-your-margin`) driving ~45% of all AI citations, both built around numbered step-by-step frameworks and at least one fully worked numeric example — both now required for procedural posts, not just suggested. Separately, since the same structure that wins AI citations can also satisfy a reader without a click-through, definitional TOFU content (e.g. "what is price elasticity") now holds back deeper detail and routes it to an internal link instead of resolving fully on-page; procedural TOFU how-tos, MOFU, and BOFU stay fully self-contained since an AI summary can't substitute for store-specific evaluation. Full detail in the skill's own `references/zorin-blog-content-pipeline.md`.
 
 ## Where it lives
 
