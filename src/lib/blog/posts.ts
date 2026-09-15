@@ -2999,7 +2999,7 @@ export const posts: BlogPost[] = [
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
     },
     content: `
-<p class="intro">The Shopify App Store lists well over a hundred apps under "pricing optimization," and the overwhelming majority of them are discount, bundle, or flash-sale tools wearing a pricing label. Before you install anything, it's worth knowing what you're actually buying: a tool that executes a promotion you already decided on, or a tool that helps you decide what the right price is in the first place. This guide covers the questions worth asking, the real difference between a discount app and a pricing intelligence tool, how margin floor protection works, how to judge whether a tool's recommendations are trustworthy, and what setup actually requires.</p>
+<p class="intro">The Shopify App Store lists well over a hundred apps under "pricing optimization," and the overwhelming majority of them are discount, bundle, or flash-sale tools wearing a pricing label. Before you install anything, it's worth knowing what you're actually buying: a tool that executes a promotion you already decided on, or a tool that helps you decide what the right price is in the first place. This guide covers the questions worth asking, the real difference between a discount app and a pricing intelligence tool, how margin floor protection works, how to judge whether a tool's recommendations are trustworthy, and what setup actually requires. For the vendor due-diligence questions that apply beyond just the App Store listing, red flags in a demo, trial length, contract terms, <a href="/blog/what-to-ask-a-pricing-software-vendor-before-you-buy">what to ask a pricing software vendor before you buy</a> covers that ground.</p>
 
 <h2>Discount App or Pricing Optimization Tool: What's the Actual Difference</h2>
 <p>A discount app executes a promotion you've already decided to run, a percentage off, a bundle price, a flash sale, a volume tier. It's a tool for applying a markdown you chose, not a tool for figuring out what your price should be in the first place.</p>
@@ -8912,6 +8912,125 @@ export const posts: BlogPost[] = [
 <p>If you're closer to deciding your catalog has genuinely outgrown manual rules, <a href="/blog/is-your-store-ready-for-dynamic-pricing-software">is your store ready for dynamic pricing software</a> walks through the readiness diagnostics in more depth, and <a href="/blog/price-elasticity-vs-repricing-software">price elasticity vs repricing software</a> covers the closely related distinction between reading your own data and watching competitors. Curious what Zorin's elasticity model would say about your own catalog? <a href="/signup">See your first recommendations</a> after connecting your store.</p>
 
 <p class="conclusion">Rule-based and algorithmic pricing aren't competing philosophies, they're tools for different jobs, and most growing catalogs end up needing both at different points. The real work isn't picking a side once, it's noticing when a specific pricing decision has outgrown the tool currently handling it.</p>
+    `.trim(),
+  },
+  {
+    slug: "what-to-ask-a-pricing-software-vendor-before-you-buy",
+    title: "What to Ask a Pricing Software Vendor Before You Buy",
+    excerpt:
+      "Questions, red flags, and trial terms to check before committing to a pricing tool. Zorin publishes its confidence math so there's nothing to interrogate.",
+    date: "2026-09-15",
+    readingTime: "9 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Picking the wrong pricing tool doesn't usually show up as an obvious failure, it shows up as six months of half-trusted recommendations nobody quite acts on. A 2026 Software Advice survey found 45% of decision-makers had regretted at least one software purchase in the previous 18 months, and the questions that would have caught the problem are almost always ones nobody asked before signing up, not features that turned out to be missing.</p>
+
+<h2>The Real Cost of Picking the Wrong Pricing Tool</h2>
+<p>Software regret rarely traces back to a feature gap. In the same Software Advice survey, over a quarter of buyers who regretted a purchase said the product's performance simply didn't meet expectations once it was actually running against real data, and 21% cited integration problems that only surfaced after rollout. For a pricing tool specifically, that translates into a worse outcome than a feature you can work around: a recommendation engine you don't fully trust, so you either ignore it or double-check every output by hand, which erases the entire point of buying the tool.</p>
+<p>The fix isn't a longer feature checklist. It's a shorter list of sharper questions asked before the contract is signed, while you still have full leverage to walk away.</p>
+
+<h2>Five Red Flags During a Demo or Sales Call</h2>
+<p>A demo is a controlled environment, which makes it the easiest place for a vendor to hide a weak product. Watch for these specifically:</p>
+<ol>
+<li><strong>The vendor won't process your real data live.</strong> If every demo runs on their own polished sample dataset and a request to test your actual sales history gets deferred to "after signup," that's the clearest signal the product may not hold up against messy real-world data.</li>
+<li><strong>Every walkthrough is scripted, with no room for an unplanned question.</strong> A vendor who can only demonstrate a pre-built happy path, and can't improvise when you ask about an edge case in your own catalog, is often telling you the platform's configurability is thinner than the pitch.</li>
+<li><strong>Pricing questions get deflected with "let's talk use cases first."</strong> A vendor confident in their pricing shows it early. Repeated redirection away from a straight cost answer is usually a sign a negotiation tactic is coming, not a coincidence.</li>
+<li><strong>Hands-on testing before payment isn't allowed.</strong> If you can't explore the product yourself, at your own pace, with your own data, before committing, you're being asked to trust a sales pitch instead of evidence.</li>
+<li><strong>The sales rep pushes for a multi-year commitment before a proof of concept exists.</strong> If they're not confident you'll want to renew after 12 months, you shouldn't be locked in for 36. Urgency around a "special pricing deadline" during evaluation is a related tactic worth treating the same way.</li>
+</ol>
+
+<h2>What a Trustworthy Vendor Shows You Without Being Asked</h2>
+<p>The inverse is just as diagnostic. A vendor confident in their product volunteers information rather than making you extract it. For a pricing tool specifically, that means showing you the reasoning behind a recommendation, not just the output number, an elasticity coefficient, a confidence score, whatever the underlying logic actually is, alongside the number it produced. A recommendation with no visible reasoning is a number you have to take on faith, and taking numbers on faith is exactly the habit a data-driven pricing tool is supposed to replace.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>What a demo should show without being asked: the reasoning behind a number, not just the number.</figcaption>
+</figure>
+
+<p>Also worth checking: does the vendor let you see how the tool handles thin data honestly? A recommendation for a brand-new product with two weeks of sales history should look, and be labeled, differently from a recommendation for a bestseller with two years of stable history. A tool that presents every output with the same confident tone regardless of how much data actually supports it is optimizing for looking impressive in a demo, not for being useful once you're relying on it.</p>
+
+<h2>How Long to Trial Before Committing</h2>
+<p>Trial length should match the product's complexity, not a vendor's default. A simple, single-purpose tool is reasonably evaluated in 4 to 7 days. A pricing tool that needs to ingest real sales history, fit a model, and produce recommendations you'd actually act on needs closer to 14 to 30 days, enough time to see it run against more than one product and compare its read to your own intuition on a few SKUs you already know well.</p>
+<p>The same Software Advice survey found that half of respondents decided not to go with a vendor after trialing the software, which is exactly what a trial is for. If a vendor's trial is too short to reach a real verdict, or gates the features that actually matter behind a second paywall during the trial itself, that's a sign the trial period was designed to convert you before you could form a real opinion, not to let you form one.</p>
+
+<h2>Contract Terms That Should Make You Pause</h2>
+<p>A few specific clauses are worth reading twice before signing:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Clause</th>
+      <th>Why It Matters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Auto-renewal with a short cancellation window</td><td>Locks you in past the point you'd have decided to leave, if the window to cancel closes before the renewal date is obvious.</td></tr>
+    <tr><td>Data export restrictions or fees</td><td>Your own sales history and price-change data should leave with you if you switch tools. A fee or a format restriction on export is a lock-in mechanism, not a technical limitation.</td></tr>
+    <tr><td>Multi-year minimum with no proof-of-concept period</td><td>Commits you before the product has been tested against your actual catalog at scale.</td></tr>
+    <tr><td>Vague or no SLA on uptime and support response</td><td>A pricing tool your team relies on for real decisions needs a real, specified support commitment, not an implied one.</td></tr>
+  </tbody>
+</table>
+
+<h2>The Questions Worth Asking Before You Ever Book a Demo</h2>
+<p>A short list, asked early, saves a lot of wasted evaluation time later:</p>
+<ul>
+<li><strong>What data does the recommendation actually use?</strong> Your own sales history, competitor prices, a fixed rule you configure, or some mix. This single question separates a genuine pricing-intelligence tool from a discount or repricing app wearing a pricing label.</li>
+<li><strong>Can I see the reasoning behind a recommendation, not just the output?</strong> If the answer is no, or vague, that's worth weighing heavily before proceeding.</li>
+<li><strong>What happens to my data if I cancel?</strong> Export format, timeline, and any fees attached to leaving.</li>
+<li><strong>How does the tool handle a product with very little sales history?</strong> The honest answer involves some form of reduced confidence, not the same certainty as a well-established product.</li>
+<li><strong>What does support actually look like after the trial ends?</strong> Specific response times, not "we're here if you need us."</li>
+</ul>
+
+<h2>Where Zorin Fits: The Same Standard Applied to Itself</h2>
+<p>Zorin was built around the belief that a recommendation without a stated reason and a confidence level isn't useful, it's just another number a merchant has to independently verify before trusting. Every raise, lower, or hold recommendation ships with the elasticity coefficient behind it and a confidence score reflecting how much real sales history and price variation actually support the estimate, exactly the kind of reasoning this guide recommends checking for in a demo. A thin-data product is never presented with the same certainty as an established one.</p>
+<p>Nothing applies automatically. Every recommendation goes through merchant review, with a live margin and profit-lift preview before anything changes, whether that's one product or a full catalog applied in bulk. And the core recommendation is grounded in a merchant's own historical price and quantity data, not a fixed rule or an automated competitor-tracking feed, so there's a real answer to "what data does this actually use" from the first conversation.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>45% of decision-makers regretted a software purchase in the last 18 months, and most regret traces back to skipped due diligence, not a missing feature.</li>
+<li>Red flags during a demo: no live testing with your own data, fully scripted walkthroughs, deflected pricing questions, no hands-on trial access, and pressure for a multi-year commitment before a proof of concept exists.</li>
+<li>A trustworthy vendor shows you the reasoning behind a recommendation, and how it handles thin data, without being asked.</li>
+<li>Match trial length to complexity: 4-7 days for a simple tool, 14-30 days for a pricing tool that needs to prove itself against real sales history.</li>
+<li>Read auto-renewal, data-export, and multi-year minimum clauses twice before signing. Your own data should leave with you if you switch tools.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What questions should I ask a pricing software vendor before signing up?</h3>
+<p>What data the recommendation actually uses, whether you can see the reasoning behind a number, what happens to your data if you cancel, how the tool handles thin-data products, and what support looks like after the trial ends.</p>
+</div>
+<div class="faq-item">
+<h3>What are red flags to watch for during a pricing software demo?</h3>
+<p>A vendor unwilling to process your real data live, a fully scripted walkthrough with no room for unplanned questions, deflected pricing questions, no hands-on trial access, and pressure toward a multi-year commitment before a proof of concept exists.</p>
+</div>
+<div class="faq-item">
+<h3>How long should I trial a pricing tool before committing to it?</h3>
+<p>Match trial length to complexity. A simple tool is reasonably evaluated in 4 to 7 days. A pricing tool that needs to ingest real sales history and produce recommendations needs closer to 14 to 30 days to reach a real verdict.</p>
+</div>
+<div class="faq-item">
+<h3>What should a pricing vendor be able to show me live, not just describe?</h3>
+<p>The reasoning behind a recommendation, not just its output number, an elasticity coefficient, a confidence score, or whatever the underlying logic is. Also worth seeing live: how the tool presents a recommendation for a brand-new product with very little sales history.</p>
+</div>
+<div class="faq-item">
+<h3>What contract terms should I avoid when buying pricing software?</h3>
+<p>Auto-renewal with a short cancellation window, data export restrictions or fees, multi-year minimums with no proof-of-concept period, and vague or missing SLAs on uptime and support response.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin let me see the reasoning behind its recommendations?</h3>
+<p>Yes. Every recommendation ships with the elasticity coefficient behind it and a confidence score based on how much real sales history and price variation support the estimate. Nothing applies automatically, every change goes through merchant review first.</p>
+</div>
+</section>
+
+<p>If you're specifically trying to tell a genuine pricing-intelligence tool apart from a discount app wearing a pricing label, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">how to evaluate a Shopify pricing app</a> covers that distinction in more depth. Curious what a transparent recommendation actually looks like in practice? <a href="/signup">See Zorin's confidence math on your own catalog</a>.</p>
+
+<p class="conclusion">Most pricing-tool regret is avoidable, and the fix is asking sharper questions before signing rather than hoping the product turns out fine. Watch what a vendor shows you without being asked, match the trial length to what you're actually evaluating, and read the cancellation and data-export terms before the renewal date sneaks up on you.</p>
     `.trim(),
   },
 ];
