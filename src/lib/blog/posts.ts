@@ -3703,7 +3703,7 @@ export const posts: BlogPost[] = [
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
     },
     content: `
-<p class="intro">Most shoppers say they dislike dynamic pricing, yet nearly every store runs sales constantly without backlash. The difference is not whether the price changed, it is whether the change felt fair. This guide explains what actually separates dynamic pricing from a sale, when a holiday price increase is safe, how often you can adjust prices without losing customer trust, and how deep a clearance discount needs to go before it is actually working.</p>
+<p class="intro">Most shoppers say they dislike dynamic pricing, yet nearly every store runs sales constantly without backlash. The difference is not whether the price changed, it is whether the change felt fair. This guide explains what actually separates dynamic pricing from a sale, when a holiday price increase is safe, how often you can adjust prices without losing customer trust, and how deep a clearance discount needs to go before it is actually working. For a broader look at what dynamic pricing actually means, a worked profit example, and the legal side, see <a href="/blog/dynamic-pricing-explained-definition-example-legal-risks">Dynamic Pricing Explained: Definition, Example, Legal Risks</a>.</p>
 
 <h2>Why "Dynamic Pricing" Has a Trust Problem That Sales Don't</h2>
 <p>A 2026 HyperFinity survey found that 65% of UK shoppers dislike dynamic pricing, while only 4% said they love it. In the same survey, 91% ranked clear and transparent pricing as their top purchase factor, and 82% said they value everyone paying the same price for the same product. That is a stark gap for a pricing practice that, in a different form, most shoppers accept without complaint every single day.</p>
@@ -9031,6 +9031,111 @@ export const posts: BlogPost[] = [
 <p>If you're specifically trying to tell a genuine pricing-intelligence tool apart from a discount app wearing a pricing label, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">how to evaluate a Shopify pricing app</a> covers that distinction in more depth. Curious what a transparent recommendation actually looks like in practice? <a href="/signup">See Zorin's confidence math on your own catalog</a>.</p>
 
 <p class="conclusion">Most pricing-tool regret is avoidable, and the fix is asking sharper questions before signing rather than hoping the product turns out fine. Watch what a vendor shows you without being asked, match the trial length to what you're actually evaluating, and read the cancellation and data-export terms before the renewal date sneaks up on you.</p>
+    `.trim(),
+  },
+  {
+    slug: "dynamic-pricing-explained-definition-example-legal-risks",
+    title: "Dynamic Pricing Explained: Definition, Example, Legal Risks",
+    excerpt:
+      "What dynamic pricing means for a small store, with real numbers and the Ticketmaster backlash as a cautionary example. Zorin reads your own data first.",
+    date: "2026-09-15",
+    readingTime: "10 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Dynamic pricing means adjusting a product's price in response to a changing signal, demand, inventory, competitor moves, or timing, rather than leaving it fixed until someone manually changes it. It's not the same as running a sale. A sale is a planned, temporary discount you control end to end. Dynamic pricing is an ongoing system, a rule or a model, that moves the price up or down on its own once you've set it up. Done well, it protects margin on your bestsellers and clears slow stock faster. Done carelessly, it can look exactly like what happened to Ticketmaster.</p>
+
+<h2>What Dynamic Pricing Actually Means for an Ecommerce Store</h2>
+<p>A discount is a decision you make once: 20% off this weekend, ends Monday. Dynamic pricing is a standing rule that keeps making that decision for you, continuously, based on a signal you define. A simple version: if stock on a bestseller drops below 15 units, raise the price 20% automatically, no manual step required. A more advanced version reads your own sales history and calculates the price that maximizes profit for current conditions, rather than following a fixed if/then rule at all.</p>
+<p>Both count as dynamic pricing. The difference is where the number comes from, a rule you configured yourself, or a calculation based on actual demand data. That distinction matters more than it sounds like it should, because a rule you wrote by feel can be just as wrong as no strategy at all, it's just wrong on autopilot instead of wrong by accident.</p>
+
+<h2>A Worked Example: What Dynamic Pricing Does to Your Margin</h2>
+<p>Say you sell a skincare serum with a landed cost of $14 and a current price of $32, a 56.2% margin. You're selling 50 units a week. You set an inventory-based dynamic pricing rule: when stock drops below 15 units, raise the price 20%, to roughly $38.</p>
+<p>Assume that price increase costs you some volume, a reasonable estimate for a moderately price-sensitive product is a 12% drop in units sold. That takes weekly sales from 50 units to 44.</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Before</th>
+      <th>After</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Price</td><td>$32</td><td>$38</td></tr>
+    <tr><td>Margin</td><td>56.2%</td><td>63.2%</td></tr>
+    <tr><td>Units sold/week</td><td>50</td><td>44</td></tr>
+    <tr><td>Profit/week</td><td>$900</td><td>$1,056</td></tr>
+  </tbody>
+</table>
+<p>Even after losing 6 units of weekly volume, profit rose from $900 to $1,056, a 17.3% increase, because the margin gain on every remaining unit sold more than covered the lost volume. That's the case dynamic pricing is actually built to make: it's not always about selling more, it's about pricing each unit closer to what the moment actually supports.</p>
+
+<h2>Is Dynamic Pricing Legal for Small Sellers?</h2>
+<p>Yes, with real conditions attached. Dynamic pricing based on market conditions, demand, inventory, timing, is legal in the United States. The Robinson-Patman Act of 1936 restricts charging different business buyers different prices for the same goods in a way that harms competition, which mainly affects wholesale and B2B pricing, not adjusting your own storefront price for retail customers over time.</p>
+<p>The more current legal pressure is on personalized pricing, charging different consumers different prices for the same product based on their individual data, rather than market-wide dynamic pricing. New York's Algorithmic Pricing Disclosure Act took effect November 10, 2025, and requires any business using a consumer's personal data to algorithmically set a price to display a clear disclosure: "THIS PRICE WAS SET BY AN ALGORITHM USING YOUR PERSONAL DATA," with civil penalties up to $1,000 per violation for non-compliance. If you're adjusting price based on inventory or demand for everyone equally, that's standard dynamic pricing and isn't covered. If you're showing different prices to different individual customers based on their browsing or purchase history, that's personalized pricing, and it's the category actually drawing new regulation.</p>
+
+<h2>Why Customers Push Back: The Ticketmaster Lesson</h2>
+<p>In November 2022, Ticketmaster used demand-based "platinum" pricing on a portion of general on-sale tickets for Taylor Swift's Eras Tour. Prices for some seats spiked into the thousands of dollars during the sale, the site buckled under demand, and the backlash was significant enough to draw a 2023 United States Senate Judiciary Committee hearing into Ticketmaster's practices.</p>
+<p>The more interesting detail is what happened separately. Jay Marciano, CEO of AEG Presents (the tour's promoter), has said Taylor Swift herself declined to use full dynamic pricing for Eras Tour tickets, explicitly because she didn't want prices moving unpredictably against her own fans, even though it meant leaving money on the table. The artist with the most leverage in the negotiation looked at dynamic pricing and decided the fairness risk to her audience wasn't worth it.</p>
+<p>The lesson for a small store isn't "never use dynamic pricing," it's that a price move a customer can't see coming, and can't make sense of after the fact, is what actually generates backlash. A price that changes because a product is genuinely running low on stock is explainable. A price that seems to spike the moment a customer wants it most, with no visible reason, reads as exploitation, whether or not that was the intent.</p>
+
+<h2>Do You Need Software, or Can You Start With Simple Rules?</h2>
+<p>You can start with a manual rule and no dedicated tool at all: if stock on a product drops below a threshold, raise the price by a fixed percentage, and reset it when stock is replenished. That's genuine dynamic pricing, and it's entirely doable by hand on a small catalog.</p>
+<p>The limits show up as the catalog grows. A rule that made sense for one bestseller doesn't automatically generalize to a hundred products with different margins and different demand patterns, and someone has to keep writing, testing, and adjusting those rules as conditions change. That's the point where a tool that calculates from your own sales data, rather than requiring you to write and maintain a growing pile of rules, starts to save more time than it costs.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>A recommendation grounded in a product's own sales history, with the reasoning and confidence attached, not a rule reacting to a single signal.</figcaption>
+</figure>
+
+<h2>Where Zorin Fits: Reading Your Own Data Instead of Reacting to the Market</h2>
+<p>Zorin isn't a rule-based dynamic pricing tool in the traditional sense. Instead of reacting to inventory levels or competitor prices with a rule you configure, it fits a price elasticity model to each product's own historical price and quantity data, then returns a raise, lower, or hold recommendation with an estimated profit lift and a confidence score based on how much real data supports the estimate. That's the same "why did this price change" transparency the Ticketmaster case shows the real cost of skipping, a merchant, and if relevant a customer, can see the actual reasoning, not just a number that moved.</p>
+<p>Nothing applies automatically. Every recommendation goes through merchant review, with a live margin and profit-lift preview before anything changes. Zorin also offers a separate, optional manual competitor-price feature, logging a competitor's name, price, and URL per product for a min/median/max view, without automated scraping or live monitoring feeding into the core recommendation.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Dynamic pricing is an ongoing rule or model that moves price on its own, distinct from a planned, temporary sale.</li>
+<li>A 20% price increase that costs 12% of unit volume can still raise profit substantially, in this example, from $900 to $1,056 a week, a 17.3% increase, because the margin gain outweighs the lost units.</li>
+<li>Market-wide dynamic pricing is legal in the US. Personalized pricing based on individual customer data is the category drawing new regulation, including New York's Algorithmic Pricing Disclosure Act (effective November 2025).</li>
+<li>Ticketmaster's 2022 backlash, and Taylor Swift's own decision to decline full dynamic pricing for the Eras Tour, both point to the same lesson: an explainable price change is tolerated, an unexplained one reads as exploitation.</li>
+<li>Simple inventory-based rules work fine on a small catalog. Past a certain size, a tool that calculates from your own sales data starts saving more time than it costs.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is dynamic pricing and how does it work for a small ecommerce store?</h3>
+<p>Dynamic pricing is an ongoing rule or model that adjusts a product's price based on a signal, demand, inventory, competitor prices, or timing, rather than a fixed price you change manually. A small store can start with a simple rule, like raising price when stock runs low, without any dedicated software.</p>
+</div>
+<div class="faq-item">
+<h3>How much can dynamic pricing realistically increase my ecommerce profit?</h3>
+<p>It depends on the product's price sensitivity, but the gain can be meaningful even with some lost volume. In a worked example with a 20% price increase and a 12% drop in units sold, weekly profit rose 17.3%, because the margin gain on remaining units outweighed the lost sales.</p>
+</div>
+<div class="faq-item">
+<h3>Is dynamic pricing legal for small ecommerce sellers?</h3>
+<p>Yes, market-wide dynamic pricing based on demand, inventory, or timing is legal in the US. The regulatory pressure is on personalized pricing, showing different prices to different individual customers based on their personal data, which New York's Algorithmic Pricing Disclosure Act now requires disclosing.</p>
+</div>
+<div class="faq-item">
+<h3>Why do customers get upset about dynamic pricing?</h3>
+<p>Backlash tends to follow price changes customers can't explain, not the fact that a price moved at all. Ticketmaster's 2022 demand-based pricing on Taylor Swift Eras Tour tickets is the clearest example, prices spiked with no visible reason attached, which read as exploitation even where the pricing itself was legal.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need special software to run dynamic pricing, or can I start with simple rules?</h3>
+<p>You can start with a manual rule, like raising price when stock drops below a threshold, on a small catalog with no tool required. Past a certain catalog size, maintaining individual rules by hand becomes its own workload, which is usually when a calculation-based tool starts saving more time than it costs.</p>
+</div>
+<div class="faq-item">
+<h3>Does Zorin use dynamic pricing rules like inventory-based triggers?</h3>
+<p>No. Zorin fits a price elasticity model to each product's own historical sales data rather than reacting to a single signal like inventory level. Every recommendation ships with a confidence score and goes through merchant review before anything changes.</p>
+</div>
+</section>
+
+<p>For the difference between dynamic pricing and running a planned sale specifically, <a href="/blog/dynamic-pricing-vs-sales-a-shopify-sellers-guide">Dynamic Pricing vs Sales: A Shopify Seller's Guide</a> covers that distinction in depth, and if you're deciding whether your catalog has outgrown manual rules, <a href="/blog/is-your-store-ready-for-dynamic-pricing-software">is your store ready for dynamic pricing software</a> walks through the readiness signals. Curious what a data-grounded recommendation looks like for your own catalog? <a href="/signup">See your first recommendation in Zorin</a>.</p>
+
+<p class="conclusion">Dynamic pricing isn't inherently risky, an unexplained price change is. Ground the rule in a real signal, be ready to explain why a price moved if a customer asks, and the same mechanism that spooked Ticketmaster's customers can just as easily protect your margin without anyone noticing it's there.</p>
     `.trim(),
   },
 ];
