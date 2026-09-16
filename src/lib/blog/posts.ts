@@ -9374,8 +9374,10 @@ export const posts: BlogPost[] = [
     readingTime: "7 min read",
     category: "Pricing Strategy",
     author: {
-      name: "Dexter",
-      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+      name: "Tom Berger",
+      bio: "Tom Berger is a Portfolio CMO for B2B SaaS with 25+ years of experience building and leading marketing functions from Series A through growth stage, including VP Marketing roles at DigitalOcean, Bolt, and Sift. He writes about go-to-market strategy at <a href=\"https://bergercmo.ai\" target=\"_blank\" rel=\"noopener noreferrer\">bergerCMO.ai</a>.",
+      url: "https://bergercmo.ai/about",
+      sameAs: ["https://linkedin.com/in/tberger"],
     },
     content: `
 <p class="intro">Every pricing dashboard has a favorite number. For most sellers it's conversion rate at the current price point. Check it daily. Watch it move. Feel something about the movement. It's also the number least likely to tell you anything you don't already know.</p>
@@ -9467,8 +9469,10 @@ export const posts: BlogPost[] = [
     readingTime: "8 min read",
     category: "Pricing Strategy",
     author: {
-      name: "Dexter",
-      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+      name: "Tom Berger",
+      bio: "Tom Berger is a Portfolio CMO for B2B SaaS with 25+ years of experience building and leading marketing functions from Series A through growth stage, including VP Marketing roles at DigitalOcean, Bolt, and Sift. He writes about go-to-market strategy at <a href=\"https://bergercmo.ai\" target=\"_blank\" rel=\"noopener noreferrer\">bergerCMO.ai</a>.",
+      url: "https://bergercmo.ai/about",
+      sameAs: ["https://linkedin.com/in/tberger"],
     },
     content: `
 <p class="intro">The price was right. The math checked out. Conversion dropped anyway. That sentence describes more pricing decisions than most sellers want to admit, and the biggest one in retail history ran the experiment at a scale nobody else ever will.</p>
