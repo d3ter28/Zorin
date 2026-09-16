@@ -9240,6 +9240,89 @@ export const posts: BlogPost[] = [
 <p class="conclusion">Most WooCommerce pricing confusion comes from treating three different tool categories as interchangeable. Know which question you're actually trying to answer, automate a rule, track a competitor, or find your real optimal price, and the right tool gets a lot easier to pick.</p>
     `.trim(),
   },
+  {
+    slug: "how-to-market-a-vibe-coded-app-when-nobody-knows-it-exists",
+    title: "How to Market a Vibe Coded App When Nobody Knows It Exists",
+    excerpt:
+      "Building an app with AI made shipping cheap for everyone. Getting a stranger to care is the actual advantage, here's how to find the first customers.",
+    date: "2026-09-16",
+    readingTime: "9 min read",
+    category: "Education",
+    hidden: true,
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">You built it in a weekend. Maybe it was Lovable, maybe Cursor, maybe a late night in Replit. It works, it looks good, and the launch post you shared got a handful of likes, mostly from friends. Two weeks later, the signup count hasn't moved.</p>
+
+<p>This is the most common story in vibe coding right now, and it isn't a product problem. AI builders made building cheap for everyone at the same time. When everyone can ship, shipping stops being the advantage. Getting a stranger to care is the advantage.</p>
+
+<p>This guide covers how to market a vibe coded app when you don't have an audience, a budget, or a marketing background. No growth hacks. Just the things that actually get the first customers.</p>
+
+<h2>Why Vibe Coded Apps Stall After Launch</h2>
+<p>Before the tactics, it's worth understanding why so many apps die quietly. There are four patterns I see over and over.</p>
+<p>The app was built from an idea, not a buyer. Vibe coding makes it easy to go from "wouldn't it be cool if" to a working product before you've talked to one person who'd pay for it. The result is an app with a clear feature set and a fuzzy customer.</p>
+<p>Launch is treated as an event instead of a process. One Product Hunt post, one tweet, one Reddit thread, then back to building. Marketing that happens once isn't marketing. It's an announcement.</p>
+<p>The new domain is invisible. A site that went live last week has no backlinks, no rankings, and no search history. SEO matters, but it takes months to pay off. If it's your only plan, you'll be waiting a long time with no feedback.</p>
+<p>Building feels like progress, so you keep building. When signups don't come, the instinct is to add a feature. Building is the fun part and the part AI made easy. Talking to potential customers is uncomfortable, so it gets pushed back. Meanwhile the roadmap grows and nobody new sees it.</p>
+
+<h2>Answer Three Questions Before Choosing Any Channel</h2>
+<p>Every marketing channel works better when you can answer these clearly. Most vibe coded apps can't, and that's why nothing works.</p>
+<p><strong>Who pays?</strong> Not "small businesses" or "creators." A job title at a type of company. "Operations managers at 10-50 person logistics companies" is useful. "Businesses that want to save time" isn't.</p>
+<p><strong>What's the problem, in their words?</strong> Your homepage probably describes features. Your buyer describes a frustration. If your headline says "AI-powered workflow platform," rewrite it as the sentence your customer would say out loud when they're annoyed.</p>
+<p><strong>Where do they already look?</strong> Your customers aren't hanging around in vibe coding communities unless you built a developer tool. This is a trap a lot of builders fall into: they market to other builders because that's where they spend time. Other builders will tell you the app is cool. They won't pay for it.</p>
+<p>If you can finish this sentence, you're ready: "I help [role] at [type of company] stop [specific pain]."</p>
+
+<h2>Pick Channels by How Fast They Give You a Signal</h2>
+<p>When you have no traction, the most valuable thing a channel can give you isn't traffic. It's information: does anyone want this, and who? Rank your options by how fast they answer that question.</p>
+<table>
+  <thead>
+    <tr><th>Channel</th><th>Signal speed</th><th>What it's actually for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Direct outreach</td><td>Days</td><td>Fastest way to find out whether your offer lands, at zero cost per message</td></tr>
+    <tr><td>Niche communities</td><td>Weeks</td><td>Be useful first, mention your app only where it genuinely fits</td></tr>
+    <tr><td>Directories and launch sites</td><td>One-time boost</td><td>Your domain's first real links, rarely lasting customers on their own</td></tr>
+    <tr><td>SEO and content</td><td>Months</td><td>Start now, depend on it later</td></tr>
+    <tr><td>Paid ads</td><td>Only after you know who converts</td><td>Amplifies a message that already works, burns money on vague targeting</td></tr>
+  </tbody>
+</table>
+<p>For almost every new app, that ranking points to the same starting move: direct outreach.</p>
+
+<h2>Outbound for People Who Hate Selling</h2>
+<p>"Cold email" makes a lot of builders cringe, usually because they picture spam: thousands of generic messages to scraped lists. That version deserves to fail. The version that works looks nothing like it.</p>
+<p>Start with a list of 50 real companies. Not contacts yet. Companies, by name, that clearly match your customer profile. This is the step most people skip, and it decides whether everything after it works. If you can't find 50, your profile is either too narrow or not real.</p>
+<p>Find the actual person. The one with the job title that feels the pain. Generic addresses like info@ or hello@ go nowhere. And only send to verified email addresses. Bounces damage your sender reputation fast, and a damaged domain makes every future email land in spam.</p>
+<p>Write short and specific. Three or four sentences. Something like:</p>
+<p><em>"Hi Dana, noticed [Company] is hiring two more dispatchers, which usually means the scheduling spreadsheet is starting to break. I built a small tool that turns incoming load requests into a dispatch board automatically. Is scheduling actually a headache for your team right now, or is it under control?"</em></p>
+<p>Notice what's missing: no pitch deck, no feature list, no calendar link. It's one observation, one sentence about what you built, and one easy question.</p>
+<p>Send a few a day, every day. Ten emails a day for a month beats 300 in one afternoon. It protects your deliverability, and it gives you time to read replies and adjust your message. Send from your own domain or your own Gmail, not a throwaway address.</p>
+<p>Follow up once. A short, polite follow-up a few days later often gets more replies than the first email. After that, move on.</p>
+<p>If you'd rather work through this step by step, <a href="https://fkngrow.com/marketing-for-vibe-coded-apps" target="_blank" rel="sponsored noopener noreferrer">here's a detailed playbook for marketing a vibe coded app</a> that walks through picking an ICP, building the list, and running outreach daily.</p>
+
+<h2>A 30-Day Plan</h2>
+<p>Here's what the first month can look like when you treat marketing as a routine instead of a launch.</p>
+<p><strong>Week 1: Get clear.</strong> Write your one-sentence customer statement. Rewrite your homepage headline in your buyer's language. Set up Search Console, submit your sitemap, and fix your title tags.</p>
+<p><strong>Week 2: Start conversations.</strong> Build your list of 50 companies and find the right contact at each. Begin sending about ten emails a day. Join two communities where your buyers, not other builders, spend time, and start answering questions.</p>
+<p><strong>Week 3: Read and adjust.</strong> Look at who replied and who didn't. Are the replies coming from one industry or one job title? Rewrite your email around whatever got a response. Submit your app to a handful of directories while you're at it.</p>
+<p><strong>Week 4: Decide.</strong> By now you have real data. If you have conversations and interest, keep going and narrow toward the segment that's responding. If you have silence, change one variable, either the customer profile or the offer, and run another round.</p>
+
+<h2>How to Tell Whether It's Working</h2>
+<p>Forget vanity metrics early on. Page views and likes won't tell you much. Watch these instead:</p>
+<ul>
+<li><strong>Reply rate.</strong> Replies of any kind, including "no thanks," mean your email reached a real person and was relevant enough to answer.</li>
+<li><strong>Conversations.</strong> Someone asking a follow-up question is worth more than a hundred visits.</li>
+<li><strong>Price questions.</strong> When a prospect asks "what does it cost?" without prompting, you've found real interest.</li>
+</ul>
+<p>And if 100 well-targeted emails get zero replies, don't blame cold email. Your channel is fine. The problem is the offer or the customer profile, and now you know where to look.</p>
+
+<h2>Treat Marketing Like a Build Loop</h2>
+<p>If you vibe coded your app, you already know the method: give an input, look at the output, adjust, and run it again. Marketing works the same way. Your customer profile and message are the prompt, replies are the output, and every round tells you what to change.</p>
+
+<p class="conclusion">The builders who get customers aren't necessarily better marketers. They just keep running the loop after launch day ends.</p>
+    `.trim(),
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
