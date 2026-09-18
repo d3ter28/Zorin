@@ -42,6 +42,28 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // Old placeholder sample posts removed before real content existed
+      // (commit 8e091a9), still getting crawled/404'd per GSC as of 2026-09-18.
+      // Redirect to the closest live post on the same topic instead of a dead end.
+      {
+        source: "/blog/why-merchants-leave-money-on-the-table",
+        destination: "/blog/is-your-store-leaving-money-on-the-table",
+        permanent: true,
+      },
+      {
+        source: "/blog/price-elasticity-101",
+        destination: "/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers",
+        permanent: true,
+      },
+      {
+        source: "/blog/from-csv-to-optimal-price",
+        destination: "/blog/how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
