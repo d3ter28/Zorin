@@ -1,0 +1,45 @@
+name: IndexNow submit on new post
+
+# Runs when a push to main touches posts.ts, finds any newly added blog
+# post slugs in that push's diff, and pings IndexNow (Bing/Yandex) with
+# their live URLs so they get picked up same-day instead of waiting on
+# the next crawl cycle. Existing posts that were only edited (not newly
+# added) aren't resubmitted by this workflow.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/lib/blog/posts.ts"
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Find newly added post slugs and submit to IndexNow
+        run: |
+          set -e
+          SLUGS=$(git diff HEAD^ HEAD -- src/lib/blog/posts.ts \
+            | grep -E '^\+\s+slug: "' \
+            | sed -E 's/^\+\s+slug: "([^"]+)".*/\1/' \
+            | sort -u || true)
+
+          if [ -z "$SLUGS" ]; then
+            echo "No newly added post slugs in this push, nothing to submit."
+            exit 0
+          fi
+
+          URLS=""
+          for slug in $SLUGS; do
+            URLS="$URLS https://www.tryzorin.com/blog/$slug"
+          done
+
+          echo "Submitting: $URLS"
+          node scripts/indexnow-submit.mjs $URLS
