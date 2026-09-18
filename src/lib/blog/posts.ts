@@ -638,7 +638,7 @@ export const posts: BlogPost[] = [
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
     },
     content: `
-<p class="intro">A store is ready for dynamic pricing software when it has enough order volume and price history for an algorithm to find a real pattern, and when the product mix actually behaves the way dynamic pricing assumes it does, fast turnover, real competition, thin margins. Below that, automation just adds noise to a decision a person could still make more reliably by hand. Here's how to tell which side of that line your store is actually on.</p>
+<p class="intro">A store is ready for dynamic pricing software when it has enough order volume and price history for an algorithm to find a real pattern, and when the product mix actually behaves the way dynamic pricing assumes it does, fast turnover, real competition, thin margins. Below that, automation just adds noise to a decision a person could still make more reliably by hand. Here's how to tell which side of that line your store is actually on. For the specific data threshold an elasticity model needs, not just dynamic pricing broadly, <a href="/blog/how-much-sales-history-for-elasticity-pricing">how much sales history you actually need</a> breaks that question down on its own.</p>
 
 <h2>What Dynamic Pricing Software Actually Does</h2>
 <p>Dynamic pricing software automates price changes based on signals like demand, competitor prices, and inventory levels, using rules or algorithms to continuously look for a better price point than the one currently listed. Most of the tools that show up under this label, Prisync, Price2Spy, Omnia Retail, are built around watching competitor prices and reacting to them, not modeling your own customers' demand. <a href="https://www.shopify.com/blog/dynamic-pricing-software" target="_blank" rel="noopener noreferrer">Shopify's own guide to dynamic pricing tools</a> lays out a size-based ladder: Shopify's native features for the smallest stores, Prisync and Price2Spy for small to mid-sized businesses, Omnia Retail for mid-market retailers, and Quicklizard for enterprises above $10 million in annual revenue.</p>
@@ -9555,6 +9555,92 @@ export const posts: BlogPost[] = [
 <p>For the full case on why a single blended price test can hide the real signal, <a href="/blog/your-price-sensitivity-data-might-be-wrong">your price sensitivity data might be wrong</a> covers the segmentation side of this same diagnosis. Curious whether your own pricing is actually the problem? <a href="/signup">See what Zorin's elasticity model says about your catalog</a>.</p>
 
 <p class="conclusion">A "correct" price is not the same as the right price for the right person. Only one of those is a math problem. So before you re-run the model, re-run the diagnosis. Find out which of the three cases you're actually in.</p>
+    `.trim(),
+  },
+  {
+    slug: "how-much-sales-history-for-elasticity-pricing",
+    title: "How Much Sales History for Elasticity Pricing?",
+    excerpt:
+      "General guidance says 12-24 months. See why the real practical floor is much lower, and how confidence scoring replaces a fixed cutoff.",
+    date: "2026-09-18",
+    readingTime: "8 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Most guides to price elasticity modeling cite an enterprise number: a minimum of two years of pricing and sales history before the calculation is worth trusting. For an independent Shopify or WooCommerce store, that number is discouraging and mostly wrong. The practical floor sits much lower, closer to 3 to 6 months, and it depends less on how long your store has existed than on whether your price has actually moved during that window.</p>
+
+<h2>The Real Data Threshold (Not the One Most Guides Cite)</h2>
+<p>The two-year figure comes from enterprise retail research, built around chains managing tens of thousands of SKUs with dedicated pricing teams and years of stable point-of-sale history. It's a real number for that context, and a misleading one for a 40-SKU Shopify store six months into its first year.</p>
+<p>A more practical floor, closer to what an independent merchant can actually hit, looks like three things together: 3 to 6 months of daily or weekly sales data, at least 10 to 15% price variation somewhere in that window (meaning the price actually moved, not just sat flat), and roughly 30 to 50 distinct price-and-quantity observations to fit against. Hit all three and a model has something real to read. Miss the middle one, price variation, and even years of sales history won't help, because a flat price line has no elasticity signal in it at all.</p>
+
+<h2>Volume Isn't the Same as Signal</h2>
+<p>This is the distinction most generic forecasting advice blurs. A product that's sold steadily at one price for 18 months has plenty of sales volume and almost no elasticity signal, because the model needs to see what happened when price moved, not just how many units sold at a single number. A product that's only existed for 4 months but had one real price change, a launch discount ending, a cost-driven increase, can carry more usable signal than the 18-month flat-price product does.</p>
+<p>Worked example: say a product sold 40 units a month for 5 months at $28, then the price moved to $32 for the 6th month and sold 33 units. That's only 6 months of history, but it's one real price-and-quantity data point on top of a stable baseline, roughly a (33-40)/40 = -17.5% change in quantity against a (32-28)/28 = 14.3% change in price, giving an approximate elasticity of -1.22. A second product with 18 months of flat $28 pricing and zero price changes gives a model nothing to calculate at all, regardless of how many units it's sold.</p>
+
+<h2>What Happens Before You Hit the Threshold</h2>
+<p>Below the practical floor, a well-built tool shouldn't refuse to return anything, it should return a number with an honest confidence label attached. A raise, lower, or hold recommendation is still useful directionally even from thin data, as long as the merchant knows it's thin. What's actually dangerous is a tool that presents a two-week-old product's recommendation with the same confident tone as a two-year-old bestseller's, because that's the version that costs real money when a merchant trusts a number that never earned the trust.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
+  <figcaption>The same raise/lower/hold format, but the confidence label changes based on how much real price variation actually supports the number.</figcaption>
+</figure>
+
+<h2>How Confidence Scoring Replaces a Fixed Minimum</h2>
+<p>Zorin fits a price elasticity model per SKU directly from a store's own Shopify or WooCommerce order history, or a CSV upload, and attaches a confidence label, commonly Strong, Fair, or Weak, based on how much real data and price variation actually back the estimate. A thin-data product isn't blocked from getting a recommendation, it's just labeled honestly instead of dressed up with false certainty. That's a meaningfully different approach from a tool that either refuses to run below a hard cutoff or, worse, returns every recommendation with identical confidence regardless of what's actually behind it.</p>
+<p>The label matters practically: a Strong recommendation is reasonable to apply directly, a Weak one is worth treating as a starting hypothesis to sanity-check against your own judgment before committing, not a number to bulk-apply across your catalog without a second look.</p>
+
+<h2>Is Your Catalog Too Small, or Just Too New?</h2>
+<p>These are two different questions merchants tend to conflate. Catalog size, how many SKUs you carry, mostly determines how much manual work a rule-based approach would take, not whether elasticity modeling works at all. A 15-SKU store with 8 months of history and a couple of real price changes is in better shape than a 300-SKU store where every product has sat at the same price since launch. Newness, not smallness, is the real constraint. A brand-new store with zero price history hasn't given any model, from any vendor, anything to calculate yet, regardless of catalog size.</p>
+
+<h2>No Price History Yet? Here's the Other Signal</h2>
+<p>For a genuinely new product with no sales history at all, elasticity modeling has nothing to read yet, and no tool can responsibly manufacture a number from data that doesn't exist. Zorin's answer for that specific gap is a separate Van Westendorp price sensitivity survey: a merchant generates a shareable, no-login link, customers answer four classic price-perception questions, and the tool calculates an acceptable price range and optimal price point once enough responses accumulate, with its own honest confidence tier based on response count. It's a stated-preference signal, what customers say they'd pay, kept deliberately separate from the elasticity model's revealed-preference read, useful specifically in the window before there's enough sales history for the elasticity side to say anything at all.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>The commonly cited "two years of history" threshold comes from enterprise retail research. A more practical floor for an independent store is 3 to 6 months, with real price variation and roughly 30-50 price-quantity observations.</li>
+<li>Sales volume alone isn't elasticity signal. A model needs to see what happened when price actually moved, so a flat-priced product with 18 months of history can carry less usable signal than a 6-month product with one real price change.</li>
+<li>Below the practical threshold, the right behavior is an honestly-labeled thin-data recommendation, not a refusal and not false confidence.</li>
+<li>Catalog size and catalog age are different constraints. A small, older catalog with real price movement is in better shape than a large, newer one where every price has sat flat.</li>
+<li>For a genuinely new product with zero sales history, a Van Westendorp survey is a usable second signal while elasticity data accumulates.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How much sales history do I need before a pricing tool's elasticity model actually works?</h3>
+<p>A practical floor is 3 to 6 months of sales data with at least 10-15% price variation somewhere in that window and roughly 30-50 distinct price-and-quantity observations. The commonly cited "two years" figure comes from enterprise retail research and overstates what an independent store actually needs.</p>
+</div>
+<div class="faq-item">
+<h3>Is my catalog too small for elasticity-based pricing software?</h3>
+<p>Catalog size mostly affects how much manual work a rule-based approach takes, not whether elasticity modeling works. Catalog age and price-history depth matter more than SKU count, a small catalog with real price movement is in better shape than a large one where every price has sat flat.</p>
+</div>
+<div class="faq-item">
+<h3>What happens if I don't have enough sales data yet for accurate elasticity modeling?</h3>
+<p>A well-built tool should still return a recommendation, just with an honest confidence label reflecting how much real data supports it, rather than either refusing to run or presenting a thin-data guess with the same certainty as a well-established product.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need price variation in my sales history, or just enough sales volume?</h3>
+<p>Price variation matters more. A product that's sold steadily at one unchanged price for a year and a half gives a model nothing to calculate, since elasticity measures how quantity responds to a price change, and there's no change to measure.</p>
+</div>
+<div class="faq-item">
+<h3>How is a confidence score different from just having enough data?</h3>
+<p>A confidence score is the tool's own honest read on how much its recommendation should be trusted, based on both data volume and price variation, rather than a binary pass/fail gate. It lets a thin-data product still get a directional recommendation, labeled clearly as less certain, instead of either blocking it entirely or dressing it up with false confidence.</p>
+</div>
+<div class="faq-item">
+<h3>What should I do if my product has no sales history at all?</h3>
+<p>Elasticity modeling has nothing to read from zero sales history, so a Van Westendorp price sensitivity survey is the more useful signal in that window, a four-question customer survey that produces an acceptable price range based on what customers say they'd pay rather than what they've already done.</p>
+</div>
+</section>
+
+<p>For the full worked calculation behind a Van Westendorp price range, <a href="/blog/van-westendorp-calculation-a-worked-example">Van Westendorp Calculation: A Worked Example</a> walks through it step by step, and if you're weighing whether your store has outgrown manual pricing rules entirely, <a href="/blog/is-your-store-ready-for-dynamic-pricing-software">is your store ready for dynamic pricing software</a> covers the broader readiness signals. Curious what confidence tier your own catalog would get? <a href="/signup">Connect your store and see your first recommendation</a>.</p>
+
+<p class="conclusion">The data bar for elasticity pricing is lower than most guides make it sound, and it's about price movement more than time in business. Six months with one real price change beats two years of a number that never budged, and a tool that labels its own confidence honestly is more useful at every stage than one that pretends every recommendation is equally certain.</p>
     `.trim(),
   },
 ];
