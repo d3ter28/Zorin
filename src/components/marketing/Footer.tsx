@@ -54,6 +54,16 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="/van-westendorp-survey-template" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Van Westendorp survey template
+                  </a>
+                </li>
+                <li>
+                  <a href="/glossary" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Pricing glossary
+                  </a>
+                </li>
+                <li>
                   <a href="/signup" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Start free trial
                   </a>
