@@ -59,6 +59,11 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="/price-increase-email-template" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Price increase email template
+                  </a>
+                </li>
+                <li>
                   <a href="/glossary" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Pricing glossary
                   </a>
