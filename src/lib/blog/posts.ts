@@ -8812,7 +8812,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "rule-based-vs-algorithmic-pricing-which-fits-your-store",
-    title: "Rule-Based vs Algorithmic Pricing: Which Fits Your Store",
+    title: "Rule-Based vs Algorithmic Pricing: Which Fits You",
     excerpt:
       "Rule-based pricing plugins and algorithmic tools solve different problems. See which fits your catalog, and how Zorin's elasticity model compares.",
     date: "2026-09-14",
@@ -9035,7 +9035,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "dynamic-pricing-explained-definition-example-legal-risks",
-    title: "Dynamic Pricing Explained: Definition, Example, Legal Risks",
+    title: "Dynamic Pricing Explained: Definition & Risks",
     excerpt:
       "What dynamic pricing means for a small store, with real numbers and the Ticketmaster backlash as a cautionary example. Zorin reads your own data first.",
     date: "2026-09-15",
@@ -9140,7 +9140,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "best-pricing-optimization-tools-for-woocommerce-2026",
-    title: "Best Pricing Optimization Tools for WooCommerce (2026)",
+    title: "Best Pricing Tools for WooCommerce Stores (2026)",
     excerpt:
       "Compare real WooCommerce pricing plugins and repricers, and see how per-SKU elasticity modeling finds your optimal price from your own sales data.",
     date: "2026-09-16",

@@ -10,7 +10,7 @@ const OG_IMAGE = "/og-default.png";
 export const metadata = {
   title: "Discount Depth by Product Category (Sourced Data) - Zorin",
   description:
-    "Real peak promotional discount depth by product category during Black Friday/Cyber Week 2025, sourced from Adobe Analytics, with year-over-year comparison.",
+    "Peak promotional discount depth by product category during Black Friday/Cyber Week 2025, sourced from Adobe Analytics, with year-over-year comparison.",
   keywords: [
     "discount depth by category",
     "average discount percentage by category",

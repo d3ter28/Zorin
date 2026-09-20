@@ -284,7 +284,10 @@ export default function GlossaryPage() {
           term to link directly to it.
         </p>
 
-        <nav className="mt-10 flex flex-wrap gap-x-3 gap-y-2 border-y border-zinc-100 py-5 text-sm">
+        <h2 className="mt-10 text-sm font-semibold uppercase tracking-wide text-zinc-400">
+          Jump to a term
+        </h2>
+        <nav className="mt-3 flex flex-wrap gap-x-3 gap-y-2 border-y border-zinc-100 py-5 text-sm">
           {terms.map((t) => (
             <a
               key={t.id}
