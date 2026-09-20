@@ -280,7 +280,12 @@ export default function DiscountImpactOnMarginByProductCategoryPage() {
           <a href="/research/inventory-turnover-by-product-category" className="text-blue-600 hover:underline">inventory turnover by category</a>.
           This page closes a loop the others only implied: discounting is one of the main levers
           companies actually pull to move slow-turning inventory, and here's what public companies
-          say that lever costs them, in their own numbers.
+          say that lever costs them, in their own numbers. For what a typical discount actually
+          looks like before it hits margin,{" "}
+          <a href="/research/discount-depth-by-product-category" className="text-blue-600 hover:underline">
+            our companion page on discount depth by category
+          </a>{" "}
+          covers the percentage-off side of the same question.
         </p>
 
         <div className="mt-10 rounded-xl border border-zinc-200 bg-zinc-50 p-6">

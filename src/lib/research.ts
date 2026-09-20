@@ -49,4 +49,11 @@ export const research: ResearchItem[] = [
       "A sourced reference compiling real average order value figures across ecommerce product categories, drawn directly from public company SEC filings and investor disclosures.",
     date: "2026-09-12",
   },
+  {
+    slug: "discount-depth-by-product-category",
+    title: "Discount Depth by Ecommerce Product Category",
+    description:
+      "A sourced reference of real peak promotional discount depth across ecommerce product categories, drawn from Adobe Analytics' Holiday 2025 shopping report.",
+    date: "2026-09-20",
+  },
 ];
