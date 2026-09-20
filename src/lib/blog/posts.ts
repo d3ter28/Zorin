@@ -8584,7 +8584,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How do I decide which products to discount and by how much?</h3>
-<p>Check elasticity per product rather than applying one blanket percentage. Bestsellers usually need little or no discount; slow-moving inventory can typically absorb more.</p>
+<p>Check elasticity per product rather than applying one blanket percentage. Bestsellers usually need little or no discount; slow-moving inventory can typically absorb more. For inventory that needs to clear on a deadline rather than a single flash sale, a staged markdown down to a floor price is often a better fit than one deep cut, our free <a href="/markdown-clearance-spreadsheet">markdown and clearance price curve spreadsheet</a> plans that schedule with the margin at each stage worked out automatically.</p>
 </div>
 <div class="faq-item">
 <h3>Do promotions mess up my future pricing recommendations?</h3>

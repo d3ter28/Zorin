@@ -64,6 +64,11 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="/markdown-clearance-spreadsheet" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
+                    Markdown &amp; clearance spreadsheet
+                  </a>
+                </li>
+                <li>
                   <a href="/glossary" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Pricing glossary
                   </a>

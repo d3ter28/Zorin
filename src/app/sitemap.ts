@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/van-westendorp-survey-template`,          lastModified: new Date("2026-09-14") },
     { url: `${BASE_URL}/glossary`,                                lastModified: new Date("2026-09-20") },
     { url: `${BASE_URL}/price-increase-email-template`,           lastModified: new Date("2026-09-20") },
+    { url: `${BASE_URL}/markdown-clearance-spreadsheet`,          lastModified: new Date("2026-09-20") },
     { url: `${BASE_URL}/about`,                                   lastModified: new Date("2026-08-20") },
     { url: `${BASE_URL}/terms`,                                   lastModified: new Date("2026-06-01") },
     { url: `${BASE_URL}/privacy`,                                 lastModified: new Date("2026-06-01") },
