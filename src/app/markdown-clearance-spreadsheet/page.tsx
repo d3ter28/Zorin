@@ -80,6 +80,49 @@ export default function MarkdownClearanceSpreadsheetPage() {
           </a>
         </div>
 
+        <div className="mt-10">
+          <p className="text-sm font-medium text-zinc-900">Preview: what the sheet calculates</p>
+          <p className="mt-1.5 text-sm text-zinc-500">
+            Example inputs: $60 starting price, $24 clearance floor, $18 cost of goods, 4 stages,
+            14 days apart. Everything below is a live formula in the actual file, not typed in.
+          </p>
+          <div className="mt-4 overflow-x-auto rounded-lg border border-zinc-200">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-zinc-50 text-xs uppercase tracking-wide text-zinc-500">
+                <tr>
+                  <th className="px-4 py-2.5">Stage</th>
+                  <th className="px-4 py-2.5">Day</th>
+                  <th className="px-4 py-2.5">Discount %</th>
+                  <th className="px-4 py-2.5">Price</th>
+                  <th className="px-4 py-2.5">Margin %</th>
+                  <th className="px-4 py-2.5">Margin $</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { stage: 1, day: 0, discount: "0.0%", price: "$60.00", margin: "70.0%", marginDollar: "$42.00" },
+                  { stage: 2, day: 14, discount: "20.0%", price: "$48.00", margin: "62.5%", marginDollar: "$30.00" },
+                  { stage: 3, day: 28, discount: "40.0%", price: "$36.00", margin: "50.0%", marginDollar: "$18.00" },
+                  { stage: 4, day: 42, discount: "60.0%", price: "$24.00", margin: "25.0%", marginDollar: "$6.00" },
+                ].map((row) => (
+                  <tr key={row.stage} className="border-t border-zinc-100">
+                    <td className="px-4 py-2.5 font-medium text-zinc-900">{row.stage}</td>
+                    <td className="px-4 py-2.5 font-mono text-zinc-600">{row.day}</td>
+                    <td className="px-4 py-2.5 font-mono text-zinc-600">{row.discount}</td>
+                    <td className="px-4 py-2.5 font-mono text-zinc-600">{row.price}</td>
+                    <td className="px-4 py-2.5 font-mono text-zinc-600">{row.margin}</td>
+                    <td className="px-4 py-2.5 font-mono text-zinc-600">{row.marginDollar}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-zinc-400">
+            Stage 4 lands exactly on your $24 floor price. Change any input in the real file and
+            every row recalculates the same way.
+          </p>
+        </div>
+
         <div className="mt-16 space-y-6 border-t border-zinc-100 pt-10">
           <h2 className="text-xl font-semibold text-zinc-900">How the curve is built</h2>
           <p className="text-sm leading-relaxed text-zinc-500">
