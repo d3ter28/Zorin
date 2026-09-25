@@ -56,4 +56,18 @@ export const research: ResearchItem[] = [
       "A sourced reference of real peak promotional discount depth across ecommerce product categories, drawn from Adobe Analytics' Holiday 2025 shopping report.",
     date: "2026-09-20",
   },
+  {
+    slug: "return-rate-by-product-category",
+    title: "Ecommerce Return Rate by Product Category",
+    description:
+      "A sourced reference of online return rates across ecommerce product categories, anchored to NRF, Coresight Research and Zalando figures alongside published industry benchmarks.",
+    date: "2026-09-25",
+  },
+  {
+    slug: "state-of-ecommerce-pricing-2026",
+    title: "State of Ecommerce Pricing 2026",
+    description:
+      "A sourced report on how small online retailers are pricing in 2026: tariff pass-through, price increases, price realization, discount depth and returns, compiled from public research.",
+    date: "2026-09-25",
+  },
 ];
