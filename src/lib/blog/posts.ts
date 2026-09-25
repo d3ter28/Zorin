@@ -72,7 +72,7 @@ export const posts: BlogPost[] = [
 <p>Three things change in practice, not the whole nature of the decision. First, the recommendation comes from a statistical model fit to your own sales history instead of a manually typed formula, so it reflects actual customer behavior rather than a rule someone set once and forgot. Zorin, for example, fits a price elasticity model per SKU and attaches an R²-based confidence score to every recommendation, so a thin-data product is never presented with the same certainty as an established one, the exact distinction a spreadsheet formula can't make. Second, every change has a record: what the price was, what it changed to, and what happened to sales afterward, so a question six months later has an actual answer instead of a guess. Third, reviewing a catalog stops being a from-scratch exercise every time, since the tool surfaces what changed since the last check instead of requiring a manual recalculation across every row.</p>
 
 <h2>What Doesn't Change</h2>
-<p>The decision itself stays yours. A statistical recommendation is not the same as an automatic price change, and the honest version of this transition keeps a human reviewing every price before it goes live, not a system quietly rewriting your storefront overnight. You also still need to understand your own margin structure. Software can tell you a product's elasticity, but it can't tell you your cost basis if you haven't tracked it, and a tool that outputs a confident number on top of an unreliable cost input is no more trustworthy than the spreadsheet it replaced.</p>
+<p>The decision itself stays yours. A statistical recommendation is not the same as an automatic price change, and the honest version of this transition keeps a human reviewing every price before it goes live, not a system quietly rewriting your storefront overnight. You also still need to understand your own margin structure. Software can tell you a product's elasticity, but it can't tell you your cost basis if you haven't tracked it, and a tool that outputs a confident number on top of an unreliable cost input is no more trustworthy than the spreadsheet it replaced. Once you've decided to switch, <a href="/blog/rolling-out-pricing-software-without-losing-sales">a staged rollout plan</a> covers how to apply the first recommendations without putting your whole catalog at risk.</p>
 
 <h2>Questions Worth Asking Before You Make the Switch</h2>
 <ul>
@@ -9759,6 +9759,130 @@ export const posts: BlogPost[] = [
 <p>Once you have a rough sense of what manual pricing might already be costing you, <a href="/blog/is-pricing-software-worth-the-monthly-cost">a simple breakeven calculation</a> turns that into a specific number for your own plan tier, and <a href="/blog/how-to-evaluate-a-shopify-pricing-app">what to look for in a pricing app</a> covers how to shortlist a vendor once the budget case is made. <a href="/shopify-profit-margin-calculator">Zorin's free margin calculator</a> is a fast way to sanity-check the per-product numbers behind any pitch before you bring them to whoever signs the check.</p>
 
 <p class="conclusion">Manual pricing isn't free, it just doesn't send an invoice. The cost shows up as sales lost to prices set too high, margin given away at prices set too low, and hours spent maintaining a system that was never built to scale past a spreadsheet. Once that cost has a real number attached to it, the ROI question mostly answers itself.</p>
+    `.trim(),
+  },
+  {
+    slug: "rolling-out-pricing-software-without-losing-sales",
+    title: "Rolling Out Pricing Software Without Losing Sales",
+    excerpt:
+      "A 5-step rollout plan for pricing software: record a baseline, pilot a few SKUs, change prices for everyone at once, measure profit, then expand.",
+    date: "2026-09-25",
+    readingTime: "10 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">The safest way to roll out pricing software is to treat it like a controlled experiment, not a switch you flip: record a baseline first, apply the new prices to a small pilot group of products, change each price for every customer at the same time, judge the result on profit rather than revenue, and only then expand to the rest of the catalog. Whether you're using Zorin or any other tool, the rollout order matters more than the software, because the same recommendation applied carelessly across 300 SKUs on day one is the version that actually costs you sales.</p>
+
+<h2>Why the Rollout Matters More Than the Tool</h2>
+<p>A pricing tool's first recommendations are its least proven. Even a well-built elasticity model is working from your historical data, and the first real test of whether its read is right is what happens after a price actually changes. Roll everything out at once and you lose the ability to tell which changes helped, which hurt, and which were just noise from a slow week.</p>
+<p>A staged rollout fixes that. It limits the downside to a handful of products while you learn how much to trust the recommendations, and it gives you a clean before-and-after comparison instead of a catalog-wide blur. A careful rollout isn't slower in any way that matters, it's the difference between knowing the new prices worked and hoping they did.</p>
+
+<h2>What Went Wrong at Instacart</h2>
+<p>The clearest recent example of a pricing rollout going wrong comes from Instacart. In December 2025, Consumer Reports and the Groundwork Collaborative published an investigation built on more than 400 volunteers shopping through Instacart in live, simultaneous sessions. They found that nearly 75% of grocery items were shown to different shoppers at different prices, even when ordering from the same store at the same time, with some shoppers paying up to 23% more for an identical item. The price tests were run with Eversight, an AI pricing tool, and the researchers estimated the average variation could cost a household of four about $1,200 a year.</p>
+<p>Instacart initially described the program as short-term, randomized tests. On December 22, 2025, it ended them, saying the tests that "resulted in different prices for the same item at the same store missed the mark for some customers," and committed that two customers would see the same price for an identical item at the same time going forward.</p>
+<p>The lesson for an independent store isn't "never test prices." It's narrower and more useful: testing by showing different customers different prices for the same product at the same moment is the specific practice that broke trust. A rollout that changes a price for everyone, then watches what happens over time, gets you the same learning without the fairness problem.</p>
+
+<h2>A 5-Step Rollout Plan for Pricing Software</h2>
+<p>This is the sequence I'd follow for any store moving to a pricing tool for the first time, or switching from one tool to another. Each step exists to protect the one after it.</p>
+
+<h3>Step 1: Record a baseline before anything changes</h3>
+<p>Before you apply a single recommendation, write down the last 4 weeks for every product you might touch: units sold, revenue, gross profit (price minus cost of goods, times units), and current price. If your platform gives you product-level conversion rate, record that too. Also note anything unusual in that window, a sale, a stockout, a big ad push, so you don't mistake a promotion ending for a pricing problem later. Without this baseline, every result that follows is an opinion.</p>
+
+<h3>Step 2: Pick 5 to 15 pilot products</h3>
+<p>Choose products with steady sales and enough history for the tool to be confident, not your newest launches. Exclude anything currently on promotion, anything seasonal that's about to peak or fade, and anything with low stock, since a stockout will look exactly like a price-driven sales drop. A good pilot mix includes at least one recommended increase and, if the tool suggests any, one recommended decrease, so you learn how both directions behave in your store.</p>
+
+<h3>Step 3: Change each price for everyone at once</h3>
+<p>Apply the new price as a normal price change on the product, visible to every customer. Don't show different visitors different prices for the same product at the same time, that's the Instacart pattern, and it's also the approach most likely to produce a complaint if two customers compare notes. Change prices on a quiet weekday rather than right before a campaign, and keep a simple list of every pilot product's original price so reversing a change takes minutes, not detective work.</p>
+
+<h3>Step 4: Measure profit over a full cycle, not revenue after three days</h3>
+<p>Give each pilot change at least 2 to 4 weeks, and longer if your customers typically reorder on a longer cycle. Then compare gross profit per week against your baseline, not just revenue or units. A price increase is supposed to sell slightly fewer units at a better margin, so judging it on unit sales alone will make almost every good increase look like a failure.</p>
+
+<h3>Step 5: Expand in batches, keep a rollback list</h3>
+<p>If the pilot results hold up, expand to the next group of 20 to 50 products rather than the entire remaining catalog, and repeat the same measurement. Keep your original-price list current as you go. Most stores can cover their full catalog in 3 or 4 batches over a couple of months, and each batch is faster to evaluate than the last because you already know how much to trust the recommendations.</p>
+
+<table>
+<thead>
+<tr><th>Week</th><th>What you're doing</th><th>What you're checking</th></tr>
+</thead>
+<tbody>
+<tr><td>Weeks -4 to 0</td><td>Record baseline, pick pilot products</td><td>Units, revenue, gross profit, price per product; note promotions or stockouts</td></tr>
+<tr><td>Week 1</td><td>Apply pilot price changes to 5-15 products</td><td>Prices live correctly on the storefront, original prices saved</td></tr>
+<tr><td>Weeks 2-4</td><td>Let the pilot run</td><td>Weekly gross profit vs baseline, not daily sales swings</td></tr>
+<tr><td>Week 5</td><td>Decide: keep, adjust, or reverse each pilot change</td><td>Profit change per product, any customer feedback</td></tr>
+<tr><td>Weeks 6-12</td><td>Expand in batches of 20-50 products</td><td>Same comparison per batch</td></tr>
+</tbody>
+</table>
+
+<h2>A Worked Example: Why Revenue Can Mislead You</h2>
+<p>Say one pilot product sells for $40, costs $18 to make and ship, and averaged 120 units a month over your baseline window. That's $4,800 in monthly revenue and $2,640 in gross profit (120 units × $22).</p>
+<p>The tool recommends raising it to $44. Over the next month, units drop to 108, a 10% fall. Revenue lands at $4,752, down 1%, which looks like the change failed. But gross profit is now 108 units × $26 = $2,808, up $168, or about 6.4%, and you shipped 12 fewer units to earn it. Judged on revenue, you'd reverse a price change that made you more money. Judged on profit, it's the kind of result worth expanding.</p>
+<p>The same logic cuts the other way: a price decrease that lifts units by 15% can still lose money if the margin given up per unit outweighs the extra volume. Profit is the only number that settles it.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/price-history.webp" alt="Zorin price history view showing past price changes alongside sales volume per price point" width="1440" height="1969" loading="lazy" />
+  <figcaption>Seeing each past price alongside the volume it sold at makes the before-and-after comparison in a pilot much easier to read.</figcaption>
+</figure>
+
+<h2>What to Do If a Pilot Price Underperforms</h2>
+<p>Set your reversal rule before the pilot starts, not after you see the numbers. A reasonable default: if a pilot product's weekly gross profit is below baseline for 2 to 3 consecutive weeks, with no promotion, stockout, or traffic drop to explain it, put the original price back. One bad week is noise. Three is a signal.</p>
+<p>Before reversing, check the obvious outside causes. Did a competitor run a sale? Did your ad spend drop? Did the product go out of stock for a few days? If something external explains the dip, extend the pilot rather than drawing a conclusion from a distorted window. And treat an underperforming pilot as information, not a failure of the whole approach: it tells you that product is more price-sensitive than its history suggested, which is exactly what the rollout is meant to surface.</p>
+
+<h2>Switching From Another Pricing Tool</h2>
+<p>If you're moving from a repricer or a rule-based discount plugin rather than from a spreadsheet, there's one extra step that matters more than any other: turn off the old tool's rules for your pilot products before you apply new prices. A competitor-matching repricer left running will quietly overwrite your new price the next time it syncs, and a rule-based plugin can stack an automatic discount on top of the price you just set. Either one corrupts the pilot, because you're no longer measuring the price you think you set.</p>
+<p>Disable the old rules product by product as each batch moves over, rather than uninstalling the old tool on day one. That way products not yet in the rollout keep behaving exactly as they did before, and you're only ever changing one system's control over any given product at a time.</p>
+
+<p>This is where the specifics of the tool start to matter. Zorin fits a price elasticity model to each product's own sales history from Shopify, WooCommerce, or a CSV upload, and returns a raise, lower, or hold recommendation with an estimated profit lift and a confidence label based on how much real data supports it. That confidence label is useful for Step 2: products with a Strong confidence rating are the natural pilot candidates. Nothing is applied automatically, every change is reviewed first, and an applied price becomes the normal price every customer sees, which keeps the rollout on the right side of the Instacart problem by design.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Roll out pricing software in stages: baseline, a pilot of 5 to 15 products, measurement, then expansion in batches of 20 to 50.</li>
+<li>Record at least 4 weeks of units, revenue, and gross profit per product before changing anything, and note promotions or stockouts in that window.</li>
+<li>Change each price for every customer at the same time. Instacart ended its item price tests in December 2025 after a Consumer Reports study found the same items shown at up to 23% different prices to different shoppers.</li>
+<li>Judge pilots on gross profit over 2 to 4 weeks, not revenue or units. A price increase that loses 10% of units can still raise profit by more than 6%.</li>
+<li>When switching from a repricer or discount plugin, disable its rules for each product before applying new prices, or it will overwrite them.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How do I switch to pricing software without hurting my sales?</h3>
+<p>Record a 4-week baseline of units, revenue, and gross profit per product, then apply new prices to a small pilot of 5 to 15 steady-selling products. Measure gross profit against the baseline for 2 to 4 weeks, reverse anything that underperforms, and expand to the rest of the catalog in batches.</p>
+</div>
+<div class="faq-item">
+<h3>Should I test a pricing tool on a few products before using it on my whole catalog?</h3>
+<p>Yes. A pilot of 5 to 15 products limits the downside while you learn how accurate the tool's recommendations are for your store, and it gives you a clean before-and-after comparison that a catalog-wide change can't.</p>
+</div>
+<div class="faq-item">
+<h3>What should I measure before changing my prices?</h3>
+<p>For each product, record the last 4 weeks of units sold, revenue, gross profit, and current price, plus conversion rate if your platform shows it at product level. Note any promotions, stockouts, or ad changes in that window so they don't distort the comparison later.</p>
+</div>
+<div class="faq-item">
+<h3>How long should I wait before judging whether a new price is working?</h3>
+<p>At least 2 to 4 weeks, and longer if your customers reorder on a longer cycle. Daily sales swing too much to read a price change from a few days of data, and a slow first week is often just noise.</p>
+</div>
+<div class="faq-item">
+<h3>What can go wrong when you change prices across a whole store at once?</h3>
+<p>You lose the ability to tell which changes helped and which hurt, one bad recommendation can affect hundreds of products before you notice, and external events like a slow week or a competitor's sale get mistaken for the price change itself.</p>
+</div>
+<div class="faq-item">
+<h3>Is it okay to show different customers different prices to test them?</h3>
+<p>It's risky. Instacart ended its item price tests in December 2025 after an investigation found shoppers were shown up to 23% different prices for the same item at the same time. Changing a price for everyone and comparing results over time avoids that trust problem.</p>
+</div>
+<div class="faq-item">
+<h3>What should I do with my old repricer or discount plugin when switching tools?</h3>
+<p>Disable its rules for each product before applying new prices to that product, rather than uninstalling it on day one. Otherwise the old tool can overwrite or discount the new price, and your pilot measures the wrong number.</p>
+</div>
+</section>
+
+<p>If you're still deciding whether to leave spreadsheets behind at all, <a href="/blog/what-changes-when-you-move-from-spreadsheets-to-pricing-software">what actually changes when you move from spreadsheets to pricing software</a> covers that decision first. For the mechanics of testing a single price properly, <a href="/blog/how-to-run-a-price-ab-test-the-right-way">how to run a price test the right way</a> goes deeper, and <a href="/blog/how-much-sales-history-for-elasticity-pricing">how much sales history you need</a> helps you pick which products are ready for a pilot. When you're ready to run one, <a href="/signup">connect your store to Zorin</a> and start with your Strong-confidence products.</p>
+
+<p class="conclusion">Pricing software earns trust the same way a new hire does: on a small scope first, with results you can check. Record a baseline, pilot a handful of products, change prices for everyone at once, judge on profit, and expand in batches. Do that, and moving to Zorin or any other pricing tool stops being a leap of faith and becomes a series of small, reversible decisions backed by your own numbers.</p>
     `.trim(),
   },
 ];
