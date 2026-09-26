@@ -1127,17 +1127,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Every dollar of traffic that comes from search instead of an ad account is a dollar that isn't eating into margin. That's the actual reason a store owner should care about backlinks at all, not because "SEO" is a box to check, but because organic traffic is one of the few acquisition channels that gets cheaper as it compounds instead of more expensive. Guest posting is still one of the more reliable ways to build that traffic, provided the placement is picked for relevance and not just for the fact that a site said yes.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A handful of backlinks from sites your customers actually read outperforms a pile of links from sites that just accept anything.</li>
-<li>Domain authority matters less than topical overlap: a mid-authority site in your exact niche usually sends more qualified traffic than a high-authority site with no relevance to what you sell.</li>
-<li>A guest post that reads like an ad gets rejected or ignored. One that solves a real problem for the host site's readers is what earns the placement and the click-through.</li>
-<li>Anchor text diversity protects the link. Branded and generic anchors read naturally; the same exact-match keyword phrase repeated across every guest post looks manufactured to both readers and search engines.</li>
-<li>Outreach is the slowest part of this by far, which is why a lot of store owners eventually lean on a guest-post exchange network instead of cold-emailing editors one at a time.</li>
-</ul>
-</div>
-
 <h2>Why a Handful of Relevant Links Beats a Pile of Random Ones</h2>
 <p>It used to be enough to rack up as many backlinks as possible, from wherever would take them. That stopped working years ago. A link from a site with zero overlap to your store's category does close to nothing for rankings and can actively look manufactured if it's part of a pattern. A single link from a site your actual customers read, a niche blog, a trade publication, a creator in your space, carries more weight than a dozen links from generic "write for us" pages that publish anything.</p>
 <p>The practical filter is simple: would a real customer of yours plausibly land on that host site and read that article anyway? If the answer is no, the link isn't going to do much even if the site's domain metrics look impressive on paper.</p>
@@ -1161,6 +1150,17 @@ export const posts: BlogPost[] = [
 <h2>Finding Partners Without Losing a Month to Outreach</h2>
 <p>Cold outreach works, but it's slow. Finding the right sites, checking their fit, writing a pitch, following up, and waiting on a reply can easily eat a week per placement if you're doing it one email at a time. That's the main reason a lot of store owners end up using a guest-post exchange network instead, <a href="https://pressplaced.com/" target="_blank" rel="sponsored noopener noreferrer">Pressplaced</a> is one, where site owners in relevant niches swap content directly rather than each side hunting for partners cold. It doesn't replace the judgment calls above, relevance and quality still matter just as much, but it cuts a lot of the search time out of the process.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A handful of backlinks from sites your customers actually read outperforms a pile of links from sites that just accept anything.</li>
+<li>Domain authority matters less than topical overlap: a mid-authority site in your exact niche usually sends more qualified traffic than a high-authority site with no relevance to what you sell.</li>
+<li>A guest post that reads like an ad gets rejected or ignored. One that solves a real problem for the host site's readers is what earns the placement and the click-through.</li>
+<li>Anchor text diversity protects the link. Branded and generic anchors read naturally; the same exact-match keyword phrase repeated across every guest post looks manufactured to both readers and search engines.</li>
+<li>Outreach is the slowest part of this by far, which is why a lot of store owners eventually lean on a guest-post exchange network instead of cold-emailing editors one at a time.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -1182,7 +1182,8 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">Guest posting hasn't stopped working, it's just gotten pickier about what counts as a good placement. A store's organic traffic grows fastest from a small number of genuinely relevant links built with real editorial standards, not from a large number of placements on whatever site said yes fastest. Every hour spent on outreach and content for the right site is an hour that keeps paying off long after a single ad campaign would have stopped.</p>
-    `.trim(),
+    
+`.trim(),
   },
   {
     slug: "which-products-actually-deserve-a-discount",
@@ -1198,17 +1199,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">A product deserves a discount when cutting its price would bring in meaningfully more buyers, not because it's overstocked, a competitor just marked it down, or the team has a feeling about it. That's a measurable question, not a guess. The answer lives in a product's own price-and-order history, specifically how much its order volume moved the last time its price actually changed, and it's usually a smaller list than the "let's put half the catalog on sale" instinct suggests.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A product's price elasticity, how much demand shifts when price shifts, determines whether a discount earns new buyers or just hands a lower price to people who'd have bought anyway.</li>
-<li>Elasticity varies enormously even within one catalog: real sourced data puts basic t-shirts at -1.17 and athletic wear at -2.86, a gap wide enough that one flat markdown percentage across a whole "sale" collection is close to guaranteed to be wrong for some of the products in it.</li>
-<li>The most reliable signal is a product's own past reaction to a real price change, not intuition about the catalog or what a competitor is doing.</li>
-<li>How deep to discount is a separate decision from which products to discount, and skipping the first question makes the second one unanswerable.</li>
-<li>A sale corrupts future pricing decisions if the promotional period isn't flagged and excluded from the data afterward, so the cleanup step matters as much as the selection step.</li>
-</ul>
-</div>
 
 <h2>Why Some Products Respond to Discounts and Others Don't</h2>
 <p>The technical term for this is price elasticity: how much demand for a specific product changes when its price changes. A product is elastic when a price cut brings in a lot more buyers, usually because there are close alternatives out there and shoppers are actively comparing. A product is inelastic when a discount barely moves the needle, usually because the buyer already wanted that specific item regardless of price.</p>
@@ -1260,6 +1250,17 @@ export const posts: BlogPost[] = [
 <h2>Presenting the Discount Matters as Much as Picking It</h2>
 <p>Even the right discount candidate underperforms if the sale isn't obvious to a shopper landing on the page. Ecommerce conversion rates broadly sit in the 2.5-3% range as of 2025 according to a convergence of industry analyses, and a poorly surfaced discount, buried below the fold, missing a strikethrough price, or absent from the collection grid entirely, gives up a meaningful chunk of that already-thin baseline before the pricing decision even gets a fair test. If a store's product and collection pages aren't built to make a markdown visually obvious at a glance, that's a layout and <a href="https://rankfly.ca/" target="_blank" rel="sponsored noopener noreferrer">website design</a> problem rather than a pricing one, and it's worth fixing before concluding a discount "didn't work."</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A product's price elasticity, how much demand shifts when price shifts, determines whether a discount earns new buyers or just hands a lower price to people who'd have bought anyway.</li>
+<li>Elasticity varies enormously even within one catalog: real sourced data puts basic t-shirts at -1.17 and athletic wear at -2.86, a gap wide enough that one flat markdown percentage across a whole "sale" collection is close to guaranteed to be wrong for some of the products in it.</li>
+<li>The most reliable signal is a product's own past reaction to a real price change, not intuition about the catalog or what a competitor is doing.</li>
+<li>How deep to discount is a separate decision from which products to discount, and skipping the first question makes the second one unanswerable.</li>
+<li>A sale corrupts future pricing decisions if the promotional period isn't flagged and excluded from the data afterward, so the cleanup step matters as much as the selection step.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -1289,7 +1290,8 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">Picking discount candidates by instinct treats every product as equally price-sensitive, and most catalogs simply aren't built that way. Checking a product's own price-and-demand history before marking it down turns "let's put this on sale" into a decision backed by evidence, and pairing that with a storefront that actually shows the discount clearly is what lets a well-chosen sale convert the way the data suggested it should. <a href="/signup">Start a free trial</a> and see which of your own products are actually worth discounting this quarter.</p>
-    `.trim(),
+    
+`.trim(),
   },
   {
     slug: "how-to-raise-your-price-after-a-product-launch",
@@ -1306,17 +1308,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Raise your launch price once you have enough real sales data to know how customers actually respond to your price, not on a fixed calendar date. In practice that means waiting for 3-6 months of sales history with some price movement in it, sizing the increase from your own elasticity rather than a round industry number, and giving early customers enough notice that the change feels planned instead of sprung on them. The launch price was never meant to be permanent: it was a placeholder set before you had the data to do better.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>An introductory price is a temporary tool to reduce first-purchase friction, not a promise to hold that price forever.</li>
-<li>The right time to raise is a data signal, not a date on the calendar: once your sales history has enough price variation, an elasticity model can tell you the increase is safe rather than you guessing.</li>
-<li>Generic "never raise more than X%" rules don't transfer cleanly to a physical product with its own demand curve; your own elasticity is the better guide.</li>
-<li>Raising too soon on thin data and raising too much in one move are different failure modes with different fixes, and both are avoidable with a preview before you commit.</li>
-<li>Advance notice and a grandfather window for early buyers turn a price increase into a planned event instead of a trust problem.</li>
-</ul>
-</div>
 
 <h2>Why Your Launch Price Isn't Supposed to Be Permanent</h2>
 <p>An introductory price does a specific job: it lowers the risk of a first purchase for a product with no reviews, no track record, and no proof it's worth the money yet. That job has a natural end point. Once the product has reviews, repeat buyers, and a sales history to point to, the price is no longer carrying the weight of "trust me, this is worth it" on its own.</p>
@@ -1366,6 +1357,17 @@ export const posts: BlogPost[] = [
 <h2>Step 6: Apply the Price and Keep Watching</h2>
 <p>A price change isn't a one-time event you set and forget. Once the new price is live, watch whether actual sales behavior matches what the elasticity estimate predicted. If the confidence label was Strong and the estimate holds, the data has now validated itself and the same process repeats the next time it's warranted. If sales moved more than the model expected, that's new information worth feeding back into the next decision rather than a sign the whole approach failed. <a href="/blog/how-to-run-a-price-ab-test-the-right-way">A proper price A/B test</a> is the more rigorous version of this same watch-and-confirm step, if you want a controlled read rather than a before-and-after comparison.</p>
 <p>For the fuller picture beyond this one transition moment, including how to set the very first launch price and what to do at the other end of a product's life, the <a href="/blog/how-to-price-a-new-product-from-launch-to-end-of-life">launch-to-end-of-life pricing guide</a> covers the full arc this post's Steps 1 through 6 sit inside of.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>An introductory price is a temporary tool to reduce first-purchase friction, not a promise to hold that price forever.</li>
+<li>The right time to raise is a data signal, not a date on the calendar: once your sales history has enough price variation, an elasticity model can tell you the increase is safe rather than you guessing.</li>
+<li>Generic "never raise more than X%" rules don't transfer cleanly to a physical product with its own demand curve; your own elasticity is the better guide.</li>
+<li>Raising too soon on thin data and raising too much in one move are different failure modes with different fixes, and both are avoidable with a preview before you commit.</li>
+<li>Advance notice and a grandfather window for early buyers turn a price increase into a planned event instead of a trust problem.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2187,6 +2189,9 @@ export const posts: BlogPost[] = [
 <p>Run this by hand across 40 SKUs and three problems show up fast. Most stores don't have a clean two-point comparison for every product, some have had five price changes over the year, others none. A manual calculation gives you a number with no sense of how much to trust it, an elasticity from two data points after a traffic spike isn't the same quality of evidence as one from six months of steady sales with real price movement, but the plain formula treats them identically. And promotional periods, especially common given how many WooCommerce stores run dynamic-pricing plugins, quietly distort the read if they're not excluded first.</p>
 <p>This is the gap Zorin closes. Connect your <a href="/integrations/woocommerce">WooCommerce store</a> (or upload a CSV export from Analytics > Orders if you'd rather not connect live) and Zorin fits a price elasticity model per SKU from your own historical price-and-quantity data, the same underlying math covered above, run automatically across your whole catalog. Each product gets a plain raise, lower, or hold recommendation, an estimated profit lift, and <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence label reflecting how much real data and price variation actually support the number</a>, so a thin-data SKU is never presented with the same certainty as a well-established one. Zorin also automatically detects likely promotional spikes, which matters especially on WooCommerce given how common rule-based pricing plugins are, and excludes them from the model fit before they can distort your baseline read.</p>
 
+<h2>Checking Your Result</h2>
+<p>The midpoint formula used above is the standard textbook method, explained step by step in <a href="https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply" target="_blank" rel="noopener noreferrer">OpenStax's free Principles of Economics textbook</a>. Once you have a number, compare it with published estimates in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> reference: household appliances average around -0.35, soft drinks -1.06 to -1.37, and casual or athletic apparel around -2.86. A result far outside that range usually means the before-and-after periods weren't comparable, for example one of them included a sale.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -2197,9 +2202,6 @@ export const posts: BlogPost[] = [
 <li>Manual calculation works for one product. Past a handful of SKUs, tracking data quality, confidence, and promotional contamination by hand stops being realistic, which is what automated elasticity modeling is for.</li>
 </ul>
 </div>
-
-<h2>Checking Your Result</h2>
-<p>The midpoint formula used above is the standard textbook method, explained step by step in <a href="https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply" target="_blank" rel="noopener noreferrer">OpenStax's free Principles of Economics textbook</a>. Once you have a number, compare it with published estimates in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> reference: household appliances average around -0.35, soft drinks -1.06 to -1.37, and casual or athletic apparel around -2.86. A result far outside that range usually means the before-and-after periods weren't comparable, for example one of them included a sale.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2316,6 +2318,11 @@ export const posts: BlogPost[] = [
 </table>
 <p>A store doesn't need every row in the mature column to be "doing it right." A growing-stage store with cost-plus pricing, currency display, and no segment pricing yet isn't behind, it's exactly where the trajectory says it should be. The table is a map of where the trajectory leads, not a checklist every store needs to complete immediately. For the full taxonomy of named pricing strategies (cost-based, competitor-based, value-based, dynamic, and the rest) and how to choose between them at any given moment, the <a href="/blog/ecommerce-pricing-strategy-the-complete-guide">complete pricing strategy guide</a> covers that ground in more depth.</p>
 
+<p>Knowing exactly when you've crossed from "not enough sales history yet" into "enough data for value-based pricing to be reliable" is itself a question worth answering with data rather than a guess. <a href="/signup">Zorin</a> reads your Shopify or WooCommerce history and tells you, per product, when that threshold has been crossed and what the data suggests you do next.</p>
+
+<h2>Why the Launch Price Deserves Extra Care</h2>
+<p>The earliest stage is where pricing mistakes are most common. <a href="https://www.simon-kucher.com/en/insights/monetizing-innovation" target="_blank" rel="noopener noreferrer">Simon-Kucher</a> reports that 72% of innovations miss their financial targets or fail outright, and attributes much of that to price being decided late, with a cost-plus formula, rather than tested against what customers value. The fix at the launch stage is modest: a cost floor, a quick look at the market, and ideally a short customer price survey, then a planned review once real sales data exists.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -2326,11 +2333,6 @@ export const posts: BlogPost[] = [
 <li>A mature setup isn't a single named strategy, it's a system. Per-SKU pricing basis, defined review triggers, segment and channel handling, and international localization all develop as a store scales.</li>
 </ul>
 </div>
-
-<p>Knowing exactly when you've crossed from "not enough sales history yet" into "enough data for value-based pricing to be reliable" is itself a question worth answering with data rather than a guess. <a href="/signup">Zorin</a> reads your Shopify or WooCommerce history and tells you, per product, when that threshold has been crossed and what the data suggests you do next.</p>
-
-<h2>Why the Launch Price Deserves Extra Care</h2>
-<p>The earliest stage is where pricing mistakes are most common. <a href="https://www.simon-kucher.com/en/insights/monetizing-innovation" target="_blank" rel="noopener noreferrer">Simon-Kucher</a> reports that 72% of innovations miss their financial targets or fail outright, and attributes much of that to price being decided late, with a cost-plus formula, rather than tested against what customers value. The fix at the launch stage is modest: a cost floor, a quick look at the market, and ideally a short customer price survey, then a planned review once real sales data exists.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2642,6 +2644,9 @@ export const posts: BlogPost[] = [
 
 <p>Run a Van Westendorp survey on your own catalog and read the results alongside your elasticity data. <a href="/signup">Start a free trial</a> to see both signals on the same product.</p>
 
+<h2>What the Research Says About Survey-Based Pricing</h2>
+<p>Van Westendorp is one of several ways to measure willingness to pay; <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">a widely cited review by Breidert, Hahsler and Reutterer</a> compares it with other survey and market-based methods. The main caution is that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Treat the range a survey gives you as an upper guide, and let real sales data take over once you have it.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -2652,9 +2657,6 @@ export const posts: BlogPost[] = [
 <li><strong>Stated preference and revealed preference aren't the same thing.</strong> Survey results tend to run lower than actual purchase behavior, so treat them as a strong starting signal rather than a guaranteed number.</li>
 </ul>
 </div>
-
-<h2>What the Research Says About Survey-Based Pricing</h2>
-<p>Van Westendorp is one of several ways to measure willingness to pay; <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">a widely cited review by Breidert, Hahsler and Reutterer</a> compares it with other survey and market-based methods. The main caution is that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Treat the range a survey gives you as an upper guide, and let real sales data take over once you have it.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2888,6 +2890,9 @@ export const posts: BlogPost[] = [
 <p>The trust-building step matters more than any single feature. The value of an AI-assisted recommendation holds up because you can see the reasoning and test it before it goes live, not because you're asked to believe it on faith.</p>
 <p>Once you've picked a tool, <a href="/blog/how-to-know-if-your-prices-are-too-high-or-too-low">check whether your current prices are too high or too low</a>. Running WooCommerce instead? <a href="/blog/woocommerce-pricing-apps-what-to-look-for">The same criteria apply, with a few platform-specific differences</a>. For a breakdown of every tool category, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full 2026 pricing tools comparison</a>.</p>
 
+<h2>What Software Buyers Get Wrong</h2>
+<p><a href="https://www.capterra.com/resources/software-buying-trends-2026/" target="_blank" rel="noopener noreferrer">Capterra's 2026 Software Buying Trends report</a>, based on more than 3,300 buyers, found only one in three is a successful software adopter, and 89% of buyers who regretted a purchase had run into problems during implementation. For a pricing app, implementation is when the tool first meets your real sales data, which is exactly why the testing sequence above matters. Keeping the final say also helps adoption: <a href="https://faculty.wharton.upenn.edu/wp-content/uploads/2016/08/Dietvorst-Simmons-Massey-2018.pdf" target="_blank" rel="noopener noreferrer">research by Dietvorst, Simmons and Massey</a> found people are far more willing to rely on an imperfect algorithm when they can adjust its output.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -2898,9 +2903,6 @@ export const posts: BlogPost[] = [
 <li><strong>Most pricing apps, including Zorin, don't require a developer to set up.</strong> Watch for "contact sales" pricing as a signal that a tool's setup is more involved than a standard self-serve install.</li>
 </ul>
 </div>
-
-<h2>What Software Buyers Get Wrong</h2>
-<p><a href="https://www.capterra.com/resources/software-buying-trends-2026/" target="_blank" rel="noopener noreferrer">Capterra's 2026 Software Buying Trends report</a>, based on more than 3,300 buyers, found only one in three is a successful software adopter, and 89% of buyers who regretted a purchase had run into problems during implementation. For a pricing app, implementation is when the tool first meets your real sales data, which is exactly why the testing sequence above matters. Keeping the final say also helps adoption: <a href="https://faculty.wharton.upenn.edu/wp-content/uploads/2016/08/Dietvorst-Simmons-Massey-2018.pdf" target="_blank" rel="noopener noreferrer">research by Dietvorst, Simmons and Massey</a> found people are far more willing to rely on an imperfect algorithm when they can adjust its output.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -3014,6 +3016,9 @@ export const posts: BlogPost[] = [
 
 <p>Run your own pricing review continuously instead of once a year. <a href="/signup">Start a free trial</a> and see whether Zorin's elasticity model agrees with your current prices. If you're pricing a category with its own specific quirks, <a href="/blog/how-to-price-clothing-on-shopify">apparel</a> and <a href="/blog/pricing-skincare-products-on-shopify-charging-enough">skincare</a> each have a dedicated breakdown that goes beyond the general strategies covered here.</p>
 
+<h2>Why Pricing Deserves More Attention Than It Gets</h2>
+<p>Three findings make the case that pricing is worth real effort. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's pricing research</a> found that for the average S&amp;P 1500 company, a 1% price increase with volume unchanged lifts operating profit by about 8%, more than a 1% cut in variable costs. <a href="https://www.simon-kucher.com/en/insights/global-pricing-study-2025" target="_blank" rel="noopener noreferrer">Simon-Kucher's Global Pricing Study 2025</a> found that companies realize less than half of the price increases they plan, so how an increase is chosen and rolled out matters as much as the decision to raise. And the classic <a href="https://econpapers.repec.org/RePEc:aea:aecrev:v:76:y:1986:i:4:p:728-41" target="_blank" rel="noopener noreferrer">fairness research by Kahneman, Knetsch and Thaler</a> showed customers accept price increases tied to real cost rises while resenting ones that look like exploiting demand. Whatever strategy you pick, those three facts shape how well it works.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -3024,9 +3029,6 @@ export const posts: BlogPost[] = [
 <li><strong>Review cadence should follow data, not the calendar.</strong> Roughly 3-6 months per product as sales history accumulates, twice a year at the strategy level, and immediately when a real trigger event happens.</li>
 </ul>
 </div>
-
-<h2>Why Pricing Deserves More Attention Than It Gets</h2>
-<p>Three findings make the case that pricing is worth real effort. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's pricing research</a> found that for the average S&amp;P 1500 company, a 1% price increase with volume unchanged lifts operating profit by about 8%, more than a 1% cut in variable costs. <a href="https://www.simon-kucher.com/en/insights/global-pricing-study-2025" target="_blank" rel="noopener noreferrer">Simon-Kucher's Global Pricing Study 2025</a> found that companies realize less than half of the price increases they plan, so how an increase is chosen and rolled out matters as much as the decision to raise. And the classic <a href="https://econpapers.repec.org/RePEc:aea:aecrev:v:76:y:1986:i:4:p:728-41" target="_blank" rel="noopener noreferrer">fairness research by Kahneman, Knetsch and Thaler</a> showed customers accept price increases tied to real cost rises while resenting ones that look like exploiting demand. Whatever strategy you pick, those three facts shape how well it works.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -3173,6 +3175,9 @@ export const posts: BlogPost[] = [
 
 <p>Run your own Van Westendorp survey from any product in your Zorin catalog. <a href="/signup">Start a free trial</a> to generate a shareable link and see results update as responses come in.</p>
 
+<h2>What the Research Says About Survey-Based Pricing</h2>
+<p>Van Westendorp is one of several ways to measure willingness to pay; <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">a widely cited review by Breidert, Hahsler and Reutterer</a> compares it with other survey and market-based methods. The main caution is that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Treat the range a survey gives you as an upper guide, and let real sales data take over once you have it.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -3183,9 +3188,6 @@ export const posts: BlogPost[] = [
 <li><strong>Survey data and elasticity data stay separate on purpose.</strong> Reading stated preference and revealed preference side by side lets you catch a disagreement between them instead of averaging it away.</li>
 </ul>
 </div>
-
-<h2>What the Research Says About Survey-Based Pricing</h2>
-<p>Van Westendorp is one of several ways to measure willingness to pay; <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">a widely cited review by Breidert, Hahsler and Reutterer</a> compares it with other survey and market-based methods. The main caution is that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Treat the range a survey gives you as an upper guide, and let real sales data take over once you have it.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -3341,6 +3343,9 @@ export const posts: BlogPost[] = [
 <p>A <strong>markdown</strong> is a permanent price reduction. The product stays at the new price until it sells out. Use this for end-of-life stock you're clearing for good. A <strong>discount</strong> is a temporary reduction, with the original price returning afterward. Use this for promotions, seasonal events, or loyalty offers on products you intend to keep selling.</p>
 <p>EOL stock gets a markdown, not a discount. Running a temporary discount on a product you're retiring still brings the price back up at the end, which creates confusion and wastes the urgency the price drop could have generated. A permanent step-down with clear "discontinuing" messaging is the cleaner exit. For more on how to run discounts on products you intend to keep selling, the guide on <a href="/blog/how-to-price-a-discount-without-losing-your-margin">pricing discounts without losing margin</a> covers the discount mechanics separately.</p>
 
+<h2>Two Real Launch Lessons</h2>
+<p><a href="https://www.simon-kucher.com/en/insights/monetizing-innovation" target="_blank" rel="noopener noreferrer">Simon-Kucher</a> reports that 72% of innovations miss their financial targets or fail entirely, largely because price is set late with a cost-plus formula rather than tested against customer value. At the other extreme, launching high and cutting fast has its own cost: Apple <a href="https://www.apple.com/newsroom/2007/09/05Apple-Sets-iPhone-Price-at-399-for-this-Holiday-Season/" target="_blank" rel="noopener noreferrer">cut the original iPhone from $599 to $399</a> barely two months after launch in 2007, and the backlash from early buyers pushed it to offer them a $100 store credit. A planned price path, decided before launch, avoids both mistakes.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -3351,9 +3356,6 @@ export const posts: BlogPost[] = [
 <li>EOL markdowns work best as gradual step-downs with scarcity framing, not a single steep cut that trains customers to wait for clearance events.</li>
 </ul>
 </div>
-
-<h2>Two Real Launch Lessons</h2>
-<p><a href="https://www.simon-kucher.com/en/insights/monetizing-innovation" target="_blank" rel="noopener noreferrer">Simon-Kucher</a> reports that 72% of innovations miss their financial targets or fail entirely, largely because price is set late with a cost-plus formula rather than tested against customer value. At the other extreme, launching high and cutting fast has its own cost: Apple <a href="https://www.apple.com/newsroom/2007/09/05Apple-Sets-iPhone-Price-at-399-for-this-Holiday-Season/" target="_blank" rel="noopener noreferrer">cut the original iPhone from $599 to $399</a> barely two months after launch in 2007, and the backlash from early buyers pushed it to offer them a $100 store credit. A planned price path, decided before launch, avoids both mistakes.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -4544,6 +4546,9 @@ export const posts: BlogPost[] = [
 <p>This is where a stated-preference method like <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">the Van Westendorp Price Sensitivity Meter</a> earns its place. It's a short, four-question survey that asks customers at what price a product would feel too cheap, cheap, expensive, and too expensive. Plotting the responses gives you four reference points: the Point of Marginal Cheapness and Point of Marginal Expensiveness, which together bound your acceptable price corridor, plus an Indifference Price Point and an Optimal Price Point where price resistance from either direction balances out.</p>
 <p>It's a different kind of evidence than elasticity, stated rather than revealed, so the two stay conceptually separate in Zorin rather than being blended into one number. But for a new product launch or a low-confidence SKU where you don't have enough sales history yet, a Van Westendorp survey gives you a second, independent signal to anchor a starting price before real sales data exists to model.</p>
 
+<h2>Why Price Optimization Pays Off</h2>
+<p><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's pricing research</a> found that for the average S&amp;P 1500 company, a 1% price improvement with volume unchanged lifts operating profit by about 8%, which is why even small, well-targeted changes matter. Survey-based tools come with a known caveat: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis</a> found people state a willingness to pay about 21% higher than what they actually pay, so survey results are best treated as an upper guide until real sales data is available.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -4554,9 +4559,6 @@ export const posts: BlogPost[] = [
 <li>A Van Westendorp survey fills the gap elasticity modeling can't: pricing a new or low-data SKU that doesn't have enough price variation to model yet.</li>
 </ul>
 </div>
-
-<h2>Why Price Optimization Pays Off</h2>
-<p><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's pricing research</a> found that for the average S&amp;P 1500 company, a 1% price improvement with volume unchanged lifts operating profit by about 8%, which is why even small, well-targeted changes matter. Survey-based tools come with a known caveat: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis</a> found people state a willingness to pay about 21% higher than what they actually pay, so survey results are best treated as an upper guide until real sales data is available.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -5082,6 +5084,11 @@ export const posts: BlogPost[] = [
 <p>Elasticity analysis isn't gated by store size, it's gated by data. What actually matters is whether you have enough sales history with enough price movement in it for the formula to have something to read. A useful rough bar: at least 10 to 20 SKUs, roughly six months of sales history, and some real price variation somewhere in that history, a formula can't tell you anything about price sensitivity if your price never moved.</p>
 <p>A 15-SKU store that's changed a few prices over the past year has more usable elasticity signal than a 300-SKU store that's never touched a single price tag. Catalog size affects how much manual effort this takes if you're doing it by hand in a spreadsheet, one calculation per SKU adds up fast, but it doesn't affect whether the underlying math is valid. This is also where <a href="/blog/how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one">the case for automation gets stronger even for smaller stores</a>: reading 15 SKUs by hand is tedious but doable in an afternoon, reading 150 by hand generally doesn't happen at all, which is usually how "probably fine" pricing habits take root in the first place.</p>
 
+<p>If you'd like to see this calculated automatically across your own catalog rather than product by product in a spreadsheet, you can <a href="/integrations/shopify">connect your Shopify store</a> or <a href="/integrations/woocommerce">connect WooCommerce</a> and Zorin will fit an elasticity model to your actual sales history. You can also check your current margins first with the free <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before deciding where to test a price change. If you want to compare Zorin against the rest of the elasticity-tool category first, <a href="/blog/price-optimization-tools">a roundup of the tools that actually calculate elasticity</a> covers the field. This guide covered getting the data out of Shopify specifically and running the calculation on it; <a href="/blog/price-elasticity-of-demand-formula">the formula on its own, platform-agnostic and worked through a plain example</a>, is worth a read if you sell across more than one channel.</p>
+
+<h2>Checking Your Result</h2>
+<p>The midpoint formula used above is the standard textbook method, explained step by step in <a href="https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply" target="_blank" rel="noopener noreferrer">OpenStax's free Principles of Economics textbook</a>. Once you have a number, compare it with published estimates in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> reference: household appliances average around -0.35, soft drinks -1.06 to -1.37, and casual or athletic apparel around -2.86. A result far outside that range usually means the before-and-after periods weren't comparable, for example one of them included a sale.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -5092,11 +5099,6 @@ export const posts: BlogPost[] = [
 <li>Elasticity analysis is gated by data (SKU count, sales history, price variation), not by store size.</li>
 </ul>
 </div>
-
-<p>If you'd like to see this calculated automatically across your own catalog rather than product by product in a spreadsheet, you can <a href="/integrations/shopify">connect your Shopify store</a> or <a href="/integrations/woocommerce">connect WooCommerce</a> and Zorin will fit an elasticity model to your actual sales history. You can also check your current margins first with the free <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> before deciding where to test a price change. If you want to compare Zorin against the rest of the elasticity-tool category first, <a href="/blog/price-optimization-tools">a roundup of the tools that actually calculate elasticity</a> covers the field. This guide covered getting the data out of Shopify specifically and running the calculation on it; <a href="/blog/price-elasticity-of-demand-formula">the formula on its own, platform-agnostic and worked through a plain example</a>, is worth a read if you sell across more than one channel.</p>
-
-<h2>Checking Your Result</h2>
-<p>The midpoint formula used above is the standard textbook method, explained step by step in <a href="https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply" target="_blank" rel="noopener noreferrer">OpenStax's free Principles of Economics textbook</a>. Once you have a number, compare it with published estimates in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> reference: household appliances average around -0.35, soft drinks -1.06 to -1.37, and casual or athletic apparel around -2.86. A result far outside that range usually means the before-and-after periods weren't comparable, for example one of them included a sale.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -5221,6 +5223,9 @@ export const posts: BlogPost[] = [
 <p>You don't need to run this yourself. Connect your sales history and Zorin fits the regression per SKU automatically, returning the coefficient alongside a confidence score, so you can see at a glance which recommendations are backed by clean, consistent data and which ones are closer to <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a guess dressed up as a number</a>.</p>
 <p>If you'd rather skip the spreadsheet entirely, <a href="/signup">connect your sales history</a> and get the real coefficient, with a confidence score, for every product in your catalog.</p>
 
+<h2>Where the Formula Comes From</h2>
+<p>The midpoint method used here is the standard textbook approach; <a href="https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply" target="_blank" rel="noopener noreferrer">OpenStax's free Principles of Economics textbook</a> walks through it in its chapter on price elasticity, including why using the average of the two prices and quantities gives the same answer whether a price rises or falls. For real-world scale, the same concept underpins large studies like <a href="https://www.nber.org/papers/w22627" target="_blank" rel="noopener noreferrer">an analysis of almost 50 million Uber ride requests</a>, which estimated most surge-pricing elasticities between -0.4 and -0.6.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -5231,9 +5236,6 @@ export const posts: BlogPost[] = [
 <li>A proper log-log regression across many price points does what the two-point formula does, but averages out the noise and adds a confidence score, which is the difference between a rough estimate and a number you can act on.</li>
 </ul>
 </div>
-
-<h2>Where the Formula Comes From</h2>
-<p>The midpoint method used here is the standard textbook approach; <a href="https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply" target="_blank" rel="noopener noreferrer">OpenStax's free Principles of Economics textbook</a> walks through it in its chapter on price elasticity, including why using the average of the two prices and quantities gives the same answer whether a price rises or falls. For real-world scale, the same concept underpins large studies like <a href="https://www.nber.org/papers/w22627" target="_blank" rel="noopener noreferrer">an analysis of almost 50 million Uber ride requests</a>, which estimated most surge-pricing elasticities between -0.4 and -0.6.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -5280,17 +5282,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Automating pricing updates means automating the workflow around the decision, not the decision itself: exporting sales data on a schedule, feeding it to a pricing model, pushing approved prices back into Shopify through the Admin API, and notifying your team when it's done. The analysis itself takes minutes. Most of the time merchants lose is in the manual steps around it, exporting CSVs, cross-referencing cost sheets, editing product pages one by one.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Pricing is really three separate jobs: data collection, analysis, and execution. Most merchants automate the middle one and do the other two by hand.</li>
-<li>Shopify Flow and third-party connectors can automate the data export step so sales history lands in a consistent format without manual clicking.</li>
-<li>Pushing recommended prices back into Shopify has three options, the bulk CSV editor, Flow plus tags, or the Admin API, with the API being the only one that scales cleanly to large catalogs.</li>
-<li>Confidence scores matter for automation specifically: only push high-confidence recommendations automatically, route low-confidence ones to a manual review queue.</li>
-<li>Automate the plumbing before you trust the model, not before. Run recommendations manually a few times first so you know what a good one looks like.</li>
-</ul>
-</div>
 
 <h2>The Pricing Workflow Has Three Parts</h2>
 <p>Think of pricing as three distinct jobs: data collection, pulling sales history, cost data, and competitor prices into one place; analysis, running that data through an elasticity model to find the profit-maximizing price for each SKU; and execution, pushing the new prices back into your store, updating internal reports, and notifying your team. Most merchants automate the second part, or let a tool handle it, and do the first and third by hand. That's where the time disappears.</p>
@@ -5346,6 +5337,17 @@ export const posts: BlogPost[] = [
 <p>The second is ignoring confidence scores. Not every recommendation is equally strong. A product with an elasticity R-squared of 0.91 is telling you something reliable. A product with sparse sales data and low confidence is a guess. Build your automation to filter on confidence, so only strong recommendations get pushed automatically and weaker ones go to a review queue.</p>
 <p>The pricing decision is the valuable part. Everything around it, the exports, the formatting, the uploads, the notifications, is plumbing. Automate the plumbing, keep your hands on the lever. <a href="/signup">Connect your sales history</a> to see the recommendation side of this workflow running on your own catalog.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Pricing is really three separate jobs: data collection, analysis, and execution. Most merchants automate the middle one and do the other two by hand.</li>
+<li>Shopify Flow and third-party connectors can automate the data export step so sales history lands in a consistent format without manual clicking.</li>
+<li>Pushing recommended prices back into Shopify has three options, the bulk CSV editor, Flow plus tags, or the Admin API, with the API being the only one that scales cleanly to large catalogs.</li>
+<li>Confidence scores matter for automation specifically: only push high-confidence recommendations automatically, route low-confidence ones to a manual review queue.</li>
+<li>Automate the plumbing before you trust the model, not before. Run recommendations manually a few times first so you know what a good one looks like.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -5379,7 +5381,8 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">Getting a pricing recommendation is one thing. Acting on it across 200 SKUs is another, and that gap is almost entirely a plumbing problem, not a modeling one. Automate the data export, the price push, and the notifications, and keep the actual pricing decision, and a healthy dose of skepticism toward low-confidence recommendations, in human hands.</p>
-    `.trim(),
+    
+`.trim(),
   },
   {
     slug: "elastic-vs-inelastic-demand-whats-the-difference",
@@ -5395,17 +5398,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Elastic demand means customers respond strongly to a price change, quantity sold moves a lot for a relatively small price move. Inelastic demand means the opposite: quantity sold barely moves even when price does. The dividing line is a single number, the price elasticity of demand, and knowing which side of it a product sits on is the difference between a price increase that grows profit and one that quietly erodes it.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Elastic demand: a 1% price change produces a more than 1% change in quantity sold. Inelastic demand: quantity changes by less than 1%.</li>
-<li>The dividing line is an elasticity coefficient of exactly -1, more negative than that is elastic, closer to zero is inelastic.</li>
-<li>Short-run gasoline demand has been measured between -0.03 and -0.08, close to perfectly inelastic, while casual and athletic apparel has been measured near -2.86.</li>
-<li>Elastic products lose revenue when you raise price and gain it when you lower price; inelastic products do the reverse, which is why the same percentage increase can be profitable on one SKU and damaging on another.</li>
-<li>Most catalogs are a mix of both, treating every product with the same pricing rule is the most common way merchants leave profit on the table.</li>
-</ul>
-</div>
 
 <h2>The One-Line Definition</h2>
 <p>Price elasticity of demand is the percentage change in quantity demanded divided by the percentage change in price. That single ratio is what separates elastic from inelastic, everything else is downstream of it.</p>
@@ -5505,6 +5497,17 @@ export const posts: BlogPost[] = [
 <p>The mistake isn't picking the wrong side, it's assuming there's only one side. A typical store carries some products with real differentiation or loyalty behind them, sitting well toward inelastic, alongside commodity items with a dozen near-identical competitors, sitting well toward elastic. A single storewide pricing rule, "raise everything 5% to offset rising costs," treats both groups identically and gets roughly half of the catalog wrong. The inelastic half absorbs the increase fine. The elastic half loses more in volume than it gains in price, and total profit can fall even while the average price tag went up. Pricing product by product, rather than storewide, is what actually protects margin when costs rise, which is the same reasoning behind <a href="/blog/how-to-raise-prices-without-losing-customers">deciding whether and how to pass on a cost increase</a> per SKU rather than across the board.</p>
 <p>If you'd rather see which side of the line your own products actually sit on instead of estimating it, <a href="/signup">connect your sales history</a> and the model will calculate a coefficient and confidence score per SKU.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elastic demand: a 1% price change produces a more than 1% change in quantity sold. Inelastic demand: quantity changes by less than 1%.</li>
+<li>The dividing line is an elasticity coefficient of exactly -1, more negative than that is elastic, closer to zero is inelastic.</li>
+<li>Short-run gasoline demand has been measured between -0.03 and -0.08, close to perfectly inelastic, while casual and athletic apparel has been measured near -2.86.</li>
+<li>Elastic products lose revenue when you raise price and gain it when you lower price; inelastic products do the reverse, which is why the same percentage increase can be profitable on one SKU and damaging on another.</li>
+<li>Most catalogs are a mix of both, treating every product with the same pricing rule is the most common way merchants leave profit on the table.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -5561,17 +5564,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">A product has more elastic demand when customers have easy alternatives, don't consider it essential, and can react quickly to a price change. The opposite conditions, few substitutes, genuine necessity, high switching costs, produce inelastic demand. Five specific, well-documented factors determine where any given product actually lands, and none of them are random.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Substitute availability is the single biggest driver of elasticity, more alternatives means customers can walk away from a price increase more easily.</li>
-<li>Necessity, budget share, brand loyalty, and time horizon all shape elasticity independently of how many competitors exist.</li>
-<li>Elasticity typically rises the longer a price change stays in effect, a product that looks inelastic in week one can look meaningfully more elastic a year later.</li>
-<li>Two products in the same store, even the same category, can sit at opposite ends of the spectrum for reasons that have nothing to do with price itself.</li>
-<li>Diagnosing which drivers apply to a specific product is a faster starting point than waiting for enough sales history to calculate an exact coefficient.</li>
-</ul>
-</div>
-
 <h2>Five Real Drivers, Not a Coin Flip</h2>
 <p>Elasticity looks like an abstract statistic until you break it into what actually produces it. Economic research consistently points to the same five determinants, and understanding each one separately makes it possible to reason about a product's likely elasticity before you've even calculated it.</p>
 
@@ -5627,6 +5619,17 @@ export const posts: BlogPost[] = [
 <h2>Evidence From Real Measurements</h2>
 <p>Two published studies show these drivers at work. Time: <a href="https://www.nber.org/papers/w12530" target="_blank" rel="noopener noreferrer">Hughes, Knittel and Sperling</a> found U.S. short-run gasoline demand grew far less price-sensitive between the late 1970s and the early 2000s, as driving became more deeply built into daily routines. Urgency: a study of <a href="https://www.nber.org/papers/w22627" target="_blank" rel="noopener noreferrer">almost 50 million Uber ride requests</a> found riders who needed a car right now kept booking even at surge prices, with most elasticity estimates between -0.4 and -0.6. Substitutes show up clearly in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> research: casual and athletic apparel, with dozens of near-identical alternatives, measures around -2.86, while refrigerators and washers, bought when the old one breaks, average around -0.35.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Substitute availability is the single biggest driver of elasticity, more alternatives means customers can walk away from a price increase more easily.</li>
+<li>Necessity, budget share, brand loyalty, and time horizon all shape elasticity independently of how many competitors exist.</li>
+<li>Elasticity typically rises the longer a price change stays in effect, a product that looks inelastic in week one can look meaningfully more elastic a year later.</li>
+<li>Two products in the same store, even the same category, can sit at opposite ends of the spectrum for reasons that have nothing to do with price itself.</li>
+<li>Diagnosing which drivers apply to a specific product is a faster starting point than waiting for enough sales history to calculate an exact coefficient.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -5677,17 +5680,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Price elasticity varies enormously by category. Fashion and standard electronics tend to be highly price sensitive, beauty and skincare split depending on whether the purchase is routine or discovery driven, and handmade goods often resist typical elasticity patterns altogether because there's rarely a true competitor to compare against.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Elasticity ranges from strongly elastic categories like fashion to strongly inelastic staples, driven by substitute availability, necessity, and how easily a customer can comparison shop.</li>
-<li>Fashion and apparel lean elastic: published estimates range from about -1.17 for basic t-shirts to about -2.86 for casual and athletic wear.</li>
-<li>Beauty and skincare split by purchase motivation: discovery-driven purchases behave elastically, established routine purchases behave more inelastically.</li>
-<li>Subscription businesses concentrate price sensitivity around the signup and renewal moments, not ongoing per-item demand the way retail products show it.</li>
-<li>Handmade and gift-driven goods often resist typical elasticity patterns entirely, since uniqueness and occasion can outweigh price comparison altogether.</li>
-</ul>
-</div>
 
 <p>The same 15% discount that moves fashion inventory fast can barely register on a niche product with genuine uniqueness behind it. That gap is the whole reason category-level examples matter more than a single formula. Once you know where your category tends to sit, pricing decisions get a lot less speculative. Zorin calculates this exact elasticity per product automatically from your own sales history, and it's most useful precisely in the categories below where a real number, not a guess, actually settles the question. This guide walks through where each major ecommerce category tends to fall on the spectrum. For the sourced, citable version of these category patterns, with links to the underlying published research behind each figure, see <a href="/research/price-elasticity-by-category">our price elasticity by category reference</a>.</p>
 
@@ -5768,6 +5760,17 @@ export const posts: BlogPost[] = [
 <h2>A Real-World Measurement Outside Ecommerce</h2>
 <p>One of the largest elasticity studies ever run used <a href="https://www.nber.org/papers/w22627" target="_blank" rel="noopener noreferrer">almost 50 million Uber ride requests</a>. Economists measured how riders responded to surge prices and found demand was surprisingly inelastic, with most estimates between -0.4 and -0.6. When people need something right now, even a visible price jump changes behavior less than intuition suggests. The same logic applies to urgent or deadline-driven purchases in any category.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elasticity ranges from strongly elastic categories like fashion to strongly inelastic staples, driven by substitute availability, necessity, and how easily a customer can comparison shop.</li>
+<li>Fashion and apparel lean elastic: published estimates range from about -1.17 for basic t-shirts to about -2.86 for casual and athletic wear.</li>
+<li>Beauty and skincare split by purchase motivation: discovery-driven purchases behave elastically, established routine purchases behave more inelastically.</li>
+<li>Subscription businesses concentrate price sensitivity around the signup and renewal moments, not ongoing per-item demand the way retail products show it.</li>
+<li>Handmade and gift-driven goods often resist typical elasticity patterns entirely, since uniqueness and occasion can outweigh price comparison altogether.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -5822,17 +5825,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">If you're deciding how deep to discount, the answer starts with one number: your gross margin, not your competitor's sale price. Most sustainable discounts land between 10% and 30%, with the right depth set by how much margin room your category actually has. Get that number wrong and a discount that looks generous on the surface quietly eats your entire profit on every unit sold.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A discount's margin hit is always proportionally larger than the discount percentage itself, because your costs stay fixed while revenue drops.</li>
-<li>Discount depth should follow your category's gross margin, generally 10 to 30%, not a round number that feels generous.</li>
-<li>Bundling or a targeted BOGO on a high-margin pairing usually clears dead stock at a better realized margin than a flat markdown.</li>
-<li>"Buy One, Get One 50% Off" is roughly a 25% discount on the full order, not 50%, and BOGO Free generally needs 50%+ gross margin to stay profitable.</li>
-<li>Discounting and bundling solve different problems: discount for urgency on one product, bundle to raise order value without touching a bestseller's visible price.</li>
-</ul>
-</div>
 
 <p>I've made this mistake myself, running a "just take 20% off, it's not that much" sale on a product with a 35% margin, and watching the math afterward tell a very different story than the one I'd assumed while setting the price. That gap between what a discount feels like and what it actually costs is the entire subject of this guide. Whether you're clearing dead stock, weighing a BOGO offer, or deciding between a flash sale and an extended one, it all comes back to the same formula. This is closely related to <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">running a sale without wrecking your margin</a> more broadly, this guide goes deeper on the specific tactics: discount depth, dead stock, flash vs. extended, and BOGO.</p>
 
@@ -5950,6 +5942,17 @@ export const posts: BlogPost[] = [
 <p>A spike in sales during a discount period doesn't reflect how customers behave at your normal price. If that spike gets folded into your regular sales history untouched, it distorts your read on how price-sensitive your customers actually are, and future pricing decisions end up built on a skewed picture. Zorin automatically detects likely promotional spikes in your sales history and flags them for exclusion, so a discount week doesn't get baked into your baseline elasticity estimate. You can also confirm or override a flag manually if you know a spike had a different cause.</p>
 <p>This matters most exactly when you're deciding whether a past discount actually worked. Zorin reads your own sales history, product by product, and returns a raise, lower, or hold recommendation with the elasticity behind it and a confidence label reflecting how much real data supports the estimate, so you're working from your own customers' demonstrated behavior rather than a generic rule of thumb applied across every SKU the same way. If you're running a sale on a specific product, <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">testing the discount against that product's demand curve first</a> beats picking a percentage because it feels generous.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A discount's margin hit is always proportionally larger than the discount percentage itself, because your costs stay fixed while revenue drops.</li>
+<li>Discount depth should follow your category's gross margin, generally 10 to 30%, not a round number that feels generous.</li>
+<li>Bundling or a targeted BOGO on a high-margin pairing usually clears dead stock at a better realized margin than a flat markdown.</li>
+<li>"Buy One, Get One 50% Off" is roughly a 25% discount on the full order, not 50%, and BOGO Free generally needs 50%+ gross margin to stay profitable.</li>
+<li>Discounting and bundling solve different problems: discount for urgency on one product, bundle to raise order value without touching a bestseller's visible price.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -6005,17 +6008,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">You can find out what customers are willing to pay in two ways: watch what they actually buy at different prices, or ask them. Watching is more reliable. Your sales history, or a live price test, shows real purchases. Asking works when you don't have sales yet: a Van Westendorp or Gabor-Granger survey gives you a price range before launch. Just expect people to overstate what they'd pay. Across 77 studies, stated willingness to pay ran 21% higher than what people actually paid.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>There are five practical ways to measure willingness to pay: sales history, live price tests, Van Westendorp surveys, Gabor-Granger surveys, and conjoint analysis.</li>
-<li>Methods based on real purchases (sales history, price tests) beat methods based on what people say, but they need existing products and traffic.</li>
-<li>A meta-analysis of 77 studies found hypothetical willingness to pay overstates real willingness to pay by 21% on average, so discount survey answers.</li>
-<li>For a new product with no sales, start with a survey. Once real orders arrive, let sales data take over.</li>
-<li>Willingness to pay varies by customer and channel, so one blended number can hide very different groups.</li>
-</ul>
-</div>
-
 <h2>What Willingness to Pay Actually Means</h2>
 <p>Willingness to pay (WTP) is the highest price a particular customer would pay for a product before deciding not to buy. Every customer has a different number. What you really want to know is the shape of that spread: how many customers you keep at $30, at $35, at $40. That shape is your demand curve, and the price that makes the most profit sits somewhere on it.</p>
 <p>Researchers split the ways of measuring it into two families. <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">A widely cited review by Breidert, Hahsler and Reutterer</a> separates <strong>revealed preference</strong> methods, which observe real purchases, from <strong>stated preference</strong> methods, which ask people what they would do. For an online store, that becomes five practical options.</p>
@@ -6067,6 +6059,17 @@ export const posts: BlogPost[] = [
 </ul>
 <p>Whichever method you use, remember that willingness to pay isn't one number for your whole customer base. Buyers from a discount-heavy ad channel and loyal repeat customers can differ a lot, and <a href="/blog/your-price-sensitivity-data-might-be-wrong">a blended average can hide both</a>.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>There are five practical ways to measure willingness to pay: sales history, live price tests, Van Westendorp surveys, Gabor-Granger surveys, and conjoint analysis.</li>
+<li>Methods based on real purchases (sales history, price tests) beat methods based on what people say, but they need existing products and traffic.</li>
+<li>A meta-analysis of 77 studies found hypothetical willingness to pay overstates real willingness to pay by 21% on average, so discount survey answers.</li>
+<li>For a new product with no sales, start with a survey. Once real orders arrive, let sales data take over.</li>
+<li>Willingness to pay varies by customer and channel, so one blended number can hide very different groups.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -6089,6 +6092,10 @@ export const posts: BlogPost[] = [
 <h3>Can I measure willingness to pay without a survey?</h3>
 <p>Yes, if the product has sold at more than one price. Your sales history already shows how demand responded to each price, which is a direct read on willingness to pay across your customer base.</p>
 </div>
+<div class="faq-item">
+<h3>Is willingness to pay the same for every customer?</h3>
+<p>No. It varies by customer and by channel. Buyers who arrived through a discount-heavy ad campaign and loyal repeat customers can respond to price very differently, so it is worth checking segments separately rather than relying on one blended number.</p>
+</div>
 </section>
 
 <p class="conclusion">What customers say they'll pay is a useful starting point. What they actually pay is the answer. Start with a survey if you have nothing else, then let real sales take over. If your products already have sales history, <a href="/signup">Zorin reads it from Shopify or WooCommerce</a> and shows each product's price sensitivity, and its built-in Van Westendorp survey covers the products that don't.</p>
@@ -6108,17 +6115,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">A competitive pricing strategy means deliberately setting a product's price below, at, or above what comparable competitors charge. Each position works in the right conditions: below to win price-sensitive buyers, at parity when price isn't your edge, and above when you have a real reason to charge a premium. The catch is that a competitor's price was set for their costs and their customers, so the framework organizes the decision but your own sales data has to make it, product by product.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Pricing below, at, or above competitors is a real, useful positioning framework, each position has legitimate use cases and real tradeoffs.</li>
-<li>A competitor's price reflects their costs, their brand, and their customers' price sensitivity, not yours, so copying it doesn't automatically produce the right number for your store.</li>
-<li>Different products in the same catalog can rationally sit in different positions; there's no single right answer for a whole store.</li>
-<li>Your own elasticity, calculated from your own sales history, is what actually tells you whether a given position helps or costs you profit for a specific product.</li>
-<li>A position is a starting lens for thinking about a price, not a substitute for checking it against your own demand data.</li>
-</ul>
-</div>
 
 <h2>What Is a Competitive Pricing Strategy?</h2>
 <p>Competitive positioning is the decision to price a product below, at, or above what comparable competitors charge for it. Pricing teams commonly describe the choice in exactly these three terms, and each position maps to real, well-established strategies: below includes penetration pricing and everyday-low-price positioning, at parity includes straight price matching, and above includes premium positioning and price skimming. The framework itself is sound. The mistake is stopping there, as if picking a position settles the actual number.</p>
@@ -6175,6 +6171,17 @@ export const posts: BlogPost[] = [
 </ol>
 <p>If you're evaluating a repricing tool that just matches competitors automatically, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">here's what that approach misses</a> compared to a model that reads your own demand instead. And if you haven't checked what your own elasticity actually supports yet, <a href="/signup">connect your sales history</a> and see which position your own customers' data actually recommends.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Pricing below, at, or above competitors is a real, useful positioning framework, each position has legitimate use cases and real tradeoffs.</li>
+<li>A competitor's price reflects their costs, their brand, and their customers' price sensitivity, not yours, so copying it doesn't automatically produce the right number for your store.</li>
+<li>Different products in the same catalog can rationally sit in different positions; there's no single right answer for a whole store.</li>
+<li>Your own elasticity, calculated from your own sales history, is what actually tells you whether a given position helps or costs you profit for a specific product.</li>
+<li>A position is a starting lens for thinking about a price, not a substitute for checking it against your own demand data.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -6223,17 +6230,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Yes, generally, but the effect is smaller and more conditional than most pricing advice suggests. Ending a price in .99 does measurably increase sales for lower-priced, non-luxury products, largely because of a well-documented cognitive shortcut called left-digit bias. It's not a universal trick that works the same way for every product, every price point, or every brand, and it never replaces the more important question of what the underlying number should actually be.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Charm pricing (ending a price in .99) works through left-digit bias: customers anchor on the leftmost digit and perceive $9.99 as closer to $9 than to $10.</li>
-<li>Controlled field experiments with real catalog retailers found 99-endings increased sales compared with round prices, and the effect was strongest on new items customers had no price history for.</li>
-<li>The effect is strongest for impulse, lower-priced, non-luxury purchases, and weakest or reversed for premium and considered purchases, where a round number signals quality instead.</li>
-<li>At least one large replication study found a much weaker effect than earlier research claimed, so charm pricing isn't a guaranteed win for every catalog.</li>
-<li>Charm pricing is a presentation choice layered on top of your actual price. It doesn't tell you whether $34.99 or $39.99 is the right number to begin with, that's still a question for your own elasticity data.</li>
-</ul>
-</div>
-
 <h2>The Myth: .99 Endings Are a Universal Sales Trick</h2>
 <p>Charm pricing gets treated in a lot of pricing advice as a free, no-downside lever, just knock a cent off every price and watch conversions rise. The actual research is more specific than that. The effect is real and repeatedly documented, but it depends heavily on the category, the price point, and how the customer is evaluating the purchase. Treating it as a blanket rule for every product in a catalog misses the conditions under which it actually works.</p>
 
@@ -6280,6 +6276,17 @@ export const posts: BlogPost[] = [
   <li><strong>Watch total profit, not just the conversion rate</strong>, the same discipline that applies to <a href="/blog/price-increase-killed-your-sales-heres-the-real-reason">any other price change</a> you evaluate.</li>
 </ol>
 <p>If you haven't calculated your own catalog's elasticity yet, that's the number that actually determines your price before any decision about how to end it. <a href="/signup">Connect your sales history</a> and see what your own demand curve recommends.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Charm pricing (ending a price in .99) works through left-digit bias: customers anchor on the leftmost digit and perceive $9.99 as closer to $9 than to $10.</li>
+<li>Controlled field experiments with real catalog retailers found 99-endings increased sales compared with round prices, and the effect was strongest on new items customers had no price history for.</li>
+<li>The effect is strongest for impulse, lower-priced, non-luxury purchases, and weakest or reversed for premium and considered purchases, where a round number signals quality instead.</li>
+<li>At least one large replication study found a much weaker effect than earlier research claimed, so charm pricing isn't a guaranteed win for every catalog.</li>
+<li>Charm pricing is a presentation choice layered on top of your actual price. It doesn't tell you whether $34.99 or $39.99 is the right number to begin with, that's still a question for your own elasticity data.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -6332,17 +6339,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Most WooCommerce pricing apps fall into three categories that behave nothing alike: rule-based discount plugins that apply fixed markdowns, wholesale plugins that show different prices to different customer roles, and competitor repricers that match or undercut whatever another store charges. None of them, on their own, answer the actual question merchants are trying to solve, which is what your own customers will pay for a specific product. That gap is exactly what an elasticity-based tool like Zorin is built to close.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>"WooCommerce pricing app" covers four genuinely different tools: rule-based discount plugins, wholesale/B2B role pricing, competitor repricers, and elasticity-based tools that learn from your own sales data.</li>
-<li>Rule-based and wholesale plugins are useful for running fixed logic (quantity tiers, cart discounts, role pricing), but none of them tell you whether a price is actually optimal for your demand.</li>
-<li>Competitor repricers answer "what is the market charging," not "what will my customers pay," and can trigger a race-to-the-bottom with no regard for your own margin.</li>
-<li>An elasticity-based tool fits a demand model from your own historical sales, then recommends raise, lower, or hold with a stated confidence level, not a rule someone else configured.</li>
-<li>The right tool (or combination) depends on what you're actually trying to solve: automating a known discount structure, serving wholesale buyers, watching competitors, or finding your profit-maximizing price.</li>
-</ul>
-</div>
 
 <h2>The Myth: "Pricing App" Means One Thing</h2>
 <p>Search for a WooCommerce pricing plugin and you'll find dozens of tools all describing themselves the same way, as something that "optimizes your pricing." In practice they split into categories that solve completely different problems. A quantity-discount plugin and a competitor repricer share almost nothing under the hood, and neither one calculates whether your regular, non-discounted price is actually the one that maximizes profit. Picking the wrong category for your actual problem is the most common mistake merchants make before they've even compared specific plugins.</p>
@@ -6419,6 +6415,17 @@ export const posts: BlogPost[] = [
 </ol>
 <p>If you haven't calculated your own catalog's elasticity yet, <a href="/blog/how-do-i-know-what-to-price-my-products">here's how to know what to price your products</a> using your own sales history rather than a rule or a competitor's number. And if a sale is part of your plan either way, <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">here's how to run one without corrupting your pricing data</a> afterward. For how all four categories stack up across the wider market, not just WooCommerce-specific plugins, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full 2026 pricing tools comparison</a>. Once you're ready to see your own catalog's numbers, <a href="/signup">connect your WooCommerce store</a> and start with a handful of products before trusting it with your whole catalog.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>"WooCommerce pricing app" covers four genuinely different tools: rule-based discount plugins, wholesale/B2B role pricing, competitor repricers, and elasticity-based tools that learn from your own sales data.</li>
+<li>Rule-based and wholesale plugins are useful for running fixed logic (quantity tiers, cart discounts, role pricing), but none of them tell you whether a price is actually optimal for your demand.</li>
+<li>Competitor repricers answer "what is the market charging," not "what will my customers pay," and can trigger a race-to-the-bottom with no regard for your own margin.</li>
+<li>An elasticity-based tool fits a demand model from your own historical sales, then recommends raise, lower, or hold with a stated confidence level, not a rule someone else configured.</li>
+<li>The right tool (or combination) depends on what you're actually trying to solve: automating a known discount structure, serving wholesale buyers, watching competitors, or finding your profit-maximizing price.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -6471,17 +6478,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Bestsellers and slow sellers need different pricing strategies because they're solving different problems: a bestseller's question is how much more profit you can extract from demand that's already proven, while a slow seller's question is whether the price itself, not the product, is the reason it isn't moving. Applying one blanket pricing rule across a catalog treats both as if they were the same problem, and that's usually where margin gets left on the table or dead stock quietly piles up.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A bestseller has proven demand, so the pricing question is usually whether you can raise price without meaningfully denting that demand.</li>
-<li>A slow seller's pricing question is different: is a lower price the thing that would actually move it, or is the problem elsewhere (visibility, positioning, fit)?</li>
-<li>Elasticity, calculated separately per product, naturally reflects this difference rather than requiring you to guess which category a product falls into.</li>
-<li>A single catalog-wide discount or markup ignores this split and usually overcorrects one group while undercorrecting the other.</li>
-<li>Reviewing your catalog by segment (proven sellers vs. thin performers) is more useful than reviewing it as one undifferentiated list.</li>
-</ul>
-</div>
-
 <h2>Two Different Questions Wearing the Same Label</h2>
 <p>"What should I price this at" sounds like one question, but it means something different depending on the product. For a bestseller, demand at the current price is already proven, so the real question is whether that price is leaving profit on the table, whether a modest increase would barely dent volume while meaningfully raising margin. For a slow seller, demand hasn't been proven at all, and the question is whether price is even the actual obstacle, or whether the product simply isn't reaching the right customers.</p>
 
@@ -6525,6 +6521,17 @@ export const posts: BlogPost[] = [
   <li><strong>Avoid one blanket rule</strong> across the whole catalog for either a sale or a general price adjustment.</li>
 </ol>
 <p>If you want to see this split for your own catalog rather than guessing which products fall into which group, <a href="/signup">upload your sales history</a> and review each product's own elasticity and confidence score.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A bestseller has proven demand, so the pricing question is usually whether you can raise price without meaningfully denting that demand.</li>
+<li>A slow seller's pricing question is different: is a lower price the thing that would actually move it, or is the problem elsewhere (visibility, positioning, fit)?</li>
+<li>Elasticity, calculated separately per product, naturally reflects this difference rather than requiring you to guess which category a product falls into.</li>
+<li>A single catalog-wide discount or markup ignores this split and usually overcorrects one group while undercorrecting the other.</li>
+<li>Reviewing your catalog by segment (proven sellers vs. thin performers) is more useful than reviewing it as one undifferentiated list.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -6579,14 +6586,14 @@ export const posts: BlogPost[] = [
 <p class="intro">Most merchants who get an elasticity number do one of two things: act on it immediately without knowing if it's reliable, or ignore it because they're not sure what -1.4 actually means in practice. Neither is right. This guide walks through how to read the number correctly, how to know whether it's solid enough to act on, why your catalog shows wildly different scores across products, and whether elasticity or competitor pricing should be driving your decisions.</p>
 
 <h2>What Your Elasticity Score Is Actually Telling You</h2>
-<p>An elasticity score is a ratio. For every 1% you move your price, it tells you how much your sales volume moves in the opposite direction. The sign is almost always negative — higher price, lower demand — so what matters practically is the absolute value of the number and whether it falls above or below 1.</p>
+<p>An elasticity score is a ratio. For every 1% you move your price, it tells you how much your sales volume moves in the opposite direction. The sign is almost always negative, higher price, lower demand, so what matters practically is the absolute value of the number and whether it falls above or below 1.</p>
 <p>The revenue direction rule is the single most useful thing to take from an elasticity score:</p>
 <ul>
   <li><strong>If the absolute value is above 1 (elastic):</strong> raising your price shrinks total revenue. Customers are responsive enough to price that the volume you lose outpaces the higher margin per unit. Lowering price increases total revenue because the volume gain more than compensates.</li>
   <li><strong>If the absolute value is below 1 (inelastic):</strong> raising your price increases total revenue. Customers are not responsive enough to price for the volume loss to cancel out the margin gain. Lowering price decreases total revenue.</li>
   <li><strong>If the absolute value is exactly 1 (unit elastic):</strong> a price change in either direction leaves total revenue roughly unchanged.</li>
 </ul>
-<p>That rule answers the revenue question. It does not answer the profit question, which also requires knowing your margin — covered in the next section.</p>
+<p>That rule answers the revenue question. It does not answer the profit question, which also requires knowing your margin, covered in the next section.</p>
 
 <h3>A plain-English elasticity reference table</h3>
 <table>
@@ -6637,44 +6644,44 @@ export const posts: BlogPost[] = [
     </tr>
   </tbody>
 </table>
-<p>A product at -1.4 sits in the elastic zone. If you raise the price 10%, you would expect roughly 14% less volume. Total revenue falls. The right move, from a revenue standpoint, is to hold or lower — not raise. But whether that's the right move for profit depends on your margin, which is where the full calculation lives.</p>
+<p>A product at -1.4 sits in the elastic zone. If you raise the price 10%, you would expect roughly 14% less volume. Total revenue falls. The right move, from a revenue standpoint, is to hold or lower, not raise. But whether that's the right move for profit depends on your margin, which is where the full calculation lives.</p>
 
 <h2>Before You Act: How to Know If the Number Is Reliable</h2>
-<p>An unreliable elasticity estimate is worse than no estimate, because it produces false confidence. You might raise a price on a product that looks inelastic but whose estimate is based on three months of data during a seasonal spike — and the actual demand response turns out to be completely different.</p>
+<p>An unreliable elasticity estimate is worse than no estimate, because it produces false confidence. You might raise a price on a product that looks inelastic but whose estimate is based on three months of data during a seasonal spike, and the actual demand response turns out to be completely different.</p>
 <p>Two failure modes make an elasticity number unreliable.</p>
-<p><strong>Insufficient data.</strong> An elasticity model needs enough observations of the same product at different price points to distinguish a genuine demand response from noise. Enterprise retail research from RELEX Solutions puts the minimum at two years of consistent pricing and sales history before calculations become reliable at that scale. For a smaller ecommerce catalog with less volume, the practical minimum is at least 6 months of sales data that includes genuine price variation — not a product that's been at the same price for every one of those months.</p>
-<p><strong>Contaminated data.</strong> Promotions, seasonal demand spikes, stockouts, and external demand shocks (a viral mention, a news cycle, a platform algorithm change) all distort the relationship between price and quantity during the period they occur. If your price dropped 20% during a flash sale while you were also running your biggest ad campaign of the year, the sales data from that period doesn't cleanly isolate the price effect. Using it in an elasticity calculation gives you a number that's partly measuring the price sensitivity and partly measuring the ad campaign — and you can't separate the two after the fact.</p>
+<p><strong>Insufficient data.</strong> An elasticity model needs enough observations of the same product at different price points to distinguish a genuine demand response from noise. Enterprise retail research from RELEX Solutions puts the minimum at two years of consistent pricing and sales history before calculations become reliable at that scale. For a smaller ecommerce catalog with less volume, the practical minimum is at least 6 months of sales data that includes genuine price variation, not a product that's been at the same price for every one of those months.</p>
+<p><strong>Contaminated data.</strong> Promotions, seasonal demand spikes, stockouts, and external demand shocks (a viral mention, a news cycle, a platform algorithm change) all distort the relationship between price and quantity during the period they occur. If your price dropped 20% during a flash sale while you were also running your biggest ad campaign of the year, the sales data from that period doesn't cleanly isolate the price effect. Using it in an elasticity calculation gives you a number that's partly measuring the price sensitivity and partly measuring the ad campaign, and you can't separate the two after the fact.</p>
 <p>A well-known accuracy problem in elasticity modeling is applying a catalog-wide average to individual SKU decisions. If your overall store elasticity is -0.8, that average can mask individual products ranging from -0.3 to -1.6 within the same category. Acting on the average as if it applies to each product is one of the fastest ways to move the wrong products in the wrong direction.</p>
-<p>This is what Zorin's confidence label is measuring. It's not a marketing feature — it's the model being honest about what the underlying data supports.</p>
+<p>This is what Zorin's confidence label is measuring. It's not a marketing feature, it's the model being honest about what the underlying data supports.</p>
 <ul>
   <li><strong>Strong confidence</strong> means the model had sufficient sales history, genuine price variation across that history, and a clean enough data period to fit a reliable demand curve. Act on this.</li>
-  <li><strong>Moderate confidence</strong> means the model had enough data to produce a directionally useful estimate, but some limitation exists — lower volume, a shorter history, or a period with some noise. The direction is likely right; the exact magnitude is less certain.</li>
+  <li><strong>Moderate confidence</strong> means the model had enough data to produce a directionally useful estimate, but some limitation exists, lower volume, a shorter history, or a period with some noise. The direction is likely right; the exact magnitude is less certain.</li>
   <li><strong>Weak confidence</strong> means the model doesn't have enough clean data to give a number worth acting on. The SKU either hasn't been at enough different price points, or the history is too short, or too much of the data is contaminated. Hold the price where it is and let more clean data accumulate.</li>
 </ul>
 <p>If you see a Weak confidence label on a product, the right response isn't to find a way to override it. It's to wait, or to run a deliberate price test to generate the variation the model needs.</p>
 
 <h2>Once You Trust the Number: What to Do With It</h2>
-<p>Revenue direction is the first filter. Profit impact is the second. A product with an elasticity of -0.7 (inelastic) can absorb a price increase and grow total revenue — but whether that revenue growth translates to profit depends on how large the margin is on each unit and how much volume you lose.</p>
+<p>Revenue direction is the first filter. Profit impact is the second. A product with an elasticity of -0.7 (inelastic) can absorb a price increase and grow total revenue, but whether that revenue growth translates to profit depends on how large the margin is on each unit and how much volume you lose.</p>
 <p>The formal relationship between elasticity and optimal pricing comes from the Lerner pricing rule:</p>
 <p><strong>Optimal Price = (Elasticity / (Elasticity + 1)) × Marginal Cost</strong></p>
 <p>For a product with an elasticity of -2.0 and a marginal cost (COGS plus fulfillment) of $25:</p>
 <p>Optimal Price = (-2 / (-2 + 1)) × $25 = (-2 / -1) × $25 = $50</p>
 <p>For a product with an elasticity of -0.7 and the same $25 marginal cost:</p>
 <p>Optimal Price = (-0.7 / (-0.7 + 1)) × $25 = (-0.7 / 0.3) × $25 = $58.33</p>
-<p>The formula gives you the mathematically profit-maximizing price given the elasticity and cost structure. It's a starting point — your actual price also needs to account for competitor positioning, psychological price points, and minimum margin requirements. But it anchors the decision in demand data rather than intuition.</p>
+<p>The formula gives you the mathematically profit-maximizing price given the elasticity and cost structure. It's a starting point, your actual price also needs to account for competitor positioning, psychological price points, and minimum margin requirements. But it anchors the decision in demand data rather than intuition.</p>
 <p>In practice, Zorin runs this calculation per SKU using your actual margin data and returns a specific raise, lower, or hold recommendation with an estimated profit lift attached. Instead of doing the Lerner calculation manually for each product, the output reads: "raise to $42, estimated 11% profit lift, Strong confidence." That number is the elasticity math plus your cost structure combined into a single actionable direction.</p>
-<p>One thing the revenue direction rule doesn't tell you: the right size of the move. An inelastic product can absorb a price increase, but it can't absorb an unlimited one. Every product has a ceiling beyond which even inelastic demand breaks. The profit-lift estimate accounts for this — a recommendation to raise $2 on a $38 product reflects both the elasticity and the estimated point at which further raises stop adding profit and start losing it.</p>
+<p>One thing the revenue direction rule doesn't tell you: the right size of the move. An inelastic product can absorb a price increase, but it can't absorb an unlimited one. Every product has a ceiling beyond which even inelastic demand breaks. The profit-lift estimate accounts for this, a recommendation to raise $2 on a $38 product reflects both the elasticity and the estimated point at which further raises stop adding profit and start losing it.</p>
 
 <h2>Why Different Products in Your Store Have Such Different Scores</h2>
-<p>A catalog of 50 products can have elasticities ranging from -0.3 to -2.5. That variation isn't random — it's driven by five factors that determine how sensitive a specific product's buyers are to price.</p>
+<p>A catalog of 50 products can have elasticities ranging from -0.3 to -2.5. That variation isn't random, it's driven by five factors that determine how sensitive a specific product's buyers are to price.</p>
 <p><strong>Availability of substitutes.</strong> The more easily a customer can get the same thing from someone else, the more elastic the demand. A commodity phone case on Amazon with 400 identical-looking competitors has highly elastic demand. A handmade leather wallet from a maker with a loyal following has few real substitutes, so demand is more inelastic. This single factor explains most of the variation in a typical catalog.</p>
-<p><strong>Degree of brand differentiation.</strong> Branded goods with strong identity and recognition hold price better than unbranded equivalents. Apple's iPhone elasticity sits around -0.6 to -0.8 despite being the premium-priced option in its category — brand loyalty insulates demand from price sensitivity. An unbranded equivalent in the same category might run -1.5 to -2.0.</p>
-<p><strong>Necessity vs discretionary.</strong> Products buyers need — consumables, replacement parts, essential supplies — tend to be inelastic because there is no "not buying" option. Products buyers want but don't need are more elastic because deferring or skipping the purchase is always available.</p>
+<p><strong>Degree of brand differentiation.</strong> Branded goods with strong identity and recognition hold price better than unbranded equivalents. Apple's iPhone elasticity sits around -0.6 to -0.8 despite being the premium-priced option in its category, brand loyalty insulates demand from price sensitivity. An unbranded equivalent in the same category might run -1.5 to -2.0.</p>
+<p><strong>Necessity vs discretionary.</strong> Products buyers need, consumables, replacement parts, essential supplies, tend to be inelastic because there is no "not buying" option. Products buyers want but don't need are more elastic because deferring or skipping the purchase is always available.</p>
 <p><strong>Price visibility.</strong> If a buyer can easily check three competitor prices before hitting your checkout button, your demand is more elastic because the comparison is frictionless. A product category with low price visibility (unusual specifications, niche use case, low search volume) tends to be less elastic because buyers have fewer comparison anchors.</p>
 <p><strong>Buyer intent and channel.</strong> As covered in the <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">multi-channel pricing guide</a>, the same product can have different elasticity depending on where it's sold. Amazon marketplace buyers arrive in a comparison context and tend to be more price-sensitive than DTC buyers who arrived through a brand-specific channel.</p>
 
 <h3>Two similar products, very different elasticity</h3>
-<p>Consider two moisturizers in the same Shopify store. The first is an unbranded basic formula — fragrance-free, simple ingredient list, no distinguishing story. The second is the store's own-branded hero SKU with 300+ reviews, a proprietary ingredient angle, and the product featured in two press placements.</p>
+<p>Consider two moisturizers in the same Shopify store. The first is an unbranded basic formula, fragrance-free, simple ingredient list, no distinguishing story. The second is the store's own-branded hero SKU with 300+ reviews, a proprietary ingredient angle, and the product featured in two press placements.</p>
 <p>Both are moisturizers. Both sit in the same category. But the first has elastic demand: buyers can find a dozen near-identical products at similar prices with a quick search, so a $3 price increase sends them elsewhere. The second has inelastic demand: the reviews, the brand story, and the perception of uniqueness mean buyers are willing to pay for this specific product rather than a generic alternative.</p>
 <p>If you applied the same price move to both products because they share a category, you would grow revenue on the branded hero and lose it on the unbranded basic. Catalog-level elasticity averaging is precisely the mistake that per-SKU modeling exists to avoid.</p>
 
@@ -6684,7 +6691,10 @@ export const posts: BlogPost[] = [
 <p><strong>Elasticity tells you how your customers respond to price.</strong> It's derived from your own sales history and reflects your actual buyers' behavior. It's specific to your product, your brand positioning, and your customer base.</p>
 <p>The mistake that RELEX Solutions documents in their retailer research is common: merchants assume competitors have done the elasticity math correctly and that matching their price is equivalent to finding the optimal price for their own store. In practice, defaulting to competitor pricing as the primary signal creates pricing that doesn't reflect what your own customers will bear, often leaving margin on the table where you're actually differentiated and losing volume where you're not.</p>
 <p>That said, competitor pricing is not irrelevant. It influences your elasticity: if a competitor drops their price significantly, your effective elasticity increases even if you haven't changed anything, because the substitution option for your buyers just got more attractive. Monitoring competitor prices is useful context. It just shouldn't be the decision rule.</p>
-<p>The practical synthesis: use competitor pricing to understand the range your market operates in and to flag when a competitor move might have shifted your elasticity. Use your own elasticity data as the decision rule for where within that range to price. On true commodity SKUs on marketplaces where buy-box visibility is determined by price, the balance shifts — those products often need to match or beat the lowest visible competitor price to retain any sales at all. For everything else, particularly on your own DTC store with your own brand, elasticity is the more reliable signal. The <a href="/blog/price-elasticity-vs-repricing-software">price elasticity vs repricing software</a> post covers this tradeoff in more depth if you're deciding between the two approaches.</p>
+<p>The practical synthesis: use competitor pricing to understand the range your market operates in and to flag when a competitor move might have shifted your elasticity. Use your own elasticity data as the decision rule for where within that range to price. On true commodity SKUs on marketplaces where buy-box visibility is determined by price, the balance shifts, those products often need to match or beat the lowest visible competitor price to retain any sales at all. For everything else, particularly on your own DTC store with your own brand, elasticity is the more reliable signal. The <a href="/blog/price-elasticity-vs-repricing-software">price elasticity vs repricing software</a> post covers this tradeoff in more depth if you're deciding between the two approaches.</p>
+
+<h2>How Your Score Compares With Published Research</h2>
+<p>If you want a reference point for your own number, published estimates cover a wide range: about -0.35 for household appliances, -1.06 to -1.37 for soft drinks, and around -2.86 for casual and athletic apparel, all compiled with sources in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> reference. The textbook boundary cases, perfectly elastic and perfectly inelastic demand, are explained in <a href="https://openstax.org/books/principles-economics-3e/pages/5-2-polar-cases-of-elasticity-and-constant-elasticity" target="_blank" rel="noopener noreferrer">OpenStax's Principles of Economics</a>. Real products almost never sit at either extreme.</p>
 
 <div class="key-takeaways">
 <h2>Key Takeaways</h2>
@@ -6697,34 +6707,31 @@ export const posts: BlogPost[] = [
 </ul>
 </div>
 
-<h2>How Your Score Compares With Published Research</h2>
-<p>If you want a reference point for your own number, published estimates cover a wide range: about -0.35 for household appliances, -1.06 to -1.37 for soft drinks, and around -2.86 for casual and athletic apparel, all compiled with sources in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> reference. The textbook boundary cases, perfectly elastic and perfectly inelastic demand, are explained in <a href="https://openstax.org/books/principles-economics-3e/pages/5-2-polar-cases-of-elasticity-and-constant-elasticity" target="_blank" rel="noopener noreferrer">OpenStax's Principles of Economics</a>. Real products almost never sit at either extreme.</p>
-
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
-<h3>My price elasticity is -1.4 — what does that actually mean for my pricing decisions?</h3>
-<p>It means your product sits in the elastic zone: for every 1% you raise the price, you can expect roughly 1.4% less volume. Raising price shrinks total revenue; lowering price grows it. Whether lowering price actually improves profit depends on your margin — you need to gain enough additional volume to compensate for the lower margin per unit. An elasticity of -1.4 with a healthy gross margin may still support a price hold or modest raise if the profit math works out, which is why elasticity and margin need to be evaluated together rather than the elasticity number alone.</p>
+<h3>My price elasticity is -1.4, what does that actually mean for my pricing decisions?</h3>
+<p>It means your product sits in the elastic zone: for every 1% you raise the price, you can expect roughly 1.4% less volume. Raising price shrinks total revenue; lowering price grows it. Whether lowering price actually improves profit depends on your margin, you need to gain enough additional volume to compensate for the lower margin per unit. An elasticity of -1.4 with a healthy gross margin may still support a price hold or modest raise if the profit math works out, which is why elasticity and margin need to be evaluated together rather than the elasticity number alone.</p>
 </div>
 <div class="faq-item">
 <h3>How do I know if my elasticity estimate is accurate enough to act on?</h3>
-<p>Check two things: how much data is behind it and how clean that data is. A reliable estimate needs at least 6 months of sales history with genuine price variation across that period. If most of that history was at the same price, the model is extrapolating rather than measuring. If the period included a major promotion, a viral traffic spike, or a stockout, those events distort the price-demand relationship in ways that are hard to separate afterward. Zorin's confidence label (Strong, Moderate, Weak) encodes this assessment directly — a Weak label means the data isn't there yet, and acting on it anyway is riskier than holding the price and waiting.</p>
+<p>Check two things: how much data is behind it and how clean that data is. A reliable estimate needs at least 6 months of sales history with genuine price variation across that period. If most of that history was at the same price, the model is extrapolating rather than measuring. If the period included a major promotion, a viral traffic spike, or a stockout, those events distort the price-demand relationship in ways that are hard to separate afterward. Zorin's confidence label (Strong, Moderate, Weak) encodes this assessment directly, a Weak label means the data isn't there yet, and acting on it anyway is riskier than holding the price and waiting.</p>
 </div>
 <div class="faq-item">
 <h3>How do I run a price test on my Shopify store to measure my own elasticity?</h3>
-<p>The cleanest method is to move the price on a single product, hold it there for at least 4–6 weeks (long enough to smooth out week-to-week noise), and compare sales volume during that period to an equivalent prior period with the original price, controlling for any major seasonal differences. Change only the price during the test — don't run promotions, change ad spend, or modify the product listing at the same time, or the sales change will reflect all those variables, not just the price. A before-and-after test is less precise than a true A/B test (which would require showing different prices to different visitors simultaneously) but is operationally simpler and produces usable data for most SKUs within one to two months.</p>
+<p>The cleanest method is to move the price on a single product, hold it there for at least 4–6 weeks (long enough to smooth out week-to-week noise), and compare sales volume during that period to an equivalent prior period with the original price, controlling for any major seasonal differences. Change only the price during the test, don't run promotions, change ad spend, or modify the product listing at the same time, or the sales change will reflect all those variables, not just the price. A before-and-after test is less precise than a true A/B test (which would require showing different prices to different visitors simultaneously) but is operationally simpler and produces usable data for most SKUs within one to two months.</p>
 </div>
 <div class="faq-item">
 <h3>Why do different products in my store have such different price elasticity scores?</h3>
-<p>Five factors drive the variation: how many substitutes exist for the product, how strongly differentiated your brand or product is from alternatives, whether the product is a necessity or a discretionary purchase, how easily buyers can compare your price to competitors before buying, and which channel or platform the purchase happens on. Two products in the same category can have opposite elasticity profiles — a branded hero SKU with strong reviews and a loyal customer base often shows inelastic demand, while an unbranded equivalent in the same category can show highly elastic demand because buyers have no reason to prefer it at a higher price.</p>
+<p>Five factors drive the variation: how many substitutes exist for the product, how strongly differentiated your brand or product is from alternatives, whether the product is a necessity or a discretionary purchase, how easily buyers can compare your price to competitors before buying, and which channel or platform the purchase happens on. Two products in the same category can have opposite elasticity profiles, a branded hero SKU with strong reviews and a loyal customer base often shows inelastic demand, while an unbranded equivalent in the same category can show highly elastic demand because buyers have no reason to prefer it at a higher price.</p>
 </div>
 <div class="faq-item">
 <h3>Should I use price elasticity or just match my competitors' prices?</h3>
-<p>They answer different questions. Competitor pricing tells you what others are charging — useful context, but based on their costs, their audience, and their strategy, not yours. Elasticity tells you how your customers specifically respond to price changes, which is the more relevant signal for your own store. In practice, use competitor prices as a range reference and to flag when a competitor move might be shifting your effective elasticity. Use your own elasticity data as the actual decision rule within that range. The exception is true commodity SKUs on marketplaces where buy-box position is determined by lowest visible price — there, competitor pricing matters more.</p>
+<p>They answer different questions. Competitor pricing tells you what others are charging, useful context, but based on their costs, their audience, and their strategy, not yours. Elasticity tells you how your customers specifically respond to price changes, which is the more relevant signal for your own store. In practice, use competitor prices as a range reference and to flag when a competitor move might be shifting your effective elasticity. Use your own elasticity data as the actual decision rule within that range. The exception is true commodity SKUs on marketplaces where buy-box position is determined by lowest visible price, there, competitor pricing matters more.</p>
 </div>
 <div class="faq-item">
 <h3>What's a good elasticity score for an ecommerce product?</h3>
-<p>There is no universally good score — it depends on your category and business model. A highly inelastic score (close to 0) means you have strong pricing power and can raise without significant volume loss, which is valuable. A highly elastic score (below -2.0) means price changes have an outsized volume effect, which makes pricing precision critical in both directions. Most independent ecommerce stores see product elasticities ranging from -0.4 to -1.8 across their catalogs, with the most differentiated and branded SKUs at the inelastic end and the most commodity-like SKUs at the elastic end.</p>
+<p>There is no universally good score, it depends on your category and business model. A highly inelastic score (close to 0) means you have strong pricing power and can raise without significant volume loss, which is valuable. A highly elastic score (below -2.0) means price changes have an outsized volume effect, which makes pricing precision critical in both directions. Most independent ecommerce stores see product elasticities ranging from -0.4 to -1.8 across their catalogs, with the most differentiated and branded SKUs at the inelastic end and the most commodity-like SKUs at the elastic end.</p>
 </div>
 <div class="faq-item">
 <h3>Can elasticity change over time?</h3>
@@ -6732,15 +6739,15 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>What if my elasticity estimate is positive?</h3>
-<p>A positive elasticity is unusual and usually indicates a data problem rather than a genuine demand relationship. Positive elasticity would mean higher prices lead to higher demand, which can occasionally happen with Veblen goods (luxury items where higher price signals status and increases desirability), but is rare in typical ecommerce categories. More commonly, a positive estimate means the data period contained a confounding event — a promotion, a traffic spike, or a competitor stockout — that created an artificial correlation between a price change and a demand increase that had nothing to do with the price. Treat a positive elasticity as a signal to review the underlying data rather than an actionable estimate.</p>
+<p>A positive elasticity is unusual and usually indicates a data problem rather than a genuine demand relationship. Positive elasticity would mean higher prices lead to higher demand, which can occasionally happen with Veblen goods (luxury items where higher price signals status and increases desirability), but is rare in typical ecommerce categories. More commonly, a positive estimate means the data period contained a confounding event, a promotion, a traffic spike, or a competitor stockout, that created an artificial correlation between a price change and a demand increase that had nothing to do with the price. Treat a positive elasticity as a signal to review the underlying data rather than an actionable estimate.</p>
 </div>
 <div class="faq-item">
 <h3>How does margin interact with elasticity when deciding whether to raise a price?</h3>
-<p>Elasticity tells you the revenue direction. Margin tells you whether the revenue change translates to a profit improvement. A product with an elasticity of -0.8 (inelastic) and a 60% gross margin has a lot of room to absorb a small volume loss from a price increase and still come out ahead on profit. The same elasticity on a product with a 15% gross margin has almost no room — the volume you lose from a price increase quickly erodes the thin margin on remaining sales. The <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">profit margins by category guide</a> covers what typical gross and net margins look like across ecommerce verticals, which gives you a reference for where your own products stand before running the elasticity math.</p>
+<p>Elasticity tells you the revenue direction. Margin tells you whether the revenue change translates to a profit improvement. A product with an elasticity of -0.8 (inelastic) and a 60% gross margin has a lot of room to absorb a small volume loss from a price increase and still come out ahead on profit. The same elasticity on a product with a 15% gross margin has almost no room, the volume you lose from a price increase quickly erodes the thin margin on remaining sales. The <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">profit margins by category guide</a> covers what typical gross and net margins look like across ecommerce verticals, which gives you a reference for where your own products stand before running the elasticity math.</p>
 </div>
 </section>
 
-<p class="conclusion">Knowing the number is step one. Trusting it is step two. Acting on it correctly — with the right price move, sized to your actual margin, on the SKUs where the data actually supports a decision — is what turns an elasticity score into a revenue improvement. Zorin shows the elasticity, the confidence, and the estimated profit lift in one place so none of those three steps require a separate calculation.</p>
+<p class="conclusion">Knowing the number is step one. Trusting it is step two. Acting on it correctly, with the right price move, sized to your actual margin, on the SKUs where the data actually supports a decision, is what turns an elasticity score into a revenue improvement. Zorin shows the elasticity, the confidence, and the estimated profit lift in one place so none of those three steps require a separate calculation.</p>
     
 `.trim(),
   },
@@ -6758,17 +6765,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">No, you don't need a data analyst to price your products well. The underlying math, elasticity modeling from your sales history, is genuinely statistical, but the calculation itself can run automatically the moment you upload your sales data. What used to require a dedicated analyst is now a mechanical step, not a skill you personally need to acquire.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Elasticity modeling is real statistics, but running the calculation doesn't require you to understand the underlying regression, just upload sales history and read the output.</li>
-<li>The gap a dedicated pricing analyst used to close, systematically reading your own sales data, can now be closed by a tool rather than a hire.</li>
-<li>What you actually need to bring is judgment: reviewing a recommendation, understanding your own product context, and deciding whether to apply it.</li>
-<li>A confidence score exists specifically so you don't need statistical training to know how much to trust a given output.</li>
-<li>Hiring a dedicated analyst still makes sense at a certain scale, but that threshold is much higher than most SMB merchants assume.</li>
-</ul>
-</div>
 
 <h2>Why This Question Comes Up So Often</h2>
 <p>Pricing discussions are full of statistical language, elasticity, regression, confidence intervals, and it's reasonable to assume that anything described that way requires a specialist to actually use. That assumption made more sense when the only way to get an elasticity estimate was to build a spreadsheet model yourself or hire someone who could. It makes much less sense now that the calculation itself is automatable.</p>
@@ -6813,6 +6809,17 @@ export const posts: BlogPost[] = [
 <h2>What This Means for a Lean Team</h2>
 <p>You don't need to learn statistics, hire someone who has, or build a spreadsheet model to price well. What you need instead is <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the right kind of tool for a lean team</a>, one that reads your own sales data systematically, plus the judgment to apply the resulting recommendation with your own product context in mind. If you want to see what your own catalog's elasticity looks like without doing the math yourself, <a href="/signup">upload your sales history</a> and let the model run.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elasticity modeling is real statistics, but running the calculation doesn't require you to understand the underlying regression, just upload sales history and read the output.</li>
+<li>The gap a dedicated pricing analyst used to close, systematically reading your own sales data, can now be closed by a tool rather than a hire.</li>
+<li>What you actually need to bring is judgment: reviewing a recommendation, understanding your own product context, and deciding whether to apply it.</li>
+<li>A confidence score exists specifically so you don't need statistical training to know how much to trust a given output.</li>
+<li>Hiring a dedicated analyst still makes sense at a certain scale, but that threshold is much higher than most SMB merchants assume.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -6855,7 +6862,7 @@ export const posts: BlogPost[] = [
     excerpt: "Rising costs usually justify a price increase. How much to raise, how fast, and how to time and frame it so customers stay, sized by your own demand data.",
     date: "2026-07-30",
     updatedDate: "2026-09-26",
-    readingTime: "7 min read",
+    readingTime: "8 min read",
     category: "Pricing Strategy",
     author: {
       name: "Dexter",
@@ -6863,17 +6870,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">To raise prices without losing customers, raise them for a reason customers accept, by an amount each product's demand can absorb, and in a way that doesn't surprise anyone. In practice that means tying the increase to real cost pressure, sizing it product by product instead of across the whole store, giving notice, and watching the first few weeks of sales before extending it. Most lost customers after a price increase come from getting one of those three wrong, not from the increase itself.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Customers judge price increases on fairness. In a classic study, 79% found it acceptable for a grocer to pass on a wholesale cost increase, while 82% called a demand-driven price hike unfair.</li>
-<li>Size the increase per product. A cost-driven increase that protects profit on an inelastic product can cost you profit on an elastic one.</li>
-<li>Companies realize less than half of their planned price increases on average, per Simon-Kucher's 2025 study of 2,200+ business leaders. The leak is usually discounts, exceptions and poorly targeted increases.</li>
-<li>Small, well-explained increases hold better than one big jump. Netflix's 60% increase in 2011 cost it 800,000 U.S. subscribers in a quarter.</li>
-<li>Measure profit, not units, after the change. Some volume loss is expected; what matters is whether total profit went up.</li>
-</ul>
-</div>
 
 <h2>Why Customers Accept Some Price Increases and Not Others</h2>
 <p>The most useful research on this is almost 40 years old and still holds. In their 1986 paper <a href="https://econpapers.repec.org/RePEc:aea:aecrev:v:76:y:1986:i:4:p:728-41" target="_blank" rel="noopener noreferrer">"Fairness as a Constraint on Profit Seeking"</a>, Daniel Kahneman, Jack Knetsch and Richard Thaler asked people to judge real pricing scenarios. When a hardware store raised snow shovels from $15 to $20 the morning after a snowstorm, 82% of respondents called it unfair. When a grocer's wholesale lettuce cost went up 30 cents and the grocer raised the shelf price by the same 30 cents, 79% called it acceptable.</p>
@@ -6924,6 +6920,17 @@ export const posts: BlogPost[] = [
 </ul>
 <p>If sales did drop sharply after a past increase, <a href="/blog/price-increase-killed-your-sales-heres-the-real-reason">this breakdown of the three usual causes</a> helps you work out which one it was before you decide what to do next.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Customers judge price increases on fairness. In a classic study, 79% found it acceptable for a grocer to pass on a wholesale cost increase, while 82% called a demand-driven price hike unfair.</li>
+<li>Size the increase per product. A cost-driven increase that protects profit on an inelastic product can cost you profit on an elastic one.</li>
+<li>Companies realize less than half of their planned price increases on average, per Simon-Kucher's 2025 study of 2,200+ business leaders. The leak is usually discounts, exceptions and poorly targeted increases.</li>
+<li>Small, well-explained increases hold better than one big jump. Netflix's 60% increase in 2011 cost it 800,000 U.S. subscribers in a quarter.</li>
+<li>Measure profit, not units, after the change. Some volume loss is expected; what matters is whether total profit went up.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -6946,6 +6953,10 @@ export const posts: BlogPost[] = [
 <h3>How often can I raise prices?</h3>
 <p>Small, occasional increases tied to real cost changes are generally tolerated better than rare, large ones. Reviewing prices on a regular cadence, and adjusting individual products when the data supports it, avoids building up to a big jump. See <a href="/blog/how-often-should-i-change-my-prices">how often to change your prices</a> for a practical schedule.</p>
 </div>
+<div class="faq-item">
+<h3>What should I do if sales drop after a price increase?</h3>
+<p>Check total profit first, not units. Some volume loss is expected and can still leave you with more profit. If profit also fell, look at whether the product is highly price-sensitive, whether a competitor moved at the same time, and whether discount codes undercut the new price, then roll back or reduce the increase on that product only.</p>
+</div>
 </section>
 
 <p class="conclusion">Raising prices doesn't have to cost you customers. Give people a reason they recognize as fair, raise only what each product can carry, and give your regulars notice. If you'd rather not guess which of your products can carry an increase, <a href="/signup">Zorin reads your Shopify or WooCommerce sales history</a> and shows each product's price sensitivity, with a raise, lower or hold recommendation and the estimated profit impact.</p>
@@ -6967,17 +6978,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">You can price a whole catalog without reviewing every product manually by letting each SKU's own elasticity model generate a recommendation automatically, then applying the ones you trust in bulk while reviewing individually only the products flagged with lower confidence or bigger changes. The manual, one-by-one approach isn't a discipline worth admiring, it's a bottleneck that doesn't scale past a small handful of products.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A catalog-wide view that shows every product's recommendation and estimated profit lift at once replaces reviewing SKUs one at a time.</li>
-<li>Bulk applying is safe for high-confidence recommendations, while low-confidence or unusually large changes are worth a quick individual look first.</li>
-<li>Per-product independence during a bulk apply matters: a failure or issue on one SKU shouldn't block the rest of the catalog from updating.</li>
-<li>Starting with a subset before trusting the whole catalog to bulk apply is a reasonable way to build confidence in the pattern of recommendations.</li>
-<li>The goal isn't zero human review, it's concentrating your limited review time on the products that actually need it.</li>
-</ul>
-</div>
-
 <h2>Why One-by-One Doesn't Scale</h2>
 <p>Reviewing ten products individually is manageable for an afternoon. Reviewing a few hundred, the reality for many established SMB catalogs, simply isn't, not without either a dedicated team or an unreasonable amount of time taken away from running the rest of the business. The manual approach isn't more careful, it's just slower, and slowness at that scale usually means most of the catalog never gets reviewed at all, not that it gets reviewed thoroughly. Once you trust the pattern of recommendations, <a href="/blog/automated-pricing-shopify">automating the export-review-apply cycle</a> removes even more of that manual overhead.</p>
 
@@ -6991,7 +6991,7 @@ export const posts: BlogPost[] = [
   <tbody>
     <tr><td>Wireless Headphones</td><td>Raise</td><td>+18.3%</td></tr>
     <tr><td>Mechanical Keyboard</td><td>Lower</td><td>+6.1%</td></tr>
-    <tr><td>Ergonomic Mouse</td><td>Hold</td><td>—</td></tr>
+    <tr><td>Ergonomic Mouse</td><td>Hold</td><td>, </td></tr>
     <tr><td>USB-C Hub</td><td>Raise</td><td>+11.7%</td></tr>
   </tbody>
 </table>
@@ -7024,6 +7024,17 @@ export const posts: BlogPost[] = [
   <li><strong>Repeat on your normal review cadence</strong>, not as a one-time catalog cleanup.</li>
 </ol>
 <p>If your catalog has grown past what you can reasonably review product by product, <a href="/signup">connect your sales history</a> and see the full-catalog recommendation view rather than opening each product one at a time.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A catalog-wide view that shows every product's recommendation and estimated profit lift at once replaces reviewing SKUs one at a time.</li>
+<li>Bulk applying is safe for high-confidence recommendations, while low-confidence or unusually large changes are worth a quick individual look first.</li>
+<li>Per-product independence during a bulk apply matters: a failure or issue on one SKU shouldn't block the rest of the catalog from updating.</li>
+<li>Starting with a subset before trusting the whole catalog to bulk apply is a reasonable way to build confidence in the pattern of recommendations.</li>
+<li>The goal isn't zero human review, it's concentrating your limited review time on the products that actually need it.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -7077,17 +7088,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">You should trust an AI pricing recommendation exactly as much as its confidence score and stated reasoning support, no more and no less. A recommendation backed by strong data and a clear explanation deserves real weight. One with thin data and a vague justification deserves a test, not blind acceptance. The mistake most merchants make isn't trusting AI too much or too little in general, it's treating every recommendation with the same level of trust regardless of what's actually behind it.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Trust should scale with the confidence score and data behind a recommendation, not be applied uniformly to every output.</li>
-<li>Explainability matters: a recommendation with a stated reason is more trustworthy than a bare number, because you can sanity-check the logic yourself.</li>
-<li>People trust and use an imperfect algorithm far more when they can adjust its output, even slightly, which is why review-and-edit beats all-or-nothing automation.</li>
-<li>A what-if simulator and a review-before-apply step let you verify a recommendation before committing, rather than trusting or rejecting it blind.</li>
-<li>Guardrails (a hard margin ceiling on how far a price can move, review before bulk apply) matter more than how advanced the underlying model is.</li>
-</ul>
-</div>
-
 <h2>The Real Question: How Much Evidence Is Behind the Call?</h2>
 <p>Framing this as a binary, trust AI or don't, misses what actually determines whether a recommendation is reliable. Two recommendations from the exact same model can deserve very different levels of trust if one is backed by a thousand data points across multiple price points and the other by a handful of sales at a single price that's never moved. The model isn't the variable that matters most. The evidence behind the specific recommendation is. This is really the same question as <a href="/blog/dynamic-pricing-software">whether your store is ready for automated pricing tools at all</a>, just asked at the level of a single recommendation instead of the whole rollout.</p>
 
@@ -7126,6 +7126,17 @@ export const posts: BlogPost[] = [
 
 <h2>A Practical Test You Can Run Yourself</h2>
 <p>Pick one product with a Strong confidence score and one with a Weak one. Apply the Strong recommendation and watch the actual outcome against the projected lift. Test the Weak recommendation with the simulator first rather than applying it directly, and let more sales history accumulate before trusting it fully. Skipping that test on a Weak-fit call is exactly how <a href="/blog/price-increase-killed-your-sales-heres-the-real-reason">a price increase can tank sales more than expected</a>. This single comparison teaches you more about how much to trust the system than any general rule would. If you're ready to see your own numbers, <a href="/signup">connect your sales history</a> and start with a handful of products before trusting it with your whole catalog.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Trust should scale with the confidence score and data behind a recommendation, not be applied uniformly to every output.</li>
+<li>Explainability matters: a recommendation with a stated reason is more trustworthy than a bare number, because you can sanity-check the logic yourself.</li>
+<li>People trust and use an imperfect algorithm far more when they can adjust its output, even slightly, which is why review-and-edit beats all-or-nothing automation.</li>
+<li>A what-if simulator and a review-before-apply step let you verify a recommendation before committing, rather than trusting or rejecting it blind.</li>
+<li>Guardrails (a hard margin ceiling on how far a price can move, review before bulk apply) matter more than how advanced the underlying model is.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -7177,17 +7188,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Price elasticity of demand measures how much your sales volume shifts when you change a price. If a small price increase barely dents your sales, your demand is inelastic and you likely have room to raise prices without losing much. If a small increase sends customers straight to a competitor, your demand is elastic, and pricing power is limited.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Elasticity equals the percentage change in quantity demanded divided by the percentage change in price, a simple before-and-after comparison is often all you need to calculate it.</li>
-<li>A result between 0 and -1 means inelastic demand (customers keep buying through a price change); beyond -1 means elastic demand (they respond strongly).</li>
-<li>Elasticity is driven mainly by substitute availability, necessity, price transparency, and brand loyalty, not randomness.</li>
-<li>There's no universal "good" score. Compare against measured benchmarks for your category, and treat a result far beyond 3 in absolute value as a likely data issue rather than real behavior.</li>
-<li>Zorin calculates this exact coefficient automatically per product from your own sales history, with an R-squared fit and a confidence label, so you don't have to run the formula by hand for every SKU.</li>
-</ul>
-</div>
 
 <p>Once you understand this one number, a lot of pricing decisions that feel like guesswork start to look like arithmetic. It tells you which products can carry a price increase, which ones will punish you for trying, and roughly how much volume a given change will cost or win you.</p>
 
@@ -7290,6 +7290,17 @@ export const posts: BlogPost[] = [
 <p>If you sell across a few categories, try this even before running any numbers: sort your catalog into "customers will comparison shop this" and "customers will buy this regardless." You'll have a rough elasticity map in ten minutes. More category-by-category detail is in <a href="/blog/price-elasticity-examples-by-ecommerce-category">price elasticity examples by ecommerce category</a>, and if you want the real number for each product instead of an estimate, <a href="/signup">connect your sales history</a> and let the model calculate it.</p>
 <p><strong>The takeaway:</strong> elasticity varies more within a category than most sellers expect, and products people need in the moment can be surprisingly inelastic.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Elasticity equals the percentage change in quantity demanded divided by the percentage change in price, a simple before-and-after comparison is often all you need to calculate it.</li>
+<li>A result between 0 and -1 means inelastic demand (customers keep buying through a price change); beyond -1 means elastic demand (they respond strongly).</li>
+<li>Elasticity is driven mainly by substitute availability, necessity, price transparency, and brand loyalty, not randomness.</li>
+<li>There's no universal "good" score. Compare against measured benchmarks for your category, and treat a result far beyond 3 in absolute value as a likely data issue rather than real behavior.</li>
+<li>Zorin calculates this exact coefficient automatically per product from your own sales history, with an R-squared fit and a confidence label, so you don't have to run the formula by hand for every SKU.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -7344,17 +7355,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Without sales history, you can't yet calculate elasticity, so a new product's launch price should be set with value-based reasoning and a deliberate cost-plus floor, then corrected quickly once real sales data starts to accumulate. The honest answer is that a launch price is always a hypothesis, not a settled number, and the goal is getting to real data as fast as possible, not perfecting a guess.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A launch price without sales history is a starting hypothesis, not a final answer. There's no way to calculate elasticity before real data exists.</li>
-<li>Pricing is usually decided too late: Simon-Kucher reports that 72% of innovations miss their financial targets or fail outright, largely because price is treated as an afterthought.</li>
-<li>Start from a cost-plus floor for safety, then anchor toward value-based reasoning about what the product is actually worth to the customer.</li>
-<li>Deliberate initial price variation (even small, planned tests) is what generates the data you'll need to calculate real elasticity soon after launch.</li>
-<li>Treat the first weeks of sales as the data-gathering phase, and revisit the price with real elasticity as soon as there's enough history to calculate it.</li>
-</ul>
-</div>
 
 <h2>Why This Is a Different Problem From Repricing an Existing Product</h2>
 <p>Everything about pricing an established product starts from a demand signal: past sales at past prices. A brand-new product has none of that. There's no elasticity to calculate yet, no confidence score to lean on, nothing but a hypothesis about what customers will pay. That's not a flaw in the process, it's just the honest starting condition every new product launches from.</p>
@@ -7411,6 +7411,17 @@ export const posts: BlogPost[] = [
 </ol>
 <p>If you're still comparing tools for when that data does arrive, <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">here's what to actually look for in a price optimization app built for a lean team</a>. Once you have even a few weeks of sales at more than one price, <a href="/signup">upload that history</a> and see what the earliest elasticity read looks like, flagged with an honest confidence level rather than false certainty.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A launch price without sales history is a starting hypothesis, not a final answer. There's no way to calculate elasticity before real data exists.</li>
+<li>Pricing is usually decided too late: Simon-Kucher reports that 72% of innovations miss their financial targets or fail outright, largely because price is treated as an afterthought.</li>
+<li>Start from a cost-plus floor for safety, then anchor toward value-based reasoning about what the product is actually worth to the customer.</li>
+<li>Deliberate initial price variation (even small, planned tests) is what generates the data you'll need to calculate real elasticity soon after launch.</li>
+<li>Treat the first weeks of sales as the data-gathering phase, and revisit the price with real elasticity as soon as there's enough history to calculate it.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -7463,17 +7474,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">Most small online stores should review their prices monthly and change an individual product's price only when the data gives a reason: a real cost change, a sustained shift in sales, or a new channel. For context, half of U.S. retail prices last less than about four months, and large online-competing retailers now change close to 30% of their prices every month. A small store doesn't need to move that fast, but leaving prices untouched for a year means they're almost certainly out of date.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A regular review cadence (commonly monthly for small catalogs) beats both constant reactive changes and leaving prices untouched indefinitely.</li>
-<li>Reacting to every minor competitor or demand fluctuation adds noise without adding real signal, since short-term swings often reverse on their own.</li>
-<li>Costs, product mix, and channel mix all shift over time, and a price that was correct when set can quietly become wrong without anything obviously breaking.</li>
-<li>A confidence score tells you which products can handle a longer review interval and which need closer attention due to thin data.</li>
-<li>Certain triggers (a cost change, a new competitor, a big swing in sales) warrant an off-cycle review regardless of your regular schedule.</li>
-</ul>
-</div>
-
 <h2>How Often Do Retailers Actually Change Prices?</h2>
 <p>It helps to know what "normal" looks like before picking a cadence. Two well-known studies give a good benchmark:</p>
 <ul>
@@ -7522,6 +7522,17 @@ export const posts: BlogPost[] = [
 <p>Set a recurring monthly (or whatever cadence fits your catalog's pace of change) review across your full product list, using each product's confidence score to decide how much attention it needs that cycle. Layer in off-cycle checks whenever a real trigger occurs, rather than waiting for the scheduled date. This combination catches both the slow drift a fixed schedule alone would miss between cycles, and the noise a constantly-reactive approach would otherwise chase.</p>
 <p>If you're not sure how out of date your current prices already are, <a href="/blog/how-to-know-if-your-prices-are-too-high-or-too-low">here's how to check</a>, and once you've set your cadence, <a href="/signup">connect your sales history</a> so each review is based on a current, automatically updated elasticity estimate rather than a stale one.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A regular review cadence (commonly monthly for small catalogs) beats both constant reactive changes and leaving prices untouched indefinitely.</li>
+<li>Reacting to every minor competitor or demand fluctuation adds noise without adding real signal, since short-term swings often reverse on their own.</li>
+<li>Costs, product mix, and channel mix all shift over time, and a price that was correct when set can quietly become wrong without anything obviously breaking.</li>
+<li>A confidence score tells you which products can handle a longer review interval and which need closer attention due to thin data.</li>
+<li>Certain triggers (a cost change, a new competitor, a big swing in sales) warrant an off-cycle review regardless of your regular schedule.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -7568,17 +7579,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">To price a product using your sales data, start with a floor built from your real costs, then look at how your sales actually changed the last time the price moved. That reaction, called price elasticity, tells you whether a higher or lower price would make more total profit. Competitor prices and gut feel can give you a starting range, but only your own sales history tells you what your customers will pay.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Start with a price floor: your landed cost plus payment fees, shipping, and a return allowance. Below that, every sale loses money.</li>
-<li>Your past price changes are the best evidence you have. How many units sold at each price tells you how price-sensitive your buyers are.</li>
-<li>Compare total profit, not units or revenue. A price that sells fewer units can still make more money.</li>
-<li>Small price changes have outsized effects: McKinsey found a 1% price rise, with volume unchanged, lifts operating profit by about 8% for the average large company.</li>
-<li>Sales periods distort the data. Exclude promotions before reading how customers respond to your normal price.</li>
-</ul>
-</div>
 
 <h2>Why Most Products Are Priced by Guesswork</h2>
 <p>Most products get priced once, at launch, with cost-plus math and a glance at what similar products sell for. That's a reasonable starting point, but it never answers the question that matters: would this product make more money at $79 or at $89? Nothing about cost-plus or a competitor's price tag can tell you.</p>
@@ -7628,6 +7628,17 @@ export const posts: BlogPost[] = [
 <h2>Doing This Across a Whole Catalog</h2>
 <p>The worked example above takes ten minutes for one product. Doing it properly for 200 products, excluding promotions and checking how much data backs each estimate, is where it gets impractical by hand. That's the job Zorin does: it connects to Shopify or WooCommerce, fits an elasticity model to each product's own sales history, flags likely promotional spikes, and gives each product a raise, lower or hold recommendation with the estimated profit impact and a confidence label, so you know which recommendations have enough data behind them. <a href="/blog/how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one">Pricing a whole catalog at once</a> covers the workflow in more detail.</p>
 
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Start with a price floor: your landed cost plus payment fees, shipping, and a return allowance. Below that, every sale loses money.</li>
+<li>Your past price changes are the best evidence you have. How many units sold at each price tells you how price-sensitive your buyers are.</li>
+<li>Compare total profit, not units or revenue. A price that sells fewer units can still make more money.</li>
+<li>Small price changes have outsized effects: McKinsey found a 1% price rise, with volume unchanged, lifts operating profit by about 8% for the average large company.</li>
+<li>Sales periods distort the data. Exclude promotions before reading how customers respond to your normal price.</li>
+</ul>
+</div>
+
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
 <div class="faq-item">
@@ -7650,6 +7661,10 @@ export const posts: BlogPost[] = [
 <h3>Do sales and promotions affect my pricing data?</h3>
 <p>Yes. A discount period shows inflated demand at an artificially low price, which makes a product look more price-sensitive than it really is. Exclude sale periods before calculating how customers respond to your normal price.</p>
 </div>
+<div class="faq-item">
+<h3>How often should I review my prices?</h3>
+<p>Monthly is a sensible default for most small stores, with an extra review whenever costs change or sales shift sharply for no obvious reason. For context, half of U.S. retail prices last less than about four months.</p>
+</div>
 </section>
 
 <p class="conclusion">The price that makes you the most money is already hiding in your sales history. Set a floor, read how customers reacted the last time the price moved, compare total profit rather than units, and test before rolling a change out everywhere. If you'd like that done for every product at once, <a href="/signup">start a free trial of Zorin</a> and see each product's recommendation from your own data.</p>
@@ -7670,17 +7685,6 @@ export const posts: BlogPost[] = [
     },
     content: `
 <p class="intro">Yes, customers notice a price gap between your Amazon listing and your own store, but only past a real threshold, and the bigger risk isn't the gap itself. It's leaving it unexplained. Research on cross-channel shopping behavior found that 45% of in-store shoppers will walk away and buy the same product online for a discount as small as 2.5%, and 60% will leave for a 5% discount (GroupM Next, 2012). If you sell on both Shopify and Amazon, you likely already have a gap well above that line, which makes how you handle it more important than whether it exists.</p>
-
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>Customers act on price gaps as small as 2.5%, and more than half will switch channels at a 5% gap (GroupM Next, 2012). Fully recovering Amazon's fees would take a gap of 10% or more, well above that threshold.</li>
-<li>The gap itself isn't the trust risk. An unexplained gap is. A short, factual note about marketplace fees turns silence into transparency.</li>
-<li>Showrooming and webrooming aren't new behaviors. Amazon-to-website comparison is just the current version of a decades-old shopping instinct.</li>
-<li>Your own DTC elasticity, read from your Shopify or WooCommerce sales history, tells you how price-sensitive your direct customers actually are before you assume a gap will cost you anything.</li>
-<li>Retention tactics that don't depend on winning a price comparison protect your Shopify sales more reliably than chasing price parity ever will.</li>
-</ul>
-</div>
 
 <h2>How Big of a Price Gap Do Shoppers Actually Notice?</h2>
 <p>Customers don't clock every cent of difference between your Amazon listing and your own store. But the threshold where they start acting on it is smaller than most sellers expect.</p>
@@ -7732,6 +7736,17 @@ export const posts: BlogPost[] = [
 <p><strong>Use loyalty pricing instead of a public discount.</strong> A code-gated offer for email subscribers or repeat customers lets you give your best customers a better deal on your own site without publishing a lower list price that a first-time visitor, or Amazon's own price-monitoring systems, would flag as the real price.</p>
 <p><strong>Test whether your own customers are price-driven at all.</strong> This is where <a href="/blog/how-to-run-a-price-sensitivity-survey">Zorin's Van Westendorp Price Sensitivity Meter</a> is a useful tool, separate from the elasticity model. It's a short, four-question survey you send to your own customers, producing a range of prices they'd consider fair, expensive, or too cheap, based on what they say rather than what they've historically done. If your DTC buyers turn out to be more brand-loyal than price-sensitive, a small channel price gap was never going to move them in the first place.</p>
 <p>The retention math here often works in a merchant's favor more than the anxiety about it suggests. A customer who found you through a direct channel already has a reason to prefer buying from you that has nothing to do with the Amazon listing they'd have to specifically go looking for to compare against.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Customers act on price gaps as small as 2.5%, and more than half will switch channels at a 5% gap (GroupM Next, 2012). Fully recovering Amazon's fees would take a gap of 10% or more, well above that threshold.</li>
+<li>The gap itself isn't the trust risk. An unexplained gap is. A short, factual note about marketplace fees turns silence into transparency.</li>
+<li>Showrooming and webrooming aren't new behaviors. Amazon-to-website comparison is just the current version of a decades-old shopping instinct.</li>
+<li>Your own DTC elasticity, read from your Shopify or WooCommerce sales history, tells you how price-sensitive your direct customers actually are before you assume a gap will cost you anything.</li>
+<li>Retention tactics that don't depend on winning a price comparison protect your Shopify sales more reliably than chasing price parity ever will.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -7789,16 +7804,6 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">The safest way to run a sale without wrecking your margin is to test the discount against your product's actual demand curve before applying it, and to make sure the promotional period gets excluded from your pricing data afterward so it doesn't distort future recommendations. Most of the damage from a bad sale isn't the discount itself, it's the corrupted signal that discount leaves behind in your sales history.</p>
 
-<div class="key-takeaways">
-<p class="kt-label">Key Takeaways</p>
-<ul>
-<li>A sale's biggest risk often isn't the discount itself, it's the corrupted pricing signal it leaves behind if the promo period isn't excluded from future data.</li>
-<li>Test a discount against your product's own demand curve before applying it, rather than picking a round percentage that feels generous.</li>
-<li>Promotional sales spikes should be flagged and excluded from your baseline elasticity, since customers respond more aggressively to visible discounts than to normal price changes.</li>
-<li>A post-sale dip in demand is often temporary (customers who stocked up buying less afterward), not a sign your regular price is wrong.</li>
-</ul>
-</div>
-
 <h2>A Sale's Real Cost Has Two Parts</h2>
 <p>The obvious cost of a sale is the margin given up during the discount window. The less obvious cost is what that promotional period does to your pricing data afterward. A spike in sales at a low price during a sale doesn't reflect how customers behave at your normal price. If that spike gets treated as ordinary sales history, it skews your elasticity estimate going forward, and future recommendations end up built on a distorted picture of customer behavior.</p>
 
@@ -7847,6 +7852,16 @@ export const posts: BlogPost[] = [
 </ol>
 <p>If you're pricing across more than one storefront, the same discipline applies per channel, see <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">should you price differently on Shopify vs Amazon</a>. And if you haven't checked your baseline elasticity recently, start with <a href="/blog/how-do-i-know-what-to-price-my-products">how to know what to price your products</a>.</p>
 <p>Three related situations worth a closer look: if you're trying to figure out how deep a discount can go before it eats into margin, see <a href="/blog/how-to-price-a-discount-without-losing-your-margin">how much you should discount without killing your margin</a>. If Black Friday or a similar seasonal event is what's prompting the sale, <a href="/blog/should-you-raise-prices-before-black-friday">should you raise prices before Black Friday</a> covers the legal and trust risks of inflating a price just to discount it back down. And if you want to measure a price change properly rather than just eyeballing before/after sales, <a href="/blog/how-to-run-a-price-ab-test-the-right-way">how to run a price A/B test the right way</a> covers the mechanics.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A sale's biggest risk often isn't the discount itself, it's the corrupted pricing signal it leaves behind if the promo period isn't excluded from future data.</li>
+<li>Test a discount against your product's own demand curve before applying it, rather than picking a round percentage that feels generous.</li>
+<li>Promotional sales spikes should be flagged and excluded from your baseline elasticity, since customers respond more aggressively to visible discounts than to normal price changes.</li>
+<li>A post-sale dip in demand is often temporary (customers who stocked up buying less afterward), not a sign your regular price is wrong.</li>
+</ul>
+</div>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -8006,6 +8021,9 @@ export const posts: BlogPost[] = [
 <p>A $36 to $50 range doesn't hand you a single answer, it hands you boundaries. Where you land inside that range depends on factors the survey doesn't measure: your margin at each price point, how much inventory risk you're carrying, and whether you're optimizing for volume or per-unit profit on this specific launch. The optimal price point, $42 in this example, is a reasonable starting anchor precisely because it's where the fewest people object on either end, but it's a starting point, not a mandate.</p>
 <p>It's also worth treating this as one input rather than the whole decision. <a href="/blog/do-you-need-a-survey-if-you-have-sales-data">Stated preference and revealed preference are different signals</a>, and research on Van Westendorp results has found stated thresholds often run lower than what customers actually pay once a product is live. If you already have comparable sales history, cross-check the survey range against it. If you're launching something genuinely new, the survey is often the only signal you have until real sales data exists.</p>
 
+<h2>What the Research Says About Survey-Based Pricing</h2>
+<p>Van Westendorp is one of several ways to measure willingness to pay; <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">a widely cited review by Breidert, Hahsler and Reutterer</a> compares it with other survey and market-based methods. The main caution is that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Treat the range a survey gives you as an upper guide, and let real sales data take over once you have it.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -8016,9 +8034,6 @@ export const posts: BlogPost[] = [
 <li>Doing this calculation by hand once is worth it for understanding the method. Doing it every time for every product is where an automated tool like Zorin earns its keep.</li>
 </ul>
 </div>
-
-<h2>What the Research Says About Survey-Based Pricing</h2>
-<p>Van Westendorp is one of several ways to measure willingness to pay; <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">a widely cited review by Breidert, Hahsler and Reutterer</a> compares it with other survey and market-based methods. The main caution is that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Treat the range a survey gives you as an upper guide, and let real sales data take over once you have it.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -8147,6 +8162,9 @@ export const posts: BlogPost[] = [
 <p>Zorin doesn't fit cleanly into either category above. It isn't rule-based, there's no if/then logic to configure. It also isn't a repricer or a generic algorithmic tool reacting to competitor prices or inventory levels. Zorin fits a price elasticity model to a merchant's own historical price and quantity data per SKU, measuring how that specific product's demand actually responded when its price moved in the past, then returns a raise, lower, or hold recommendation with an estimated profit lift and a confidence score based on how much real data supports it.</p>
 <p>That confidence score directly addresses the trust gap that comes up with algorithmic pricing generally: a thin-data product is never presented with the same certainty as one with a long, stable sales history, so a merchant knows how much weight to put on a given recommendation before acting on it. And nothing applies automatically. Every recommendation goes through merchant review, with a live margin and profit-lift preview before anything changes, whether that's one product or a full catalog applied in bulk. For a catalog crossing that 500-SKU threshold where hand-maintained rules stop scaling, that's the practical alternative to either writing more rules or trusting an unexplained algorithmic number.</p>
 
+<h2>What the Broader Evidence Says</h2>
+<p>Automated repricing has spread because competitors reprice constantly: <a href="https://www.nber.org/digest/jan19/e-commerce-and-pricing-behavior-traditional-retailers" target="_blank" rel="noopener noreferrer">NBER research by Alberto Cavallo</a> found the share of products changing price each month at large U.S. multi-channel retailers roughly doubled, from 15% to almost 30%, between 2008-10 and 2014-17. Algorithmic pricing also carries risks rule-based tools don't. The U.S. Department of Justice <a href="https://www.justice.gov/opa/pr/justice-department-sues-realpage-algorithmic-pricing-scheme-harms-millions-american-renters" target="_blank" rel="noopener noreferrer">sued RealPage in 2024</a>, alleging its algorithm let competing landlords share private data and align rents. For a small store, the safe version of algorithmic pricing reads only your own sales data, explains each recommendation, and leaves the final decision with you.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -8157,9 +8175,6 @@ export const posts: BlogPost[] = [
 <li>Zorin fits neither bucket: it's an elasticity model reading your own sales history, with a stated reason and confidence score behind every recommendation, and nothing applies without merchant review.</li>
 </ul>
 </div>
-
-<h2>What the Broader Evidence Says</h2>
-<p>Automated repricing has spread because competitors reprice constantly: <a href="https://www.nber.org/digest/jan19/e-commerce-and-pricing-behavior-traditional-retailers" target="_blank" rel="noopener noreferrer">NBER research by Alberto Cavallo</a> found the share of products changing price each month at large U.S. multi-channel retailers roughly doubled, from 15% to almost 30%, between 2008-10 and 2014-17. Algorithmic pricing also carries risks rule-based tools don't. The U.S. Department of Justice <a href="https://www.justice.gov/opa/pr/justice-department-sues-realpage-algorithmic-pricing-scheme-harms-millions-american-renters" target="_blank" rel="noopener noreferrer">sued RealPage in 2024</a>, alleging its algorithm let competing landlords share private data and align rents. For a small store, the safe version of algorithmic pricing reads only your own sales data, explains each recommendation, and leaves the final decision with you.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -8883,6 +8898,9 @@ export const posts: BlogPost[] = [
 <h2>No Price History Yet? Here's the Other Signal</h2>
 <p>For a genuinely new product with no sales history at all, elasticity modeling has nothing to read yet, and no tool can responsibly manufacture a number from data that doesn't exist. Zorin's answer for that specific gap is a separate Van Westendorp price sensitivity survey: a merchant generates a shareable, no-login link, customers answer four classic price-perception questions, and the tool calculates an acceptable price range and optimal price point once enough responses accumulate, with its own honest confidence tier based on response count. It's a stated-preference signal, what customers say they'd pay, kept deliberately separate from the elasticity model's revealed-preference read, useful specifically in the window before there's enough sales history for the elasticity side to say anything at all.</p>
 
+<h2>Why Recent Data Matters More Than Old Data</h2>
+<p>More history isn't automatically better, because price sensitivity itself changes over time. A well-known study by <a href="https://www.nber.org/papers/w12530" target="_blank" rel="noopener noreferrer">Hughes, Knittel and Sperling</a> found U.S. short-run gasoline demand elasticity fell from -0.21 to -0.34 in 1975-1980 to just -0.034 to -0.077 in 2001-2006: the same product, with customers responding very differently a generation later. A store's customers shift faster than that, as channels, competitors and the customer mix change. That's why a few recent months with genuine price movement usually tell you more than two years of flat, unchanging prices.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -8893,9 +8911,6 @@ export const posts: BlogPost[] = [
 <li>For a genuinely new product with zero sales history, a Van Westendorp survey is a usable second signal while elasticity data accumulates.</li>
 </ul>
 </div>
-
-<h2>Why Recent Data Matters More Than Old Data</h2>
-<p>More history isn't automatically better, because price sensitivity itself changes over time. A well-known study by <a href="https://www.nber.org/papers/w12530" target="_blank" rel="noopener noreferrer">Hughes, Knittel and Sperling</a> found U.S. short-run gasoline demand elasticity fell from -0.21 to -0.34 in 1975-1980 to just -0.034 to -0.077 in 2001-2006: the same product, with customers responding very differently a generation later. A store's customers shift faster than that, as channels, competitors and the customer mix change. That's why a few recent months with genuine price movement usually tell you more than two years of flat, unchanging prices.</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
