@@ -1292,6 +1292,7 @@ export const posts: BlogPost[] = [
     title: "How to Raise Your Price After a Product Launch",
     excerpt: "When and how much to raise a launch price, in 5 steps, sized with your own elasticity data so the increase sticks instead of stalling sales.",
     date: "2026-09-01",
+    updatedDate: "2026-09-26",
     readingTime: "10 min read",
     category: "Pricing Strategy",
     ogImage: "/images/blog/product-recommendation.webp",
@@ -1307,7 +1308,7 @@ export const posts: BlogPost[] = [
 <ul>
 <li>An introductory price is a temporary tool to reduce first-purchase friction, not a promise to hold that price forever.</li>
 <li>The right time to raise is a data signal, not a date on the calendar: once your sales history has enough price variation, an elasticity model can tell you the increase is safe rather than you guessing.</li>
-<li>Generic tolerance rules (commonly cited around 10% to 15% for a single move) come from SaaS subscription pricing research and don't transfer cleanly to a physical product with its own demand curve.</li>
+<li>Generic "never raise more than X%" rules don't transfer cleanly to a physical product with its own demand curve; your own elasticity is the better guide.</li>
 <li>Raising too soon on thin data and raising too much in one move are different failure modes with different fixes, and both are avoidable with a preview before you commit.</li>
 <li>Advance notice and a grandfather window for early buyers turn a price increase into a planned event instead of a trust problem.</li>
 </ul>
@@ -1327,7 +1328,7 @@ export const posts: BlogPost[] = [
 <p>If you launched with no sales history at all and are still in the earliest weeks, the <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">guide to pricing a new product with no sales history</a> covers how to set that initial number. This step picks up once you have enough orders behind you for a model to start reading, not before.</p>
 
 <h2>Step 3: Calculate How Much to Raise, Not Just Whether To</h2>
-<p>Once the signal says it's time, the next question is size, and this is where a lot of pricing advice reaches for a generic rule of thumb that doesn't actually fit an ecommerce product. A commonly cited SaaS benchmark, drawing on Price Intelligently's pricing research, puts typical subscription demand elasticity between -1.5 and -2.5, meaning a 10% price increase in that world costs roughly 15% to 25% of demand. That's a real number, but it describes recurring software subscriptions, not a physical product with its own category, its own customer base, and its own demand curve.</p>
+<p>Once the signal says it's time, the next question is size, and this is where a lot of pricing advice reaches for a generic rule of thumb, often borrowed from subscription software, where monthly churn data makes price sensitivity easy to measure. Those rules describe someone else's customers. A physical product has its own category, its own buyers and its own demand curve, and the size of increase it can absorb comes from that, not from a percentage that worked for a SaaS company.</p>
 <p>Borrowing that percentage wholesale is exactly the kind of guess a merchant should be trying to replace. Your product's actual elasticity, the number that says how much your specific demand moves when your specific price moves, comes from your own sales history, not a benchmark built on a different category of business entirely.</p>
 
 <table>
@@ -1335,7 +1336,7 @@ export const posts: BlogPost[] = [
     <tr><th>Approach</th><th>What it tells you</th><th>Where it falls short</th></tr>
   </thead>
   <tbody>
-    <tr><td>Generic industry percentage (e.g. 10-15%)</td><td>A rough starting ceiling for how large a single increase can be before risk rises sharply</td><td>Built on SaaS subscription data; doesn't reflect your product's actual demand curve</td></tr>
+    <tr><td>Generic rule of thumb (e.g. "no more than 10%")</td><td>A rough starting ceiling for how large a single increase can be</td><td>Not based on your product's actual demand curve</td></tr>
     <tr><td>Your own elasticity estimate</td><td>How much your specific demand shifts when your specific price moves, from your own sales history</td><td>Needs enough real data (3-6 months, some price variation) to be reliable</td></tr>
     <tr><td>Comparable SKUs in your catalog</td><td>A useful proxy while the new SKU's own data is still thin</td><td>A signal, not a certainty: your existing products may not behave identically</td></tr>
   </tbody>
@@ -1354,7 +1355,7 @@ export const posts: BlogPost[] = [
 
 <h2>Step 5: Communicate the Increase So It Doesn't Cost You Customers</h2>
 <p>The price increase itself rarely causes the damage. An increase that arrives with no notice and no explanation is what erodes trust, because it reads as opportunistic rather than planned, even when it isn't. Two things fix most of that risk before it happens.</p>
-<p><strong>Give advance notice.</strong> Slack's widely cited 2021 price adjustment gave customers 90 days' notice, and pricing research aggregating multiple SaaS benchmarks generally points to 60 or more days as the range where increases land well. An ecommerce product doesn't need to match that exactly, but the underlying principle holds: a silent, same-day price jump feels different from one a customer saw coming.</p>
+<p><strong>Give advance notice, and a way to lock in the old price.</strong> <a href="https://techcrunch.com/2022/07/18/slack-is-increasing-prices-and-changing-the-way-its-free-plan-works/" target="_blank" rel="noopener noreferrer">Slack's 2022 Pro price increase</a> is a good template: it was announced in mid-July, took effect on September 1, and let existing customers keep the old price for another year if they renewed before the deadline. An ecommerce product doesn't need that much ceremony, but the underlying principle holds: a silent, same-day price jump feels different from one a customer saw coming.</p>
 <p><strong>Grandfather your earliest buyers where it's practical.</strong> A short window where existing customers can reorder at the old price, or a small loyalty discount that offsets part of the increase, converts "the price went up on me" into "I got a fair heads-up and a way to lock in the old price if I acted." Not every product or margin structure can support this, but where it's possible, it's the single most effective goodwill move available.</p>
 <p>Lead with what's changed, not with the fact that it costs more. A short, factual note, "we're moving off our launch price now that we have real production volume behind us" or "this reflects the ingredient costs that have gone up since we launched", gives the increase a reason a customer can accept rather than question. Want a ready-to-send starting point? Grab the <a href="/price-increase-email-template">free price increase email template</a> and fill in your own numbers.</p>
 
@@ -1386,7 +1387,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Is a 10% to 15% price increase a safe number to use for my ecommerce store?</h3>
-<p>That range comes from SaaS subscription pricing research, not ecommerce products, and typically describes recurring software demand elasticity rather than physical goods. Use it as a rough outer-bound sanity check at most, and rely on your own product's elasticity, calculated from your actual sales history, for the real number.</p>
+<p>Rules of thumb like "never more than 10% at once" are useful as an outer sanity check at most. The real answer comes from your own product's elasticity, calculated from your actual sales history.</p>
 </div>
 <div class="faq-item">
 <h3>Should I raise my price all at once or in small increments?</h3>
@@ -1399,7 +1400,8 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">The launch price was always a placeholder, a reasonable number set before you had the evidence to do better. Once your sales history builds up, the decision stops being a guess: Zorin reads your own data and tells you whether to raise, by how much, and how confident that call actually is. <a href="/signup">Start a free trial</a> and see what your own elasticity says about the price you're still running from launch day.</p>
-    `.trim(),
+    
+`.trim(),
   },
   {
     slug: "is-price-anchoring-manipulative-or-just-smart-pricing",
@@ -1492,7 +1494,8 @@ export const posts: BlogPost[] = [
     excerpt:
       "Sample size, test duration, and how much to change the price. The mechanics of a real price test, no data scientist required.",
     date: "2026-08-26",
-    readingTime: "11 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "8 min read",
     category: "Pricing Strategy",
     ogImage: "/images/blog/price-history.webp",
     author: {
@@ -1506,11 +1509,11 @@ export const posts: BlogPost[] = [
 <p>Two weeks is the most commonly cited minimum, and it's a reasonable floor for most stores with meaningful traffic. Guidance varies past that point: some sources recommend running through at least one full business cycle, generally 2 to 4 weeks, to smooth out the normal difference between weekday and weekend shopping behavior, while lower-traffic stores are often advised to run 4 to 8 weeks simply because they need more calendar time to accumulate enough orders to say anything with confidence. There's no single universal number here, the real constraint isn't the calendar, it's whether you've accumulated enough orders to reach significance, which is a volume question as much as a duration one.</p>
 
 <h2>Is Your Result Significant Enough to Trust</h2>
-<p>Statistical significance is really just a measure of how likely your result is to be a real effect rather than random noise. A 95% confidence level, standard for most ecommerce tests, means there's roughly a 5% chance the difference you're seeing is a false positive rather than a genuine response to the price change. For a high-stakes decision like a permanent price change, some practitioners recommend tightening that to 99% confidence before acting, since the cost of being wrong is higher than it is for a smaller UI test.</p>
+<p>Statistical significance is really just a measure of how likely your result is to be a real effect rather than random noise. A 95% confidence level, the usual standard, means that if the price change truly had no effect, you'd see a difference this large less than 5% of the time by chance alone. One common way to break that guarantee is checking results every day and stopping the moment they look good; <a href="https://www.evanmiller.org/how-not-to-run-an-ab-test.html" target="_blank" rel="noopener noreferrer">Evan Miller's widely read explainer on A/B test mistakes</a> shows how much that "peeking" inflates false positives. For a high-stakes decision like a permanent price change, some practitioners recommend tightening that to 99% confidence before acting, since the cost of being wrong is higher than it is for a smaller UI test.</p>
 <p>Here's where a lot of guidance aimed at large ecommerce brands stops being useful for a small store: some sources cite sample-size thresholds like 30,000 visitors per variant with at least 3,000 conversions before a result counts as valid. That number describes a high-traffic enterprise store, not a typical independent Shopify or WooCommerce seller, and treating it as a universal requirement would mean most small stores could never run a valid price test at all. The more practical bar for a smaller store: at minimum, aim for 100 or more conversions per price variant before drawing a conclusion, and treat anything below that as directional rather than a settled result, similar to how a low-response survey should be read as a rough signal, not a precise number.</p>
 
 <h2>How Much to Change the Price</h2>
-<p>Test a meaningful move, not a token one. Guidance converges around a 5% to 20% price change as the range large enough to produce a detectable shift in customer behavior; smaller moves risk getting lost in normal day-to-day noise regardless of how long you run the test. A $50 product tested at $52 is unlikely to tell you much of anything useful. The same product tested at $55 to $60 gives you a real chance at reading an actual response.</p>
+<p>Test a meaningful move, not a token one. The bigger the price change, the fewer orders you need to detect its effect, so a move of roughly 10% or more is usually the practical minimum for a small store; smaller moves risk getting lost in normal day-to-day noise regardless of how long you run the test. A $50 product tested at $52 is unlikely to tell you much of anything useful. The same product tested at $55 to $60 gives you a real chance at reading an actual response.</p>
 <p>Volume matters as much as the size of the move. A meaningful price change on your highest-volume product will reach a trustworthy sample size faster than the same percentage move on a slow-selling SKU, simply because more orders accumulate in the same calendar window. If you can only run one test at a time, run it on a product with real, steady sales volume rather than a thin one, even if the thin one is the product you're most curious about.</p>
 
 <h2>True A/B Test vs Before/After Price Change</h2>
@@ -1532,7 +1535,7 @@ export const posts: BlogPost[] = [
 <p class="kt-label">Key Takeaways</p>
 <ul>
 <li>Run a price test for at least 2 weeks, longer (4-8 weeks) for lower-traffic stores, and treat the duration as a volume question as much as a calendar one.</li>
-<li>Test a meaningful price change, 5-20% is the commonly cited range, on a high-volume product rather than a token move on a thin one.</li>
+<li>Test a meaningful price change, roughly 10% or more, on a high-volume product rather than a token move on a thin one.</li>
 <li>Enterprise-scale sample-size guidance (30,000+ visitors per variant) doesn't apply to most independent stores. Aim for at least 100 conversions per variant as a practical bar, and treat anything below that as directional.</li>
 <li>A true A/B test splits traffic simultaneously; a before/after price change compares periods and is noisier but far more practical for most small stores.</li>
 <li>Zorin runs the before/after method automatically across your full sales history with a confidence label standing in for statistical significance. <a href="/signup">Start a free trial</a> to see it for your own catalog.</li>
@@ -1549,7 +1552,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How much should I actually change the price when testing?</h3>
-<p>A 5% to 20% change is the commonly cited range for producing a detectable shift in customer behavior. Smaller moves risk getting lost in normal day-to-day sales noise, regardless of how long the test runs. Test on a high-volume product where possible, since more orders accumulate faster.</p>
+<p>Big enough to detect with the orders you have. For most small stores that means a change of roughly 10% or more, because smaller effects need far more orders to separate from noise. Smaller moves risk getting lost in normal day-to-day sales noise, regardless of how long the test runs. Test on a high-volume product where possible, since more orders accumulate faster.</p>
 </div>
 <div class="faq-item">
 <h3>Can I A/B test prices without a developer or data scientist?</h3>
@@ -1668,7 +1671,8 @@ export const posts: BlogPost[] = [
     title: "WooCommerce vs Shopify Fees: Real Margin Compared",
     excerpt: "No platform fee doesn't mean better margin. WooCommerce vs Shopify transaction, hosting and plugin costs compared, and how to find your real net profit.",
     date: "2026-08-26",
-    readingTime: "11 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "9 min read",
     category: "Pricing Strategy",
     ogImage: "/images/blog/product-recommendation.webp",
     author: {
@@ -1682,7 +1686,7 @@ export const posts: BlogPost[] = [
 <p>No monthly transaction fee doesn't mean no cost. WooCommerce merchants still pay a payment processor (WooPayments, Stripe, PayPal, or similar) roughly the same rate a Shopify merchant using Shopify Payments pays, plus hosting, plugins, and often a developer or agency to keep everything running. Shopify's fee structure is more visible (a plan price plus a clearly stated processing rate), which makes it easier to calculate but not necessarily cheaper at every volume level. The honest comparison has to include both platforms' full cost stack, not just the headline "transaction fee" line.</p>
 
 <h2>What Each Platform Actually Costs</h2>
-<p>Shopify's pricing is straightforward to quote: Basic runs $39/month, Grow $105/month, and Advanced $399/month (billed monthly; annual billing brings each down further), each with an online card rate and, if you use a payment gateway other than Shopify Payments, an additional surcharge on top of that rate. That surcharge scales down as you move up plans: 2% on Basic, 1% on Grow, 0.6% on Advanced, and 0.2% on Shopify Plus. Using Shopify Payments itself removes that surcharge entirely, which is why most smaller Shopify stores end up on Shopify Payments rather than a third-party gateway.</p>
+<p>Shopify's pricing is straightforward to quote: Basic runs $39/month, Grow $105/month, and Advanced $399/month (billed monthly; annual billing brings each down further), each with an online card rate and, if you use a payment gateway other than Shopify Payments, an additional surcharge on top of that rate. That surcharge scales down as you move up plans: 2% on Basic, 1% on Grow, 0.6% on Advanced, and 0.2% on Shopify Plus, per <a href="https://www.shopify.com/pricing" target="_blank" rel="noopener noreferrer">Shopify's pricing page</a>. Using Shopify Payments itself removes that surcharge entirely, which is why most smaller Shopify stores end up on Shopify Payments rather than a third-party gateway.</p>
 <p>WooCommerce has no equivalent plan fee or gateway surcharge, since it's self-hosted WordPress software, not a hosted platform charging for the privilege of running your store. What it does have: managed WordPress hosting capable of handling ecommerce traffic typically runs $30 to $100 a month, premium plugins (many stores need several: a page builder, SEO, backups, security, a checkout or subscriptions extension) can add $300 to $2,000 a year depending on what your store needs, and security plus backup services often run another $100 to $300 a year on top of that. None of that is optional in practice, even though none of it appears on a WooCommerce pricing page the way a Shopify plan price does.</p>
 
 <table>
@@ -1712,7 +1716,7 @@ export const posts: BlogPost[] = [
 <p>Here's the math that catches merchants off guard: a 20% coupon on a product with a 30% gross margin doesn't leave you at 10% margin after the discount, it leaves you closer to that once you also count the other costs still sitting between gross and net. If a $50 product with 30% gross margin ($15 profit before other costs) takes a 20% discount, the new selling price is $40, and that same $15 in absolute product-cost gap is now a much thinner share of a smaller number, before payment fees, hosting allocation, and refund risk get subtracted at all. Run the actual math on your own products before running a sale, not after, the free <a href="/shopify-profit-margin-calculator">Shopify</a> or <a href="/woocommerce-profit-margin-calculator">WooCommerce profit margin calculator</a> does this in seconds for a specific product and discount level.</p>
 
 <h2>What's a Good Margin to Target</h2>
-<p>Physical goods on a typical WooCommerce or Shopify store commonly land in a 20-40% net margin range once every real cost is counted, while digital products (courses, downloads, software) can run 70-90% net since there's no COGS, shipping, or fulfillment cost eating into the number. Where your own products fall inside that range depends heavily on category, and it's worth treating these as directional starting points rather than a universal target, category-specific benchmarks vary meaningfully, and <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">a fuller breakdown of margin targets by category</a> covers that ground in more depth.</p>
+<p>What counts as a healthy net margin depends heavily on category. Digital products (courses, downloads, software) can run far higher than physical goods because there's no cost of goods, shipping or fulfillment eating into each sale, while physical goods in competitive categories often end up with net margins in the teens once every real cost is counted. Our <a href="/research/profit-margins-by-product-category">gross margins by category</a> research shows how widely even public companies differ, and <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">ecommerce profit margin benchmarks</a> covers what to target.</p>
 
 <figure class="post-image">
   <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="lazy" />
@@ -1755,7 +1759,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>What's a good profit margin for a WooCommerce store?</h3>
-<p>Physical goods commonly land in a 20-40% net margin range once every real cost is counted; digital products can run 70-90% since there's no COGS or shipping to subtract. Treat these as directional starting points, since actual healthy margins vary meaningfully by product category.</p>
+<p>It depends heavily on category. Digital products can run much higher margins than physical goods because there's no cost of goods or shipping to subtract, while physical goods in competitive categories often land in the teens once every cost is counted. Compare against benchmarks for your own category rather than a single ecommerce-wide number.</p>
 </div>
 <div class="faq-item">
 <h3>Does Shopify or WooCommerce have lower payment processing fees?</h3>
@@ -3200,7 +3204,8 @@ export const posts: BlogPost[] = [
     excerpt:
       "Set a launch price when you have no data, know when to raise it, price bundles without killing margin, and retire a product cleanly.",
     date: "2026-08-21",
-    readingTime: "11 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "14 min read",
     category: "Pricing Strategy",
     author: {
       name: "Dexter",
@@ -3271,7 +3276,7 @@ export const posts: BlogPost[] = [
 <h2>When to Raise the Price on a Product That's Already Selling</h2>
 <p>Three observable signals tell you the launch price was set too low and it's time to move up.</p>
 <p><strong>You're selling through inventory faster than planned.</strong> If your reorder rate is higher than your initial model predicted, demand is stronger than your price implied. That's the most direct market signal that you priced below the demand curve.</p>
-<p><strong>Social proof is established.</strong> Penetration pricing's core logic is that you trade early margin for the reviews and ratings that make a later price increase defensible. Once you have 30-50 substantive reviews and a 4.5-star average, the price floor that justified discounting to build the review base is no longer doing the same job. The product can stand on its own.</p>
+<p><strong>Social proof is established.</strong> Penetration pricing's core logic is that you trade early margin for the reviews and ratings that make a later price increase defensible. Once you have a solid base of substantive reviews and a strong average rating, the price floor that justified discounting to build the review base is no longer doing the same job. The product can stand on its own.</p>
 <p><strong>A Van Westendorp survey or price test shows room above the current price.</strong> If the acceptable price range from a survey extends meaningfully above where you're currently priced, you have stated-preference evidence that customers aren't near their ceiling. If you run a price test on a subset of traffic at a higher price point and conversion doesn't drop proportionally, you have revealed-preference evidence.</p>
 <p>Once you have 3-6 months of sales data at the launch price, Zorin can run an elasticity model on the SKU. A Strong confidence raise recommendation with a specific estimated profit lift replaces the gut feel check with a number you can act on and defend: "your elasticity is -0.7, raising to $38 lifts estimated profit 12%, Strong confidence." That's the data-grounded version of "it's safe to go up." A Weak confidence label at the same stage means the model doesn't yet have enough price variation in the history to be certain: hold the price a little longer and let more data accumulate before moving.</p>
 
@@ -3284,9 +3289,9 @@ export const posts: BlogPost[] = [
 
 <h2>Bundle Pricing: How to Increase Order Value Without Eroding Margin</h2>
 <p>Bundles work when they shift the customer's mental frame from "should I buy this?" to "which bundle gives me the best deal?" Once a buyer is choosing between bundle tiers rather than between buying and not buying, the conversion question is already answered. The only open question is how much they spend.</p>
-<p>Stores implementing strategic bundling see average order value increases of 20-35%, according to bundling strategy research across Shopify merchants. The reason it doesn't always work is that merchants price bundles before calculating whether the discount leaves enough margin to be worth running. The <a href="/blog/how-to-price-product-bundles-without-giving-away-your-margin">bundle pricing guide</a> covers the full mechanics; the key formula here is:</p>
+<p>Bundling is one of the most common ways to raise average order value late in a product's life. The reason it doesn't always work is that merchants price bundles before calculating whether the discount leaves enough margin to be worth running. The <a href="/blog/how-to-price-product-bundles-without-giving-away-your-margin">bundle pricing guide</a> covers the full mechanics; the key formula here is:</p>
 <p><strong>Bundle Price = (Sum of Individual Retail Prices) x (1 - Bundle Discount Rate)</strong></p>
-<p>The right discount rate depends on the gross margin of the items inside. Shopify's own bundling guidance puts the range at 10-20% for brands with gross margins above 50%, and 5-10% for brands with gross margins at or below 50%. Deeper than that and you're giving away margin for an AOV lift that doesn't compensate. The target is to keep bundle gross margin between 25-40% of the bundle price.</p>
+<p>The right discount rate depends on the gross margin of the items inside. A practical rule of thumb: keep bundle discounts around 10-20% when the items carry gross margins above 50%, and closer to 5-10% when margins are thinner. Deeper than that and you're giving away margin for an AOV lift that doesn't compensate. The target is to keep bundle gross margin between 25-40% of the bundle price.</p>
 <p><strong>Three bundle-specific rules worth keeping:</strong></p>
 <p><strong>Keep the hero product at full price.</strong> The highest-margin or highest-selling item in the bundle should stay at its normal price. Apply the discount to supporting products (accessories, refills, complementary items) rather than to the core SKU. This protects the hero's reference price and prevents the bundle from training customers to expect the main product at a discount.</p>
 <p><strong>Use anchor pricing.</strong> Show the total individual retail value next to the bundle price. "Valued at $87, bundle price $69" does more work than "$69" alone because it makes the saving concrete and immediate. Without the anchor, buyers have to calculate the saving themselves; most won't.</p>
@@ -3296,7 +3301,7 @@ export const posts: BlogPost[] = [
 <h2>End-of-Life Markdowns: How to Clear Stock Without Creating a Sale-Waiting Audience</h2>
 <p>The markdown trap isn't a single steep cut: it's the pattern. Predictable, public, repeated discounts on the same products teach customers that waiting for the sale is the rational move. Once that pattern is established, full-price sell-through on that product is gone, and the behavior tends to generalize to other products in the store.</p>
 <p>The signals that a product is moving into end-of-life aren't subtle: declining sales over multiple consecutive periods, rising return rates or customer complaints, increasing cost pressure relative to the margin the product generates, and newer alternatives in the market that have overtaken it. When two or three of these appear together, it's time to plan the exit rather than wait until the inventory becomes a write-off.</p>
-<p><strong>Gradual step-down markdowns outperform single steep cuts.</strong> A product moving from $45 to $36 to $27 over three months clears inventory more profitably than going straight to $27 in month one, because the early markdown still captures buyers who were close to purchasing anyway at a higher margin. Retalon's markdown research confirms that pre-planned step-down sequences consistently outperform reactive deep cuts on both sell-through and total margin recovered.</p>
+<p><strong>Gradual step-down markdowns outperform single steep cuts.</strong> A product moving from $45 to $36 to $27 over three months clears inventory more profitably than going straight to $27 in month one, because the early markdown still captures buyers who were close to purchasing anyway at a higher margin.</p>
 <p><strong>Bundle EOL stock with full-price items rather than marking down standalone.</strong> An EOL product at $27 standalone reads as a distressed item. The same product bundled with a full-price bestseller at $65 reads as added value. The customer pays more, you recover more margin, and the full-price hero product's reference price stays intact. This is the mechanism retailers use to retire end-of-life products without the clearance association following the whole catalog.</p>
 <p><strong>Scarcity framing creates urgency without setting a discount precedent.</strong> "Final stock, discontinuing soon" communicates that this is the end of this product, not the beginning of a sale cycle. It creates genuine urgency (the product won't come back after this) without signaling that the price will fall further if the customer waits. A flat clearance discount signals: "wait and it might go lower." A scarcity frame signals: "this is your last chance at any price."</p>
 
@@ -3327,7 +3332,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How do I know when it's safe to raise the price on a product that's already selling well?</h3>
-<p>Three observable signals: you're selling through faster than planned (demand is stronger than your price implied), you have 30-50 solid reviews that establish social proof, and a price test or Van Westendorp survey shows room above the current price. Once you have 3-6 months of sales history with some price variation, Zorin can model the elasticity and give you a specific raise recommendation with an estimated profit lift.</p>
+<p>Three observable signals: you're selling through faster than planned (demand is stronger than your price implied), you have enough solid reviews to establish social proof, and a price test or Van Westendorp survey shows room above the current price. Once you have 3-6 months of sales history with some price variation, Zorin can model the elasticity and give you a specific raise recommendation with an estimated profit lift.</p>
 </div>
 <div class="faq-item">
 <h3>What's the best way to price a product bundle without giving away my margin?</h3>
@@ -4108,8 +4113,8 @@ export const posts: BlogPost[] = [
     title: "Competitor Price Tracking: Do You Need an App?",
     excerpt: "Competitor price tracking shows what rivals charge, not what your customers will pay. When a tracking app is worth it, and when your own data is enough.",
     date: "2026-08-16",
-    updatedDate: "2026-08-21",
-    readingTime: "9 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "14 min read",
     category: "Product",
     author: {
       name: "Dexter",
@@ -4150,7 +4155,7 @@ export const posts: BlogPost[] = [
 <p><strong>You sell the same product other stores sell.</strong> Not a similar product, the same SKU. Multiple stores carrying identical Nike Air Max 90s are in a genuine price comparison market. A customer can get the exact same item elsewhere, so your price relative to competitors directly affects whether you get the sale.</p>
 <p><strong>Your customers shop on price.</strong> In commodity and marketplace contexts, price is the primary differentiator. The customer knows exactly what they're getting; the only variable is who charges less (and ships faster). Competitor tracking keeps you visible in that kind of market.</p>
 <p><strong>Your margins can absorb reactive price changes.</strong> Matching a competitor's price drop only works if you can sustain that price without eroding your margin below what's viable. Stores with strong supplier relationships or high volume can often absorb these swings. Smaller stores matching prices reflexively can quietly bleed margin.</p>
-<p>If all three apply, competitor tracking is a smart investment. The best tools for this on Shopify include Prisync (the most established, with a 4.9/5 rating and 200+ reviews, starting at $99/month for URL-based tracking), Pricefy (budget-friendly with a free tier covering 50 SKUs), and PriceMole (built for multi-channel sellers, starting at $99/month).</p>
+<p>If all three apply, competitor tracking is a smart investment. The best tools for this on Shopify include Prisync (one of the most established, <a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">starting at $99/month</a> for URL-based tracking), Pricefy (budget-friendly, with a <a href="https://www.pricefy.io/pricing" target="_blank" rel="noopener noreferrer">free tier covering 50 SKUs</a>), and PriceMole (built for multi-channel sellers).</p>
 
 <h2>Three Types of Stores That Don't Need Competitor Tracking</h2>
 <p>This isn't contrarian for the sake of it. Some store types get zero value from competitor price data because the data simply doesn't map to their pricing question.</p>
@@ -4210,7 +4215,7 @@ export const posts: BlogPost[] = [
 <p>A few practical notes.</p>
 <p>These categories aren't mutually exclusive. A store that resells commodity products and also carries its own branded line could reasonably use a competitor tracker for the commodity products and an elasticity tool for the branded ones. The tracker gives you market context. The elasticity tool gives you the pricing answer.</p>
 <p>Data requirements matter. Elasticity modeling needs at least a few months of sales history with some price variation in it. If you launched last week, you don't have enough data yet. Start with cost-plus or value-based pricing, and revisit demand modeling once you have a real sales history to read. In the meantime, Zorin's Van Westendorp survey can give you a stated-preference read even before you have sales data.</p>
-<p>Budget differs by mechanism. Competitor trackers start around $49 to $99/month. A/B price testing with Intelligems starts at $499/month for the plan that includes price tests. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, accessible to merchants who don't have enterprise budgets or dedicated pricing analysts. For a fuller breakdown of every category, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full pricing tools comparison</a>, and if you land on a demand-based tool specifically, <a href="/blog/price-optimization-tools">a closer look at the elasticity-tool category on its own</a> covers more ground on picking between options within it.</p>
+<p>Budget differs by mechanism. Competitor trackers start around $49 to $99/month. A/B price testing with Intelligems requires its Smart Pricing module, listed at $1,199/month on top of the $599/month base module (or $1,279/month for its all-in plan), as of September 2026. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, accessible to merchants who don't have enterprise budgets or dedicated pricing analysts. For a fuller breakdown of every category, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full pricing tools comparison</a>, and if you land on a demand-based tool specifically, <a href="/blog/price-optimization-tools">a closer look at the elasticity-tool category on its own</a> covers more ground on picking between options within it.</p>
 <p>Whichever category you land in, install decisions are easy to rush. <a href="/blog/how-to-evaluate-a-shopify-pricing-app">A short checklist for evaluating any Shopify pricing app before you connect it to your store</a> applies regardless of whether you end up with a tracker, a repricer, or a demand-based tool.</p>
 
 <div class="key-takeaways">
@@ -4256,7 +4261,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How is Zorin different from Intelligems?</h3>
-<p>Both help you find the right price, but through different mechanisms. Intelligems runs live A/B price tests by splitting your store traffic and measuring which price point drives more profit. It requires significant traffic volume to reach statistical significance and starts at $499/month for price testing. Zorin reads your existing sales history and models elasticity per SKU without requiring a live experiment. It works for stores that don't have enough traffic to split-test or don't want to show different customers different prices.</p>
+<p>Both help you find the right price, but through different mechanisms. Intelligems runs live A/B price tests by splitting your store traffic and measuring which price point drives more profit. It requires significant traffic volume to reach statistical significance, and price testing costs well over $1,000/month. Zorin reads your existing sales history and models elasticity per SKU without requiring a live experiment. It works for stores that don't have enough traffic to split-test or don't want to show different customers different prices.</p>
 </div>
 </section>
 
@@ -4268,7 +4273,8 @@ export const posts: BlogPost[] = [
     title: "Best Price Optimization Software for Shopify (2026)",
     excerpt: "2026's price optimization software for Shopify compared by type: competitor trackers, price testers and elasticity tools, with pricing and best fit.",
     date: "2026-08-15",
-    readingTime: "10 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "14 min read",
     funnelStage: "MOFU",
     category: "Product",
     author: {
@@ -4307,16 +4313,16 @@ export const posts: BlogPost[] = [
 
 <h2>Best Tools for Watching Competitor Prices</h2>
 <p>If your pricing problem is marketplace visibility, keeping pace on commodity products, or simply knowing where you sit relative to the field, competitor price trackers are the right mechanism. They scrape competitor websites and marketplaces, match products to your catalog, and alert you when prices change. Some also offer rule-based dynamic repricing to auto-adjust your prices in response.</p>
-<p><strong>Prisync</strong> is the most established tool in this category for Shopify merchants. It offers competitor price tracking across websites and marketplaces, dynamic repricing with configurable rules, and stock availability monitoring. Prisync's Shopify integration lets you import your catalog with one click and sync pricing changes back. The platform holds a 4.9/5 rating with over 200 reviews on the Shopify App Store. Plans start at $99/month for the URL-based Professional tier covering up to 100 products, with Premium at $199 and Platinum at $399 for larger catalogs. One thing to note: Prisync uses three different monitoring models (URL-based, channel-based, and hybrid), and each has its own pricing grid, so the entry price can vary significantly depending on which model you need.</p>
+<p><strong>Prisync</strong> is the most established tool in this category for Shopify merchants. It offers competitor price tracking across websites and marketplaces, dynamic repricing with configurable rules, and stock availability monitoring. Prisync's Shopify integration lets you import your catalog with one click and sync pricing changes back.. Plans start at $99/month for the URL-based Professional tier covering up to 100 products, with Premium at $199 and Platinum at $399 for larger catalogs. One thing to note: Prisync uses three different monitoring models (URL-based, channel-based, and hybrid), and each has its own pricing grid, so the entry price can vary significantly depending on which model you need.</p>
 <p><strong>Pricefy</strong> is a strong alternative, especially if you're on a tight budget. It offers a free plan covering 50 SKUs and 5 competitors, with paid plans starting at $49/month. It ships native Amazon, eBay, and Google Shopping connectors, and its AI product matching helps find competitor listings automatically.</p>
 <p><strong>PriceMole</strong> is built for multi-channel sellers who need repricing across not just Shopify but also other sales channels. It starts at $99/month with no free plan, just a free trial. Its all-inclusive pricing means no hidden per-channel add-ons, but the entry cost is higher than Pricefy's for smaller stores.</p>
 <p>The important thing to understand about all three tools: they read external data. They tell you what competitors charge and help you react to it. They don't tell you what your own customers would actually pay for your product at a different price point. That's <a href="/blog/price-elasticity-vs-repricing-software">a fundamentally different question</a>, and it requires a different mechanism.</p>
 
 <h2>Best Tools for Testing Prices With Live Traffic</h2>
 <p>A/B price testing gives you the most statistically rigorous answer to "what should I charge," but only if your store generates enough traffic to run a meaningful experiment. The approach works by splitting live visitors into groups, showing each group a different price, and measuring which price drives more profit.</p>
-<p><strong>Intelligems</strong> is the dominant tool in this category for Shopify. It lets you A/B test product prices, shipping rates, discount offers, content, and checkout elements. What sets Intelligems apart from general A/B testing apps is its profit-focused analytics: it reports not just conversion rates but actual profit impact, which is what matters when you're testing prices. The platform has tested more than $500M in GMV across 100+ brands.</p>
-<p>Intelligems pricing is structured by plan tier and order volume. The Core plan starts at $79/month and covers content testing, redirects, and themes. To test prices, discounts, and shipping rates, you need the Plus plan at $499/month. The top-tier Blue plan at $999/month adds combination tests, subscription pricing tests, and custom integrations.</p>
-<p>That price point is the honest tradeoff. For a DTC brand doing seven or eight figures, $499/month pays for itself fast if you find a more profitable price. For a 50-SKU Shopify store doing $20,000/month, the math is harder to justify, especially if your traffic volume is too low to reach statistical significance in a reasonable timeframe.</p>
+<p><strong>Intelligems</strong> is the dominant tool in this category for Shopify. It lets you A/B test product prices, shipping rates, discount offers, content, and checkout elements. What sets Intelligems apart from general A/B testing apps is its profit-focused analytics: it reports not just conversion rates but actual profit impact, which is what matters when you're testing prices. Intelligems says it has run more than 100,000 tests across 5,000+ stores.</p>
+<p>Intelligems pricing is structured by plan tier and order volume. Intelligems now sells modules rather than fixed tiers: Smart Content, the base module every plan includes, lists at $599/month. To test prices and discounts, you need its Smart Pricing module, listed at $1,199/month on top of the required $599/month Smart Content module, or the all-in Unlimited plan at $1,279/month with a 3-month minimum (per <a href="https://www.intelligems.io/pricing" target="_blank" rel="noopener noreferrer">Intelligems' pricing page</a>, September 2026). An Unlimited plan bundling every module runs $1,279/month with a 3-month minimum.</p>
+<p>That price point is the honest tradeoff. For a DTC brand doing seven or eight figures, that cost pays for itself fast if a test finds a more profitable price. For a 50-SKU Shopify store doing $20,000/month, the math is harder to justify, especially if your traffic volume is too low to reach statistical significance in a reasonable timeframe.</p>
 <p>There's also a structural limitation worth naming. A/B price testing tells you which of the prices you tested performed better. It doesn't model the full demand curve or tell you the elasticity of each product. If you tested $45 vs. $50 and $50 won, that doesn't mean $55 wouldn't have won too. You only learn about the specific prices you tested, and each test requires enough traffic and time to produce a reliable result.</p>
 <p>For stores with high traffic and a large enough budget, Intelligems is excellent. For smaller stores, or for merchants who want a read across their whole catalog without running dozens of individual experiments, a different mechanism is a better fit.</p>
 
@@ -4325,7 +4331,7 @@ export const posts: BlogPost[] = [
 <p>This is the mechanism I find most useful for independent Shopify and WooCommerce merchants with at least a few months of sales history, because it answers the question most merchants actually have: "is this product priced right, and if not, which direction should I move it?"</p>
 
 <h3>Enterprise: Competera</h3>
-<p>Competera is the enterprise-grade option in this category. It uses deep learning across dozens of demand factors, including elasticity, seasonality, and cross-category effects. It offers what-if simulations, approval workflows, and claims 95%+ accuracy predicting revenue and margin impact. Competera serves large retailers, including Sephora, across 18+ countries.</p>
+<p>Competera is the enterprise-grade option in this category. It uses deep learning across dozens of demand factors, including elasticity, seasonality, and cross-category effects. It offers what-if simulations and approval workflows, and <a href="https://competera.ai/" target="_blank" rel="noopener noreferrer">Competera says</a> it achieves 95%+ accuracy predicting business outcomes. Its named customers are large retailers such as Sephora, iHerb and AUTODOC.</p>
 <p>The catch: Competera is built for large retail teams with dedicated pricing departments. Pricing is custom (typically six figures annually), onboarding requires weeks of ERP integration and AI model training, and the platform assumes you have an analyst on staff to interpret and act on its output. For a 50-SKU Shopify store, it's not just expensive, it's structurally mismatched. <a href="/blog/competera-alternatives">A rundown of real alternatives to Competera</a> is worth reading if that's the tier you were shopping in before realizing the price point.</p>
 
 <h3>SMB: Zorin</h3>
@@ -4352,7 +4358,7 @@ export const posts: BlogPost[] = [
   <tbody>
     <tr><td>You sell commodity products on marketplaces and need to stay price-competitive</td><td>Competitor price tracker</td><td>Prisync (established, deep Shopify integration) or Pricefy (budget-friendly, free tier)</td></tr>
     <tr><td>You already have pricing rules and need to automate applying them</td><td>Rule-based repricer</td><td>Built-in Shopify discount apps, or Pricefy/PriceMole for competitive rule-based repricing</td></tr>
-    <tr><td>You have high traffic and want statistically rigorous price experiments</td><td>A/B price tester</td><td>Intelligems (profit-focused, $499+/month for price testing)</td></tr>
+    <tr><td>You have high traffic and want statistically rigorous price experiments</td><td>A/B price tester</td><td>Intelligems (profit-focused, $1,000+/month for price testing)</td></tr>
     <tr><td>You want to know the right price per SKU from your own sales data, without enterprise cost</td><td>Demand-based elasticity tool</td><td>Zorin (self-serve, per-SKU elasticity with confidence scoring)</td></tr>
     <tr><td>You're a large retailer with a pricing team and six-figure software budget</td><td>Enterprise elasticity platform</td><td>Competera</td></tr>
   </tbody>
@@ -4361,7 +4367,7 @@ export const posts: BlogPost[] = [
 <p>A few practical notes on this framework.</p>
 <p>First, these categories aren't always mutually exclusive. A store could reasonably use a competitor tracker to monitor the market and an elasticity tool to set its own prices. The competitor data gives you context. The elasticity data gives you the answer.</p>
 <p>Second, data requirements matter. Elasticity modeling needs at least a few months of sales history with some price variation in it. If you launched last week, you don't have enough data yet. Start with a cost-plus or competitive approach, and revisit elasticity modeling once you have a real sales history to read.</p>
-<p>Third, budget scales with mechanism complexity. Competitor trackers start around $49 to $99/month. A/B price testing for prices starts at $499/month with Intelligems. Enterprise elasticity platforms are custom-quoted at five to six figures. Zorin sits in the SMB gap between the basic trackers and the enterprise platforms, accessible to merchants who don't have dedicated pricing analysts.</p>
+<p>Third, budget scales with mechanism complexity. Competitor trackers start around $49 to $99/month. A/B price testing with Intelligems costs well over $1,000/month for the modules that include price tests. Enterprise elasticity platforms are custom-quoted at five to six figures. Zorin sits in the SMB gap between the basic trackers and the enterprise platforms, accessible to merchants who don't have dedicated pricing analysts.</p>
 <p>If you're unsure where to start, ask yourself one question: is my pricing problem about watching other stores, or about understanding my own customers? The answer points you to the right category. If you're still weighing the first option specifically, <a href="/blog/competitor-price-tracking">whether a dedicated competitor price tracking app is actually worth adding to your stack</a> is worth reading on its own. And whichever category you land in, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">a practical checklist for evaluating any Shopify pricing app before you install it</a> applies regardless of which tool you're considering.</p>
 
 <div class="key-takeaways">
@@ -4369,7 +4375,7 @@ export const posts: BlogPost[] = [
 <ul>
 <li>"Pricing tool" covers four distinct mechanisms: competitor tracking, rule-based repricing, A/B price testing, and demand-based elasticity modeling. Picking the wrong category wastes your budget.</li>
 <li>Competitor price trackers (Prisync, Pricefy, PriceMole) tell you what others charge but not what your customers would pay.</li>
-<li>A/B price testing (Intelligems) gives the most rigorous experimental answer but requires significant traffic and starts at $499/month for price tests.</li>
+<li>A/B price testing (Intelligems) gives the most rigorous experimental answer but requires significant traffic and costs well over $1,000/month for price tests.</li>
 <li>Elasticity tools read your own sales history to model per-SKU demand. Competera serves enterprise retailers. Zorin serves independent and SMB merchants with self-serve setup and confidence-scored recommendations.</li>
 <li>A 1% pricing improvement can lift operating profits by roughly 8% to 11%, making pricing one of the highest-leverage changes a store owner can make.</li>
 </ul>
@@ -4411,7 +4417,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How much does pricing optimization software cost for Shopify?</h3>
-<p>Competitor trackers start around $49 to $99/month (Pricefy, Prisync). A/B price testing with Intelligems starts at $499/month for the plan that includes price tests. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, designed to be accessible for independent merchants without enterprise budgets.</p>
+<p>Competitor trackers start around $49 to $99/month (Pricefy, Prisync). A/B price testing with Intelligems requires its Smart Pricing module, listed at $1,199/month on top of the $599/month base module (or $1,279/month for its all-in plan), as of September 2026. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, designed to be accessible for independent merchants without enterprise budgets.</p>
 </div>
 </section>
 
@@ -4423,6 +4429,7 @@ export const posts: BlogPost[] = [
     title: "Price Optimization Tools: Find Your Best Price",
     excerpt: "Price optimization tools use your own order history to find the price that maximizes profit for each product. How they work and what to look for.",
     date: "2026-08-14",
+    updatedDate: "2026-09-26",
     readingTime: "9 min read",
     category: "Product",
     author: {
@@ -4494,7 +4501,7 @@ export const posts: BlogPost[] = [
   <figcaption>Each SKU gets its own elasticity estimate and confidence score, not one blended number for the whole catalog.</figcaption>
 </figure>
 
-<p>This matters if you've tried general-purpose pricing tools before. Some platforms lean heavily on live A/B price testing. Intelligems, for example, is a well-regarded Shopify app for running real-time price tests, and its Profit Optimization plan starts around $499 a month scaling with order volume, with plans built around measuring profit per visitor across live test groups. That's a genuinely different approach: you're testing prices in the wild, in real time, which requires meaningful order volume to reach statistical significance before you get an answer. Elasticity modeling instead works retrospectively on data you already have, so you get a starting recommendation before you commit to running a live test on real customers.</p>
+<p>This matters if you've tried general-purpose pricing tools before. Some platforms lean heavily on live A/B price testing. Intelligems, for example, is a well-regarded Shopify app for running real-time price tests, and price testing sits in its Smart Pricing module, listed at $1,199 a month plus a $599 base module as of September 2026, with plans built around measuring profit per visitor across live test groups. That's a genuinely different approach: you're testing prices in the wild, in real time, which requires meaningful order volume to reach statistical significance before you get an answer. Elasticity modeling instead works retrospectively on data you already have, so you get a starting recommendation before you commit to running a live test on real customers.</p>
 <p>It's also worth knowing that not every tool calling itself an elasticity platform is built for a store your size. Symson, for one, does real elasticity modeling too, but blends it with scraped competitor prices and targets mid-market and enterprise catalogs through a custom-quoted, sales-assisted rollout rather than a self-serve signup. <a href="/blog/zorin-vs-symson">A direct comparison of the two</a> is worth reading if that name has come up in your own research.</p>
 
 <h2>When to Add a Price Sensitivity Survey</h2>
@@ -7588,7 +7595,8 @@ export const posts: BlogPost[] = [
     title: "Does a Lower Amazon Price Hurt Customer Trust?",
     excerpt: "When a lower Amazon price than your own store hurts customer trust, when shoppers don't notice, and how to stop channel price gaps costing repeat buyers.",
     date: "2026-08-31",
-    readingTime: "10 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "9 min read",
     category: "Pricing Strategy",
     ogImage: "/images/blog/dashboard-overview.webp",
     author: {
@@ -7601,7 +7609,7 @@ export const posts: BlogPost[] = [
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
-<li>Customers act on price gaps as small as 2.5%, and more than half will switch channels at a 5% gap (GroupM Next, 2012). Most Amazon fee-recovery gaps run 10-15%, well above that threshold.</li>
+<li>Customers act on price gaps as small as 2.5%, and more than half will switch channels at a 5% gap (GroupM Next, 2012). Fully recovering Amazon's fees would take a gap of 10% or more, well above that threshold.</li>
 <li>The gap itself isn't the trust risk. An unexplained gap is. A short, factual note about marketplace fees turns silence into transparency.</li>
 <li>Showrooming and webrooming aren't new behaviors. Amazon-to-website comparison is just the current version of a decades-old shopping instinct.</li>
 <li>Your own DTC elasticity, read from your Shopify or WooCommerce sales history, tells you how price-sensitive your direct customers actually are before you assume a gap will cost you anything.</li>
@@ -7611,7 +7619,7 @@ export const posts: BlogPost[] = [
 
 <h2>How Big of a Price Gap Do Shoppers Actually Notice?</h2>
 <p>Customers don't clock every cent of difference between your Amazon listing and your own store. But the threshold where they start acting on it is smaller than most sellers expect.</p>
-<p>The most cited data point here comes from GroupM Next's showrooming study, which surveyed 1,000 US shoppers across ten product categories at varying price points. Their finding: 45% of shoppers will leave and complete the purchase online for a discount as low as 2.5%. That number climbs to 60% at a 5% discount. The study is older, but it remains the standard reference point in retail pricing literature because the underlying behavior, people acting on small, visible price gaps once they notice them, hasn't changed.</p>
+<p>The most cited data point here comes from <a href="https://www.businesswire.com/news/home/20120820006238/en/Shoppers-Leave-Stores-Complete-Purchases-Online-Discounts" target="_blank" rel="noopener noreferrer">GroupM Next's showrooming study</a>, which surveyed 1,000 US shoppers across ten product categories at varying price points. Their finding: 45% of shoppers will leave and complete the purchase online for a discount as low as 2.5%. That number climbs to 60% at a 5% discount. The study is older, but it remains the standard reference point in retail pricing literature because the underlying behavior, people acting on small, visible price gaps once they notice them, hasn't changed.</p>
 
 <table>
   <thead>
@@ -7620,11 +7628,11 @@ export const posts: BlogPost[] = [
   <tbody>
     <tr><td>2.5%</td><td>45%</td></tr>
     <tr><td>5%</td><td>60%</td></tr>
-    <tr><td>10-15% (typical Amazon fee-recovery gap)</td><td>Above the studied range, treat as clearly noticeable</td></tr>
+    <tr><td>10%+ (full Amazon fee recovery)</td><td>Above the studied range, treat as clearly noticeable</td></tr>
   </tbody>
 </table>
 
-<p>Here's the practical problem: the typical fee-recovery gap between Shopify and Amazon runs 10-15%, well above the point where shoppers start reacting. If you're pricing to protect margin on Amazon the way the fee math suggests, as covered in <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">why you can't just charge the same price everywhere</a>, you're very likely already above the threshold where a customer checking both listings will notice.</p>
+<p>Here's the practical problem: fully recovering Amazon's fees through price would take a gap of 10% or more between Shopify and Amazon, well above the point where shoppers start reacting, and a lower Shopify price can also cost you the Amazon Buy Box. If you're pricing to protect margin on Amazon the way the fee math suggests, as covered in <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">why you can't just charge the same price everywhere</a>, you're very likely already above the threshold where a customer checking both listings will notice.</p>
 <p>The gap size matters less than whether the customer understands why it exists. A 12% difference that's silently there feels like a bait-and-switch if a customer stumbles onto it. The same 12% difference, framed as "Amazon takes a cut we don't have to pass on to you here," reads as transparency instead of inconsistency.</p>
 
 <h2>Why Retailers End Up With a Channel Price Gap in the First Place</h2>
@@ -7672,7 +7680,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How much of a price gap between my website and Amazon will shoppers actually notice?</h3>
-<p>Research from GroupM Next found 45% of shoppers will switch channels for a discount as small as 2.5%, and 60% will switch at 5%. Most Amazon fee-recovery gaps run 10-15%, well above that threshold.</p>
+<p>Research from GroupM Next found 45% of shoppers will switch channels for a discount as small as 2.5%, and 60% will switch at 5%. Fully recovering Amazon's fees through price would take a gap of 10% or more, well above that threshold, which is why most sellers keep public prices close and differentiate with bundles and member offers instead.</p>
 </div>
 <div class="faq-item">
 <h3>Does selling for less on Amazon than my own store hurt my brand's trust with customers?</h3>
@@ -7697,7 +7705,8 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">Getting the channel-gap decision right isn't about eliminating the difference between your Amazon and Shopify prices. It's about knowing whether your own customers would notice or care in the first place, and being straightforward when they do. <a href="/signup">Start a free trial</a> and see what your own elasticity data says before you assume a customer is watching the gap at all.</p>
-    `.trim(),
+    
+`.trim(),
   },
   {
     slug: "how-to-run-a-sale-without-wrecking-your-margin",
@@ -8116,7 +8125,8 @@ export const posts: BlogPost[] = [
     title: "Pricing Software for Small Business: What to Ask",
     excerpt: "Choosing pricing software for a small business? The questions to ask vendors, the red flags to watch for, and the trial terms to check before you commit.",
     date: "2026-09-15",
-    readingTime: "9 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "8 min read",
     category: "Product",
     funnelStage: "MOFU",
     author: {
@@ -8124,10 +8134,10 @@ export const posts: BlogPost[] = [
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
     },
     content: `
-<p class="intro">Picking the wrong pricing tool doesn't usually show up as an obvious failure, it shows up as six months of half-trusted recommendations nobody quite acts on. A 2026 Software Advice survey found 45% of decision-makers had regretted at least one software purchase in the previous 18 months, and the questions that would have caught the problem are almost always ones nobody asked before signing up, not features that turned out to be missing.</p>
+<p class="intro">Picking the wrong pricing tool doesn't usually show up as an obvious failure, it shows up as six months of half-trusted recommendations nobody quite acts on. <a href="https://www.capterra.com/resources/software-buying-trends-2026/" target="_blank" rel="noopener noreferrer">Capterra's 2026 Software Buying Trends report</a>, based on more than 3,300 software buyers, found that only one in three is a successful adopter; the other two-thirds hit implementation problems, purchase regret, or both. The questions that would have caught the problem are usually ones nobody asked before signing up, not features that turned out to be missing.</p>
 
 <h2>The Real Cost of Picking the Wrong Pricing Tool</h2>
-<p>Software regret rarely traces back to a feature gap. In the same Software Advice survey, over a quarter of buyers who regretted a purchase said the product's performance simply didn't meet expectations once it was actually running against real data, and 21% cited integration problems that only surfaced after rollout. For a pricing tool specifically, that translates into a worse outcome than a feature you can work around: a recommendation engine you don't fully trust, so you either ignore it or double-check every output by hand, which erases the entire point of buying the tool.</p>
+<p>Software regret rarely traces back to a feature gap. The same report found that 89% of buyers who regretted a purchase had run into disruptions during implementation, the point where a tool first meets your real data and your real integrations. For a pricing tool specifically, that translates into a worse outcome than a feature you can work around: a recommendation engine you don't fully trust, so you either ignore it or double-check every output by hand, which erases the entire point of buying the tool.</p>
 <p>The fix isn't a longer feature checklist. It's a shorter list of sharper questions asked before the contract is signed, while you still have full leverage to walk away.</p>
 
 <h2>Five Red Flags During a Demo or Sales Call</h2>
@@ -8152,7 +8162,7 @@ export const posts: BlogPost[] = [
 
 <h2>How Long to Trial Before Committing</h2>
 <p>Trial length should match the product's complexity, not a vendor's default. A simple, single-purpose tool is reasonably evaluated in 4 to 7 days. A pricing tool that needs to ingest real sales history, fit a model, and produce recommendations you'd actually act on needs closer to 14 to 30 days, enough time to see it run against more than one product and compare its read to your own intuition on a few SKUs you already know well.</p>
-<p>The same Software Advice survey found that half of respondents decided not to go with a vendor after trialing the software, which is exactly what a trial is for. If a vendor's trial is too short to reach a real verdict, or gates the features that actually matter behind a second paywall during the trial itself, that's a sign the trial period was designed to convert you before you could form a real opinion, not to let you form one.</p>
+<p>A trial is where you find out whether the tool works on your data, and walking away after one is a perfectly good outcome; Capterra also found successful adopters tend to decide within about three months rather than dragging an evaluation out. If a vendor's trial is too short to reach a real verdict, or gates the features that actually matter behind a second paywall during the trial itself, that's a sign the trial period was designed to convert you before you could form a real opinion, not to let you form one.</p>
 
 <h2>Contract Terms That Should Make You Pause</h2>
 <p>A few specific clauses are worth reading twice before signing:</p>
@@ -8188,7 +8198,7 @@ export const posts: BlogPost[] = [
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
-<li>45% of decision-makers regretted a software purchase in the last 18 months, and most regret traces back to skipped due diligence, not a missing feature.</li>
+<li>Only one in three software buyers is a successful adopter, per Capterra's survey of 3,300+ buyers, and regret usually traces back to implementation problems that better questions would have surfaced.</li>
 <li>Red flags during a demo: no live testing with your own data, fully scripted walkthroughs, deflected pricing questions, no hands-on trial access, and pressure for a multi-year commitment before a proof of concept exists.</li>
 <li>A trustworthy vendor shows you the reasoning behind a recommendation, and how it handles thin data, without being asked.</li>
 <li>Match trial length to complexity: 4-7 days for a simple tool, 14-30 days for a pricing tool that needs to prove itself against real sales history.</li>
@@ -8341,7 +8351,8 @@ export const posts: BlogPost[] = [
     excerpt:
       "Compare real WooCommerce pricing plugins and repricers, and see how per-SKU elasticity modeling finds your optimal price from your own sales data.",
     date: "2026-09-16",
-    readingTime: "10 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "7 min read",
     category: "Product",
     funnelStage: "MOFU",
     author: {
@@ -8351,7 +8362,7 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">The best pricing tool for your WooCommerce store depends on the pricing question you're actually trying to answer. If you need to automate a discount rule you've already decided on, a dynamic pricing plugin like YITH handles that. If you need to watch what competitors charge, a tracker like Competiprice does that job. If you want to know what your own customers will actually pay, product by product, you need an elasticity tool like Zorin that reads your sales history directly.</p>
 
-<p>WooCommerce still holds the largest share of the ecommerce platform market by store count, roughly 33.4% globally across 4.5M+ live stores, which also means it has the widest, most fragmented plugin ecosystem for pricing. Most of what gets filed under "WooCommerce pricing plugin" actually falls into three distinct categories that answer completely different questions. This guide breaks those categories down, names real tools in each, and gives you a framework for matching the right one to your store.</p>
+<p>WooCommerce still runs more online stores than any other platform: about 4.05 million, or roughly 29% of the 13.8 million live stores <a href="https://storeleads.app/reports" target="_blank" rel="noopener noreferrer">tracked by StoreLeads</a> as of September 2026, which also means it has the widest, most fragmented plugin ecosystem for pricing. Most of what gets filed under "WooCommerce pricing plugin" actually falls into three distinct categories that answer completely different questions. This guide breaks those categories down, names real tools in each, and gives you a framework for matching the right one to your store.</p>
 
 <h2>Why "WooCommerce Pricing Plugin" Means Three Different Things</h2>
 <p>Search the WordPress plugin repository for "pricing" and you'll get hundreds of results that mostly do one of three unrelated jobs. A rule-based dynamic pricing plugin executes a discount logic you configure yourself, quantity tiers, role-based wholesale pricing, cart-value thresholds. A competitor price tracker watches other stores and helps you react to what they charge. An elasticity tool reads your own sales history and tells you what your specific customers actually do when your price moves.</p>
@@ -8369,9 +8380,9 @@ export const posts: BlogPost[] = [
 
 <h2>Best Rule-Based Dynamic Pricing Plugins</h2>
 <p>If your pricing problem is executing a discount structure you've already designed, quantity breaks, wholesale role pricing, a cart-value threshold, these plugins are the right mechanism. They apply a rule, they don't calculate whether the rule is optimal.</p>
-<p><strong>YITH WooCommerce Dynamic Pricing and Discounts</strong> is the most established option, used by over 27,000 stores with a 4.5/5 rating. Its rule editor lets you stack multiple conditions in one rule, quantity and user role and day-of-week and category simultaneously, which makes it the strongest choice for genuinely complex discount logic. It runs $144/year for a single site, with no free tier.</p>
-<p><strong>Discount Rules for WooCommerce (FlyCart)</strong> is the most widely installed, with over 100,000 active installs. It ships a functional free version on WordPress.org, with premium starting at $85/year for more advanced conditional rules. For a store that needs straightforward tiered or role-based discounts without YITH's full rule-stacking complexity, this is the more budget-friendly starting point.</p>
-<p><strong>Advanced Dynamic Pricing (AlgolPlus)</strong> is the lowest-cost premium option that still covers serious bulk and tiered pricing scenarios, starting around $60/year with a free tier available. It's a reasonable pick for a smaller catalog that needs real rule depth without YITH's price tag.</p>
+<p><strong>YITH WooCommerce Dynamic Pricing and Discounts</strong> is the most established option, used by over 27,000 stores with a 4.5/5 rating. Its rule editor lets you stack multiple conditions in one rule, quantity and user role and day-of-week and category simultaneously, which makes it the strongest choice for genuinely complex discount logic. It runs <a href="https://yithemes.com/themes/plugins/yith-woocommerce-dynamic-pricing-and-discounts/" target="_blank" rel="noopener noreferrer">$144.99/year</a> for a single site, with no free tier.</p>
+<p><strong>Discount Rules for WooCommerce (FlyCart)</strong> is the most widely installed, with over 100,000 active installs. It ships a functional free version on WordPress.org, with premium <a href="https://www.flycart.org/products/wordpress/woocommerce-discount-rules" target="_blank" rel="noopener noreferrer">starting at $85/year</a> for more advanced conditional rules. For a store that needs straightforward tiered or role-based discounts without YITH's full rule-stacking complexity, this is the more budget-friendly starting point.</p>
+<p><strong>Advanced Dynamic Pricing (AlgolPlus)</strong> is the lowest-cost premium option that still covers serious bulk and tiered pricing scenarios, <a href="https://algolplus.com/plugins/downloads/advanced-dynamic-pricing-woocommerce-pro/" target="_blank" rel="noopener noreferrer">starting at $60/year</a> with a free tier available. It's a reasonable pick for a smaller catalog that needs real rule depth without YITH's price tag.</p>
 <p>All three execute logic you define. None of them tell you whether a 10% quantity discount is the right number, or whether a different threshold would protect more margin. That answer requires reading actual demand data, not configuring a rule.</p>
 
 <h2>Best WooCommerce Competitor Price Trackers</h2>
@@ -8391,7 +8402,7 @@ export const posts: BlogPost[] = [
 <p>No, and this trips up merchants who've researched Shopify tools before realizing they're on WooCommerce. Shopify apps run through Shopify's platform APIs and app infrastructure; they don't install on a self-hosted WordPress/WooCommerce site at all. Tools like Prisync or Intelligems that serve Shopify merchants have entirely separate WooCommerce integrations, or in some cases no WooCommerce support whatsoever, since the two platforms don't share a plugin architecture. Always confirm WooCommerce support specifically rather than assuming a Shopify-focused tool's marketing extends to your platform.</p>
 
 <h2>What's Missing From Most WooCommerce Pricing Plugins</h2>
-<p>Two gaps show up repeatedly across the rule-based category. First, none of them validate the rule itself, a plugin will happily execute a 30% quantity discount that quietly erodes margin on a low-margin product, because configuring the rule and evaluating whether the rule is a good idea are two different jobs, and these plugins only do the first one. Second, plugin security and maintenance track record matters more than most buyers check upfront. A widely-used WooCommerce dynamic pricing plugin was the subject of a documented JavaScript redirect injection vulnerability (patched in version 2.4.2, back in 2021), where malicious code stored in the plugin's settings created unauthorized admin accounts and redirected visitors to external sites. That's not a reason to avoid the category, it's a reason to check a plugin's update cadence and security disclosure history before installing anything that touches your storefront's pricing logic.</p>
+<p>Two gaps show up repeatedly across the rule-based category. First, none of them validate the rule itself, a plugin will happily execute a 30% quantity discount that quietly erodes margin on a low-margin product, because configuring the rule and evaluating whether the rule is a good idea are two different jobs, and these plugins only do the first one. Second, plugin security and maintenance track record matters more than most buyers check upfront. A widely used WooCommerce dynamic pricing plugin had a <a href="https://wpscan.com/vulnerability/aeae6454-6cda-4b43-9d96-e0d4d67b4028/" target="_blank" rel="noopener noreferrer">documented vulnerability (CVE-2021-4372)</a> that let an unauthenticated attacker import a settings file containing malicious JavaScript, which then ran when an administrator opened the plugin's settings. It was patched in version 2.4.2 in August 2021. That's not a reason to avoid the category, it's a reason to check a plugin's update cadence and security disclosure history before installing anything that touches your storefront's pricing logic.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
