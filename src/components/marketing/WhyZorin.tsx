@@ -40,7 +40,7 @@ export function WhyZorin() {
             The pricing problem
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
-            Most merchants are leaving money on every sale, with no way to know how much.
+            Most merchants leave money on every sale without knowing how much.
           </h2>
           <p className="mt-4 max-w-[55ch] text-base leading-relaxed text-zinc-500">
             Pricing feels like a guessing game because it is. Without a systematic way to read your own sales data, you're choosing numbers in the dark.

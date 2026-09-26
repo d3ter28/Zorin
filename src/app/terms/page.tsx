@@ -2,7 +2,7 @@ import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 
 export const metadata = {
-  title: "Terms of Service - Zorin",
+  title: "Terms of Service - Zorin Pricing Software",
   description: "The terms for using Zorin's pricing tool, in plain English, covering your account, billing, and data.",
   alternates: { canonical: "https://www.tryzorin.com/terms" },
 };

@@ -8,9 +8,9 @@ const LAST_UPDATED = "2026-09-25";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
-  title: "Ecommerce Return Rate by Product Category (Sourced Data) - Zorin",
+  title: "Ecommerce Return Rate by Category (Sourced Data) - Zorin",
   description:
-    "Online return rates by product category, from apparel and footwear to electronics and beauty, compiled from NRF, Coresight Research, Zalando and published industry benchmarks.",
+    "Online return rates by product category, apparel to beauty, sourced from NRF, Coresight Research, Zalando and published industry benchmarks.",
   keywords: [
     "return rate by product category",
     "ecommerce return rate by category",

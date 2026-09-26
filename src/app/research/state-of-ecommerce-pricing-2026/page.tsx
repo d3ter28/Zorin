@@ -10,7 +10,7 @@ const OG_IMAGE = "/og-default.png";
 export const metadata = {
   title: "State of Ecommerce Pricing 2026 (Sourced Report) - Zorin",
   description:
-    "How small online retailers are pricing in 2026: tariff pass-through, price increases, price realization, discounting and returns, compiled from NFIB, the Boston Fed, Simon-Kucher, Adobe, NRF and Omnisend.",
+    "How small online retailers price in 2026: tariff pass-through, price hikes, realization, discounts and returns, from NFIB, Boston Fed, NRF and more.",
   keywords: [
     "state of ecommerce pricing 2026",
     "ecommerce pricing statistics 2026",

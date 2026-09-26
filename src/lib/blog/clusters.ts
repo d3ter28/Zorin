@@ -3,6 +3,8 @@ export type Cluster = {
   name: string;
   description: string;
   postSlugs: string[];
+  /** Optional page-1 intro shown below the post grid, with links to related research. */
+  related?: { intro: string; links: { href: string; label: string }[] };
 };
 
 export const clusters: Cluster[] = [
@@ -127,6 +129,17 @@ export const clusters: Cluster[] = [
       "how-to-price-clothing-on-shopify",
       "whats-a-good-profit-margin-for-a-supplement-brand",
     ],
+    related: {
+      intro:
+        "The same price move plays out very differently by category. Apparel carries high gross margins but loses a big share of them to returns, since fit problems send back 20-40% of online orders. Beauty and supplements return far less, but they depend on repeat purchases, so a price that's too high costs you the reorder, not just the first sale. Electronics shoppers compare prices across stores and discount deeply at peak season, leaving thin margins. Before pricing in any of these categories, look at three numbers together: the typical margin, the typical return rate, and how price-sensitive buyers in that category are. The research below gives a sourced baseline for each, and the guides above show how to apply them to your own store.",
+      links: [
+        { href: "/research/profit-margins-by-product-category", label: "Gross profit margins by product category" },
+        { href: "/research/return-rate-by-product-category", label: "Ecommerce return rate by product category" },
+        { href: "/research/price-elasticity-by-category", label: "Price elasticity by product category" },
+        { href: "/research/discount-depth-by-product-category", label: "Discount depth by product category" },
+        { href: "/blog/price-elasticity-examples-by-ecommerce-category", label: "Price elasticity examples by ecommerce category" },
+      ],
+    },
   },
 ];
 

@@ -24,7 +24,7 @@ export async function generateMetadata({
   const suffix = pageNum > 1 ? ` — Page ${pageNum}` : "";
 
   return {
-    title: `All Posts${suffix} — Zorin Blog`,
+    title: `All Ecommerce Pricing Articles${suffix} — Zorin Blog`,
     description: `Every Zorin blog post, newest first${pageNum > 1 ? `, page ${pageNum}` : ""}. Browse by topic instead from the main blog page.`,
     alternates: {
       canonical: pageNum > 1 ? `${BASE_URL}/blog/all?page=${pageNum}` : `${BASE_URL}/blog/all`,

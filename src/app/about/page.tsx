@@ -2,7 +2,7 @@ import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
 
 export const metadata = {
-  title: "About Zorin",
+  title: "About Zorin: Data-Driven Pricing for Shopify & WooCommerce",
   description:
     "Zorin is built by a small team focused on one problem: helping Shopify and WooCommerce merchants price with data instead of guesswork.",
   alternates: { canonical: "https://www.tryzorin.com/about" },

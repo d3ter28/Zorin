@@ -2909,7 +2909,7 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
-<h2>Why Does My Apparel Store Have Healthy Gross Margin But Barely Any Profit?</h2>
+<h2>Why Is My Apparel Store's Margin Healthy but Profit So Thin?</h2>
 <p>This is one of the most common, and most confusing, experiences for apparel sellers: the gross margin looks fine, sometimes even good, and the business still isn't making real money.</p>
 <p>The answer is in the order costs get paid. Gross margin only accounts for the cost of the product itself, materials, manufacturing, and direct labor. Everything else, returns, customer acquisition, marketing, fulfillment, and increasingly tariffs, gets paid out of what's left after that. In apparel specifically, what's left after that turns out to be a lot smaller than the gross margin number suggests.</p>
 <p>Across eight public apparel company comps, a 55.3% median gross margin converted to just a 6.7% median operating margin, a gap of roughly 48 percentage points lost between the two lines. That's not one underperforming brand; that's the category median. A pricing approach that only protects gross margin is solving the wrong problem, because gross margin was never the number that determines whether the business is actually profitable.</p>
@@ -3001,7 +3001,7 @@ export const posts: BlogPost[] = [
     content: `
 <p class="intro">The Shopify App Store lists well over a hundred apps under "pricing optimization," and the overwhelming majority of them are discount, bundle, or flash-sale tools wearing a pricing label. Before you install anything, it's worth knowing what you're actually buying: a tool that executes a promotion you already decided on, or a tool that helps you decide what the right price is in the first place. This guide covers the questions worth asking, the real difference between a discount app and a pricing intelligence tool, how margin floor protection works, how to judge whether a tool's recommendations are trustworthy, and what setup actually requires. For the vendor due-diligence questions that apply beyond just the App Store listing, red flags in a demo, trial length, contract terms, <a href="/blog/what-to-ask-a-pricing-software-vendor-before-you-buy">what to ask a pricing software vendor before you buy</a> covers that ground.</p>
 
-<h2>Discount App or Pricing Optimization Tool: What's the Actual Difference</h2>
+<h2>Discount App vs Pricing Optimization Tool: The Real Difference</h2>
 <p>A discount app executes a promotion you've already decided to run, a percentage off, a bundle price, a flash sale, a volume tier. It's a tool for applying a markdown you chose, not a tool for figuring out what your price should be in the first place.</p>
 <p>A pricing optimization tool does the opposite job: it helps you decide what your base price should be, using cost data, demand data, or margin targets. That's a meaningfully different function, even though both categories get filed under the same "pricing" label on the Shopify App Store.</p>
 <p>The category listing itself makes the imbalance obvious. Scroll through the apps under Shopify's pricing optimization category and the overwhelming majority are volume discount tools, bundle builders, flash sale schedulers, and bulk price editors. These are useful tools for what they do, but what they do is execute a decision you've already made, not help you make it. Genuine pricing intelligence, tools that tell you what a product's price should actually be based on data rather than a rule you configured yourself, is a much smaller slice of that category than the label suggests.</p>
@@ -3586,7 +3586,7 @@ export const posts: BlogPost[] = [
 
 <p>The $9 gap on a $50 product scales linearly across your catalog. At 500 units a month on each channel, that is $4,500 a month in margin left on the table by pricing both channels the same.</p>
 
-<h2>The Buy Box Suppression Trap (and Why It Catches Most Multi-Channel Sellers)</h2>
+<h2>The Buy Box Suppression Trap Most Multi-Channel Sellers Hit</h2>
 <p>The natural response to the fee math is to charge more on Amazon and less on Shopify. Pass the fee saving to DTC customers, recover it on Amazon. That logic is sound on paper and dangerous in practice.</p>
 <p>Amazon's Marketplace Fair Pricing Policy replaced an older explicit price parity clause after regulatory pressure, but what replaced it is broader and harder to manage. Amazon's automated systems crawl the web, including your own Shopify store, and compare your Amazon price against what the same product sells for anywhere else online. If your Amazon price sits meaningfully above your DTC price, Amazon can suppress your Buy Box. That's a separate risk from whether an actual human customer notices and cares about the gap, which is a question worth answering on its own, see <a href="/blog/do-customers-care-if-your-amazon-price-beats-your-website">does a lower Amazon price actually hurt customer trust</a>.</p>
 <p>Suppression means your offer disappears from the Featured Offer position. Sponsored Products stop serving. On most listings, that cuts sales by 80% or more overnight, with no notification and no obvious explanation in your Seller Central reports.</p>
@@ -6810,7 +6810,7 @@ export const posts: BlogPost[] = [
 <h2>Two Different Questions Wearing the Same Label</h2>
 <p>"What should I price this at" sounds like one question, but it means something different depending on the product. For a bestseller, demand at the current price is already proven, so the real question is whether that price is leaving profit on the table, whether a modest increase would barely dent volume while meaningfully raising margin. For a slow seller, demand hasn't been proven at all, and the question is whether price is even the actual obstacle, or whether the product simply isn't reaching the right customers.</p>
 
-<h2>Why a Bestseller's Elasticity Often Supports a Higher Price Than You'd Guess</h2>
+<h2>Why Bestsellers Can Often Take a Higher Price Than You'd Guess</h2>
 <p>A product selling consistently at its current price doesn't automatically mean the current price is optimal, it means the price is acceptable to enough customers to generate steady volume. If the elasticity estimate for that product is low (customers not very price-sensitive), there's often real room to raise price without losing much volume, and the resulting margin gain applies to every unit you're already selling, assuming you know <a href="/blog/whats-a-good-profit-margin-for-an-online-store">what counts as a healthy margin for your store in the first place</a>. This is easy to miss precisely because nothing about steady sales signals a problem.</p>
 
 <h2>Why a Slow Seller's Problem Might Not Be Price at All</h2>
@@ -7485,7 +7485,7 @@ export const posts: BlogPost[] = [
 </ul>
 </div>
 
-<h2>The Real Question Isn't "AI or Not," It's "How Much Evidence Is Behind This Call"</h2>
+<h2>The Real Question: How Much Evidence Is Behind the Call?</h2>
 <p>Framing this as a binary, trust AI or don't, misses what actually determines whether a recommendation is reliable. Two recommendations from the exact same model can deserve very different levels of trust if one is backed by a thousand data points across multiple price points and the other by a handful of sales at a single price that's never moved. The model isn't the variable that matters most. The evidence behind the specific recommendation is. This is really the same question as <a href="/blog/is-your-store-ready-for-dynamic-pricing-software">whether your store is ready for automated pricing tools at all</a>, just asked at the level of a single recommendation instead of the whole rollout.</p>
 
 <h2>What "Explainable" Actually Looks Like</h2>
@@ -7679,7 +7679,7 @@ export const posts: BlogPost[] = [
 </ul>
 </div>
 
-<h2>Why This Is a Genuinely Different Problem From Repricing an Existing Product</h2>
+<h2>Why This Is a Different Problem From Repricing an Existing Product</h2>
 <p>Everything about pricing an established product starts from a demand signal: past sales at past prices. A brand-new product has none of that. There's no elasticity to calculate yet, no confidence score to lean on, nothing but a hypothesis about what customers will pay. That's not a flaw in the process, it's just the honest starting condition every new product launches from.</p>
 
 <h2>The Most Common Mistake: Underpricing to Feel Safe</h2>
