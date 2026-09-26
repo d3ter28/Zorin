@@ -1113,6 +1113,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "Guest posting still moves the needle for a store's organic traffic, but only the kind aimed at genuinely relevant sites. What to check before you pitch.",
     date: "2026-09-05",
+    hidden: true,
     readingTime: "7 min read",
     category: "Education",
     author: {
@@ -1253,7 +1254,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <h2>Presenting the Discount Matters as Much as Picking It</h2>
-<p>Even the right discount candidate underperforms if the sale isn't obvious to a shopper landing on the page. Ecommerce conversion rates broadly sit in the 2.5-3% range as of 2025 according to a convergence of industry analyses, and a poorly surfaced discount, buried below the fold, missing a strikethrough price, or absent from the collection grid entirely, gives up a meaningful chunk of that already-thin baseline before the pricing decision even gets a fair test. If a store's product and collection pages aren't built to make a markdown visually obvious at a glance, that's a layout and <a href="https://rankfly.ca/">website design</a> problem rather than a pricing one, and it's worth fixing before concluding a discount "didn't work."</p>
+<p>Even the right discount candidate underperforms if the sale isn't obvious to a shopper landing on the page. Ecommerce conversion rates broadly sit in the 2.5-3% range as of 2025 according to a convergence of industry analyses, and a poorly surfaced discount, buried below the fold, missing a strikethrough price, or absent from the collection grid entirely, gives up a meaningful chunk of that already-thin baseline before the pricing decision even gets a fair test. If a store's product and collection pages aren't built to make a markdown visually obvious at a glance, that's a layout and <a href="https://rankfly.ca/" target="_blank" rel="sponsored noopener noreferrer">website design</a> problem rather than a pricing one, and it's worth fixing before concluding a discount "didn't work."</p>
 
 <section class="faq">
 <h2>Frequently Asked Questions</h2>
@@ -2049,7 +2050,7 @@ export const posts: BlogPost[] = [
 <p>Beyond the general checks above, pricing software has a category-specific test that most SaaS categories don't: does the review, or the tool itself, actually show its reasoning?</p>
 <p>A vague "this raised our revenue" claim in a review is worth far less than a review, or a product demo, that shows the actual mechanism behind a recommendation. If a pricing tool claims to know your optimal price, ask what's driving that number. Is it a regression fit to your own sales history, with a visible confidence score? Or is it a black-box output you're asked to trust on faith?</p>
 <p>That same "show the math" standard is worth applying to review sites and to pricing software equally. If a platform can't explain how it verifies reviewers, and a tool can't explain how it calculated a recommendation, you're being asked to trust the same kind of unverifiable claim twice.</p>
-<p>Merchants also lean on sources outside the big three review platforms, independent bloggers, forum threads, and personal recommendation sites that cover a wide range of business tools alongside other topics. <a href="https://ericsaloreviews.click/" target="_blank" rel="noopener">Eric Salo's review site</a> is one example of that broader, more general ecosystem, worth reading for a personal take, but not a substitute for a specialist software-review platform when the decision is specifically about a pricing tool and the stakes involve your margin.</p>
+<p>Merchants also lean on sources outside the big three review platforms, independent bloggers, forum threads, and personal recommendation sites that cover a wide range of business tools alongside other topics. <a href="https://ericsaloreviews.click/" target="_blank" rel="sponsored noopener noreferrer">Eric Salo's review site</a> is one example of that broader, more general ecosystem, worth reading for a personal take, but not a substitute for a specialist software-review platform when the decision is specifically about a pricing tool and the stakes involve your margin.</p>
 
 <h2>Where Zorin Fits Into This</h2>
 <p>Zorin is early-stage, with a small but real listing on both Capterra and G2, not the thousands of reviews a more established category leader carries. That's worth stating plainly rather than implying a depth of third-party validation that doesn't exist yet.</p>
@@ -3742,7 +3743,7 @@ export const posts: BlogPost[] = [
   <figcaption>A raise recommendation only means something once you know your true margin at the current price, not just the elasticity behind the call.</figcaption>
 </figure>
 
-<p>A well-known McKinsey study of the Global 1200 found that a 1% price increase, if volume stays constant, translates to roughly an 11% increase in operating profits on average. The catch is the "if volume stays constant" part. Elasticity data is how you test that assumption before you bet your revenue on it.</p>
+<p><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's "The Power of Pricing" analysis</a> found that for the average S&amp;P 1500 company, a 1% price increase with volume held constant translates to roughly an 8% increase in operating profit. The catch is the "if volume stays constant" part. Elasticity data is how you test that assumption before you bet your revenue on it.</p>
 
 <h2>How to Actually Track Your Margins on Shopify</h2>
 <p>Shopify does have native profit reporting. It tracks gross margin if you fill in the "cost per item" field on each product. Go to any product in your admin, scroll to Pricing, and enter your cost. Shopify will automatically calculate profit and margin on that product.</p>
@@ -4177,7 +4178,7 @@ export const posts: BlogPost[] = [
 <p>Price matching feels safe. If your competitor charges $45 and you match $45, you're at least "in the game." But that logic assumes the competitor's price is correct for your store, which it almost never is.</p>
 <p>Consider this scenario. You sell a product at $52 with healthy margins and steady sales. A competitor drops the same or a similar product to $42 as part of a clearance sale. You see the price change in your tracker, panic, and match it. Your margin shrinks. Your volume doesn't meaningfully increase because your customers were already buying at $52. You've just imported someone else's liquidation strategy into your store.</p>
 <p>Now scale that across a catalog. Every time you reflexively match a price drop, you're eroding margin without evidence that the match drives enough incremental volume to compensate. And once you lower a price, raising it back without losing trust is harder than holding it in the first place.</p>
-<p>The math on pricing as a profit lever is stark. McKinsey's long-running pricing research has found that a 1% improvement in price, with volume held steady, lifts operating profit by roughly 8% to 11% depending on the analysis. For a store doing $500,000 a year with a 10% operating margin, even the conservative end of that range is several thousand dollars in additional annual profit from a change most merchants could implement in an afternoon. But the same leverage works in reverse. A 1% erosion from reflexive matching costs the same amount, quietly, repeatedly, across every matched product.</p>
+<p>The math on pricing as a profit lever is stark. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's long-running pricing research</a> has found that a 1% improvement in price, with volume held steady, lifts operating profit by roughly 8% to 11% depending on the analysis. For a store doing $500,000 a year with a 10% operating margin, even the conservative end of that range is several thousand dollars in additional annual profit from a change most merchants could implement in an afternoon. But the same leverage works in reverse. A 1% erosion from reflexive matching costs the same amount, quietly, repeatedly, across every matched product.</p>
 <p>Price matching makes sense when you're in a genuine commodity market competing on the same SKU against stores with similar positioning. Outside that narrow scenario, it's a margin leak dressed up as competitive strategy.</p>
 
 <h2>How to Decide Which Type of App Your Store Needs</h2>
@@ -4274,7 +4275,7 @@ export const posts: BlogPost[] = [
 
 <h2>Why Most Shopify Stores Are Still Guessing at Prices</h2>
 <p>Pricing is the single fastest lever you can pull to improve profit, yet most independent Shopify and WooCommerce stores still set prices the same way they did on day one. They pick a cost-plus markup, glance at what a competitor charges, and move on. That initial number then sits untouched for months or years unless a cost increase forces a change.</p>
-<p>The math on why this matters is stark. McKinsey's long-running pricing research has found that a 1% improvement in price, with volume held steady, lifts operating profit by roughly 8% to 11% depending on the analysis. For a store doing $500,000 a year with a 10% operating margin, even the conservative end of that range is several thousand dollars in additional annual profit from a change most merchants could implement in an afternoon.</p>
+<p>The math on why this matters is stark. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's long-running pricing research</a> has found that a 1% improvement in price, with volume held steady, lifts operating profit by roughly 8% to 11% depending on the analysis. For a store doing $500,000 a year with a 10% operating margin, even the conservative end of that range is several thousand dollars in additional annual profit from a change most merchants could implement in an afternoon.</p>
 <p>The problem isn't that store owners don't care about pricing. It's that the tools available to them have historically fallen into two extremes. On one end, enterprise platforms like Competera and Pricefx offer deep elasticity modeling and demand forecasting, but they start at custom pricing with long onboarding cycles and are built for teams with dedicated pricing analysts. On the other end, the Shopify App Store is full of discount plugins, bulk price editors, and flash sale schedulers that help you change prices but never answer whether the new price is actually right.</p>
 <p>What's been missing is a middle layer: tools that give a small or mid-size merchant a specific, data-backed answer to "what should I charge for this product" without requiring enterprise budgets or a data science background.</p>
 
@@ -8560,7 +8561,7 @@ export const posts: BlogPost[] = [
     category: "Pricing Strategy",
     author: {
       name: "Tom Berger",
-      bio: "Tom Berger is a Portfolio CMO for B2B SaaS with 25+ years of experience building and leading marketing functions from Series A through growth stage, including VP Marketing roles at DigitalOcean, Bolt, and Sift. He writes about go-to-market strategy at <a href=\"https://bergercmo.ai\" target=\"_blank\" rel=\"noopener noreferrer\">bergerCMO.ai</a>.",
+      bio: "Tom Berger is a Portfolio CMO for B2B SaaS with 25+ years of experience building and leading marketing functions from Series A through growth stage, including VP Marketing roles at DigitalOcean, Bolt, and Sift. He writes about go-to-market strategy at <a href=\"https://bergercmo.ai\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">bergerCMO.ai</a>.",
       url: "https://bergercmo.ai/about",
       sameAs: ["https://linkedin.com/in/tberger"],
     },
@@ -8594,7 +8595,7 @@ export const posts: BlogPost[] = [
 </figure>
 
 <h2>Data-Poor Is Not the Same Problem as Data-Misaligned</h2>
-<p>There's a broader pattern here that shows up well outside pricing. Tom Berger, who advises early-stage B2B companies on go-to-market strategy at bergerCMO.ai, has written about <a href="https://bergercmo.ai/blogs/data-collecting-worse-decisions" target="_blank" rel="noopener noreferrer">the difference between being data-poor and being data-misaligned</a> among startup teams: most of them aren't short on data. Their dashboards are full. The problem is that the metrics on the dashboard got selected, often without anyone deciding to do it on purpose, to confirm what the team already believed. The number that would actually change the strategy is sitting in a segment nobody split out.</p>
+<p>There's a broader pattern here that shows up well outside pricing. Tom Berger, who advises early-stage B2B companies on go-to-market strategy at bergerCMO.ai, has written about <a href="https://bergercmo.ai/blogs/data-collecting-worse-decisions" target="_blank" rel="nofollow noopener noreferrer">the difference between being data-poor and being data-misaligned</a> among startup teams: most of them aren't short on data. Their dashboards are full. The problem is that the metrics on the dashboard got selected, often without anyone deciding to do it on purpose, to confirm what the team already believed. The number that would actually change the strategy is sitting in a segment nobody split out.</p>
 <p>Swap "startup team" for "ecommerce seller" and the mechanism doesn't change at all. A blended elasticity number that confirms the price you already picked isn't evidence. It's a mirror.</p>
 
 <h2>What to Check Before You Trust the Next Test</h2>
@@ -8655,7 +8656,7 @@ export const posts: BlogPost[] = [
     category: "Pricing Strategy",
     author: {
       name: "Tom Berger",
-      bio: "Tom Berger is a Portfolio CMO for B2B SaaS with 25+ years of experience building and leading marketing functions from Series A through growth stage, including VP Marketing roles at DigitalOcean, Bolt, and Sift. He writes about go-to-market strategy at <a href=\"https://bergercmo.ai\" target=\"_blank\" rel=\"noopener noreferrer\">bergerCMO.ai</a>.",
+      bio: "Tom Berger is a Portfolio CMO for B2B SaaS with 25+ years of experience building and leading marketing functions from Series A through growth stage, including VP Marketing roles at DigitalOcean, Bolt, and Sift. He writes about go-to-market strategy at <a href=\"https://bergercmo.ai\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">bergerCMO.ai</a>.",
       url: "https://bergercmo.ai/about",
       sameAs: ["https://linkedin.com/in/tberger"],
     },
@@ -8695,7 +8696,7 @@ export const posts: BlogPost[] = [
 <p>Only the first case is actually about the price.</p>
 
 <h2>The Same Misdiagnosis, One Category Over</h2>
-<p>This isn't unique to retail pricing. Tom Berger, who writes about go-to-market decision-making for early-stage companies at bergerCMO.ai, makes almost the identical argument about product development: founders treat <a href="https://bergercmo.ai/blogs/mvp-positioning-test" target="_blank" rel="noopener noreferrer">a stalled launch as a product problem that turns out to be a positioning problem in disguise</a>. The build wasn't wrong. Nobody had answered who it was for. Price is the retail version of the same mistake, just measured in dollars and cents instead of feature checklists.</p>
+<p>This isn't unique to retail pricing. Tom Berger, who writes about go-to-market decision-making for early-stage companies at bergerCMO.ai, makes almost the identical argument about product development: founders treat <a href="https://bergercmo.ai/blogs/mvp-positioning-test" target="_blank" rel="nofollow noopener noreferrer">a stalled launch as a product problem that turns out to be a positioning problem in disguise</a>. The build wasn't wrong. Nobody had answered who it was for. Price is the retail version of the same mistake, just measured in dollars and cents instead of feature checklists.</p>
 <p>A correct price is not the same thing as the right price for the right person. Only one of those is a math problem.</p>
 
 <div class="key-takeaways">
