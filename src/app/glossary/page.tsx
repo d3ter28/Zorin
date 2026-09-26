@@ -147,7 +147,7 @@ const terms: Term[] = [
     definition:
       "An ongoing rule or model that adjusts a product's price automatically in response to a signal, demand, inventory level, competitor moves, or timing, rather than a fixed price changed manually.",
     learnMore: {
-      href: "/blog/dynamic-pricing-explained-definition-example-legal-risks",
+      href: "/blog/what-is-dynamic-pricing",
       label: "Dynamic Pricing Explained",
     },
   },

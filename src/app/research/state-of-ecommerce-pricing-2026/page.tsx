@@ -335,7 +335,7 @@ export default function StateOfEcommercePricing2026Page() {
           easiest move, and it&apos;s also the one most likely to fall into the &ldquo;less than
           half realized&rdquo; bucket. Raising prices on products whose demand barely reacts to
           price, while holding prices on the sensitive ones, keeps more of the increase.{" "}
-          <a href="/blog/should-i-raise-prices-to-cover-rising-costs" className="text-blue-600 hover:underline">
+          <a href="/blog/how-to-raise-prices-without-losing-customers" className="text-blue-600 hover:underline">
             Should you raise prices to cover rising costs?
           </a>{" "}
           walks through that decision, and{" "}

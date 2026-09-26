@@ -37,7 +37,7 @@ const BLOG_REDIRECTS: [string, string][] = [
   // Placeholder sample posts removed before real content existed (commit 8e091a9).
   ["why-merchants-leave-money-on-the-table", "how-to-know-if-your-prices-are-too-high-or-too-low"],
   ["price-elasticity-101", "what-does-price-elasticity-actually-mean"],
-  ["from-csv-to-optimal-price", "how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist"],
+  ["from-csv-to-optimal-price", "price-elasticity-of-demand-formula"],
   // 2026-09-26 cannibalization merges: keeper chosen by GSC ranking history.
   ["amazon-vs-your-own-store-pricing", "should-you-price-the-same-on-shopify-and-amazon"],
   ["should-you-price-differently-on-shopify-vs-amazon", "should-you-price-the-same-on-shopify-and-amazon"],
@@ -49,6 +49,16 @@ const BLOG_REDIRECTS: [string, string][] = [
   ["how-much-should-you-discount-without-killing-your-margin", "how-to-price-a-discount-without-losing-your-margin"],
   ["best-price-optimization-app-for-small-shopify-stores", "best-pricing-optimization-tools-for-shopify-stores-2026"],
   ["is-your-store-leaving-money-on-the-table", "how-to-know-if-your-prices-are-too-high-or-too-low"],
+  // 2026-09-26 keyword slug changes (posts with little GSC history).
+  ["is-your-store-ready-for-dynamic-pricing-software", "dynamic-pricing-software"],
+  ["do-you-need-a-competitor-price-tracking-app", "competitor-price-tracking"],
+  ["price-elasticity-tools-for-ecommerce-how-to-find-your-best-price", "price-optimization-tools"],
+  ["how-do-i-calculate-my-own-price-elasticity-without-a-data-scientist", "price-elasticity-of-demand-formula"],
+  ["how-to-automate-pricing-updates-across-your-shopify-store", "automated-pricing-shopify"],
+  ["should-you-price-below-at-or-above-your-competitors", "competitive-pricing-strategy"],
+  ["should-i-raise-prices-to-cover-rising-costs", "how-to-raise-prices-without-losing-customers"],
+  ["what-to-ask-a-pricing-software-vendor-before-you-buy", "pricing-software-for-small-business"],
+  ["dynamic-pricing-explained-definition-example-legal-risks", "what-is-dynamic-pricing"],
 ];
 
 const nextConfig: NextConfig = {
