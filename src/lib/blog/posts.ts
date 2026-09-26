@@ -1892,7 +1892,7 @@ export const posts: BlogPost[] = [
     excerpt: "DTC supplement brands typically run 60-80% gross margins. What a healthy margin looks like, how to price new SKUs, and how to set subscribe-and-save.",
     date: "2026-08-25",
     updatedDate: "2026-09-26",
-    readingTime: "10 min read",
+    readingTime: "11 min read",
     category: "Pricing Strategy",
     ogImage: "/images/blog/survey-results-chart.webp",
     author: {
@@ -1903,8 +1903,8 @@ export const posts: BlogPost[] = [
 <p class="intro">A healthy DTC supplement brand should be targeting 60-80% gross margin, not the 30-50% figure that gets cited as an industry-wide average. That broader number blends in wholesale and retail channels, where margins are structurally thinner than direct online sales. If your supplement brand is sitting below 60% gross margin on your Shopify store, you're likely underpriced, or your cost structure needs a hard look before you touch price at all. This guide covers what healthy margins actually look like by channel, how to price a brand-new supplement with zero sales history, how to size a subscribe-and-save discount without giving away your margin, and why racing to the bottom on a crowded supplement shelf usually backfires.</p>
 
 <h2>The Short Answer: What Healthy Supplement Margins Look Like</h2>
-<p>Target gross margins of roughly <a href="https://eightx.co/blog/supplements-brand-pricing-strategy" target="_blank" rel="noopener">60-80% for direct-to-consumer sales, 50-65% if you're also selling on Amazon, and 40-50% for wholesale</a>. Most Shopify-based supplement brands land in the 40-60% range after accounting for COGS, packaging, and fulfillment, a wide band that usually reflects where a brand sits on the pricing-tier scale rather than a flaw in the category itself.</p>
-<p>Supplement unit COGS are typically low, <a href="https://eightx.co/blog/how-to-price-supplements" target="_blank" rel="noopener">often $3 to $15 per unit depending on dosage form, ingredient sourcing, and order volume</a>. A $35 bottle costing $7-10 to produce generates $25-28 in gross profit per unit before marketing, fulfillment, and overhead. That gap between COGS and price is what makes supplements a genuinely attractive category to sell in, and also why underpricing is such an easy trap: the product still looks "profitable" at a much lower price than it should be.</p>
+<p>Supplements carry some of the highest gross margins in ecommerce: publicly reported makers such as USANA (78.3%) and Nature's Sunshine (72.4%) sit in the 70s, per the filings compiled in our <a href="/research/profit-margins-by-product-category">gross margins by category</a> research. Expect lower margins on channels that take a cut, since marketplace fees and wholesale discounts come straight out of that number. Most Shopify-based supplement brands land in the 40-60% range after accounting for COGS, packaging, and fulfillment, a wide band that usually reflects where a brand sits on the pricing-tier scale rather than a flaw in the category itself.</p>
+<p>Supplement unit costs are typically low relative to price: a gross margin in the 70s means the product itself costs roughly a quarter of what the customer pays, with the exact figure depending on dosage form, ingredient sourcing and order volume. A $35 bottle costing $7-10 to produce generates $25-28 in gross profit per unit before marketing, fulfillment, and overhead. That gap between COGS and price is what makes supplements a genuinely attractive category to sell in, and also why underpricing is such an easy trap: the product still looks "profitable" at a much lower price than it should be.</p>
 
 <h2>How to Price a Brand-New Supplement With Zero Sales Data</h2>
 <p>Launching a new SKU is the hardest pricing decision in any category, and supplements have a specific complication most other verticals don't: there's no reliable, published, category-wide elasticity benchmark to lean on. A skincare serum or a piece of apparel at least has some general price-sensitivity research floating around. For supplements specifically, most of the "elasticity" numbers repeated online trace back to unverified or informal sources rather than real published studies, worth being skeptical of any specific coefficient you see quoted for the category.</p>
@@ -2064,7 +2064,7 @@ export const posts: BlogPost[] = [
 <p>Beyond the general checks above, pricing software has a category-specific test that most SaaS categories don't: does the review, or the tool itself, actually show its reasoning?</p>
 <p>A vague "this raised our revenue" claim in a review is worth far less than a review, or a product demo, that shows the actual mechanism behind a recommendation. If a pricing tool claims to know your optimal price, ask what's driving that number. Is it a regression fit to your own sales history, with a visible confidence score? Or is it a black-box output you're asked to trust on faith?</p>
 <p>That same "show the math" standard is worth applying to review sites and to pricing software equally. If a platform can't explain how it verifies reviewers, and a tool can't explain how it calculated a recommendation, you're being asked to trust the same kind of unverifiable claim twice.</p>
-<p>Merchants also lean on sources outside the big three review platforms, independent bloggers, forum threads, and personal recommendation sites that cover a wide range of business tools alongside other topics. <a href="https://ericsaloreviews.click/" target="_blank" rel="sponsored noopener noreferrer">Eric Salo's review site</a> is one example of that broader, more general ecosystem, worth reading for a personal take, but not a substitute for a specialist software-review platform when the decision is specifically about a pricing tool and the stakes involve your margin.</p>
+<p>Merchants also lean on sources outside the big three review platforms, independent bloggers, forum threads, and personal recommendation sites that cover a wide range of business tools alongside other topics. <a href="https://ericsaloreviews.click/" target="_blank" rel="nofollow noopener noreferrer">Eric Salo's review site</a> is one example of that broader, more general ecosystem, worth reading for a personal take, but not a substitute for a specialist software-review platform when the decision is specifically about a pricing tool and the stakes involve your margin.</p>
 
 <h2>How to Judge a Pricing Tool Beyond Its Reviews</h2>
 <p>Zorin is early-stage, with a small but real listing on both Capterra and G2, not the thousands of reviews a more established category leader carries. That's worth stating plainly rather than implying a depth of third-party validation that doesn't exist yet.</p>
@@ -3421,8 +3421,8 @@ export const posts: BlogPost[] = [
 
 <h2>Why You Can't Just Charge the Same Price Everywhere</h2>
 <p>The appeal of uniform pricing is real. One price per SKU, no spreadsheet to maintain, no risk of a customer noticing a discrepancy between channels. But charging the same price on Shopify and Amazon does not produce the same margin on each. It produces the same revenue and very different amounts of money kept.</p>
-<p>Amazon charges referral fees of 9-15% depending on category, plus FBA fulfillment fees if you are using Amazon's warehousing. Shopify Payments charges 2.9% + $0.30 per transaction on the Basic plan, with lower rates on higher tiers. On a $100 order, that fee structure difference is roughly $19 in cash retained per sale. According to Eightx's 2026 analysis across 35+ DTC brands, the same SKU at the same selling price nets approximately $63 on Shopify and approximately $44 on Amazon when channel fees are treated as variable costs.</p>
-<p>That $19 gap is what uniform pricing ignores. If you charge the same $100 on both channels, you are either accepting a 30% lower margin on every Amazon sale, or you are not actually recovering the fee differential anywhere. The <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">ecommerce profit margins guide</a> covers how quickly the gap between gross and net margin compounds across a cost stack. Channel fees are the single largest variable in that gap for multi-channel merchants.</p>
+<p>Amazon charges referral fees of 9-15% depending on category, plus FBA fulfillment fees if you are using Amazon's warehousing. Shopify Payments charges 2.9% + $0.30 per transaction on the Basic plan, with lower rates on higher tiers. In the $50 worked example below, that fee difference leaves about $9 more per sale on Shopify, roughly 18% of the selling price.</p>
+<p>That gap is what uniform pricing ignores. If you charge the same price on both channels, you are either accepting a meaningfully lower margin on every Amazon sale, or you are not actually recovering the fee differential anywhere. The <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">ecommerce profit margins guide</a> covers how quickly the gap between gross and net margin compounds across a cost stack. Channel fees are the single largest variable in that gap for multi-channel merchants.</p>
 
 <h3>Worked fee comparison on a $50 product</h3>
 <table>
@@ -3496,7 +3496,7 @@ export const posts: BlogPost[] = [
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
-<li>Same price everywhere does not mean same margin everywhere. Amazon's fee structure takes roughly $9-19 more per $100 sale than Shopify's. Uniform pricing means accepting that gap as a permanent margin leak.</li>
+<li>Same price everywhere does not mean same margin everywhere. In the worked example, Amazon's fees take about $9 more than Shopify's on a $50 sale, roughly 18% of the price. Uniform pricing means accepting that gap as a permanent margin leak.</li>
 <li>Pricing DTC lower than Amazon triggers Buy Box suppression. Amazon monitors your Shopify store and can suppress your listing within hours if the gap exceeds roughly 2-5%.</li>
 <li>Price sensitivity differs by channel. Amazon shoppers are comparison buyers, DTC shoppers are brand buyers, Etsy shoppers are uniqueness buyers. The same product's elasticity is not the same across all three.</li>
 <li>Set the Amazon price first, keep your public Shopify price at or just below it, and deliver the DTC advantage through bundles, subscriptions and code-gated offers rather than a lower shelf price.</li>
@@ -3718,7 +3718,8 @@ export const posts: BlogPost[] = [
     title: "Ecommerce Profit Margins: Benchmarks & Tracking",
     excerpt: "Healthy ecommerce profit margins by category, gross vs net, margin vs markup, and how to track the gap on Shopify before it quietly eats your profit.",
     date: "2026-08-19",
-    readingTime: "10 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "12 min read",
     category: "Pricing Strategy",
     author: {
       name: "Dexter",
@@ -3730,7 +3731,7 @@ export const posts: BlogPost[] = [
 <h2>Why Most Merchants Get Their Margins Wrong</h2>
 <p>The standard ecommerce P&L looks simple: revenue minus cost of goods sold minus ad spend equals profit. The problem is that formula misses 25-65% of your actual costs.</p>
 <p>Here is what typically happens. A merchant opens Shopify, sees $50,000 in monthly sales, subtracts $20,000 in product cost and $5,000 in ads, and concludes they made $25,000. That looks like a 50% margin. But once you add payment processing fees, Shopify's subscription and transaction fees, app subscriptions, packaging, return shipping, refunds, currency conversion, and the merchant's own time, that $25,000 can shrink to $5,000 or less. Sometimes it goes negative.</p>
-<p>The gap between gross margin and net margin is where most ecommerce businesses lose track of their profitability. According to <a href="https://eightx.co/blog/average-ecommerce-profit-margins" target="_blank" rel="noopener noreferrer">analysis from Eightx</a> covering DTC brands, the typical DTC brand runs a median net margin near just 3% (per Finaloop's dataset), even when gross margins look healthy at 50-70%.</p>
+<p>The gap between gross margin and net margin is where most ecommerce businesses lose track of their profitability. According to <a href="https://www.finaloop.com/blog/ecommerce-profit-benchmarks-performance-metrics" target="_blank" rel="noopener noreferrer">Finaloop's ecommerce profit benchmarks</a>, which cover hundreds of seven- and eight-figure DTC brands with $3.16 billion in combined sales, the median net profit margin in 2024 was about 3%, even though gross margins at these brands commonly look healthy.</p>
 
 <h3>The full cost stack: from COGS to what's left</h3>
 <p>Your true cost of goods sold is more than what you paid your supplier. It includes the product itself, inbound shipping from the supplier to your warehouse, packaging materials, customs duties if you import, and any manufacturing or assembly labor. That gets you to gross margin.</p>
@@ -3752,7 +3753,7 @@ export const posts: BlogPost[] = [
 
 <h2>What Healthy Margins Actually Look Like by Category</h2>
 <p>There is no single "good" ecommerce profit margin. Beauty brands and electronics stores operate in completely different margin environments. Your target depends on your vertical, your business model, and your channel mix.</p>
-<p>Here are 2026 benchmarks from aggregated data across TrueProfit (5,000+ active stores), Eightx, NYU Stern, and Shopify's Commerce Report:</p>
+<p>Here are rough 2026 ranges by category, drawing on <a href="https://trueprofit.io/blog/what-is-a-good-gross-profit-margin" target="_blank" rel="noopener noreferrer">TrueProfit's benchmarks across 5,000+ stores</a> and public company filings. Treat them as directional starting points rather than precise targets:</p>
 
 <table>
   <thead>
@@ -3863,7 +3864,8 @@ export const posts: BlogPost[] = [
     excerpt:
       "Most DTC skincare brands underprice. Learn what healthy margins look like, how to structure pricing tiers, and how to price SKUs with real demand data.",
     date: "2026-08-18",
-    readingTime: "11 min read",
+    updatedDate: "2026-09-26",
+    readingTime: "15 min read",
     category: "Pricing Strategy",
     author: {
       name: "Dexter",
@@ -3876,7 +3878,7 @@ export const posts: BlogPost[] = [
 
 <h2>What "Good Margins" Actually Look Like for a DTC Beauty Brand</h2>
 <p>Beauty and skincare carry some of the highest gross margins in ecommerce, but "high" is relative, and the range within the category is wide. Here's what the benchmarks actually say.</p>
-<p>According to <a href="https://eightx.co/blog/skincare-brand-pricing-strategy" target="_blank" rel="noopener noreferrer">Eightx's skincare brand pricing analysis</a>, private skincare brands land at a 65-72% gross margin median, with the strongest performers above 75%. Public pure-play beauty companies sit in the same band: e.l.f. carried a 70.7% gross margin and Olaplex 69.4%, per their most recent 10-K filings. These numbers represent cost of goods as a percentage of revenue, including ingredients, packaging, and direct production costs.</p>
+<p>Public pure-play beauty companies show what healthy skincare margins look like: e.l.f. Beauty carried a 70.7% gross margin in its <a href="https://www.sec.gov/Archives/edgar/data/0001600033/000160003326000020/elf-20260331.htm" target="_blank" rel="noopener noreferrer">most recent 10-K</a> and Olaplex 69.4% in <a href="https://www.sec.gov/Archives/edgar/data/1868726/000186872626000009/olpx-20251231.htm" target="_blank" rel="noopener noreferrer">its fiscal 2025 10-K</a>. A brand selling well below the high 60s is usually leaving margin on the table rather than facing a structural cost problem. These numbers represent cost of goods as a percentage of revenue, including ingredients, packaging, and direct production costs.</p>
 <p>Below 65% gross margin, the economics of a DTC beauty brand start to break down. Here's why: customer acquisition in beauty is expensive. According to <a href="https://mhigrowthengine.com/blog/average-cost-per-acquisition-by-dtc-vertical-2026/" target="_blank" rel="noopener noreferrer">MHI Growth Engine's 2026 DTC benchmarks</a>, the average CPA for a DTC skincare brand is roughly $42, with a median AOV of $68. At those numbers, first-order contribution margin after product costs is approximately 38%. That has to cover payment processing, shipping, packaging, returns, and ideally leave something for operating profit. With a gross margin of 55%, that math gets very tight very fast. With a gross margin of 70%, it works.</p>
 <p>The benchmarks also vary meaningfully by product type within skincare. According to <a href="https://bootleads.com/stores/shopify/niches/skincare-products/" target="_blank" rel="noopener noreferrer">BootLeads' Shopify skincare store data</a>, the average listed price for skincare products on Shopify is about $55, but the most common pricing band is under $25. That gap between the average and the mode tells you that a small number of brands are pricing at premium levels and pulling the average up, while the majority are clustering at entry-level price points. If most of your catalog is priced under $25, you're competing in the most crowded part of the market with the thinnest margins.</p>
 <p>One number to keep in mind as a gut check: the beauty rule of thumb is an 8-10x markup on bare unit COGS (ingredients and packaging only, before labor, overhead, or shipping). If your serum costs $4 in ingredients and packaging and you're selling it for $24, that's a 6x markup. Technically profitable, but leaving significant room on the table compared to brands that sell a similar formulation for $38-48.</p>
@@ -3891,7 +3893,7 @@ export const posts: BlogPost[] = [
 
 <h2>How to Price Across Your Product Line (Entry, Core, Premium)</h2>
 <p>A skincare line needs a pricing ladder, not a single markup formula. Different products serve different jobs in your catalog, attract different customer mindsets, and carry different margin profiles. Applying the same 3x markup across your entire line means your cleanser and your clinical serum are priced using the same logic, which doesn't reflect how customers actually evaluate them.</p>
-<p>The <a href="https://eightx.co/blog/skincare-brand-pricing-strategy" target="_blank" rel="noopener noreferrer">good-better-best framework Eightx recommends</a> spaces three tiers at roughly 1x : 1.5x : 2-3x, with each tier doing a different job:</p>
+<p>A common good-better-best structure spaces three tiers at roughly 1x : 1.5x : 2-3x, with each tier doing a different job:</p>
 
 <table>
   <thead>

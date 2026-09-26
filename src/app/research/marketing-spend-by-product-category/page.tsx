@@ -59,11 +59,6 @@ const TIER_1: CategoryRow[] = [
         url: "https://www.sec.gov/Archives/edgar/data/1600033/000160003325000016/elf-20250331.htm",
         publisher: "SEC EDGAR",
       },
-      {
-        label: "How e.l.f. Beauty Earns 12% Operating Margin Selling $10 Lipstick",
-        url: "https://eightx.co/blog/why-elf-beauty-outperforms-2026",
-        publisher: "Eightx (industry analysis, corroborating the SEC filing)",
-      },
     ],
   },
   {

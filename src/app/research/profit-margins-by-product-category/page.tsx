@@ -60,9 +60,9 @@ const TIER_1: CategoryRow[] = [
         publisher: "SEC EDGAR",
       },
       {
-        label: "Beauty Ecommerce Gross Margin 2026: 69% Median Across Public Brands",
-        url: "https://eightx.co/blog/beauty-ecommerce-margin-benchmarks",
-        publisher: "Eightx (industry analysis, corroborating public filings)",
+        label: "Olaplex Holdings, Inc. Form 10-K (FY2025)",
+        url: "https://www.sec.gov/Archives/edgar/data/1868726/000186872626000009/olpx-20251231.htm",
+        publisher: "SEC EDGAR",
       },
     ],
   },
