@@ -15,7 +15,6 @@ export const clusters: Cluster[] = [
       "The core idea behind every Zorin recommendation: how demand responds when price moves. Start here to understand elasticity.",
     postSlugs: [
       "what-does-price-elasticity-actually-mean",
-      "price-elasticity-explained-a-guide-for-ecommerce-sellers",
       "price-elasticity-examples-by-ecommerce-category",
       "why-do-some-products-have-more-elastic-demand-than-others",
       "elastic-vs-inelastic-demand-whats-the-difference",
@@ -37,7 +36,6 @@ export const clusters: Cluster[] = [
     postSlugs: [
       "best-pricing-optimization-tools-for-shopify-stores-2026",
       "woocommerce-pricing-apps-what-to-look-for",
-      "best-price-optimization-app-for-small-shopify-stores",
       "price-elasticity-vs-repricing-software",
       "price-elasticity-tools-for-ecommerce-how-to-find-your-best-price",
       "do-you-need-a-competitor-price-tracking-app",
@@ -53,7 +51,6 @@ export const clusters: Cluster[] = [
     postSlugs: [
       "how-to-run-a-sale-without-wrecking-your-margin",
       "how-to-price-a-discount-without-losing-your-margin",
-      "how-much-should-you-discount-without-killing-your-margin",
       "which-products-actually-deserve-a-discount",
       "how-to-price-product-bundles-without-giving-away-your-margin",
       "dynamic-pricing-vs-sales-a-shopify-sellers-guide",
@@ -68,8 +65,7 @@ export const clusters: Cluster[] = [
       "Benchmarks and frameworks for gross margin, net margin, and where profit actually leaks out of a catalog that looks healthy on paper.",
     postSlugs: [
       "ecommerce-profit-margins-what-to-target-and-how-to-track-them",
-      "whats-a-good-profit-margin-for-an-online-store",
-      "is-your-store-leaving-money-on-the-table",
+      "how-to-know-if-your-prices-are-too-high-or-too-low",
       "should-i-raise-prices-to-cover-rising-costs",
       "why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies",
       "how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one",
@@ -100,7 +96,6 @@ export const clusters: Cluster[] = [
       "how-do-i-price-a-new-product-with-no-sales-history",
       "how-to-price-a-new-product-from-launch-to-end-of-life",
       "how-to-raise-your-price-after-a-product-launch",
-      "amazon-vs-your-own-store-pricing",
     ],
   },
   {

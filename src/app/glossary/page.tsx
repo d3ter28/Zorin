@@ -25,7 +25,7 @@ const terms: Term[] = [
     definition:
       "A measure of how much the quantity sold of a product changes when its price changes, expressed as a coefficient (percentage change in quantity divided by percentage change in price). A coefficient near zero means demand barely reacts to price. A coefficient further from zero means demand is more price-sensitive.",
     learnMore: {
-      href: "/blog/price-elasticity-explained-a-guide-for-ecommerce-sellers",
+      href: "/blog/what-does-price-elasticity-actually-mean",
       label: "Price Elasticity Explained",
     },
   },

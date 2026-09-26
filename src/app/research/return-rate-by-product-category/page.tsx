@@ -301,7 +301,7 @@ export default function ReturnRateByProductCategoryPage() {
             gross margins by category
           </a>{" "}
           page gives the other half of this calculation, and{" "}
-          <a href="/blog/how-much-should-you-discount-without-killing-your-margin" className="text-blue-600 hover:underline">
+          <a href="/blog/how-to-price-a-discount-without-losing-your-margin" className="text-blue-600 hover:underline">
             how much you can discount without killing your margin
           </a>{" "}
           walks through sizing a discount against it.{" "}
