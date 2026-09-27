@@ -38,6 +38,124 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "everyday-low-pricing-vs-high-low-pricing",
+    title: "Everyday Low Pricing vs High-Low: Which Is Better?",
+    excerpt:
+      "Everyday low pricing keeps prices steady; high-low relies on sales. Pros, cons, a worked profit example, and how Zorin shows which fits each product.",
+    date: "2026-09-27",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Everyday low pricing (EDLP) means keeping prices consistently low with few or no sales, while high-low pricing means setting a higher regular price and running frequent promotions below it. Neither is better in general: EDLP wins when shoppers value predictability and your costs let you live on a thinner, steady margin; high-low wins when a sale is what gets customers through the door. The right choice depends on how your own customers respond to price, which is the kind of question a tool like Zorin answers from your sales history.</p>
+
+<h2>What Is Everyday Low Pricing?</h2>
+<p>An everyday low price is a single, consistently low price that doesn't depend on a sale event. The promise to the customer is simple: you don't need to wait for a promotion or hunt for a code, because the price is already fair today. Walmart built its business on this idea, and its long-running "Everyday Low Prices" slogan is still the textbook example.</p>
+<p>The strategy trades promotional excitement for trust and simplicity. Fewer price changes mean steadier demand, easier inventory planning and less money spent advertising sales.</p>
+
+<h2>What Is High-Low Pricing?</h2>
+<p>High-low pricing sets a higher regular price and then brings it down regularly with sales, coupons and markdowns. The sale itself becomes the reason to buy, and the regular price acts as the anchor that makes the discount feel meaningful. Most department stores and many DTC brands work this way, whether through seasonal sales, welcome codes or Black Friday events.</p>
+<p>The strategy trades predictability for bursts of demand. Sales create urgency and bring in new customers, but they also teach existing customers to wait for the next one.</p>
+
+<h2>Everyday Low Pricing vs High-Low Pricing at a Glance</h2>
+<table>
+  <thead>
+    <tr><th></th><th>Everyday low pricing (EDLP)</th><th>High-low pricing</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Regular price</td><td>Low and stable</td><td>Higher, with frequent discounts below it</td></tr>
+    <tr><td>Demand pattern</td><td>Steady</td><td>Spikes during sales, dips after</td></tr>
+    <tr><td>Marketing</td><td>Less promotional spend, message is "always a fair price"</td><td>Sale events drive traffic and email/ad campaigns</td></tr>
+    <tr><td>Inventory</td><td>Easier to forecast</td><td>Harder: stock up for sales, clear leftovers after</td></tr>
+    <tr><td>Margin per unit</td><td>Consistently thinner</td><td>Higher at full price, much lower during sales</td></tr>
+    <tr><td>Main risk</td><td>No "event" to pull in new or hesitant buyers</td><td>Customers learn to only buy on sale</td></tr>
+    <tr><td>Works best for</td><td>Staples, replenishment products, price-comparison categories</td><td>Fashion, gifts, seasonal and discovery-driven products</td></tr>
+  </tbody>
+</table>
+
+<h2>Worked Example: Which Strategy Makes More Profit?</h2>
+<p>Here's the same product priced both ways over a four-week month. It costs you <strong>$25</strong>.</p>
+<p><strong>High-low:</strong> the regular price is <strong>$50</strong>, and you sell 60 units a week for three weeks. In week four you run a 25% off sale at <strong>$37.50</strong> and sell 200 units.</p>
+<ul>
+<li>Full-price weeks: 180 units × $25 profit = $4,500</li>
+<li>Sale week: 200 units × $12.50 profit = $2,500</li>
+<li><strong>Total: 380 units, $7,000 profit</strong></li>
+</ul>
+<p><strong>Everyday low price:</strong> you drop the regular price to <strong>$44</strong> and never run a sale. Demand is steadier, at 90 units a week.</p>
+<ul>
+<li>360 units × $19 profit = <strong>$6,840</strong></li>
+</ul>
+<p>In this example high-low comes out slightly ahead. But change one assumption and the answer flips. If regular customers start waiting for the sale, so full-price weeks drop to 45 units, high-low falls to 135 × $25 + 200 × $12.50 = <strong>$5,875</strong>, well below EDLP. The strategy that wins depends on how your customers actually behave around sales, which is exactly what your own sales history can show you. How deep a sale can safely go is covered in <a href="/blog/how-to-price-a-discount-without-losing-your-margin">how much to discount without losing your margin</a>.</p>
+
+<h2>Real-World Examples: Why Grocers Are Moving to Everyday Low Prices</h2>
+<p>The biggest recent shift toward EDLP is happening in U.S. grocery. In July 2026, <a href="https://www.grocerydive.com/news/grocery-price-investments-promotions-supermarkets/825271/" target="_blank" rel="noopener noreferrer">Grocery Dive reported</a> that Stop &amp; Shop had lowered everyday prices on thousands of items across its New York and New Jersey stores, while Walmart cut prices on staples and Kroger made price reductions central to its growth strategy. Kroger's CEO put the goal plainly: shoppers should feel the price they get in a Kroger store "is actually fair and reasonable." That's the core EDLP promise, and it resonates when budgets are tight and shoppers are tired of chasing deals.</p>
+<p>The cautionary example runs the other way. In February 2012 J.C. Penney replaced its constant coupons and sales with "Fair and Square" everyday pricing. Its customers had been trained on high-low for years, and without visible discounts the lower prices didn't feel like deals. Comparable store sales fell 18.9% in the <a href="https://www.sec.gov/Archives/edgar/data/0001166126/000116612612000034/earningsreleasemay1512.htm" target="_blank" rel="noopener noreferrer">first quarter of 2012</a> and 21.7% in the <a href="https://www.sec.gov/Archives/edgar/data/0001166126/000116612612000069/earningsexhibitaug2012.htm" target="_blank" rel="noopener noreferrer">second quarter</a>, according to the company's own filings.</p>
+<p>The two cases point to the same lesson. EDLP works when customers want predictable, fair prices. Switching to it abruptly fails when your customers have learned to shop your sales.</p>
+
+<h2>How to Choose Between EDLP and High-Low for Your Store</h2>
+<ol>
+<li><strong>Look at what share of revenue already comes from discounts.</strong> If a large share of orders use a code or happen during sales, your customers are high-low shoppers, and switching fast is risky.</li>
+<li><strong>Check how easily shoppers compare your products.</strong> Identical, widely sold items push you toward EDLP, because shoppers can see a competitor's lower everyday price at any time. Unique, own-brand products can support high-low.</li>
+<li><strong>Check your margin.</strong> EDLP means living on a thinner margin every day. If your gross margin can't absorb a permanently lower price, high-low with occasional, well-sized sales is safer.</li>
+<li><strong>Check how price-sensitive each product is.</strong> Highly elastic products gain a lot of volume from a lower price and suit EDLP. Inelastic products gain little and are better kept at a higher price with fewer sales.</li>
+<li><strong>Consider a hybrid.</strong> Many stores keep everyday low prices on staples and bestsellers people rebuy, while using promotions on seasonal or discovery products. Most don't need to pick one strategy for the whole catalog.</li>
+</ol>
+<p>Whichever you choose, the regular price has to be real. Advertising a sale against a "regular" price you rarely charged is a legal risk under the FTC's pricing guides, covered in <a href="/blog/is-price-anchoring-manipulative-or-just-smart-pricing">whether price anchoring is manipulative</a>. For how EDLP fits alongside other positioning choices, see <a href="/blog/competitive-pricing-strategy">competitive pricing strategy</a>, and for the full landscape of strategies, <a href="/blog/ecommerce-pricing-strategy-the-complete-guide">ecommerce pricing strategy: the complete guide</a>.</p>
+
+<h2>Where Your Own Data Fits</h2>
+<p>The worked example above shows that the answer turns on two numbers most stores don't know: how much each product's sales move when its price moves, and how much sales dip after a promotion. Zorin reads those from your Shopify or WooCommerce history. It fits an elasticity model per product, flags promotional spikes so a past sale doesn't distort the read, and returns a raise, lower or hold recommendation with an estimated profit impact and a confidence score. That tells you which products are worth pricing low every day and which hold their full price comfortably.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/promotion-flags.webp" alt="Zorin product page showing a promotion flags table with an Auto-detect button" width="736" height="432" loading="lazy" />
+  <figcaption>Flagging past promotions keeps sale weeks from making a product look more price-sensitive than it really is, the key input when choosing between EDLP and high-low.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Everyday low pricing keeps prices consistently low with few sales; high-low pricing sets a higher regular price and discounts it often.</li>
+<li>EDLP gives steadier demand, simpler inventory and less promotional spend, at the cost of a permanently thinner margin.</li>
+<li>High-low creates urgency and traffic but trains customers to wait for sales, which can erase its advantage.</li>
+<li>In 2026, U.S. grocers including Stop &amp; Shop and Kroger moved toward everyday low prices as shoppers sought fair, predictable pricing.</li>
+<li>J.C. Penney's 2012 switch to everyday pricing cut comparable sales by about 20% because its customers had been trained on sales.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is everyday low pricing?</h3>
+<p>Everyday low pricing (EDLP) is a strategy of keeping prices consistently low instead of running frequent sales and promotions. Customers get a fair price at any time without waiting for a discount. Walmart is the best-known example.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between everyday low pricing and high-low pricing?</h3>
+<p>EDLP keeps a low, stable price with few sales. High-low pricing sets a higher regular price and uses frequent discounts, coupons and markdowns below it. EDLP trades excitement for predictability; high-low trades predictability for sale-driven spikes in demand.</p>
+</div>
+<div class="faq-item">
+<h3>Is everyday low pricing good for small online stores?</h3>
+<p>It can be, for replenishment products and items shoppers compare easily, as long as your margin can absorb a permanently lower price. Stores selling unique, own-brand or seasonal products often do better with a higher regular price and occasional well-sized sales.</p>
+</div>
+<div class="faq-item">
+<h3>What are the disadvantages of everyday low pricing?</h3>
+<p>Your margin is thinner every day, you lose the traffic and urgency that sale events create, and switching from high-low can backfire if customers are used to discounts. J.C. Penney's comparable sales fell about 20% after it made that switch in 2012.</p>
+</div>
+<div class="faq-item">
+<h3>Should I stop running sales and switch to everyday low prices?</h3>
+<p>Not abruptly. Check how much of your revenue already comes from discounts and how price-sensitive each product is. A gradual hybrid, everyday low prices on staples and promotions on seasonal products, is safer than switching the whole catalog at once.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use both everyday low pricing and high-low pricing?</h3>
+<p>Yes, and most stores do. A common approach is everyday low prices on bestsellers and replenishment items, with sales reserved for seasonal, slow-moving or discovery products. The key is keeping regular prices genuine so any discount is real.</p>
+</div>
+</section>
+
+<p class="conclusion">Everyday low pricing and high-low pricing are both valid strategies. The better one for your store depends on what your customers have learned to expect and how each product responds to price. If you'd like to see that product by product, <a href="/signup">start a free trial of Zorin</a> and let your own sales history show which products belong at an everyday low price.</p>
+    `.trim(),
+  },
+  {
     slug: "pricing-intelligence-vs-pricing-analytics-software",
     title: "Pricing Intelligence vs Pricing Analytics Software",
     excerpt:
@@ -3185,6 +3303,8 @@ export const posts: BlogPost[] = [
 
 <h2>Why Pricing Deserves More Attention Than It Gets</h2>
 <p>Three findings make the case that pricing is worth real effort. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's pricing research</a> found that for the average S&amp;P 1500 company, a 1% price increase with volume unchanged lifts operating profit by about 8%, more than a 1% cut in variable costs. <a href="https://www.simon-kucher.com/en/insights/global-pricing-study-2025" target="_blank" rel="noopener noreferrer">Simon-Kucher's Global Pricing Study 2025</a> found that companies realize less than half of the price increases they plan, so how an increase is chosen and rolled out matters as much as the decision to raise. And the classic <a href="https://econpapers.repec.org/RePEc:aea:aecrev:v:76:y:1986:i:4:p:728-41" target="_blank" rel="noopener noreferrer">fairness research by Kahneman, Knetsch and Thaler</a> showed customers accept price increases tied to real cost rises while resenting ones that look like exploiting demand. Whatever strategy you pick, those three facts shape how well it works.</p>
+
+<p>One of the biggest strategic choices is whether to keep prices low every day or run a higher regular price with frequent sales; <a href="/blog/everyday-low-pricing-vs-high-low-pricing">everyday low pricing vs high-low pricing</a> compares the two with a worked example.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
@@ -6345,6 +6465,8 @@ export const posts: BlogPost[] = [
   <li><strong>Revisit the position periodically</strong>, since competitor prices, your own costs, and your own customer mix all shift over time.</li>
 </ol>
 <p>If you're evaluating a repricing tool that just matches competitors automatically, <a href="/blog/how-to-evaluate-a-shopify-pricing-app">here's what that approach misses</a> compared to a model that reads your own demand instead. And if you haven't checked what your own elasticity actually supports yet, <a href="/signup">connect your sales history</a> and see which position your own customers' data actually recommends.</p>
+
+<p>For a full breakdown of the two approaches, with a worked profit comparison, see <a href="/blog/everyday-low-pricing-vs-high-low-pricing">everyday low pricing vs high-low pricing</a>.</p>
 
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
