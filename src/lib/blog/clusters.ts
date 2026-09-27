@@ -37,6 +37,7 @@ export const clusters: Cluster[] = [
       "best-pricing-optimization-tools-for-shopify-stores-2026",
       "woocommerce-pricing-apps-what-to-look-for",
       "price-elasticity-vs-repricing-software",
+      "pricing-intelligence-vs-pricing-analytics-software",
       "price-optimization-tools",
       "competitor-price-tracking",
       "how-to-evaluate-a-shopify-pricing-app",

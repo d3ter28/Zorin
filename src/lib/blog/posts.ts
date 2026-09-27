@@ -38,6 +38,133 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "pricing-intelligence-vs-pricing-analytics-software",
+    title: "Pricing Intelligence vs Pricing Analytics Software",
+    excerpt:
+      "Pricing intelligence tracks competitors; pricing analytics reads your own sales. Which type of pricing software to buy first, and where Zorin fits.",
+    date: "2026-09-27",
+    readingTime: "10 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Pricing intelligence software tells you what your competitors charge. Pricing analytics software tells you what happened to your own sales, margins and discounts. Neither one, on its own, tells you what price you should charge: that is a third category, price optimization, which turns data into a recommended price. Knowing which of the three problems you actually have is the fastest way to avoid paying for the wrong tool, and it's also how tools like Zorin, which sits in the optimization category, should be judged: against the question you need answered, not against a vendor's label.</p>
+
+<h2>Three Labels, Three Different Questions</h2>
+<p>Vendors use "intelligence," "analytics," "insights" and "optimization" almost interchangeably in their marketing, which is why so many merchants end up comparing tools that were never built to do the same job. The simplest way to cut through it is to ask what question each category answers.</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Pricing intelligence software</th><th>Pricing analytics software</th><th>Price optimization software</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Question it answers</td><td>What are competitors charging right now?</td><td>What happened to my prices, sales and margins?</td><td>What price should I charge for each product?</td></tr>
+    <tr><td>Main data source</td><td>Competitor websites and marketplaces (scraped or matched)</td><td>Your own orders, costs and discount history</td><td>Your own sales history at different prices, sometimes plus survey or market data</td></tr>
+    <tr><td>Typical output</td><td>Price comparison tables, alerts, repricing rules</td><td>Dashboards, margin reports, discount leakage reports</td><td>A recommended price per product, with the expected profit impact</td></tr>
+    <tr><td>Where it breaks</td><td>Can't tell you whether your own customers will follow a competitor's price</td><td>Describes the past, leaves the decision to you</td><td>Needs enough sales history and price variation to be reliable</td></tr>
+  </tbody>
+</table>
+
+<p>Some products span two categories. Many pricing intelligence tools add repricing rules, and some analytics platforms add basic recommendations. But every tool has a center of gravity, and that center tells you which question it's genuinely good at answering.</p>
+
+<h2>What Pricing Intelligence Software Actually Does</h2>
+<p>Pricing intelligence software collects competitor prices automatically, usually by matching your products to the same or similar items on competitor sites and marketplaces, then refreshing those prices on a schedule. It answers "where do I sit in the market?" and, with repricing rules added, "what should happen automatically when a competitor moves?"</p>
+<p>The category exists because prices move constantly now. Research by <a href="https://www.nber.org/digest/jan19/e-commerce-and-pricing-behavior-traditional-retailers" target="_blank" rel="noopener noreferrer">Alberto Cavallo for the NBER</a> found that the share of products changing price each month at large U.S. multi-channel retailers roughly doubled, from 15% in 2008-10 to almost 30% in 2014-17, with the biggest jump in categories where Amazon competes hardest. Nobody watches that many prices by hand.</p>
+<p>Prices for small stores are accessible. Prisync's URL-based plan <a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">starts at $99 a month</a> for up to 100 products, and Pricefy offers a <a href="https://www.pricefy.io/pricing" target="_blank" rel="noopener noreferrer">free tier for 50 SKUs and 5 competitors</a>, with paid plans from $49 a month. Our deeper guide to <a href="/blog/competitor-price-tracking">competitor price tracking</a> covers when a tracker is worth paying for.</p>
+<p>Pricing intelligence is the right first tool when you sell identical, easily compared products, like branded electronics or other people's SKUs, where a shopper can see your price next to five others on one screen.</p>
+
+<h2>What Pricing Analytics Software Actually Does</h2>
+<p>Pricing analytics software, sometimes sold as pricing insights software or price analysis software, looks inward. It pulls in your own orders, costs and discount usage and shows you where margin is going: which products are discounted most, which coupon codes stack, which categories carry the lowest real margin after fees and returns.</p>
+<p>It's diagnostic. A good analytics dashboard might show that your average realized price on a product sits well below list because of stacked codes, or that one category's margin collapsed after shipping rates rose. What it won't tell you is what the price should be instead. That decision stays with you.</p>
+<p>Pricing analytics is the right first tool when you suspect you're losing margin but can't see where: lots of discount codes, several sales channels, or costs that change often.</p>
+
+<h2>What Price Optimization Software Adds</h2>
+<p>Price optimization software takes the next step and recommends a price. The better tools do this by measuring how each product's sales have responded to past price changes, its price elasticity, and working out which price maximizes profit rather than revenue or volume. Some also blend in survey data or competitor data as inputs.</p>
+<p>This matters because the payoff from getting price right is large. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's pricing research</a> found that for the average S&amp;P 1500 company, a 1% price improvement with volume holding steady lifts operating profit by about 8%. Intelligence and analytics tools can point toward that improvement. An optimization tool is built to quantify it product by product.</p>
+<p>Zorin sits in this third category. It connects to Shopify or WooCommerce, or takes an uploaded sales history, fits an elasticity model to each product's own price-and-quantity data, and returns a raise, lower or hold recommendation with an estimated profit impact and a confidence score based on how much real data supports it. It doesn't scrape competitor sites; if you want competitor context, you can log a competitor's price manually per product, and Zorin shows the minimum, median and maximum. It also includes a separate Van Westendorp price survey for products without enough sales history to model.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>Optimization tools answer a different question from intelligence tools: not "what do competitors charge?" but "what should this product cost, given how my own customers respond?"</figcaption>
+</figure>
+
+<h2>A Real-World Warning About Following Competitor Prices</h2>
+<p>The biggest risk with pricing intelligence isn't the data. It's the automatic assumption that when a competitor moves, you should move too. The clearest illustration comes from the U.S. Federal Trade Commission's <a href="https://www.ftc.gov/legal-library/browse/cases-proceedings/1910129-1910130-amazoncom-inc-amazon-ecommerce" target="_blank" rel="noopener noreferrer">antitrust case against Amazon</a>.</p>
+<p>According to the unredacted complaint, <a href="https://techcrunch.com/2023/11/02/unredacted-ftc-suit-shows-project-nessie-price-raising-algorithm-made-amazon-1-4b/" target="_blank" rel="noopener noreferrer">as reported by TechCrunch</a>, Amazon built an algorithm codenamed Project Nessie to identify products where it predicted other online stores would follow its price increases. The FTC alleges it raised prices on those products, rivals' pricing tools matched them, and Amazon then kept the higher prices, earning more than $1 billion, per <a href="https://www.engadget.com/amazon-ftc-lawsuit-unredacted-documents-project-nessie-secret-price-gouging-algorithm-194800531.html" target="_blank" rel="noopener noreferrer">Engadget's reading of the filings</a>. Amazon disputes this, saying the tool was meant to stop its own price matching from pushing prices to unsustainably low levels, and the case has not been decided.</p>
+<p>Whatever the court eventually finds, the lesson for a small store holds either way: a competitor's price is a signal about their strategy, not about your customers. Automatically matching it hands your pricing decisions to someone else's algorithm. Competitor data is most useful as one input into a decision you make on your own numbers.</p>
+
+<h2>Worked Example: What Competitor Data Alone Gets Wrong</h2>
+<p>Here's how the three categories play out on one product. Say you sell a kitchen gadget at <strong>$30</strong>. It costs you <strong>$15</strong> all-in, and you sell <strong>200 units a month</strong>, so you make <strong>$3,000</strong> in monthly profit.</p>
+<p>Your pricing intelligence tool flags that your main competitor just dropped the same item to <strong>$26</strong>. The obvious rule-based response is to match.</p>
+<ul>
+<li><strong>Match at $26:</strong> profit per unit falls from $15 to $11. To keep making $3,000 a month, you'd need about 273 units, <strong>36% more volume</strong> from a 13.3% price cut.</li>
+<li><strong>Hold at $30 and lose 5% of sales:</strong> 190 units × $15 = <strong>$2,850</strong>.</li>
+<li><strong>Hold at $30 and lose 10% of sales:</strong> 180 units × $15 = <strong>$2,700</strong>.</li>
+</ul>
+<p>Whether matching makes sense depends entirely on how price-sensitive your buyers are. If the product's elasticity is around -1.2, a 13.3% cut lifts units by roughly 16%, to about 232 units, and 232 × $11 = <strong>$2,552</strong>. That's worse than holding your price even if you lose 10% of your sales to the competitor. Matching only wins if your customers are unusually price-sensitive, with an elasticity of about -2.7 or stronger.</p>
+<p>The intelligence tool told you the competitor moved. Your analytics would tell you what your margin was. Only a read on your own customers' price sensitivity tells you whether to follow. For published reference points, our <a href="/research/price-elasticity-by-category">price elasticity by category</a> research ranges from about -0.35 for household appliances to about -2.86 for casual and athletic apparel.</p>
+
+<h2>How to Decide Which Type of Pricing Software You Need</h2>
+<p>Most stores don't need all three categories at once. Work through these steps in order and stop at the first one that describes your biggest gap.</p>
+<ol>
+<li><strong>Check whether you know your real margin per product.</strong> If you can't say, after fees, shipping, discounts and returns, what each product actually earns you, start with pricing analytics or even a good margin spreadsheet. Every other decision depends on this number.</li>
+<li><strong>Check how directly shoppers compare your products.</strong> If you resell identical, branded items that appear on marketplaces and comparison sites, you need to know where competitors sit. Pricing intelligence belongs on your list.</li>
+<li><strong>Check whether you've been changing prices without knowing the result.</strong> If you raise or cut prices and can't tell whether profit went up, you need optimization: something that reads how each product responds to price.</li>
+<li><strong>Check your data.</strong> Optimization needs sales history with some price variation. If most products have never changed price, <a href="/blog/how-much-sales-history-for-elasticity-pricing">how much sales history you need</a> covers the thresholds, and a customer price survey can fill the gap in the meantime.</li>
+<li><strong>Add the second category only when the first is working.</strong> A store that sells its own brand may never need full pricing intelligence; a reseller may need intelligence and optimization together, with competitor prices feeding into decisions rather than dictating them.</li>
+</ol>
+<p>If you're weighing specific vendors after picking a category, our roundup of <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">price optimization software for Shopify</a> compares tools across all three types, and <a href="/blog/price-elasticity-vs-repricing-software">price elasticity software vs repricing software</a> goes deeper on the intelligence-versus-optimization split specifically.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Pricing intelligence software tracks competitor prices; pricing analytics software reports on your own sales and margins; price optimization software recommends a price.</li>
+<li>Competitor price-change frequency roughly doubled at large U.S. retailers between 2008-10 and 2014-17, which is why automated price intelligence exists.</li>
+<li>Competitor data can't tell you whether your own customers will follow a price change. Automatically matching hands your pricing to someone else's strategy.</li>
+<li>In the worked example, matching a competitor's $26 price only beats holding at $30 if a 13.3% cut lifts volume by 36% or more.</li>
+<li>Buy the category that matches your biggest gap first: margin visibility, competitive exposure, or not knowing the right price.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What's the difference between pricing intelligence software and pricing analytics software?</h3>
+<p>Pricing intelligence software collects competitor prices from other websites and marketplaces, so you know where you sit in the market. Pricing analytics software analyzes your own sales, costs and discounts, so you know where margin is going. Intelligence looks outward at competitors; analytics looks inward at your own store.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need pricing intelligence software for a small Shopify store?</h3>
+<p>Only if shoppers can easily compare your exact products elsewhere, for example branded items also sold on marketplaces. If you sell your own brand, competitor tracking matters much less than knowing your own margins and how your customers respond to price. Free tiers, like Pricefy's 50-SKU plan, let you test the value first.</p>
+</div>
+<div class="faq-item">
+<h3>Can a pricing intelligence tool tell me what price to charge?</h3>
+<p>Not on its own. It tells you what competitors charge and can apply rules like "stay 3% below the lowest price," but it can't tell you whether your customers would accept a higher price. Deciding the right price needs data on how your own sales respond to price changes.</p>
+</div>
+<div class="faq-item">
+<h3>Which should I buy first: price intelligence, pricing analytics, or price optimization software?</h3>
+<p>Start with whichever gap is biggest. If you don't know your real margin per product, start with analytics. If you resell products shoppers compare side by side, start with intelligence. If you change prices without knowing whether profit improved, start with optimization.</p>
+</div>
+<div class="faq-item">
+<h3>How much does pricing intelligence software cost for an ecommerce store?</h3>
+<p>Entry-level plans are affordable for small stores. Pricefy has a free tier covering 50 SKUs and 5 competitors, with paid plans from $49 a month, and Prisync's URL-based plan starts at $99 a month for up to 100 products. Enterprise platforms usually quote custom pricing.</p>
+</div>
+<div class="faq-item">
+<h3>Is pricing insights software the same as pricing analytics software?</h3>
+<p>Usually, yes. "Pricing insights" and "price analysis" are common vendor labels for the same inward-looking category: dashboards and reports built from your own orders, costs and discounts. Check what data the tool actually uses rather than relying on the label.</p>
+</div>
+<div class="faq-item">
+<h3>Should I automatically match competitor prices?</h3>
+<p>Rarely as a default. Matching only makes sense if your customers are highly price-sensitive for that product. In many cases, holding your price and losing a small share of sales earns more profit than matching a cut. The FTC's allegations about Amazon's Project Nessie also show how automatic matching can be exploited by a larger competitor.</p>
+</div>
+</section>
+
+<p class="conclusion">Pricing intelligence, pricing analytics and price optimization answer three different questions, and the right first purchase is whichever question you can't currently answer. Competitor data is a useful input, but the price you charge should come from your own margins and your own customers. If that last part is your gap, <a href="/signup">start a free trial of Zorin</a> and see a raise, lower or hold recommendation for each product, built from your own Shopify or WooCommerce sales history.</p>
+    `.trim(),
+  },
+  {
     slug: "how-ai-is-changing-smartphone-photography",
     title: "How AI Is Changing Smartphone Photography",
     excerpt:
@@ -4297,6 +4424,8 @@ export const posts: BlogPost[] = [
 <p>Budget differs by mechanism. Competitor trackers start around $49 to $99/month. A/B price testing with Intelligems requires its Smart Pricing module, listed at $1,199/month on top of the $599/month base module (or $1,279/month for its all-in plan), as of September 2026. Enterprise elasticity platforms like Competera are custom-quoted. Zorin sits in the SMB tier, accessible to merchants who don't have enterprise budgets or dedicated pricing analysts. For a fuller breakdown of every category, see <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">the full pricing tools comparison</a>, and if you land on a demand-based tool specifically, <a href="/blog/price-optimization-tools">a closer look at the elasticity-tool category on its own</a> covers more ground on picking between options within it.</p>
 <p>Whichever category you land in, install decisions are easy to rush. <a href="/blog/how-to-evaluate-a-shopify-pricing-app">A short checklist for evaluating any Shopify pricing app before you connect it to your store</a> applies regardless of whether you end up with a tracker, a repricer, or a demand-based tool.</p>
 
+<p>Competitor tracking is one of three categories of pricing software. <a href="/blog/pricing-intelligence-vs-pricing-analytics-software">Pricing intelligence vs pricing analytics software</a> lays out how it differs from analytics and optimization tools, with a worked example of when matching a competitor's price loses money.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -4345,7 +4474,8 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">Competitor tracking and demand-based pricing aren't rival approaches, they're built to answer different questions. If your customers are comparison-shopping the exact same SKU, a tracker earns its keep. If your real question is what your own customers would pay for your product, that answer lives in your own sales history. <a href="/signup">Start a free trial</a> and see what Zorin's elasticity model says about your catalog.</p>
-    `.trim(),
+    
+`.trim(),
   },
   {
     slug: "best-pricing-optimization-tools-for-shopify-stores-2026",
@@ -4832,6 +4962,8 @@ export const posts: BlogPost[] = [
 <h2>A Third Option: Elasticity Read From Your Own Data</h2>
 <p>Zorin is the elasticity engine built specifically for that second group. Connect your Shopify or WooCommerce store, or upload a CSV, and Zorin fits a price elasticity model per SKU from your own sales history, then hands you a plain raise, lower, or hold call with the reasoning attached: the elasticity, the estimated profit lift, and a confidence label so you know how much data actually backs the number. Nothing applies automatically. You review each recommendation, adjust it with a slider or your own number, preview the margin impact, and apply it one product at a time or in bulk. Alongside the elasticity read, <a href="/blog/how-do-i-know-what-price-my-customers-are-willing-to-pay">Zorin also offers a separate Van Westendorp price sensitivity survey</a>, a four-question, no-login customer survey that gives you a second, stated-preference signal to read next to your own sales data, not blended into it.</p>
 
+<p>If you're still sorting out which kind of tool you need at all, <a href="/blog/pricing-intelligence-vs-pricing-analytics-software">pricing intelligence vs pricing analytics software</a> explains how competitor-tracking, analytics and optimization tools differ, and which to buy first.</p>
+
 <div class="key-takeaways">
 <p class="kt-label">Key Takeaways</p>
 <ul>
@@ -4892,7 +5024,8 @@ export const posts: BlogPost[] = [
 </section>
 
 <p class="conclusion">Repricing and elasticity modeling aren't competing answers to the same question, they're built to answer two different ones. If your store's pricing problem is "am I visible at the right price point on a marketplace," a repricer earns its keep. If it's "what should this specific product actually cost given how my customers behave," that's a question only your own sales history can answer, and it's the one <a href="/signup">Zorin</a> was built to read. For a direct, feature-by-feature look at one specific repricer, see <a href="/blog/zorin-vs-prisync">Zorin vs Prisync</a>, or browse <a href="/blog/prisync-alternatives">Prisync alternatives</a> if you're comparing more than one option.</p>
-    `.trim(),
+    
+`.trim(),
   },
   {
     slug: "price-increase-killed-your-sales-heres-the-real-reason",
