@@ -35,9 +35,11 @@ export const clusters: Cluster[] = [
       "Comparisons and buyer's guides for pricing, repricing, and pricing-optimization apps, including where a demand-based tool like Zorin fits best.",
     postSlugs: [
       "best-pricing-optimization-tools-for-shopify-stores-2026",
+      "best-dynamic-pricing-software",
       "woocommerce-pricing-apps-what-to-look-for",
       "price-elasticity-vs-repricing-software",
       "pricing-intelligence-vs-pricing-analytics-software",
+      "ai-pricing-software",
       "price-optimization-tools",
       "competitor-price-tracking",
       "how-to-evaluate-a-shopify-pricing-app",

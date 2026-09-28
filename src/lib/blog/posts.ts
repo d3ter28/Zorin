@@ -38,6 +38,271 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "best-dynamic-pricing-software",
+    title: "Best Dynamic Pricing Software for Ecommerce (2026)",
+    excerpt:
+      "Best dynamic pricing software for ecommerce compared: repricers, rule engines, price testing and demand-based tools, with 2026 prices and who each suits.",
+    date: "2026-09-28",
+    readingTime: "7 min read",
+    category: "Product",
+    funnelStage: "BOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">The best dynamic pricing software for ecommerce depends on what should drive your prices. If you sell on Amazon or Walmart, a repricer like Informed Repricer reacts to the Buy Box in real time. If you track competitors across marketplaces, Prisync or Omnia Retail adjust prices by rule. If you want to test prices on your own Shopify store, Intelligems runs price experiments. If you want prices based on how your own customers respond, Zorin recommends changes from a per-product demand model. Large retailers usually end up with an enterprise platform like Competera.</p>
+
+<h2>The Quick Comparison</h2>
+<table>
+  <thead>
+    <tr><th>Tool</th><th>What drives the price</th><th>Best for</th><th>Published starting price</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Informed Repricer</td><td>Amazon Buy Box and competing offers</td><td>Amazon and Walmart marketplace sellers</td><td>$99/month (Launch), $199/month (Pro)</td></tr>
+    <tr><td>Prisync</td><td>Competitor prices plus your rules</td><td>SMB stores selling products competitors also stock</td><td>$199/month for the dynamic pricing engine (URL-based Premium)</td></tr>
+    <tr><td>Omnia Retail</td><td>Market data plus a rule tree</td><td>Multi-marketplace retailers and DTC brands</td><td>€399/month (SMB, single shop)</td></tr>
+    <tr><td>Intelligems</td><td>Live price tests on your storefront</td><td>Shopify brands with enough traffic to test</td><td>$1,199/month Smart Pricing module plus the $599 base module</td></tr>
+    <tr><td>Zorin</td><td>Your own sales history (price elasticity)</td><td>Shopify and WooCommerce stores that set their own prices</td><td>$39 to $249/month</td></tr>
+    <tr><td>Competera</td><td>Demand and competitive factors at scale</td><td>Enterprise retailers with pricing teams</td><td>Quote only</td></tr>
+  </tbody>
+</table>
+<p>Prices were checked on each vendor's pricing page in September 2026 and are list prices before any annual or bundle discounts.</p>
+
+<h2>First, Decide What Should Move Your Prices</h2>
+<p>Dynamic pricing software isn't one category. The biggest difference between tools is the signal they react to:</p>
+<ul>
+<li><strong>Competitor-driven:</strong> prices follow the market. Right when you sell identical products against many sellers.</li>
+<li><strong>Experiment-driven:</strong> the tool tests prices on real visitors and keeps the winner. Right when you have steady traffic and can accept showing different prices during a test.</li>
+<li><strong>Demand-model-driven:</strong> the tool learns how your customers have responded to past prices and recommends the most profitable one. Right when you set your own prices and have sales history.</li>
+</ul>
+<p>If you aren't sure whether your store is ready for any of them, start with <a href="/blog/dynamic-pricing-software">dynamic pricing software: is your store ready?</a></p>
+
+<h2>1. Informed Repricer: Best for Amazon and Walmart Sellers</h2>
+<p><a href="https://www.informedrepricer.com/pricing" target="_blank" rel="noopener noreferrer">Informed Repricer</a> is built for marketplace sellers competing for the Buy Box. Its Pro plan is $199 a month with unlimited listings and users, instant repricing and profit protection, and a $99 Launch plan applies until your business reaches $5,000 in monthly revenue. It connects to more than 20 international Amazon marketplaces and Walmart Marketplace, and offers a 14-day free trial with no credit card. Add-ons such as faster "Overdrive" updates cost extra.</p>
+<p><strong>Choose it if</strong> most of your revenue comes through marketplace listings shared with other sellers. <strong>Skip it if</strong> you sell mainly on your own store, where there's no Buy Box to win.</p>
+
+<h2>2. Prisync: Best Rule-Based Option for SMB Stores</h2>
+<p><a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">Prisync</a> tracks competitor prices and, from its $199-a-month Premium plan (up to 1,000 products on the URL-based model), adds a dynamic pricing engine that adjusts your prices by rules you set against competitor prices. Its $99 plan is monitoring only. There's a 14-day free trial.</p>
+<p><strong>Choose it if</strong> competitors sell the same products and you want transparent, rule-based adjustments. <strong>Skip it if</strong> your products are own-brand, since there's nothing direct to price against. See <a href="/blog/zorin-vs-prisync">Zorin vs Prisync</a>.</p>
+
+<h2>3. Omnia Retail: Best for Multi-Marketplace Retailers</h2>
+<p><a href="https://www.omniaretail.com/pricing" target="_blank" rel="noopener noreferrer">Omnia Retail's SMB plan</a> starts at €399 a month for a single shop with up to five users. It combines price monitoring with automated dynamic pricing built in a visual rule tree, approval limits, strategy rollback and an AI assistant that explains price moves. It integrates with Shopify and several European ecommerce platforms, and supports EU Omnibus lowest-price tracking.</p>
+<p><strong>Choose it if</strong> you sell across several marketplaces, especially in Europe, and want monitoring and repricing in one tool. <strong>Skip it if</strong> you need a low-cost starting point. See <a href="/blog/zorin-vs-omnia-retail">Zorin vs Omnia Retail</a>.</p>
+
+<h2>4. Intelligems: Best for Price Testing on Shopify</h2>
+<p><a href="https://www.intelligems.io/pricing" target="_blank" rel="noopener noreferrer">Intelligems</a> is a testing platform for Shopify brands. Its Smart Pricing module, which runs price and discount tests, lists at $1,199 a month on top of the $599 Smart Content module every plan includes, for stores up to 10,000 orders a month before bundle and annual discounts. It reports more than 5,000 stores and 4.8 stars on the Shopify App Store.</p>
+<p><strong>Choose it if</strong> you have enough traffic to reach clear test results and the budget for a premium tool. <strong>Skip it if</strong> you're a smaller store: the monthly cost needs a large profit lift to pay back. Running a fair test is covered in <a href="/blog/how-to-run-a-price-ab-test-the-right-way">how to run a price A/B test the right way</a>.</p>
+
+<h2>5. Zorin: Best for Demand-Based Pricing on Shopify and WooCommerce</h2>
+<p>Zorin reads your Shopify or WooCommerce sales history, fits a price elasticity model for each product and recommends raise, lower or hold with an estimated profit impact and a confidence score. You approve changes, one at a time or in bulk, and they're pushed to your store. Pricing is published at $39 to $249 a month depending on catalog size.</p>
+<p><strong>Choose it if</strong> you set your own prices, have some sales history and want to know how your own customers respond rather than follow competitors. <strong>Skip it if</strong> you need second-by-second automatic repricing: Zorin recommends and you apply; it isn't a real-time repricer, and it doesn't scrape competitor prices.</p>
+
+<h2>6. Competera: Best for Enterprise Retailers</h2>
+<p>Competera doesn't publish plans; pricing is by request and scoped to catalog size and markets. It models demand alongside competitive and other factors and is designed for retailers with dedicated pricing teams and ERP integrations. For smaller stores, see <a href="/blog/competera-alternatives">Competera alternatives</a>.</p>
+
+<h2>Worked Example: What a Tool Has to Earn</h2>
+<p>A Shopify store does $100,000 a month in revenue at a 40% gross margin, so $40,000 of gross profit. Here's the profit lift each tool needs just to pay for itself:</p>
+<table>
+  <thead>
+    <tr><th>Monthly cost</th><th>Lift in gross profit needed to break even</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>$99</td><td>0.25%</td></tr>
+    <tr><td>$199</td><td>0.5%</td></tr>
+    <tr><td>$249</td><td>0.6%</td></tr>
+    <tr><td>€399 (roughly $430 to $470)</td><td>1.1% to 1.2%</td></tr>
+    <tr><td>$1,798 ($1,199 + $599)</td><td>4.5%</td></tr>
+  </tbody>
+</table>
+<p>A 4.5% profit lift is achievable for a store with the right catalog and traffic, but it's a meaningful bar; a 0.5% lift is a much lower one. Match the tool to the size of the prize. The full ROI method is in <a href="/blog/is-pricing-software-worth-the-monthly-cost">is pricing software worth the monthly cost?</a></p>
+
+<h2>Guardrails Any Dynamic Pricing Tool Needs</h2>
+<ol>
+<li><strong>A floor per product</strong> based on landed cost plus a minimum margin.</li>
+<li><strong>A ceiling and a maximum step</strong>, so no single change moves a price too far.</li>
+<li><strong>Human approval for large changes</strong>, at least until you trust the tool.</li>
+<li><strong>A clear customer story.</strong> Price changes customers can explain are tolerated; ones that look like exploiting demand trigger backlash, as covered in <a href="/blog/what-is-dynamic-pricing">what dynamic pricing is</a>.</li>
+</ol>
+
+<figure class="post-image">
+  <img src="/images/blog/dashboard-overview.webp" alt="Zorin dashboard showing raise, lower, and hold recommendations across a full product catalog" width="1440" height="900" loading="lazy" />
+  <figcaption>A demand-based tool recommends different moves for different products instead of one rule for the whole catalog.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Pick dynamic pricing software by the signal it reacts to: competitors, live tests or your own demand data.</li>
+<li>Informed Repricer ($99 to $199) suits Amazon and Walmart sellers; Prisync ($199 for its pricing engine) suits rule-based SMB stores.</li>
+<li>Omnia Retail (from €399) fits multi-marketplace retailers; Competera is quote-only enterprise software.</li>
+<li>Intelligems' Smart Pricing costs $1,199 a month plus a $599 base module, so it needs about a 4.5% profit lift on a $100k-a-month store.</li>
+<li>Zorin ($39 to $249) recommends prices from your own sales history rather than repricing in real time.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is the best dynamic pricing software for ecommerce?</h3>
+<p>It depends on your channel and data. Marketplace sellers usually do best with a repricer like Informed Repricer, stores competing on identical products with Prisync or Omnia Retail, high-traffic Shopify brands with Intelligems, and stores that set their own prices with a demand-based tool like Zorin.</p>
+</div>
+<div class="faq-item">
+<h3>What is the best dynamic pricing software for Shopify?</h3>
+<p>For price testing, Intelligems is built for Shopify but priced for larger brands. For rule-based competitor pricing, Prisync integrates with Shopify. For recommendations from your own sales history, Zorin connects to Shopify and pushes approved prices back to your store.</p>
+</div>
+<div class="faq-item">
+<h3>How much does dynamic pricing software cost?</h3>
+<p>Published prices range from about $39 to $249 a month for SMB demand-based tools, $99 to $199 for marketplace repricers, $199 and up for competitor-based rule engines, and $1,800 a month or more for premium testing platforms. Enterprise platforms are usually quote-only.</p>
+</div>
+<div class="faq-item">
+<h3>Is dynamic pricing software worth it for small stores?</h3>
+<p>It can be if the tool's cost is a small share of your gross profit and your products have room to move. A $199 tool needs a 0.5% profit lift on a store making $40,000 of gross profit a month; a $1,798 tool needs 4.5%.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between a repricer and dynamic pricing software?</h3>
+<p>A repricer is a type of dynamic pricing software that changes prices in response to competitor offers, usually on marketplaces. Dynamic pricing software also includes tools that price from demand models or live experiments.</p>
+</div>
+<div class="faq-item">
+<h3>Can dynamic pricing software change prices automatically?</h3>
+<p>Most can. Repricers and rule engines change prices automatically within limits you set, while demand-based tools like Zorin recommend changes for you to approve. Automatic changes should always run with floors, ceilings and step limits.</p>
+</div>
+</section>
+
+<p class="conclusion">The best dynamic pricing software is the one whose signal matches your business: the Buy Box, your competitors, live tests or your own customers' behavior. If your store sets its own prices and you want to know how each product responds, <a href="/signup">start a free Zorin trial</a> and see recommendations from your own sales history.</p>
+`.trim(),
+  },
+  {
+    slug: "ai-pricing-software",
+    title: "AI Pricing Software: How It Works and What to Ask",
+    excerpt:
+      "AI pricing software explained: the four types, how AI price optimization works, a worked example, the antitrust and model risks, and 8 questions to ask.",
+    date: "2026-09-28",
+    readingTime: "7 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">AI pricing software uses machine learning to recommend or set prices from data, most often your own sales history, competitor prices or both. The better tools estimate how demand for each product responds to price and suggest the price that earns the most profit, with a measure of how confident the model is. Before you buy, check what data the "AI" actually learns from, whether it shows its uncertainty, whether a person approves changes, and whether it pools competitors' private data, which is now an antitrust risk.</p>
+
+<h2>What "AI" Means in Pricing Software</h2>
+<p>"AI pricing" covers very different products. Some are genuine demand models; some are competitor-matching rules with an AI label; some are chat assistants on top of a dashboard. Knowing which one you're looking at is the first step.</p>
+<table>
+  <thead>
+    <tr><th>Type</th><th>What it learns from</th><th>What it outputs</th><th>Best for</th><th>Watch out for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Demand or elasticity models (AI price optimization)</td><td>Your own prices and sales over time</td><td>A recommended price per product and the expected profit change</td><td>Stores with sales history and room to set their own prices</td><td>Needs past price variation; thin data means low confidence</td></tr>
+    <tr><td>Competitor-reactive repricers</td><td>Competitor and marketplace prices</td><td>Automatic price changes to match or beat rivals</td><td>Identical products on crowded marketplaces</td><td>Race to the bottom; "AI" may just be rules</td></tr>
+    <tr><td>Experimenting (reinforcement learning) systems</td><td>Live results from continuously testing prices</td><td>Prices that shift as the system learns</td><td>High-traffic catalogs that can absorb testing</td><td>Customers seeing different prices; hard to audit</td></tr>
+    <tr><td>Generative AI assistants</td><td>Your data plus a language model</td><td>Explanations, summaries and suggested rules in plain English</td><td>Making outputs easier to understand</td><td>Fluent answers aren't the same as a demand model</td></tr>
+  </tbody>
+</table>
+<p>For most small and mid-sized online stores, the first type is the one that answers the real question, "what should this product cost?", rather than "what does everyone else charge?". The difference is covered in more depth in <a href="/blog/rule-based-vs-algorithmic-pricing-which-fits-your-store">rule-based vs algorithmic pricing</a>.</p>
+
+<h2>How AI Price Optimization Works, Step by Step</h2>
+<ol>
+<li><strong>Collect the data.</strong> Orders, prices, dates and costs for each product, usually synced from Shopify, WooCommerce or a CSV.</li>
+<li><strong>Clean it.</strong> Flag promotions, stockouts and unusual spikes so a clearance sale doesn't look like normal demand.</li>
+<li><strong>Fit a demand model.</strong> Estimate how much each product's sales change when its price changes, its price elasticity.</li>
+<li><strong>Apply your objective and limits.</strong> Usually maximize profit, subject to a cost floor, a maximum step size and any MAP or brand rules.</li>
+<li><strong>Recommend a price with a confidence level.</strong> A good tool says how sure it is, and says "hold" when the data is too thin.</li>
+<li><strong>A person reviews and applies it.</strong> Then the new price becomes new data, and the model updates.</li>
+</ol>
+<p>How much history step three needs is covered in <a href="/blog/how-much-sales-history-for-elasticity-pricing">how much sales history you need for elasticity pricing</a>.</p>
+
+<h2>Worked Example: Reading Two AI Recommendations</h2>
+<p>An AI pricing tool looks at two products in the same store:</p>
+<table>
+  <thead>
+    <tr><th></th><th>Product A: refillable cleaner</th><th>Product B: phone stand</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Current price / cost</td><td>$40 / $22</td><td>$25 / $15</td></tr>
+    <tr><td>Monthly units</td><td>300</td><td>220</td></tr>
+    <tr><td>Estimated elasticity</td><td>−0.7</td><td>−2.4</td></tr>
+    <tr><td>Model confidence</td><td>Strong (many price points, consistent response)</td><td>Weak (two price points, noisy data)</td></tr>
+    <tr><td>Recommendation</td><td>Raise 6%</td><td>Hold</td></tr>
+  </tbody>
+</table>
+<p><strong>Product A:</strong> raising the price 6% to $42.40 with an elasticity of −0.7 means volume falls about 4.2%, to roughly 287 units. Profit goes from 300 × $18 = $5,400 to 287 × $20.40 = <strong>$5,855</strong>, about 8% more.</p>
+<p><strong>Product B:</strong> the model's best guess says it's very price-sensitive, but it's based on too little variation to trust. The honest recommendation is to hold, gather more data and revisit. A tool that confidently pushed a change here would be guessing. Knowing when to trust a recommendation is covered in <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">should you trust an AI pricing recommendation</a>.</p>
+
+<h2>What Can Go Wrong With AI Pricing</h2>
+<h3>Model risk at scale</h3>
+<p>The most famous failure is Zillow Offers, where an algorithm priced homes to buy and resell. It overpaid in a shifting market, and Zillow took a $304.4 million inventory write-down in the third quarter of 2021 before shutting the business, as <a href="https://www.gsb.stanford.edu/insights/flip-flop-why-zillows-algorithmic-home-buying-venture-imploded" target="_blank" rel="noopener noreferrer">Stanford GSB's analysis</a> describes. The lesson for a store: never let a model move prices faster or further than you can check, and watch confidence, not just the recommendation.</p>
+<h3>Algorithms that raise prices together</h3>
+<p>In a study published in the <a href="https://www.aeaweb.org/articles?id=10.1257/aer.20190623" target="_blank" rel="noopener noreferrer">American Economic Review</a>, Calvano and colleagues found that simple self-learning pricing algorithms, competing in a simulated market, consistently learned to charge prices above competitive levels without communicating with one another. Regulators have taken note. In November 2025 the U.S. Department of Justice announced a <a href="https://www.justice.gov/opa/pr/justice-department-requires-realpage-end-sharing-competitively-sensitive-information-and" target="_blank" rel="noopener noreferrer">proposed settlement requiring RealPage</a>, a rental pricing software company, to stop sharing competitively sensitive information and aligning prices among competing landlords. The practical rule for buyers: prefer tools that price from your own data, and be cautious with any product that pools nonpublic data from your competitors to set your price.</p>
+<h3>Customer backlash</h3>
+<p>Prices that change in ways customers can't explain feel unfair. Wendy's discovered this in 2024 when the phrase "dynamic pricing" triggered a backlash, covered in <a href="/blog/what-is-dynamic-pricing">what dynamic pricing is</a>.</p>
+
+<h2>Questions to Ask Before You Buy AI Pricing Software</h2>
+<ol>
+<li><strong>What data does the model learn from?</strong> Your own sales, competitor prices, or other companies' data?</li>
+<li><strong>Does it estimate demand, or react to competitors?</strong> Ask what happens to the recommendation if no competitor changes price.</li>
+<li><strong>Does it show confidence?</strong> Look for a clear signal when data is thin, and a "hold" option.</li>
+<li><strong>Who approves price changes?</strong> Automatic changes are fine only with floors, ceilings and step limits you control.</li>
+<li><strong>How does it handle promotions and stockouts?</strong> If it can't separate them, sale weeks will distort the model.</li>
+<li><strong>Can it explain a recommendation?</strong> You should see the demand curve or elasticity behind a number, not just the number.</li>
+<li><strong>How much history does it need?</strong> Tools that need years of data won't help a young store.</li>
+<li><strong>What does it cost, and is pricing published?</strong> Many enterprise tools require a demo just to get a quote.</li>
+</ol>
+<p>For a side-by-side of specific tools, see our roundups of <a href="/blog/best-pricing-optimization-tools-for-shopify-stores-2026">price optimization software for Shopify</a> and <a href="/blog/best-pricing-optimization-tools-for-woocommerce-2026">for WooCommerce</a>.</p>
+
+<h2>What a Demand-Based AI Pricing Tool Looks Like</h2>
+<p>Zorin is the first type in the table above. It reads your own Shopify or WooCommerce sales history, fits a log-log elasticity regression for each product, and recommends raise, lower or hold with an estimated profit impact and an R-squared based confidence score. It lets you flag promotions so they don't distort the read, it doesn't use other merchants' data to set your prices, and nothing changes until you approve it. Its limits are the ones any honest demand model has: a product needs some past price variation before the recommendation is strong, and it isn't a real-time repricer.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing a Weak confidence badge alongside a raise recommendation" width="1440" height="1963" loading="lazy" />
+  <figcaption>A confidence badge next to every recommendation shows when the model has enough evidence and when it's still learning.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>AI pricing software ranges from true demand models to competitor-matching rules with an AI label; ask which one you're buying.</li>
+<li>AI price optimization estimates each product's price elasticity and recommends the most profitable price within your limits.</li>
+<li>Good tools show confidence and recommend "hold" when data is thin, as with Product B in the example.</li>
+<li>Research in the American Economic Review found learning algorithms can drift to above-competitive prices, and the DOJ's 2025 RealPage settlement targets pooled competitor data.</li>
+<li>Prefer tools that learn from your own data, explain their recommendations and keep a person in charge of changes.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is AI pricing software?</h3>
+<p>AI pricing software uses machine learning to recommend or set prices from data such as your sales history, costs and competitor prices. The most useful kind estimates how demand for each product responds to price and suggests the price that maximizes profit.</p>
+</div>
+<div class="faq-item">
+<h3>How does AI price optimization work?</h3>
+<p>It collects your price and sales data, removes distortions like promotions and stockouts, fits a demand model for each product, then recommends a price that meets your goal, usually profit, within limits such as a cost floor and a maximum change.</p>
+</div>
+<div class="faq-item">
+<h3>Is AI pricing software worth it for a small store?</h3>
+<p>It can be if you have sales history and products where price isn't fixed by a brand or marketplace. In the worked example, a 6% raise on one well-understood product added about 8% to its monthly profit. Stores with very little history should expect low-confidence results at first.</p>
+</div>
+<div class="faq-item">
+<h3>Is AI pricing legal?</h3>
+<p>Using AI to set your own prices from your own data is legal. The risk comes from tools that pool nonpublic data from competing businesses or align their prices, which is what the DOJ's 2025 RealPage settlement addressed. New York also requires a disclosure when prices are set by algorithm from a consumer's personal data. This is general information, not legal advice.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between AI pricing and dynamic pricing?</h3>
+<p>Dynamic pricing describes prices that change frequently in response to conditions. AI pricing describes how the price is chosen. A tool can use AI to recommend occasional price changes without being dynamic, and a dynamic pricing tool can run on simple rules with no AI at all.</p>
+</div>
+<div class="faq-item">
+<h3>Can AI pricing software set prices automatically?</h3>
+<p>Many tools can, but automatic changes should only run with floors, ceilings and step limits you control. Starting with recommendations you approve is safer until you've seen how the model behaves on your catalog.</p>
+</div>
+</section>
+
+<p class="conclusion">AI pricing software is only as good as the data it learns from and the guardrails around it. Look for a demand model built on your own sales, honest confidence levels and a person in charge of every change. To see what that looks like on your own catalog, <a href="/signup">start a free Zorin trial</a>.</p>
+`.trim(),
+  },
+  {
     slug: "everyday-low-pricing-vs-high-low-pricing",
     title: "Everyday Low Pricing vs High-Low: Which Is Better?",
     excerpt:
@@ -963,7 +1228,7 @@ export const posts: BlogPost[] = [
 
 <h2>What Dynamic Pricing Software Actually Does</h2>
 <p>Dynamic pricing software automates price changes based on signals like demand, competitor prices, and inventory levels, using rules or algorithms to continuously look for a better price point than the one currently listed. Most of the tools that show up under this label, Prisync, Price2Spy, Omnia Retail, are built around watching competitor prices and reacting to them, not modeling your own customers' demand. <a href="https://www.shopify.com/blog/dynamic-pricing-software" target="_blank" rel="noopener noreferrer">Shopify's own guide to dynamic pricing tools</a> lays out a size-based ladder: Shopify's native features for the smallest stores, Prisync and Price2Spy for small to mid-sized businesses, Omnia Retail for mid-market retailers, and Quicklizard for enterprises above $10 million in annual revenue.</p>
-<p>That's worth sitting with for a second. "Dynamic pricing software" as a search term mostly returns repricing tools, not demand-modeling tools. If what you actually want is a read on what your own customers will pay, not what a competitor is charging this week, you're looking for a different category entirely, and it's easy to end up evaluating the wrong shortlist without realizing it.</p>
+<p>That's worth sitting with for a second. "Dynamic pricing software" as a search term mostly returns repricing tools, not demand-modeling tools. (If you're past the readiness question and comparing products, see <a href="/blog/best-dynamic-pricing-software">the best dynamic pricing software for ecommerce</a>.) If what you actually want is a read on what your own customers will pay, not what a competitor is charging this week, you're looking for a different category entirely, and it's easy to end up evaluating the wrong shortlist without realizing it.</p>
 
 <h2>The Products That Actually Benefit From It</h2>
 <p>Readiness depends more on what you sell than on how big your store is. Dynamic pricing earns its keep on high-velocity products with quick turnover, categories where competitors are actively adjusting prices in real time, seasonal inventory that needs to clear on a deadline, and thin-margin SKUs where a small pricing miss costs real money. A large, unwieldy catalog where manual price review has stopped being realistic is also a genuine signal, once a few hundred SKUs need regular attention, a person checking spreadsheets can't keep pace.</p>
@@ -7386,7 +7651,7 @@ export const posts: BlogPost[] = [
 <p class="intro">You should trust an AI pricing recommendation exactly as much as its confidence score and stated reasoning support, no more and no less. A recommendation backed by strong data and a clear explanation deserves real weight. One with thin data and a vague justification deserves a test, not blind acceptance. The mistake most merchants make isn't trusting AI too much or too little in general, it's treating every recommendation with the same level of trust regardless of what's actually behind it.</p>
 
 <h2>The Real Question: How Much Evidence Is Behind the Call?</h2>
-<p>Framing this as a binary, trust AI or don't, misses what actually determines whether a recommendation is reliable. Two recommendations from the exact same model can deserve very different levels of trust if one is backed by a thousand data points across multiple price points and the other by a handful of sales at a single price that's never moved. The model isn't the variable that matters most. The evidence behind the specific recommendation is. This is really the same question as <a href="/blog/dynamic-pricing-software">whether your store is ready for automated pricing tools at all</a>, just asked at the level of a single recommendation instead of the whole rollout.</p>
+<p>Framing this as a binary, trust AI or don't, misses what actually determines whether a recommendation is reliable. (If you're still choosing a tool, start with <a href="/blog/ai-pricing-software">how AI pricing software works and what to ask before buying</a>.) Two recommendations from the exact same model can deserve very different levels of trust if one is backed by a thousand data points across multiple price points and the other by a handful of sales at a single price that's never moved. The model isn't the variable that matters most. The evidence behind the specific recommendation is. This is really the same question as <a href="/blog/dynamic-pricing-software">whether your store is ready for automated pricing tools at all</a>, just asked at the level of a single recommendation instead of the whole rollout.</p>
 
 <h2>What "Explainable" Actually Looks Like</h2>
 <p>There's good research on why people distrust algorithms and what fixes it. In a series of experiments, <a href="https://faculty.wharton.upenn.edu/wp-content/uploads/2016/08/Dietvorst-Simmons-Massey-2018.pdf" target="_blank" rel="noopener noreferrer">Berkeley Dietvorst, Joseph Simmons and Cade Massey</a> found that people often abandon an algorithm after watching it make a mistake, even when it's more accurate than they are. But when they were allowed to adjust its forecasts, even by a small, restricted amount, they were far more willing to use it, and their results improved. The takeaway for pricing: a recommendation you can see the reasoning for, and adjust before it goes live, is one you'll actually use. A bare instruction like "change this price to $24.99" gives you nothing to evaluate. A recommendation that shows the elasticity behind it and the projected profit impact lets you check the logic against what you know about the product.</p>
@@ -8423,7 +8688,7 @@ export const posts: BlogPost[] = [
 <p>Rule-based pricing holds up well for a catalog under roughly 100 SKUs, where a person can keep every rule in their head and adjust manually as conditions change. It also fits situations where a price needs external justification, a MAP agreement, a wholesale contract, a marketplace policy, since a fixed rule is easy to explain and audit. Where it breaks down is complexity and scale: a rule that made sense for one product rarely generalizes cleanly across a catalog with different margins, different demand patterns, and different competitive pressure per SKU. Someone still has to write, test, and maintain every rule, and that labor cost quietly climbs as the catalog grows.</p>
 
 <h2>Algorithmic Pricing: What It's Actually Good At</h2>
-<p>Algorithmic tools calculate a price from data rather than executing a rule a person wrote. Depending on the tool, that data might be competitor prices, inventory levels, demand signals, or a store's own sales history, and the calculation can range from a simple weighted formula to a full machine learning model. The strength here is scale: an algorithm doesn't get tired of writing rules for SKU number 800, and it can respond to conditions a static rule wouldn't catch on its own.</p>
+<p>Algorithmic tools calculate a price from data rather than executing a rule a person wrote. Depending on the tool, that data might be competitor prices, inventory levels, demand signals, or a store's own sales history, and the calculation can range from a simple weighted formula to a full machine learning model. The different kinds of <a href="/blog/ai-pricing-software">AI pricing software</a>, and what to ask each vendor, are compared separately. The strength here is scale: an algorithm doesn't get tired of writing rules for SKU number 800, and it can respond to conditions a static rule wouldn't catch on its own.</p>
 <p>The honest tradeoff is trust. A merchant handing pricing decisions to a calculation they can't fully see needs to know the calculation is actually sound, not just confident-looking. This is where algorithmic tools vary widely: some ship a stated reason and a confidence level behind every price, others just output a number. That difference matters more than most buyers realize until they're staring at a price change with no explanation attached to it.</p>
 
 <figure class="post-image">
@@ -8676,7 +8941,7 @@ export const posts: BlogPost[] = [
 
 <h2>Do You Need Software, or Can You Start With Simple Rules?</h2>
 <p>You can start with a manual rule and no dedicated tool at all: if stock on a product drops below a threshold, raise the price by a fixed percentage, and reset it when stock is replenished. That's genuine dynamic pricing, and it's entirely doable by hand on a small catalog.</p>
-<p>The limits show up as the catalog grows. A rule that made sense for one bestseller doesn't automatically generalize to a hundred products with different margins and different demand patterns, and someone has to keep writing, testing, and adjusting those rules as conditions change. That's the point where a tool that calculates from your own sales data, rather than requiring you to write and maintain a growing pile of rules, starts to save more time than it costs.</p>
+<p>The limits show up as the catalog grows. A rule that made sense for one bestseller doesn't automatically generalize to a hundred products with different margins and different demand patterns, and someone has to keep writing, testing, and adjusting those rules as conditions change. That's the point where a tool that calculates from your own sales data, rather than requiring you to write and maintain a growing pile of rules, starts to save more time than it costs. The main tools are compared in <a href="/blog/best-dynamic-pricing-software">best dynamic pricing software for ecommerce</a>.</p>
 
 <figure class="post-image">
   <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="eager" fetchpriority="high" />
