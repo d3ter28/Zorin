@@ -38,6 +38,162 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "margin-vs-markup",
+    title: "Margin vs Markup: Formulas, Chart & Examples",
+    excerpt:
+      "Markup is profit over cost; margin is profit over price. Formulas, a margin to markup chart, Costco and e.l.f. examples, and the mistake that costs you.",
+    date: "2026-09-28",
+    readingTime: "9 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Markup is profit as a percentage of cost; margin is profit as a percentage of the selling price. A product that costs $30 and sells for $60 has a 100% markup but a 50% margin. The two numbers describe the same profit from different directions, so a 50% markup is only a 33% margin. Mixing them up is one of the most common and expensive pricing mistakes in ecommerce, because it leaves you with less profit per sale than you planned.</p>
+
+<h2>Margin vs Markup: The Short Definitions</h2>
+<p><strong>Markup</strong> answers the question "how much did I add on top of what this cost me?" It starts from cost and is the number most people use when setting a price for the first time.</p>
+<p><strong>Margin</strong> (gross margin, to be precise) answers "how much of every dollar I take in do I keep?" It starts from the selling price and is the number used in financial statements, benchmarks and almost every "what's a good margin" conversation.</p>
+<p>Both use the same profit figure, selling price minus cost. The only difference is what you divide it by. Because price is always bigger than cost for a profitable product, margin is always the smaller of the two percentages.</p>
+
+<h2>Markup vs Margin Formulas</h2>
+<table>
+  <thead>
+    <tr><th>What you want</th><th>Formula</th><th>Example: cost $30, price $60</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Gross profit</td><td>Price − Cost</td><td>$60 − $30 = $30</td></tr>
+    <tr><td>Markup %</td><td>(Price − Cost) ÷ Cost × 100</td><td>$30 ÷ $30 = 100%</td></tr>
+    <tr><td>Margin %</td><td>(Price − Cost) ÷ Price × 100</td><td>$30 ÷ $60 = 50%</td></tr>
+    <tr><td>Price from a target markup</td><td>Cost × (1 + Markup)</td><td>$30 × 2.00 = $60</td></tr>
+    <tr><td>Price from a target margin</td><td>Cost ÷ (1 − Margin)</td><td>$30 ÷ 0.50 = $60</td></tr>
+    <tr><td>Convert markup to margin</td><td>Markup ÷ (1 + Markup)</td><td>1.00 ÷ 2.00 = 50%</td></tr>
+    <tr><td>Convert margin to markup</td><td>Margin ÷ (1 − Margin)</td><td>0.50 ÷ 0.50 = 100%</td></tr>
+  </tbody>
+</table>
+<p>The last two rows are the ones worth memorizing. If a supplier, a benchmark or a colleague gives you one number, you can turn it into the other in a few seconds.</p>
+
+<h2>Margin to Markup Conversion Chart</h2>
+<p>Here is how common margin targets translate into the markup you need to apply to cost. Notice how quickly markup climbs as margin rises: every step toward a very high margin needs a much bigger jump in markup.</p>
+<table>
+  <thead>
+    <tr><th>Gross margin</th><th>Markup on cost</th><th>Price multiple of cost</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>10%</td><td>11.1%</td><td>1.11x</td></tr>
+    <tr><td>20%</td><td>25%</td><td>1.25x</td></tr>
+    <tr><td>25%</td><td>33.3%</td><td>1.33x</td></tr>
+    <tr><td>30%</td><td>42.9%</td><td>1.43x</td></tr>
+    <tr><td>33.3%</td><td>50%</td><td>1.5x</td></tr>
+    <tr><td>40%</td><td>66.7%</td><td>1.67x</td></tr>
+    <tr><td>50%</td><td>100%</td><td>2x (keystone)</td></tr>
+    <tr><td>60%</td><td>150%</td><td>2.5x</td></tr>
+    <tr><td>66.7%</td><td>200%</td><td>3x</td></tr>
+    <tr><td>70%</td><td>233%</td><td>3.33x</td></tr>
+    <tr><td>75%</td><td>300%</td><td>4x</td></tr>
+    <tr><td>80%</td><td>400%</td><td>5x</td></tr>
+  </tbody>
+</table>
+<p>Margin can never reach 100%, because that would mean the product cost nothing. Markup has no ceiling at all. That asymmetry is why a "300% markup" sounds enormous while the matching 75% margin sounds ordinary for a beauty or supplement brand.</p>
+
+<h2>Worked Example: What the Mix-Up Actually Costs</h2>
+<p>Say a product costs you <strong>$24</strong> landed (unit cost plus inbound freight and duty), and you want a <strong>40% margin</strong>, a common target for DTC brands before marketing costs.</p>
+<ol>
+<li><strong>The right way:</strong> price = $24 ÷ (1 − 0.40) = <strong>$40.00</strong>. Profit per unit is $16, and $16 ÷ $40 = 40%. Target hit.</li>
+<li><strong>The common mistake:</strong> you add 40% to cost instead: $24 × 1.40 = <strong>$33.60</strong>. Profit per unit is $9.60, and $9.60 ÷ $33.60 = <strong>28.6%</strong>. You wanted 40% and got less than 29%.</li>
+<li><strong>Over 1,000 units:</strong> the correct price earns $16,000 of gross profit; the mistaken one earns $9,600. The confusion costs <strong>$6,400</strong>, or 40% of the profit you planned for, on one product.</li>
+</ol>
+<p>The mistake compounds when a discount lands on top. Run a 20% off sale on the $33.60 price and you sell at $26.88, leaving $2.88 of profit per unit, a 10.7% margin before shipping, payment fees or ad spend. The same sale on the correctly priced $40 product sells at $32 and still keeps $8 per unit. How deep you can safely discount from your real margin is covered in <a href="/blog/how-to-price-a-discount-without-losing-your-margin">how much to discount without losing your margin</a>.</p>
+
+<h2>Real-World Examples: Costco vs a Beauty Brand</h2>
+<p>Public company filings show how far apart margin and markup can sit depending on the business model.</p>
+<p><strong>Costco.</strong> In its <a href="https://www.sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm" target="_blank" rel="noopener noreferrer">fiscal 2025 annual report</a>, Costco reported net sales of $269.9 billion, merchandise costs of $239.9 billion and a gross margin of $30.0 billion. That is a gross margin percentage of 11.12%. Expressed as a markup on what Costco paid for the goods, it is about 12.5% ($30.0 billion ÷ $239.9 billion). Costco makes the model work through volume and membership fees, which rose 10% to $5.3 billion in the same year, rather than through the price of each item.</p>
+<p><strong>e.l.f. Beauty.</strong> At the other end, e.l.f. Beauty reported a 70.7% gross margin in its <a href="https://www.sec.gov/Archives/edgar/data/0001600033/000160003326000020/elf-20260331.htm" target="_blank" rel="noopener noreferrer">most recent Form 10-K</a>. Converted to markup, that is roughly 241% on cost, or a selling price about 3.4 times what the product costs to make. Cosmetics are cheap to produce relative to what shoppers will pay for a trusted brand, which is why beauty and supplements sit near the top of our <a href="/research/profit-margins-by-product-category">profit margins by product category</a> research.</p>
+<p>The same word, "markup", covers 12.5% in one business and 241% in another. That is why benchmarks are almost always quoted as margins: margin tells you what share of revenue is left to pay for everything else, which makes businesses comparable.</p>
+
+<h2>When to Use Markup and When to Use Margin</h2>
+<table>
+  <thead>
+    <tr><th>Situation</th><th>Use</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Setting a first price from a supplier quote</td><td>Markup, then check the margin</td><td>You know the cost first, so it's the natural starting point</td></tr>
+    <tr><td>Comparing yourself to benchmarks</td><td>Margin</td><td>Industry figures and financial statements report margin</td></tr>
+    <tr><td>Deciding how deep a discount can go</td><td>Margin</td><td>A discount comes off the selling price, which is margin's base</td></tr>
+    <tr><td>Budgeting ad spend or fees per order</td><td>Margin</td><td>Fees and ad costs are usually a share of revenue</td></tr>
+    <tr><td>Wholesale and keystone conversations</td><td>Markup (as a multiple)</td><td>Retail buyers talk in "2x" or "2.5x" multiples of cost</td></tr>
+  </tbody>
+</table>
+<p>A practical rule: use markup to start a conversation about price, and margin to decide whether the price is sustainable. The popular retail shortcut of doubling cost is covered in our guide to <a href="/blog/how-to-price-clothing-on-shopify">keystone pricing for clothing brands</a>, and it is exactly a 100% markup, or a 50% margin.</p>
+
+<h2>Five Mistakes That Make Your Margin Smaller Than You Think</h2>
+<ol>
+<li><strong>Using unit cost instead of landed cost.</strong> Freight, duty, packaging and inbound shipping are part of cost. Leave them out and both your markup and your margin are overstated.</li>
+<li><strong>Adding the target margin to cost.</strong> The worked example above: "cost plus 40%" gives a 28.6% margin, not 40%.</li>
+<li><strong>Forgetting payment and platform fees.</strong> Card processing, marketplace commissions and app fees come off the selling price. On a thin margin they can take a third of it. Our <a href="/shopify-profit-margin-calculator">Shopify profit margin calculator</a> includes them.</li>
+<li><strong>Quoting discounts against markup.</strong> "We have a 100% markup, so a 50% off sale is fine" is wrong: a 100% markup is a 50% margin, and a 50% discount takes it to zero.</li>
+<li><strong>Applying one markup to the whole catalog.</strong> A uniform markup ignores that products respond to price differently. Some can carry a much higher price without losing sales; others lose volume the moment you move. Cost tells you the floor, not the right price.</li>
+</ol>
+
+<h2>Beyond Margin and Markup: Is the Price Actually Right?</h2>
+<p>Margin and markup tell you how much profit a price leaves you. They don't tell you whether a different price would earn more. A product with a healthy 60% margin can still be underpriced if customers would happily pay 10% more, and a product can hit your margin target while quietly losing sales to a price that is too high.</p>
+<p>That second question is about demand, and it's what Zorin measures. It reads your Shopify or WooCommerce sales history, fits a price elasticity model for each product, and shows margin, model confidence and a raise, lower or hold recommendation side by side, with an estimated profit impact for each change. Your cost data sets the floor; your customers' response to past price changes sets the direction.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing margin, model status, and recommendation in one sortable table" width="1440" height="1987" loading="lazy" />
+  <figcaption>Margin shows what each product keeps today; the recommendation shows whether demand supports a different price.</figcaption>
+</figure>
+
+<p>If you're still working out what margin to aim for in the first place, start with <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">ecommerce profit margin benchmarks and how to track them</a>.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Markup is profit divided by cost; margin is profit divided by price. A $30 product sold at $60 has a 100% markup and a 50% margin.</li>
+<li>Convert with markup ÷ (1 + markup) and margin ÷ (1 − margin). A 50% markup is only a 33% margin.</li>
+<li>To hit a target margin, price = cost ÷ (1 − margin). Adding the margin percentage to cost undershoots it: "cost plus 40%" gives 28.6%.</li>
+<li>Costco's fiscal 2025 gross margin was 11.12%, about a 12.5% markup; e.l.f. Beauty's 70.7% margin is roughly a 241% markup.</li>
+<li>Use markup to set a starting price and margin to judge discounts, fees and benchmarks, then check demand to see if the price is actually right.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is the difference between margin and markup?</h3>
+<p>Markup is profit as a percentage of cost, and margin is profit as a percentage of the selling price. Both use the same profit figure, but because price is larger than cost, margin is always the smaller percentage. A product that costs $30 and sells for $60 has a 100% markup and a 50% margin.</p>
+</div>
+<div class="faq-item">
+<h3>Is a 50% markup the same as a 50% margin?</h3>
+<p>No. A 50% markup on a $30 cost gives a $45 price and $15 of profit, which is a 33.3% margin. To get a 50% margin you need a 100% markup, which means doubling the cost to $60.</p>
+</div>
+<div class="faq-item">
+<h3>How do I convert markup to margin?</h3>
+<p>Divide the markup by one plus the markup. A 100% markup is 1.00 ÷ 2.00 = 50% margin, and a 25% markup is 0.25 ÷ 1.25 = 20% margin. To go the other way, divide the margin by one minus the margin.</p>
+</div>
+<div class="faq-item">
+<h3>How do I calculate a selling price from a target margin?</h3>
+<p>Divide your cost by one minus the target margin. For a $24 cost and a 40% margin, the price is $24 ÷ 0.60 = $40. Multiplying cost by 1.40 instead gives $33.60, which is only a 28.6% margin.</p>
+</div>
+<div class="faq-item">
+<h3>Should I use margin or markup for pricing?</h3>
+<p>Use markup to set a starting price from a supplier cost, then check the margin before you commit. Margin is the right number for comparing against benchmarks, sizing discounts and budgeting fees and ad spend, because all of those are measured against revenue.</p>
+</div>
+<div class="faq-item">
+<h3>What is a good markup for ecommerce?</h3>
+<p>It depends heavily on the category. A warehouse retailer like Costco runs about a 12.5% markup, while beauty brands often run 200% or more. Work from the margin you need after fees, returns and marketing, then convert it to a markup, rather than copying a markup from another business.</p>
+</div>
+<div class="faq-item">
+<h3>Why is margin always lower than markup?</h3>
+<p>Because margin divides the same profit by the selling price, which is always larger than the cost for a profitable product. Dividing by a bigger number gives a smaller percentage. That's also why margin can never reach 100% while markup has no upper limit.</p>
+</div>
+</section>
+
+<p class="conclusion">Margin and markup measure the same profit from two directions, and knowing which one you're looking at protects you from pricing below the margin you planned. Once your cost math is right, the next question is whether customers would pay more or buy more at a different price. <a href="/signup">Try Zorin free</a> to see that product by product from your own sales history.</p>
+`.trim(),
+  },
+  {
     slug: "best-dynamic-pricing-software",
     title: "Best Dynamic Pricing Software for Ecommerce (2026)",
     excerpt:
@@ -3269,7 +3425,7 @@ export const posts: BlogPost[] = [
 <p>On the margin side, <a href="https://trueprofit.io/blog/apparel-profit-margin" target="_blank" rel="noopener noreferrer">TrueProfit's analysis of 600+ clothing stores</a> puts healthy 2026 benchmarks at 60-70% gross margin, 20-30% operating margin and 10-20% net profit margin. For comparison, the biggest athletic brands report gross margins in the 40s and 50s: Nike posted 42.7% in fiscal 2025 and Lululemon has run 54-58%, according to their <a href="/research/profit-margins-by-product-category">public filings</a>. A garment costing $15 to produce landing at $30-40 wholesale or $60-80 DTC is a common example of what those multiples look like in practice.</p>
 <p>These numbers are a useful starting reference, not a guarantee. As the next section covers, a gross margin that sits comfortably inside these ranges can still leave a brand with almost nothing at the operating line.</p>
 
-<p>Here's how markup on cost translates into gross margin, which is the number the benchmarks above use:</p>
+<p>Here's how markup on cost translates into gross margin, which is the number the benchmarks above use (the formulas behind it are in <a href="/blog/margin-vs-markup">markup vs margin explained</a>):</p>
 <table>
   <thead>
     <tr><th>Markup on cost</th><th>$15 garment sells for</th><th>Gross margin</th></tr>
@@ -4305,7 +4461,7 @@ export const posts: BlogPost[] = [
 <li><strong>Margin</strong> = (Selling Price - Cost) / Selling Price x 100</li>
 <li><strong>Markup</strong> = (Selling Price - Cost) / Cost x 100</li>
 </ul>
-<p>For pricing decisions, margin is the more useful metric because it tells you what percentage of every dollar that comes in is actually profit. Markup is useful when setting initial prices from a cost base, but always convert back to margin before evaluating whether a price is sustainable. If you are using Zorin's profit-lift estimates to decide whether to raise or hold on a product, the estimate means more when you know your real margin going in, not just your markup.</p>
+<p>For pricing decisions, margin is the more useful metric because it tells you what percentage of every dollar that comes in is actually profit. Markup is useful when setting initial prices from a cost base, but always convert back to margin before evaluating whether a price is sustainable. The full conversion formulas and a margin-to-markup chart are in our <a href="/blog/margin-vs-markup">margin vs markup guide</a>. If you are using Zorin's profit-lift estimates to decide whether to raise or hold on a product, the estimate means more when you know your real margin going in, not just your markup.</p>
 
 <h2>What Healthy Margins Actually Look Like by Category</h2>
 <p>There is no single "good" ecommerce profit margin. Beauty brands and electronics stores operate in completely different margin environments. Your target depends on your vertical, your business model, and your channel mix.</p>
@@ -4437,7 +4593,7 @@ export const posts: BlogPost[] = [
 <p>Public pure-play beauty companies show what healthy skincare margins look like: e.l.f. Beauty carried a 70.7% gross margin in its <a href="https://www.sec.gov/Archives/edgar/data/0001600033/000160003326000020/elf-20260331.htm" target="_blank" rel="noopener noreferrer">most recent 10-K</a> and Olaplex 69.4% in <a href="https://www.sec.gov/Archives/edgar/data/1868726/000186872626000009/olpx-20251231.htm" target="_blank" rel="noopener noreferrer">its fiscal 2025 10-K</a>. A brand selling well below the high 60s is usually leaving margin on the table rather than facing a structural cost problem. These numbers represent cost of goods as a percentage of revenue, including ingredients, packaging, and direct production costs.</p>
 <p>Below 65% gross margin, the economics of a DTC beauty brand start to break down. Here's why: customer acquisition in beauty is expensive. According to <a href="https://mhigrowthengine.com/blog/average-cost-per-acquisition-by-dtc-vertical-2026/" target="_blank" rel="noopener noreferrer">MHI Growth Engine's 2026 DTC benchmarks</a>, the average CPA for a DTC skincare brand is roughly $42, with a median AOV of $68. At those numbers, first-order contribution margin after product costs is approximately 38%. That has to cover payment processing, shipping, packaging, returns, and ideally leave something for operating profit. With a gross margin of 55%, that math gets very tight very fast. With a gross margin of 70%, it works.</p>
 <p>The benchmarks also vary meaningfully by product type within skincare. According to <a href="https://bootleads.com/stores/shopify/niches/skincare-products/" target="_blank" rel="noopener noreferrer">BootLeads' Shopify skincare store data</a>, the average listed price for skincare products on Shopify is about $55, but the most common pricing band is under $25. That gap between the average and the mode tells you that a small number of brands are pricing at premium levels and pulling the average up, while the majority are clustering at entry-level price points. If most of your catalog is priced under $25, you're competing in the most crowded part of the market with the thinnest margins.</p>
-<p>One number to keep in mind as a gut check: the beauty rule of thumb is an 8-10x markup on bare unit COGS (ingredients and packaging only, before labor, overhead, or shipping). If your serum costs $4 in ingredients and packaging and you're selling it for $24, that's a 6x markup. Technically profitable, but leaving significant room on the table compared to brands that sell a similar formulation for $38-48.</p>
+<p>One number to keep in mind as a gut check: the beauty rule of thumb is an 8-10x markup on bare unit COGS (ingredients and packaging only, before labor, overhead, or shipping). If your serum costs $4 in ingredients and packaging and you're selling it for $24, that's a 6x markup, or an 83% gross margin (see <a href="/blog/margin-vs-markup">how markup converts to margin</a>). Technically profitable, but leaving significant room on the table compared to brands that sell a similar formulation for $38-48.</p>
 
 <h2>The Underpricing Problem in Beauty</h2>
 <p>Most DTC beauty brands are underpriced. That's not an opinion. It's a pattern visible across pricing data from agencies, platforms, and the brands themselves.</p>

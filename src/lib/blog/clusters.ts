@@ -68,6 +68,7 @@ export const clusters: Cluster[] = [
       "Benchmarks and frameworks for gross margin, net margin, and where profit actually leaks out of a catalog that looks healthy on paper.",
     postSlugs: [
       "ecommerce-profit-margins-what-to-target-and-how-to-track-them",
+      "margin-vs-markup",
       "how-to-know-if-your-prices-are-too-high-or-too-low",
       "how-to-raise-prices-without-losing-customers",
       "why-do-my-bestsellers-and-slow-sellers-need-different-pricing-strategies",
