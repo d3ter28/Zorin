@@ -1033,6 +1033,7 @@ export const posts: BlogPost[] = [
     title: "Prisync Alternatives & Competitors: 4 Options",
     excerpt: "4 Prisync alternatives and competitors with published pricing, for merchants who want demand modeling instead of competitor price matching.",
     date: "2026-09-08",
+    updatedDate: "2026-09-28",
     readingTime: "6 min read",
     category: "Product",
     funnelStage: "BOFU",
@@ -1047,7 +1048,7 @@ export const posts: BlogPost[] = [
 <p>If what you actually want is a read on what your own customers will pay rather than a reaction to competitor prices, Zorin is the closest self-serve fit. If competitor monitoring is still the job but you want more frequent checks or a different add-on structure, Price2Spy is worth comparing directly. If you're selling across many marketplaces and need deeper rule automation than Prisync's tiers offer, Omnia Retail reaches further, at a higher price. If your catalog has genuine cross-category effects and real elasticity modeling matters more than cost, Competera is the enterprise option.</p>
 
 <h2>What's Actually Driving the "Prisync Alternative" Search</h2>
-<p><a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">Prisync's published pricing</a> runs three separate models, URL-based, channel-based, and hybrid, each with Professional, Premium, and Platinum tiers. The URL-based Professional plan starts at $99 a month for up to 100 products; Premium and Platinum add a dynamic repricing engine, daily or instant notifications, and MAP monitoring at $199 and $399 a month. Channel-based monitoring, tracking prices on specific marketplaces rather than a fixed URL list, starts higher and adds $100 to $200 a month per additional channel, and API access adds a further 20% surcharge on top of any tier. The product itself holds strong review scores, <a href="https://www.g2.com/products/prisync/reviews" target="_blank" rel="noopener noreferrer">4.7 out of 5 on G2 across 168 reviews</a> and 4.8 on Capterra across 129 reviews, but the most common complaint across those same review platforms is scraping reliability: competitor sites that change structure can quietly stop returning accurate data, and MAP violation monitoring isn't included below the top tier. None of that makes Prisync a bad tool, it just means the reasons someone goes looking for an alternative are usually specific rather than a wholesale rejection of the category.</p>
+<p><a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">Prisync's published pricing</a> runs three separate models, URL-based, channel-based, and hybrid, each with Professional, Premium, and Platinum tiers. The URL-based Professional plan starts at $99 a month for up to 100 products; Premium, at $199 a month, adds a dynamic repricing engine and daily notifications; Platinum, at $399, adds instant notifications, price history and MAP monitoring for suppliers. Channel-based monitoring, tracking prices on specific marketplaces rather than a fixed URL list, starts higher and adds $100 to $200 a month per additional channel, and API access adds a further 20% surcharge on top of any tier. The product itself holds strong review scores, <a href="https://www.g2.com/products/prisync/reviews" target="_blank" rel="noopener noreferrer">4.7 out of 5 on G2 across 168 reviews</a> and 4.8 on Capterra across 129 reviews, but the most common complaint across those same review platforms is scraping reliability: competitor sites that change structure can quietly stop returning accurate data, and MAP violation monitoring isn't included below the top tier. None of that makes Prisync a bad tool, it just means the reasons someone goes looking for an alternative are usually specific rather than a wholesale rejection of the category.</p>
 
 <h2>1. Zorin: Demand Modeling Instead of Competitor Reaction</h2>
 <p>Zorin connects to Shopify or WooCommerce, or takes a CSV upload, and fits a price elasticity model to your own price-and-quantity history only, per SKU, with no competitor or marketplace data involved at all. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through manual review first. Pricing is published and flat regardless of monitoring channel: $39 to $249 a month depending on catalog size, no per-channel add-on and no API surcharge. The real limitation next to Prisync: Zorin's competitor feature is a manual per-product entry, name, price, optional URL, not a live-monitoring subscription, so it doesn't solve the "am I still priced-in on Amazon" problem at all.</p>
@@ -1058,7 +1059,7 @@ export const posts: BlogPost[] = [
 </figure>
 
 <h2>2. Price2Spy: A Second Competitor-Tracking Option</h2>
-<p>If competitor visibility is still the actual job, Price2Spy is a longer-running player in the same category, founded in 2010, serving <a href="https://www.g2.com/products/price2spy/reviews" target="_blank" rel="noopener noreferrer">750-plus clients across 40-plus countries with a 4.8 out of 5 rating on G2 from 104 reviews</a>. It checks prices up to 8 times a day on its higher tiers, more frequently than Prisync's 3x, and integrates directly with five ecommerce platforms including Shopify and WooCommerce. Pricing starts at $39.95 a month for the Starter plan, with Automatch and Repricing available as paid add-ons, $54 and $100 a month respectively, that raise the real monthly cost once the full repricing workflow is needed. Worth comparing the add-on math directly against whichever Prisync tier you're on rather than assuming the lower sticker price wins outright.</p>
+<p>If competitor visibility is still the actual job, Price2Spy is a longer-running player in the same category, founded in 2010, serving <a href="https://www.g2.com/products/price2spy/reviews" target="_blank" rel="noopener noreferrer">750-plus clients across 40-plus countries with a 4.8 out of 5 rating on G2 from 104 reviews</a>. It checks prices up to 8 times a day on its higher tiers, more frequently than Prisync's 3x, and integrates directly with five ecommerce platforms including Shopify and WooCommerce. <a href="https://www.price2spy.com/pricing.html" target="_blank" rel="noopener noreferrer">Price2Spy's pricing page</a> no longer lists dollar amounts: it offers Starter and Basic tiers with a 14-day free trial, a Premium tier priced on request, and Repricing, Automatch and screenshot capture as separately priced modules. Get a quote for the full workflow you need and compare it directly against whichever Prisync tier you're on rather than assuming the base tier tells the whole story.</p>
 
 <h2>3. Omnia Retail: Deeper Automation for Multi-Marketplace Sellers</h2>
 <p>For a catalog that's outgrown Prisync's rule depth, Omnia Retail monitors live prices across Amazon, eBay, Google Shopping, Bol.com, Kaufland, and custom domains, then automates repricing through what it calls a <a href="https://www.omniaretail.com/dynamic-pricing-software" target="_blank" rel="noopener noreferrer">"Pricing Strategy Tree"</a>, layering custom rules across market, segment, and SKU level. An "Omnia Agent" explains the reasoning behind each repricing move. It's branded as "AI Dynamic Pricing," but the AI explains competitor-reactive rule logic, not a demand model, worth knowing going in. <a href="https://www.omniaretail.com/pricing" target="_blank" rel="noopener noreferrer">Omnia's SMB tier starts at €399 a month</a> for a single shop, and a demo call is required either way, there's no self-serve signup. It holds a 4.4 out of 5 rating on G2 across 110 reviews. A real step up in rule sophistication, at a real step up in price and onboarding friction.</p>
@@ -1085,7 +1086,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Is Price2Spy actually cheaper than Prisync?</h3>
-<p>The base Starter plan is, $39.95 a month versus Prisync's $99. But Price2Spy's Automatch and Repricing features are paid add-ons, $54 and $100 a month respectively, so the real cost once you need the full repricing workflow should be compared directly rather than assumed from the sticker price alone.</p>
+<p>It depends on the modules you need. Price2Spy no longer publishes dollar prices, and its Repricing and Automatch features are separately priced modules, while Prisync's plans start at $99 a month with repricing included from its $199 tier. The real cost once you need the full repricing workflow should be compared directly rather than assumed from the base tier alone.</p>
 </div>
 <div class="faq-item">
 <h3>Which Prisync alternative handles the most marketplaces?</h3>
@@ -1320,6 +1321,7 @@ export const posts: BlogPost[] = [
     title: "Competera Alternatives for Smaller Stores (2026)",
     excerpt: "Competera's pricing and scale suit large retailers. 4 Competera alternatives with published pricing, and the kind of store each one actually fits.",
     date: "2026-09-06",
+    updatedDate: "2026-09-28",
     readingTime: "6 min read",
     category: "Product",
     funnelStage: "BOFU",
@@ -1351,7 +1353,7 @@ export const posts: BlogPost[] = [
 <p>If the actual problem is staying visible against competitor listings rather than modeling your own demand, Prisync tracks competitor prices across your storefront, Amazon, eBay, and Google Shopping, with automatic repricing rules on its higher tiers. <a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">Published pricing runs $99 a month for up to 100 products, up to $399 a month for 5,000 products</a>, self-serve, no demo required. No elasticity or demand modeling, this solves a different problem than Competera does, but it's a real, cheaper, faster-to-start option for the SKUs where marketplace price position is genuinely what decides the sale.</p>
 
 <h2>4. Price2Spy: A Second Repricing Option, Broader Platform Coverage</h2>
-<p>Price2Spy is a longer-running player in the same category as Prisync, founded in 2010, serving <a href="https://www.g2.com/products/price2spy/reviews" target="_blank" rel="noopener noreferrer">750-plus clients across 40-plus countries, with a 4.8 out of 5 rating on G2 from 104 reviews</a>. It covers competitor price tracking, custom repricing formulas that can run in hierarchical order, and integrates directly with five ecommerce platforms including Shopify and WooCommerce. Pricing starts at $39.95 a month for the Starter plan, with Automatch and Repricing available as paid add-ons ($54 and $100 a month respectively) that raise the real monthly cost once you need the full repricing workflow. Worth comparing directly against Prisync rather than assuming they're interchangeable, the add-on structure changes the real price at scale.</p>
+<p>Price2Spy is a longer-running player in the same category as Prisync, founded in 2010, serving <a href="https://www.g2.com/products/price2spy/reviews" target="_blank" rel="noopener noreferrer">750-plus clients across 40-plus countries, with a 4.8 out of 5 rating on G2 from 104 reviews</a>. It covers competitor price tracking, custom repricing formulas that can run in hierarchical order, and integrates directly with five ecommerce platforms including Shopify and WooCommerce. Its pricing page lists Starter and Basic tiers with a 14-day free trial and a Premium tier on request, with Repricing and Automatch sold as separately priced modules that raise the real monthly cost once you need the full repricing workflow. Worth comparing directly against Prisync rather than assuming they're interchangeable, the add-on structure changes the real price at scale.</p>
 
 <h2>Where Zorin Fits on This List</h2>
 <p>Zorin is the option built specifically for a merchant who wants Competera's core idea, elasticity modeling from real data, without the enterprise sales process or the six-figure budget. It's not a smaller Competera in every dimension: no cross-category modeling, no built-in competitor scraping, no what-if scenario simulator. What it does offer is a direct path from signup to a first recommendation, published pricing, and a confidence score on every read so a newer SKU with thin data isn't presented with false certainty. For an independent or SMB Shopify or WooCommerce store, that tradeoff is usually the right one.</p>
@@ -2337,6 +2339,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "A pricing survey and your sales history measure different things. See when a Van Westendorp survey beats elasticity data, and when it doesn't.",
     date: "2026-08-25",
+    updatedDate: "2026-09-28",
     readingTime: "10 min read",
     category: "Product",
     ogImage: "/images/blog/survey-results-chart.webp",
@@ -2369,7 +2372,7 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
-<p>For the mechanics of running a Van Westendorp survey itself, <a href="/blog/how-to-run-a-price-sensitivity-survey">How to Run a Price Sensitivity Survey</a> and <a href="/blog/how-to-interpret-van-westendorp-results">How to Interpret Van Westendorp Results</a> cover that ground in depth. This post focuses on the decision of which signal to lean on and when, not the survey mechanics themselves. It's also worth knowing that <a href="/blog/price-survey-vs-price-testing">survey results tend to run below actual purchase behavior</a> once a real price is in front of a real customer, a separate comparison from the one covered here, since that post is about a survey versus a live price test, not a survey versus your own historical sales data.</p>
+<p>For the mechanics of running a Van Westendorp survey itself, <a href="/blog/how-to-run-a-price-sensitivity-survey">How to Run a Price Sensitivity Survey</a> and <a href="/blog/how-to-interpret-van-westendorp-results">How to Interpret Van Westendorp Results</a> cover that ground in depth. This post focuses on the decision of which signal to lean on and when, not the survey mechanics themselves. It's also worth knowing that <a href="/blog/price-survey-vs-price-testing">survey answers tend to run above actual purchase behavior</a> once a real price is in front of a real customer, a separate comparison from the one covered here, since that post is about a survey versus a live price test, not a survey versus your own historical sales data.</p>
 
 <h2>How Many Responses You Actually Need to Trust the Result</h2>
 <p>Published guidance on this disagrees more than most pricing research does, worth naming directly rather than picking one number and presenting it as settled. Conjointly, a survey research platform, <a href="https://conjointly.com/faq/guidance-on-sample-size/" target="_blank" rel="noopener">recommends at least 200 responses in total and at least 100 within each segment</a> if you plan to cut the data by customer type or use case. A separate, more detailed breakdown from pricing researcher Mike Pritchard, <a href="https://www.5circles.com/van-westendorp-pricing-the-price-sensitivity-meter/" target="_blank" rel="noopener">cited on 5 Circles Research, puts large-scale study minimums at 400 for consumer products and 200 for business buyers</a>, with the lower B2B number reflecting how much harder and more expensive that sample is to acquire. The same source is explicit that anything below roughly 50 responses should be treated as directional only, not a number you'd act on with confidence, and flags 10-20 responses, sometimes cited casually as "enough," as a real departure from any rigorous standard.</p>
@@ -2926,6 +2929,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "How stated vs revealed preference differ, the real risks of live price testing, and how to combine a survey with a test for a reliable price.",
     date: "2026-08-21",
+    updatedDate: "2026-09-28",
     readingTime: "10 min read",
     category: "Product",
     ogImage: "/images/blog/survey-results-chart.webp",
@@ -2938,7 +2942,7 @@ export const posts: BlogPost[] = [
 
 <h2>The Core Distinction: Stated Preference vs Revealed Preference</h2>
 <p>A survey measures stated preference: what a respondent says they'd pay when asked directly, with no real money changing hands and no real consequence to their answer. A price test measures revealed preference: what a real customer actually does when a real price is sitting in front of them at checkout, backed by an actual purchase decision.</p>
-<p>The distinction matters because these two things don't always match. A classic illustration from pricing research: someone might say they exclusively listen to public radio, that's their stated preference, but if you pull up next to them in traffic and hear them singing along to a pop song on a commercial station, that's their revealed preference, and it's a more reliable signal precisely because it wasn't something they had time to curate or misremember. The same gap shows up in pricing. People are often willing to pay more than they claim they will in a hypothetical survey question, and <a href="/blog/how-to-interpret-van-westendorp-results">survey results tend to run 10-20% below actual purchase behavior</a>, a gap worth knowing about rather than treating a survey number as a guarantee.</p>
+<p>The distinction matters because these two things don't always match. A classic illustration from pricing research: someone might say they exclusively listen to public radio, that's their stated preference, but if you pull up next to them in traffic and hear them singing along to a pop song on a commercial station, that's their revealed preference, and it's a more reliable signal precisely because it wasn't something they had time to curate or misremember. The same gap shows up in pricing. People tend to say they'd pay more in a hypothetical survey question than they actually do when real money is involved: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. That gap is worth knowing about, and it's why a survey number is an upper guide rather than a guarantee (more on reading one in <a href="/blog/how-to-interpret-van-westendorp-results">how to interpret Van Westendorp results</a>).</p>
 <p>Neither method is simply better than the other in every situation. A survey is available before you have any real purchase data to work from. A price test requires an actual product, an actual price, and actual customers willing to transact, which means it's only available once those things exist, and it comes with risks a survey doesn't carry.</p>
 
 <table>
@@ -2949,7 +2953,7 @@ export const posts: BlogPost[] = [
     <tr><td>Measures</td><td>Stated preference (what people say)</td><td>Revealed preference (what people do)</td></tr>
     <tr><td>Available from</td><td>Day one, no sales history needed</td><td>Only once you have a real product and real customers</td></tr>
     <tr><td>Risk to customers</td><td>None, no real transaction occurs</td><td>Real, especially the trust and fairness risk covered below</td></tr>
-    <tr><td>Reliability</td><td>Directionally useful, tends to run 10-20% below actual behavior</td><td>The most reliable signal available, since it's actual behavior</td></tr>
+    <tr><td>Reliability</td><td>Directionally useful, but tends to run high: stated willingness to pay averages about 21% above real</td><td>The most reliable signal available, since it's actual behavior</td></tr>
   </tbody>
 </table>
 
@@ -3088,7 +3092,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "Learn what the four Van Westendorp price points actually mean, how to read a narrow vs wide range, and why the optimal price point isn't your final price.",
     date: "2026-08-21",
-    updatedDate: "2026-09-26",
+    updatedDate: "2026-09-28",
     readingTime: "12 min read",
     category: "Product",
     author: {
@@ -3190,7 +3194,7 @@ export const posts: BlogPost[] = [
 <p><strong>Treating the OPP as the final price.</strong> Covered in detail above. The OPP is an anchor for a pricing decision, not the decision itself.</p>
 <p><strong>Ignoring range width as a signal.</strong> A narrow range and a wide range mean genuinely different things about your market's price sensitivity and flexibility. Reading only the range's boundaries, without considering what its width implies, leaves useful information on the table.</p>
 <p><strong>Over-trusting a small sample.</strong> A result from 6 or 7 responses can look precise on a chart while actually being highly unstable. Treat low-response results as directional, and let the sample grow before making a significant pricing decision based on the curves alone.</p>
-<p><strong>Forgetting that stated preference isn't the same as actual behavior.</strong> Van Westendorp measures what respondents say they'd pay, not what they've actually paid. Research on this gap has found stated price thresholds tend to run 10-20% lower than real purchase behavior, covered in more depth in the <a href="/blog/how-to-run-a-price-sensitivity-survey">companion post on running the survey</a>. Treat the results as a strong starting signal, not a guaranteed final number.</p>
+<p><strong>Forgetting that stated preference isn't the same as actual behavior.</strong> Van Westendorp measures what respondents say they'd pay, not what they've actually paid. Research on this gap points one way: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis of 77 studies</a> found hypothetical willingness to pay averaged 21% above real willingness to pay, so treat the survey range as an upper guide. More on this in the <a href="/blog/how-to-run-a-price-sensitivity-survey">companion post on running the survey</a>. Treat the results as a strong starting signal, not a guaranteed final number.</p>
 
 <p>Run a Van Westendorp survey on your own catalog and read the results alongside your elasticity data. <a href="/signup">Start a free trial</a> to see both signals on the same product.</p>
 
@@ -3204,7 +3208,7 @@ export const posts: BlogPost[] = [
 <li><strong>Range width is itself a signal.</strong> A narrow range signals strong consensus and higher price sensitivity; a wide range can mean genuine flexibility across segments, or it can mean the market is unclear on the product's value, and telling the two apart usually depends on context you already have.</li>
 <li><strong>The OPP is a starting point, not a final price.</strong> It needs to be layered with margin requirements, channel context, and (once available) elasticity data before it becomes an actual price you'd charge.</li>
 <li><strong>Curves that don't intersect cleanly aren't a failure.</strong> They're most often a small-sample or hard-to-price-product signal, fixable with a larger sample or read cautiously as directional.</li>
-<li><strong>Stated preference and revealed preference aren't the same thing.</strong> Survey results tend to run lower than actual purchase behavior, so treat them as a strong starting signal rather than a guaranteed number.</li>
+<li><strong>Stated preference and revealed preference aren't the same thing.</strong> Survey answers tend to run higher than what customers actually pay, about 21% on average in one meta-analysis, so treat them as an upper guide rather than a guaranteed number.</li>
 </ul>
 </div>
 
@@ -3626,7 +3630,7 @@ export const posts: BlogPost[] = [
     title: "How to Run a Van Westendorp Price Survey",
     excerpt: "The 4 Van Westendorp questions, who to ask, how many responses you need, and how to turn the answers into an acceptable price range before you launch.",
     date: "2026-08-21",
-    updatedDate: "2026-09-26",
+    updatedDate: "2026-09-28",
     readingTime: "11 min read",
     category: "Product",
     ogImage: "/images/blog/survey-results-chart.webp",
@@ -3649,7 +3653,7 @@ export const posts: BlogPost[] = [
 <p>A related method, Gabor-Granger, is worth knowing about even though Zorin doesn't run it. Instead of asking open-ended price questions, Gabor-Granger shows respondents a specific price and asks a direct yes-or-no purchase intent question, then adjusts the price up or down based on the answer. It's better suited to an established product where you already have a reasonable price range in mind and want to validate a specific number. Van Westendorp is the better fit when the price is genuinely unknown, which is exactly the situation a new product launch puts you in.</p>
 
 <h3>Stated Preference vs Revealed Preference</h3>
-<p>A survey measures stated preference: what customers say they'd pay when asked directly. <a href="/blog/what-does-price-elasticity-actually-mean">Price elasticity</a>, by contrast, measures revealed preference: what customers actually did when your price changed in the real world. These are different signals, and it's worth knowing they don't always agree. Research on Van Westendorp results across categories has found that stated price thresholds tend to run 10-20% lower than actual purchase behavior. People are often willing to pay more than they claim they will in a hypothetical survey question. That gap doesn't make the survey useless. It means the survey result is a starting point and a sanity check, not a number to treat as gospel on its own.</p>
+<p>A survey measures stated preference: what customers say they'd pay when asked directly. <a href="/blog/what-does-price-elasticity-actually-mean">Price elasticity</a>, by contrast, measures revealed preference: what customers actually did when your price changed in the real world. These are different signals, and it's worth knowing they don't always agree. When they disagree, survey answers usually run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. People say they'd pay more than they do once real money is involved. That gap doesn't make the survey useless. It means the survey result is a starting point and a sanity check, not a number to treat as gospel on its own.</p>
 
 <h2>Running the Survey With a Built-In Tool</h2>
 <p>Zorin includes the Van Westendorp survey as a built-in feature, not a separate integration or a third-party tool you need to configure. From any product in your catalog, you generate a shareable survey link. The link requires no customer login or account to answer, and no email, name, or IP address is stored with a response.</p>
@@ -8466,7 +8470,7 @@ export const posts: BlogPost[] = [
     title: "Van Westendorp Calculation: A Worked Example",
     excerpt: "The math behind PMC, PME, OPP and IPP, worked step by step from real survey data, so you can calculate a Van Westendorp price range yourself.",
     date: "2026-09-13",
-    updatedDate: "2026-09-26",
+    updatedDate: "2026-09-28",
     readingTime: "10 min read",
     category: "Pricing Strategy",
     author: {
@@ -8581,7 +8585,7 @@ export const posts: BlogPost[] = [
 
 <h2>Setting Your Price: What the Range Does and Doesn't Tell You</h2>
 <p>A $36 to $50 range doesn't hand you a single answer, it hands you boundaries. Where you land inside that range depends on factors the survey doesn't measure: your margin at each price point, how much inventory risk you're carrying, and whether you're optimizing for volume or per-unit profit on this specific launch. The optimal price point, $42 in this example, is a reasonable starting anchor precisely because it's where the fewest people object on either end, but it's a starting point, not a mandate.</p>
-<p>It's also worth treating this as one input rather than the whole decision. <a href="/blog/do-you-need-a-survey-if-you-have-sales-data">Stated preference and revealed preference are different signals</a>, and research on Van Westendorp results has found stated thresholds often run lower than what customers actually pay once a product is live. If you already have comparable sales history, cross-check the survey range against it. If you're launching something genuinely new, the survey is often the only signal you have until real sales data exists.</p>
+<p>It's also worth treating this as one input rather than the whole decision. <a href="/blog/do-you-need-a-survey-if-you-have-sales-data">Stated preference and revealed preference are different signals</a>, and research on survey-based pricing has found stated willingness to pay usually runs higher than what customers actually pay once a product is live. If you already have comparable sales history, cross-check the survey range against it. If you're launching something genuinely new, the survey is often the only signal you have until real sales data exists.</p>
 
 <h2>What the Research Says About Survey-Based Pricing</h2>
 <p>Van Westendorp is one of several ways to measure willingness to pay; <a href="https://businessperspectives.org/images/pdf/applications/publishing/templates/article/assets/1766/im_en_2006_04_Breidert.pdf" target="_blank" rel="noopener noreferrer">a widely cited review by Breidert, Hahsler and Reutterer</a> compares it with other survey and market-based methods. The main caution is that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Treat the range a survey gives you as an upper guide, and let real sales data take over once you have it.</p>
