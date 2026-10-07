@@ -45,6 +45,7 @@ export const clusters: Cluster[] = [
       "map-pricing-software",
       "how-to-evaluate-a-shopify-pricing-app",
       "are-software-review-sites-reliable-for-pricing-tools",
+      "price-management-software",
     ],
   },
   {

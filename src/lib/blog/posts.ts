@@ -38,6 +38,142 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "price-management-software",
+    title: "Price Management Software: A Buyer's Guide",
+    excerpt:
+      "What price management software does, how it differs from price optimization, when a store needs one, a worked cost example and the guardrails to insist on.",
+    date: "2026-10-07",
+    readingTime: "7 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Price management software is the system that stores, updates, approves and publishes your prices across every product and channel, and keeps a history of every change. At its simplest it replaces the spreadsheet and the one-by-one edits in your store admin; at the enterprise end it adds rules, approval workflows and optimization. Most online stores need it once they have hundreds of SKUs, more than one sales channel or frequent cost changes, but the part that matters most is not the automation, it's whether the prices going in are the right ones.</p>
+
+<h2>What Is Price Management Software?</h2>
+<p>A price management system is the single place where your prices live and change. Instead of editing each product in Shopify, WooCommerce, Amazon and a wholesale spreadsheet separately, you manage prices once and push them out. The category goes by several names, price management software, pricing management system, pricing automation software, but the core jobs are the same.</p>
+<table>
+  <thead>
+    <tr><th>Capability</th><th>What it does</th><th>Why it matters</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Price list management</td><td>Stores retail, wholesale, regional and channel price lists in one place</td><td>No more conflicting prices across channels</td></tr>
+    <tr><td>Bulk updates</td><td>Changes hundreds of prices at once, by rule or by selection</td><td>A supplier cost increase takes minutes, not days</td></tr>
+    <tr><td>Rules and automation</td><td>Applies rules like "cost × 2.2, rounded to .95" or "never below cost + 15%"</td><td>Consistency, and a floor that protects margin</td></tr>
+    <tr><td>Approval workflows</td><td>Routes big changes to a person before they go live</td><td>Catches errors before customers see them</td></tr>
+    <tr><td>Channel sync</td><td>Pushes approved prices to your store, marketplaces and feeds</td><td>One change, published everywhere</td></tr>
+    <tr><td>Price history and audit trail</td><td>Records every change, who made it and when</td><td>You can see what a price change actually did to sales</td></tr>
+    <tr><td>Analytics and optimization</td><td>Recommends prices from demand, margin or competitor data</td><td>Moves from managing prices to improving them</td></tr>
+  </tbody>
+</table>
+
+<h2>Price Management vs Price Optimization</h2>
+<p>These are often sold together but they solve different problems. Price management is about <strong>execution</strong>: getting the intended price onto every product and channel correctly, quickly and with an audit trail. Price optimization is about <strong>decision</strong>: working out what that price should be. A system that manages prices perfectly can still publish the wrong ones. For how optimization tools work, see <a href="/blog/price-optimization-tools">price optimization tools</a>.</p>
+<p>Execution matters more than it sounds. <a href="https://www.simon-kucher.com/en/insights/global-pricing-study-2025" target="_blank" rel="noopener noreferrer">Simon-Kucher's Global Pricing Study 2025</a> found that companies realize less than half of the price increases they plan. Some of that leakage is customer pushback, but some is simply poor execution: increases applied late, to the wrong products, or undone by discounts nobody tracked.</p>
+
+<h2>Who Actually Needs a Price Management System?</h2>
+<ul>
+<li><strong>You have hundreds of SKUs or more.</strong> Editing prices one by one becomes slow and error-prone.</li>
+<li><strong>You sell on more than one channel.</strong> Your own store, Amazon, wholesale and marketplaces each need the right price, often a different one.</li>
+<li><strong>Your costs change often.</strong> Tariffs, freight and supplier increases mean frequent repricing.</li>
+<li><strong>More than one person changes prices.</strong> Without approvals and a history, nobody knows who changed what, or why.</li>
+<li><strong>You've had a pricing error that cost money.</strong> Usually the clearest signal of all.</li>
+</ul>
+<p>If you have 40 products on one Shopify store and change prices twice a year, your store's built-in bulk editor is probably enough. Our guide to <a href="/blog/how-do-i-set-prices-for-my-whole-catalog-without-doing-it-one-by-one">pricing your whole catalog at once</a> covers the lightweight approach.</p>
+
+<h2>Worked Example: What Manual Price Management Costs</h2>
+<p>A home goods store has 800 SKUs across Shopify and Amazon. A supplier raises costs 5% on 300 of them.</p>
+<ol>
+<li><strong>Time:</strong> updating 300 products on two channels at about 2 minutes each is 1,200 minutes, or <strong>20 hours</strong> of work, before any checking.</li>
+<li><strong>Errors:</strong> at a 1% slip rate, that's 6 wrong prices. One of them is a bestseller entered at $4.99 instead of $49.99. It sells 20 a day and the error is caught after two days: 40 units × $45 undercharged = <strong>$1,800</strong> lost.</li>
+<li><strong>Delay:</strong> if the update takes two weeks to get through, the store absorbs the higher cost in the meantime. At 1,500 affected units sold in those weeks and $1.25 of extra cost each, that's another <strong>$1,875</strong> of margin.</li>
+</ol>
+<p>That's about $3,700 plus 20 hours from a single supplier change. A price management tool that updates by rule, flags any price more than 30% below the last one, and pushes to both channels in minutes pays for itself quickly in this situation.</p>
+
+<h2>Automation Needs Guardrails</h2>
+<p>Automated pricing without limits can fail fast. In December 2014, a glitch in RepricerExpress, a tool that automatically adjusted Amazon sellers' prices to stay competitive, pushed prices for some UK sellers' stock down to a penny. <a href="https://fortune.com/2014/12/15/businesses-livid-as-software-glitch-causes-their-stock-to-sell-for-a-penny-on-amazon" target="_blank" rel="noopener noreferrer">Fortune reported</a> one seller saw $15,000 of stock sold within 40 minutes. Any price management system you use should enforce:</p>
+<ol>
+<li><strong>A hard floor</strong> per product, based on landed cost plus a minimum margin.</li>
+<li><strong>A maximum step size</strong>, so no single update moves a price more than a set percentage without approval.</li>
+<li><strong>Approval for exceptions</strong>, with a person reviewing anything outside the limits.</li>
+<li><strong>An undo</strong>, with price history so you can roll back a bad update in one step.</li>
+</ol>
+
+<h2>How to Choose Price Management Software</h2>
+<table>
+  <thead>
+    <tr><th>Segment</th><th>Typical buyers</th><th>Examples of the category</th><th>What to expect</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Enterprise B2B price management</td><td>Manufacturers and distributors with complex quotes and contracts</td><td>Pricefx, PROS, Zilliant, Vendavo</td><td>Custom pricing, long implementations, deep workflow and deal management</td></tr>
+    <tr><td>Enterprise retail pricing</td><td>Large retailers with thousands of stores or SKUs</td><td>Revionics, Competera, Omnia Retail</td><td>Demo-led sales, competitor and demand modeling, onboarding projects</td></tr>
+    <tr><td>Ecommerce pricing apps</td><td>Shopify and WooCommerce stores</td><td>Bulk editors, repricers, price optimization apps</td><td>Self-serve, published pricing, narrower scope</td></tr>
+  </tbody>
+</table>
+<p>Questions worth asking any vendor:</p>
+<ol>
+<li>Which channels does it publish to, and how quickly?</li>
+<li>Can I set floors, step limits and approval rules per product or category?</li>
+<li>Does it keep a full price history I can export?</li>
+<li>Does it recommend prices, and if so, from what data?</li>
+<li>What does it cost, and is the price published or quote-only?</li>
+</ol>
+<p>If you're a smaller store weighing whether any of this is worth paying for, <a href="/blog/pricing-software-for-small-business">pricing software for small business</a> and <a href="/blog/is-pricing-software-worth-the-monthly-cost">the ROI math on pricing software</a> go further.</p>
+
+<h2>Managing Prices vs Choosing Them</h2>
+<p>Zorin covers the decision side for Shopify and WooCommerce stores, with the execution basics built in. It fits a price elasticity model for each product from your sales history and recommends raise, lower or hold with an estimated profit impact and a confidence score. You can select many products and apply recommended prices in bulk, and approved prices are pushed back to your store. Every change sits alongside the sales it produced in the price history. It isn't an enterprise B2B quoting system, and it doesn't manage marketplace-specific price lists; it's built to make sure the prices you manage are the right ones.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view with several products selected for a bulk price update" width="1440" height="1987" loading="lazy" />
+  <figcaption>Selecting products for a bulk update applies demand-based prices across the catalog in one step.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Price management software stores, updates, approves and publishes prices across products and channels, with a history of every change.</li>
+<li>Price management is about executing prices correctly; price optimization is about choosing the right ones.</li>
+<li>Simon-Kucher found companies realize less than half of planned price increases, and poor execution is part of the leak.</li>
+<li>In the worked example, one manual supplier update cost about 20 hours and $3,700 in errors and delay.</li>
+<li>Automation needs floors, step limits, approvals and an undo; a 2014 repricer glitch sold stock for a penny.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is price management software?</h3>
+<p>It's software that stores all your prices in one place, updates them in bulk or by rule, routes changes for approval, publishes them to your store and other channels, and keeps a history of every change.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between price management and price optimization?</h3>
+<p>Price management handles execution: getting the intended prices onto every product and channel correctly. Price optimization handles the decision: working out what those prices should be, usually from demand, margin or competitor data. Some tools do both.</p>
+</div>
+<div class="faq-item">
+<h3>What is pricing automation software?</h3>
+<p>Pricing automation software applies price changes automatically based on rules or models, such as cost-plus formulas, competitor matching or demand-based recommendations. It saves time but needs floors, step limits and approvals to prevent costly errors.</p>
+</div>
+<div class="faq-item">
+<h3>Do small ecommerce stores need a price management system?</h3>
+<p>Not always. A store with a few dozen products on one channel can usually manage with its platform's bulk editor. Once you have hundreds of SKUs, several channels or frequent cost changes, dedicated software starts to pay for itself.</p>
+</div>
+<div class="faq-item">
+<h3>What features should price management software have?</h3>
+<p>At minimum: bulk updates, per-product price floors, channel sync, approval for large changes and a full price history. Optimization or recommendations are valuable if they're based on your own sales data and show how confident they are.</p>
+</div>
+<div class="faq-item">
+<h3>How much does price management software cost?</h3>
+<p>It ranges widely. Enterprise B2B and retail platforms are typically quote-only and involve implementation projects, while ecommerce pricing apps usually publish monthly plans. Compare the cost against the hours and pricing errors it would save.</p>
+</div>
+</section>
+
+<p class="conclusion">Price management software keeps prices correct, consistent and traceable as your catalog and channels grow. Pair it with a clear view of which prices to set, and it stops being admin and starts adding profit. To get demand-based recommendations you can apply in bulk to your store, <a href="/signup">start a free trial of Zorin</a>.</p>
+`.trim(),
+  },
+  {
     slug: "map-pricing-software",
     title: "MAP Pricing Software: Monitoring & Compliance Guide",
     excerpt:
@@ -879,7 +1015,7 @@ export const posts: BlogPost[] = [
 <p class="intro">Moving pricing decisions out of a spreadsheet doesn't mean handing control to a black box, and it doesn't mean the spreadsheet was doing something wrong the whole time either. What actually changes is narrower than either fear suggests: you get a statistical read your formulas can't produce, a record of what changed and why, and a place to review a recommendation instead of building one from scratch every time. What doesn't change is that you still make the final call.</p>
 
 <h2>Why Spreadsheets Work Until They Don't</h2>
-<p>For a small catalog with infrequent price changes, a spreadsheet is a completely reasonable tool. It's accessible, requires no setup, and works fine for one person doing occasional, ad-hoc pricing math. The friction shows up predictably: as SKU count grows, as more than one person needs to edit pricing, or as price changes need to happen often enough that manually updating formulas becomes its own part-time job. None of that means the spreadsheet habit was wrong at an earlier stage, it means the stage has changed.</p>
+<p>For a small catalog with infrequent price changes, a spreadsheet is a completely reasonable tool. It's accessible, requires no setup, and works fine for one person doing occasional, ad-hoc pricing math. The friction shows up predictably: as SKU count grows, as more than one person needs to edit pricing, or as price changes need to happen often enough that manually updating formulas becomes its own part-time job. That's the point where dedicated <a href="/blog/price-management-software">price management software</a> starts to earn its cost. None of that means the spreadsheet habit was wrong at an earlier stage, it means the stage has changed.</p>
 
 <h2>What a Spreadsheet Can't Actually Tell You</h2>
 <p>The real gap isn't speed, it's confidence. A spreadsheet formula can calculate a markup or a margin instantly, but it can't tell you whether a specific product can absorb a price increase without losing customers, because that requires a statistical read on your own demand data, not an if-then rule someone typed in once. A spreadsheet also can't flag its own uncertainty. A formula returns the same confident-looking number whether it's backed by two years of stable sales history or three weeks of a brand-new product, and a merchant working from the sheet has no built-in signal telling them which is which.</p>
@@ -7844,7 +7980,7 @@ export const posts: BlogPost[] = [
 </figure>
 
 <h2>How Big Retailers Handle It</h2>
-<p>Large retailers stopped pricing one product at a time years ago. <a href="https://www.nber.org/digest/jan19/e-commerce-and-pricing-behavior-traditional-retailers" target="_blank" rel="noopener noreferrer">NBER research by Alberto Cavallo</a> found that the share of products changing price each month at big multi-channel U.S. retailers roughly doubled, from 15% in 2008-10 to almost 30% in 2014-17. Nobody reviews that many prices by hand. They use systems that flag which prices need attention and batch the rest.</p>
+<p>Large retailers stopped pricing one product at a time years ago. <a href="https://www.nber.org/digest/jan19/e-commerce-and-pricing-behavior-traditional-retailers" target="_blank" rel="noopener noreferrer">NBER research by Alberto Cavallo</a> found that the share of products changing price each month at big multi-channel U.S. retailers roughly doubled, from 15% in 2008-10 to almost 30% in 2014-17. Nobody reviews that many prices by hand. They use <a href="/blog/price-management-software">price management systems</a> that flag which prices need attention and batch the rest.</p>
 <p>A small store doesn't need that speed, but the arithmetic is the same. At ten minutes per product, a careful review of 200 SKUs takes more than 33 hours, and by the time you finish, the first prices you checked are a month out of date. The practical answer is to let a model sort products by how confident it is and how big the suggested change is, apply the obvious ones in bulk, and spend your own time on the handful that actually need judgment.</p>
 
 <h2>Where Bulk Applying Is Genuinely Safe</h2>
