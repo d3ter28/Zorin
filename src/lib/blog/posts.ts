@@ -38,6 +38,125 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "map-pricing-software",
+    title: "MAP Pricing Software: Monitoring & Compliance Guide",
+    excerpt:
+      "What MAP pricing software does, the legal frame, when manual MAP monitoring stops working, a 7-step compliance process and questions to ask vendors.",
+    date: "2026-10-07",
+    readingTime: "6 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">MAP pricing software monitors the prices your resellers advertise online, flags anything below your minimum advertised price (MAP), captures evidence and helps you enforce your policy consistently. Brands need it once they have more listings than anyone can check by hand, which happens quickly with a few dozen resellers and marketplaces. The software handles detection; MAP pricing compliance still depends on a clear written policy and enforcing it the same way every time.</p>
+
+<h2>What MAP Pricing Software Does</h2>
+<p>A minimum advertised price is the lowest price a brand allows resellers to advertise for a product. (The basics, including how MAP differs from MSRP, are in our guide to <a href="/blog/minimum-advertised-price-what-sellers-need-to-know">minimum advertised price</a>.) MAP pricing software, also called MAP monitoring software, automates the policing:</p>
+<table>
+  <thead>
+    <tr><th>Feature</th><th>What it does</th><th>Why it matters</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Listing coverage</td><td>Scans reseller websites, marketplaces like Amazon, eBay and Walmart, and shopping feeds like Google Shopping</td><td>Violations happen wherever prices are shown</td></tr>
+    <tr><td>Product matching</td><td>Matches each listing to your SKU, including variants and bundles</td><td>A wrong match creates false violations</td></tr>
+    <tr><td>Seller identification</td><td>Names the seller behind each listing, including unauthorized ones</td><td>You can't enforce against a seller you can't identify</td></tr>
+    <tr><td>Evidence capture</td><td>Saves timestamped screenshots of each violation</td><td>Proof when you send a notice or suspend a reseller</td></tr>
+    <tr><td>Alerts and frequency</td><td>Checks prices daily or more often and alerts you to new violations</td><td>A violation left for a week spreads to other sellers</td></tr>
+    <tr><td>Enforcement workflow</td><td>Tracks notices sent, repeat offenders and resolution</td><td>Consistent enforcement is what makes a policy stick</td></tr>
+    <tr><td>Reporting</td><td>Shows compliance rates by reseller, channel and product over time</td><td>Tells you whether the policy is working</td></tr>
+  </tbody>
+</table>
+
+<h2>The Legal Frame You're Working Within</h2>
+<p>MAP software is a monitoring tool; the policy it monitors has to be built correctly. In the U.S., two Supreme Court decisions shape it. <a href="https://www.law.cornell.edu/supremecourt/text/250/300" target="_blank" rel="noopener noreferrer">United States v. Colgate &amp; Co. (1919)</a> is the basis for a manufacturer's right to announce a pricing policy on its own and choose not to deal with resellers who don't follow it. <a href="https://www.law.cornell.edu/supct/html/06-480.ZS.html" target="_blank" rel="noopener noreferrer">Leegin Creative Leather Products v. PSKS (2007)</a> held that vertical price restraints are judged under the rule of reason rather than being automatically illegal.</p>
+<p>The <a href="https://www.ftc.gov/advice-guidance/competition-guidance/guide-antitrust-laws/dealings-supply-chain/manufacturer-imposed-requirements" target="_blank" rel="noopener noreferrer">FTC's guidance on manufacturer-imposed requirements</a> adds a caution: it has challenged MAP policies that banned discounted prices even in ads retailers paid for themselves. Some states also treat minimum pricing agreements more strictly than federal law. The practical takeaway is to keep MAP a unilateral policy about advertised prices, not a negotiated agreement about selling prices, and to get legal advice when you write it. This is general information, not legal advice.</p>
+
+<h2>Worked Example: When Manual Monitoring Stops Working</h2>
+<p>A kitchenware brand sells 120 SKUs through 40 authorized online resellers, plus whoever lists its products on Amazon and eBay.</p>
+<ol>
+<li><strong>Listings to check:</strong> 120 SKUs × 40 resellers = 4,800 potential listings, before marketplaces.</li>
+<li><strong>Manual effort:</strong> at 30 seconds a listing, one full check takes 40 hours. Weekly checks would be a full-time job; daily checks are impossible.</li>
+<li><strong>Cost of a missed violation:</strong> a $120 blender has a $120 MAP and a $66 wholesale price, so resellers earn $54 a unit. One reseller advertises it at $99. Within a week, three others match. Those four sell 150 units a month between them, and the brand's other retailers, now making $33 instead of $54 on every sale they match, start cutting their reorders.</li>
+</ol>
+<p>The direct loss here falls on the resellers, $21 a unit, or $3,150 a month across 150 units. The real loss to the brand is the damage to its retail network and its price position, which is why speed of detection matters. A tool that checks daily and flags the first violation lets you act before it spreads.</p>
+
+<h2>MAP Pricing Compliance: A Step-by-Step Process</h2>
+<ol>
+<li><strong>Write a clear unilateral policy.</strong> Define which products are covered, what counts as an advertised price (product pages, ads, emails, marketplace listings), what doesn't (the price in a shopping cart, in many policies), and the consequences.</li>
+<li><strong>Keep an up-to-date MAP list by SKU.</strong> Monitoring tools need the exact MAP for each product and variant.</li>
+<li><strong>Monitor every channel your products appear on.</strong> Include marketplaces and shopping feeds, not just reseller sites.</li>
+<li><strong>Capture evidence automatically.</strong> Timestamped screenshots make enforcement straightforward.</li>
+<li><strong>Enforce the same way every time.</strong> A standard sequence, such as notice, then a short suspension, then termination, applied to every reseller regardless of size.</li>
+<li><strong>Deal with unauthorized sellers separately.</strong> Sellers without an account aren't bound by your policy, so tracing their supply and using marketplace brand tools is a different process.</li>
+<li><strong>Review compliance monthly.</strong> Look for repeat offenders, channels that drift and products where MAP may be set unrealistically high.</li>
+</ol>
+
+<h2>How to Choose MAP Pricing Software</h2>
+<p>Dedicated MAP monitoring tools and broader price-tracking tools both offer MAP features. Price tracking tools often include it only on higher plans; for example, <a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">Prisync's published pricing</a> lists MAP monitoring for suppliers in its Platinum tier. Questions to ask any vendor:</p>
+<ol>
+<li>Which marketplaces, sites and shopping feeds does it cover, and how often does it check?</li>
+<li>How accurate is product matching for variants, bundles and multipacks?</li>
+<li>Can it identify the seller behind each marketplace listing?</li>
+<li>Does it capture timestamped screenshots automatically?</li>
+<li>Does it include an enforcement workflow, or just a list of violations?</li>
+<li>How is it priced: by SKU, by seller, by channel or by check frequency?</li>
+</ol>
+<p>For a broader look at competitor and price monitoring tools, see <a href="/blog/prisync-alternatives">Prisync alternatives</a> and <a href="/blog/competitor-price-tracking">whether you need a competitor price tracking app</a>.</p>
+
+<h2>For Resellers: Pricing Inside a MAP Policy</h2>
+<p>If you're a reseller rather than a brand, MAP limits how low you can advertise, but not whether you should sit at MAP or above it. Some products sell just as well a little above MAP; others need to sit right at it to compete. That's a demand question. Zorin reads your Shopify or WooCommerce sales history, fits a price elasticity model for each product and recommends raise, lower or hold with an estimated profit impact. It isn't a MAP monitoring tool and doesn't scan reseller sites; it helps you choose the most profitable price within the rules you have to follow.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing an elasticity coefficient, demand curve, and raise recommendation" width="1440" height="1963" loading="lazy" />
+  <figcaption>Inside a MAP policy, the question is how far above the minimum each product can profitably sit.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>MAP pricing software scans reseller sites, marketplaces and shopping feeds for prices advertised below your minimum advertised price.</li>
+<li>Key features are coverage, accurate product matching, seller identification, screenshot evidence, alerts and an enforcement workflow.</li>
+<li>Colgate (1919) supports unilateral pricing policies, and Leegin (2007) put vertical price restraints under the rule of reason.</li>
+<li>With 120 SKUs and 40 resellers, one manual check takes about 40 hours, which is why brands automate monitoring.</li>
+<li>Software detects violations; compliance comes from a clear written policy enforced the same way every time.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is MAP pricing software?</h3>
+<p>It's software that monitors the prices resellers advertise online, compares them with your minimum advertised price for each product, flags violations with evidence and helps you track enforcement.</p>
+</div>
+<div class="faq-item">
+<h3>What is MAP pricing compliance?</h3>
+<p>MAP compliance means resellers advertise your products at or above the minimum advertised price set in your policy. Brands maintain it by monitoring listings, documenting violations and applying the same consequences to every reseller who breaks the policy.</p>
+</div>
+<div class="faq-item">
+<h3>Is MAP pricing legal?</h3>
+<p>In the U.S., a unilateral MAP policy covering advertised prices is generally lawful under the Colgate doctrine, and vertical price restraints are judged under the rule of reason since Leegin. The FTC has challenged overly broad MAP programs, and some states are stricter, so have the policy reviewed by a lawyer. This is general information, not legal advice.</p>
+</div>
+<div class="faq-item">
+<h3>How do brands monitor MAP violations?</h3>
+<p>Most use MAP monitoring software that checks reseller sites, marketplaces and shopping feeds daily, matches listings to SKUs, identifies the seller and saves screenshots. Small brands with few resellers sometimes check manually, but that stops scaling quickly.</p>
+</div>
+<div class="faq-item">
+<h3>Does MAP apply to the price in the shopping cart?</h3>
+<p>Many MAP policies cover only advertised prices, so a lower price shown in the cart or at checkout may be allowed. It depends on how your policy defines an advertised price, so spell it out clearly.</p>
+</div>
+<div class="faq-item">
+<h3>Can MAP software stop unauthorized sellers?</h3>
+<p>It can identify them, but unauthorized sellers haven't agreed to your policy, so MAP enforcement doesn't apply to them directly. Brands usually trace where the stock came from and use marketplace brand protection programs instead.</p>
+</div>
+</section>
+
+<p class="conclusion">MAP pricing software turns an impossible manual check into a daily report you can act on, but it only protects your price if your policy is clear and your enforcement is consistent. If you sell within a MAP policy and want to know where each product should sit above the minimum, <a href="/signup">try Zorin free</a> with your own sales data.</p>
+`.trim(),
+  },
+  {
     slug: "margin-vs-markup",
     title: "Margin vs Markup: Formulas, Chart & Examples",
     excerpt:
@@ -876,7 +995,7 @@ export const posts: BlogPost[] = [
 <li><strong>A clear, per-product floor.</strong> Vague policies ("keep pricing reasonable") aren't enforceable. Name the exact minimum advertised price for each SKU or category.</li>
 <li><strong>A defined scope.</strong> Specify which channels the policy covers, online listings, print ads, marketplace pages, and note any explicit exceptions (clearance, private sales).</li>
 <li><strong>Uniform communication.</strong> Every reseller needs to receive the same policy at the same time, in writing, so enforcement later doesn't look selective.</li>
-<li><strong>A monitoring method.</strong> Someone has to actually check advertised prices across channels regularly, whether that's a manual spot-check routine or a dedicated monitoring tool.</li>
+<li><strong>A monitoring method.</strong> Someone has to actually check advertised prices across channels regularly, whether that's a manual spot-check routine or a dedicated <a href="/blog/map-pricing-software">MAP monitoring tool</a>.</li>
 </ul>
 <p>Shopify has no native MAP-enforcement feature. Most sellers document the floor per product internally and check advertised prices on <a href="/integrations/shopify">Shopify</a> or <a href="/integrations/woocommerce">WooCommerce</a> listings manually, or use a dedicated price-monitoring tool if the reseller network is large enough to make manual checks impractical.</p>
 
@@ -1204,7 +1323,7 @@ export const posts: BlogPost[] = [
 <p>If what you actually want is a read on what your own customers will pay rather than a reaction to competitor prices, Zorin is the closest self-serve fit. If competitor monitoring is still the job but you want more frequent checks or a different add-on structure, Price2Spy is worth comparing directly. If you're selling across many marketplaces and need deeper rule automation than Prisync's tiers offer, Omnia Retail reaches further, at a higher price. If your catalog has genuine cross-category effects and real elasticity modeling matters more than cost, Competera is the enterprise option.</p>
 
 <h2>What's Actually Driving the "Prisync Alternative" Search</h2>
-<p><a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">Prisync's published pricing</a> runs three separate models, URL-based, channel-based, and hybrid, each with Professional, Premium, and Platinum tiers. The URL-based Professional plan starts at $99 a month for up to 100 products; Premium, at $199 a month, adds a dynamic repricing engine and daily notifications; Platinum, at $399, adds instant notifications, price history and MAP monitoring for suppliers. Channel-based monitoring, tracking prices on specific marketplaces rather than a fixed URL list, starts higher and adds $100 to $200 a month per additional channel, and API access adds a further 20% surcharge on top of any tier. The product itself holds strong review scores, <a href="https://www.g2.com/products/prisync/reviews" target="_blank" rel="noopener noreferrer">4.7 out of 5 on G2 across 168 reviews</a> and 4.8 on Capterra across 129 reviews, but the most common complaint across those same review platforms is scraping reliability: competitor sites that change structure can quietly stop returning accurate data, and MAP violation monitoring isn't included below the top tier. None of that makes Prisync a bad tool, it just means the reasons someone goes looking for an alternative are usually specific rather than a wholesale rejection of the category.</p>
+<p><a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">Prisync's published pricing</a> runs three separate models, URL-based, channel-based, and hybrid, each with Professional, Premium, and Platinum tiers. The URL-based Professional plan starts at $99 a month for up to 100 products; Premium, at $199 a month, adds a dynamic repricing engine and daily notifications; Platinum, at $399, adds instant notifications, price history and MAP monitoring for suppliers. Channel-based monitoring, tracking prices on specific marketplaces rather than a fixed URL list, starts higher and adds $100 to $200 a month per additional channel, and API access adds a further 20% surcharge on top of any tier. The product itself holds strong review scores, <a href="https://www.g2.com/products/prisync/reviews" target="_blank" rel="noopener noreferrer">4.7 out of 5 on G2 across 168 reviews</a> and 4.8 on Capterra across 129 reviews, but the most common complaint across those same review platforms is scraping reliability: competitor sites that change structure can quietly stop returning accurate data, and <a href="/blog/map-pricing-software">MAP violation monitoring</a> isn't included below the top tier. None of that makes Prisync a bad tool, it just means the reasons someone goes looking for an alternative are usually specific rather than a wholesale rejection of the category.</p>
 
 <h2>1. Zorin: Demand Modeling Instead of Competitor Reaction</h2>
 <p>Zorin connects to Shopify or WooCommerce, or takes a CSV upload, and fits a price elasticity model to your own price-and-quantity history only, per SKU, with no competitor or marketplace data involved at all. The output is a plain raise, lower, or hold recommendation, an estimated profit lift, and an R²-based confidence score so a thin-data product is never presented with the same certainty as an established one. Nothing applies automatically, every change goes through manual review first. Pricing is published and flat regardless of monitoring channel: $39 to $249 a month depending on catalog size, no per-channel add-on and no API surcharge. The real limitation next to Prisync: Zorin's competitor feature is a manual per-product entry, name, price, optional URL, not a live-monitoring subscription, so it doesn't solve the "am I still priced-in on Amazon" problem at all.</p>

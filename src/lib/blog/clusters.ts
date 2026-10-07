@@ -42,6 +42,7 @@ export const clusters: Cluster[] = [
       "ai-pricing-software",
       "price-optimization-tools",
       "competitor-price-tracking",
+      "map-pricing-software",
       "how-to-evaluate-a-shopify-pricing-app",
       "are-software-review-sites-reliable-for-pricing-tools",
     ],
