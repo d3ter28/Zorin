@@ -38,6 +38,256 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "pricing-simulation-tool",
+    title: "Pricing Simulation Tools: Test a Price First",
+    excerpt:
+      "A pricing simulation tool predicts units, revenue and profit at a new price. The types, a worked 4-price simulation, and how to tell if one is trustworthy.",
+    date: "2026-10-09",
+    readingTime: "7 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">A pricing simulation tool lets you test a price change before you make it: you enter a new price and it estimates what happens to units sold, revenue and profit. The estimate is only as good as the demand model behind it, so the useful tools build that model from your own sales history and show a range of outcomes, not a single confident number. When the range points both ways, the right answer is often to hold and gather more data rather than move.</p>
+
+<h2>What Is a Pricing Simulation Tool?</h2>
+<p>A pricing simulator, sometimes called a price simulation tool or pricing scenario tool, answers "what if?" questions. What if this product cost $33 instead of $30? What if we cut the whole category 10% for a month? What if costs rise and we pass half of it on? Instead of changing a live price and waiting to see, the simulator predicts the outcome from a model of how customers respond to price.</p>
+<p>Every simulator has the same three parts: a <strong>baseline</strong> (current price, cost and sales), a <strong>demand model</strong> (how sales change when price changes) and an <strong>objective</strong> (usually profit, sometimes revenue or units). The demand model is the part that separates a useful tool from a spreadsheet that just multiplies numbers.</p>
+
+<h2>Types of Pricing Simulation Tools</h2>
+<table>
+  <thead>
+    <tr><th>Type</th><th>Where the demand model comes from</th><th>Best for</th><th>Main weakness</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Spreadsheet what-if</td><td>You type in a guess for how much sales will change</td><td>Quick margin checks</td><td>The answer is only as good as your guess</td></tr>
+    <tr><td>Elasticity-based simulator</td><td>Estimated from your own past prices and sales</td><td>Products with sales history and some past price changes</td><td>Needs price variation in the data to be reliable</td></tr>
+    <tr><td>Survey-based (conjoint) simulator</td><td>Customer choices in a structured survey</td><td>New products and feature-and-price trade-offs</td><td>Stated choices tend to overstate what people will pay</td></tr>
+    <tr><td>Enterprise scenario planning</td><td>Demand, competitor and cross-product models together</td><td>Large retailers modeling whole categories</td><td>Cost, setup time and data requirements</td></tr>
+  </tbody>
+</table>
+<p>Survey-based simulators are well established in market research. Sawtooth Software's <a href="https://sawtoothsoftware.com/simulators/choice-simulator" target="_blank" rel="noopener noreferrer">choice simulator</a>, for example, uses conjoint survey results to estimate the share of customers who'd choose each product at different prices and feature sets. The caution is that what people say in surveys isn't quite what they do: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a 2020 meta-analysis by Schmidt and Bijmolt</a> covering 77 studies found hypothetical willingness to pay was 21% above real willingness to pay on average. Simulations built on survey data should be read with that bias in mind; the trade-off is explored in <a href="/blog/price-survey-vs-price-testing">price survey vs price testing</a>.</p>
+
+<h2>Worked Example: Simulating Four Prices</h2>
+<p>A product sells for <strong>$30</strong>, costs <strong>$12</strong>, and sells 500 units a month, for $9,000 of monthly profit. An elasticity-based simulator estimates its price elasticity at <strong>−1.8</strong>, with a plausible range of −1.4 to −2.2. Here's what it predicts for four prices under each value:</p>
+<table>
+  <thead>
+    <tr><th>Price</th><th>Profit if elasticity is −1.4</th><th>Profit if −1.8 (central estimate)</th><th>Profit if −2.2</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>$27</td><td>$8,692</td><td>$9,066</td><td>$9,456</td></tr>
+    <tr><td><strong>$30 (current)</strong></td><td><strong>$9,000</strong></td><td><strong>$9,000</strong></td><td><strong>$9,000</strong></td></tr>
+    <tr><td>$33</td><td>$9,188</td><td>$8,845</td><td>$8,514</td></tr>
+    <tr><td>$36</td><td>$9,297</td><td>$8,643</td><td>$8,035</td></tr>
+  </tbody>
+</table>
+<p>The central estimate says a small cut to $27 is marginally better, by $66 a month. But look across the row. If the true elasticity is −1.4, raising to $36 would earn $297 more; if it's −2.2, cutting to $27 earns $456 more. The plausible range points in opposite directions, and the central estimate's gain is smaller than the uncertainty around it.</p>
+<p>A tool that only showed the central estimate would recommend a price cut with false confidence. A tool that shows the range tells you the truth: this product needs more price variation in its data before anyone should move its price. The practical move is to hold, or run a small, controlled test, as covered in <a href="/blog/how-to-run-a-price-ab-test-the-right-way">how to run a price A/B test the right way</a>. The formula behind these numbers is explained in <a href="/blog/price-elasticity-of-demand-formula">the price elasticity of demand formula</a>.</p>
+
+<h2>What Makes a Pricing Simulator Trustworthy</h2>
+<ol>
+<li><strong>It learns from your data, not a default.</strong> A generic elasticity for "home goods" says little about your product. Uber's own data, for example, produced surge-pricing elasticities mostly between −0.4 and −0.6 in <a href="https://www.nber.org/papers/w22627" target="_blank" rel="noopener noreferrer">an analysis of almost 50 million ride requests</a>, a range specific to that market that wouldn't transfer to a candle shop.</li>
+<li><strong>It shows uncertainty.</strong> A range, a confidence score or both. Without it, you can't tell a strong recommendation from a guess.</li>
+<li><strong>It separates promotions and stockouts.</strong> Otherwise a sale week or an out-of-stock month distorts the demand model.</li>
+<li><strong>It simulates profit, not just revenue.</strong> Revenue can rise while profit falls: at $27 with an elasticity of −1.4, revenue rises from $15,000 to about $15,650 while profit drops to $8,692.</li>
+<li><strong>It includes your real costs.</strong> Landed cost, fees and shipping, so the profit line is meaningful.</li>
+<li><strong>It stays within realistic ranges.</strong> Simulating far outside the prices a product has actually sold at is extrapolation, and the model should warn you.</li>
+</ol>
+
+<h2>How to Use a Pricing Simulator, Step by Step</h2>
+<ol>
+<li><strong>Start with products that have history.</strong> Pick products with several months of sales and at least a few past price changes.</li>
+<li><strong>Simulate small moves first.</strong> ±5% to ±10% from the current price, where the model has the most evidence.</li>
+<li><strong>Read the profit column and the confidence together.</strong> Act on large expected gains with strong confidence; hold where confidence is weak.</li>
+<li><strong>Apply the change and record it.</strong> The new price and its sales become fresh data for the model.</li>
+<li><strong>Compare the prediction with what happened.</strong> After a few weeks, check actual units against the simulation. Consistent misses mean the model needs more data or something else changed.</li>
+</ol>
+
+<h2>Building the Demand Model From Your Own Sales</h2>
+<p>Zorin builds the demand model a simulation needs. For Shopify and WooCommerce stores it fits a price elasticity model for each product from your sales history, plots the demand curve, and recommends raise, lower or hold with an estimated profit impact and an R-squared based confidence score. A what-if price slider on each product shows the margin at any price you try before you apply it. When the data is thin, the confidence badge says so, which is exactly the situation in the worked example. For products with no history at all, its Van Westendorp survey gives you a stated-preference price range to start from, and the Launch Planner helps you set a first price using your costs and any competitor prices you record.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing an elasticity coefficient of -1.46, a demand curve, and confidence badge" width="1440" height="1963" loading="lazy" />
+  <figcaption>The demand curve shows expected sales at each price, and the confidence badge shows how much to trust it.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A pricing simulation tool predicts units, revenue and profit at a new price before you change it.</li>
+<li>Its value depends on the demand model: your own sales history beats a typed-in guess or a generic benchmark.</li>
+<li>Survey-based simulators are useful for new products but can overstate willingness to pay, by 21% on average in one meta-analysis.</li>
+<li>In the worked example, the plausible elasticity range pointed to both a raise and a cut, so the right call was to hold.</li>
+<li>Trust simulators that show uncertainty, simulate profit and warn you when you go beyond the prices the data covers.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is a pricing simulation tool?</h3>
+<p>It's software that predicts what happens to units sold, revenue and profit if you change a price, using a model of how customers respond to price. It lets you test scenarios before changing live prices.</p>
+</div>
+<div class="faq-item">
+<h3>How accurate are pricing simulations?</h3>
+<p>They're as accurate as the demand model behind them. Simulators built on plenty of your own sales data, including past price changes, are much more reliable than ones built on guesses or generic benchmarks. Good tools show a confidence level so you know when to trust them.</p>
+</div>
+<div class="faq-item">
+<h3>Can I simulate pricing in a spreadsheet?</h3>
+<p>Yes, for simple margin checks. The weak point is that you have to guess how sales will respond. A spreadsheet can multiply your guess out accurately, but it can't tell you whether the guess is right.</p>
+</div>
+<div class="faq-item">
+<h3>What data do I need for a pricing simulator?</h3>
+<p>At minimum, prices, units sold and dates for each product, plus your costs. Several months of history with at least a few different prices gives the demand model something to learn from.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between a pricing simulator and price optimization?</h3>
+<p>A simulator tells you what would happen at a price you choose. Price optimization searches across prices to find the one that best meets your goal, usually profit. Most optimization tools include a simulator underneath.</p>
+</div>
+<div class="faq-item">
+<h3>How do I simulate prices for a new product with no sales history?</h3>
+<p>Use a survey-based approach, such as a Van Westendorp or conjoint survey, to estimate an acceptable price range, then launch within it and let real sales data take over. Expect survey answers to run somewhat higher than real willingness to pay.</p>
+</div>
+</section>
+
+<p class="conclusion">A pricing simulation tool is only as honest as its demand model and its uncertainty. Use one that learns from your own sales and tells you when it isn't sure. To simulate price changes on your catalog, <a href="/signup">start a free Zorin trial</a>.</p>
+`.trim(),
+  },
+  {
+    slug: "cross-price-elasticity-of-demand",
+    title: "Cross Price Elasticity of Demand (With Examples)",
+    excerpt:
+      "Cross price elasticity of demand shows how one product's sales react to another's price. Formula, substitutes vs complements, and worked store examples.",
+    date: "2026-10-09",
+    readingTime: "7 min read",
+    category: "Education",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Cross price elasticity of demand measures how much the demand for one product changes when the price of a different product changes. The formula is the percentage change in quantity demanded of product A divided by the percentage change in the price of product B. A positive result means the two are substitutes (a rival's price cut pulls sales away from you), a negative result means they are complements (cheaper printers sell more ink), and a result near zero means they are unrelated.</p>
+
+<h2>What Cross Price Elasticity of Demand Measures</h2>
+<p>Ordinary <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity of demand</a> looks at one product: how its sales respond when its own price moves. Cross price elasticity looks sideways. It asks how sales of your product respond when the price of something else moves, whether that is a competitor's version of the same item or another product in your own catalog.</p>
+<p>For an online store, that sideways view answers practical questions. If a rival drops their price, how many sales do you lose? If you discount a hero product, do accessories ride along? If you raise the price of one flavor, do customers switch to another flavor you also sell, or leave?</p>
+
+<h2>The Cross Price Elasticity of Demand Formula</h2>
+<p>The formula is:</p>
+<p><strong>Cross price elasticity (XED) = % change in quantity demanded of product A ÷ % change in price of product B</strong></p>
+<p>Percentage change is the new value minus the old value, divided by the old value. If the price changes are large, the midpoint method (dividing by the average of the old and new values) gives a more symmetric answer, the same refinement explained in our guide to the <a href="/blog/price-elasticity-of-demand-formula">price elasticity of demand formula</a>.</p>
+
+<h2>How to Interpret the Result</h2>
+<table>
+  <thead>
+    <tr><th>Cross price elasticity</th><th>Relationship</th><th>What it means</th><th>Ecommerce example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Positive, large (above about +1)</td><td>Strong substitutes</td><td>Customers switch easily when the other product gets cheaper</td><td>Two near-identical phone cases from different sellers</td></tr>
+    <tr><td>Positive, small (0 to about +1)</td><td>Weak substitutes</td><td>Some switching, but loyalty or differences hold most buyers</td><td>A premium brand vs a budget alternative</td></tr>
+    <tr><td>Around zero</td><td>Independent</td><td>One price has no real effect on the other product</td><td>Candles and phone chargers</td></tr>
+    <tr><td>Negative</td><td>Complements</td><td>The products are bought together, so one getting cheaper lifts the other</td><td>Espresso machines and coffee pods</td></tr>
+  </tbody>
+</table>
+<p>The sign tells you the relationship; the size tells you its strength. A cross elasticity of +2.0 means a 10% cut in a rival's price takes about 20% of your volume. A cross elasticity of +0.2 means the same cut costs you about 2%.</p>
+
+<h2>Worked Examples</h2>
+<h3>Substitutes: a competitor cuts their price</h3>
+<p>You sell a stainless steel water bottle for $30 and move 300 units a month. A competitor with a very similar bottle cuts their price from $32 to $27.20, a 15% drop. The next month, with nothing else changed, you sell 255 bottles.</p>
+<ul>
+<li>Your quantity change: (255 − 300) ÷ 300 = <strong>−15%</strong></li>
+<li>Their price change: (27.20 − 32) ÷ 32 = <strong>−15%</strong></li>
+<li>XED = −15% ÷ −15% = <strong>+1.0</strong></li>
+</ul>
+<p>Positive, so the bottles are substitutes, and fairly strong ones: every 1% the rival cuts costs you about 1% of your volume. At a $12 profit per bottle, those 45 lost units cost you $540 a month.</p>
+
+<h3>Complements: you discount your own hero product</h3>
+<p>You sell a pour-over kettle at $60 (cost $30) and filter papers at $8 a pack (cost $4). You cut the kettle 10% to $54. Kettle sales rise from 200 to 230 a month, and filter sales rise from 400 to 440 packs.</p>
+<ul>
+<li>Filter quantity change: (440 − 400) ÷ 400 = <strong>+10%</strong></li>
+<li>Kettle price change: <strong>−10%</strong></li>
+<li>XED of filters with respect to kettle price = +10% ÷ −10% = <strong>−1.0</strong></li>
+</ul>
+<p>Negative, so they are complements. Now the profit check, which is where cross elasticity earns its keep:</p>
+<table>
+  <thead>
+    <tr><th></th><th>Before</th><th>After the kettle discount</th><th>Change</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Kettle profit</td><td>200 × $30 = $6,000</td><td>230 × $24 = $5,520</td><td>−$480</td></tr>
+    <tr><td>Filter profit</td><td>400 × $4 = $1,600</td><td>440 × $4 = $1,760</td><td>+$160</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>$7,600</strong></td><td><strong>$7,280</strong></td><td><strong>−$320</strong></td></tr>
+  </tbody>
+</table>
+<p>The complement effect is real, but it only recovers a third of what the discount gave away. Looking at the kettle alone, you'd see a $480 loss; looking at the filters alone, a $160 win. The cross effect tells you the true net, which here is still negative. Discounting a product to drive add-on sales only pays when the add-ons carry enough margin and enough volume to cover the gap, the same logic behind <a href="/blog/how-to-price-product-bundles-without-giving-away-your-margin">pricing bundles without giving away your margin</a>.</p>
+
+<h2>Real-World Evidence</h2>
+<p><strong>Amazon vs Barnes &amp; Noble online.</strong> Economists Judith Chevalier and Austan Goolsbee built a way to estimate demand from public sales ranks and applied it to about 20,000 books sold at Amazon and BN.com. In their <a href="https://www.nber.org/papers/w9085" target="_blank" rel="noopener noreferrer">NBER study</a>, later published in Quantitative Marketing and Economics, demand at BN.com had an own-price elasticity close to −4 and a very high cross price elasticity with Amazon's price. At Amazon, own-price elasticity was around −0.6 and the cross price elasticity was relatively small. In plain terms, BN.com shoppers switched readily when Amazon was cheaper, while Amazon shoppers mostly stayed put when BN.com was cheaper. The same product can have very different cross elasticities depending on which store it's sold in.</p>
+<p><strong>Gasoline and cars.</strong> A study by Meghan Busse, Christopher Knittel and Florian Zettelmeyer, <a href="https://www.nber.org/papers/w15590" target="_blank" rel="noopener noreferrer">"Pain at the Pump"</a>, found that a $1 rise in the gasoline price changed the market share of the most fuel-efficient quarter of new cars by +20% and the least fuel-efficient quarter by −24%. Fuel is a complement to driving, so a price rise for gas pushes demand away from thirsty cars (negative cross effect) and toward efficient ones (positive cross effect). One price change moved two groups of products in opposite directions.</p>
+
+<h2>How Online Stores Use Cross Price Elasticity</h2>
+<ol>
+<li><strong>Size your competitive exposure.</strong> A high positive cross elasticity with a named competitor means you can't ignore their price moves. A low one means your brand, reviews or shipping speed protect you, and matching every cut would give away margin for nothing. Our guide to <a href="/blog/competitive-pricing-strategy">competitive pricing strategy</a> covers when to sit below, at or above the market.</li>
+<li><strong>Choose what to discount.</strong> Discount the product with strong complements and healthy add-on margins, not the one that sells alone.</li>
+<li><strong>Watch for cannibalization in your own catalog.</strong> Two of your own products with a high positive cross elasticity steal from each other. A price cut on one may just move sales from its sibling, and total profit can fall even as the discounted product "wins".</li>
+<li><strong>Read your own-price elasticity carefully.</strong> If a competitor cut their price in the same month you changed yours, part of your sales change came from them, not from you. Separate the two before concluding your product is price-sensitive.</li>
+</ol>
+
+<h2>The Limits of Cross Price Elasticity</h2>
+<p>Cross elasticities are harder to estimate than own-price elasticities. You need prices for the other product over time, which for competitors means reliable tracking, and many things change at once in a real store. The numbers also aren't symmetric: as the Amazon and BN.com study shows, how much A responds to B's price is not the same as how much B responds to A's. Treat any single estimate as a directional read.</p>
+<p>For most small stores, the most useful starting point is still each product's own price elasticity, measured cleanly. That's what Zorin does: it reads your Shopify or WooCommerce sales history and fits a demand model for each product, with a confidence score so you know how far to trust it. Flagging past promotions keeps sale weeks from distorting the read, and you can record known competitor prices per product so you have that context next to the recommendation.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin product page showing an elasticity coefficient, demand curve, and confidence badge" width="1440" height="1963" loading="lazy" />
+  <figcaption>A per-product elasticity read is the foundation; cross effects tell you how related products and rivals shift it.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Cross price elasticity of demand = % change in quantity of product A ÷ % change in price of product B.</li>
+<li>Positive means substitutes, negative means complements, and near zero means unrelated products.</li>
+<li>BN.com's cross elasticity with Amazon was very high while Amazon's with BN.com was small, so cross effects are rarely symmetric.</li>
+<li>A $1 gas price rise shifted new car shares by +20% for the most efficient cars and −24% for the least efficient.</li>
+<li>Always check the combined profit: in the kettle example, the complement lift recovered only a third of the discount's cost.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is cross price elasticity of demand?</h3>
+<p>It measures how the quantity demanded of one product changes when the price of another product changes. It's calculated as the percentage change in quantity of product A divided by the percentage change in price of product B.</p>
+</div>
+<div class="faq-item">
+<h3>What does a positive cross price elasticity mean?</h3>
+<p>The products are substitutes. When the other product's price rises, demand for yours rises too, because some buyers switch. The larger the number, the more easily customers move between the two.</p>
+</div>
+<div class="faq-item">
+<h3>What does a negative cross price elasticity mean?</h3>
+<p>The products are complements, bought together. When one gets cheaper, demand for the other rises, as with game consoles and games, or printers and ink.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between price elasticity and cross price elasticity?</h3>
+<p>Price elasticity measures how a product's sales respond to its own price. Cross price elasticity measures how its sales respond to the price of a different product, such as a competitor's version or a complementary item.</p>
+</div>
+<div class="faq-item">
+<h3>Is cross price elasticity the same in both directions?</h3>
+<p>No. Research on Amazon and BN.com found BN.com's demand was very sensitive to Amazon's price, while Amazon's demand barely responded to BN.com's price. Brand strength and loyalty make the relationship lopsided.</p>
+</div>
+<div class="faq-item">
+<h3>How do I calculate cross price elasticity for my store?</h3>
+<p>Record your product's unit sales before and after another product's price changed, and the size of that price change. Divide the percentage change in your sales by the percentage change in the other price, and make sure nothing else, such as a promotion or stockout, changed in the same period.</p>
+</div>
+</section>
+
+<p class="conclusion">Cross price elasticity tells you how connected your products are, to each other and to your competitors. It's most useful once you already know how each product responds to its own price. To see that number for every product in your catalog, <a href="/signup">start a free Zorin trial</a> and connect your store.</p>
+`.trim(),
+  },
+  {
     slug: "pricefx-alternatives",
     title: "Pricefx Alternatives & Competitors: 5 Options",
     excerpt:
@@ -2566,7 +2816,7 @@ export const posts: BlogPost[] = [
 <p>Lead with what's changed, not with the fact that it costs more. A short, factual note, "we're moving off our launch price now that we have real production volume behind us" or "this reflects the ingredient costs that have gone up since we launched", gives the increase a reason a customer can accept rather than question. Want a ready-to-send starting point? Grab the <a href="/price-increase-email-template">free price increase email template</a> and fill in your own numbers.</p>
 
 <h2>Step 6: Apply the Price and Keep Watching</h2>
-<p>A price change isn't a one-time event you set and forget. Once the new price is live, watch whether actual sales behavior matches what the elasticity estimate predicted. If the confidence label was Strong and the estimate holds, the data has now validated itself and the same process repeats the next time it's warranted. If sales moved more than the model expected, that's new information worth feeding back into the next decision rather than a sign the whole approach failed. <a href="/blog/how-to-run-a-price-ab-test-the-right-way">A proper price A/B test</a> is the more rigorous version of this same watch-and-confirm step, if you want a controlled read rather than a before-and-after comparison.</p>
+<p>A price change isn't a one-time event you set and forget. Once the new price is live, watch whether actual sales behavior matches what the elasticity estimate predicted. (A <a href="/blog/pricing-simulation-tool">pricing simulation tool</a> makes that prediction explicit before you change anything.) If the confidence label was Strong and the estimate holds, the data has now validated itself and the same process repeats the next time it's warranted. If sales moved more than the model expected, that's new information worth feeding back into the next decision rather than a sign the whole approach failed. <a href="/blog/how-to-run-a-price-ab-test-the-right-way">A proper price A/B test</a> is the more rigorous version of this same watch-and-confirm step, if you want a controlled read rather than a before-and-after comparison.</p>
 <p>For the fuller picture beyond this one transition moment, including how to set the very first launch price and what to do at the other end of a product's life, the <a href="/blog/how-to-price-a-new-product-from-launch-to-end-of-life">launch-to-end-of-life pricing guide</a> covers the full arc this post's Steps 1 through 6 sit inside of.</p>
 
 <div class="key-takeaways">
@@ -5260,7 +5510,7 @@ export const posts: BlogPost[] = [
 <p>The difference between guessing "15% off feels right" and knowing which SKUs can absorb a discount based on actual demand data is the difference between a profitable bundle and one that just looks good in your AOV dashboard.</p>
 
 <h2>Step 2: Pick Products That Belong Together</h2>
-<p>The strongest bundles are built from two signals: co-purchase patterns and margin-profile complementarity. The worst bundles are built from a desire to move inventory that isn't selling.</p>
+<p>The strongest bundles are built from two signals: co-purchase patterns and margin-profile complementarity. Products that are true complements have a negative <a href="/blog/cross-price-elasticity-of-demand">cross price elasticity</a>: when one gets cheaper, the other sells more. The worst bundles are built from a desire to move inventory that isn't selling.</p>
 <p><strong>Co-purchase patterns</strong> tell you which products customers already buy together. If customers frequently add a cleanser, a toner, and a moisturizer to the same cart, bundling those three is reinforcing a behavior that already exists. You're making it easier and slightly cheaper for them to do something they were going to do anyway. Look at your Shopify analytics for products that appear in the same order at a rate of 5-10% or higher. Those are your natural bundle candidates.</p>
 <p><strong>Margin-profile complementarity</strong> means pairing a high-margin anchor product with lower-margin add-ons that increase perceived value without destroying the blend. A skincare set anchored around a $40 serum with 65% margins, bundled with a $15 travel-size cleanser at 45% margins and a $12 sample pack at 70% margins, gives you a blended margin that can absorb a reasonable discount. A bundle of three items that are all sitting at 35% margins has no room to discount without going underwater.</p>
 <p>What doesn't work: bundling random slow-moving products together and calling it a "value pack." Customers can tell the difference between a curated set and a clearance grab bag. <a href="https://www.library.hbs.edu/working-knowledge/better-by-the-bundle" target="_blank" rel="noopener noreferrer">A Harvard Business School study</a> of Nintendo's Game Boy Advance era found that when Nintendo switched from mixed bundling (customers could buy items individually or as a bundle) to pure bundling (bundle only), revenues dropped by more than 20% compared to the mixed-bundling scenario. Giving customers no choice but to buy the bigger package deterred a large number of buyers who only wanted one or two of the items. Customers want to feel like the bundle was designed for them, not assembled to solve the store's inventory problem.</p>
@@ -5732,7 +5982,7 @@ export const posts: BlogPost[] = [
 <p>Technically, elasticity is estimated with a log-log regression: you take the log of quantity sold and the log of price, fit a line, and the resulting coefficient is your elasticity value. <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store">You can do this by hand in a spreadsheet</a> if you have a statistics background and clean data. Realistically, most merchants running dozens or hundreds of SKUs want this automated per SKU rather than done manually one product at a time.</p>
 
 <h3>Reading your confidence score</h3>
-<p>Whatever tool you use, don't treat the elasticity number alone as gospel. Pair it with <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence or R-squared score</a>. A high elasticity estimate paired with low confidence just means you don't have enough clean price variation yet to trust the number, not that the number is wrong. Treat it as a starting hypothesis, not a final verdict.</p>
+<p>Whatever tool you use, don't treat the elasticity number alone as gospel. Pair it with <a href="/blog/how-much-should-i-trust-an-ai-pricing-recommendation">a confidence or R-squared score</a>. A high elasticity estimate paired with low confidence just means you don't have enough clean price variation yet to trust the number, not that the number is wrong. A worked example of how that uncertainty can flip a decision is in <a href="/blog/pricing-simulation-tool">pricing simulation tools</a>. Treat it as a starting hypothesis, not a final verdict.</p>
 
 <h2>Elasticity Tools vs. Competitor Price Tracking (They're Not the Same Thing)</h2>
 <p>This is where a lot of pricing content gets muddy. There are actually <a href="/blog/price-elasticity-vs-repricing-software">three distinct approaches to "getting your price right"</a>, and they answer different questions:</p>
@@ -6435,7 +6685,7 @@ export const posts: BlogPost[] = [
 <p>A two-point calculation is a real elasticity estimate, but it's a noisy one, and it's worth knowing where the noise comes from before you act on it.</p>
 <ul>
 <li><strong>Seasonality.</strong> If the price change happened to coincide with a seasonal dip or spike in demand, the calculation attributes all of that swing to price, when some or most of it wasn't.</li>
-<li><strong>Other changes at the same time.</strong> A promotion, a competitor's price move, a change in shipping cost, or even a different product going out of stock can all shift sales independent of your price change.</li>
+<li><strong>Other changes at the same time.</strong> A promotion, a competitor's price move, a change in shipping cost, or even a different product going out of stock can all shift sales independent of your price change. How much another product's price moves your sales is measured separately, by <a href="/blog/cross-price-elasticity-of-demand">cross price elasticity of demand</a>.</li>
 <li><strong>Small sample size.</strong> One month of data before and after is two data points. A single unusual week can swing the whole number.</li>
 <li><strong>No confidence read.</strong> The formula gives you a number, but not a sense of how much to trust it. -1.5 calculated from a clean, isolated price test means something different than -1.5 calculated from a chaotic month with five other things going on.</li>
 </ul>
@@ -6804,7 +7054,7 @@ export const posts: BlogPost[] = [
 </table>
 
 <h2>Substitute Availability: The Biggest Lever</h2>
-<p>The presence and quality of substitutes is widely considered the single most important determinant of elasticity. If a customer can easily find something comparable elsewhere, raising your price just hands them a reason to look. A generic phone case sitting next to a dozen near-identical listings has almost no pricing power, because the substitute is one click away. A product with a genuinely unique feature, a proprietary material, an exclusive design, has real room to move price without losing the sale, simply because there's nowhere else to go.</p>
+<p>The presence and quality of substitutes is widely considered the single most important determinant of elasticity. How strongly two specific products substitute for each other has its own measure, <a href="/blog/cross-price-elasticity-of-demand">cross price elasticity of demand</a>. If a customer can easily find something comparable elsewhere, raising your price just hands them a reason to look. A generic phone case sitting next to a dozen near-identical listings has almost no pricing power, because the substitute is one click away. A product with a genuinely unique feature, a proprietary material, an exclusive design, has real room to move price without losing the sale, simply because there's nowhere else to go.</p>
 <p>This is also the driver most within a merchant's control. Building a real point of difference, better materials, a warranty competitors don't offer, a faster fulfillment promise, doesn't just help conversion, it structurally reduces elasticity by narrowing how substitutable your product actually is in the customer's mind.</p>
 
 <h2>Necessity vs. Luxury</h2>
