@@ -38,6 +38,260 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "price-priming",
+    title: "Price Priming: How Cues Shape What Shoppers Pay",
+    excerpt:
+      "Price priming is when a number, image or product order changes how shoppers judge a price. What the research shows and how to test it honestly.",
+    date: "2026-10-11",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Price priming is when something a shopper sees before the price, such as a number, an image, a word or the order products appear in, changes how they judge that price. A premium item shown first makes the next one feel reasonable; a page full of discount language makes shoppers focus on cost. Priming is real and measurable, but it shifts perception at the margin. It can't rescue a price your customers don't value, and it becomes deceptive the moment the cue is false.</p>
+
+<h2>What Is Price Priming?</h2>
+<p>Priming is a psychology term for how exposure to one thing influences the response to the next thing, usually without the person noticing. In pricing, the "next thing" is a judgment about whether a price is fair, high or a bargain. The prime can be almost anything that comes first: a number, a background image, a product shown higher on the page, or whether the price appears before or after the product itself.</p>
+<p>Price priming is closely related to <a href="/blog/is-price-anchoring-manipulative-or-just-smart-pricing">price anchoring</a>. Anchoring is one specific kind of priming, where a reference number (a "was" price, a premium tier) becomes the benchmark the shopper compares against. Priming is the broader idea: cues can change which attributes a shopper pays attention to, not just which number they compare to.</p>
+
+<h2>What the Research Shows</h2>
+<h3>Arbitrary numbers can move willingness to pay</h3>
+<p>In one of the best-known experiments, Dan Ariely, George Loewenstein and Drazen Prelec asked students to write down the last two digits of their social security number before bidding on everyday products like wine, chocolates and a cordless keyboard. The number had nothing to do with the products, yet it moved the bids. In their <a href="https://web.mit.edu/ariely/www/MIT/Papers/CA.pdf" target="_blank" rel="noopener noreferrer">paper in the Quarterly Journal of Economics</a>, students with above-median numbers stated values 57% to 107% higher than those with below-median numbers. Students in the top fifth were willing to pay $56 on average for the cordless keyboard; those in the bottom fifth, $16.</p>
+<p>The same study found something just as important for sellers: nearly everyone still ranked the products correctly relative to each other. Shoppers didn't know what a keyboard was "worth", but they knew a keyboard was worth more than a trackball. Primes shift the level; they don't overturn real preferences.</p>
+
+<h3>Web page design can change what shoppers care about</h3>
+<p>Naomi Mandel and Eric Johnson tested priming on an online store. In their <a href="https://business.columbia.edu/sites/default/files-efs/pubfiles/1156/when_web_pages_influence_choice.pdf" target="_blank" rel="noopener noreferrer">Journal of Consumer Research study</a>, they changed only the background of a shopping site. Shoppers who saw a background with pennies focused more on price and chose cheaper sofas; shoppers who saw fluffy clouds focused more on comfort and chose more comfortable ones. The effect showed up for both novices and people who knew the category well.</p>
+
+<h3>Showing the price first changes how products are judged</h3>
+<p>Uma Karmarkar, Baba Shiv and Brian Knutson used brain imaging to test the order in which shoppers see price and product. In their <a href="https://dash.harvard.edu/handle/1/28548032" target="_blank" rel="noopener noreferrer">2015 Journal of Marketing Research study</a>, seeing the product first led to decisions driven by how attractive or desirable it was, while seeing the price first led to decisions driven by whether it was worth the money. Showing the price first increased purchases of bargain-priced products whose value was easy to recognize.</p>
+
+<h2>Types of Price Priming You'll See in Ecommerce</h2>
+<table>
+  <thead>
+    <tr><th>Type</th><th>How it works</th><th>Store example</th><th>Honest when</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Numeric priming</td><td>A high number seen first raises the sense of what's normal</td><td>A $240 bundle shown before the $89 single item</td><td>The bundle is a real product people buy</td></tr>
+    <tr><td>Sequence priming</td><td>The first product viewed sets the frame for the rest</td><td>Collection sorted with the premium version first</td><td>The order reflects a genuine range</td></tr>
+    <tr><td>Attribute priming</td><td>Images and words make one attribute feel more important</td><td>Quality, craft and materials above the fold on a premium product</td><td>The claims are true</td></tr>
+    <tr><td>Price-first vs product-first</td><td>Price first triggers a value check; product first triggers desire</td><td>Price prominent on a bargain line, product story first on a premium line</td><td>Always, it's layout, not a claim</td></tr>
+    <tr><td>Reference price</td><td>A "was" or "compare at" price becomes the benchmark</td><td>"Was $60, now $45"</td><td>The product genuinely sold at $60 for a meaningful period</td></tr>
+  </tbody>
+</table>
+
+<h2>How to Use Price Priming, Step by Step</h2>
+<ol>
+<li><strong>Decide what you want shoppers to weigh.</strong> For a premium product, you want quality and desirability in focus, so lead with the product and its story. For a value line, lead with the price, because the price-first research shows it helps when the bargain is easy to see.</li>
+<li><strong>Put a real, higher-priced option first where it makes sense.</strong> A genuine premium version or bundle at the top of a collection frames the core product as the sensible middle choice.</li>
+<li><strong>Match imagery and copy to the attribute you compete on.</strong> If you win on comfort, materials or results, don't surround the product with sale badges and discount language that prime cost.</li>
+<li><strong>Use real reference prices only.</strong> A "compare at" price must be one you actually charged. The FTC's <a href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-233" target="_blank" rel="noopener noreferrer">Guides Against Deceptive Pricing</a> treat a fictitious former price as deceptive.</li>
+<li><strong>Test it, and measure profit per visitor, not conversion alone.</strong> A prime that raises order value can lower conversion. Only the combined number tells you if it worked.</li>
+</ol>
+
+<h2>Worked Example: Measuring a Priming Test</h2>
+<p>Here is how to judge a priming change properly. The figures are illustrative. A store selling a $60 core product (55% gross margin) tests a collection page that shows a $110 premium version first, against its current page that shows the core product first. Each version gets 10,000 visitors.</p>
+<table>
+  <thead>
+    <tr><th></th><th>Current page</th><th>Premium shown first</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Conversion rate</td><td>2.5%</td><td>2.3%</td></tr>
+    <tr><td>Orders</td><td>250</td><td>230</td></tr>
+    <tr><td>Average order value</td><td>$60</td><td>$70</td></tr>
+    <tr><td>Revenue</td><td>$15,000</td><td>$16,100</td></tr>
+    <tr><td>Gross profit (55%)</td><td>$8,250</td><td>$8,855</td></tr>
+    <tr><td><strong>Gross profit per visitor</strong></td><td><strong>$0.83</strong></td><td><strong>$0.89</strong></td></tr>
+  </tbody>
+</table>
+<p>Conversion fell, which on its own looks like a loss. But more shoppers chose the premium version, so order value rose enough that profit per visitor went up about 7%. If conversion had fallen to 2.0% instead, the premium-first page would have made $0.77 a visitor and lost. Run the test long enough to reach a reliable result, as covered in <a href="/blog/how-to-run-a-price-ab-test-the-right-way">how to run a price A/B test the right way</a>.</p>
+
+<h2>Where Price Priming Stops Working</h2>
+<ul>
+<li><strong>When the price is genuinely wrong.</strong> The Ariely study showed primes move the level, but shoppers still rank products sensibly. A product priced well above what customers value won't be saved by a clever page.</li>
+<li><strong>When shoppers compare elsewhere.</strong> A prime works in the moment. If the identical product is cheaper one tab away, the comparison wins.</li>
+<li><strong>When it's used to deceive.</strong> Fake "was" prices and invented discounts are both a legal risk and a trust problem that outlasts any short-term lift.</li>
+<li><strong>When it contaminates your own research.</strong> Showing a price inside a customer survey primes the answers. Ask price questions without revealing your current price.</li>
+</ul>
+<p>Like <a href="/blog/does-charm-pricing-999-actually-work">charm pricing</a>, priming is a presentation layer. It works best on top of a price that's already right.</p>
+
+<h2>Getting the Underlying Price Right</h2>
+<p>Zorin focuses on the part priming can't fix. It reads your Shopify or WooCommerce sales history and fits a price elasticity model for each product, then recommends whether to raise, lower or hold with an estimated profit impact. For products without enough history, its Van Westendorp price sensitivity survey shows respondents the product's name and image and asks four open price questions, without displaying your current price, so the answers aren't anchored to it.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-public-page.webp" alt="Zorin price sensitivity survey page with the four Van Westendorp questions and price inputs" width="900" height="900" loading="lazy" />
+  <figcaption>Open-ended price questions, with no current price on screen, keep survey answers from being primed by the number you already charge.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Price priming is when a cue seen first, such as a number, image or product order, changes how shoppers judge a price.</li>
+<li>Arbitrary numbers moved stated values by 57% to 107% in the Ariely, Loewenstein and Prelec study, but shoppers still ranked products correctly.</li>
+<li>A pennies background made online shoppers focus on price; a clouds background made them focus on comfort.</li>
+<li>Showing the price first triggers a value judgment; showing the product first triggers a desirability judgment.</li>
+<li>Judge any priming change by profit per visitor, keep reference prices genuine, and fix the underlying price first.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is price priming?</h3>
+<p>Price priming is when information a shopper sees before a price, such as another number, an image, a word or the order of products, influences how they judge that price. It changes perception without the shopper usually noticing.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between price priming and price anchoring?</h3>
+<p>Anchoring is a specific type of priming where a reference number, like a "was" price or a premium tier, becomes the benchmark for comparison. Priming is broader and also covers cues that change which attributes a shopper focuses on, such as price versus quality.</p>
+</div>
+<div class="faq-item">
+<h3>Is price priming ethical?</h3>
+<p>It is when the cues are true: a real premium product, accurate descriptions and genuine former prices. It becomes deceptive when it relies on fake reference prices or invented discounts, which the FTC's pricing guides treat as misleading.</p>
+</div>
+<div class="faq-item">
+<h3>Should I show the price before or after the product?</h3>
+<p>Research by Karmarkar, Shiv and Knutson found price-first presentation makes shoppers judge monetary worth and helps obvious bargains, while product-first makes them judge desirability. Lead with price on value lines and with the product on premium lines.</p>
+</div>
+<div class="faq-item">
+<h3>Does sorting products from most to least expensive increase sales?</h3>
+<p>It can raise average order value by making mid-priced items look reasonable, but it can also lower conversion. Test it and compare gross profit per visitor between versions rather than looking at conversion rate alone.</p>
+</div>
+<div class="faq-item">
+<h3>Can priming fix a price that's too high?</h3>
+<p>Not reliably. Priming shifts perception at the margin, but shoppers still compare value and alternatives. If a product is priced well above what customers will pay, the fix is the price, not the page design.</p>
+</div>
+</section>
+
+<p class="conclusion">Price priming is a real, research-backed effect, and used honestly it helps shoppers see the value you're offering. It works best on top of a price that already fits demand. To find that price for each product from your own sales history, <a href="/signup">try Zorin free</a>.</p>
+`.trim(),
+  },
+  {
+    slug: "keystone-pricing",
+    title: "Keystone Pricing: What It Is and When It Fails",
+    excerpt:
+      "Keystone pricing doubles your cost to set the retail price. The formula, variations like triple keystone, a wholesale example, and when 2x isn't enough.",
+    date: "2026-10-11",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Keystone pricing is the retail rule of setting the selling price at double the cost, so a product that costs $20 sells for $40. It gives a 100% markup and a 50% gross margin. Keystone is quick, easy to explain and still the starting point in apparel, jewelry, gifts and wholesale, but it's a rule of thumb about cost, not a measure of what customers will pay. Most stores should treat it as a floor to check against, then adjust product by product.</p>
+
+<h2>What Is Keystone Pricing?</h2>
+<p>Keystone pricing means multiplying your cost by two to get the retail price. It became the default in department stores, specialty retail and wholesale because it's simple: one multiplier, applied to everything, with a healthy margin built in.</p>
+<p>The formula is:</p>
+<p><strong>Keystone price = Cost × 2</strong></p>
+<p>Because the profit equals the cost, keystone always produces a <strong>100% markup</strong> and a <strong>50% gross margin</strong>. If the difference between those two numbers is fuzzy, our guide to <a href="/blog/margin-vs-markup">margin vs markup</a> walks through it.</p>
+
+<h2>Keystone and Its Variations</h2>
+<table>
+  <thead>
+    <tr><th>Rule</th><th>Price multiple of cost</th><th>Gross margin</th><th>Where you see it</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Below keystone</td><td>1.3x to 1.8x</td><td>23% to 44%</td><td>Electronics, appliances, grocery, commodity goods</td></tr>
+    <tr><td>Keystone</td><td>2x</td><td>50%</td><td>Wholesale-to-retail default in apparel and gifts</td></tr>
+    <tr><td>Keystone plus</td><td>2x plus a fixed amount (for example + $5)</td><td>Slightly above 50%</td><td>Low-cost items where 2x doesn't cover handling</td></tr>
+    <tr><td>Triple keystone</td><td>3x</td><td>66.7%</td><td>Jewelry, premium accessories, private label</td></tr>
+    <tr><td>DTC multiple</td><td>4x to 5x or more</td><td>75% to 80%+</td><td>Brands selling direct that absorb acquisition, shipping and returns</td></tr>
+  </tbody>
+</table>
+
+<h2>How Keystone Works in the Wholesale Chain</h2>
+<p>For a brand that sells through stores, keystone often happens twice. The brand doubles its production cost to set a wholesale price, and the retailer doubles the wholesale price to set the shelf price. Here's a worked example for a product that costs <strong>$12</strong> to make:</p>
+<ol>
+<li><strong>Brand to retailer:</strong> $12 × 2 = <strong>$24 wholesale</strong>. The brand keeps $12 a unit, a 50% margin on the wholesale sale.</li>
+<li><strong>Retailer to shopper:</strong> $24 × 2 = <strong>$48 retail</strong>. The retailer keeps $24 a unit, also a 50% margin.</li>
+<li><strong>Brand selling direct:</strong> if the same brand sells on its own store at $48, it keeps $36 a unit, a 75% gross margin. That extra $24 is not free money: it has to pay for ads, fulfillment, payment fees and returns that the retailer would otherwise cover.</li>
+</ol>
+<p>This is why the retail price is usually set once, as the MSRP, and kept consistent across channels. If your own site undercuts the price you ask retailers to charge, you damage those relationships. How brands protect that price is covered in our guide to <a href="/blog/minimum-advertised-price-what-sellers-need-to-know">minimum advertised price (MAP) policies</a>.</p>
+
+<h2>Real-World Check: Why a 50% Tag Doesn't Mean a 50% Result</h2>
+<p>Keystone describes the margin on the price tag. What a retailer actually keeps is lower, because markdowns, promotions, shrink and freight all come out of it. Macy's is a useful public example. In its <a href="https://www.sec.gov/Archives/edgar/data/794367/000162828026021721/m-20260131.htm" target="_blank" rel="noopener noreferrer">annual report for the year ended January 31, 2026</a>, Macy's reported a gross margin of 38.0% of net sales, down from 38.4% the year before, and said the decline was driven by tariffs net of its mitigation efforts. Selling, general and administrative expenses took another 36.4% of revenue.</p>
+<p>Two lessons follow for a smaller store. First, a full-price tag at keystone is not the margin you'll realize once sales and clearance are counted. Second, even a large retailer with a realized margin near 38% spends most of it running the business. A 2x rule leaves less room than it looks, which is why most DTC brands price well above it. Our research on <a href="/research/profit-margins-by-product-category">profit margins by product category</a> shows how wide the realized range is across categories.</p>
+
+<h2>When Keystone Pricing Works</h2>
+<ul>
+<li><strong>You sell wholesale.</strong> Retail buyers expect to double your wholesale price, so pricing wholesale at half your target MSRP keeps you in the conversation.</li>
+<li><strong>You have a large, varied catalog of similar-cost items.</strong> A single rule is fast to apply and easy to audit when you're pricing hundreds of SKUs by hand.</li>
+<li><strong>Your costs are moderate.</strong> In the middle of the cost range, doubling produces prices that shoppers find normal and that cover typical overhead.</li>
+<li><strong>You need a first price for a brand-new product.</strong> With no sales history, keystone is a reasonable starting point to test from, as covered in <a href="/blog/how-do-i-price-a-new-product-with-no-sales-history">how to price a new product with no sales history</a>.</li>
+</ul>
+
+<h2>When Keystone Pricing Fails</h2>
+<ol>
+<li><strong>Very cheap items.</strong> A $1.50 phone charm doubled to $3 can't cover a $4 pick, pack and ship. Low-cost products need keystone plus, a minimum order value or bundling.</li>
+<li><strong>Very expensive items.</strong> A television that costs a retailer $600 won't sell at $1,200 when rivals sell it for $700. Big-ticket, easily compared products run far below keystone.</li>
+<li><strong>Commodity products shoppers compare.</strong> If the identical item is listed by ten sellers, the market sets the price, not your cost.</li>
+<li><strong>High-return categories.</strong> Returns can take a large share of apparel margin, so a 2x price that looks healthy on paper can lose money. Our <a href="/blog/how-to-price-clothing-on-shopify">clothing pricing guide</a> covers how returns and tariffs push apparel brands above keystone.</li>
+<li><strong>Unique products customers love.</strong> The opposite failure: a distinctive product with loyal buyers may sell just as well at 3x, and keystone quietly leaves money on the table.</li>
+</ol>
+
+<h2>How to Move Past Keystone, Step by Step</h2>
+<ol>
+<li><strong>Calculate your landed cost.</strong> Include freight, duty and packaging, not just the unit cost from the supplier.</li>
+<li><strong>Set keystone as the first test price.</strong> $12 landed cost gives a $24 floor.</li>
+<li><strong>Add your per-order costs.</strong> If shipping, payment fees and packaging come to $7 an order and your average order is one unit, a $24 price keeps only $5. That's a sign you need to go above keystone.</li>
+<li><strong>Compare with what similar products sell for.</strong> If comparable items sell for $34 to $40, there's room to test higher.</li>
+<li><strong>Watch how sales respond.</strong> After a few weeks at each price, compare units sold and total profit. The price that earns the most profit, not the most units, wins.</li>
+</ol>
+<p>Step five is where a formula can't help. Two products that cost $12 can respond to price completely differently. One might lose half its sales at $30; another might sell almost as well at $36. That's what <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity</a> measures.</p>
+
+<h2>From a Cost Rule to a Demand Read</h2>
+<p>Zorin starts where keystone stops. It reads your Shopify or WooCommerce sales history, fits a price elasticity model for each product, and recommends whether to raise, lower or hold, with an estimated profit impact and a confidence score. You still set your cost floor; Zorin tells you which products have room above it and which are already at the edge.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing different margins, confidence, and recommendations per product" width="1440" height="1987" loading="lazy" />
+  <figcaption>Products priced with the same keystone rule can have very different margins and very different room to move.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Keystone pricing sets the retail price at double the cost, giving a 100% markup and a 50% gross margin.</li>
+<li>In wholesale, keystone often happens twice: $12 cost becomes $24 wholesale and $48 retail.</li>
+<li>Realized margins sit below the tag: Macy's reported a 38.0% gross margin for fiscal 2025, with SG&amp;A taking another 36.4% of revenue.</li>
+<li>Keystone fails for very cheap items, big-ticket comparison products, high-return categories and unique products that could carry more.</li>
+<li>Use keystone as a floor, then test prices and let sales data show where profit peaks.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is keystone pricing?</h3>
+<p>Keystone pricing is a retail rule where you set the selling price at twice the cost. A product that costs $25 sells for $50, which gives a 100% markup and a 50% gross margin.</p>
+</div>
+<div class="faq-item">
+<h3>What is the keystone pricing formula?</h3>
+<p>Retail price = cost × 2. For triple keystone, multiply by 3 for a 66.7% gross margin. For keystone plus, double the cost and add a fixed amount to cover handling on low-cost items.</p>
+</div>
+<div class="faq-item">
+<h3>Is keystone pricing a 50% or 100% markup?</h3>
+<p>Both numbers describe the same price. Keystone is a 100% markup on cost and a 50% margin on the selling price, because the profit equals the cost and makes up half of the price.</p>
+</div>
+<div class="faq-item">
+<h3>Is keystone pricing enough for an ecommerce brand?</h3>
+<p>Often not. Selling online means paying for ads, shipping, payment fees and returns, which can take most of a 50% margin. Many DTC brands price at 3x to 5x cost to cover those costs and still make a profit.</p>
+</div>
+<div class="faq-item">
+<h3>Which industries use keystone pricing?</h3>
+<p>Apparel, jewelry, gifts, home decor and most wholesale-to-retail relationships use it as a default. Electronics, appliances and grocery usually price well below keystone because shoppers compare those products easily.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between keystone pricing and cost-plus pricing?</h3>
+<p>Keystone is a specific type of cost-plus pricing with a fixed 100% markup. Cost-plus pricing in general lets you pick any markup, such as 40% or 150%, depending on your category and costs.</p>
+</div>
+</section>
+
+<p class="conclusion">Keystone pricing is a sensible starting rule and a useful floor, but it can't tell you whether a product would sell just as well at a higher price. That answer is in your sales history. <a href="/signup">Start a free trial of Zorin</a> to see which of your keystone-priced products have room to move.</p>
+`.trim(),
+  },
+  {
     slug: "pricing-simulation-tool",
     title: "Pricing Simulation Tools: Test a Price First",
     excerpt:
@@ -2884,7 +3138,7 @@ export const posts: BlogPost[] = [
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
     },
     content: `
-<p class="intro">Price anchoring itself isn't manipulative. It's a genuine, well-documented cognitive effect, the first price a customer sees really does shape how they judge every price after it. What makes an anchor honest or deceptive comes down to one thing entirely: whether the reference price is real. This guide covers exactly where that line sits, how to anchor prices honestly using Shopify's own pricing fields, whether three-tier pricing actually outperforms two options, whether framing a price as a daily cost actually increases sales, and how to know if any of this is working on your specific catalog rather than just trusting a tactic's reputation.</p>
+<p class="intro">Price anchoring itself isn't manipulative. It's a genuine, well-documented cognitive effect, the first price a customer sees really does shape how they judge every price after it. What makes an anchor honest or deceptive comes down to one thing entirely: whether the reference price is real. Anchoring is one form of a broader effect, <a href="/blog/price-priming">price priming</a>, where anything shoppers see first shapes how they judge a price. This guide covers exactly where that line sits, how to anchor prices honestly using Shopify's own pricing fields, whether three-tier pricing actually outperforms two options, whether framing a price as a daily cost actually increases sales, and how to know if any of this is working on your specific catalog rather than just trusting a tactic's reputation.</p>
 
 <h2>The Short Answer</h2>
 <p>Anchoring is not inherently manipulative. Psychologists Amos Tversky and Daniel Kahneman documented the underlying cognitive bias decades ago: people don't judge a price in isolation, they judge it relative to whatever reference point they saw first. Showing a real original price next to a real sale price uses that bias honestly, it gives a shopper accurate context for the deal they're being offered. Showing a price that was never actually charged, inflated specifically to make a markdown look bigger, uses the same bias dishonestly. The tactic is neutral. What you anchor against is the entire question.</p>
@@ -4173,7 +4427,7 @@ export const posts: BlogPost[] = [
 <p class="intro">A healthy gross margin and a healthy business are not the same thing in apparel, and the gap between them is bigger here than in almost any other ecommerce category. <a href="https://trueprofit.io/blog/apparel-profit-margin" target="_blank" rel="noopener noreferrer">TrueProfit's analysis of 600+ clothing stores</a> puts healthy benchmarks at 60-70% gross margin but only 10-20% net margin, so roughly 50 points disappear between the two lines. This guide covers what markup and margin look like for clothing brands, where that gap comes from, how returns and tariffs drive it, and how to price consistently across wholesale, DTC and marketplace channels.</p>
 
 <h2>What's a Good Markup or Margin for a Clothing Brand?</h2>
-<p>Keystone pricing, doubling your cost to set your retail price, has been the default apparel formula for decades. It still works as a sanity check, but for most DTC brands it isn't enough on its own, because a 2x markup only produces a 50% gross margin before returns, acquisition and tariffs take their share.</p>
+<p><a href="/blog/keystone-pricing">Keystone pricing</a>, doubling your cost to set your retail price, has been the default apparel formula for decades. It still works as a sanity check, but for most DTC brands it isn't enough on its own, because a 2x markup only produces a 50% gross margin before returns, acquisition and tariffs take their share.</p>
 <p>How far above keystone you need to go depends on the channel. Wholesale carries fewer of your own costs, so brands can often live closer to 2x there. DTC carries customer acquisition, fulfillment and a much higher return rate, so a DTC price usually needs a noticeably larger multiple just to reach the same operating outcome.</p>
 <p>On the margin side, <a href="https://trueprofit.io/blog/apparel-profit-margin" target="_blank" rel="noopener noreferrer">TrueProfit's analysis of 600+ clothing stores</a> puts healthy 2026 benchmarks at 60-70% gross margin, 20-30% operating margin and 10-20% net profit margin. For comparison, the biggest athletic brands report gross margins in the 40s and 50s: Nike posted 42.7% in fiscal 2025 and Lululemon has run 54-58%, according to their <a href="/research/profit-margins-by-product-category">public filings</a>. A garment costing $15 to produce landing at $30-40 wholesale or $60-80 DTC is a common example of what those multiples look like in practice.</p>
 <p>These numbers are a useful starting reference, not a guarantee. As the next section covers, a gross margin that sits comfortably inside these ranges can still leave a brand with almost nothing at the operating line.</p>
@@ -4446,7 +4700,7 @@ export const posts: BlogPost[] = [
 
 <h2>Should You Use Cost-Plus, Competitor-Based, or Value-Based Pricing?</h2>
 <p>These three are the foundational starting points most merchants choose between when they're first setting up a real pricing approach, and the right one depends on what data you actually have available, not personal preference.</p>
-<p><strong>Cost-plus pricing</strong> is the default when you have nothing else to go on. Take your total cost (product, shipping, packaging, a share of overhead), add a target margin, and that's your price. It's simple, and it guarantees you're not selling at a loss. Its weakness is that it tells you nothing about what customers will actually pay. A product with cost-plus pricing can be priced well below what the market would bear, or above what it will tolerate, and the formula has no way of telling you which.</p>
+<p><strong>Cost-plus pricing</strong> is the default when you have nothing else to go on. Take your total cost (product, shipping, packaging, a share of overhead), add a target margin, and that's your price. It's simple, and it guarantees you're not selling at a loss. Its weakness is that it tells you nothing about what customers will actually pay. A product with cost-plus pricing can be priced well below what the market would bear, or above what it will tolerate, and the formula has no way of telling you which. The most common cost-plus rule in retail, doubling cost, is covered in <a href="/blog/keystone-pricing">keystone pricing explained</a>.</p>
 <p><strong>Competitor-based pricing</strong> works when you're in a category where customers can and do compare prices easily, marketplace listings, commodity electronics, anything with a lot of visible alternatives. The risk is that it ties your price to your competitor's cost structure and strategy, not your own. If a competitor is running a loss-leader promotion or has a fundamentally different cost base, matching their price can quietly put you in a worse position than staying independent.</p>
 <p><strong>Value-based pricing</strong> is the strongest option once you have real demand data to work from, because it prices according to what your specific customers have actually demonstrated they'll pay, rather than a formula or a competitor's number. This is what <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity data</a> operationalizes directly: instead of guessing at value, an elasticity model reads your own sales history and shows you where demand actually starts resisting a price increase. The tradeoff is that it requires sales history to work, so it's not available for a brand-new product on day one.</p>
 <p>The practical sequence most stores follow: start with cost-plus to set a safe floor, use competitor pricing as a sanity check on the range you're operating in, and shift toward value-based pricing as real sales data accumulates and tells you more than either of the other two methods can.</p>
@@ -7713,7 +7967,7 @@ export const posts: BlogPost[] = [
 <p>This isn't a new finding, and the best evidence comes from real stores rather than lab surveys. <a href="https://www.semanticscholar.org/paper/Increased-consumer-sales-response-though-use-of-Schindler-Kibarian/400a5073f0be16850150844f2a1cb56bb0b9c11f" target="_blank" rel="noopener noreferrer">Schindler and Kibarian's 1996 study</a> ran a controlled test with a direct-mail women's clothing retailer, mailing otherwise identical catalogs with prices ending in 99 or in 00, and found the 99-endings increased purchasing. <a href="https://link.springer.com/article/10.1023/A:1023581927405" target="_blank" rel="noopener noreferrer">Anderson and Simester</a> ran three more field experiments with a mail-order clothing retailer in 2003. A $9 ending increased demand in all three, the lift was stronger for new items than for items customers had seen before, and there was some evidence the effect weakened when the price was already marked with a "Sale" cue. That last detail matters for a store: .99 endings seem to work best when customers have little else to judge the price by.</p>
 
 <h2>Where the Effect Is Actually Strongest</h2>
-<p>Left-digit bias shows up most reliably for impulse purchases and lower-priced, non-luxury items, the kind of decision made quickly, without much deliberation. A customer glancing at a $24.99 phone case doesn't spend much time doing exact math, so the leftmost-digit shortcut does most of the work. The lower the price and the more impulsive the decision, the more this particular bias tends to matter.</p>
+<p>Left-digit bias shows up most reliably for impulse purchases and lower-priced, non-luxury items, the kind of decision made quickly, without much deliberation. Page design and product order can shift price judgments in a similar way, covered in <a href="/blog/price-priming">price priming explained</a>. A customer glancing at a $24.99 phone case doesn't spend much time doing exact math, so the leftmost-digit shortcut does most of the work. The lower the price and the more impulsive the decision, the more this particular bias tends to matter.</p>
 
 <h2>Where It Weakens or Actually Reverses</h2>
 <p>For considered, higher-ticket purchases, the effect gets noticeably weaker, and for premium or luxury positioning it can flip entirely. A round number like $100 or $500 reads as deliberate and confident, while $99.99 can read as a discount-store signal, undercutting the quality perception a premium brand is trying to build. This is a real, documented pattern, not just a stylistic preference among luxury brands. It's also worth being honest that the effect isn't universally confirmed: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0270850" target="_blank" rel="noopener noreferrer">a 2022 online experiment published in PLOS One</a> failed to reproduce either a left-digit or a perceptual-fluency effect at the strength earlier research suggested, a useful reminder that "charm pricing works" isn't settled science for every context, it's a pattern that holds under some conditions and weakens under others.</p>
