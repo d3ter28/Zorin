@@ -38,6 +38,234 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "dynamic-pricing-vs-variable-pricing",
+    title: "Dynamic vs Variable Pricing: What's the Difference?",
+    excerpt:
+      "Dynamic pricing changes prices continuously from live data; variable pricing sets prices in advance for known conditions. Examples and which to use.",
+    date: "2026-10-12",
+    readingTime: "6 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">The difference between dynamic pricing and variable pricing is timing and automation. Variable pricing sets different prices in advance for known conditions, such as a higher holiday price, a weekend rate or a tier for big orders, and those prices stay fixed until you change the schedule. Dynamic pricing changes prices continuously, usually by software, in response to live signals like demand, inventory or competitor moves. Variable pricing is a plan; dynamic pricing is a system that keeps re-deciding.</p>
+
+<h2>What Is Variable Pricing?</h2>
+<p>Variable pricing means charging different prices for the same product depending on a condition you define ahead of time. The condition might be the date (peak season vs off-season), the time (weekday vs weekend), the quantity (1 unit vs a case), the channel or the customer type. Once the schedule is set, the price at any moment is predictable. Anyone who knows the rules can tell you what next Saturday's price will be.</p>
+<p>Many small stores already use variable pricing without calling it that: a holiday price on gift sets, a multipack discount, a lower price on an off-season line.</p>
+
+<h2>What Is Dynamic Pricing?</h2>
+<p><a href="/blog/what-is-dynamic-pricing">Dynamic pricing</a> means prices move in response to current conditions, often many times a week or day. The inputs are live: how fast a product is selling, how much stock is left, what competitors charge right now, or a demand model's latest estimate. The price tomorrow isn't set in advance; it's decided by the system when the conditions arrive. Airlines, ride-hailing apps and hotels are the classic examples.</p>
+
+<h2>Dynamic Pricing vs Variable Pricing at a Glance</h2>
+<table>
+  <thead>
+    <tr><th></th><th>Variable pricing</th><th>Dynamic pricing</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>When prices are set</td><td>In advance, on a schedule or rule table</td><td>Continuously, as conditions change</td></tr>
+    <tr><td>What drives the change</td><td>Known conditions: date, day, quantity, customer type</td><td>Live signals: sales velocity, inventory, competitor prices, demand models</td></tr>
+    <tr><td>How often prices move</td><td>A few times a season or year</td><td>Daily or more</td></tr>
+    <tr><td>Who decides</td><td>A person, when building the schedule</td><td>Software, with or without human review</td></tr>
+    <tr><td>Predictable to customers?</td><td>Yes, usually posted or explainable</td><td>Less so; the same item can cost more an hour later</td></tr>
+    <tr><td>Data needed</td><td>Past seasonal patterns</td><td>Live data feeds and enough history to model demand</td></tr>
+    <tr><td>Main risk</td><td>Leaving money on the table when conditions differ from the plan</td><td>Customer backlash if changes look like exploiting demand</td></tr>
+    <tr><td>Ecommerce example</td><td>Gift sets $5 higher from November 15 to December 24</td><td>A bestseller's price rises automatically when stock falls below 15 units</td></tr>
+  </tbody>
+</table>
+
+<h2>A Real Example: From Variable to Dynamic in Baseball</h2>
+<p>Pro sports teams show the difference clearly because many made the switch publicly. For years, baseball teams used variable pricing: tickets cost more or less depending on the opponent and the day, set before the season started. The San Francisco Giants were one of the first teams to go further. According to <a href="https://www.cio.com/article/282100/business-intelligence-for-san-francisco-giants-dynamic-pricing-software-hits-a-home-run.html" target="_blank" rel="noopener noreferrer">CIO's account of the rollout</a>, the team piloted dynamic pricing software on 2,000 outfield and upper-deck seats in 2009, the seats that usually sold last, and sold an additional 25,000 tickets for an extra $500,000. It expanded the system park-wide in 2010.</p>
+<p>Three details are worth borrowing. The software produced daily recommendations that staff reviewed before anything changed. The team's stated approach was to start low and let demand push prices up, so season ticket holders wouldn't feel they'd overpaid. And the face value of tickets actually fell for 75% of available seats in 2010. Dynamic pricing isn't only a way to raise prices; done well, it lowers them where demand is weak.</p>
+<p>The flip side is well known. When Wendy's said in 2024 it would test "dynamic pricing", the reaction was so strong it clarified within days that it would only use the system to lower prices in slow periods. That story, and the 2022 Springsteen ticket backlash, are covered in <a href="/blog/what-is-dynamic-pricing">what dynamic pricing is</a>.</p>
+
+<h2>Worked Example: Variable Pricing for a Seasonal Product</h2>
+<p>A candle shop sells a $39 holiday candle that costs $15. It sells 600 units a month in November and December and 250 a month the rest of the year.</p>
+<ul>
+<li><strong>One flat price all year:</strong> (1,200 + 2,500 units) × $24 profit = <strong>$88,800</strong>.</li>
+<li><strong>Variable pricing, $45 in November and December:</strong> peak demand is less price-sensitive, so say it dips only to 560 a month. Peak profit: 1,120 × $30 = $33,600. Off-season stays at $39: 2,500 × $24 = $60,000. Total <strong>$93,600</strong>, or <strong>$4,800 more</strong> (+5.4%).</li>
+</ul>
+<p>That uplift came from a simple, predictable schedule, no software required. A dynamic system could add more by reacting inside the season, for example nudging the price up when stock runs low in mid-December, or down if a warm-weather week slows sales. But it needs reliable data and guardrails, and the extra gain is often smaller than the first step from one flat price to a sensible schedule. The assumption doing the work here is the peak-season dip from 600 to 560 units. Whether your product behaves that way is a question of <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity</a>, not a guess.</p>
+
+<h2>Which One Should Your Store Use?</h2>
+<ol>
+<li><strong>Start with variable pricing if your demand follows a calendar.</strong> Seasonal products, gifting peaks and predictable slow months are easy wins with a posted schedule customers understand.</li>
+<li><strong>Add volume or segment tiers where buyers differ.</strong> Multipacks and trade prices are variable pricing too, and they carry little trust risk.</li>
+<li><strong>Consider dynamic pricing when conditions change faster than you can plan.</strong> Fast-moving inventory, frequent competitor moves or large catalogs where manual schedules can't keep up.</li>
+<li><strong>Keep a human in the loop at first.</strong> Like the Giants, review recommendations before they go live, and set a floor and a ceiling for every product.</li>
+<li><strong>Base either approach on measured demand.</strong> A schedule or an algorithm built on guesses is still a guess. Rule-based versus model-based approaches are compared in <a href="/blog/rule-based-vs-algorithmic-pricing-which-fits-your-store">rule-based vs algorithmic pricing</a>.</li>
+</ol>
+
+<h2>Setting Prices From Measured Demand</h2>
+<p>Zorin sits between the two. It doesn't reprice your store on its own every hour. It reads your Shopify or WooCommerce sales history, fits a price elasticity model for each product, and recommends whether to raise, lower or hold, with an estimated profit impact and a confidence score. You review and apply the changes, one product at a time or in bulk. The result is a price you set deliberately, like variable pricing, but based on measured demand rather than a guess.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/price-history.webp" alt="Zorin price history view showing past price changes alongside sales volume per price point" width="1440" height="1969" loading="lazy" />
+  <figcaption>Past price changes and the sales at each price are the evidence either a schedule or a dynamic system should be built on.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Variable pricing sets different prices in advance for known conditions; dynamic pricing changes prices continuously from live signals.</li>
+<li>Variable pricing is predictable and low-risk; dynamic pricing reacts faster but needs data, guardrails and careful communication.</li>
+<li>The Giants' 2009 dynamic pricing pilot on 2,000 seats sold 25,000 more tickets for an extra $500,000, and face values fell for 75% of seats in 2010.</li>
+<li>In the candle example, a simple seasonal price schedule added $4,800 a year (+5.4%) with no software.</li>
+<li>Build either approach on measured price elasticity, and keep human review and price limits in place.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is the difference between dynamic pricing and variable pricing?</h3>
+<p>Variable pricing sets different prices ahead of time for known conditions, like a season, day or order size. Dynamic pricing changes prices continuously in response to live data such as demand, inventory or competitor prices, usually with software.</p>
+</div>
+<div class="faq-item">
+<h3>Is surge pricing dynamic or variable pricing?</h3>
+<p>Surge pricing is dynamic pricing. The price rises in real time when demand outstrips supply, rather than following a schedule set in advance.</p>
+</div>
+<div class="faq-item">
+<h3>Is a holiday price increase dynamic pricing?</h3>
+<p>Usually not. A holiday price set in advance and applied on fixed dates is variable pricing. It becomes dynamic only if software adjusts it during the season based on live sales or stock levels.</p>
+</div>
+<div class="faq-item">
+<h3>Are volume discounts variable pricing?</h3>
+<p>Yes. Charging less per unit for larger quantities is variable pricing based on order size. The tiers are set in advance and every customer who meets them gets the same price.</p>
+</div>
+<div class="faq-item">
+<h3>Which is better for a small online store?</h3>
+<p>Most small stores get the biggest, safest gain from variable pricing first: seasonal schedules, volume tiers and segment prices. Dynamic pricing makes sense later, when the catalog or the market moves faster than you can plan by hand.</p>
+</div>
+<div class="faq-item">
+<h3>Do customers react differently to dynamic and variable pricing?</h3>
+<p>Generally yes. Variable pricing is predictable and easy to explain, so it rarely causes backlash. Dynamic price rises that look like exploiting demand, as with Wendy's in 2024, can trigger strong reactions, while dynamic price cuts in slow periods are usually welcomed.</p>
+</div>
+</section>
+
+<p class="conclusion">Variable pricing and dynamic pricing both let price follow demand; one plans ahead and the other keeps re-deciding. Whichever fits your store, it only works if you know how each product responds to a price change. <a href="/signup">Start a free Zorin trial</a> to see that for your catalog from your own sales history.</p>
+`.trim(),
+  },
+  {
+    slug: "segment-pricing",
+    title: "Segment Pricing: How to Charge Different Customers",
+    excerpt:
+      "Segment pricing charges different customer groups different prices. Types, price fences, a worked student-discount example and where the legal line is.",
+    date: "2026-10-12",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Segment pricing means charging different prices to different groups of customers for the same or a closely related product, such as student discounts, wholesale price lists, regional pricing or volume tiers. It works when the groups genuinely differ in how much they're willing to pay and you can keep each group in its own lane with a "fence", like student verification or a minimum order quantity. Without a fence, full-price customers simply claim the lower price and you lose margin.</p>
+
+<h2>What Is Segment Pricing?</h2>
+<p>Segment pricing, also called price segmentation or customer segment pricing, splits your market into groups and gives each group a price that fits it. Economists call it third-degree price discrimination, which sounds worse than it is: a student discount, a senior's rate and a trade price list are all examples.</p>
+<p>The logic is simple. A single price is a compromise. Set it high and you lose buyers who would have paid a bit less; set it low and you give away money to buyers who would have paid more. Segment pricing tries to capture both groups, provided you can tell them apart and stop them from swapping places.</p>
+
+<h2>Types of Segment Pricing</h2>
+<table>
+  <thead>
+    <tr><th>Segment by</th><th>Examples</th><th>Typical fence</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Who the customer is</td><td>Student, military, healthcare worker, senior</td><td>Identity verification service or ID check</td></tr>
+    <tr><td>Type of buyer</td><td>Wholesale vs retail, business vs consumer</td><td>Trade account approval, minimum order quantity</td></tr>
+    <tr><td>Where they buy</td><td>Country or currency pricing, marketplace vs own store</td><td>Shipping destination, separate storefront</td></tr>
+    <tr><td>How much they buy</td><td>Volume tiers, multipacks, subscriptions</td><td>Quantity thresholds, recurring commitment</td></tr>
+    <tr><td>Which version they choose</td><td>Good, better, best tiers</td><td>Features or bundle contents</td></tr>
+    <tr><td>When they buy</td><td>Early bird, off-season, launch pricing</td><td>Time window</td></tr>
+  </tbody>
+</table>
+<p>The fence is what makes segmentation work. The best fences are easy for the target group to cross and hard or unappealing for everyone else. A student price behind a verification step keeps most regular customers out; a "use code STUDENT" banner does not.</p>
+
+<h2>A Real Example: Spotify's Plans</h2>
+<p>Spotify is a clear public example of segment pricing built on fences. On its <a href="https://www.spotify.com/us/premium/" target="_blank" rel="noopener noreferrer">US Premium page</a> (checked September 2026), Premium Individual costs $12.99 a month and Premium Student costs $6.99, available only to students at an eligible accredited higher education institution. Duo costs $18.99 for two accounts and Family $21.99 for more. Each plan targets a segment with a different willingness to pay: students with limited budgets, couples, and households. The fences are student verification and account limits, which keep an individual subscriber from simply claiming the student rate.</p>
+<p>For an online store, the same principles apply at a smaller scale: a verified student or healthcare discount, a trade price list for salons or boutiques, a subscription price for repeat buyers, or a multipack for heavy users.</p>
+
+<h2>Worked Example: Does a Student Discount Pay Off?</h2>
+<p>You sell a $40 product that costs you $16 landed. About 1,000 students visit each month and convert at 1.5% at full price. You're considering a 20% student discount ($32).</p>
+<ol>
+<li><strong>Before:</strong> 15 student orders × $24 profit = <strong>$360</strong> a month.</li>
+<li><strong>With a verified discount:</strong> say student conversion doubles to 3.0%, giving 30 orders × $16 profit = <strong>$480</strong>. Gain: <strong>+$120</strong> a month.</li>
+<li><strong>With an unfenced public code:</strong> the student gain is the same, but suppose 50 of your 500 regular full-price buyers also find and use the code. That costs 50 × $8 = $400 of margin. Net result: $480 − $360 − $400 = <strong>−$280</strong> a month.</li>
+</ol>
+<p>The discount itself was a good idea. The missing fence turned it into a loss. Before launching any segment price, estimate how much full-price demand could leak into it. The same logic applies to general promotions, covered in <a href="/blog/which-products-actually-deserve-a-discount">which products actually deserve a discount</a>.</p>
+
+<h2>How to Set Up Segment Pricing, Step by Step</h2>
+<ol>
+<li><strong>Find a real difference in willingness to pay.</strong> Check whether a group actually behaves differently: lower conversion at full price, larger orders, a different channel. A segment price with no underlying difference just gives margin away.</li>
+<li><strong>Choose a fence you can enforce.</strong> Verification for identity-based segments, account approval for trade buyers, quantity thresholds for volume pricing.</li>
+<li><strong>Set the segment price from your margin, not a round number.</strong> Know your floor. Our <a href="/shopify-profit-margin-calculator">profit margin calculator</a> shows what each discount leaves after fees.</li>
+<li><strong>Estimate leakage.</strong> Assume some full-price buyers will get into the segment and include that cost in your math, as in the example above.</li>
+<li><strong>Measure the segment separately.</strong> Track orders and profit for the segment on their own. If the segment's profit gain doesn't exceed the leakage cost, change the price or the fence.</li>
+</ol>
+<p>For channel-based segmentation, such as pricing differently on Amazon than on your own store, see <a href="/blog/should-you-price-the-same-on-shopify-and-amazon">channel pricing on Shopify and Amazon</a>.</p>
+
+<h2>The Legal Line: Segment Pricing vs Personalized Pricing</h2>
+<p>Openly offered segment prices, like a posted student rate or a trade price list, are common and generally lawful. Two areas deserve care.</p>
+<ul>
+<li><strong>Business-to-business pricing.</strong> In the U.S., the Robinson-Patman Act can prohibit selling goods of like grade and quality to competing business buyers at different prices where it harms competition. The FTC's <a href="https://www.ftc.gov/advice-guidance/competition-guidance/guide-antitrust-laws/price-discrimination-robinson-patman-violations" target="_blank" rel="noopener noreferrer">guide to price discrimination</a> explains the exceptions, such as cost differences and meeting a competitor's price. Keep wholesale tiers based on clear, documented criteria like order volume.</li>
+<li><strong>Individual prices from personal data.</strong> This is where regulators are focused. In January 2025, the FTC released <a href="https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-surveillance-pricing-study-indicates-wide-range-personal-data-used-set-individualized-consumer" target="_blank" rel="noopener noreferrer">initial findings from its surveillance pricing study</a>, reporting that data like precise location, browsing history and even mouse movements can be used to tailor the prices individual shoppers see. New York's Algorithmic Pricing Disclosure Act, <a href="https://www.skadden.com/insights/publications/2026/01/new-york-algorithmic-pricing-law" target="_blank" rel="noopener noreferrer">in effect since November 10, 2025</a>, requires businesses that set prices with an algorithm using a consumer's personal data to display the notice "THIS PRICE WAS SET BY AN ALGORITHM USING YOUR PERSONAL DATA", with penalties of up to $1,000 per violation.</li>
+</ul>
+<p>The practical difference: segment pricing offers a posted price to a defined group that anyone in that group can get. Personalized pricing shows different individuals different prices based on data about them, often without their knowledge. For a small store, the first is a standard tool; the second carries legal and trust risk. This is general information, not legal advice.</p>
+
+<h2>Start With How Each Product Responds to Price</h2>
+<p>Segment pricing works best when you already know how price-sensitive a product is overall. A product with inelastic demand usually doesn't need a discounted segment, because most buyers aren't holding out for a lower price. A highly elastic product may gain more from a segment price, because the lower price genuinely unlocks new buyers.</p>
+<p>Zorin measures that for each product. It reads your Shopify or WooCommerce sales history, fits a price elasticity model, and returns a raise, lower or hold recommendation with an estimated profit impact and a confidence score. For a group you want to understand better, such as trade buyers or a student audience, you can also share Zorin's Van Westendorp price survey link with just that group to see the price range they find acceptable.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin Van Westendorp survey results chart showing optimal price and acceptable price range" width="736" height="519" loading="lazy" />
+  <figcaption>Surveying one customer group on its own shows the price range that segment finds acceptable.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Segment pricing charges different customer groups different prices, such as student, wholesale, regional or volume pricing.</li>
+<li>It only works with a fence, like verification or a minimum order, that keeps full-price buyers out of the discounted segment.</li>
+<li>Spotify prices Premium Student at $6.99 against $12.99 for Individual, fenced by student verification.</li>
+<li>In the worked example, a student discount gains $120 a month when verified but loses $280 when the code leaks to regular buyers.</li>
+<li>Posted segment prices are standard; individual prices based on personal data now draw FTC scrutiny and, in New York, a required disclosure.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is segment pricing?</h3>
+<p>Segment pricing is charging different prices to different groups of customers for the same or a similar product, based on differences in their willingness to pay. Student discounts, wholesale price lists, regional prices and volume tiers are all forms of segment pricing.</p>
+</div>
+<div class="faq-item">
+<h3>What is an example of segment pricing?</h3>
+<p>Spotify charges $12.99 a month for Premium Individual and $6.99 for Premium Student in the US, with student verification as the fence. In ecommerce, a trade price list for salons or a verified healthcare worker discount works the same way.</p>
+</div>
+<div class="faq-item">
+<h3>Is segment pricing legal?</h3>
+<p>Openly offered segment prices are common and generally lawful. Business-to-business price differences can raise Robinson-Patman Act issues in the U.S., and prices set by algorithm from a consumer's personal data require a disclosure in New York. This is general information, not legal advice.</p>
+</div>
+<div class="faq-item">
+<h3>What is a price fence?</h3>
+<p>A price fence is a rule that stops customers outside a segment from getting that segment's price. Identity verification, account approval, minimum quantities, time windows and different product versions are all common fences.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between segment pricing and dynamic pricing?</h3>
+<p>Segment pricing sets different prices for different groups of customers. Dynamic pricing changes the price over time for everyone, based on demand, inventory or competitor moves. A store can use both at once.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if segment pricing will be profitable?</h3>
+<p>Estimate the extra orders the segment price brings in, subtract the margin you give up on those orders, and subtract the margin lost when full-price buyers leak into the segment. If the result is positive with a realistic leakage estimate, the segment price is worth testing.</p>
+</div>
+</section>
+
+<p class="conclusion">Segment pricing is one of the oldest ways to serve customers with different budgets without cutting your price for everyone. Get the fence right, do the leakage math, and keep prices posted rather than personalized. To see how price-sensitive each of your products is before you segment, <a href="/signup">try Zorin free</a>.</p>
+`.trim(),
+  },
+  {
     slug: "price-priming",
     title: "Price Priming: How Cues Shape What Shoppers Pay",
     excerpt:
@@ -3994,7 +4222,7 @@ export const posts: BlogPost[] = [
 <p>Once a store has real sales history and enough orders to see patterns, competitor research becomes genuinely useful context rather than a guess about where you sit in the market. This is also the stage where average order value levers, tiered bundles, post-purchase upsells, become worth building, since you now have enough traffic and repeat behavior to make them worthwhile. On your strongest-selling products specifically, this is often where a first shift toward value-based pricing starts to make sense, using early customer feedback, reviews, and brand story to justify pricing above a pure cost-plus number.</p>
 
 <h3>Scale (thousands of orders): full pricing architecture</h3>
-<p>At this stage, a store typically has enough sales history, ideally with genuine price variation across that history, for elasticity-driven, per-SKU value-based pricing to become reliable on established products. This is where a real pricing architecture starts to take shape: segment pricing (wholesale vs retail, loyalty tier pricing), more automated rule-based adjustments (margin floors, competitor-relative rules, time-based triggers), and dedicated review cadences per product rather than a single blanket check across the whole catalog.</p>
+<p>At this stage, a store typically has enough sales history, ideally with genuine price variation across that history, for elasticity-driven, per-SKU value-based pricing to become reliable on established products. This is where a real pricing architecture starts to take shape: <a href="/blog/segment-pricing">segment pricing</a> (wholesale vs retail, loyalty tier pricing), more automated rule-based adjustments (margin floors, competitor-relative rules, time-based triggers), and dedicated review cadences per product rather than a single blanket check across the whole catalog.</p>
 <p>Six months of sales history with real price variation is a reasonable rough benchmark for when <a href="/blog/what-does-price-elasticity-actually-mean">elasticity data</a> becomes reliable enough to lean on for a specific product. That threshold, not a specific order count or revenue figure, is really what separates the growing stage from the scale stage for pricing purposes: it's about whether the data exists yet, not just about how big the store has gotten.</p>
 
 <figure class="post-image">
@@ -5344,7 +5572,7 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 
-<p>Sales sit inside this list as the most visible, most customer-friendly version. The rest require more care, because none of them come with a banner explaining why the price is different today. Flash sales convert at 2-3x the rate of standard sales because of time pressure, but they lose most of their effect without a visible countdown timer.</p>
+<p>Sales sit inside this list as the most visible, most customer-friendly version. Scheduled sales and tiers are technically variable pricing rather than dynamic pricing, a distinction explained in <a href="/blog/dynamic-pricing-vs-variable-pricing">dynamic pricing vs variable pricing</a>. The rest require more care, because none of them come with a banner explaining why the price is different today. Flash sales convert at 2-3x the rate of standard sales because of time pressure, but they lose most of their effect without a visible countdown timer.</p>
 
 <h2>How Often Can You Change Prices Without Losing Customer Trust</h2>
 <p>There is no universal safe frequency, no "once a month is fine, twice a week is not" rule that holds across every store and category. The trust risk comes from inconsistency and the absence of a visible reason, not from the raw number of price changes.</p>
@@ -5425,7 +5653,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Can personalized pricing hurt customer trust more than a sale?</h3>
-<p>Generally yes, because it removes the sense that everyone is paying the same price for the same product, which research shows most shoppers explicitly value. Segment-based pricing (like wholesale or loyalty tiers) tends to be more accepted because the segment and the reason for the price difference are usually clear and disclosed upfront, unlike individualized pricing based on browsing behavior.</p>
+<p>Generally yes, because it removes the sense that everyone is paying the same price for the same product, which research shows most shoppers explicitly value. Segment-based pricing (like wholesale or loyalty tiers) tends to be more accepted because the segment and the reason for the price difference are usually clear and disclosed upfront, unlike individualized pricing based on browsing behavior. How to set one up with a proper price fence is covered in <a href="/blog/segment-pricing">segment pricing explained</a>.</p>
 </div>
 </section>
 
@@ -10075,7 +10303,7 @@ export const posts: BlogPost[] = [
 
 <h2>What Dynamic Pricing Actually Means for an Ecommerce Store</h2>
 <p>A discount is a decision you make once: 20% off this weekend, ends Monday. Dynamic pricing is a standing rule that keeps making that decision for you, continuously, based on a signal you define. A simple version: if stock on a bestseller drops below 15 units, raise the price 20% automatically, no manual step required. A more advanced version reads your own sales history and calculates the price that maximizes profit for current conditions, rather than following a fixed if/then rule at all.</p>
-<p>Both count as dynamic pricing. The difference is where the number comes from, a rule you configured yourself, or a calculation based on actual demand data. That distinction matters more than it sounds like it should, because a rule you wrote by feel can be just as wrong as no strategy at all, it's just wrong on autopilot instead of wrong by accident.</p>
+<p>Both count as dynamic pricing. (A price schedule set in advance, like a fixed holiday price, is usually called variable pricing instead; see <a href="/blog/dynamic-pricing-vs-variable-pricing">dynamic vs variable pricing</a>.) The difference is where the number comes from, a rule you configured yourself, or a calculation based on actual demand data. That distinction matters more than it sounds like it should, because a rule you wrote by feel can be just as wrong as no strategy at all, it's just wrong on autopilot instead of wrong by accident.</p>
 
 <h2>A Worked Example: What Dynamic Pricing Does to Your Margin</h2>
 <p>Say you sell a skincare serum with a landed cost of $14 and a current price of $32, a 56.2% margin. You're selling 50 units a week. You set an inventory-based dynamic pricing rule: when stock drops below 15 units, raise the price 20%, to roughly $38.</p>
