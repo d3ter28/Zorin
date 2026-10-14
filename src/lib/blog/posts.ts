@@ -38,6 +38,256 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "competitor-undercutting-your-prices",
+    title: "Competitor Undercutting Your Prices? What to Do",
+    excerpt:
+      "A competitor undercut your prices? Check the offer, check your sales, then use the break-even math to decide whether to match, hold or differentiate.",
+    date: "2026-10-14",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">When a competitor undercuts your prices, don't match automatically. First check whether it's really the same offer and whether your sales have actually dropped. Then do the break-even math: matching a cut only pays if holding your price would lose more sales than the margin you'd give up. For a product with a 40% margin, matching a 10% cut only makes sense if holding would cost you more than a quarter of your volume. Most of the time, holding and competing on something other than price is the better move.</p>
+
+<h2>Why Undercutting Happens More Than It Used To</h2>
+<p>Online, a competitor can change a price in seconds and a repricing tool can do it for them all day. A study of Amazon Marketplace by researchers at Northeastern University tracked every seller on 1,641 best-selling products for four months and <a href="https://mislove.org/publications/Amazon-WWW.pdf" target="_blank" rel="noopener noreferrer">identified 543 sellers using algorithmic pricing</a>, with prices pegged to the lowest price, the second-lowest price or Amazon's own price. Those sellers won the Buy Box more often, sometimes even when they weren't the cheapest, because Amazon also weighs seller feedback.</p>
+<p>Automated undercutting can also go badly wrong. In 2011, biologist Michael Eisen noticed an out-of-print book, The Making of a Fly, <a href="https://www.michaeleisen.org/blog/p/358/" target="_blank" rel="noopener noreferrer">listed on Amazon for $23,698,655.93</a>. Two sellers' algorithms were reacting to each other: one priced at 0.9983 times its rival, the other at 1.270589 times the first. Each day the prices ratcheted up until someone noticed. The lesson for sellers is simple: a rule that reacts to a competitor's price without a floor, a ceiling and a human check can do strange things.</p>
+
+<h2>Step 1: Confirm It's a Real Undercut</h2>
+<ul>
+<li><strong>Is it the same product?</strong> Check condition, size, bundle contents and whether it's genuine. A "cheaper" listing is sometimes used, refurbished, grey-market or a smaller pack.</li>
+<li><strong>Is it the same total price?</strong> Add shipping, taxes and delivery time. A lower item price with $8 shipping may not be cheaper at all.</li>
+<li><strong>Is it the same seller quality?</strong> Ratings, return policy and delivery speed all change what shoppers are willing to pay.</li>
+<li><strong>Is it a MAP violation?</strong> If you both sell a brand with a minimum advertised price policy, the undercut may break it. Report it to the brand rather than follow it down. See our guide to <a href="/blog/minimum-advertised-price-what-sellers-need-to-know">minimum advertised price</a>.</li>
+<li><strong>Is it temporary?</strong> A flash sale or clearance ends on its own. Matching it can leave you with a lower price long after theirs has gone back up.</li>
+</ul>
+
+<h2>Step 2: Check Whether It's Actually Hurting You</h2>
+<p>Look at your own sales, not their price. Compare units sold and conversion rate on the affected product for the two to four weeks since the undercut with the same period before, and against the same weeks last year if the product is seasonal. If sales haven't moved, your customers aren't choosing on price alone, and there's nothing to fix. A rival's price usually pulls your sales much less than sellers fear (economists measure that pull as <a href="/blog/cross-price-elasticity-of-demand">cross price elasticity of demand</a>), and your product's own <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity</a> is the best guide to how exposed you are.</p>
+
+<h2>Step 3: Do the Break-Even Math</h2>
+<p>Say you sell a product at <strong>$50</strong> that costs you <strong>$30</strong>, and you sell 400 a month. A competitor cuts their price to $45.</p>
+<table>
+  <thead>
+    <tr><th>Response</th><th>Price</th><th>Profit per unit</th><th>Units (assumption)</th><th>Monthly profit</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Before the undercut</td><td>$50</td><td>$20</td><td>400</td><td>$8,000</td></tr>
+    <tr><td>Match the cut</td><td>$45</td><td>$15</td><td>400 (you keep every sale)</td><td>$6,000</td></tr>
+    <tr><td>Hold your price</td><td>$50</td><td>$20</td><td>352 (you lose 12%)</td><td>$7,040</td></tr>
+    <tr><td>Hold and add value (free shipping, costs $2 a unit)</td><td>$50</td><td>$18</td><td>380 (you lose 5%)</td><td>$6,840</td></tr>
+  </tbody>
+</table>
+<p>Matching feels safe, but it locks in a 25% drop in profit per unit on every sale, including all the customers who would have stayed anyway. Holding only loses to matching if you'd lose more than 100 units a month (400 × $15 = $6,000, and $6,000 ÷ $20 = 300 units). The general rule:</p>
+<p><strong>Matching pays only if holding would lose more than: 1 − (new profit per unit ÷ old profit per unit) of your volume.</strong></p>
+<p>Here that's 1 − ($15 ÷ $20) = 25%. For a product with a thinner margin the threshold is even higher. At a $40 cost, matching to $45 halves your profit per unit, so you'd need to be losing more than half your sales before matching made sense.</p>
+
+<h2>Step 4: Choose Your Response</h2>
+<ol>
+<li><strong>Ignore it.</strong> If sales haven't moved, or the undercut is temporary, do nothing.</li>
+<li><strong>Hold and differentiate.</strong> Improve the reasons to buy from you: faster shipping, better photos and reviews, a guarantee, a bundle, a loyalty perk. Compete on the things a cheaper listing doesn't have.</li>
+<li><strong>Match selectively.</strong> Match only on the few products where your sales clearly follow the competitor's price, and hold everywhere else. A storewide response to one rival's move is almost always an overreaction. Our guide to <a href="/blog/competitive-pricing-strategy">competitive pricing strategy</a> covers when sitting below the market is worth it.</li>
+<li><strong>Enforce your policy if you're the brand.</strong> If resellers are breaking your MAP policy, enforcement protects your price and your other retailers.</li>
+<li><strong>Change the product, not the price.</strong> If a commodity SKU keeps getting undercut, consider a bundle, an exclusive variant or dropping it for something only you sell.</li>
+</ol>
+<p>A price war is expensive for everyone involved. As a <a href="https://hbr.org/2000/03/how-to-fight-a-price-war" target="_blank" rel="noopener noreferrer">Harvard Business Review article</a> on the subject observed, price is increasingly "the weapon of choice", and skirmishes can degenerate into full price wars. The seller who can afford to stay out usually does best.</p>
+
+<h2>If You Use a Repricer, Set Guardrails</h2>
+<ul>
+<li>A hard floor based on your landed cost plus a minimum margin, never "match the lowest price" with no limit.</li>
+<li>A ceiling, so a reacting algorithm can't run away upward as in the book example.</li>
+<li>Rules that ignore listings from sellers with poor ratings or much slower shipping.</li>
+<li>A human review of large moves before they go live.</li>
+</ul>
+<p>The trade-offs between reacting to competitors and modeling your own demand are compared in <a href="/blog/price-elasticity-vs-repricing-software">price elasticity software vs repricing software</a>.</p>
+
+<h2>Knowing Which Products Can Hold Their Price</h2>
+<p>The key number in every step above is how much your own sales respond to price. Zorin measures that from your Shopify or WooCommerce history: it fits a price elasticity model for each product and recommends raise, lower or hold with an estimated profit impact and a confidence score. You can also log the competitor prices you know about for each product, and Zorin shows their minimum, median and maximum next to your own numbers. Zorin doesn't scrape or monitor competitor sites automatically; it's built to tell you whether a price move by someone else is worth reacting to.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/product-recommendation.webp" alt="Zorin recommendation panel showing a raise, lower, or hold call with confidence and profit impact" width="1440" height="1963" loading="lazy" />
+  <figcaption>A hold recommendation backed by your own demand data is the evidence you need to stay out of a price war.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Before reacting, confirm the undercut is the same product at the same total price, and that your sales have actually dropped.</li>
+<li>Matching pays only if holding would lose more than 1 − (new profit per unit ÷ old profit per unit) of your volume, 25% in the $50 example.</li>
+<li>A study of 1,641 Amazon best-sellers found 543 sellers repricing algorithmically, most pegged to the lowest or second-lowest price.</li>
+<li>Two unchecked repricing algorithms once pushed an out-of-print biology book to $23.7 million on Amazon, so always set floors and ceilings.</li>
+<li>Hold and differentiate on most products, match only where your sales clearly follow the rival's price.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What should I do when a competitor undercuts my prices?</h3>
+<p>Check that it's the same product at the same total price, then look at whether your sales have actually dropped. If they have, compare the profit from matching with the profit from holding. In most cases holding your price and improving your offer beats matching.</p>
+</div>
+<div class="faq-item">
+<h3>Should I match a competitor's lower price?</h3>
+<p>Only if holding would lose more sales than the margin you give up by matching. With a $50 price, $30 cost and a $45 competitor, you'd need to lose more than 25% of your volume before matching earned more.</p>
+</div>
+<div class="faq-item">
+<h3>How do I compete with cheaper competitors without lowering my price?</h3>
+<p>Compete on what the cheaper seller lacks: faster delivery, a better return policy, stronger reviews, bundles, guarantees or exclusive variants. Many shoppers pay a small premium for a seller they trust.</p>
+</div>
+<div class="faq-item">
+<h3>Is undercutting prices illegal?</h3>
+<p>Generally no. Setting a lower price is normal competition. Exceptions include breaking a brand's minimum advertised price agreement, which is a contract issue, and predatory pricing by dominant firms, which is rare for small sellers. This is general information, not legal advice.</p>
+</div>
+<div class="faq-item">
+<h3>How do I stop a price war?</h3>
+<p>Stop following the other seller down. Hold a price floor based on your costs, compete on non-price factors, and focus on products where you have an advantage. A price war only continues while both sides keep reacting.</p>
+</div>
+<div class="faq-item">
+<h3>Do I need a competitor price tracking tool?</h3>
+<p>Only if you sell identical products against many sellers and your sales clearly follow their prices. For most stores with differentiated products, checking key competitors manually is enough. See <a href="/blog/competitor-price-tracking">whether you need a competitor price tracking app</a>, and if you do, <a href="/blog/best-competitor-price-tracking-software">the main tools compared</a>.</p>
+</div>
+</section>
+
+<p class="conclusion">A competitor's lower price is a question, not an instruction. Check the offer, check your sales, and do the break-even math before you move. To know which of your products can hold their price, <a href="/signup">start a free Zorin trial</a> and see your demand data product by product.</p>
+`.trim(),
+  },
+  {
+    slug: "ecommerce-margin-too-low",
+    title: "Ecommerce Margin Too Low? How to Find the Leak",
+    excerpt:
+      "Low ecommerce margin? Build a per-order margin waterfall, find the leak (discounts, returns, shipping, fees, ads) and see which fix is worth the most.",
+    date: "2026-10-14",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">If your ecommerce margin is too low, the cause is usually not one big problem but several small leaks between the price on the product page and the money you keep: discounts, returns, shipping you subsidize, payment fees and ad spend. Find the leak by building a per-order margin waterfall, then fix the biggest item first. In most stores, pricing is the most powerful lever, because a price rise flows almost straight to profit while every other fix only trims a cost.</p>
+
+<h2>Why a Healthy Gross Margin Can Still Mean a Thin Business</h2>
+<p>Many online stores look fine at the gross margin line and struggle everywhere below it. <a href="https://www.finaloop.com/blog/ecommerce-profit-benchmarks-performance-metrics" target="_blank" rel="noopener noreferrer">Finaloop's ecommerce profit benchmarks</a>, which cover hundreds of seven- and eight-figure DTC brands with $3.16 billion in combined sales, put the median net profit margin in 2024 at about 3%, even though gross margins at these brands commonly look healthy. The gap is where the leaks live.</p>
+<p>If you aren't sure whether your margin is actually low, compare it with the benchmarks in <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">ecommerce profit margins: what to target</a> and our <a href="/research/profit-margins-by-product-category">profit margins by product category</a> research first. A 40% gross margin is thin for beauty and normal for electronics.</p>
+
+<h2>Step 1: Build a Per-Order Margin Waterfall</h2>
+<p>Take one typical order and follow every dollar. Here's an example for a store selling a $60 product with a $24 landed cost:</p>
+<ul>
+<li>40% of orders use a 12% discount code, an average of $2.88 per order.</li>
+<li>10% of orders are returned. Each return costs $12 in shipping and handling, and 30% of returned items can't be resold.</li>
+<li>Shipping costs $7; customers pay $2 on average.</li>
+<li>Payment processing runs about 3% plus $0.30 per order.</li>
+<li>Blended ad spend is $16 per order, and apps and other overhead come to $3 per order.</li>
+</ul>
+<table>
+  <thead>
+    <tr><th>Line</th><th>Per order</th><th>Left after this line</th><th>% of net revenue</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>List price</td><td>$60.00</td><td>$60.00</td><td></td></tr>
+    <tr><td>Discounts</td><td>−$2.88</td><td>$57.12</td><td>100%</td></tr>
+    <tr><td>Landed cost of goods</td><td>−$24.00</td><td>$33.12</td><td>58.0%</td></tr>
+    <tr><td>Returns</td><td>−$1.92</td><td>$31.20</td><td>54.6%</td></tr>
+    <tr><td>Shipping subsidy</td><td>−$5.00</td><td>$26.20</td><td>45.9%</td></tr>
+    <tr><td>Payment fees</td><td>−$2.01</td><td>$24.19</td><td>42.3%</td></tr>
+    <tr><td>Advertising</td><td>−$16.00</td><td>$8.19</td><td>14.3%</td></tr>
+    <tr><td>Apps and overhead</td><td>−$3.00</td><td><strong>$5.19</strong></td><td><strong>9.1%</strong></td></tr>
+  </tbody>
+</table>
+<p>A 58% gross margin becomes a 9% net margin. No single line looks alarming, but together they take more than four-fifths of the gross profit. Run the same waterfall with your own numbers; the biggest bar is where to start.</p>
+
+<h2>Step 2: Check the Usual Suspects</h2>
+<ol>
+<li><strong>Cost of goods is understated.</strong> If you use the supplier's unit price instead of landed cost (freight, duty, packaging), every margin figure you look at is too optimistic. Tariffs have made this gap bigger for importers since 2025.</li>
+<li><strong>Discounts have become the default.</strong> When a large share of orders use a code, the discount is really a permanent price cut. Check what share of revenue carries a discount and whether those promotions brought in new customers or just subsidized people who would have bought anyway. Our guide to <a href="/blog/how-to-price-a-discount-without-losing-your-margin">how much to discount without losing your margin</a> shows the break-even math.</li>
+<li><strong>Returns cost more than the refund.</strong> Return shipping, handling and unsellable stock add up. The NRF and Happy Returns estimate that 19.3% of U.S. online sales will be returned in 2025, and apparel runs higher; see <a href="/research/return-rate-by-product-category">return rates by product category</a>.</li>
+<li><strong>Free shipping is priced into nothing.</strong> If shipping is free but prices weren't set with it in mind, you pay it out of margin on every order.</li>
+<li><strong>Fees are counted as overhead instead of per-order cost.</strong> Payment processing, marketplace commissions and per-order app fees scale with sales and belong in the waterfall.</li>
+<li><strong>Ad spend per order has crept up.</strong> Rising acquisition cost quietly eats margin even when nothing else changes.</li>
+<li><strong>The product mix has shifted.</strong> If low-margin products are growing faster than high-margin ones, your blended margin falls even though no individual product changed.</li>
+<li><strong>Prices haven't moved while costs have.</strong> A price set two years ago against a lower cost base is often the single biggest leak.</li>
+</ol>
+
+<h2>Step 3: Compare What Each Fix Is Worth</h2>
+<p>Using the waterfall above, here's what four common fixes are worth per order, holding order volume steady:</p>
+<table>
+  <thead>
+    <tr><th>Fix</th><th>Profit per order</th><th>Change</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Current state</td><td>$5.19</td><td></td></tr>
+    <tr><td>Cut return rate from 10% to 8%</td><td>$5.57</td><td>+7%</td></tr>
+    <tr><td>Halve how often the discount code is used (40% to 20% of orders)</td><td>$6.58</td><td>+27%</td></tr>
+    <tr><td>Free shipping threshold so customers cover $3.50 on average</td><td>$6.69</td><td>+29%</td></tr>
+    <tr><td>Raise the price 5%, from $60 to $63</td><td>$7.96</td><td>+53%</td></tr>
+  </tbody>
+</table>
+<p>The price change wins because almost all of it reaches the bottom line; only the discount and payment fee scale with it. It also has room to absorb some lost volume: even if the 5% rise cost you 10% of orders, you'd earn 0.9 × $7.96 = $7.16 per original order, still well above $5.19. That's the store-level version of a pattern McKinsey found across large companies, where a <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">1% price increase with stable volume raised operating profit by about 8%</a> for the average S&amp;P 1500 company.</p>
+<p>The catch is the phrase "with stable volume". A price rise on a product whose customers are highly price-sensitive can lose more in volume than it gains in margin. Which products can take it is the question to answer before you change anything.</p>
+
+<h2>Step 4: Raise Prices Where Demand Allows</h2>
+<ol>
+<li><strong>Sort products by margin and sales volume.</strong> Low-margin bestsellers are often the biggest opportunity, because a small increase applies to a lot of units.</li>
+<li><strong>Estimate each product's price sensitivity.</strong> Products with few substitutes, strong reviews or loyal repeat buyers usually tolerate a rise; commodity products listed by many sellers usually don't.</li>
+<li><strong>Raise in small steps on the most promising products first.</strong> 3% to 8% is a common first move. Watch units and profit for a few weeks.</li>
+<li><strong>Keep the products that can't move where they are.</strong> Fix their margin through cost, shipping or bundling instead.</li>
+</ol>
+<p>The full process, including how to communicate increases, is in <a href="/blog/how-to-raise-prices-without-losing-customers">how to raise prices without losing customers</a>.</p>
+
+<h2>Finding Which Products Can Carry a Higher Price</h2>
+<p>That second step is what Zorin does. It reads your Shopify or WooCommerce sales history, fits a price elasticity model for each product, and shows margin, model confidence and a raise, lower or hold recommendation side by side, with the estimated profit impact of each change. Instead of a storewide increase that hits sensitive products as hard as loyal ones, you raise where demand allows and hold where it doesn't.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing margin, model status, and recommendation in one sortable table" width="1440" height="1987" loading="lazy" />
+  <figcaption>Sorting by margin and recommendation shows which low-margin products have room for a price rise.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A low ecommerce margin is usually several leaks, discounts, returns, shipping, fees and ads, rather than one problem.</li>
+<li>Finaloop's benchmarks put median DTC net margin around 3% in 2024 despite healthy-looking gross margins.</li>
+<li>In the worked example, a 58% gross margin shrinks to a 9.1% net margin per order after every cost is counted.</li>
+<li>A 5% price rise added 53% to profit per order in the example, more than cutting returns, discounts or shipping costs.</li>
+<li>Raise prices only where demand allows: check each product's price sensitivity before changing anything.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>Why is my ecommerce profit margin so low?</h3>
+<p>Usually because costs below the gross margin line add up: discounts, returns, shipping subsidies, payment fees, advertising and app costs. Build a per-order margin waterfall to see which one takes the most, and check that your cost of goods includes freight and duties.</p>
+</div>
+<div class="faq-item">
+<h3>What is a low profit margin for an online store?</h3>
+<p>It depends on the category, but a net margin below about 5% leaves very little room for error. Finaloop's benchmarks found a median net margin of about 3% for established DTC brands in 2024, so thin margins are common, not a sign you're doing something unusual.</p>
+</div>
+<div class="faq-item">
+<h3>What is the fastest way to improve ecommerce margins?</h3>
+<p>A targeted price increase on products that can carry it usually has the biggest and fastest effect, because almost all of it reaches profit. Cutting discount frequency and adding a free shipping threshold are the next quickest wins.</p>
+</div>
+<div class="faq-item">
+<h3>Should I raise prices or cut costs to fix low margins?</h3>
+<p>Do both, but start by testing price on the products with the least price-sensitive demand. Cost cuts are worth pursuing, but in most stores they recover less per order than a well-chosen price change.</p>
+</div>
+<div class="faq-item">
+<h3>How do returns affect my margin?</h3>
+<p>Each return costs return shipping and handling, and some items can't be resold. In the example above, a 10% return rate cost $1.92 per order. The NRF estimates 19.3% of U.S. online sales will be returned in 2025, so for many categories returns are a major margin line.</p>
+</div>
+<div class="faq-item">
+<h3>Do discounts hurt my margin more than I think?</h3>
+<p>Often, yes. A discount comes straight off the selling price while your costs stay the same, so a 20% discount on a 40% margin product halves your gross profit on that sale. If a large share of orders use a code, it has become a permanent price cut.</p>
+</div>
+</section>
+
+<p class="conclusion">A margin that's too low is fixable once you can see where it goes. Build the waterfall, fix the biggest leak first, and use price where demand allows it. To see which of your products have room for a higher price, <a href="/signup">try Zorin free</a> with your own sales history.</p>
+`.trim(),
+  },
+  {
     slug: "dynamic-pricing-vs-variable-pricing",
     title: "Dynamic vs Variable Pricing: What's the Difference?",
     excerpt:
@@ -3717,7 +3967,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Should I switch platforms to get better margin?</h3>
-<p>Rarely on fee structure alone. The full cost comparison is closer than "zero fees versus a monthly bill" suggests once hosting, plugins, and processing rates are counted on both sides, and a platform migration carries real cost and risk of its own. Calculating your actual real net profit margin on your current platform is almost always a faster, lower-risk way to improve profitability than switching platforms.</p>
+<p>Rarely on fee structure alone. The full cost comparison is closer than "zero fees versus a monthly bill" suggests once hosting, plugins, and processing rates are counted on both sides, and a platform migration carries real cost and risk of its own. Calculating your actual real net profit margin on your current platform is almost always a faster, lower-risk way to improve profitability than switching platforms. If that number turns out low, a per-order <a href="/blog/ecommerce-margin-too-low">margin waterfall</a> shows where it goes.</p>
 </div>
 </section>
 
@@ -5678,7 +5928,7 @@ export const posts: BlogPost[] = [
 <h2>Why Most Merchants Get Their Margins Wrong</h2>
 <p>The standard ecommerce P&L looks simple: revenue minus cost of goods sold minus ad spend equals profit. The problem is that formula misses 25-65% of your actual costs.</p>
 <p>Here is what typically happens. A merchant opens Shopify, sees $50,000 in monthly sales, subtracts $20,000 in product cost and $5,000 in ads, and concludes they made $25,000. That looks like a 50% margin. But once you add payment processing fees, Shopify's subscription and transaction fees, app subscriptions, packaging, return shipping, refunds, currency conversion, and the merchant's own time, that $25,000 can shrink to $5,000 or less. Sometimes it goes negative.</p>
-<p>The gap between gross margin and net margin is where most ecommerce businesses lose track of their profitability. According to <a href="https://www.finaloop.com/blog/ecommerce-profit-benchmarks-performance-metrics" target="_blank" rel="noopener noreferrer">Finaloop's ecommerce profit benchmarks</a>, which cover hundreds of seven- and eight-figure DTC brands with $3.16 billion in combined sales, the median net profit margin in 2024 was about 3%, even though gross margins at these brands commonly look healthy.</p>
+<p>The gap between gross margin and net margin is where most ecommerce businesses lose track of their profitability (if yours feels too thin, <a href="/blog/ecommerce-margin-too-low">here's how to find the leak</a>). According to <a href="https://www.finaloop.com/blog/ecommerce-profit-benchmarks-performance-metrics" target="_blank" rel="noopener noreferrer">Finaloop's ecommerce profit benchmarks</a>, which cover hundreds of seven- and eight-figure DTC brands with $3.16 billion in combined sales, the median net profit margin in 2024 was about 3%, even though gross margins at these brands commonly look healthy.</p>
 
 <h3>The full cost stack: from COGS to what's left</h3>
 <p>Your true cost of goods sold is more than what you paid your supplier. It includes the product itself, inbound shipping from the supplier to your warehouse, packaging materials, customs duties if you import, and any manufacturing or assembly labor. That gets you to gross margin.</p>
@@ -6175,7 +6425,7 @@ export const posts: BlogPost[] = [
 <h2>When Matching Competitors Quietly Costs You Money</h2>
 <p>Price matching feels safe. If your competitor charges $45 and you match $45, you're at least "in the game." But that logic assumes the competitor's price is correct for your store, which it almost never is.</p>
 <p>Consider this scenario. You sell a product at $52 with healthy margins and steady sales. A competitor drops the same or a similar product to $42 as part of a clearance sale. You see the price change in your tracker, panic, and match it. Your margin shrinks. Your volume doesn't meaningfully increase because your customers were already buying at $52. You've just imported someone else's liquidation strategy into your store.</p>
-<p>Now scale that across a catalog. Every time you reflexively match a price drop, you're eroding margin without evidence that the match drives enough incremental volume to compensate. And once you lower a price, raising it back without losing trust is harder than holding it in the first place.</p>
+<p>Now scale that across a catalog. Every time you reflexively match a price drop, you're eroding margin without evidence that the match drives enough incremental volume to compensate. The break-even test for whether matching pays is in <a href="/blog/competitor-undercutting-your-prices">what to do when a competitor undercuts your prices</a>. And once you lower a price, raising it back without losing trust is harder than holding it in the first place.</p>
 <p>The math on pricing as a profit lever is stark. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">McKinsey's long-running pricing research</a> has found that a 1% improvement in price, with volume held steady, lifts operating profit by roughly 8% to 11% depending on the analysis. For a store doing $500,000 a year with a 10% operating margin, even the conservative end of that range is several thousand dollars in additional annual profit from a change most merchants could implement in an afternoon. But the same leverage works in reverse. A 1% erosion from reflexive matching costs the same amount, quietly, repeatedly, across every matched product.</p>
 <p>Price matching makes sense when you're in a genuine commodity market competing on the same SKU against stores with similar positioning. Outside that narrow scenario, it's a margin leak dressed up as competitive strategy.</p>
 
@@ -8103,7 +8353,7 @@ export const posts: BlogPost[] = [
 <p>Competitive pricing has also sped up. <a href="https://www.nber.org/digest/jan19/e-commerce-and-pricing-behavior-traditional-retailers" target="_blank" rel="noopener noreferrer">Alberto Cavallo's research for the NBER</a> found the share of products whose price changed each month at large multi-channel retailers roughly doubled, from 15% in 2008-10 to almost 30% in 2014-17, and Walmart products that were easy to find on Amazon kept the same price for about 20% less time than those that weren't. When rivals reprice that often, trying to stay exactly at parity by hand becomes a full-time job, which is exactly why automatic repricers exist. It's also why matching them automatically is risky: you inherit their pricing decisions without knowing whether their customers behave like yours.</p>
 
 <h2>The Problem: A Competitor's Price Was Never About Your Customers</h2>
-<p>Here's the part the framework alone doesn't solve. A competitor's price reflects their supplier costs, their overhead, their brand positioning, and critically, their customers' specific price sensitivity, all of which can differ meaningfully from yours even for a near-identical product. Two stores selling the same item can rationally land on different optimal prices if one's customers arrived through a discount-driven channel and the other's arrived through a brand-loyal direct search. Matching or undercutting a competitor's number assumes your buyers behave like theirs. Often they don't, and the gap shows up as quietly lost margin, not as an obvious red flag.</p>
+<p>Here's the part the framework alone doesn't solve. A competitor's price reflects their supplier costs, their overhead, their brand positioning, and critically, their customers' specific price sensitivity, all of which can differ meaningfully from yours even for a near-identical product. Two stores selling the same item can rationally land on different optimal prices if one's customers arrived through a discount-driven channel and the other's arrived through a brand-loyal direct search. Matching or undercutting a competitor's number assumes your buyers behave like theirs. Often they don't, and the gap shows up as quietly lost margin, not as an obvious red flag. If a rival has just cut their price, work through <a href="/blog/competitor-undercutting-your-prices">whether to match a competitor's lower price</a> before you react.</p>
 
 <h2>How to Actually Choose a Position Using Your Own Data</h2>
 <p>Rather than picking one position for your entire catalog, let each product's own elasticity, calculated from its own sales history, tell you which position it can actually support. A product with low elasticity (customers not very price-sensitive) can often sustain a position above the market without losing meaningful volume. A product with high elasticity may only hold its ground at or below the market, regardless of what a premium-positioning instinct would suggest. This is the same mechanism behind <a href="/blog/what-does-price-elasticity-actually-mean">calculating price elasticity from your own sales history</a>, applied specifically to the competitive-positioning question instead of a standalone pricing decision.</p>
