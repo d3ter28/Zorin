@@ -38,6 +38,254 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "price-lining",
+    title: "Price Lining: Definition, Examples & How to Set It",
+    excerpt:
+      "Price lining sells a category at a few set price points instead of one price per item. Definition, the iPhone example, a worked example and setup steps.",
+    date: "2026-11-04",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Price lining is the practice of selling all the products in a category at a small number of set price points, such as $25, $35 and $48, instead of giving every item its own price. Each price point stands for a quality level, so shoppers compare tiers rather than individual price tags. It makes a catalog easier to shop, steers buyers toward the middle tier, and makes pricing decisions simpler, as long as the gaps between lines are clear and every product in a line can carry its price.</p>
+
+<h2>What Is Price Lining?</h2>
+<p>With price lining, you decide on a few price levels for a category first, then place each product on one of them. A clothing store might sell every t-shirt at $25, $35 or $48. A kitchen shop might line its knives at $40, $80 and $150. The individual cost of each item still matters, but it determines which line a product goes on, not a unique price.</p>
+<p>The idea is old (department stores used it long before ecommerce), and it works for a simple reason: most shoppers can't judge the quality difference between a $31 and a $34 shirt, but they can understand "basic, better, best".</p>
+
+<h2>Price Lining vs Similar Strategies</h2>
+<table>
+  <thead>
+    <tr><th>Strategy</th><th>What varies</th><th>Example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Price lining</td><td>Different products sold at a few fixed price points</td><td>Every tee at $25, $35 or $48</td></tr>
+    <tr><td>Good-better-best</td><td>Three versions of one product at rising prices</td><td>Standard, deluxe and premium versions of the same blender</td></tr>
+    <tr><td>Tiered or volume pricing</td><td>Price per unit by quantity bought</td><td>$10 each, or $8 each for 5 or more</td></tr>
+    <tr><td><a href="/blog/segment-pricing">Segment pricing</a></td><td>Price by customer group</td><td>Student and trade price lists</td></tr>
+    <tr><td><a href="/blog/keystone-pricing">Keystone pricing</a></td><td>Price set from cost with a fixed multiple</td><td>Retail price = cost × 2</td></tr>
+  </tbody>
+</table>
+<p>Good-better-best is really price lining applied to a single product family, and the two are often used together.</p>
+
+<h2>A Real Example: Apple's iPhone Line</h2>
+<p>Apple's US iPhone lineup is a clear current example. On <a href="https://www.apple.com/shop/buy-iphone" target="_blank" rel="noopener noreferrer">Apple's store</a> in November 2026, iPhone 17e starts at $699, iPhone 16 at $799, iPhone 17 at $899, iPhone Air at $1,099, iPhone 18 Pro at $1,199 and iPhone Duo at $1,999. Each step is a round, memorable price that signals a tier, and the gaps are large enough that shoppers decide which level they want before they compare specifications. Few shoppers ask whether a phone is worth $1,099; they ask whether they want the Air level or the Pro level.</p>
+
+<h2>Why Price Lining Works</h2>
+<ul>
+<li><strong>It reduces decision effort.</strong> Three clear levels are easier to choose between than twenty slightly different prices.</li>
+<li><strong>It steers shoppers to the middle.</strong> Itamar Simonson and Amos Tversky's research on <a href="https://www.semanticscholar.org/paper/Choice-in-Context:-Tradeoff-Contrast-and-Aversion:-Simonson-Tversky/6d99da4bf77ddfcaa246c94e416559b1bf29a92e" target="_blank" rel="noopener noreferrer">extremeness aversion</a>, published in the Journal of Marketing Research, found that an option becomes more attractive when it sits in the middle of a set and less attractive when it is an extreme. A top line makes the middle line feel like the sensible choice.</li>
+<li><strong>It simplifies merchandising.</strong> Buyers source to a target price point, and promotions, landing pages and ads can be built around lines rather than items.</li>
+<li><strong>It makes price changes easier to manage.</strong> You review three price points instead of every SKU, then move products between lines when costs or demand change.</li>
+</ul>
+<p>Price lining shares its psychology with <a href="/blog/is-price-anchoring-manipulative-or-just-smart-pricing">price anchoring</a> and <a href="/blog/price-priming">price priming</a>: the top line frames how the others are judged.</p>
+
+<h2>Worked Example: Lining a T-Shirt Collection</h2>
+<p>A clothing store sells 24 t-shirts at 14 different prices between $22 and $41, about 1,000 units a month. The average selling price is $31.50 and the average landed cost $14.50, for <strong>$17,000</strong> of monthly gross profit. Shoppers find the range hard to read, so the store groups the shirts into three lines by fabric and cost:</p>
+<table>
+  <thead>
+    <tr><th>Line</th><th>Price</th><th>Highest cost in line</th><th>Margin at that cost</th><th>Share of units (after)</th><th>Units</th><th>Gross profit</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Essential</td><td>$25</td><td>$10.50</td><td>58%</td><td>30%</td><td>300</td><td>$4,350</td></tr>
+    <tr><td>Core</td><td>$35</td><td>$15.00</td><td>57%</td><td>50%</td><td>500</td><td>$10,000</td></tr>
+    <tr><td>Premium</td><td>$48</td><td>$22.00</td><td>54%</td><td>20%</td><td>200</td><td>$5,200</td></tr>
+    <tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>1,000</strong></td><td><strong>$19,550</strong></td></tr>
+  </tbody>
+</table>
+<p>Gross profit is calculated at each line's highest cost, so the real figure would be slightly better. If the same 1,000 units sell with half of them in the middle line, gross profit rises about 15%. That mix is an assumption, not a promise: the point of the exercise is to set the lines, then measure what actually happens to the mix and the total. If unit sales fall at the new price points, the gain shrinks, which is why each line's price should be checked against how its products respond to price before you commit.</p>
+
+<h2>How to Set Up Price Lining, Step by Step</h2>
+<ol>
+<li><strong>Group products by perceived quality and cost.</strong> Fabric, materials, brand, features. Products in a line should feel similar to a shopper.</li>
+<li><strong>Choose three or four price points with clear gaps.</strong> Gaps of roughly 30% or more between lines make the difference obvious; $35 next to $38 isn't a line, it's noise.</li>
+<li><strong>Price each line from its most expensive product.</strong> The line price must clear your target margin on the highest-cost item in it, or that item quietly loses money. Our <a href="/blog/margin-vs-markup">margin vs markup guide</a> has the conversion formulas.</li>
+<li><strong>Make the difference visible.</strong> Name the lines, explain what moves a product up a line, and show them together so shoppers compare tiers.</li>
+<li><strong>Measure each line separately.</strong> Track units, mix and gross profit per line for a month or two after the change.</li>
+<li><strong>Move products, not prices, first.</strong> If a product sells strongly in its line, test it one line up. If it stalls, move it down, rather than inventing a new price point between lines.</li>
+</ol>
+
+<h2>When Price Lining Doesn't Fit</h2>
+<ul>
+<li><strong>Costs within a category vary too much.</strong> If one item costs $9 and a similar one costs $19, a shared line price either overprices the first or squeezes the second.</li>
+<li><strong>Shoppers compare identical items across stores.</strong> For branded products sold everywhere, the market sets each price, and lining your own levels won't hold.</li>
+<li><strong>Costs rise unevenly.</strong> A supplier increase can push some items in a line below your margin floor, forcing a re-line. Review lines whenever costs change.</li>
+<li><strong>Demand varies a lot within a line.</strong> Two shirts at $35 may respond to price very differently; one might sell just as well at $48.</li>
+</ul>
+
+<h2>Choosing Which Line Each Product Belongs On</h2>
+<p>That last point is where data helps most. Zorin reads your Shopify or WooCommerce sales history and fits a price elasticity model for each product, with a confidence score and a raise, lower or hold recommendation. A product with a strong raise recommendation is a candidate to move up a line; one that's already price-sensitive belongs where it is. For new products with no history, Zorin's Van Westendorp survey gives you the price range customers find acceptable, which tells you which line a product can credibly sit on.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing different raise or lower recommendations across products" width="1440" height="1987" loading="lazy" />
+  <figcaption>Products on the same price line can respond very differently to price; per-product recommendations show which ones could move up.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Price lining sells a category at a few set price points, each signaling a quality level, instead of a unique price per item.</li>
+<li>Apple's US iPhone line runs from $699 to $1,999 in a handful of clear steps, a current example of the approach.</li>
+<li>Research on extremeness aversion shows options look more attractive in the middle of a set, so a top line lifts the middle line.</li>
+<li>Price each line from its highest-cost product, keep gaps of about 30% or more, and measure mix and profit per line.</li>
+<li>Move individual products between lines based on how they respond to price, rather than adding new in-between price points.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is price lining?</h3>
+<p>Price lining is a pricing strategy where a retailer sells all products in a category at a small number of set price points, such as $25, $35 and $48. Each price point represents a quality level, so shoppers choose a tier instead of comparing many individual prices.</p>
+</div>
+<div class="faq-item">
+<h3>What is an example of price lining?</h3>
+<p>Apple's US iPhone range is one: in November 2026 models started at $699, $799, $899, $1,099, $1,199 and $1,999. In retail, a store selling every t-shirt at $25, $35 or $48 depending on fabric is using price lining.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between price lining and good-better-best pricing?</h3>
+<p>Good-better-best offers three versions of one product at rising prices. Price lining sets a few price points for a whole category and places different products on them. Good-better-best is essentially price lining within one product family.</p>
+</div>
+<div class="faq-item">
+<h3>What are the advantages of price lining?</h3>
+<p>It makes a catalog easier to shop, steers shoppers toward the middle tier, simplifies buying and merchandising, and reduces how many individual prices you need to manage.</p>
+</div>
+<div class="faq-item">
+<h3>What are the disadvantages of price lining?</h3>
+<p>Products with very different costs can't share a line without some being overpriced or under-margined, uneven cost increases can force you to re-line, and products in the same line may respond to price very differently.</p>
+</div>
+<div class="faq-item">
+<h3>How many price lines should a store have?</h3>
+<p>Three or four per category is typical. Fewer than three loses the middle-option effect; more than four starts to recreate the confusion price lining is meant to remove.</p>
+</div>
+</section>
+
+<p class="conclusion">Price lining turns a messy price list into a few clear choices, and the middle line usually does more work than you'd expect. The hard part is deciding which products belong on which line. To see how each of your products responds to price before you line them, <a href="/signup">try Zorin free</a>.</p>
+`.trim(),
+  },
+  {
+    slug: "how-ai-pricing-software-handles-promotions",
+    title: "How AI Pricing Software Handles Promotions",
+    excerpt:
+      "Promotions make products look more price-sensitive than they are. How AI pricing software separates sale weeks from regular prices, with a worked example.",
+    date: "2026-11-04",
+    readingTime: "7 min read",
+    category: "Product",
+    funnelStage: "MOFU",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Good AI pricing software treats promotional prices and regular prices as different kinds of data. A sale week is not just "a lower price"; it also carries ad spend, urgency, stockpiling and a dip in sales afterwards, none of which tells you how customers respond to your everyday price. If the software learns from those weeks as if they were normal, it overestimates how price-sensitive a product is and recommends prices that are too low. The tools worth trusting detect or let you flag promotions, keep them out of the demand model, and show you what they excluded.</p>
+
+<h2>Why Promotions Confuse a Pricing Model</h2>
+<p>Most AI pricing tools learn a product's <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity</a>, how much sales move when the price moves, from your own sales history. That only works if each week's sales reflect the price that week. A promotion breaks that assumption in three ways:</p>
+<ol>
+<li><strong>The spike is bigger than the price cut explains.</strong> A 20% off sale comes with an email blast, a banner and a deadline. Some of the extra sales come from the attention, not the price.</li>
+<li><strong>Some of the spike is borrowed from later weeks.</strong> Shoppers stock up during the sale and buy less afterwards. Research by Harald van Heerde, Peter Leeflang and Dick Wittink in the <a href="https://research.tilburguniversity.edu/en/publications/the-estimation-of-pre-and-postpromotion-dips-with-store-level-sca/" target="_blank" rel="noopener noreferrer">Journal of Marketing Research</a> showed these pre- and post-promotion dips are real but hard to see in store-level data without models built specifically to capture them.</li>
+<li><strong>Not all of the spike is new demand.</strong> In a follow-up study, <a href="https://research.rug.nl/en/publications/is-75-of-the-sales-promotion-bump-due-to-brand-switching-no-only-/" target="_blank" rel="noopener noreferrer">van Heerde, Gupta and Wittink</a> found that only about a third of the unit sales bump from a promotion came from shoppers switching brands; the rest came from people buying sooner or buying more. A model that reads the whole bump as "customers love a lower price" is crediting price with effects that belong to timing and stockpiling.</li>
+</ol>
+
+<h2>Worked Example: Same Product, Opposite Recommendations</h2>
+<p>A product normally sells for <strong>$30</strong> and costs <strong>$12</strong>. Over ten weeks it sold around 100 units a week at $30, around 111 a week during a few weeks at $27, then 260 units in a 20% off promotion week at $24, followed by a slow week of 60 units back at $30 as stocked-up customers stayed away.</p>
+<table>
+  <thead>
+    <tr><th></th><th>Model trained on every week</th><th>Model with the promo week and the dip flagged</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Estimated elasticity</td><td>-3.77 (very price-sensitive)</td><td>-0.94 (not very price-sensitive)</td></tr>
+    <tr><td>Fit (R-squared)</td><td>0.67</td><td>0.88</td></tr>
+    <tr><td>Predicted weekly profit at $27</td><td>$1,970</td><td>$1,665</td></tr>
+    <tr><td>Predicted weekly profit at $30</td><td>$1,589</td><td>$1,810</td></tr>
+    <tr><td>Predicted weekly profit at $33</td><td>$1,294</td><td>$1,932</td></tr>
+    <tr><td><strong>Recommendation</strong></td><td><strong>Cut the price to $27</strong></td><td><strong>Raise the price to $33</strong></td></tr>
+  </tbody>
+</table>
+<p>Two weeks out of ten flipped the answer. Trained on everything, the model sees a huge sales jump at $24 and concludes customers are extremely price-sensitive, so it recommends a permanent cut. With those weeks set aside, the regular-price weeks tell a different story: sales barely move between $27 and $30, so there is room to go up. Removing only the sale week but keeping the post-sale dip is not enough either; in this data it still produces an elasticity of -1.75 with a fit of just 0.23, a weak read that a good tool should label as low confidence.</p>
+<p>The cost of getting this wrong is ongoing. Acting on the first model means pricing the product 10% below its regular price every week, giving up margin to chase a price sensitivity that only existed during the sale.</p>
+
+<h2>How Good AI Pricing Software Handles Promotions</h2>
+<table>
+  <thead>
+    <tr><th>Approach</th><th>How it works</th><th>Strength</th><th>Watch out for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Automatic outlier detection</td><td>Flags weeks where sales sit far above what the model predicts for that price</td><td>Catches promotions you forgot to record</td><td>Misses dips after a sale and quiet promotions</td></tr>
+    <tr><td>Manual promotion flags</td><td>You mark sale weeks, launches or stockouts yourself</td><td>Uses knowledge only you have</td><td>Only as good as your records</td></tr>
+    <tr><td>Promotion as a separate input</td><td>The model includes "was this week promoted?" alongside price</td><td>Estimates the promotion lift separately from the price effect</td><td>Needs many promotions to learn from, usually enterprise tools</td></tr>
+    <tr><td>Ignoring promotions</td><td>Every week treated as a normal price point</td><td>Simple</td><td>Overstates price sensitivity and pushes prices down</td></tr>
+  </tbody>
+</table>
+<p>Whichever approach a tool uses, the result should be visible. You should be able to see which weeks were excluded and why, and change the decision if the software got it wrong.</p>
+
+<h2>Questions to Ask a Vendor About Promotions</h2>
+<ol>
+<li><strong>Does the model separate promotional weeks from regular-price weeks?</strong> If the answer is "it learns from all your data", ask what stops a sale from dragging the recommendation down.</li>
+<li><strong>How are promotions detected?</strong> Automatically, by your flags, by discount codes from your store, or not at all?</li>
+<li><strong>What happens to the weeks after a sale?</strong> Ask whether post-promotion dips are recognized, or whether a slow week after a sale is read as customers rejecting the regular price.</li>
+<li><strong>Can I see and override what was excluded?</strong> A list of flagged weeks you can toggle is the minimum.</li>
+<li><strong>Does the confidence score change when promotions are removed?</strong> Removing weeks leaves less data, and an honest tool says so.</li>
+<li><strong>Will it recommend running promotions, or only regular prices?</strong> Most demand-based tools optimize the everyday price; promotion planning is a separate job.</li>
+</ol>
+<p>For the wider checklist, see <a href="/blog/ai-pricing-software">AI pricing software: how it works and what to ask</a>.</p>
+
+<h2>What This Looks Like in a Real Tool</h2>
+<p>In Zorin, each product's demand model is fitted only on sales weeks that aren't flagged as promotions. An Auto-detect button compares every week against the fitted model and flags weeks whose sales sit more than two standard deviations above what the price alone would predict, which catches most sale spikes. Because automatic detection looks for spikes, it won't catch a slow week after a sale, so you can also flag or unflag any week yourself. When the model is refitted, the confidence score is calculated from the weeks that remain, so a product that loses a lot of data to promotions is shown as less certain rather than presented with false precision.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/promotion-flags.webp" alt="Zorin product page showing a promotion flags table with an Auto-detect button" width="736" height="432" loading="lazy" />
+  <figcaption>Flagged weeks are left out of the demand model, so a sale doesn't make a product look more price-sensitive than it is.</figcaption>
+</figure>
+
+<p>Running promotions well is its own discipline. If you're planning one, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to run a sale without wrecking your margin</a> and <a href="/blog/which-products-actually-deserve-a-discount">which products actually deserve a discount</a>.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Promotional weeks carry ad spend, urgency and stockpiling, so they don't show how customers respond to your regular price.</li>
+<li>Research found only about a third of a promotion's unit bump comes from brand switching; the rest is shoppers buying sooner or buying more.</li>
+<li>In the worked example, including one sale week and its dip turned an elasticity of -0.94 into -3.77 and flipped the recommendation from a raise to a cut.</li>
+<li>Good AI pricing software detects or lets you flag promotions, excludes them from the demand model and shows what it excluded.</li>
+<li>Ask vendors how they handle post-sale dips and whether confidence drops when promotional weeks are removed.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>How does AI pricing software handle promotional vs regular pricing?</h3>
+<p>Good tools separate them. They detect or let you flag promotional weeks, leave those weeks out of the model that estimates price sensitivity, and base recommendations on how sales respond to regular prices. Some enterprise tools also model the promotion lift separately so it can be planned.</p>
+</div>
+<div class="faq-item">
+<h3>Why should promotions be excluded from a pricing model?</h3>
+<p>Because a promotion's sales spike includes effects that have nothing to do with the everyday price, such as advertising, deadlines and stockpiling. Left in, those weeks make a product look much more price-sensitive than it is and push recommendations too low.</p>
+</div>
+<div class="faq-item">
+<h3>What is a post-promotion dip?</h3>
+<p>It's the drop in sales in the weeks after a sale, when customers who stocked up during the promotion buy less. If a pricing model doesn't recognize it, it can wrongly read the slow week as customers rejecting the regular price.</p>
+</div>
+<div class="faq-item">
+<h3>Can AI pricing software detect promotions automatically?</h3>
+<p>Many tools can flag weeks where sales sit far above what the price alone predicts. Automatic detection usually catches sale spikes but can miss quiet promotions and post-sale dips, so a manual way to flag and unflag weeks is important.</p>
+</div>
+<div class="faq-item">
+<h3>Does excluding promotions make a pricing recommendation less reliable?</h3>
+<p>It leaves fewer weeks of data, so confidence can fall, but the estimate is usually more accurate because it reflects regular-price behavior. An honest tool shows the lower confidence instead of hiding it.</p>
+</div>
+<div class="faq-item">
+<h3>Will AI pricing software tell me when to run a sale?</h3>
+<p>Most demand-based tools optimize your everyday price rather than plan promotions. They can tell you which products are price-sensitive enough that a discount is likely to pay off, but timing and depth of promotions are usually a separate decision.</p>
+</div>
+</section>
+
+<p class="conclusion">Promotions are where most pricing models quietly go wrong, because a sale week looks like proof that customers want a lower price. Software that separates sale weeks from regular weeks gives you a truer read and a better price. To see how your own products respond once promotions are set aside, <a href="/signup">start a free Zorin trial</a>.</p>
+`.trim(),
+  },
+  {
     slug: "competitor-undercutting-your-prices",
     title: "Competitor Undercutting Prices? Don't Match Yet",
     excerpt: "A competitor cut their price? Don't match yet. Three checks and a simple break-even rule that shows when matching pays and when holding wins.",
@@ -1901,7 +2149,7 @@ export const posts: BlogPost[] = [
 <li><strong>Does it estimate demand, or react to competitors?</strong> Ask what happens to the recommendation if no competitor changes price.</li>
 <li><strong>Does it show confidence?</strong> Look for a clear signal when data is thin, and a "hold" option.</li>
 <li><strong>Who approves price changes?</strong> Automatic changes are fine only with floors, ceilings and step limits you control.</li>
-<li><strong>How does it handle promotions and stockouts?</strong> If it can't separate them, sale weeks will distort the model.</li>
+<li><strong>How does it handle promotions and stockouts?</strong> If it can't separate them, sale weeks will distort the model (a worked example of how much is in <a href="/blog/how-ai-pricing-software-handles-promotions">how AI pricing software handles promotions</a>).</li>
 <li><strong>Can it explain a recommendation?</strong> You should see the demand curve or elasticity behind a number, not just the number.</li>
 <li><strong>How much history does it need?</strong> Tools that need years of data won't help a young store.</li>
 <li><strong>What does it cost, and is pricing published?</strong> Many enterprise tools require a demo just to get a quote.</li>
@@ -3659,7 +3907,7 @@ export const posts: BlogPost[] = [
 
 <h2>Do Three Pricing Tiers Actually Convert Better Than Two</h2>
 <p>Often, yes, and one of the clearest demonstrations of why comes from outside ecommerce entirely. Behavioral economist Dan Ariely ran a now-classic experiment (described in his book Predictably Irrational and in <a href="https://www.ted.com/talks/dan_ariely_are_we_in_control_of_our_own_decisions" target="_blank" rel="noopener noreferrer">his TED talk</a>) offering 100 MIT students a choice between three subscription options modeled on a real Economist magazine offer: digital-only for $59, print-only for $125, and print-plus-digital for the same $125. With all three options present, 84% chose the $125 combo. Ariely then removed the print-only option, the one nobody was actually choosing, and repeated the experiment with a new set of 100 students. With only two options left, digital at $59 and the combo at $125, just 32% chose the $125 combo.</p>
-<p>The print-only option, seemingly pointless since almost nobody picked it, wasn't pointless at all. It was a decoy: priced identically to the combo but clearly worse, it made the combo look like an obvious win by comparison, more than doubling how often shoppers chose the higher-priced option. The lesson translates directly to a three-tier ecommerce pricing page: a middle or "decoy" tier priced close to your premium tier, but offering meaningfully less, can make the premium tier look like the obvious smart choice rather than an indulgence.</p>
+<p>The print-only option, seemingly pointless since almost nobody picked it, wasn't pointless at all. It was a decoy: priced identically to the combo but clearly worse, it made the combo look like an obvious win by comparison, more than doubling how often shoppers chose the higher-priced option. The lesson translates directly to a three-tier ecommerce pricing page: a middle or "decoy" tier priced close to your premium tier, but offering meaningfully less, can make the premium tier look like the obvious smart choice rather than an indulgence. Applied to a whole category rather than one product, the same idea is called <a href="/blog/price-lining">price lining</a>.</p>
 
 <h2>Does "Per Day" Framing Actually Increase Sales</h2>
 <p><a href="https://home.uchicago.edu/bartels/papers/Atlas-Bartels-2018-JCR.pdf" target="_blank" rel="noopener noreferrer">Research from Stephen Atlas (University of Rhode Island) and Daniel Bartels (University of Chicago Booth)</a> on periodic pricing, published in the Journal of Consumer Research, found that breaking a cost into small recurring increments changes how people feel about the same total price, not the math, the perception. Across several studies, they found consistent effects: people were more willing to donate to charity when a $350 annual ask was framed as "$1 a day," MBA students showed higher signup rates for subscriptions when pricing was framed daily rather than as a lump sum, and in a real-world test with a meal delivery company, first-time visitors bought 77% more meals when the banner said "$16 per day" instead of "$99 per week", even though the daily framing actually worked out 13% more expensive.</p>
@@ -6119,7 +6367,7 @@ export const posts: BlogPost[] = [
 <p>The takeaway is blunt: if you've never raised your prices since launching your skincare brand, and your margins are below 65%, you are almost certainly underpriced. The conversion penalty for a moderate increase (10-20%) in beauty is consistently smaller than founders expect, and the margin improvement is consistently larger.</p>
 
 <h2>How to Price Across Your Product Line (Entry, Core, Premium)</h2>
-<p>A skincare line needs a pricing ladder, not a single markup formula. Different products serve different jobs in your catalog, attract different customer mindsets, and carry different margin profiles. Applying the same 3x markup across your entire line means your cleanser and your clinical serum are priced using the same logic, which doesn't reflect how customers actually evaluate them.</p>
+<p>A skincare line needs a pricing ladder, not a single markup formula. (The general version of this, used across retail, is called <a href="/blog/price-lining">price lining</a>.) Different products serve different jobs in your catalog, attract different customer mindsets, and carry different margin profiles. Applying the same 3x markup across your entire line means your cleanser and your clinical serum are priced using the same logic, which doesn't reflect how customers actually evaluate them.</p>
 <p>A common good-better-best structure spaces three tiers at roughly 1x : 1.5x : 2-3x, with each tier doing a different job:</p>
 
 <table>
@@ -10140,7 +10388,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>How does a tool know a spike in sales was a promotion and not real demand?</h3>
-<p>Statistical outlier detection flags unusually high sales relative to the fitted model as likely promotional activity, which you can confirm or override manually.</p>
+<p>Statistical outlier detection flags unusually high sales relative to the fitted model as likely promotional activity, which you can confirm or override manually. A worked example of how much one sale week can distort a recommendation is in <a href="/blog/how-ai-pricing-software-handles-promotions">how AI pricing software handles promotions</a>.</p>
 </div>
 <div class="faq-item">
 <h3>Why do sales sometimes dip right after a promotion ends?</h3>

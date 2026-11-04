@@ -41,6 +41,7 @@ export const clusters: Cluster[] = [
       "price-elasticity-vs-repricing-software",
       "pricing-intelligence-vs-pricing-analytics-software",
       "ai-pricing-software",
+      "how-ai-pricing-software-handles-promotions",
       "price-optimization-tools",
       "pricing-simulation-tool",
       "competitor-price-tracking",
@@ -129,6 +130,7 @@ export const clusters: Cluster[] = [
       "is-price-anchoring-manipulative-or-just-smart-pricing",
       "price-priming",
       "keystone-pricing",
+      "price-lining",
     ],
   },
   {
