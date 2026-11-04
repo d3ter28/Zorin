@@ -39,9 +39,8 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     slug: "competitor-undercutting-your-prices",
-    title: "Competitor Undercutting Your Prices? What to Do",
-    excerpt:
-      "A competitor undercut your prices? Check the offer, check your sales, then use the break-even math to decide whether to match, hold or differentiate.",
+    title: "Competitor Undercutting Prices? Don't Match Yet",
+    excerpt: "A competitor cut their price? Don't match yet. Three checks and a simple break-even rule that shows when matching pays and when holding wins.",
     date: "2026-10-14",
     readingTime: "7 min read",
     category: "Pricing Strategy",
@@ -1681,10 +1680,10 @@ export const posts: BlogPost[] = [
   {
     slug: "best-dynamic-pricing-software",
     title: "Best Dynamic Pricing Software for Ecommerce (2026)",
-    excerpt:
-      "Best dynamic pricing software for ecommerce compared: repricers, rule engines, price testing and demand-based tools, with 2026 prices and who each suits.",
+    excerpt: "Best dynamic pricing software for ecommerce compared by business type: repricers, rule engines, price testing and demand-based tools, with 2026 prices.",
     date: "2026-09-28",
-    readingTime: "7 min read",
+    updatedDate: "2026-11-04",
+    readingTime: "8 min read",
     category: "Product",
     funnelStage: "BOFU",
     author: {
@@ -1741,6 +1740,22 @@ export const posts: BlogPost[] = [
 
 <h2>6. Competera: Best for Enterprise Retailers</h2>
 <p>Competera doesn't publish plans; pricing is by request and scoped to catalog size and markets. It models demand alongside competitive and other factors and is designed for retailers with dedicated pricing teams and ERP integrations. For smaller stores, see <a href="/blog/competera-alternatives">Competera alternatives</a>.</p>
+
+<h2>Best Dynamic Pricing Software by Business Type</h2>
+<table>
+  <thead>
+    <tr><th>Your business</th><th>Start with</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>D2C brand on Shopify or WooCommerce</td><td>Zorin, then Intelligems once traffic is high</td><td>You set your own prices on products nobody else sells, so your customers' response matters more than competitor moves</td></tr>
+    <tr><td>Retailer reselling other brands' products</td><td>Prisync or Omnia Retail</td><td>Shoppers can compare your price with other stores selling the identical item</td></tr>
+    <tr><td>Omnichannel retailer across several marketplaces</td><td>Omnia Retail; Competera at enterprise scale</td><td>One system has to monitor and reprice across many channels</td></tr>
+    <tr><td>Amazon and Walmart marketplace seller</td><td>Informed Repricer</td><td>Winning the Buy Box is the job, and it changes by the minute</td></tr>
+    <tr><td>Electronics and other easily compared products</td><td>Prisync or a marketplace repricer</td><td>Identical model numbers make price comparison instant</td></tr>
+    <tr><td>Manufacturer or B2B distributor</td><td>An enterprise B2B platform</td><td>Quotes, contracts and rebates need deal-level pricing; see <a href="/blog/pricefx-alternatives">Pricefx alternatives</a></td></tr>
+  </tbody>
+</table>
+<p>The pattern behind the table: the more your products are sold by other stores too, the more a competitor-driven tool helps; the more your products are your own, the more a demand-driven tool does.</p>
 
 <h2>Worked Example: What a Tool Has to Earn</h2>
 <p>A Shopify store does $100,000 a month in revenue at a 40% gross margin, so $40,000 of gross profit. Here's the profit lift each tool needs just to pay for itself:</p>
@@ -2064,9 +2079,9 @@ export const posts: BlogPost[] = [
   {
     slug: "pricing-intelligence-vs-pricing-analytics-software",
     title: "Pricing Intelligence vs Pricing Analytics Software",
-    excerpt:
-      "Pricing intelligence tracks competitors; pricing analytics reads your own sales. Which type of pricing software to buy first, and where Zorin fits.",
+    excerpt: "Pricing intelligence tracks competitors; pricing analytics reads your own sales. Examples of each, what they cost, and which type to buy first.",
     date: "2026-09-27",
+    updatedDate: "2026-11-04",
     readingTime: "10 min read",
     category: "Product",
     funnelStage: "MOFU",
@@ -2098,6 +2113,21 @@ export const posts: BlogPost[] = [
 <p>Pricing intelligence software collects competitor prices automatically, usually by matching your products to the same or similar items on competitor sites and marketplaces, then refreshing those prices on a schedule. It answers "where do I sit in the market?" and, with repricing rules added, "what should happen automatically when a competitor moves?"</p>
 <p>The category exists because prices move constantly now. Research by <a href="https://www.nber.org/digest/jan19/e-commerce-and-pricing-behavior-traditional-retailers" target="_blank" rel="noopener noreferrer">Alberto Cavallo for the NBER</a> found that the share of products changing price each month at large U.S. multi-channel retailers roughly doubled, from 15% in 2008-10 to almost 30% in 2014-17, with the biggest jump in categories where Amazon competes hardest. Nobody watches that many prices by hand.</p>
 <p>Prices for small stores are accessible. Prisync's URL-based plan <a href="https://prisync.com/pricing/" target="_blank" rel="noopener noreferrer">starts at $99 a month</a> for up to 100 products, and Pricefy offers a <a href="https://www.pricefy.io/pricing" target="_blank" rel="noopener noreferrer">free tier for 50 SKUs and 5 competitors</a>, with paid plans from $49 a month. Our deeper guide to <a href="/blog/competitor-price-tracking">competitor price tracking</a> covers when a tracker is worth paying for.</p>
+<h3>Examples of pricing intelligence software</h3>
+<table>
+  <thead>
+    <tr><th>Tool</th><th>Best for</th><th>Published starting price</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Google Merchant Center price benchmarks</td><td>Stores already on Google Shopping with GTINs</td><td>Included in Merchant Center</td></tr>
+    <tr><td>Pricefy</td><td>Very small catalogs testing the idea</td><td>Free for 50 SKUs and 5 competitors; paid from $49/month</td></tr>
+    <tr><td>Prisync</td><td>Self-serve SMB stores</td><td>$99/month for 100 products</td></tr>
+    <tr><td>Price2Spy</td><td>Brands that also need MAP monitoring</td><td>Starter and Basic tiers; Premium on request</td></tr>
+    <tr><td>Omnia Retail</td><td>Multi-marketplace retailers</td><td>From €399/month</td></tr>
+    <tr><td>Competera</td><td>Enterprise retailers</td><td>Quote only</td></tr>
+  </tbody>
+</table>
+<p>Prices were checked in November 2026. A fuller comparison is in <a href="/blog/best-competitor-price-tracking-software">best competitor price tracking software</a>.</p>
 <p>Pricing intelligence is the right first tool when you sell identical, easily compared products, like branded electronics or other people's SKUs, where a shopper can see your price next to five others on one screen.</p>
 
 <h2>What Pricing Analytics Software Actually Does</h2>
@@ -4082,8 +4112,8 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "whats-a-good-profit-margin-for-a-supplement-brand",
-    title: "What's a Good Profit Margin for a Supplement Brand?",
-    excerpt: "DTC supplement brands typically run 60-80% gross margins. What a healthy margin looks like, how to price new SKUs, and how to set subscribe-and-save.",
+    title: "Supplement Profit Margins: What's Good in 2026?",
+    excerpt: "Healthy DTC supplement brands run 60-80% gross margins (USANA reports 78%). Benchmarks by channel, pricing a new SKU, and the subscribe-and-save math.",
     date: "2026-08-25",
     updatedDate: "2026-09-26",
     readingTime: "11 min read",
@@ -7591,18 +7621,18 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "elastic-vs-inelastic-demand-whats-the-difference",
-    title: "Elastic vs Inelastic Demand: What's the Difference?",
-    excerpt: "Elastic demand drops sharply when price rises; inelastic demand barely moves. The difference, real examples, and what each means for your prices.",
+    title: "Elastic vs Inelastic Demand: Definition & Examples",
+    excerpt: "Elastic demand drops by more than the price rise; inelastic demand barely moves. Definition, curves, 12 measured examples and a worked revenue test.",
     date: "2026-08-06",
-    updatedDate: "2026-09-26",
-    readingTime: "9 min read",
+    updatedDate: "2026-11-04",
+    readingTime: "10 min read",
     category: "Education",
     author: {
       name: "Dexter",
       bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
     },
     content: `
-<p class="intro">Elastic demand means customers respond strongly to a price change, quantity sold moves a lot for a relatively small price move. Inelastic demand means the opposite: quantity sold barely moves even when price does. The dividing line is a single number, the price elasticity of demand, and knowing which side of it a product sits on is the difference between a price increase that grows profit and one that quietly erodes it.</p>
+<p class="intro">Demand is elastic when a price change causes a bigger percentage change in quantity sold (an elasticity beyond -1), and inelastic when quantity changes by less (an elasticity between 0 and -1). Soft drinks, measured at -1.06 to -1.37, are elastic; short-run gasoline, measured at -0.03 to -0.08, is inelastic. The dividing line is a single number, the price elasticity of demand, and knowing which side of it a product sits on is the difference between a price increase that grows profit and one that quietly erodes it.</p>
 
 <h2>The One-Line Definition</h2>
 <p>Price elasticity of demand is the percentage change in quantity demanded divided by the percentage change in price. That single ratio is what separates elastic from inelastic, everything else is downstream of it.</p>
@@ -7654,7 +7684,7 @@ export const posts: BlogPost[] = [
 </table>
 <p>Almost every real product sits in one of the two "relatively" rows. The extremes are useful for intuition, not for pricing.</p>
 
-<h2>Examples of Elastic and Inelastic Goods</h2>
+<h2>12 Examples of Elastic and Inelastic Goods</h2>
 <p>Here's where some real, measured products land. Each figure comes from published research, compiled with full citations in our <a href="/research/price-elasticity-by-category">price elasticity by category</a> reference:</p>
 <table>
   <thead>
@@ -7662,14 +7692,21 @@ export const posts: BlogPost[] = [
   </thead>
   <tbody>
     <tr><td>Gasoline (U.S., short run, 2001-2006)</td><td>-0.03 to -0.08</td><td>Close to perfectly inelastic</td></tr>
+    <tr><td>Flour, rice and pasta</td><td>Close to 0</td><td>Almost perfectly inelastic: staples with no real substitute</td></tr>
     <tr><td>Beer</td><td>-0.17 to -0.30</td><td>Inelastic: a habitual, low-consideration purchase</td></tr>
+    <tr><td>E-books</td><td>-0.20 to -0.27</td><td>Inelastic, and becoming more so over time</td></tr>
+    <tr><td>Wine</td><td>-0.23 to -0.66</td><td>Inelastic</td></tr>
+    <tr><td>Spirits</td><td>-0.39 to -0.65</td><td>Inelastic, but more price-sensitive than beer</td></tr>
+    <tr><td>Uber rides during surge pricing</td><td>Mostly -0.4 to -0.6</td><td>Inelastic: riders who need a car now keep booking</td></tr>
     <tr><td>Refrigerators, washers, dishwashers</td><td>About -0.35 on average</td><td>Inelastic: bought when the old one breaks</td></tr>
+    <tr><td>Citrus fruit</td><td>-1.10</td><td>Elastic: the most price-sensitive food measured</td></tr>
     <tr><td>Basic t-shirts</td><td>-1.17</td><td>Mildly elastic</td></tr>
+    <tr><td>Physical books (all titles)</td><td>-1.4</td><td>Elastic</td></tr>
     <tr><td>Soft drinks</td><td>-1.06 to -1.37</td><td>Elastic: water and other drinks are easy substitutes</td></tr>
     <tr><td>Casual and athletic apparel</td><td>About -2.86</td><td>Highly elastic: dozens of near-identical alternatives</td></tr>
   </tbody>
 </table>
-<p>Look at the apparel rows. A basic tee and an athletic top can sit in the same store and the same category, yet one is more than twice as price-sensitive as the other. Category labels are a starting point, not an answer.</p>
+<p>The Uber figure comes from <a href="https://www.nber.org/papers/w22627" target="_blank" rel="noopener noreferrer">an analysis of almost 50 million ride requests</a>; the rest are sourced in the research reference above. Look at the apparel rows. A basic tee and an athletic top can sit in the same store and the same category, yet one is more than twice as price-sensitive as the other. Category labels are a starting point, not an answer.</p>
 
 <h2>A Real-World Warning: Netflix's 2011 Price Hike</h2>
 <p>The costliest elasticity mistakes come from assuming a product is inelastic because customers seem loyal. In 2011 Netflix split its combined DVD-and-streaming plan into two separate plans, a 60% price increase for members who wanted both. It lost 800,000 U.S. subscribers that quarter, <a href="https://www.nbcnews.com/id/wbna45023556" target="_blank" rel="noopener noreferrer">as NBC News reported from its earnings</a>. Customers who looked loyal turned out to be far more elastic than the pricing assumed once the increase was big and visible enough to prompt a rethink. For a store, the lesson is to check how a product has actually responded to past price changes before assuming its buyers will absorb the next one.</p>
@@ -7682,6 +7719,19 @@ export const posts: BlogPost[] = [
 <li><strong>Inelastic product, price decrease:</strong> the small volume gain doesn't make up for the lower price per unit. Revenue falls.</li>
 <li><strong>Elastic product, price decrease:</strong> the large volume gain more than makes up for the lower price per unit. Revenue rises.</li>
 </ul>
+<h3>Worked example: the same 10% price rise on both</h3>
+<p>Two products each sell 1,000 units a month at $40 and cost $20 to make. Product A is inelastic (elasticity -0.5); Product B is elastic (elasticity -2.0). Both get a 10% price rise to $44:</p>
+<table>
+  <thead>
+    <tr><th></th><th>Product A (inelastic, -0.5)</th><th>Product B (elastic, -2.0)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Units after the rise</td><td>950 (down 5%)</td><td>800 (down 20%)</td></tr>
+    <tr><td>Revenue</td><td>$40,000 to $41,800 (+4.5%)</td><td>$40,000 to $35,200 (-12%)</td></tr>
+    <tr><td>Gross profit</td><td>$20,000 to $22,800 (+14%)</td><td>$20,000 to $19,200 (-4%)</td></tr>
+  </tbody>
+</table>
+<p>Same price change, same starting point, opposite outcomes. The calculation behind those unit numbers is in <a href="/blog/price-elasticity-of-demand-formula">the price elasticity of demand formula</a>.</p>
 <p>This is exactly why <a href="/blog/price-increase-killed-your-sales-heres-the-real-reason">a price increase that seemed reasonable can tank sales</a> on one SKU while an identical percentage increase quietly pads margin on another. The products weren't priced wrong in some absolute sense, they were just sitting on opposite sides of the elastic/inelastic line, and the same rule was applied to both.</p>
 
 <figure class="post-image">
@@ -7734,6 +7784,10 @@ export const posts: BlogPost[] = [
 <div class="faq-item">
 <h3>Can a product change from inelastic to elastic over time?</h3>
 <p>Yes. Demand for the same product is typically more inelastic in the short run, before customers have had time to notice or find alternatives, and becomes more elastic the longer a price stays in effect.</p>
+</div>
+<div class="faq-item">
+<h3>What are examples of elastic goods?</h3>
+<p>Products with many close substitutes or that are easy to skip: soft drinks (measured at -1.06 to -1.37), citrus fruit (-1.10), physical books (-1.4) and casual and athletic apparel (about -2.86). Branded or premium versions of everyday items also tend to be more elastic than the basic version.</p>
 </div>
 <div class="faq-item">
 <h3>What's a real-world example of inelastic demand?</h3>

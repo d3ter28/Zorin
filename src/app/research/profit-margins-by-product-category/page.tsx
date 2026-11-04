@@ -8,9 +8,9 @@ const LAST_UPDATED = "2026-08-25";
 const OG_IMAGE = "/og-default.png";
 
 export const metadata = {
-  title: "Gross Profit Margins by Category (Sourced Data) - Zorin",
+  title: "Gross Margin by Product Category: 2026 Benchmarks - Zorin",
   description:
-    "Real gross profit margins by ecommerce product category, sourced from public company SEC filings. Citable, with links to every source.",
+    "Gross margins across 10 ecommerce categories from public filings: supplements 72-78%, beauty ~70%, apparel 43-58%, electronics 23-36%. All sourced.",
   keywords: [
     "gross profit margin by category",
     "ecommerce profit margin data",
