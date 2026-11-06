@@ -38,6 +38,138 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "penetration-pricing",
+    title: "Penetration Pricing: Examples, Math & How to Exit",
+    excerpt:
+      "Penetration pricing launches low to win customers, then raises the price. Disney+ as a real example, the research risk, and the math on when it pays.",
+    date: "2026-11-06",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Penetration pricing means launching a product at a deliberately low price to win customers, reviews and market share quickly, then raising the price once the product is established. It works when buyers in your category compare prices closely and when early volume creates something lasting, such as reviews, repeat buyers or subscribers. Its main risk is the exit: customers anchor on the launch price, so the strategy only pays if demand at your full price ends up higher than it would have been without the cheap start.</p>
+
+<h2>What Is Penetration Pricing?</h2>
+<p>Penetration pricing sets an introductory price below what you plan to charge long term, sometimes below what competitors charge, to pull buyers away from established options. The low margin during launch is treated as a customer acquisition cost. The plan is always two-stage: buy volume now, earn margin later.</p>
+<p>It is the opposite of price skimming, where you launch high and come down over time. Which of the two fits a given launch is covered in <a href="/blog/how-to-price-a-new-product-from-launch-to-end-of-life">pricing a new product from launch to end of life</a>; this guide focuses on running penetration pricing well.</p>
+
+<h2>Penetration Pricing at a Glance</h2>
+<table>
+  <thead>
+    <tr><th></th><th>Penetration pricing</th><th>Price skimming</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Launch price</td><td>Low, below the long-term price</td><td>High, above the long-term price</td></tr>
+    <tr><td>Goal</td><td>Volume, reviews, market share</td><td>Margin from early adopters</td></tr>
+    <tr><td>Best for</td><td>Crowded, price-compared categories; subscriptions</td><td>Differentiated products with eager early buyers</td></tr>
+    <tr><td>Main risk</td><td>Customers anchor on the low launch price</td><td>Competitors undercut you before you come down</td></tr>
+    <tr><td>Price path</td><td>Rises after launch</td><td>Falls after launch</td></tr>
+  </tbody>
+</table>
+
+<h2>A Real Example: Disney+</h2>
+<p>Disney+ is one of the clearest penetration launches of recent years. It launched in the U.S. in November 2019 at <a href="https://www.cnbc.com/2019/04/11/disney-plus-will-be-available-starting-november-12-for-6point99-a-month.html" target="_blank" rel="noopener noreferrer">$6.99 a month</a>, roughly half the price of Netflix's standard plan at the time. The day after launch, Disney said it had passed <a href="https://www.cnbc.com/2019/11/13/disney-10-million-subscribers-vs-competition.html" target="_blank" rel="noopener noreferrer">10 million sign-ups</a>, a figure that included free-trial users.</p>
+<p>Then the price rose in steps. In December 2022 Disney introduced an ad-supported plan at $7.99 and raised the ad-free plan to <a href="https://techcrunch.com/2022/12/08/disney-launches-its-ad-supported-tier/" target="_blank" rel="noopener noreferrer">$10.99 a month</a>, with further increases since. The pattern is the textbook one: a low entry price to build a large base fast, followed by increases once customers were invested in the service. Note that the ad-supported tier also gave price-sensitive subscribers somewhere to go other than cancelling, which is a useful idea for any store raising a launch price.</p>
+
+<h2>The Research Warning: Launch Prices Stick</h2>
+<p>The risk of penetration pricing has been measured for more than fifty years. In a 1969 field experiment published in the Journal of Personality and Social Psychology, <a href="https://www.semanticscholar.org/paper/Effect-of-initial-selling-price-on-subsequent-Doob-Carlsmith/d9bc0ee946e6d16e664f2219a44c8a46caf1e3dd" target="_blank" rel="noopener noreferrer">Doob and colleagues</a> introduced common household products in matched pairs of discount stores, either at a low introductory price or at the regular price, then set all stores to the same regular price. Subsequent sales were higher in the stores where the product had started at the regular price. Shoppers who first met the product at a discount treated the regular price as a price increase.</p>
+<p>That is the reference price problem: the launch price becomes what customers think the product is worth. It doesn't make penetration pricing wrong, but it means the cheap start has to buy something durable, like reviews, habit or switching costs, to outweigh the anchor.</p>
+
+<h2>Worked Example: Does the Cheap Launch Pay?</h2>
+<p>You're launching a product you plan to sell at <strong>$40</strong>. It costs <strong>$18</strong> to make, so full price earns $22 a unit. At $40 from day one, you expect about 300 sales a month. Alternatively, you launch at <strong>$30</strong> ($12 a unit) for three months, expect 600 sales a month while the price is low, then move to $40.</p>
+<table>
+  <thead>
+    <tr><th>Scenario (12 months)</th><th>Months 1-3</th><th>Months 4-12</th><th>Total profit</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A. Launch at full price</td><td>900 units × $22 = $19,800</td><td>2,700 units × $22 = $59,400</td><td><strong>$79,200</strong></td></tr>
+    <tr><td>B. Penetration, reviews lift demand to 330/month after the rise</td><td>1,800 units × $12 = $21,600</td><td>2,970 units × $22 = $65,340</td><td><strong>$86,940</strong></td></tr>
+    <tr><td>C. Penetration, the anchor drags demand to 280/month after the rise</td><td>1,800 units × $12 = $21,600</td><td>2,520 units × $22 = $55,440</td><td><strong>$77,040</strong></td></tr>
+  </tbody>
+</table>
+<p>The launch months alone barely differ: the cheap price doubled volume but cut margin per unit by almost half, which is close to break-even (you need 22 ÷ 12 = 1.83 times the volume just to match full-price profit). The whole outcome is decided after the price rise. If the reviews and repeat buyers from launch lift full-price demand above where it would otherwise have been, penetration wins by about $7,700. If customers anchored on $30 and buy less at $40, it loses about $2,200. Before launching low, be honest about which of those you expect, and why.</p>
+
+<h2>When Penetration Pricing Works</h2>
+<ul>
+<li><strong>Your category is price-compared.</strong> If shoppers line you up against established products on a marketplace or in Google Shopping, a lower price is how a newcomer gets noticed.</li>
+<li><strong>Early volume creates lasting value.</strong> Reviews, ratings, subscriptions, repeat purchases or a customer list you can sell to again.</li>
+<li><strong>Your costs fall with volume.</strong> If larger orders lower your unit cost, the launch price can become profitable sooner.</li>
+<li><strong>You can afford the launch period.</strong> Low margin for months needs cash to fund it.</li>
+</ul>
+
+<h2>When It Backfires</h2>
+<ul>
+<li><strong>Customers buy once.</strong> Without repeat purchase or reviews that matter, the cheap start builds nothing for later.</li>
+<li><strong>Price signals quality in your category.</strong> In beauty, wellness and premium goods a low launch price can make the product look worse, not better.</li>
+<li><strong>Competitors can match you instantly.</strong> If an established rival cuts to your level, you've started a price war you can't afford.</li>
+<li><strong>You never raise the price.</strong> Many "introductory" prices quietly become permanent because the increase feels risky. Set the end date before you launch.</li>
+</ul>
+
+<h2>How to Run a Penetration Launch, Step by Step</h2>
+<ol>
+<li><strong>Set the full price first.</strong> Decide the long-term price from your margin needs and what customers say they'd pay, then set the launch price as a discount from it.</li>
+<li><strong>Show the full price from day one.</strong> "Launch price $30, regular price $40" anchors customers on $40, not $30. Make sure the regular price is genuine and charged afterwards, in line with FTC rules on former prices.</li>
+<li><strong>Put an end date on it.</strong> A fixed period, such as 60 or 90 days, or a unit cap, so the increase is expected rather than a surprise.</li>
+<li><strong>Use the launch to build what lasts.</strong> Ask for reviews, capture emails, encourage subscriptions. These are what the discount is paying for.</li>
+<li><strong>Raise in one clear step, and offer a soft landing.</strong> Give existing customers notice, or keep a lower-priced option the way Disney+ did with its ad-supported plan.</li>
+<li><strong>Measure demand at the full price.</strong> Compare sales after the rise with your full-price forecast. That number tells you whether the penetration phase paid.</li>
+</ol>
+<p>For the raise itself, see <a href="/blog/how-to-raise-your-price-after-a-product-launch">how to raise your price after a product launch</a>.</p>
+
+<h2>Setting the Full Price Before You Launch Low</h2>
+<p>The step most stores skip is the first one: knowing the full price before discounting from it. For a product with no sales history, Zorin's Van Westendorp survey asks real customers four price questions and returns an acceptable price range and an optimal price point, so the launch discount is measured from a defensible number. Once the product has sold at both the launch price and the full price, Zorin fits a price elasticity model from that history and shows whether demand at full price supports holding, raising or easing back.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin Van Westendorp survey results chart showing optimal price and acceptable price range" width="736" height="519" loading="lazy" />
+  <figcaption>A survey-based price range gives a penetration launch a real full price to discount from and return to.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Penetration pricing launches below your long-term price to win volume, reviews and share, then raises the price.</li>
+<li>Disney+ launched at $6.99, roughly half Netflix's standard price, passed 10 million sign-ups the day after launch, and later raised its ad-free plan to $10.99.</li>
+<li>A 1969 field study found products launched at a discount sold less afterwards at the regular price than products launched at full price.</li>
+<li>In the worked example, the launch months nearly break even; the strategy wins or loses on demand after the price rise.</li>
+<li>Set and show the full price from day one, put an end date on the launch price, and measure full-price demand after the rise.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is penetration pricing?</h3>
+<p>Penetration pricing is launching a product at a low introductory price to attract customers and market share quickly, then raising the price once the product is established. The early low margin is treated as an investment in customer acquisition.</p>
+</div>
+<div class="faq-item">
+<h3>What is an example of penetration pricing?</h3>
+<p>Disney+ launched in November 2019 at $6.99 a month, about half Netflix's standard price at the time, and signed up more than 10 million users within a day. It later raised its ad-free plan to $10.99 in December 2022.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between penetration pricing and price skimming?</h3>
+<p>Penetration pricing starts low and raises the price later to build volume. Price skimming starts high and lowers the price later to capture early adopters willing to pay more. Penetration suits crowded, price-compared categories; skimming suits differentiated products.</p>
+</div>
+<div class="faq-item">
+<h3>What are the disadvantages of penetration pricing?</h3>
+<p>Customers can anchor on the low launch price and resist the increase, margins are thin during launch, competitors may match the low price, and a low price can make premium products look lower quality.</p>
+</div>
+<div class="faq-item">
+<h3>How long should a penetration price last?</h3>
+<p>Long enough to build what the discount is meant to buy, such as reviews or subscribers, and no longer. Many stores use 60 to 90 days or a unit cap, announced at launch so the increase is expected.</p>
+</div>
+<div class="faq-item">
+<h3>Is penetration pricing good for small online stores?</h3>
+<p>It can be when the category is crowded and buyers compare prices, and when early customers leave reviews or buy again. It is risky for one-off purchases and premium products where a low price signals low quality.</p>
+</div>
+</section>
+
+<p class="conclusion">Penetration pricing is a bet that a cheap start buys something worth more than the margin you give up. Set the full price first, show it from day one and measure what happens after the rise. To find that full price and see how demand responds once you get there, <a href="/signup">start a free Zorin trial</a>.</p>
+`.trim(),
+  },
+  {
     slug: "price-lining",
     title: "Price Lining: Definition, Examples & How to Set It",
     excerpt:
@@ -5529,7 +5661,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>What's the difference between penetration pricing and price skimming?</h3>
-<p>Penetration pricing launches a product at a low price to build volume and reviews quickly, with the intention of raising the price once demand and social proof are established. Price skimming launches high and lowers the price over time as the market matures. Penetration fits competitive, elastic categories where volume and reviews are the priority; skimming fits genuinely differentiated products where early adopters are willing to pay a premium.</p>
+<p>Penetration pricing launches a product at a low price to build volume and reviews quickly, with the intention of raising the price once demand and social proof are established (examples and the payback math are in <a href="/blog/penetration-pricing">penetration pricing explained</a>). Price skimming launches high and lowers the price over time as the market matures. Penetration fits competitive, elastic categories where volume and reviews are the priority; skimming fits genuinely differentiated products where early adopters are willing to pay a premium.</p>
 </div>
 <div class="faq-item">
 <h3>Can I use more than one pricing strategy at the same time?</h3>
@@ -5741,7 +5873,7 @@ export const posts: BlogPost[] = [
 
 <h2>Penetration vs Price Skimming: Which Launch Strategy Fits Your Product</h2>
 <p>The choice between starting low and starting high isn't about whether you prefer market share or margin. It's about where your product sits on the demand curve and what your category's competitive structure looks like.</p>
-<p><strong>Penetration pricing</strong> means launching at a low price to build a customer base quickly, accumulate reviews, and establish the social proof needed to raise the price later. It works best when your category is elastic (buyers are comparison shopping), when competitors are well-established with large review bases, and when you're willing to treat early margin as a customer acquisition cost rather than profit. The risk is that raising the price later is harder than it sounds. Customers who came in at the low price have a reference point, and exceeding it meaningfully can trigger backlash even if the new price is fair.</p>
+<p><strong><a href="/blog/penetration-pricing">Penetration pricing</a></strong> means launching at a low price to build a customer base quickly, accumulate reviews, and establish the social proof needed to raise the price later. It works best when your category is elastic (buyers are comparison shopping), when competitors are well-established with large review bases, and when you're willing to treat early margin as a customer acquisition cost rather than profit. The risk is that raising the price later is harder than it sounds. Customers who came in at the low price have a reference point, and exceeding it meaningfully can trigger backlash even if the new price is fair.</p>
 <p><strong>Price skimming</strong> means launching at a premium and reducing the price over time to open the product to more price-sensitive buyers. It works best when your product is genuinely differentiated (unique material, exclusive design, proprietary method), when your category has low price visibility (buyers can't easily compare you to three identical competitors), and when early adopters are willing to pay a premium to have the product first. The risk is that it invites competitors to undercut you immediately, and that a later price reduction can feel like a signal of failure rather than market maturation.</p>
 <p>The question that resolves the decision is: how price-sensitive are buyers in this specific category? In elastic categories, a premium launch price loses volume to cheaper alternatives faster than the margin gain compensates. In inelastic categories, a low launch price leaves money on the table that's nearly impossible to recapture later because the reference price is already set in the customer's mind.</p>
 
