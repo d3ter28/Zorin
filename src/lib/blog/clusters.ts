@@ -62,6 +62,7 @@ export const clusters: Cluster[] = [
       "how-to-run-a-sale-without-wrecking-your-margin",
       "how-to-price-a-discount-without-losing-your-margin",
       "which-products-actually-deserve-a-discount",
+      "loss-leader-pricing",
       "how-to-price-product-bundles-without-giving-away-your-margin",
       "dynamic-pricing-vs-sales-a-shopify-sellers-guide",
       "dynamic-pricing-vs-variable-pricing",

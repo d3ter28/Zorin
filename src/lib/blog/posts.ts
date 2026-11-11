@@ -38,6 +38,131 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "loss-leader-pricing",
+    title: "Loss Leader Pricing: How It Works and When It Pays",
+    excerpt:
+      "Loss leader pricing sells one product at or below cost to drive other sales. Costco and grocery examples, why it's harder online, and the break-even math.",
+    date: "2026-11-11",
+    readingTime: "7 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Loss leader pricing means selling one product at or below cost to bring in customers who then buy other, profitable products. It works when the cheap item reliably pulls in buyers who add more to their basket or come back, as with Costco's $1.50 hot dog combo or a grocer's discounted turkey at Thanksgiving. For most online stores it is riskier than it looks: deal-seekers often buy only the bargain, and shipping costs make single-item loss leader orders expensive. Measure the attach rate before you commit.</p>
+
+<h2>What Is Loss Leader Pricing?</h2>
+<p>A loss leader is a product priced to lose money, or make almost none, on purpose. The "loss" is treated as a marketing cost, like an ad, paid to bring customers in. The "leader" is the product that leads them to the rest of the store.</p>
+<p>The strategy relies on two things: the loss leader must be something many people want and can easily price-check, so the deal is noticed, and buyers must go on to purchase higher-margin items, either in the same order or later.</p>
+
+<h2>Real Examples of Loss Leaders</h2>
+<p><strong>Costco's hot dog.</strong> Costco has kept its hot dog and soda combo at $1.50 for decades. In May 2024 its new CFO, Gary Millerchip, told analysts the <a href="https://www.cnbc.com/make-it/2024/05/31/costcos-new-cfo-says-1point50-hot-dog-and-soda-combo-is-here-to-stay.html" target="_blank" rel="noopener noreferrer">"$1.50 hot dog price is safe"</a>, and his predecessor had said Costco uses its more profitable businesses to keep that price where it is. The combo is a reason to visit and a symbol of value, and Costco earns its money elsewhere, including membership fees.</p>
+<p><strong>Supermarkets at peak season.</strong> The pattern shows up in grocery data too. Studying more than seven years of prices at a large Chicago supermarket chain, Judith Chevalier, Anil Kashyap and Peter Rossi found in the <a href="https://www.aeaweb.org/articles?id=10.1257%2F000282803321455142" target="_blank" rel="noopener noreferrer">American Economic Review</a> that prices of products tend to fall at their seasonal demand peak, such as canned tuna during Lent and beer in summer, mostly because the retailer cut its own margin. The authors note this is consistent with loss leader models: when a product is on everyone's list, a low advertised price on it brings shoppers through the door.</p>
+
+<h2>Loss Leaders vs Similar Tactics</h2>
+<table>
+  <thead>
+    <tr><th>Tactic</th><th>Price on the lead item</th><th>How it makes money</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Loss leader</td><td>At or below cost</td><td>Other items in the basket or later purchases</td></tr>
+    <tr><td>Doorbuster</td><td>Deep discount, limited stock and time</td><td>Traffic during a sale event</td></tr>
+    <tr><td>Razor and blades</td><td>Low on the device</td><td>Recurring sales of a required refill or add-on</td></tr>
+    <tr><td><a href="/blog/penetration-pricing">Penetration pricing</a></td><td>Low at launch, raised later</td><td>Full-price sales of the same product once established</td></tr>
+    <tr><td>Bundle discount</td><td>Discount spread across a set</td><td>Higher order value on the bundle itself</td></tr>
+  </tbody>
+</table>
+
+<h2>Why Loss Leaders Are Harder Online</h2>
+<ul>
+<li><strong>Shoppers can buy only the deal.</strong> In a physical store the walk past other shelves does some of the work. Online, a shopper can land on the deal page, check out and leave.</li>
+<li><strong>Shipping and payment fees apply to every order.</strong> A $0 margin item with $7 shipping and card fees is a loss on every single-item order.</li>
+<li><strong>Deal sites amplify the wrong buyers.</strong> A below-cost price can be shared widely and attract bargain hunters who never return.</li>
+<li><strong>It can reset what customers think the product is worth,</strong> the same anchoring risk covered in <a href="/blog/penetration-pricing">penetration pricing</a>.</li>
+</ul>
+
+<h2>Worked Example: Does the Loss Leader Pay?</h2>
+<p>A coffee store sells a burr grinder for $55 that costs $40, so it normally earns $15 a unit, and sells beans that earn $8 a bag. Normally it sells 100 grinders a month; 35% of those buyers add a bag of beans and buy about 1.5 more bags over the next three months.</p>
+<p>The store considers selling the grinder at cost, $40, as a loss leader. It expects grinder sales to jump to 240, but deal-seekers attach less: 25% add beans, and they buy about one more bag in the following three months.</p>
+<table>
+  <thead>
+    <tr><th></th><th>Normal price ($55)</th><th>Loss leader ($40)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Grinders sold</td><td>100</td><td>240</td></tr>
+    <tr><td>Grinder profit</td><td>100 × $15 = $1,500</td><td>240 × $0 = $0</td></tr>
+    <tr><td>Buyers who add beans</td><td>35 (35%)</td><td>60 (25%)</td></tr>
+    <tr><td>Bean bags over 3 months</td><td>35 × 2.5 = 87.5</td><td>60 × 2 = 120</td></tr>
+    <tr><td>Bean profit</td><td>$700</td><td>$960</td></tr>
+    <tr><td><strong>Total profit</strong></td><td><strong>$2,200</strong></td><td><strong>$960</strong></td></tr>
+  </tbody>
+</table>
+<p>The loss leader more than doubled grinder sales and sold more beans, yet profit fell by more than half. To break even, the 240 grinder buyers would have had to generate $2,200 of bean profit, about $9.17 each, or 1.15 bags per buyer in three months. They bought 0.5. Loss leaders only pay when the attach and repeat rates are high, and those rates usually fall when the lead price attracts bargain hunters. The full logic of products that pull each other's sales is in <a href="/blog/cross-price-elasticity-of-demand">cross price elasticity of demand</a>.</p>
+
+<h2>How to Test a Loss Leader, Step by Step</h2>
+<ol>
+<li><strong>Pick a product people already want and compare.</strong> A known, frequently bought item makes the low price noticeable.</li>
+<li><strong>Measure your current attach and repeat rates.</strong> What share of buyers of the lead product also buy something else, now and over the next 90 days, and how much margin does that carry?</li>
+<li><strong>Calculate the break-even.</strong> Margin given up per lead unit, divided by add-on margin per buyer, tells you how much extra buying each new customer must do.</li>
+<li><strong>Protect the downside.</strong> Use a minimum order value, a per-customer limit or a requirement to buy with another item, so single-item deal orders don't drain margin.</li>
+<li><strong>Run it for a fixed period and compare total profit,</strong> not the lead item's sales. Count the 60-90 days afterwards too.</li>
+<li><strong>Check the law where you sell.</strong> Some U.S. states restrict below-cost sales. Wisconsin's Unfair Sales Act, for example, treats selling below cost to attract customers as <a href="https://datcp.wi.gov/Pages/Programs_Services/UnfairSalesAct.aspx" target="_blank" rel="noopener noreferrer">generally a form of deceptive advertising</a>, with exceptions such as meeting a competitor's price and clearance sales. This is general information, not legal advice.</li>
+</ol>
+
+<h2>Choosing the Right Product to Lead With</h2>
+<p>The best loss leader is a product whose sales respond strongly to price, because a cut there actually brings in more customers. Cutting the price of a product whose buyers barely notice price gives margin away for little extra traffic. Zorin reads your Shopify or WooCommerce sales history and fits a price elasticity model for each product, so you can see which products are genuinely price-sensitive before you sacrifice margin on one. It also lets you flag promotional weeks so the loss leader period doesn't distort the product's normal demand read afterwards.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/products-table.webp" alt="Zorin catalog view showing per-product elasticity, confidence, and recommendations across a catalog" width="1440" height="1987" loading="lazy" />
+  <figcaption>Comparing price sensitivity across the catalog shows which product would actually pull in more buyers at a lower price.</figcaption>
+</figure>
+
+<p>For deciding discounts more broadly, see <a href="/blog/which-products-actually-deserve-a-discount">which products actually deserve a discount</a>.</p>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>A loss leader is sold at or below cost to bring in customers who buy other, profitable items.</li>
+<li>Costco has held its hot dog combo at $1.50 for decades, and its CFO said in 2024 the price is safe.</li>
+<li>Grocery research found prices often fall at a product's seasonal peak, consistent with loss leader pricing.</li>
+<li>In the worked example, a grinder at cost more than doubled unit sales but cut profit from $2,200 to $960 because attach and repeat rates fell.</li>
+<li>Calculate the break-even attach rate, protect against single-item deal orders and check below-cost sales laws.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is loss leader pricing?</h3>
+<p>Loss leader pricing is selling a product at or below cost to attract customers, with the aim of making a profit on other products they buy at the same time or later. The loss on the lead item is treated as a marketing cost.</p>
+</div>
+<div class="faq-item">
+<h3>What is an example of a loss leader?</h3>
+<p>Costco's $1.50 hot dog and soda combo is the best-known example. Supermarkets also discount high-demand items at their seasonal peak, such as turkey at Thanksgiving, to bring shoppers in for the rest of their list.</p>
+</div>
+<div class="faq-item">
+<h3>Is loss leader pricing legal?</h3>
+<p>Generally yes in the U.S., but some states restrict below-cost sales. Wisconsin's Unfair Sales Act, for example, generally prohibits selling below cost to attract customers, with exceptions. Check the rules where you sell; this is not legal advice.</p>
+</div>
+<div class="faq-item">
+<h3>Do loss leaders work for online stores?</h3>
+<p>Less reliably than in physical stores. Online shoppers can buy only the discounted item, and shipping and payment fees apply to every order. They work best with minimum order values, purchase limits and products that drive repeat buying.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between a loss leader and a doorbuster?</h3>
+<p>A doorbuster is a deep discount on limited stock for a short sale event. A loss leader can be an ongoing price, like Costco's hot dog, and is defined by being sold at or below cost to drive other purchases.</p>
+</div>
+<div class="faq-item">
+<h3>How do I know if my loss leader is working?</h3>
+<p>Compare total profit, including add-on and repeat purchases over the following 60-90 days, with the same period at the normal price. If the extra margin from other products doesn't cover the margin given up, it isn't working.</p>
+</div>
+</section>
+
+<p class="conclusion">A loss leader is a marketing expense dressed as a price, and it should be judged like one: by what it brings back. Run the attach-rate math first, and choose a product whose buyers really respond to price. To see which of your products those are, <a href="/signup">try Zorin free</a>.</p>
+`.trim(),
+  },
+  {
     slug: "penetration-pricing",
     title: "Penetration Pricing: Examples, Math & How to Exit",
     excerpt:
@@ -1342,7 +1467,7 @@ export const posts: BlogPost[] = [
 <h2>How Online Stores Use Cross Price Elasticity</h2>
 <ol>
 <li><strong>Size your competitive exposure.</strong> A high positive cross elasticity with a named competitor means you can't ignore their price moves. A low one means your brand, reviews or shipping speed protect you, and matching every cut would give away margin for nothing. Our guide to <a href="/blog/competitive-pricing-strategy">competitive pricing strategy</a> covers when to sit below, at or above the market.</li>
-<li><strong>Choose what to discount.</strong> Discount the product with strong complements and healthy add-on margins, not the one that sells alone.</li>
+<li><strong>Choose what to discount.</strong> Discount the product with strong complements and healthy add-on margins, not the one that sells alone. Taken to the extreme, this is <a href="/blog/loss-leader-pricing">loss leader pricing</a>.</li>
 <li><strong>Watch for cannibalization in your own catalog.</strong> Two of your own products with a high positive cross elasticity steal from each other. A price cut on one may just move sales from its sibling, and total profit can fall even as the discounted product "wins".</li>
 <li><strong>Read your own-price elasticity carefully.</strong> If a competitor cut their price in the same month you changed yours, part of your sales change came from them, not from you. Separate the two before concluding your product is price-sensitive.</li>
 </ol>
@@ -5589,7 +5714,7 @@ export const posts: BlogPost[] = [
 <h2>Should You Use Cost-Plus, Competitor-Based, or Value-Based Pricing?</h2>
 <p>These three are the foundational starting points most merchants choose between when they're first setting up a real pricing approach, and the right one depends on what data you actually have available, not personal preference.</p>
 <p><strong>Cost-plus pricing</strong> is the default when you have nothing else to go on. Take your total cost (product, shipping, packaging, a share of overhead), add a target margin, and that's your price. It's simple, and it guarantees you're not selling at a loss. Its weakness is that it tells you nothing about what customers will actually pay. A product with cost-plus pricing can be priced well below what the market would bear, or above what it will tolerate, and the formula has no way of telling you which. The most common cost-plus rule in retail, doubling cost, is covered in <a href="/blog/keystone-pricing">keystone pricing explained</a>.</p>
-<p><strong>Competitor-based pricing</strong> works when you're in a category where customers can and do compare prices easily, marketplace listings, commodity electronics, anything with a lot of visible alternatives. The risk is that it ties your price to your competitor's cost structure and strategy, not your own. If a competitor is running a loss-leader promotion or has a fundamentally different cost base, matching their price can quietly put you in a worse position than staying independent.</p>
+<p><strong>Competitor-based pricing</strong> works when you're in a category where customers can and do compare prices easily, marketplace listings, commodity electronics, anything with a lot of visible alternatives. The risk is that it ties your price to your competitor's cost structure and strategy, not your own. If a competitor is running a <a href="/blog/loss-leader-pricing">loss-leader</a> promotion or has a fundamentally different cost base, matching their price can quietly put you in a worse position than staying independent.</p>
 <p><strong>Value-based pricing</strong> is the strongest option once you have real demand data to work from, because it prices according to what your specific customers have actually demonstrated they'll pay, rather than a formula or a competitor's number. This is what <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity data</a> operationalizes directly: instead of guessing at value, an elasticity model reads your own sales history and shows you where demand actually starts resisting a price increase. The tradeoff is that it requires sales history to work, so it's not available for a brand-new product on day one.</p>
 <p>The practical sequence most stores follow: start with cost-plus to set a safe floor, use competitor pricing as a sanity check on the range you're operating in, and shift toward value-based pricing as real sales data accumulates and tells you more than either of the other two methods can.</p>
 
