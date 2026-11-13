@@ -38,6 +38,132 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "value-based-pricing",
+    title: "Value-Based Pricing: How to Calculate It (Example)",
+    excerpt:
+      "Value-based pricing sets price by what a product is worth to the customer. The EVC method step by step, a worked example, and why most firms resist it.",
+    date: "2026-11-13",
+    readingTime: "6 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Value-based pricing sets a price from what the product is worth to the customer, not from what it costs you or what competitors charge. In practice you start from the price of the customer's next best alternative, add the value of whatever makes your product better, and price somewhere between the two so both you and the customer win. It usually produces higher prices than cost-plus pricing, but it only works if you can measure that value and explain it to buyers.</p>
+
+<h2>What Is Value-Based Pricing?</h2>
+<p>Every price sits between two limits. The floor is your cost: below it you lose money. The ceiling is the value the customer gets: above it nobody buys. Cost-plus pricing starts at the floor and adds a markup. Competitor-based pricing copies the market. Value-based pricing starts from the ceiling and asks how much of that value you can capture.</p>
+<table>
+  <thead>
+    <tr><th>Method</th><th>Starts from</th><th>Main strength</th><th>Main weakness</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cost-plus (for example <a href="/blog/keystone-pricing">keystone pricing</a>)</td><td>Your cost</td><td>Simple, always covers cost</td><td>Ignores what customers would pay</td></tr>
+    <tr><td><a href="/blog/competitive-pricing-strategy">Competitor-based</a></td><td>Market prices</td><td>Keeps you in range</td><td>Copies someone else's costs and customers</td></tr>
+    <tr><td>Value-based</td><td>Value to the customer</td><td>Captures what your differences are worth</td><td>Needs research and clear communication</td></tr>
+  </tbody>
+</table>
+
+<h2>How to Calculate a Value-Based Price, Step by Step</h2>
+<p>The standard method is called economic value to the customer (EVC):</p>
+<ol>
+<li><strong>Identify the next best alternative.</strong> What would your customer buy if your product didn't exist? Its price is the reference value.</li>
+<li><strong>List what makes your product different.</strong> Longer life, better results, time saved, fewer returns, better design.</li>
+<li><strong>Put a value on each difference.</strong> In money, from the customer's point of view.</li>
+<li><strong>Add them up.</strong> Reference value plus differentiation value is the most a rational customer would pay.</li>
+<li><strong>Choose a price between the reference and the ceiling.</strong> Leave part of the value with the customer so switching is clearly worth it.</li>
+<li><strong>Test it.</strong> Check the price against real purchases, not just the calculation.</li>
+</ol>
+
+<h2>Worked Example: Pricing a Candle by Value</h2>
+<p>A candle costs you <strong>$9</strong> to make. Cost-plus at 2x says $18. Similar candles from competitors sell for about <strong>$24</strong> and burn for 40 hours. Yours burns for 60 hours and uses a cleaner wax.</p>
+<table>
+  <thead>
+    <tr><th>Step</th><th>Calculation</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Reference value (next best alternative)</td><td>Competitor candle</td><td>$24.00</td></tr>
+    <tr><td>Extra burn time</td><td>$24 ÷ 40 hours = $0.60 an hour × 20 extra hours</td><td>+$12.00</td></tr>
+    <tr><td>Cleaner wax</td><td>Hard to quantify, so left at $0 for now</td><td>+$0.00</td></tr>
+    <tr><td><strong>Economic value to the customer</strong></td><td></td><td><strong>$36.00</strong></td></tr>
+  </tbody>
+</table>
+<p>The value-based range is $24 to $36. Pricing at <strong>$30</strong> gives customers half the extra value, so the candle is clearly a better deal per hour of burn ($0.50 an hour against the competitor's $0.60), and earns you $21 a unit instead of $9 at the cost-plus price of $18. Even if you sold 40% fewer candles at $30 than at $18, you would still make 40% more profit (0.6 × $21 = $12.60 against $9). Whether sales actually fall that much is a question of <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity</a>, which is why step six matters.</p>
+
+<h2>Why Most Companies Don't Price on Value</h2>
+<p>Value-based pricing is widely recommended and less widely used. In a study published in the Journal of Business Strategy, <a href="https://www.semanticscholar.org/paper/Customer-value%E2%80%90based-pricing-strategies:-why-resist-Hinterhuber/9e9a428df2aa34d03614b3caaf56cfd15645da94" target="_blank" rel="noopener noreferrer">Andreas Hinterhuber</a> surveyed 81 executives across business and consumer industries in Germany, Austria, China and the US and found five main obstacles:</p>
+<ol>
+<li>Difficulty assessing value</li>
+<li>Difficulty communicating value</li>
+<li>Lack of effective market segmentation</li>
+<li>Weak sales force management</li>
+<li>Lack of support from senior management</li>
+</ol>
+<p>For a small online store, the first two matter most. You may not know what your product is worth to customers, and your product page may not make the difference obvious. Both are fixable.</p>
+
+<h2>How Online Stores Can Measure Value</h2>
+<ul>
+<li><strong>Ask customers directly.</strong> A Van Westendorp price survey asks four questions about when a price feels too cheap, a bargain, expensive and too expensive. See <a href="/blog/how-to-run-a-price-sensitivity-survey">how to run a price sensitivity survey</a>. Be aware that stated answers run high: <a href="https://research.rug.nl/en/publications/accurately-measuring-willingness-to-pay-for-consumer-goods-a-meta/" target="_blank" rel="noopener noreferrer">a meta-analysis of 77 studies</a> found hypothetical willingness to pay averaged 21% above real willingness to pay.</li>
+<li><strong>Watch what they do.</strong> Once a product has sold at a few different prices, your sales history shows how demand responds. That's revealed value, which is more reliable than stated value.</li>
+<li><strong>Read reviews for value language.</strong> Phrases like "lasts forever" or "saves me an hour" tell you which differences customers actually value.</li>
+<li><strong>Segment.</strong> Different customers value the same product differently. A professional and a hobbyist may need different versions or prices, covered in <a href="/blog/segment-pricing">segment pricing</a>.</li>
+</ul>
+
+<h2>Communicating Value So the Price Holds</h2>
+<p>A value-based price only holds if shoppers see the value. Put the comparison on the page: "60 hours of burn time, about $0.50 an hour" does the EVC math for the customer. Use honest comparisons with the alternative, not inflated "was" prices; how to anchor fairly is covered in <a href="/blog/is-price-anchoring-manipulative-or-just-smart-pricing">price anchoring</a>. And keep the claim verifiable: if the burn time is real, say how you measured it.</p>
+
+<h2>Combining Stated and Revealed Value</h2>
+<p>Zorin covers both sides. For new products, its Van Westendorp survey gives you an acceptable price range from real customers, a starting point for the value-based range. Once a product is selling, Zorin reads your Shopify or WooCommerce history, fits a price elasticity model for each product and recommends raise, lower or hold with an estimated profit impact and a confidence score, so you can see whether customers actually support the value price you set.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-results-chart.webp" alt="Zorin's Van Westendorp analysis card showing optimal price, indifference point, and price range" width="736" height="519" loading="lazy" />
+  <figcaption>A survey-based acceptable range is a practical starting point for a value-based price.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Value-based pricing sets the price from what the product is worth to the customer, between their next best alternative and the full value of your differences.</li>
+<li>Economic value to the customer = price of the next best alternative + value of what makes yours better.</li>
+<li>In the candle example, a $30 value price earns $21 a unit against $9 at a cost-plus $18, and still beats the competitor on cost per hour.</li>
+<li>A survey of 81 executives found the main obstacles are assessing value, communicating it, segmentation, sales management and leadership support.</li>
+<li>Measure value with surveys and sales data, show the value math on the product page, and test the price against real demand.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is value-based pricing?</h3>
+<p>Value-based pricing is setting a price based on the value a product delivers to the customer rather than on its cost or competitors' prices. The price sits between the cost of the customer's next best alternative and the total value your product provides.</p>
+</div>
+<div class="faq-item">
+<h3>How do you calculate a value-based price?</h3>
+<p>Take the price of the customer's next best alternative, add a money value for each advantage your product has, and price between the alternative's price and that total. For example, a $24 competitor candle plus $12 of extra burn time gives a range of $24 to $36.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between value-based and cost-plus pricing?</h3>
+<p>Cost-plus pricing adds a markup to your cost, so it guarantees a margin but ignores what customers would pay. Value-based pricing starts from what customers would pay and works down, which usually captures more of the value your product creates.</p>
+</div>
+<div class="faq-item">
+<h3>What are examples of value-based pricing?</h3>
+<p>Software priced by the time or money it saves, premium skincare priced on results rather than ingredient cost, and long-lasting products priced on cost per use are all common examples. In each case the price reflects benefits to the buyer, not production cost.</p>
+</div>
+<div class="faq-item">
+<h3>Is value-based pricing good for small businesses?</h3>
+<p>Yes, especially for products with a real difference customers can see. It does require some research, such as a customer survey or testing a few prices, and a product page that explains why the product is worth more.</p>
+</div>
+<div class="faq-item">
+<h3>What are the disadvantages of value-based pricing?</h3>
+<p>Value is harder to measure than cost, customers may not see the value without clear communication, and stated willingness to pay in surveys tends to run higher than real behavior. Prices should be tested against actual sales.</p>
+</div>
+</section>
+
+<p class="conclusion">Value-based pricing asks a better question than cost-plus: not "what did this cost me?" but "what is this worth to the person buying it?" Answer it with real customer data and the price usually goes up. To measure that value from surveys and your own sales, <a href="/signup">start a free Zorin trial</a>.</p>
+`.trim(),
+  },
+  {
     slug: "loss-leader-pricing",
     title: "Loss Leader Pricing: How It Works and When It Pays",
     excerpt:
@@ -5790,7 +5916,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Can I use more than one pricing strategy at the same time?</h3>
-<p>Yes, and most established stores do. A cost floor applies to every product regardless of other strategy. Psychological pricing tactics like charm pricing get layered on top of whatever base price your primary strategy produces. A single catalog might use value-based pricing on established hero products, cost-plus on newly launched items with no sales history yet, and competitor-based pricing on commodity accessories, all at the same time.</p>
+<p>Yes, and most established stores do. A cost floor applies to every product regardless of other strategy. Psychological pricing tactics like charm pricing get layered on top of whatever base price your primary strategy produces. A single catalog might use <a href="/blog/value-based-pricing">value-based pricing</a> on established hero products, cost-plus on newly launched items with no sales history yet, and competitor-based pricing on commodity accessories, all at the same time.</p>
 </div>
 <div class="faq-item">
 <h3>Is competitor-based pricing a bad strategy?</h3>
@@ -10182,7 +10308,7 @@ export const posts: BlogPost[] = [
 <ul>
 <li>A launch price without sales history is a starting hypothesis, not a final answer. There's no way to calculate elasticity before real data exists.</li>
 <li>Pricing is usually decided too late: Simon-Kucher reports that 72% of innovations miss their financial targets or fail outright, largely because price is treated as an afterthought.</li>
-<li>Start from a cost-plus floor for safety, then anchor toward value-based reasoning about what the product is actually worth to the customer.</li>
+<li>Start from a cost-plus floor for safety, then anchor toward value-based reasoning about what the product is actually worth to the customer (the step-by-step method is in <a href="/blog/value-based-pricing">value-based pricing explained</a>).</li>
 <li>Deliberate initial price variation (even small, planned tests) is what generates the data you'll need to calculate real elasticity soon after launch.</li>
 <li>Treat the first weeks of sales as the data-gathering phase, and revisit the price with real elasticity as soon as there's enough history to calculate it.</li>
 </ul>
