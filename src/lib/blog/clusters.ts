@@ -132,6 +132,7 @@ export const clusters: Cluster[] = [
       "automated-pricing-shopify",
       "is-price-anchoring-manipulative-or-just-smart-pricing",
       "price-priming",
+      "prestige-pricing",
       "keystone-pricing",
       "price-lining",
     ],

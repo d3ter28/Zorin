@@ -38,6 +38,119 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "prestige-pricing",
+    title: "Prestige Pricing: When a Higher Price Sells More",
+    excerpt:
+      "Prestige pricing sets a high price to signal quality. What the research shows about price and perceived quality, a worked example, and when it fails.",
+    date: "2026-11-19",
+    readingTime: "5 min read",
+    category: "Pricing Strategy",
+    author: {
+      name: "Dexter",
+      bio: "Dexter is part of the team at Zorin, building tools that help ecommerce merchants price with data instead of guesswork.",
+    },
+    content: `
+<p class="intro">Prestige pricing means deliberately setting a high price to signal quality, exclusivity or status. For some products a higher price doesn't just survive, it makes the product more desirable, because buyers use price as evidence of quality. It works for products where quality is hard to judge before buying and where the brand, packaging and experience back the price up. It fails when shoppers can easily compare identical alternatives.</p>
+
+<h2>What Is Prestige Pricing?</h2>
+<p>Prestige pricing, also called premium pricing, sets a price well above the category average on purpose. The goal is not to cover higher costs; it's to tell buyers "this is the good one". It usually comes with round prices ($80 rather than $79.99), premium packaging and fewer discounts.</p>
+<p>In economics, the extreme version is a Veblen good: a product people want more of as its price rises, because the price itself is part of the appeal. Most prestige products aren't that extreme, but they share a weaker version of the effect: within a range, a higher price makes buyers believe the product is better.</p>
+
+<h2>The Research: Price Changes the Experience Itself</h2>
+<p><strong>Wine tastes better when it costs more.</strong> In a 2008 study in the <a href="https://www.rnl.caltech.edu/publications/pdf/plassmann2008.pdf" target="_blank" rel="noopener noreferrer">Proceedings of the National Academy of Sciences</a>, Hilke Plassmann and colleagues scanned people's brains while they tasted wines labeled with different prices. In reality, the same wine was presented at two prices: a $5 wine was also shown as $45, and a $90 wine was also shown as $10. People rated the same wine as more pleasant when they thought it was more expensive, and activity in a brain region linked to experienced pleasantness, the medial orbitofrontal cortex, rose with the stated price.</p>
+<p><strong>Discounts can make products work worse.</strong> In the <a href="https://web.mit.edu/ariely/www/MIT/Papers/Placebo1.pdf" target="_blank" rel="noopener noreferrer">Journal of Marketing Research</a>, Baba Shiv, Ziv Carmon and Dan Ariely found that people who paid a discounted price for an energy drink marketed as improving mental sharpness solved fewer puzzles than people who drank the same product at the regular price. The price shaped expectations, and expectations shaped results.</p>
+<p>For a store, the takeaway is uncomfortable but useful: cutting the price of a product whose quality is hard to judge can lower how good customers think it is.</p>
+
+<h2>When Prestige Pricing Works</h2>
+<table>
+  <thead>
+    <tr><th>Condition</th><th>Why it matters</th><th>Example categories</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Quality is hard to judge before buying</td><td>Buyers lean on price as a quality signal</td><td>Skincare, supplements, wine, fragrance</td></tr>
+    <tr><td>The product is seen or gifted</td><td>Price carries social meaning</td><td>Jewelry, watches, gifts, fashion</td></tr>
+    <tr><td>No identical product is sold cheaper elsewhere</td><td>Shoppers can't simply buy the same thing for less</td><td>Own-brand and handmade goods</td></tr>
+    <tr><td>Brand and experience match the price</td><td>The signal has to be believable</td><td>Premium DTC brands</td></tr>
+  </tbody>
+</table>
+<p>It fails for commodity products, branded items sold by many stores, and anything a shopper can compare spec by spec. In those categories a high price just loses the sale, as covered in <a href="/blog/elastic-vs-inelastic-demand-whats-the-difference">elastic vs inelastic demand</a>.</p>
+
+<h2>Worked Example: Mid-Market vs Prestige</h2>
+<p>A skincare brand launches a serum that costs <strong>$8</strong> to make. It is weighing two positions:</p>
+<table>
+  <thead>
+    <tr><th></th><th>Mid-market at $29</th><th>Prestige at $68</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Profit per unit</td><td>$21</td><td>$60</td></tr>
+    <tr><td>Expected monthly units</td><td>400</td><td>220</td></tr>
+    <tr><td>Gross profit</td><td>$8,400</td><td>$13,200</td></tr>
+    <tr><td>Units needed to match the other option</td><td>629 to match $13,200</td><td>140 to match $8,400</td></tr>
+  </tbody>
+</table>
+<p>The prestige price sells 45% fewer units and earns 57% more gross profit. More importantly, it only needs 140 sales a month to beat the mid-market plan. The risk is all in the second row: if prestige positioning isn't believable, sales at $68 could fall far below 220. That's why the conditions above matter more than the arithmetic. For category benchmarks, see our guide to <a href="/blog/pricing-skincare-products-on-shopify-charging-enough">pricing skincare on Shopify</a>.</p>
+
+<h2>How to Use Prestige Pricing, Step by Step</h2>
+<ol>
+<li><strong>Check the category.</strong> Is quality hard to judge, and is your product hard to find cheaper elsewhere? If not, prestige pricing will struggle.</li>
+<li><strong>Find the "too cheap" point.</strong> Ask customers at what price the product would seem so cheap they'd doubt its quality. A Van Westendorp survey measures exactly this. Pricing below it actively hurts.</li>
+<li><strong>Match every signal to the price.</strong> Packaging, photography, product copy, unboxing and support all need to look like the price.</li>
+<li><strong>Use round prices.</strong> $68 reads as confident; $67.99 reads as a deal. See <a href="/blog/does-charm-pricing-999-actually-work">whether charm pricing actually works</a>.</li>
+<li><strong>Discount rarely, if at all.</strong> Frequent sales undo the signal. Use gifts with purchase or limited editions instead of price cuts.</li>
+<li><strong>Watch real demand.</strong> Track units and profit at the prestige price, and be ready to adjust if the market doesn't accept it.</li>
+</ol>
+
+<h2>Finding Your Prestige Ceiling</h2>
+<p>Zorin's Van Westendorp survey asks customers four price questions, including the price at which a product would seem "so cheap you'd doubt its quality", and returns an acceptable price range and an optimal point. That lower bound tells you how low you can go before price starts hurting perceived quality. Once the product is selling, Zorin fits a price elasticity model from your Shopify or WooCommerce history, so you can see whether demand holds at the prestige price or whether you've gone too far.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/survey-public-page.webp" alt="Zorin price sensitivity survey page with the four Van Westendorp questions and price inputs" width="900" height="900" loading="lazy" />
+  <figcaption>The "too cheap" question shows where a low price starts undermining perceived quality.</figcaption>
+</figure>
+
+<div class="key-takeaways">
+<p class="kt-label">Key Takeaways</p>
+<ul>
+<li>Prestige pricing sets a deliberately high price to signal quality, exclusivity or status.</li>
+<li>In a PNAS study, the same wine was rated more pleasant and produced more pleasure-related brain activity when labeled with a higher price.</li>
+<li>Shoppers who bought an energy drink at a discount solved fewer puzzles than those who paid full price for the same drink.</li>
+<li>In the worked example, a $68 serum earns 57% more gross profit than a $29 one, and needs only 140 sales a month to beat it.</li>
+<li>It works when quality is hard to judge and the product isn't sold cheaper elsewhere; use round prices and avoid frequent discounts.</li>
+</ul>
+</div>
+
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<h3>What is prestige pricing?</h3>
+<p>Prestige pricing is setting a deliberately high price to signal that a product is high quality, exclusive or a status item. Buyers often use price as evidence of quality, so a higher price can make the product more appealing.</p>
+</div>
+<div class="faq-item">
+<h3>What is an example of prestige pricing?</h3>
+<p>Luxury fashion, fine jewelry, premium skincare and high-end wine all use prestige pricing. A skincare brand selling a serum at $68 rather than $29, with premium packaging and few discounts, is a typical small-brand example.</p>
+</div>
+<div class="faq-item">
+<h3>Does a higher price really make products seem better?</h3>
+<p>Research suggests it can. In a 2008 PNAS study, people rated the same wine as more pleasant when told it was more expensive, and brain activity linked to pleasantness rose with the stated price.</p>
+</div>
+<div class="faq-item">
+<h3>What is the difference between prestige pricing and premium pricing?</h3>
+<p>The terms are often used interchangeably. Prestige pricing usually emphasizes status and exclusivity, while premium pricing can also mean simply charging more for genuinely better features or materials.</p>
+</div>
+<div class="faq-item">
+<h3>When does prestige pricing fail?</h3>
+<p>It fails for commodity products and for items shoppers can easily find cheaper elsewhere, and when the brand, packaging and experience don't match the price. In those cases a high price just loses sales.</p>
+</div>
+<div class="faq-item">
+<h3>Should prestige brands run sales?</h3>
+<p>Rarely. Frequent discounts weaken the quality signal and train customers to wait. Gifts with purchase, limited editions or bundles protect the price better than percentage-off sales.</p>
+</div>
+</section>
+
+<p class="conclusion">Prestige pricing works because price is part of how customers judge quality. Used where quality is hard to see and the brand backs it up, a higher price can earn more and sell better than a cheaper one. To find the range your customers find credible, <a href="/signup">try Zorin free</a>.</p>
+`.trim(),
+  },
+  {
     slug: "value-based-pricing",
     title: "Value-Based Pricing: How to Calculate It (Example)",
     excerpt:
@@ -6831,7 +6944,7 @@ export const posts: BlogPost[] = [
 </div>
 <div class="faq-item">
 <h3>Is the 2-3x markup on COGS enough for a skincare brand?</h3>
-<p>It depends on your COGS, but for most skincare brands, a 2-3x markup is too low. Skincare COGS are typically very low ($3-8 per unit for many formulations), so a 2-3x markup gives you a $6-24 retail price. That's the most crowded and lowest-margin segment of the market. The beauty rule of thumb is 8-10x on bare unit COGS, which puts a product with $5 COGS at $40-50, firmly in the core tier where healthy margins live. Higher markups aren't greed, they're what's required to fund marketing, absorb returns, and still earn operating profit.</p>
+<p>It depends on your COGS, but for most skincare brands, a 2-3x markup is too low, partly because price itself signals quality in this category (see <a href="/blog/prestige-pricing">prestige pricing</a>). Skincare COGS are typically very low ($3-8 per unit for many formulations), so a 2-3x markup gives you a $6-24 retail price. That's the most crowded and lowest-margin segment of the market. The beauty rule of thumb is 8-10x on bare unit COGS, which puts a product with $5 COGS at $40-50, firmly in the core tier where healthy margins live. Higher markups aren't greed, they're what's required to fund marketing, absorb returns, and still earn operating profit.</p>
 </div>
 <div class="faq-item">
 <h3>How should I handle pricing for subscription vs. one-time purchases?</h3>
@@ -9133,7 +9246,7 @@ export const posts: BlogPost[] = [
 <p>Left-digit bias shows up most reliably for impulse purchases and lower-priced, non-luxury items, the kind of decision made quickly, without much deliberation. Page design and product order can shift price judgments in a similar way, covered in <a href="/blog/price-priming">price priming explained</a>. A customer glancing at a $24.99 phone case doesn't spend much time doing exact math, so the leftmost-digit shortcut does most of the work. The lower the price and the more impulsive the decision, the more this particular bias tends to matter.</p>
 
 <h2>Where It Weakens or Actually Reverses</h2>
-<p>For considered, higher-ticket purchases, the effect gets noticeably weaker, and for premium or luxury positioning it can flip entirely. A round number like $100 or $500 reads as deliberate and confident, while $99.99 can read as a discount-store signal, undercutting the quality perception a premium brand is trying to build. This is a real, documented pattern, not just a stylistic preference among luxury brands. It's also worth being honest that the effect isn't universally confirmed: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0270850" target="_blank" rel="noopener noreferrer">a 2022 online experiment published in PLOS One</a> failed to reproduce either a left-digit or a perceptual-fluency effect at the strength earlier research suggested, a useful reminder that "charm pricing works" isn't settled science for every context, it's a pattern that holds under some conditions and weakens under others.</p>
+<p>For considered, higher-ticket purchases, the effect gets noticeably weaker, and for premium or luxury positioning it can flip entirely. A round number like $100 or $500 reads as deliberate and confident, while $99.99 can read as a discount-store signal, undercutting the quality perception a premium brand is trying to build (the wider strategy is covered in <a href="/blog/prestige-pricing">prestige pricing</a>). This is a real, documented pattern, not just a stylistic preference among luxury brands. It's also worth being honest that the effect isn't universally confirmed: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0270850" target="_blank" rel="noopener noreferrer">a 2022 online experiment published in PLOS One</a> failed to reproduce either a left-digit or a perceptual-fluency effect at the strength earlier research suggested, a useful reminder that "charm pricing works" isn't settled science for every context, it's a pattern that holds under some conditions and weakens under others.</p>
 
 <table>
   <thead>
