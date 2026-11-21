@@ -50,27 +50,6 @@ function formatDate(dateStr: string) {
   });
 }
 
-function splitContentForMidArticleCta(html: string) {
-  const h2Indices: number[] = [];
-  const re = /<h2/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(html)) !== null) h2Indices.push(m.index);
-
-  // Only insert a mid-article CTA when there's enough content for it to land
-  // naturally between two sections rather than jammed right after the intro.
-  if (h2Indices.length < 4) return { before: html, after: null as string | null };
-
-  const splitAt = h2Indices[Math.floor(h2Indices.length / 2)];
-  return { before: html.slice(0, splitAt), after: html.slice(splitAt) };
-}
-
-function ctaCopy() {
-  return {
-    heading: "Get new pricing articles by email.",
-    button: "Subscribe",
-  };
-}
-
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -79,7 +58,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     permanentRedirect(`/blog/${post.canonicalSlug}`);
   }
 
-  const { before, after } = splitContentForMidArticleCta(post.content);
   const articleSchema = buildArticleSchema(post);
   const faqSchema = buildFaqSchema(post);
   const cluster = getClusterForPost(post.slug);
@@ -164,29 +142,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <div
           className="prose-content mt-10"
-          dangerouslySetInnerHTML={{ __html: before }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
         />
-
-        {after && (
-          <div className="my-10 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
-            <p className="text-sm font-semibold text-zinc-900">
-              {ctaCopy().heading}
-            </p>
-            <a
-              href="/#newsletter"
-              className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
-            >
-              {ctaCopy().button}
-            </a>
-          </div>
-        )}
-
-        {after && (
-          <div
-            className="prose-content"
-            dangerouslySetInnerHTML={{ __html: after }}
-          />
-        )}
 
         {post.author && (
           <div className="mt-12 rounded-xl border border-zinc-100 bg-zinc-50 p-5">

@@ -367,17 +367,6 @@ export default function AverageOrderValueByProductCategoryPage() {
           category. 
         </p>
 
-        <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
-          <p className="text-sm font-semibold text-zinc-900">
-            Get new pricing research by email.
-          </p>
-          <a
-            href="/#newsletter"
-            className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
-          >
-            Subscribe
-          </a>
-        </div>
 
         <h2 className="mt-12 text-xl font-semibold text-zinc-900">Frequently Asked Questions</h2>
         <div className="mt-4 flex flex-col gap-5">

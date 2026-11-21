@@ -3,7 +3,7 @@ import { Footer } from "@/components/marketing/Footer";
 
 export const metadata = {
   title: "Privacy Policy - Zorin",
-  description: "What Zorin collects when you read the site or subscribe to the newsletter, in plain English.",
+  description: "What Zorin collects when you read the site, in plain English.",
   alternates: { canonical: "https://www.tryzorin.com/privacy" },
 };
 
@@ -20,19 +20,7 @@ export default function PrivacyPage() {
         <div className="prose prose-zinc mt-10 max-w-none text-zinc-600">
           <p>
             Zorin is a pricing publication. This page explains, in plain English, what
-            we collect when you read the site or subscribe to the newsletter.
-          </p>
-
-          <h2 className="mt-10 text-xl font-semibold text-zinc-900">Newsletter</h2>
-          <p>
-            If you subscribe, we store your email address with Resend, the service that
-            sends our emails. We use it only to send you new articles. Every email has
-            an unsubscribe link, and you can also ask us to delete your address at any
-            time by emailing{" "}
-            <a href="mailto:support@tryzorin.com" className="text-blue-600 hover:underline">
-              support@tryzorin.com
-            </a>
-            . We don&apos;t sell or share your email address.
+            we collect when you read the site.
           </p>
 
           <h2 className="mt-10 text-xl font-semibold text-zinc-900">Analytics</h2>

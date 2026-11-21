@@ -2,12 +2,10 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://www.tryzorin.com";
 
-const disallow = ["/api"];
-
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow },
+      { userAgent: "*", allow: "/" },
       // Training crawlers
       { userAgent: "GPTBot", allow: "/" },
       { userAgent: "ClaudeBot", allow: "/" },

@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/marketing/Navbar";
 import { Blog } from "@/components/marketing/Blog";
-import { Newsletter } from "@/components/marketing/Newsletter";
 import { Footer } from "@/components/marketing/Footer";
 
 export const metadata = {
@@ -63,12 +62,6 @@ export default function LandingPage() {
               >
                 Read the articles
               </a>
-              <a
-                href="/#newsletter"
-                className="inline-flex h-11 items-center rounded-lg border border-zinc-300 px-6 text-sm font-medium text-zinc-700 transition-all hover:border-zinc-400 hover:bg-zinc-50 active:scale-[0.98]"
-              >
-                Get new articles by email
-              </a>
             </div>
           </div>
         </section>
@@ -100,7 +93,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <Newsletter />
       </main>
       <Footer />
     </>

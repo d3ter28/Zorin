@@ -35,14 +35,6 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="/#newsletter"
-            className="inline-flex h-9 items-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white transition-all hover:bg-blue-700 active:scale-[0.98]"
-          >
-            Subscribe
-          </a>
-        </div>
 
         <button
           onClick={() => setOpen(!open)}
@@ -68,14 +60,6 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <hr className="border-zinc-200" />
-            <a
-              href="/#newsletter"
-              onClick={() => setOpen(false)}
-              className="inline-flex h-9 items-center justify-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white"
-            >
-              Subscribe
-            </a>
           </div>
         </div>
       )}
