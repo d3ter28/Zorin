@@ -1,97 +1,75 @@
 import { clusters } from "@/lib/blog/clusters";
 import { research } from "@/lib/research";
+import { getClusterCounts } from "@/lib/blog/listing";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
-
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
+import { IndexShell } from "@/components/site/TopicIndex";
 
 export const metadata = {
   title: "Ecommerce Pricing Blog - Zorin",
-  description: "Pricing strategy, elasticity explainers, and product updates from Zorin.",
+  description:
+    "Pricing guides for online sellers, organised by topic: price elasticity, discounts, margins, surveys, launch pricing and pricing tools.",
   alternates: { canonical: "https://www.tryzorin.com/blog" },
 };
 
 export default function BlogPage() {
+  const counts = getClusterCounts();
+
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-[1400px] px-6 pb-24 pt-32 md:pb-32">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
-              Blog
-            </h1>
-            <p className="mt-3 text-base text-zinc-500">
-              Pricing strategy, elasticity explainers, and product updates.
-            </p>
-          </div>
-          <a
-            href="/blog/all"
-            className="inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
-          >
-            View all posts →
-          </a>
-        </div>
-
-        <h2 className="mt-14 text-xl font-semibold tracking-tight text-zinc-900">
-          Browse by topic
-        </h2>
-        <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {clusters.map((cluster) => (
-            <a
-              key={cluster.slug}
-              href={`/blog/cluster/${cluster.slug}`}
-              className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-6 transition-shadow hover:shadow-md"
-            >
-              <span className="inline-flex w-fit rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-600">
-                {cluster.postSlugs.length} {cluster.postSlugs.length === 1 ? "post" : "posts"}
-              </span>
-              <h3 className="mt-3 text-base font-semibold leading-snug text-zinc-900 group-hover:text-blue-600">
-                {cluster.name}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-500">
-                {cluster.description}
-              </p>
-            </a>
-          ))}
-        </div>
-
-        <h2 className="mt-16 text-xl font-semibold tracking-tight text-zinc-900">
-          Research & Whitepapers
-        </h2>
-        <p className="mt-2 max-w-[65ch] text-sm text-zinc-500">
-          Sourced reference data and original analysis, distinct from the blog: no product
-          walkthroughs, just cited numbers other sites can link to and rely on.
+      <IndexShell>
+        <span className="label-mono text-accent">Reading paths</span>
+        <h1 className="mt-2 text-4xl text-ink md:text-5xl">Browse by topic</h1>
+        <p className="mt-3 max-w-[60ch] text-base leading-relaxed text-ink-2">
+          Each topic collects the articles on one pricing question, from first principles to worked
+          examples. Want everything in one list?{" "}
+          <a href="/blog/all" className="text-accent underline underline-offset-2">See the full index</a>.
         </p>
-        <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {research.map((item) => (
+
+        <ol className="mt-9 border-t border-ink">
+          {clusters.map((cluster, i) => (
+            <li key={cluster.slug} className="group border-b border-line hover:bg-surface">
+              <a
+                href={`/blog/cluster/${cluster.slug}`}
+                className="grid grid-cols-[44px_1fr_auto] gap-x-3 py-5"
+              >
+                <span className="font-mono text-[13px] text-faint">{String(i + 1).padStart(2, "0")}</span>
+                <span>
+                  <span className="font-serif text-[22px] font-medium text-ink group-hover:text-accent">
+                    {cluster.name}
+                  </span>
+                  <span className="mt-1 block max-w-[70ch] text-sm leading-relaxed text-faint">
+                    {cluster.description}
+                  </span>
+                </span>
+                <span className="font-mono text-xs text-ink-2">{counts[cluster.slug] ?? 0} articles</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        <section className="mt-14 border border-line bg-surface">
+          <div className="flex items-baseline justify-between border-b border-ink px-5 py-4">
+            <h2 className="font-serif text-[22px] font-medium text-ink">Research reports</h2>
+            <span className="label-mono text-accent">{String(research.length).padStart(2, "0")}</span>
+          </div>
+          <p className="border-b border-line px-5 py-3 text-sm text-ink-2">
+            Sourced reference data, separate from the articles: cited numbers you can compare your
+            store against.
+          </p>
+          {research.map((item, i) => (
             <a
               key={item.slug}
               href={`/research/${item.slug}`}
-              className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-6 transition-shadow hover:shadow-md"
+              className="grid grid-cols-[1fr_auto] gap-4 border-b border-line px-5 py-3 text-[15px] text-ink last:border-b-0 hover:bg-bg hover:text-accent"
             >
-              <span className="inline-flex w-fit rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
-                Research
-              </span>
-              <h3 className="mt-3 text-base font-semibold leading-snug text-zinc-900 group-hover:text-blue-600">
-                {item.title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-500">
-                {item.description}
-              </p>
-              <p className="mt-4 text-xs text-zinc-400">
-                Updated {formatDate(item.updatedDate ?? item.date)}
-              </p>
+              {item.title}
+              <span className="font-mono text-xs text-faint">R-{String(i + 1).padStart(2, "0")}</span>
             </a>
           ))}
-        </div>
-      </main>
+        </section>
+      </IndexShell>
       <Footer />
     </>
   );

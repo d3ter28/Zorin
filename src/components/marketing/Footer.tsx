@@ -1,127 +1,76 @@
 import { FeaturedOnBadges } from "./FeaturedOnBadges";
 
+const columns: { title: string; links: { href: string; label: string }[] }[] = [
+  {
+    title: "Read",
+    links: [
+      { href: "/blog/all", label: "All articles" },
+      { href: "/blog", label: "Topics" },
+      { href: "/research", label: "Research reports" },
+      { href: "/glossary", label: "Pricing glossary" },
+    ],
+  },
+  {
+    title: "Tools",
+    links: [
+      { href: "/price-elasticity-calculator", label: "Price elasticity calculator" },
+      { href: "/shopify-profit-margin-calculator", label: "Shopify profit margin calculator" },
+      { href: "/woocommerce-profit-margin-calculator", label: "WooCommerce profit margin calculator" },
+      { href: "/van-westendorp-survey-template", label: "Van Westendorp survey template" },
+      { href: "/price-increase-email-template", label: "Price increase email template" },
+      { href: "/markdown-clearance-spreadsheet", label: "Markdown & clearance spreadsheet" },
+    ],
+  },
+  {
+    title: "Research",
+    links: [
+      { href: "/research/price-elasticity-by-category", label: "Price elasticity by category" },
+      { href: "/research/profit-margins-by-product-category", label: "Profit margins by category" },
+      { href: "/research/state-of-ecommerce-pricing-2026", label: "State of ecommerce pricing 2026" },
+    ],
+  },
+  {
+    title: "Zorin",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/privacy", label: "Privacy Policy" },
+    ],
+  },
+];
+
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200">
-      <div className="mx-auto max-w-[1400px] px-6 py-16">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+    <footer className="mt-auto border-t border-ink">
+      <div className="mx-auto max-w-[1360px] px-6 py-14 md:px-7">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div>
-            <a href="/" className="flex items-center gap-2 font-semibold text-zinc-900">
-              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-xs font-bold text-white">
-                Z
-              </span>
+            <a href="/" className="font-serif text-2xl font-semibold tracking-tight text-ink">
               Zorin
             </a>
-            <p className="mt-3 max-w-[32ch] text-sm leading-relaxed text-zinc-500">
-              Pricing guides for online sellers.
+            <p className="mt-3 max-w-[30ch] text-sm leading-relaxed text-ink-2">
+              Practical pricing guides for Shopify and WooCommerce sellers, with the math worked out.
             </p>
           </div>
-
-          <div className="flex flex-wrap gap-x-12 gap-y-10">
-            <div>
-              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                Read &amp; use
-              </h4>
+          {columns.map((col) => (
+            <div key={col.title}>
+              <h4 className="label-mono text-faint">{col.title}</h4>
               <ul className="mt-3 flex flex-col gap-2">
-                <li>
-                  <a href="/blog" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="/shopify-profit-margin-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Shopify profit margin calculator
-                  </a>
-                </li>
-                <li>
-                  <a href="/woocommerce-profit-margin-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    WooCommerce profit margin calculator
-                  </a>
-                </li>
-                <li>
-                  <a href="/price-elasticity-calculator" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Price elasticity calculator
-                  </a>
-                </li>
-                <li>
-                  <a href="/van-westendorp-survey-template" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Van Westendorp survey template
-                  </a>
-                </li>
-                <li>
-                  <a href="/price-increase-email-template" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Price increase email template
-                  </a>
-                </li>
-                <li>
-                  <a href="/markdown-clearance-spreadsheet" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Markdown &amp; clearance spreadsheet
-                  </a>
-                </li>
-                <li>
-                  <a href="/glossary" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Pricing glossary
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                Research
-              </h4>
-              <ul className="mt-3 flex flex-col gap-2">
-                <li>
-                  <a href="/research/price-elasticity-by-category" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Price elasticity by category
-                  </a>
-                </li>
-                <li>
-                  <a href="/research/profit-margins-by-product-category" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Profit margins by category
-                  </a>
-                </li>
-                <li>
-                  <a href="/research/marketing-spend-by-product-category" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Marketing spend by category
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                Company
-              </h4>
-              <ul className="mt-3 flex flex-col gap-2">
-                <li>
-                  <a href="/about" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    About
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="flex gap-x-16 md:ml-auto">
-              <div>
-                <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                  Legal
-                </h4>
-                <ul className="mt-3 flex flex-col gap-2">
-                  <li>
-                    <a href="/privacy" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                      Privacy Policy
+                {col.links.map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} className="text-sm text-ink-2 transition-colors hover:text-accent">
+                      {l.label}
                     </a>
                   </li>
-                </ul>
-              </div>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
         </div>
 
         <FeaturedOnBadges />
 
-        <div className="mt-6 flex flex-col items-start gap-4 border-t border-zinc-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-zinc-500">
-            &copy; {new Date().getFullYear()} Zorin. All rights reserved.
-          </p>
+        <div className="mt-6 border-t border-line pt-6 font-mono text-xs text-faint">
+          &copy; {new Date().getFullYear()} Zorin
         </div>
       </div>
     </footer>

@@ -4,6 +4,7 @@ import { getClusterForPost } from "@/lib/blog/clusters";
 import { buildArticleSchema, buildFaqSchema } from "@/lib/blog/schema";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
+import { formatIsoDate, getPostNumber, withHeadingAnchors } from "@/lib/blog/listing";
 
 export async function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -42,14 +43,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -82,8 +75,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         .map((s) => getPostBySlug(s))
         .filter((p): p is NonNullable<typeof p> => Boolean(p))
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 3)
+        .slice(0, 4)
     : [];
+
+  const { html, headings } = withHeadingAnchors(post.content);
+  const postNumber = getPostNumber(post.slug);
 
   return (
     <>
@@ -102,100 +98,106 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         />
       )}
       <Navbar />
-      <main className="mx-auto max-w-2xl px-6 pb-24 pt-32 md:pb-32">
-        <a
-          href="/blog"
-          className="mb-8 inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-zinc-600"
-        >
-          ← All posts
-        </a>
-
-        <div className="mt-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex w-fit rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-600">
-              {post.category}
-            </span>
-            {cluster && (
-              <a
-                href={`/blog/cluster/${cluster.slug}`}
-                className="inline-flex w-fit items-center gap-1 rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs font-medium text-zinc-500 transition-colors hover:border-blue-200 hover:text-blue-600"
-              >
-                Part of: {cluster.name}
-              </a>
-            )}
+      <div className="mx-auto w-full max-w-[1240px] px-6 pt-16 md:px-7">
+        <header className="grid gap-x-12 pt-10 pb-8 md:pt-12 lg:grid-cols-[220px_minmax(0,720px)] lg:justify-center">
+          <div className="hidden pt-2 font-mono text-xs leading-loose text-faint lg:block">
+            {post.author && <p className="font-medium text-ink">{post.author.name}</p>}
+            <p>{formatIsoDate(post.date)}</p>
+            <p>{post.readingTime}</p>
+            {post.updatedDate && <p>Updated {formatIsoDate(post.updatedDate)}</p>}
           </div>
-          <h1 className="mt-3 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
-            {post.title}
-          </h1>
-          <div className="mt-3 flex items-center gap-2 text-sm text-zinc-400">
-            {post.author && (
+          <div>
+            <p className="label-mono text-accent">
+              <a href="/blog/all" className="hover:underline">Index</a>
+              {postNumber && <> · No. {postNumber}</>}
+              {cluster && (
+                <>
+                  {" · "}
+                  <a href={`/blog/cluster/${cluster.slug}`} className="hover:underline">
+                    {cluster.name}
+                  </a>
+                </>
+              )}
+            </p>
+            <h1 className="mt-3 text-[34px] leading-[1.1] text-ink md:text-[52px]">{post.title}</h1>
+            <p className="mt-4 font-serif text-lg leading-relaxed text-ink-2 italic md:text-xl">
+              {post.excerpt}
+            </p>
+            <p className="mt-4 font-mono text-xs text-faint lg:hidden">
+              {post.author ? `${post.author.name} · ` : ""}
+              {formatIsoDate(post.date)} · {post.readingTime}
+            </p>
+          </div>
+        </header>
+
+        <div className="grid gap-x-12 border-t border-line pb-24 lg:grid-cols-[220px_minmax(0,720px)] lg:justify-center">
+          <nav aria-label="Contents" className="hidden pt-8 lg:sticky lg:top-16 lg:block lg:self-start">
+            {headings.length > 0 && (
               <>
-                <span>By {post.author.name}</span>
-                <span>·</span>
+                <h4 className="label-mono mb-2.5 text-faint">Contents</h4>
+                <ol>
+                  {headings.map((h, i) => (
+                    <li key={h.id}>
+                      <a
+                        href={`#${h.id}`}
+                        className="grid grid-cols-[28px_1fr] py-1.5 text-sm leading-snug text-ink-2 hover:text-accent"
+                      >
+                        <span className="font-mono text-xs text-faint">{String(i + 1).padStart(2, "0")}</span>
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
               </>
             )}
-            <span>{formatDate(post.date)}</span>
-            <span>·</span>
-            <span>{post.readingTime}</span>
-          </div>
+          </nav>
+
+          <article className="min-w-0 pt-8">
+            <div className="prose-content" dangerouslySetInnerHTML={{ __html: html }} />
+
+            {post.author && (
+              <div className="mt-12 flex gap-4 border-t border-ink pt-5">
+                <span className="flex h-11 w-11 flex-none items-center justify-center bg-ink font-serif text-lg text-white">
+                  {post.author.name.charAt(0)}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-ink">Written by {post.author.name}</p>
+                  <p
+                    className="mt-1 text-sm leading-relaxed text-ink-2"
+                    dangerouslySetInnerHTML={{ __html: post.author.bio }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {cluster && moreInCluster.length > 0 && (
+              <section className="mt-12 border border-line bg-surface">
+                <div className="flex items-baseline justify-between border-b border-ink px-4 py-3">
+                  <h2 className="label-mono text-ink">More in {cluster.name}</h2>
+                  <a
+                    href={`/blog/cluster/${cluster.slug}`}
+                    className="font-mono text-xs text-accent hover:underline"
+                  >
+                    View all →
+                  </a>
+                </div>
+                {moreInCluster.map((p) => (
+                  <a
+                    key={p.slug}
+                    href={`/blog/${p.slug}`}
+                    className="grid grid-cols-[52px_1fr] border-b border-line px-4 py-3 last:border-b-0 hover:bg-bg"
+                  >
+                    <span className="font-mono text-xs text-faint pt-1">{getPostNumber(p.slug)}</span>
+                    <span className="font-serif text-[17px] font-medium text-ink hover:text-accent">
+                      {p.title}
+                    </span>
+                  </a>
+                ))}
+              </section>
+            )}
+          </article>
         </div>
-
-        <div
-          className="prose-content mt-10"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-
-        {post.author && (
-          <div className="mt-12 rounded-xl border border-zinc-100 bg-zinc-50 p-5">
-            <p className="text-sm font-semibold text-zinc-900">Written by {post.author.name}</p>
-            <p
-              className="mt-1.5 text-sm leading-relaxed text-zinc-500"
-              dangerouslySetInnerHTML={{ __html: post.author.bio }}
-            />
-          </div>
-        )}
-
-        {cluster && moreInCluster.length > 0 && (
-          <div className="mt-16 border-t border-zinc-100 pt-10">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="text-sm font-semibold text-zinc-900">
-                More in {cluster.name}
-              </h2>
-              <a
-                href={`/blog/cluster/${cluster.slug}`}
-                className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"
-              >
-                View all →
-              </a>
-            </div>
-            <div className="mt-5 grid gap-4 sm:grid-cols-3">
-              {moreInCluster.map((p) => (
-                <a
-                  key={p.slug}
-                  href={`/blog/${p.slug}`}
-                  className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-4 transition-shadow hover:shadow-md"
-                >
-                  <h3 className="text-sm font-semibold leading-snug text-zinc-900 group-hover:text-blue-600">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-zinc-500">
-                    {p.excerpt}
-                  </p>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="mt-10 border-t border-zinc-100 pt-8">
-          <a
-            href="/blog"
-            className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-700"
-          >
-            ← Back to all posts
-          </a>
-        </div>
-      </main>
+      </div>
       <Footer />
     </>
   );

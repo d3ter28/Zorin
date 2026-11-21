@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zorin · Figure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --soft: #f4f5f1;
+    --ink: #111311;
+    --ink-2: #474b46;
+    --muted: #7b8079;
+    --line: #e4e6e0;
+    --green: #1d5c3f;
+    --green-2: #2f7a55;
+    --mint: #dcefe3;
+    --sand: #f1e9d8;
+    --clay: #f4ddd3;
+    --sky: #dde8f1;
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --serif: 'Instrument Serif', Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+  header.top { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; }
+  .logo i { width: 26px; height: 26px; border-radius: 7px; background: var(--green); color: #fff; font-style: normal; display: grid; place-items: center; font-family: var(--serif); font-size: 18px; }
+  header nav { display: flex; gap: 6px; }
+  header nav a { padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+  header nav a:hover, header nav a.on { background: var(--soft); color: var(--ink); }
+  .search { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; color: var(--muted); width: 220px; }
+
+  .hero { padding: 72px 0 40px; }
+  .hero h1 { font-size: clamp(44px, 6.8vw, 92px); line-height: 0.98; letter-spacing: -0.045em; font-weight: 600; max-width: 13ch; }
+  .hero h1 em { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -0.02em; color: var(--green); }
+  .hero-row { display: flex; justify-content: space-between; align-items: end; gap: 40px; flex-wrap: wrap; }
+  .hero p { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 40ch; }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 36px 0 0; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .chips a { padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--ink-2); }
+  .chips a span { color: var(--muted); margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .chips a:hover { border-color: var(--ink); color: var(--ink); }
+  .chips a.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .chips a.on span { color: #b9beb7; }
+
+  .eyebrow { font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 0.02em; }
+  .meta { font-size: 13px; color: var(--muted); }
+
+  /* Feature */
+  .feature { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; padding: 48px 0; }
+  .fig { border-radius: 22px; padding: 34px; position: relative; overflow: hidden; aspect-ratio: 4 / 3; display: flex; flex-direction: column; justify-content: space-between; }
+  .fig .tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; }
+  .fig .num { font-family: var(--serif); font-size: clamp(96px, 13vw, 180px); line-height: 0.85; letter-spacing: -0.03em; }
+  .fig .cap { font-size: 16px; max-width: 30ch; line-height: 1.4; }
+  .fig.green { background: var(--green); color: #f1f7f2; }
+  .fig.green .bars { position: absolute; right: 34px; top: 34px; display: flex; gap: 14px; align-items: end; height: 46%; }
+  .fig.green .bars div { width: 54px; border-radius: 8px 8px 0 0; background: rgba(255,255,255,0.18); position: relative; }
+  .fig.green .bars div.hi { background: #bfe3cc; }
+  .fig.green .bars label { position: absolute; bottom: -22px; left: 0; right: 0; text-align: center; font-size: 12px; opacity: 0.8; }
+  .feature h2 { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: 12px 0 16px; }
+  .feature p.dek { font-size: 18px; line-height: 1.55; color: var(--ink-2); }
+  .read { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; height: 44px; padding: 0 20px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: 14px; }
+  .read:hover { background: var(--green); }
+
+  /* Cards */
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; margin: 40px 0 22px; }
+  .section-head h2 { font-size: 28px; letter-spacing: -0.03em; font-weight: 600; }
+  .section-head h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .section-head a { font-size: 14px; font-weight: 600; color: var(--green); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px 28px; }
+  .card .tile { border-radius: 16px; aspect-ratio: 16 / 10; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between; transition: transform .25s ease; }
+  .card:hover .tile { transform: translateY(-3px); }
+  .card .tile .n { font-family: var(--serif); font-size: 72px; line-height: 0.9; letter-spacing: -0.02em; }
+  .card .tile .t { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; }
+  .card .tile .c { font-size: 13px; opacity: 0.75; }
+  .card h3 { font-size: 21px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 600; margin: 16px 0 8px; }
+  .card:hover h3 { color: var(--green); }
+  .card p { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .card .meta { margin-top: 10px; }
+  .mint { background: var(--mint); color: #12392a; }
+  .sand { background: var(--sand); color: #4a3a17; }
+  .clay { background: var(--clay); color: #5a2a1a; }
+  .sky { background: var(--sky); color: #1d3446; }
+  .ink { background: var(--ink); color: #eef0ec; }
+
+  /* Topics */
+  .topics { margin-top: 72px; background: var(--soft); }
+  .topics .wrap { padding-top: 56px; padding-bottom: 60px; }
+  .tgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .topic { background: #fff; border-radius: 16px; padding: 22px; border: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; min-height: 170px; }
+  .topic:hover { border-color: var(--ink); }
+  .topic .count { font-family: var(--serif); font-size: 40px; line-height: 1; color: var(--green); }
+  .topic h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+  .topic p { font-size: 13px; color: var(--muted); line-height: 1.45; }
+
+  /* Research + tools */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 72px; }
+  .panel { border: 1px solid var(--line); border-radius: 22px; padding: 30px; }
+  .panel h2 { font-size: 26px; letter-spacing: -0.03em; font-weight: 600; margin: 8px 0 4px; }
+  .panel > p { color: var(--ink-2); font-size: 15px; }
+  .panel ul { list-style: none; margin-top: 18px; }
+  .panel li a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); font-weight: 500; font-size: 15px; }
+  .panel li a:hover { color: var(--green); }
+  .panel li a span { font-family: var(--serif); font-size: 22px; color: var(--green); white-space: nowrap; }
+
+  footer { margin-top: 80px; border-top: 1px solid var(--line); }
+  footer .wrap { padding: 40px 28px 56px; display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; font-size: 14px; color: var(--ink-2); }
+  footer .big { font-family: var(--serif); font-size: 44px; line-height: 1; color: var(--ink); letter-spacing: -0.02em; }
+  footer nav { display: flex; gap: 22px; }
+
+  @media (max-width: 960px) {
+    .feature, .split { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .tgrid { grid-template-columns: 1fr 1fr; }
+    header nav, .search { display: none; }
+  }
+  @media (max-width: 600px) {
+    .grid, .tgrid { grid-template-columns: 1fr; }
+    .fig.green .bars { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#"><i>z</i>Zorin</a>
+  <nav><a class="on" href="#">Articles</a><a href="#">Topics</a><a href="#">Research</a><a href="#">Tools</a><a href="#">About</a></nav>
+  <div class="search">⌕ Search 101 articles</div>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-row">
+      <h1>Pricing, with the <em>numbers</em> worked out.</h1>
+      <p>Guides on elasticity, discounts, margins and strategy for Shopify and WooCommerce sellers. Every article shows the math, so you can check it against your own store.</p>
+    </div>
+    <div class="chips">
+      <a class="on" href="#">All<span>101</span></a>
+      <a href="#">Price Elasticity<span>13</span></a>
+      <a href="#">Strategy<span>16</span></a>
+      <a href="#">Discounts<span>9</span></a>
+      <a href="#">Margin &amp; Profit<span>8</span></a>
+      <a href="#">Surveys<span>5</span></a>
+      <a href="#">Launch &amp; Channels<span>6</span></a>
+      <a href="#">By Vertical<span>3</span></a>
+      <a href="#">Tool Reviews<span>22</span></a>
+    </div>
+  </section>
+
+  <section class="feature">
+    <a href="article.html" class="fig green">
+      <span class="tag">Gross profit, $68 vs $29</span>
+      <div class="bars">
+        <div style="height:64%"><label>$29</label></div>
+        <div class="hi" style="height:100%"><label>$68</label></div>
+      </div>
+      <div>
+        <div class="num">+57%</div>
+        <div class="cap">more profit from a prestige price, on 45% fewer units.</div>
+      </div>
+    </a>
+    <div>
+      <span class="eyebrow">New · Pricing Strategy</span>
+      <h2><a href="article.html">Prestige pricing: when a higher price sells more</a></h2>
+      <p class="dek">Buyers use price as evidence of quality. What the research shows about price and perceived quality, a worked example, and when it fails.</p>
+      <p class="meta" style="margin-top:14px">Dexter · 19 Nov 2026 · 5 min read</p>
+      <a class="read" href="article.html">Read the article →</a>
+    </div>
+  </section>
+
+  <div class="section-head"><h2>Latest <em>articles</em></h2><a href="#">View all →</a></div>
+  <section class="grid">
+    <a class="card" href="#">
+      <div class="tile sand"><span class="t">Value to customer</span><span class="n">EVC</span><span class="c">Economic value, step by step</span></div>
+      <h3>Value-based pricing: how to calculate it</h3>
+      <p>Set price by what a product is worth to the customer, and why most firms resist it.</p>
+      <p class="meta">13 Nov · 6 min</p>
+    </a>
+    <a class="card" href="#">
+      <div class="tile clay"><span class="t">Priced at</span><span class="n">&lt; cost</span><span class="c">and still profitable</span></div>
+      <h3>Loss leader pricing: how it works and when it pays</h3>
+      <p>Costco and grocery examples, why it's harder online, and the break-even math.</p>
+      <p class="meta">11 Nov · 7 min</p>
+    </a>
+    <a class="card" href="#">
+      <div class="tile sky"><span class="t">Launch low, then</span><span class="n">exit</span><span class="c">The part most stores skip</span></div>
+      <h3>Penetration pricing: examples, math and how to exit</h3>
+      <p>Disney+ as a real example, the research risk, and when launching low pays.</p>
+      <p class="meta">6 Nov · 7 min</p>
+    </a>
+    <a class="card" href="#">
+      <div class="tile mint"><span class="t">Three lines</span><span class="n">$25·35·48</span><span class="c">instead of one price per item</span></div>
+      <h3>Price lining: definition, examples and how to set it</h3>
+      <p>Sell a category at a few set price points. A worked example and setup steps.</p>
+      <p class="meta">4 Nov · 7 min</p>
+    </a>
+    <a class="card" href="#">
+      <div class="tile ink"><span class="t">Returned</span><span class="n">19.3%</span><span class="c">of U.S. online sales, NRF estimate</span></div>
+      <h3>Ecommerce margin too low? How to find the leak</h3>
+      <p>Build a per-order margin waterfall and see which fix is worth the most.</p>
+      <p class="meta">14 Oct · 7 min</p>
+    </a>
+    <a class="card" href="#">
+      <div class="tile sand"><span class="t">Retail price</span><span class="n">2× cost</span><span class="c">and when it isn't enough</span></div>
+      <h3>Keystone pricing: what it is and when it fails</h3>
+      <p>The formula, triple keystone, a wholesale example, and when 2× falls short.</p>
+      <p class="meta">11 Oct · 7 min</p>
+    </a>
+  </section>
+</main>
+
+<section class="topics"><div class="wrap">
+  <div class="section-head" style="margin-top:0"><h2>Browse by <em>topic</em></h2><a href="#">All topics →</a></div>
+  <div class="tgrid">
+    <a class="topic" href="#"><span class="count">13</span><h3>Price Elasticity</h3><p>How demand responds when price moves. Start here.</p></a>
+    <a class="topic" href="#"><span class="count">16</span><h3>Pricing Fundamentals &amp; Strategy</h3><p>Charm pricing, positioning, review cadence.</p></a>
+    <a class="topic" href="#"><span class="count">9</span><h3>Discounts &amp; Promotions</h3><p>Sales and bundles without eating margin.</p></a>
+    <a class="topic" href="#"><span class="count">8</span><h3>Margin &amp; Profit</h3><p>Margin vs markup, fees, and what to target.</p></a>
+    <a class="topic" href="#"><span class="count">5</span><h3>Price Sensitivity Surveys</h3><p>Van Westendorp, run and read properly.</p></a>
+    <a class="topic" href="#"><span class="count">6</span><h3>Multi-Channel &amp; Launch</h3><p>Pricing new products and across channels.</p></a>
+    <a class="topic" href="#"><span class="count">3</span><h3>Vertical-Specific</h3><p>Skincare, clothing and more by category.</p></a>
+    <a class="topic" href="#"><span class="count">22</span><h3>Pricing Tools &amp; Software</h3><p>Independent reviews and buyer's guides.</p></a>
+  </div>
+</div></section>
+
+<main class="wrap">
+  <section class="split">
+    <div class="panel">
+      <span class="eyebrow">Research</span>
+      <h2>Benchmarks by category</h2>
+      <p>Sourced figures to compare your store against.</p>
+      <ul>
+        <li><a href="#">Profit margins by product category <span>→</span></a></li>
+        <li><a href="#">Price elasticity by category <span>→</span></a></li>
+        <li><a href="#">Return rate by product category <span>→</span></a></li>
+        <li><a href="#">Discount depth by product category <span>→</span></a></li>
+        <li><a href="#">State of ecommerce pricing 2026 <span>→</span></a></li>
+      </ul>
+    </div>
+    <div class="panel" style="background:var(--soft);border-color:var(--soft)">
+      <span class="eyebrow">Free tools</span>
+      <h2>Calculators &amp; templates</h2>
+      <p>Small tools for the questions that come up most.</p>
+      <ul>
+        <li><a href="#">Price elasticity calculator <span>→</span></a></li>
+        <li><a href="#">Shopify profit margin calculator <span>→</span></a></li>
+        <li><a href="#">WooCommerce profit margin calculator <span>→</span></a></li>
+        <li><a href="#">Van Westendorp survey template <span>→</span></a></li>
+        <li><a href="#">Price increase email template <span>→</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <div><div class="big">Zorin</div><p style="margin-top:10px;max-width:38ch">Practical pricing guides for independent online sellers.</p></div>
+  <nav><a href="#">Articles</a><a href="#">Research</a><a href="#">Tools</a><a href="#">Glossary</a><a href="#">About</a><a href="#">Privacy</a></nav>
+</div></footer>
+</body>
+</html>
