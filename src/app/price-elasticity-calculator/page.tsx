@@ -118,9 +118,12 @@ export default function PriceElasticityCalculatorPage() {
           </ul>
           <p className="text-sm leading-relaxed text-zinc-500">
             This two-point calculation is a useful sanity check, but it only reflects one price
-            change. Zorin fits a full demand curve from your complete order history, automatically
-            excludes promotional sales spikes that would skew the result, and tells you the exact
-            price that maximizes profit for every product in your catalog.
+            change. For a more reliable read, fit a demand curve across your full order history and
+            exclude promotional sales spikes that would skew the result. The{" "}
+            <a href="/blog/price-elasticity-of-demand-formula" className="text-blue-600 hover:underline">
+              regression version of the calculation
+            </a>{" "}
+            walks through it step by step.
           </p>
         </div>
 

@@ -58,11 +58,17 @@ const BLOG_REDIRECTS: [string, string][] = [
   ["should-you-price-below-at-or-above-your-competitors", "competitive-pricing-strategy"],
   ["should-i-raise-prices-to-cover-rising-costs", "how-to-raise-prices-without-losing-customers"],
   ["what-to-ask-a-pricing-software-vendor-before-you-buy", "pricing-software-for-small-business"],
+  // Product comparison posts rewritten as standalone tool reviews when the Zorin app was retired.
+  ["zorin-vs-prisync", "prisync-review"],
+  ["zorin-vs-competera", "competera-review"],
+  ["zorin-vs-omnia-retail", "omnia-retail-review"],
+  ["zorin-vs-symson", "symson-review"],
   ["dynamic-pricing-explained-definition-example-legal-risks", "what-is-dynamic-pricing"],
 ];
 
 const RETIRED_APP_PATHS = [
   "/signup",
+  "/terms",
   "/login",
   "/forgot-password",
   "/reset-password",
