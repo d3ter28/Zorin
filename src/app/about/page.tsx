@@ -5,9 +5,9 @@ import { clusters } from "@/lib/blog/clusters";
 const BASE_URL = "https://www.tryzorin.com";
 
 export const metadata = {
-  title: "About Zorin: Who Writes It and How We Research",
+  title: "About Zorin: Practical Pricing Guides for Online Sellers",
   description:
-    "Zorin publishes practical pricing guides for online sellers. Who writes them, how every figure is sourced and checked, and how to report a correction.",
+    "Zorin publishes practical pricing guides for online sellers, organised by topic, plus sourced research reports, a pricing glossary and free tools.",
   alternates: { canonical: `${BASE_URL}/about` },
 };
 
@@ -16,17 +16,6 @@ const aboutSchema = {
   "@type": "AboutPage",
   url: `${BASE_URL}/about`,
   name: "About Zorin",
-  mainEntity: {
-    "@type": "Person",
-    "@id": `${BASE_URL}/about#dexter`,
-    name: "Dexter",
-    url: `${BASE_URL}/about#dexter`,
-    jobTitle: "Writer and editor, Zorin",
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: "Nanyang Technological University",
-    },
-  },
 };
 
 const TOOLS = [
@@ -95,71 +84,6 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-
-          <H2>Who writes it</H2>
-          <div id="dexter" className="scroll-mt-28 border border-line bg-surface p-5">
-            <p className="font-serif text-[20px] font-medium text-ink">Dexter</p>
-            <p className="mt-2">
-              Dexter writes and edits Zorin&apos;s articles. He is studying Robotics and
-              Mechatronics Engineering at Nanyang Technological University (NTU) in Singapore,
-              and has interned in investment banking, business development and growth.
-              Most recently he worked at the AI music video company freebeat in 2026. Before that he ran
-              his own ecommerce brand selling pet toys, which is where the questions in these
-              guides started: what to charge, when to discount and how to tell whether a price
-              change worked.
-            </p>
-            <p className="mt-2">
-              Zorin itself began in 2026 as a pricing-analysis tool that fit a demand model to
-              a store&apos;s own sales history. The software has been retired, and the site now
-              publishes what was learned building it.
-            </p>
-          </div>
-
-          <H2>How we research and check articles</H2>
-          <ul className="list-disc space-y-2 pl-5">
-            <li>
-              <strong className="text-ink">Primary sources first.</strong> Figures come from company
-              filings, government statistics, peer-reviewed research and vendors&apos; own pricing
-              pages, and every one is linked so you can check it.
-            </li>
-            <li>
-              <strong className="text-ink">We check the number against the source.</strong> If a
-              widely quoted statistic can&apos;t be traced to an accessible original, we leave it
-              out rather than repeat it.
-            </li>
-            <li>
-              <strong className="text-ink">Worked examples are examples.</strong> Most articles
-              include a calculation with example numbers. Unless an article says otherwise, these
-              illustrate the method and are not data from a real store.
-            </li>
-            <li>
-              <strong className="text-ink">No invented experience.</strong> We don&apos;t write
-              made-up anecdotes or first-person stories presented as real.
-            </li>
-            <li>
-              <strong className="text-ink">Dates are kept honest.</strong> Articles show when they
-              were published and when they were last substantially updated. Vendor prices in tool
-              reviews are checked on the date stated in the article and can change.
-            </li>
-          </ul>
-
-          <H2>Independence</H2>
-          <p>
-            Tool reviews and roundups are not paid for, and we don&apos;t use affiliate links.
-            Occasionally we publish a guest contribution from another site; any link a partner
-            requests is marked as sponsored, and those posts are kept out of the main article
-            index.
-          </p>
-
-          <H2>Corrections and contact</H2>
-          <p>
-            If you spot an error, an outdated price or a broken source, email{" "}
-            <a href="mailto:support@tryzorin.com" className="text-accent underline underline-offset-2">
-              support@tryzorin.com
-            </a>{" "}
-            with the article link. Confirmed errors are corrected and the article&apos;s updated
-            date is changed. Topic ideas and questions are welcome at the same address.
-          </p>
         </div>
       </main>
       <Footer />

@@ -266,19 +266,23 @@ body {
 }
 .prose-content ol li {
   counter-increment: prose-ol;
-  display: grid;
-  grid-template-columns: 2.75rem 1fr;
-  padding: 0.75rem 0;
+  position: relative;
+  padding: 0.75rem 0 0.75rem 2.75rem;
   border-bottom: 1px solid var(--line);
   font-size: 1.0625rem;
   line-height: 1.6;
 }
+/* Number sits in the left gutter; the item's text flows normally. (A grid here
+   turned every text run and inline element into its own grid cell.) */
 .prose-content ol li::before {
   content: counter(prose-ol, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 1rem;
   font-family: var(--font-plex-mono), ui-monospace, monospace;
   font-size: 0.8125rem;
+  line-height: 1.6;
   color: var(--accent);
-  padding-top: 0.25rem;
 }
 
 /* Answer-first intro paragraph, rendered as a "Short answer" lede */

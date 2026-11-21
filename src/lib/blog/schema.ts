@@ -35,7 +35,7 @@ export function buildArticleSchema(post: BlogPost) {
       ? {
           "@type": "Person",
           name: post.author.name,
-          url: post.author.url ?? `${BASE_URL}/about#dexter`,
+          url: post.author.url ?? `${BASE_URL}/about`,
           ...(post.author.sameAs ? { sameAs: post.author.sameAs } : {}),
         }
       : { "@type": "Organization", name: "Zorin", url: BASE_URL },
