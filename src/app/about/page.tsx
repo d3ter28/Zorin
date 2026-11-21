@@ -19,14 +19,13 @@ const aboutSchema = {
   mainEntity: {
     "@type": "Person",
     "@id": `${BASE_URL}/about#dexter`,
-    name: "Dexter Poh",
+    name: "Dexter",
     url: `${BASE_URL}/about#dexter`,
     jobTitle: "Writer and editor, Zorin",
     alumniOf: {
       "@type": "CollegeOrUniversity",
       name: "Nanyang Technological University",
     },
-    sameAs: ["https://dexterpoh.com"],
   },
 };
 
@@ -99,7 +98,7 @@ export default function AboutPage() {
 
           <H2>Who writes it</H2>
           <div id="dexter" className="scroll-mt-28 border border-line bg-surface p-5">
-            <p className="font-serif text-[20px] font-medium text-ink">Dexter Poh</p>
+            <p className="font-serif text-[20px] font-medium text-ink">Dexter</p>
             <p className="mt-2">
               Dexter writes and edits Zorin&apos;s articles. He is studying Robotics and
               Mechatronics Engineering at Nanyang Technological University (NTU) in Singapore,
@@ -113,11 +112,6 @@ export default function AboutPage() {
               Zorin itself began in 2026 as a pricing-analysis tool that fit a demand model to
               a store&apos;s own sales history. The software has been retired, and the site now
               publishes what was learned building it.
-            </p>
-            <p className="mt-3 text-sm">
-              <a href="https://dexterpoh.com" className="text-accent underline underline-offset-2" target="_blank" rel="noopener noreferrer">
-                dexterpoh.com
-              </a>
             </p>
           </div>
 
