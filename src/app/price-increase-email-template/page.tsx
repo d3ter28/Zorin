@@ -125,11 +125,7 @@ export default function PriceIncreaseEmailTemplatePage() {
 
         <div className="mt-16 border-t border-zinc-100 pt-10">
           <p className="text-sm leading-relaxed text-zinc-500">
-            Not sure whether your product can actually absorb a price increase yet?{" "}
-            <a href="/signup" className="font-medium text-emerald-700 underline underline-offset-2">
-              See your elasticity read in Zorin
-            </a>{" "}
-            before you decide how much to raise it.
+            Not sure whether your product can absorb a price increase yet? Read how price elasticity works before you decide how much to raise it.
           </p>
         </div>
       </main>

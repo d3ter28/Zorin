@@ -414,20 +414,18 @@ export default function InventoryTurnoverByProductCategoryPage() {
           how much room a discount has to work with, <a href="/research/discount-impact-on-margin-by-product-category" className="text-blue-600 hover:underline">our page on discount impact on margin by category</a> covers
           what public companies actually report that markdown costing them, and{" "}
           <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin" className="text-blue-600 hover:underline">our guide to running a sale without wrecking your margin</a> covers
-          how to size one. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits a demand model to your own sales history</a> so
-          you can see exactly how a specific product responds to a price change, rather than
-          applying a category-wide average to your own slow-moving stock.
+          how to size one. 
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See which of your own products are actually moving too slowly to price this way.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

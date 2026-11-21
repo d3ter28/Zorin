@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { getRecentPosts } from "@/lib/blog/posts";
 
-const recentPosts = getRecentPosts(3);
+const recentPosts = getRecentPosts(6);
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-US", {
@@ -22,10 +22,10 @@ export function Blog() {
         <div className="flex items-end justify-between">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
-              From the blog
+              Latest articles
             </h2>
             <p className="mt-3 max-w-[45ch] text-base leading-relaxed text-zinc-500">
-              Pricing strategy, elasticity explainers, and product updates.
+              Pricing strategy, elasticity explainers, and worked examples for online sellers.
             </p>
           </div>
           <a

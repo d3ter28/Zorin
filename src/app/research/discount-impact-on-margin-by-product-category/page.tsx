@@ -377,20 +377,18 @@ export default function DiscountImpactOnMarginByProductCategoryPage() {
           specific inventory or seasonal goal rather than a reflexive response to slow sales. <a href="/research/inventory-turnover-by-product-category" className="text-blue-600 hover:underline">Our companion page on inventory turnover by category</a> covers
           which categories tend to need that lever most often, and{" "}
           <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin" className="text-blue-600 hover:underline">our guide to running a sale without wrecking your margin</a> covers
-          how to size a discount instead of guessing at one. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits a demand model to your own sales history</a> so
-          a discount decision is based on how your specific products actually respond to price, not
-          a basis-point average pulled from a company many times your size.
+          how to size a discount instead of guessing at one. 
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See what a discount would actually cost your own margin before you run it.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

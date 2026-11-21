@@ -499,9 +499,7 @@ export default function ProfitMarginsByProductCategoryPage() {
           scale and upward or downward based on whether you manufacture, privately label, or
           resell what you sell, the single clearest pattern in this entire dataset. A margin
           benchmark only tells you where you should roughly land, not what price actually gets
-          you there. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits a demand model to your own sales history</a> so you can see
-          which of your products can support a price increase toward a healthier margin without
-          losing the volume that makes the increase worthwhile. If your category shows up as
+          you there.  If your category shows up as
           unverified above, or you want to see how elasticity and margin interact directly,{" "}
           <a href="/research/price-elasticity-by-category" className="text-blue-600 hover:underline">the price elasticity by category reference</a> is the companion page to this one.
           Margin is only half the profit equation, <a href="/research/marketing-spend-by-product-category" className="text-blue-600 hover:underline">the marketing spend by category reference</a> covers
@@ -517,13 +515,13 @@ export default function ProfitMarginsByProductCategoryPage() {
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See your own margin and pricing headroom, not a category average.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

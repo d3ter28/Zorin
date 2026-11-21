@@ -147,7 +147,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Prestige pricing works because price is part of how customers judge quality. Used where quality is hard to see and the brand backs it up, a higher price can earn more and sell better than a cheaper one. To find the range your customers find credible, <a href="/signup">try Zorin free</a>.</p>
+<p class="conclusion">Prestige pricing works because price is part of how customers judge quality. Used where quality is hard to see and the brand backs it up, a higher price can earn more and sell better than a cheaper one.</p>
 `.trim(),
   },
   {
@@ -273,7 +273,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Value-based pricing asks a better question than cost-plus: not "what did this cost me?" but "what is this worth to the person buying it?" Answer it with real customer data and the price usually goes up. To measure that value from surveys and your own sales, <a href="/signup">start a free Zorin trial</a>.</p>
+<p class="conclusion">Value-based pricing asks a better question than cost-plus: not "what did this cost me?" but "what is this worth to the person buying it?" Answer it with real customer data and the price usually goes up.</p>
 `.trim(),
   },
   {
@@ -398,7 +398,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">A loss leader is a marketing expense dressed as a price, and it should be judged like one: by what it brings back. Run the attach-rate math first, and choose a product whose buyers really respond to price. To see which of your products those are, <a href="/signup">try Zorin free</a>.</p>
+<p class="conclusion">A loss leader is a marketing expense dressed as a price, and it should be judged like one: by what it brings back. Run the attach-rate math first, and choose a product whose buyers really respond to price.</p>
 `.trim(),
   },
   {
@@ -530,7 +530,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Penetration pricing is a bet that a cheap start buys something worth more than the margin you give up. Set the full price first, show it from day one and measure what happens after the rise. To find that full price and see how demand responds once you get there, <a href="/signup">start a free Zorin trial</a>.</p>
+<p class="conclusion">Penetration pricing is a bet that a cheap start buys something worth more than the margin you give up. Set the full price first, show it from day one and measure what happens after the rise.</p>
 `.trim(),
   },
   {
@@ -659,7 +659,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Price lining turns a messy price list into a few clear choices, and the middle line usually does more work than you'd expect. The hard part is deciding which products belong on which line. To see how each of your products responds to price before you line them, <a href="/signup">try Zorin free</a>.</p>
+<p class="conclusion">Price lining turns a messy price list into a few clear choices, and the middle line usually does more work than you'd expect. The hard part is deciding which products belong on which line.</p>
 `.trim(),
   },
   {
@@ -778,7 +778,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Promotions are where most pricing models quietly go wrong, because a sale week looks like proof that customers want a lower price. Software that separates sale weeks from regular weeks gives you a truer read and a better price. To see how your own products respond once promotions are set aside, <a href="/signup">start a free Zorin trial</a>.</p>
+<p class="conclusion">Promotions are where most pricing models quietly go wrong, because a sale week looks like proof that customers want a lower price. Software that separates sale weeks from regular weeks gives you a truer read and a better price.</p>
 `.trim(),
   },
   {
@@ -894,7 +894,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">A competitor's lower price is a question, not an instruction. Check the offer, check your sales, and do the break-even math before you move. To know which of your products can hold their price, <a href="/signup">start a free Zorin trial</a> and see your demand data product by product.</p>
+<p class="conclusion">A competitor's lower price is a question, not an instruction. Check the offer, check your sales, and do the break-even math before you move.</p>
 `.trim(),
   },
   {
@@ -1027,7 +1027,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">A margin that's too low is fixable once you can see where it goes. Build the waterfall, fix the biggest leak first, and use price where demand allows it. To see which of your products have room for a higher price, <a href="/signup">try Zorin free</a> with your own sales history.</p>
+<p class="conclusion">A margin that's too low is fixable once you can see where it goes. Build the waterfall, fix the biggest leak first, and use price where demand allows it.</p>
 `.trim(),
   },
   {
@@ -1138,7 +1138,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Variable pricing and dynamic pricing both let price follow demand; one plans ahead and the other keeps re-deciding. Whichever fits your store, it only works if you know how each product responds to a price change. <a href="/signup">Start a free Zorin trial</a> to see that for your catalog from your own sales history.</p>
+<p class="conclusion">Variable pricing and dynamic pricing both let price follow demand; one plans ahead and the other keeps re-deciding. Whichever fits your store, it only works if you know how each product responds to a price change.</p>
 `.trim(),
   },
   {
@@ -1255,7 +1255,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Segment pricing is one of the oldest ways to serve customers with different budgets without cutting your price for everyone. Get the fence right, do the leakage math, and keep prices posted rather than personalized. To see how price-sensitive each of your products is before you segment, <a href="/signup">try Zorin free</a>.</p>
+<p class="conclusion">Segment pricing is one of the oldest ways to serve customers with different budgets without cutting your price for everyone. Get the fence right, do the leakage math, and keep prices posted rather than personalized.</p>
 `.trim(),
   },
   {
@@ -1384,7 +1384,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Price priming is a real, research-backed effect, and used honestly it helps shoppers see the value you're offering. It works best on top of a price that already fits demand. To find that price for each product from your own sales history, <a href="/signup">try Zorin free</a>.</p>
+<p class="conclusion">Price priming is a real, research-backed effect, and used honestly it helps shoppers see the value you're offering. It works best on top of a price that already fits demand.</p>
 `.trim(),
   },
   {
@@ -1509,7 +1509,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Keystone pricing is a sensible starting rule and a useful floor, but it can't tell you whether a product would sell just as well at a higher price. That answer is in your sales history. <a href="/signup">Start a free trial of Zorin</a> to see which of your keystone-priced products have room to move.</p>
+<p class="conclusion">Keystone pricing is a sensible starting rule and a useful floor, but it can't tell you whether a product would sell just as well at a higher price. That answer is in your sales history.</p>
 `.trim(),
   },
   {
@@ -1628,7 +1628,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">A pricing simulation tool is only as honest as its demand model and its uncertainty. Use one that learns from your own sales and tells you when it isn't sure. To simulate price changes on your catalog, <a href="/signup">start a free Zorin trial</a>.</p>
+<p class="conclusion">A pricing simulation tool is only as honest as its demand model and its uncertainty. Use one that learns from your own sales and tells you when it isn't sure.</p>
 `.trim(),
   },
   {
@@ -1759,7 +1759,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Cross price elasticity tells you how connected your products are, to each other and to your competitors. It's most useful once you already know how each product responds to its own price. To see that number for every product in your catalog, <a href="/signup">start a free Zorin trial</a> and connect your store.</p>
+<p class="conclusion">Cross price elasticity tells you how connected your products are, to each other and to your competitors. It's most useful once you already know how each product responds to its own price.</p>
 `.trim(),
   },
   {
@@ -1890,7 +1890,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Pricefx is a strong fit for complex B2B pricing, and its closest alternatives serve the same kind of company. If you're an online store rather than a B2B enterprise, you need something smaller, faster and priced for your revenue. <a href="/signup">Start a free Zorin trial</a> to get demand-based recommendations for your catalog today.</p>
+<p class="conclusion">Pricefx is a strong fit for complex B2B pricing, and its closest alternatives serve the same kind of company. If you're an online store rather than a B2B enterprise, you need something smaller, faster and priced for your revenue.</p>
 `.trim(),
   },
   {
@@ -2007,7 +2007,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The best competitor price tracking software is the one that matches how much real overlap you have with competitors, and how often you need to react. Whatever tracker you choose, the decision to match or hold is easier when you know how your own customers respond. <a href="/signup">Try Zorin free</a> to see that for every product in your catalog.</p>
+<p class="conclusion">The best competitor price tracking software is the one that matches how much real overlap you have with competitors, and how often you need to react. Whatever tracker you choose, the decision to match or hold is easier when you know how your own customers respond.</p>
 `.trim(),
   },
   {
@@ -2143,7 +2143,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Price management software keeps prices correct, consistent and traceable as your catalog and channels grow. Pair it with a clear view of which prices to set, and it stops being admin and starts adding profit. To get demand-based recommendations you can apply in bulk to your store, <a href="/signup">start a free trial of Zorin</a>.</p>
+<p class="conclusion">Price management software keeps prices correct, consistent and traceable as your catalog and channels grow. Pair it with a clear view of which prices to set, and it stops being admin and starts adding profit.</p>
 `.trim(),
   },
   {
@@ -2262,7 +2262,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">MAP pricing software turns an impossible manual check into a daily report you can act on, but it only protects your price if your policy is clear and your enforcement is consistent. If you sell within a MAP policy and want to know where each product should sit above the minimum, <a href="/signup">try Zorin free</a> with your own sales data.</p>
+<p class="conclusion">MAP pricing software turns an impossible manual check into a daily report you can act on, but it only protects your price if your policy is clear and your enforcement is consistent.</p>
 `.trim(),
   },
   {
@@ -2418,7 +2418,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Margin and markup measure the same profit from two directions, and knowing which one you're looking at protects you from pricing below the margin you planned. Once your cost math is right, the next question is whether customers would pay more or buy more at a different price. <a href="/signup">Try Zorin free</a> to see that product by product from your own sales history.</p>
+<p class="conclusion">Margin and markup measure the same profit from two directions, and knowing which one you're looking at protects you from pricing below the margin you planned. Once your cost math is right, the next question is whether customers would pay more or buy more at a different price.</p>
 `.trim(),
   },
   {
@@ -2569,7 +2569,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The best dynamic pricing software is the one whose signal matches your business: the Buy Box, your competitors, live tests or your own customers' behavior. If your store sets its own prices and you want to know how each product responds, <a href="/signup">start a free Zorin trial</a> and see recommendations from your own sales history.</p>
+<p class="conclusion">The best dynamic pricing software is the one whose signal matches your business: the Buy Box, your competitors, live tests or your own customers' behavior.</p>
 `.trim(),
   },
   {
@@ -2699,7 +2699,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">AI pricing software is only as good as the data it learns from and the guardrails around it. Look for a demand model built on your own sales, honest confidence levels and a person in charge of every change. To see what that looks like on your own catalog, <a href="/signup">start a free Zorin trial</a>.</p>
+<p class="conclusion">AI pricing software is only as good as the data it learns from and the guardrails around it. Look for a demand model built on your own sales, honest confidence levels and a person in charge of every change.</p>
 `.trim(),
   },
   {
@@ -2817,7 +2817,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Everyday low pricing and high-low pricing are both valid strategies. The better one for your store depends on what your customers have learned to expect and how each product responds to price. If you'd like to see that product by product, <a href="/signup">start a free trial of Zorin</a> and let your own sales history show which products belong at an everyday low price.</p>
+<p class="conclusion">Everyday low pricing and high-low pricing are both valid strategies. The better one for your store depends on what your customers have learned to expect and how each product responds to price.</p>
     `.trim(),
   },
   {
@@ -2959,7 +2959,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Pricing intelligence, pricing analytics and price optimization answer three different questions, and the right first purchase is whichever question you can't currently answer. Competitor data is a useful input, but the price you charge should come from your own margins and your own customers. If that last part is your gap, <a href="/signup">start a free trial of Zorin</a> and see a raise, lower or hold recommendation for each product, built from your own Shopify or WooCommerce sales history.</p>
+<p class="conclusion">Pricing intelligence, pricing analytics and price optimization answer three different questions, and the right first purchase is whichever question you can't currently answer. Competitor data is a useful input, but the price you charge should come from your own margins and your own customers.</p>
     `.trim(),
   },
   {
@@ -3086,7 +3086,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The honest way to think about this switch isn't "spreadsheets bad, software good," it's a question of what your current setup can no longer answer confidently. If a spreadsheet formula still gives you a defensible number and updating it doesn't eat real time, there's no rush. If it's become a source of version conflicts, silent errors, or numbers nobody fully trusts anymore, that's the actual signal. <a href="/signup">Start a free trial</a> and see what a statistical read on your own sales history actually looks like next to the spreadsheet you're used to.</p>
+<p class="conclusion">The honest way to think about this switch isn't "spreadsheets bad, software good," it's a question of what your current setup can no longer answer confidently. If a spreadsheet formula still gives you a defensible number and updating it doesn't eat real time, there's no rush. If it's become a source of version conflicts, silent errors, or numbers nobody fully trusts anymore, that's the actual signal.</p>
     
 `.trim(),
   },
@@ -3190,7 +3190,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">MAP is a narrower restriction than it sounds like from the outside, it governs what you can advertise, not what you can charge, and it only holds up legally when it's applied the same way to everyone. Whether you're complying with a supplier's policy or writing your own, the floor itself should be grounded in real numbers. <a href="/signup">Start a free trial</a> to see what your own sales history says a product can actually support before you set, or agree to, a price floor.</p>
+<p class="conclusion">MAP is a narrower restriction than it sounds like from the outside, it governs what you can advertise, not what you can charge, and it only holds up legally when it's applied the same way to everyone. Whether you're complying with a supplier's policy or writing your own, the floor itself should be grounded in real numbers.</p>
     `.trim(),
   },
   {
@@ -3330,6 +3330,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "zorin-vs-competera",
+    hidden: true,
     title: "Zorin vs Competera: Which Fits Your Store?",
     excerpt:
       "Competera does real elasticity modeling too, but it's built for enterprise retailers on a quote-only budget. Here's where Zorin fits instead.",
@@ -3440,11 +3441,12 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Competera and Zorin aren't separated by whether the modeling is real, both do genuine elasticity-based pricing. They're separated by which retailer each one was actually built to serve first, and how much sales process stands between signing up and a first recommendation. If that's a solo store owner or a small team without a pricing analyst, <a href="/signup">Zorin</a> gets you a per-SKU read today, published pricing, no demo call required. Weighing more than one option? See <a href="/blog/competera-alternatives">Competera alternatives</a> for a broader shortlist.</p>
+<p class="conclusion">Competera and Zorin aren't separated by whether the modeling is real, both do genuine elasticity-based pricing. They're separated by which retailer each one was actually built to serve first, and how much sales process stands between signing up and a first recommendation. Weighing more than one option? See <a href="/blog/competera-alternatives">Competera alternatives</a> for a broader shortlist.</p>
     `.trim(),
   },
   {
     slug: "prisync-alternatives",
+    hidden: true,
     title: "Prisync Alternatives & Competitors: 4 Options",
     excerpt: "4 Prisync alternatives and competitors with published pricing, for merchants who want demand modeling instead of competitor price matching.",
     date: "2026-09-08",
@@ -3509,11 +3511,12 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Prisync does one job well: tracking and reacting to competitor prices. The alternatives above split into two groups, tools that do that same job with a different price or feature tradeoff (Price2Spy, Omnia Retail), and tools that answer a different question entirely, what your own customers would actually pay (Zorin, Competera). If it's the second question you're actually asking, <a href="/signup">Zorin</a> gets you a self-serve answer without a demo call or a custom quote standing in the way.</p>
+<p class="conclusion">Prisync does one job well: tracking and reacting to competitor prices. The alternatives above split into two groups, tools that do that same job with a different price or feature tradeoff (Price2Spy, Omnia Retail), and tools that answer a different question entirely, what your own customers would actually pay (Zorin, Competera).</p>
     `.trim(),
   },
   {
     slug: "zorin-vs-omnia-retail",
+    hidden: true,
     title: "Zorin vs Omnia Retail: Features & Pricing Compared",
     excerpt: "Omnia markets \"AI Dynamic Pricing,\" which sounds like demand modeling. It isn't. What Omnia actually does, how its pricing works, and where Zorin fits.",
     date: "2026-09-07",
@@ -3623,7 +3626,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Omnia and Zorin both get called AI pricing tools, and neither claim is false. But "AI" describes very different mechanisms in each case, one interpreting competitor-driven repricing rules, one modeling your own customers' demand. If it's the second question you're actually trying to answer, <a href="/signup">Zorin</a> was built specifically to read it, without a demo call standing in the way.</p>
+<p class="conclusion">Omnia and Zorin both get called AI pricing tools, and neither claim is false. But "AI" describes very different mechanisms in each case, one interpreting competitor-driven repricing rules, one modeling your own customers' demand.</p>
     `.trim(),
   },
   {
@@ -3728,11 +3731,12 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Dynamic pricing software isn't a single tier you either qualify for or don't, it's a fit question between your data, your product mix, and what a specific tool actually does with that data. Get the readiness signals right first, and the choice of tool gets a lot easier. If what you actually need is a read on your own customers' demand rather than a reaction to a competitor's price, <a href="/signup">Zorin</a> is built for exactly that gap. Once you know your catalog is ready, <a href="/blog/what-changes-when-you-move-from-spreadsheets-to-pricing-software">here's what actually changes (and what doesn't) once you make the switch</a>.</p>
+<p class="conclusion">Dynamic pricing software isn't a single tier you either qualify for or don't, it's a fit question between your data, your product mix, and what a specific tool actually does with that data. Get the readiness signals right first, and the choice of tool gets a lot easier. Once you know your catalog is ready, <a href="/blog/what-changes-when-you-move-from-spreadsheets-to-pricing-software">here's what actually changes (and what doesn't) once you make the switch</a>.</p>
     `.trim(),
   },
   {
     slug: "competera-alternatives",
+    hidden: true,
     title: "Competera Alternatives for Smaller Stores (2026)",
     excerpt: "Competera's pricing and scale suit large retailers. 4 Competera alternatives with published pricing, and the kind of store each one actually fits.",
     date: "2026-09-06",
@@ -3797,11 +3801,12 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Competera's modeling is real, the alternative search usually isn't about doubting the mechanism, it's about pricing and onboarding that don't fit a smaller team. Zorin, Symson, Prisync, and Price2Spy each solve a different piece of what Competera does, at a different price point and level of self-serve access. If the fit you're looking for is elasticity modeling without an enterprise sales process, <a href="/signup">Zorin</a> is built for exactly that gap. For a direct, feature-by-feature look, see <a href="/blog/zorin-vs-competera">Zorin vs Competera</a>.</p>
+<p class="conclusion">Competera's modeling is real, the alternative search usually isn't about doubting the mechanism, it's about pricing and onboarding that don't fit a smaller team. Zorin, Symson, Prisync, and Price2Spy each solve a different piece of what Competera does, at a different price point and level of self-serve access. For a direct, feature-by-feature look, see <a href="/blog/zorin-vs-competera">Zorin vs Competera</a>.</p>
     `.trim(),
   },
   {
     slug: "zorin-vs-symson",
+    hidden: true,
     title: "Zorin vs Symson: Which Fits Your Store?",
     excerpt:
       "Symson also does elasticity modeling, but for a different buyer. Here's an honest look at what actually separates it from Zorin.",
@@ -3913,11 +3918,12 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Symson and Zorin aren't separated by whether the underlying math is real, they both do genuine elasticity modeling. They're separated by which problem, and which buyer, each one was actually built to solve first. If that's a solo store owner or a small team without a pricing analyst, <a href="/signup">Zorin</a> gets you a per-SKU recommendation without a demo call or a custom quote standing in the way.</p>
+<p class="conclusion">Symson and Zorin aren't separated by whether the underlying math is real, they both do genuine elasticity modeling. They're separated by which problem, and which buyer, each one was actually built to solve first.</p>
     `.trim(),
   },
   {
     slug: "zorin-vs-prisync",
+    hidden: true,
     title: "Zorin vs Prisync: Which Fits Your Store?",
     excerpt:
       "Prisync tracks and matches competitor prices. Zorin models what your own customers will pay. Here's an honest, feature-by-feature comparison.",
@@ -4036,7 +4042,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Prisync and Zorin aren't really competing for the same job. If the question is "am I priced right relative to what else is listed for this product," Prisync answers that, and its 4.7-star G2 rating reflects real strength at that specific job. If it's "what would my own customers actually do if I changed this price," that's a question only your own sales history can answer, and <a href="/signup">Zorin</a> was built specifically to read it. Weighing more than one option? See <a href="/blog/prisync-alternatives">Prisync alternatives</a> for a broader shortlist.</p>
+<p class="conclusion">Prisync and Zorin aren't really competing for the same job. If the question is "am I priced right relative to what else is listed for this product," Prisync answers that, and its 4.7-star G2 rating reflects real strength at that specific job. Weighing more than one option? See <a href="/blog/prisync-alternatives">Prisync alternatives</a> for a broader shortlist.</p>
     `.trim(),
   },
   {
@@ -4256,7 +4262,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Picking discount candidates by instinct treats every product as equally price-sensitive, and most catalogs simply aren't built that way. Checking a product's own price-and-demand history before marking it down turns "let's put this on sale" into a decision backed by evidence, and pairing that with a storefront that actually shows the discount clearly is what lets a well-chosen sale convert the way the data suggested it should. <a href="/signup">Start a free trial</a> and see which of your own products are actually worth discounting this quarter.</p>
+<p class="conclusion">Picking discount candidates by instinct treats every product as equally price-sensitive, and most catalogs simply aren't built that way. Checking a product's own price-and-demand history before marking it down turns "let's put this on sale" into a decision backed by evidence, and pairing that with a storefront that actually shows the discount clearly is what lets a well-chosen sale convert the way the data suggested it should.</p>
     
 `.trim(),
   },
@@ -4372,7 +4378,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The launch price was always a placeholder, a reasonable number set before you had the evidence to do better. Once your sales history builds up, the decision stops being a guess: Zorin reads your own data and tells you whether to raise, by how much, and how confident that call actually is. <a href="/signup">Start a free trial</a> and see what your own elasticity says about the price you're still running from launch day.</p>
+<p class="conclusion">The launch price was always a placeholder, a reasonable number set before you had the evidence to do better. Once your sales history builds up, the decision stops being a guess: Zorin reads your own data and tells you whether to raise, by how much, and how confident that call actually is.</p>
     
 `.trim(),
   },
@@ -4458,7 +4464,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The tactics themselves are neutral. Anchoring, tiered pricing, and framing all work because they help customers process a real price more clearly, not because they trick anyone, as long as what you're anchoring against is genuine. <a href="/signup">Start a free trial</a> and see what your own sales data says about what's actually moving units.</p>
+<p class="conclusion">The tactics themselves are neutral. Anchoring, tiered pricing, and framing all work because they help customers process a real price more clearly, not because they trick anyone, as long as what you're anchoring against is genuine.</p>
 `,
   },
   {
@@ -4545,7 +4551,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Getting a price test right comes down to three things working together: a meaningful price change, enough time, and enough volume to trust the result. Skip any one of those and the test tells you less than it looks like it does. A price test is one of several ways to run a controlled discount, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to run a sale without wrecking your margin</a> for the broader playbook on protecting margin and data quality during any promotional period. <a href="/signup">Start a free trial</a> and let Zorin run this calculation automatically from your own sales history.</p>
+<p class="conclusion">Getting a price test right comes down to three things working together: a meaningful price change, enough time, and enough volume to trust the result. Skip any one of those and the test tells you less than it looks like it does. A price test is one of several ways to run a controlled discount, see <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">how to run a sale without wrecking your margin</a> for the broader playbook on protecting margin and data quality during any promotional period.</p>
 `,
   },
   {
@@ -4637,7 +4643,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The safest, most profitable BFCM strategy is also the most honest one: real prices as the baseline, discounts sized to what each product can actually absorb, and a clean flag on the promotional period once it's over. The same discipline applies to <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">running any sale without wrecking your margin</a>, BFCM just raises the stakes and the legal scrutiny. <a href="/signup">Start a free trial</a> to see which of your products are the strongest BFCM candidates.</p>
+<p class="conclusion">The safest, most profitable BFCM strategy is also the most honest one: real prices as the baseline, discounts sized to what each product can actually absorb, and a clean flag on the promotional period once it's over. The same discipline applies to <a href="/blog/how-to-run-a-sale-without-wrecking-your-margin">running any sale without wrecking your margin</a>, BFCM just raises the stakes and the legal scrutiny.</p>
 `,
   },
   {
@@ -4745,7 +4751,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">No platform fee sounds like an automatic advantage, but WooCommerce's real costs just show up in different places, hosting, plugins, and the same processing rates most stores pay anyway. The platform comparison matters once, when you're choosing where to build. Knowing your real net profit margin on whichever platform you're already using matters every day after that, see <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">what to target and how to track it</a> regardless of which platform you're on. <a href="/signup">Start a free trial</a> to see your own numbers.</p>
+<p class="conclusion">No platform fee sounds like an automatic advantage, but WooCommerce's real costs just show up in different places, hosting, plugins, and the same processing rates most stores pay anyway. The platform comparison matters once, when you're choosing where to build. Knowing your real net profit margin on whichever platform you're already using matters every day after that, see <a href="/blog/ecommerce-profit-margins-what-to-target-and-how-to-track-them">what to target and how to track it</a> regardless of which platform you're on.</p>
 `,
   },
   {
@@ -4851,7 +4857,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">A pricing survey and your own sales data aren't competing answers to the same question, they're two different signals that matter most at different points in a product's life. Lean on a survey when you don't have real sales history yet, and let your own data take over once it does. <a href="/signup">Start a free trial</a> to see both, with honest confidence labels, for your own catalog.</p>
+<p class="conclusion">A pricing survey and your own sales data aren't competing answers to the same question, they're two different signals that matter most at different points in a product's life. Lean on a survey when you don't have real sales history yet, and let your own data take over once it does.</p>
 `,
   },
   {
@@ -4967,7 +4973,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Supplement margins should run higher than a lot of founders assume, especially on your own DTC store where there's no wholesale markup to give away. Price a new launch with real customer data instead of a guess, size your subscription discount against your own reorder economics, and once you have sales history, let per-SKU elasticity tell you which products can actually absorb an increase. <a href="/signup">Start a free trial</a> to see where your own catalog stands.</p>
+<p class="conclusion">Supplement margins should run higher than a lot of founders assume, especially on your own DTC store where there's no wholesale markup to give away. Price a new launch with real customer data instead of a guess, size your subscription discount against your own reorder economics, and once you have sales history, let per-SKU elasticity tell you which products can actually absorb an increase.</p>
 `,
   },
   {
@@ -5215,7 +5221,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The formula for price elasticity is simple arithmetic you can run on one product in a spreadsheet. Where it gets genuinely hard is doing it accurately across a real catalog, with promotional noise filtered out and a confidence level attached to every number. For the general version of this walkthrough, or if you're evaluating Shopify instead, see <a href="/blog/what-does-price-elasticity-actually-mean">what price elasticity actually means</a> and <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store">the Shopify-specific calculation guide</a>. <a href="/integrations/woocommerce">Connect your WooCommerce store</a> and see your own catalog's elasticity read automatically, or start with the free <a href="/woocommerce-profit-margin-calculator">WooCommerce profit margin calculator</a> to check your current margins first.</p>
+<p class="conclusion">The formula for price elasticity is simple arithmetic you can run on one product in a spreadsheet. Where it gets genuinely hard is doing it accurately across a real catalog, with promotional noise filtered out and a confidence level attached to every number. For the general version of this walkthrough, or if you're evaluating Shopify instead, see <a href="/blog/what-does-price-elasticity-actually-mean">what price elasticity actually means</a> and <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store">the Shopify-specific calculation guide</a>.</p>
     
 `.trim(),
   },
@@ -6372,7 +6378,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Every product starts as a pricing hypothesis. Your existing catalog's elasticity data is the best proxy for how a new product's demand is likely to behave in the same category, and once the new SKU builds 3-6 months of history, Zorin can give you the raise, lower, or hold signal the launch price was never able to. The goal isn't a perfect launch price: it's building the data fast enough to replace the guess with something real. <a href="/signup">Start a free trial</a> to see what your existing catalog's elasticity looks like while the new product's history accumulates.</p>
+<p class="conclusion">Every product starts as a pricing hypothesis. Your existing catalog's elasticity data is the best proxy for how a new product's demand is likely to behave in the same category, and once the new SKU builds 3-6 months of history, Zorin can give you the raise, lower, or hold signal the launch price was never able to. The goal isn't a perfect launch price: it's building the data fast enough to replace the guess with something real.</p>
 `,
   },
   {
@@ -6826,7 +6832,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Knowing your real margin is step one. Knowing which prices to move, and by how much, is step two. Zorin connects both by reading your sales history per SKU, calculating the elasticity, and showing you the estimated profit lift before you commit to a change. No guessing, no copying a competitor's number, just your own data telling you where the margin opportunity actually is. If you're on WooCommerce specifically, <a href="/blog/are-woocommerces-fees-actually-better-margin">here's how its fee structure actually compares</a> before you assume a no-platform-fee setup means better margin by default. <a href="/signup">Start a free trial</a> to see what your own catalog's numbers say.</p>
+<p class="conclusion">Knowing your real margin is step one. Knowing which prices to move, and by how much, is step two. Zorin connects both by reading your sales history per SKU, calculating the elasticity, and showing you the estimated profit lift before you commit to a change. No guessing, no copying a competitor's number, just your own data telling you where the margin opportunity actually is. If you're on WooCommerce specifically, <a href="/blog/are-woocommerces-fees-actually-better-margin">here's how its fee structure actually compares</a> before you assume a no-platform-fee setup means better margin by default.</p>
     `.trim(),
   },
   {
@@ -6960,7 +6966,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Underpricing is the default state for most DTC skincare brands, not a mistake anyone made on purpose. Fix it in order: get your margin structure right tier by tier, price new launches with real customer data instead of a cost-plus guess, and use per-SKU elasticity to find out which existing products can absorb an increase without losing customers. <a href="/signup">Start a free trial</a> to see raise, lower, and hold recommendations across your own catalog.</p>
+<p class="conclusion">Underpricing is the default state for most DTC skincare brands, not a mistake anyone made on purpose. Fix it in order: get your margin structure right tier by tier, price new launches with real customer data instead of a cost-plus guess, and use per-SKU elasticity to find out which existing products can absorb an increase without losing customers.</p>
     `.trim(),
   },
   {
@@ -7114,7 +7120,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">A bundle that raises AOV but not contribution dollars per order isn't a win, it's a discount wearing a nicer outfit. Check the individual margins first, build the bundle from real co-purchase and margin data, run the three-way contribution test before launch, and let the price framing do the rest. <a href="/signup">Start a free trial</a> to see which of your products are natural bundle candidates.</p>
+<p class="conclusion">A bundle that raises AOV but not contribution dollars per order isn't a win, it's a discount wearing a nicer outfit. Check the individual margins first, build the bundle from real co-purchase and margin data, run the three-way contribution test before launch, and let the price framing do the rest.</p>
     
 `.trim(),
   },
@@ -7277,7 +7283,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Competitor tracking and demand-based pricing aren't rival approaches, they're built to answer different questions. If your customers are comparison-shopping the exact same SKU, a tracker earns its keep. If your real question is what your own customers would pay for your product, that answer lives in your own sales history. <a href="/signup">Start a free trial</a> and see what Zorin's elasticity model says about your catalog.</p>
+<p class="conclusion">Competitor tracking and demand-based pricing aren't rival approaches, they're built to answer different questions. If your customers are comparison-shopping the exact same SKU, a tracker earns its keep. If your real question is what your own customers would pay for your product, that answer lives in your own sales history.</p>
     
 `.trim(),
   },
@@ -7434,7 +7440,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">There's no universal best pricing tool, only the right mechanism for the question you're actually asking. Before trusting any tool's star rating on this list, it's worth knowing <a href="/blog/are-software-review-sites-reliable-for-pricing-tools">how much review sites actually verify before publishing a score</a>. If that question is "what would my own customers pay," <a href="/signup">start a free trial</a> and see what Zorin's elasticity model says about your catalog.</p>
+<p class="conclusion">There's no universal best pricing tool, only the right mechanism for the question you're actually asking. Before trusting any tool's star rating on this list, it's worth knowing <a href="/blog/are-software-review-sites-reliable-for-pricing-tools">how much review sites actually verify before publishing a score</a>.</p>
     `.trim(),
   },
   {
@@ -7572,7 +7578,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Zorin uses your own Shopify or WooCommerce sales history to model per-SKU price elasticity, so you're not left guessing whether a price change will help or hurt. If you want a starting point on a new product before you have enough sales history to model, the Van Westendorp survey inside Zorin can give you a defensible price range in the meantime. <a href="/signup">Start a free trial</a> and see what your own catalog's elasticity actually looks like.</p>
+<p class="conclusion">Zorin uses your own Shopify or WooCommerce sales history to model per-SKU price elasticity, so you're not left guessing whether a price change will help or hurt. If you want a starting point on a new product before you have enough sales history to model, the Van Westendorp survey inside Zorin can give you a defensible price range in the meantime.</p>
     
 `.trim(),
   },
@@ -7703,7 +7709,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Guessing at a price is expensive in either direction, too low and you're quietly giving away margin, too high and you're losing sales you'll never see reported as "lost to price." The fix isn't a better checklist of symptoms, it's reading what your own sales history already knows. <a href="/signup">Start a free trial</a> and see what your elasticity actually says about your next price move.</p>
+<p class="conclusion">Guessing at a price is expensive in either direction, too low and you're quietly giving away margin, too high and you're losing sales you'll never see reported as "lost to price." The fix isn't a better checklist of symptoms, it's reading what your own sales history already knows.</p>
     `.trim(),
   },
   {
@@ -7827,7 +7833,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Repricing and elasticity modeling aren't competing answers to the same question, they're built to answer two different ones. If your store's pricing problem is "am I visible at the right price point on a marketplace," a repricer earns its keep. If it's "what should this specific product actually cost given how my customers behave," that's a question only your own sales history can answer, and it's the one <a href="/signup">Zorin</a> was built to read. For a direct, feature-by-feature look at one specific repricer, see <a href="/blog/zorin-vs-prisync">Zorin vs Prisync</a>, or browse <a href="/blog/prisync-alternatives">Prisync alternatives</a> if you're comparing more than one option.</p>
+<p class="conclusion">Repricing and elasticity modeling aren't competing answers to the same question, they're built to answer two different ones. If your store's pricing problem is "am I visible at the right price point on a marketplace," a repricer earns its keep. For a direct, feature-by-feature look at one specific repricer, see <a href="/blog/zorin-vs-prisync">Zorin vs Prisync</a>, or browse <a href="/blog/prisync-alternatives">Prisync alternatives</a> if you're comparing more than one option.</p>
     
 `.trim(),
   },
@@ -7963,7 +7969,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Start with the product that hurt the most. Run it through the checklist above, rule out a same-week competitor move, and look at the actual elasticity behind the drop before you decide whether to hold, reverse, or stage the next increase differently. <a href="/signup">Zorin</a> fits a price elasticity model from your own sales history per SKU and shows you the estimated profit impact before you commit to anything.</p>
+<p class="conclusion">Start with the product that hurt the most. Run it through the checklist above, rule out a same-week competitor move, and look at the actual elasticity behind the drop before you decide whether to hold, reverse, or stage the next increase differently.</p>
     
 `.trim(),
   },
@@ -8123,7 +8129,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The formula for price elasticity of demand is simple enough to run by hand on one product in a spreadsheet. Where it gets genuinely hard is doing it accurately across a real catalog, with promotions filtered out and a confidence level attached to every number. If you want to <a href="/signup">start a free trial</a> and see your own catalog's elasticity read automatically, Zorin will fit the model directly from your Shopify or WooCommerce sales history. Running WooCommerce specifically? <a href="/blog/how-to-calculate-price-elasticity-for-your-woocommerce-store">here's the same walkthrough using WooCommerce's own Analytics export and database access</a>.</p>
+<p class="conclusion">The formula for price elasticity of demand is simple enough to run by hand on one product in a spreadsheet. Where it gets genuinely hard is doing it accurately across a real catalog, with promotions filtered out and a confidence level attached to every number. Running WooCommerce specifically? <a href="/blog/how-to-calculate-price-elasticity-for-your-woocommerce-store">here's the same walkthrough using WooCommerce's own Analytics export and database access</a>.</p>
     
 `.trim(),
   },
@@ -9101,7 +9107,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">What customers say they'll pay is a useful starting point. What they actually pay is the answer. Start with a survey if you have nothing else, then let real sales take over. If your products already have sales history, <a href="/signup">Zorin reads it from Shopify or WooCommerce</a> and shows each product's price sensitivity, and its built-in Van Westendorp survey covers the products that don't.</p>
+<p class="conclusion">What customers say they'll pay is a useful starting point. What they actually pay is the answer. Start with a survey if you have nothing else, then let real sales take over.</p>
 `.trim(),
   },
   {
@@ -9964,7 +9970,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Raising prices doesn't have to cost you customers. Give people a reason they recognize as fair, raise only what each product can carry, and give your regulars notice. If you'd rather not guess which of your products can carry an increase, <a href="/signup">Zorin reads your Shopify or WooCommerce sales history</a> and shows each product's price sensitivity, with a raise, lower or hold recommendation and the estimated profit impact.</p>
+<p class="conclusion">Raising prices doesn't have to cost you customers. Give people a reason they recognize as fair, raise only what each product can carry, and give your regulars notice.</p>
 `.trim(),
   },
   {
@@ -10672,7 +10678,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">The price that makes you the most money is already hiding in your sales history. Set a floor, read how customers reacted the last time the price moved, compare total profit rather than units, and test before rolling a change out everywhere. If you'd like that done for every product at once, <a href="/signup">start a free trial of Zorin</a> and see each product's recommendation from your own data.</p>
+<p class="conclusion">The price that makes you the most money is already hiding in your sales history. Set a floor, read how customers reacted the last time the price moved, compare total profit rather than units, and test before rolling a change out everywhere.</p>
 `.trim(),
   },
   {
@@ -10789,7 +10795,7 @@ export const posts: BlogPost[] = [
 </div>
 </section>
 
-<p class="conclusion">Getting the channel-gap decision right isn't about eliminating the difference between your Amazon and Shopify prices. It's about knowing whether your own customers would notice or care in the first place, and being straightforward when they do. <a href="/signup">Start a free trial</a> and see what your own elasticity data says before you assume a customer is watching the gap at all.</p>
+<p class="conclusion">Getting the channel-gap decision right isn't about eliminating the difference between your Amazon and Shopify prices. It's about knowing whether your own customers would notice or care in the first place, and being straightforward when they do.</p>
     
 `.trim(),
   },

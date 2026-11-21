@@ -125,15 +125,6 @@ export function PriceElasticityCalculator() {
             "Demand moves proportionally with price — revenue stays roughly flat as price changes."}
         </p>
       )}
-
-      <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50 p-4 text-sm text-zinc-700">
-        This calculator uses two data points. Zorin fits a full demand curve from your real order
-        history — every SKU, updated automatically as new sales come in — and tells you the exact
-        price that maximizes profit, not just revenue.{" "}
-        <a href="/signup" className="font-semibold text-blue-600 hover:text-blue-700">
-          Start your free trial →
-        </a>
-      </div>
     </div>
   );
 }

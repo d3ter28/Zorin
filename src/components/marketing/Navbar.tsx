@@ -4,12 +4,10 @@ import { useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 
 const links = [
-  { label: "How it works", href: "/#how-it-works" },
-  { label: "Features", href: "/features" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Blog", href: "/blog" },
-  { label: "Calculator", href: "/shopify-profit-margin-calculator" },
-  { label: "Talk to us", href: "/#early-access" },
+  { label: "Articles", href: "/blog" },
+  { label: "Research", href: "/research" },
+  { label: "Tools", href: "/#tools" },
+  { label: "About", href: "/about" },
 ];
 
 export function Navbar() {
@@ -39,16 +37,10 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <a
-            href="/login"
-            className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
-          >
-            Log in
-          </a>
-          <a
-            href="/signup"
+            href="/#newsletter"
             className="inline-flex h-9 items-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 
@@ -77,14 +69,12 @@ export function Navbar() {
               </a>
             ))}
             <hr className="border-zinc-200" />
-            <a href="/login" className="text-sm font-medium text-zinc-700">
-              Log in
-            </a>
             <a
-              href="/signup"
+              href="/#newsletter"
+              onClick={() => setOpen(false)}
               className="inline-flex h-9 items-center justify-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white"
             >
-              Start free trial
+              Subscribe
             </a>
           </div>
         </div>

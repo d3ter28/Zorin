@@ -1,124 +1,106 @@
-import dynamic from "next/dynamic";
 import { Navbar } from "@/components/marketing/Navbar";
-import { Hero } from "@/components/marketing/Hero";
-import { MetricsStrip } from "@/components/marketing/MetricsStrip";
-import { LogoWall } from "@/components/marketing/LogoWall";
-import { WhyZorin } from "@/components/marketing/WhyZorin";
-import { HowItWorks } from "@/components/marketing/HowItWorks";
-import { Features } from "@/components/marketing/Features";
+import { Blog } from "@/components/marketing/Blog";
+import { Newsletter } from "@/components/marketing/Newsletter";
 import { Footer } from "@/components/marketing/Footer";
 
-// Below-the-fold sections: still server-rendered for content/SEO (ssr stays
-// true, the default), but split into separate chunks so their client-side
-// JS (mostly motion/react entrance animations) doesn't add to the initial
-// bundle every visitor downloads and parses before first paint.
-const Pricing = dynamic(() => import("@/components/marketing/Pricing").then(m => m.Pricing));
-const Blog = dynamic(() => import("@/components/marketing/Blog").then(m => m.Blog));
-const FAQ = dynamic(() => import("@/components/marketing/FAQ").then(m => m.FAQ));
-const EarlyAccess = dynamic(() => import("@/components/marketing/EarlyAccess").then(m => m.EarlyAccess));
-const DataGuarantee = dynamic(() => import("@/components/marketing/DataGuarantee").then(m => m.DataGuarantee));
-
 export const metadata = {
-  title: "Zorin - Pricing Intelligence for E-Commerce Sellers",
+  title: "Zorin - Pricing Guides for Online Sellers",
   description:
-    "Turn your sales history into profit-maximizing price recommendations. Upload, model, optimize.",
+    "Practical pricing articles for Shopify and WooCommerce sellers: price elasticity, discounts, margins and pricing strategy, with the math worked out.",
   alternates: { canonical: "https://www.tryzorin.com" },
 };
 
-// Plain-text mirror of the FAQ component's Q&A, for FAQPage schema — the
-// component itself renders answers behind a client-side accordion, which
-// non-JS crawlers (AI citation bots) can't expand.
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Do I need a developer or data scientist to use this?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. You upload a CSV of your past sales, the same spreadsheet you already export from Shopify or your order system. Zorin does everything else. No code, no configuration, no technical background required.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much sales data do I need before it works?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Around 50-100 sales records per product gives reliable results. If you have less than that for a product, Zorin will tell you the model is weak and flag it. You'll never get a confident-sounding recommendation from thin data.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What's the difference between this and just checking what my competitors charge?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Competitor prices tell you what works for their customers in their market. Your customers (their price sensitivity, their income bracket, the reason they found you) are different. Zorin learns from how your buyers actually respond to price, not someone else's.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Will it work if my sales are seasonal?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Zorin builds a model from the data you give it, so if you upload a full year of history, it learns patterns across seasons. For highly seasonal products, we recommend uploading data from the relevant period when you want a recommendation.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What happens to my sales data?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Your data is stored in your account only and is never shared, sold, or used to train models for other merchants. Each merchant's data is fully isolated.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What if I disagree with a recommendation?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "You always apply prices manually. Nothing changes automatically. Every recommendation comes with a confidence score and the underlying model stats, so you can judge whether to act on it or not.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Why not just ask ChatGPT or Claude to analyze my pricing?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Their advice is generic: LLMs can't see your sales data, so they give pricing opinions based on general knowledge, not recommendations built from your actual demand curve. The numbers are made up: if you paste in a spreadsheet and ask for an elasticity number, they'll give you one confidently, and it will be fabricated. Zorin fits a real statistical model to your data and shows you an R-squared score so you know exactly how much to trust it. The answer changes every time: ask an LLM the same question twice and you get two different answers, while Zorin is deterministic, same data, same result, every time. They miss promotional spikes: if you ran a sale last November, an LLM won't know to exclude those orders from the model, but Zorin detects them automatically so they don't skew your recommendations. The workflow doesn't scale: you'd need to export your data, paste it in, engineer a prompt, interpret the output, and repeat for every product every time, while Zorin does it in one place for your whole catalog.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is there a free trial?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, every plan includes a 7-day free trial, no credit card required. This trial is only available while Zorin is in beta; once beta ends, new signups start billing immediately with no trial period. Early access users also get locked-in pricing when we launch paid plans.",
-      },
-    },
-  ],
-};
+const tools = [
+  {
+    href: "/price-elasticity-calculator",
+    title: "Price elasticity calculator",
+    body: "Work out how sensitive demand is to a price change from two price and quantity points.",
+  },
+  {
+    href: "/shopify-profit-margin-calculator",
+    title: "Shopify profit margin calculator",
+    body: "Include Shopify and payment fees to see the margin you actually keep per order.",
+  },
+  {
+    href: "/woocommerce-profit-margin-calculator",
+    title: "WooCommerce profit margin calculator",
+    body: "The same margin math with WooCommerce and payment gateway fees built in.",
+  },
+  {
+    href: "/van-westendorp-survey-template",
+    title: "Van Westendorp survey template",
+    body: "Ready-to-send questions for finding the price range your customers accept.",
+  },
+  {
+    href: "/price-increase-email-template",
+    title: "Price increase email template",
+    body: "Tell customers about a price rise clearly and without losing their goodwill.",
+  },
+  {
+    href: "/markdown-clearance-spreadsheet",
+    title: "Markdown & clearance spreadsheet",
+    body: "Plan markdown depth and timing to clear stock without wrecking margin.",
+  },
+];
 
 export default function LandingPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
       <Navbar />
       <main>
-        <Hero />
-        <MetricsStrip />
-        <LogoWall />
-        <WhyZorin />
-        <HowItWorks />
-        <Features />
-        <Pricing headingLevel="h2" />
+        <section className="pt-16">
+          <div className="mx-auto max-w-[1400px] px-6 py-16 md:py-24">
+            <h1 className="max-w-[20ch] text-4xl font-bold tracking-tight text-zinc-900 md:text-6xl">
+              Pricing, explained for online sellers.
+            </h1>
+            <p className="mt-6 max-w-[55ch] text-lg leading-relaxed text-zinc-500">
+              Guides on price elasticity, discounting, margins and pricing strategy for Shopify and WooCommerce stores, written with worked numbers instead of rules of thumb.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="/blog"
+                className="inline-flex h-11 items-center rounded-lg bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
+              >
+                Read the articles
+              </a>
+              <a
+                href="/#newsletter"
+                className="inline-flex h-11 items-center rounded-lg border border-zinc-300 px-6 text-sm font-medium text-zinc-700 transition-all hover:border-zinc-400 hover:bg-zinc-50 active:scale-[0.98]"
+              >
+                Get new articles by email
+              </a>
+            </div>
+          </div>
+        </section>
+
         <Blog />
-        <FAQ />
-        <EarlyAccess />
-        <DataGuarantee />
+
+        <section id="tools" className="scroll-mt-20">
+          <div className="mx-auto max-w-[1400px] px-6 py-10 md:py-16">
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">
+              Free calculators and templates
+            </h2>
+            <p className="mt-3 max-w-[50ch] text-base leading-relaxed text-zinc-500">
+              Small tools for the pricing questions that come up most.
+            </p>
+            <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {tools.map((t) => (
+                <a
+                  key={t.href}
+                  href={t.href}
+                  className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-6 transition-shadow hover:shadow-md"
+                >
+                  <h3 className="text-base font-semibold text-zinc-900 group-hover:text-blue-600">
+                    {t.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-500">{t.body}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <Newsletter />
       </main>
       <Footer />
     </>

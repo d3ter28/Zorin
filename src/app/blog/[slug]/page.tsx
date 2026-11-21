@@ -64,19 +64,10 @@ function splitContentForMidArticleCta(html: string) {
   return { before: html.slice(0, splitAt), after: html.slice(splitAt) };
 }
 
-// BOFU posts (comparison pages especially) get a sharper, more direct CTA than
-// the standard educational nudge — the reader has already decided they're
-// evaluating tools, not learning a concept.
-function ctaCopy(post: { funnelStage?: "TOFU" | "MOFU" | "BOFU" }) {
-  if (post.funnelStage === "BOFU") {
-    return {
-      heading: "Ready to see your own numbers?",
-      button: "Start your free trial",
-    };
-  }
+function ctaCopy() {
   return {
-    heading: "See what Zorin's elasticity model says about your own catalog.",
-    button: "Start free trial",
+    heading: "Get new pricing articles by email.",
+    button: "Subscribe",
   };
 }
 
@@ -213,10 +204,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="mt-6 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
               <p className="text-sm text-zinc-700">{post.comparison.verdict}</p>
               <a
-                href="/signup"
+                href="/#newsletter"
                 className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
               >
-                {ctaCopy(post).button}
+                {ctaCopy().button}
               </a>
             </div>
           </div>
@@ -230,13 +221,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {after && (
           <div className="my-10 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
             <p className="text-sm font-semibold text-zinc-900">
-              {ctaCopy(post).heading}
+              {ctaCopy().heading}
             </p>
             <a
-              href="/signup"
+              href="/#newsletter"
               className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
             >
-              {ctaCopy(post).button}
+              {ctaCopy().button}
             </a>
           </div>
         )}

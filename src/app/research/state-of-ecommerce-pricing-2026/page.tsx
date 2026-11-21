@@ -338,23 +338,18 @@ export default function StateOfEcommercePricing2026Page() {
           <a href="/blog/how-to-raise-prices-without-losing-customers" className="text-blue-600 hover:underline">
             Should you raise prices to cover rising costs?
           </a>{" "}
-          walks through that decision, and{" "}
-          <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">
-            Zorin measures each product&apos;s price sensitivity
-          </a>{" "}
-          from your own Shopify or WooCommerce sales history, so you know which products can take
-          an increase.
+          walks through that decision.
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See which of your products can absorb a price increase.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

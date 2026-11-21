@@ -100,16 +100,8 @@ export default function ProfitMarginCalculatorPage() {
             </li>
           </ul>
           <p className="mt-6 text-sm leading-relaxed text-zinc-500">
-            This calculator is a per-order snapshot. If you want this computed automatically
-            across your whole catalog, updated as new orders come in, Zorin&apos;s{" "}
-            <a href="/features" className="text-blue-600 hover:underline">
-              full profit tracking dashboard
-            </a>{" "}
-            does that from your connected Shopify or WooCommerce store, alongside price
-            recommendations for every SKU.{" "}
-            <a href="/signup" className="font-semibold text-blue-600 hover:text-blue-700">
-              Start your free trial →
-            </a>
+            This calculator is a per-order snapshot. To check a whole catalog, run it for each product,
+            starting with your best sellers.
           </p>
         </div>
 

@@ -61,10 +61,29 @@ const BLOG_REDIRECTS: [string, string][] = [
   ["dynamic-pricing-explained-definition-example-legal-risks", "what-is-dynamic-pricing"],
 ];
 
+const RETIRED_APP_PATHS = [
+  "/signup",
+  "/login",
+  "/forgot-password",
+  "/reset-password",
+  "/dashboard/:path*",
+  "/settings/:path*",
+  "/campaigns/:path*",
+  "/profit/:path*",
+  "/billing/:path*",
+  "/launch-planner/:path*",
+  "/invite/:path*",
+  "/survey/:path*",
+  "/guide",
+  "/product/:path*",
+  "/pricing",
+  "/features",
+  "/features/:path*",
+  "/integrations",
+  "/integrations/:path*",
+];
+
 const nextConfig: NextConfig = {
-  // Prevent bundling native SQLite modules — they load from node_modules at
-  // runtime on local dev only; the production build never reaches this path.
-  serverExternalPackages: ["@prisma/adapter-better-sqlite3", "better-sqlite3", "@prisma/adapter-neon", "@neondatabase/serverless"],
   async headers() {
     return [
       {
@@ -74,11 +93,20 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
-    return BLOG_REDIRECTS.map(([from, to]) => ({
-      source: `/blog/${from}`,
-      destination: `/blog/${to}`,
-      permanent: true,
-    }));
+    return [
+      ...BLOG_REDIRECTS.map(([from, to]) => ({
+        source: `/blog/${from}`,
+        destination: `/blog/${to}`,
+        permanent: true,
+      })),
+      // The Zorin app and its product pages were retired when the site became a
+      // pricing publication. Send old URLs to the homepage rather than a 404.
+      ...RETIRED_APP_PATHS.map((source) => ({
+        source,
+        destination: "/",
+        permanent: true,
+      })),
+    ];
   },
 };
 
