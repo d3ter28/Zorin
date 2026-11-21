@@ -304,23 +304,18 @@ export default function ReturnRateByProductCategoryPage() {
           <a href="/blog/how-to-price-a-discount-without-losing-your-margin" className="text-blue-600 hover:underline">
             how much you can discount without killing your margin
           </a>{" "}
-          walks through sizing a discount against it.{" "}
-          <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">
-            Zorin reads your own sales history
-          </a>{" "}
-          to show how each product responds to a price change, so you can price against your real
-          margin rather than a category average.
+          walks through sizing a discount against it.
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            Find the price your products can actually hold, after returns.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

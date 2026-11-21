@@ -364,22 +364,18 @@ export default function AverageOrderValueByProductCategoryPage() {
             our page on price elasticity by category
           </a>{" "}
           covers how sensitive customer demand actually is to a price change in your specific
-          category. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">
-            Zorin fits a demand model to your own sales history
-          </a>{" "}
-          so a price change is grounded in your own customers&apos; behavior rather than a category
-          average.
+          category. 
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See what your own customers actually pay, not a category average.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

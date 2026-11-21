@@ -174,11 +174,7 @@ export default function MarkdownClearanceSpreadsheetPage() {
 
         <div className="mt-16 border-t border-zinc-100 pt-10">
           <p className="text-sm leading-relaxed text-zinc-500">
-            Want to know which products actually need a markdown instead of guessing?{" "}
-            <a href="/signup" className="font-medium text-emerald-700 underline underline-offset-2">
-              See your slowest-moving SKUs in Zorin
-            </a>
-            , backed by your own sales data.
+            Want to know which products actually need a markdown instead of guessing? Start with the products that have sat unsold the longest.
           </p>
         </div>
       </main>

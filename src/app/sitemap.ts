@@ -11,13 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/blog`,                                    lastModified: new Date("2026-08-21") },
     { url: `${BASE_URL}/blog/all`,                                lastModified: new Date("2026-08-21") },
     { url: `${BASE_URL}/research`,                                lastModified: new Date("2026-08-25") },
-    { url: `${BASE_URL}/features`,                                lastModified: new Date("2026-07-15") },
-    { url: `${BASE_URL}/pricing`,                                  lastModified: new Date("2026-08-22") },
-    { url: `${BASE_URL}/features/price-elasticity-modeling`,      lastModified: new Date("2026-07-01") },
-    { url: `${BASE_URL}/features/competitor-price-tracking`,      lastModified: new Date("2026-07-01") },
-    { url: `${BASE_URL}/features/promotion-detection`,            lastModified: new Date("2026-07-01") },
-    { url: `${BASE_URL}/integrations/shopify`,                    lastModified: new Date("2026-06-01") },
-    { url: `${BASE_URL}/integrations/woocommerce`,                lastModified: new Date("2026-06-01") },
     { url: `${BASE_URL}/shopify-profit-margin-calculator`,        lastModified: new Date("2026-07-01") },
     { url: `${BASE_URL}/woocommerce-profit-margin-calculator`,    lastModified: new Date("2026-08-22") },
     { url: `${BASE_URL}/price-elasticity-calculator`,             lastModified: new Date("2026-08-20") },
@@ -26,7 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/price-increase-email-template`,           lastModified: new Date("2026-09-20") },
     { url: `${BASE_URL}/markdown-clearance-spreadsheet`,          lastModified: new Date("2026-09-20") },
     { url: `${BASE_URL}/about`,                                   lastModified: new Date("2026-08-20") },
-    { url: `${BASE_URL}/terms`,                                   lastModified: new Date("2026-06-01") },
     { url: `${BASE_URL}/privacy`,                                 lastModified: new Date("2026-06-01") },
   ];
 

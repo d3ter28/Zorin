@@ -492,9 +492,7 @@ export default function PriceElasticityByCategoryPage() {
           product in your catalog can behave differently from its category average depending on
           your brand positioning, your customers, and your competitive set. The appliances and
           apparel sections above both show category-level and brand-level elasticity diverging
-          sharply within the same product type. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits an elasticity model directly to your own sales history</a>,
-          per SKU, so the number you act on reflects your actual customers, not a category-wide
-          blend. If you want to run the calculation yourself first, <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store" className="text-blue-600 hover:underline">the Shopify walkthrough</a> and <a href="/blog/how-to-calculate-price-elasticity-for-your-woocommerce-store" className="text-blue-600 hover:underline">the WooCommerce walkthrough</a> cover
+          sharply within the same product type.  If you want to run the calculation yourself first, <a href="/blog/how-to-calculate-price-elasticity-for-your-shopify-store" className="text-blue-600 hover:underline">the Shopify walkthrough</a> and <a href="/blog/how-to-calculate-price-elasticity-for-your-woocommerce-store" className="text-blue-600 hover:underline">the WooCommerce walkthrough</a> cover
           the same formula used to produce the figures above. Elasticity is only half the pricing
           picture, <a href="/research/profit-margins-by-product-category" className="text-blue-600 hover:underline">the gross profit margins by category reference</a> covers the other half:
           what a healthy margin actually looks like once you know how demand responds to price.
@@ -502,13 +500,13 @@ export default function PriceElasticityByCategoryPage() {
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See your own catalog&apos;s elasticity, not a category average.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

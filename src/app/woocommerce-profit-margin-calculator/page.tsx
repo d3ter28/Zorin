@@ -33,11 +33,6 @@ const faqs = [
       "WooCommerce doesn't lock you into one payment gateway the way Shopify does with Shopify Payments, so a WooCommerce store's actual processing fee depends entirely on which gateway (WooPayments, Stripe, PayPal, Square, Authorize.net) is connected, each with a different typical rate.",
   },
   {
-    question: "Is this the same as the margin Zorin shows in the dashboard?",
-    answer:
-      "The math is the same, but this calculator is a manual, per-order snapshot you run yourself. Zorin's profit tracking dashboard computes this automatically across your whole catalog from your connected WooCommerce store, updated as new orders come in, alongside a price recommendation for each product.",
-  },
-  {
     question: "What's a healthy profit margin for a WooCommerce store?",
     answer:
       "It depends heavily on category, a supplement or skincare brand often runs 60-80% gross margin, while consumer electronics can run closer to 25-40%. There's no single universal target; see the category benchmarks in Zorin's research reference for real, sourced figures by product type.",
@@ -101,16 +96,8 @@ export default function WooCommerceProfitMarginCalculatorPage() {
             </li>
           </ul>
           <p className="mt-6 text-sm leading-relaxed text-zinc-500">
-            This calculator is a per-order snapshot. If you want this computed automatically
-            across your whole catalog, updated as new orders come in, Zorin&apos;s{" "}
-            <a href="/features" className="text-blue-600 hover:underline">
-              full profit tracking dashboard
-            </a>{" "}
-            does that from your connected WooCommerce or Shopify store, alongside price
-            recommendations for every SKU.{" "}
-            <a href="/signup" className="font-semibold text-blue-600 hover:text-blue-700">
-              Start your free trial →
-            </a>
+            This calculator is a per-order snapshot. To check a whole catalog, run it for each product,
+            starting with your best sellers.
           </p>
         </div>
 

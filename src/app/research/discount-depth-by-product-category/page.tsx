@@ -263,23 +263,18 @@ export default function DiscountDepthByProductCategoryPage() {
           <a href="/blog/which-products-actually-deserve-a-discount" className="text-blue-600 hover:underline">
             which products actually deserve a discount
           </a>{" "}
-          covers picking the right candidates before you decide how deep to go.{" "}
-          <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">
-            Zorin reads your own sales history
-          </a>{" "}
-          to tell you how a specific product responds to a price move, instead of borrowing an
-          industry average that may not fit your catalog at all.
+          covers picking the right candidates before you decide how deep to go.
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See what discount depth your own products can actually support.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

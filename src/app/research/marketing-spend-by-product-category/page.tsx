@@ -403,20 +403,18 @@ export default function MarketingSpendByProductCategoryPage() {
           the other half of that equation, and <a href="/research/inventory-turnover-by-product-category" className="text-blue-600 hover:underline">our page on inventory turnover by category</a> covers
           a third factor that shapes both: how long a product sits unsold before it moves, and{" "}
           <a href="/research/discount-impact-on-margin-by-product-category" className="text-blue-600 hover:underline">our page on discount impact on margin by category</a> covers
-          what it costs to clear that stock once it's time to move it. <a href="/features/price-elasticity-modeling" className="text-blue-600 hover:underline">Zorin fits a demand model to your own sales history</a> so
-          you can see which of your products can support a price increase, room that could fund
-          more acquisition spend without eroding the margin you actually need to keep.
+          what it costs to clear that stock once it's time to move it. 
         </p>
 
         <div className="mt-8 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
           <p className="text-sm font-semibold text-zinc-900">
-            See your own margin and pricing headroom, not a category average.
+            Get new pricing research by email.
           </p>
           <a
-            href="/signup"
+            href="/#newsletter"
             className="mt-3 inline-flex h-10 items-center rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-[0.98]"
           >
-            Start free trial
+            Subscribe
           </a>
         </div>
 

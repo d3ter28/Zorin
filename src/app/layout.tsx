@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
-import { PLAN_CATALOG } from "@/lib/billing/planCatalog";
 import "./globals.css";
 
 const GA_ID = "G-BF8DJYWE15";
@@ -19,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.tryzorin.com"),
   title: "Zorin",
-  description: "Turn your sales history into profit-maximizing price recommendations.",
+  description: "Pricing guides for online sellers: price elasticity, discounts, margins and strategy.",
   other: {
     "pressplaced-verification": "a4e4c427b5e6bf5d",
   },
@@ -48,22 +47,6 @@ const websiteJsonLd = {
   },
 };
 
-const softwareJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Zorin",
-  description:
-    "ML-powered pricing intelligence for Shopify and WooCommerce merchants. Fits a per-SKU demand curve from your sales history and returns raise/lower/hold recommendations with estimated profit lift.",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  url: "https://www.tryzorin.com",
-  offers: {
-    "@type": "Offer",
-    price: PLAN_CATALOG[0].price.replace("$", ""),
-    priceCurrency: "USD",
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -81,17 +64,13 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <script
           type="speculationrules"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              prerender: [{ urls: ["/signup", "/features", "/blog"] }],
+              prerender: [{ urls: ["/blog"] }],
               prefetch: [{ source: "document", where: { href_matches: "/blog/*" }, eagerness: "moderate" }],
             }),
           }}

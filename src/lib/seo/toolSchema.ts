@@ -1,9 +1,6 @@
 const BASE_URL = "https://www.tryzorin.com";
 
-// Free interactive tools get their own WebApplication schema with a $0
-// Offer, kept separate from the sitewide SoftwareApplication block in
-// layout.tsx (which describes the paid Zorin product) so a $0 tool page
-// never inherits paid pricing.
+// Free interactive tools get their own WebApplication schema with a $0 Offer.
 export function buildCalculatorSchema({
   name,
   path,

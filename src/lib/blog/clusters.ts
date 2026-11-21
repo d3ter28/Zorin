@@ -12,7 +12,7 @@ export const clusters: Cluster[] = [
     slug: "price-elasticity",
     name: "Price Elasticity",
     description:
-      "The core idea behind every Zorin recommendation: how demand responds when price moves. Start here to understand elasticity.",
+      "The core idea behind every pricing decision: how demand responds when price moves. Start here to understand elasticity.",
     postSlugs: [
       "what-does-price-elasticity-actually-mean",
       "price-elasticity-examples-by-ecommerce-category",
@@ -33,7 +33,7 @@ export const clusters: Cluster[] = [
     slug: "pricing-tools-and-software",
     name: "Pricing Tools & Software",
     description:
-      "Comparisons and buyer's guides for pricing, repricing, and pricing-optimization apps, including where a demand-based tool like Zorin fits best.",
+      "Comparisons and buyer's guides for pricing, repricing, and pricing-optimization apps, including where a demand-based tool fits best.",
     postSlugs: [
       "best-pricing-optimization-tools-for-shopify-stores-2026",
       "best-dynamic-pricing-software",
@@ -51,6 +51,12 @@ export const clusters: Cluster[] = [
       "are-software-review-sites-reliable-for-pricing-tools",
       "price-management-software",
       "pricefx-alternatives",
+      "prisync-review",
+      "prisync-alternatives",
+      "competera-review",
+      "competera-alternatives",
+      "omnia-retail-review",
+      "symson-review",
     ],
   },
   {

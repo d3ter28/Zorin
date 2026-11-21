@@ -197,13 +197,6 @@ export function PaymentFeeCalculator({
           </p>
         </div>
       </div>
-
-      <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50 p-4 text-sm text-zinc-700">
-        Tired of manual math? Zorin uses Machine Learning Models to optimize this across your whole catalog automatically.{" "}
-        <a href="/signup" className="font-semibold text-blue-600 hover:text-blue-700">
-          Start your free trial →
-        </a>
-      </div>
     </div>
   );
 }

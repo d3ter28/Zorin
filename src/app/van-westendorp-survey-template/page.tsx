@@ -132,21 +132,15 @@ export default function VanWestendorpSurveyTemplatePage() {
           </p>
           <p className="text-sm leading-relaxed text-zinc-500">
             Running this manually means building your own form, collecting responses in a
-            spreadsheet, and calculating the curves by hand. Zorin runs this exact survey
-            natively for any product in your catalog, a shareable no-login link goes out to
-            customers, and the acceptable range, optimal price point, and a response-count
-            confidence tier are calculated automatically once responses come in. See{" "}
+            spreadsheet, and calculating the curves by hand. This template keeps the
+            questions consistent, so results stay comparable from one product to the next. See{" "}
             <a
               href="/blog/how-to-run-a-price-sensitivity-survey"
               className="font-medium text-emerald-700 underline underline-offset-2"
             >
               How to Run a Van Westendorp Survey
             </a>{" "}
-            for the full walkthrough, or{" "}
-            <a href="/signup" className="font-medium text-emerald-700 underline underline-offset-2">
-              generate a survey link in Zorin
-            </a>{" "}
-            directly.
+            for the full walkthrough.
           </p>
         </div>
 

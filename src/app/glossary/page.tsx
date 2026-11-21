@@ -330,11 +330,7 @@ export default function GlossaryPage() {
 
         <div className="mt-16 border-t border-zinc-100 pt-10">
           <p className="text-sm leading-relaxed text-zinc-500">
-            Curious what your own elasticity and confidence scores look like on real products?{" "}
-            <a href="/signup" className="font-medium text-emerald-700 underline underline-offset-2">
-              Connect your store and see your first recommendation in Zorin
-            </a>
-            .
+            Want the full explanation behind a term? Browse the <a href="/blog" className="font-medium text-emerald-700 underline underline-offset-2">pricing articles</a>.
           </p>
         </div>
       </main>

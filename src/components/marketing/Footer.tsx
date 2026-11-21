@@ -13,26 +13,16 @@ export function Footer() {
               Zorin
             </a>
             <p className="mt-3 max-w-[32ch] text-sm leading-relaxed text-zinc-500">
-              Pricing intelligence for e-commerce sellers.
+              Pricing guides for online sellers.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-x-12 gap-y-10">
             <div>
               <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                Product
+                Read &amp; use
               </h4>
               <ul className="mt-3 flex flex-col gap-2">
-                <li>
-                  <a href="/features" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="/pricing" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Pricing
-                  </a>
-                </li>
                 <li>
                   <a href="/blog" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                     Blog
@@ -73,11 +63,6 @@ export function Footer() {
                     Pricing glossary
                   </a>
                 </li>
-                <li>
-                  <a href="/signup" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Start free trial
-                  </a>
-                </li>
               </ul>
             </div>
             <div>
@@ -104,23 +89,6 @@ export function Footer() {
             </div>
             <div>
               <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                Integrations
-              </h4>
-              <ul className="mt-3 flex flex-col gap-2">
-                <li>
-                  <a href="/integrations/shopify" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    Shopify
-                  </a>
-                </li>
-                <li>
-                  <a href="/integrations/woocommerce" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                    WooCommerce
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
                 Company
               </h4>
               <ul className="mt-3 flex flex-col gap-2">
@@ -134,34 +102,12 @@ export function Footer() {
             <div className="flex gap-x-16 md:ml-auto">
               <div>
                 <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
-                  Account
-                </h4>
-                <ul className="mt-3 flex flex-col gap-2">
-                  <li>
-                    <a href="/login" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                      Log in
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/signup" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                      Sign up
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">
                   Legal
                 </h4>
                 <ul className="mt-3 flex flex-col gap-2">
                   <li>
                     <a href="/privacy" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
                       Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/terms" className="text-sm text-zinc-500 transition-colors hover:text-zinc-900">
-                      Terms of Service
                     </a>
                   </li>
                 </ul>
