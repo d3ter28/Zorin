@@ -4,13 +4,14 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Zorin",
     short_name: "Zorin",
-    description: "Turn your sales history into profit-maximizing price recommendations.",
+    description: "Practical pricing guides for online sellers.",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#2563eb",
+    background_color: "#fbfaf7",
+    theme_color: "#12141a",
     icons: [
-      { src: "/logo.png", sizes: "512x512", type: "image/png" },
+      { src: "/icon.svg", sizes: "any", type: "image/svg+xml" },
+      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
     ],
   };
 }
