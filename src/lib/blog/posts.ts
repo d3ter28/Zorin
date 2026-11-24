@@ -10,6 +10,7 @@ export type BlogPost = {
   category: string;
   funnelStage?: FunnelStage; // undefined = TOFU. Drives CTA density/copy in the post template.
   ogImage?: string; // absolute URL or root-relative path, e.g. "/images/blog/my-post-og.png" (1200×630)
+  cover?: { src: string; alt: string }; // 1440×810 cover shown under the article header; also the social image when ogImage is unset
   canonicalSlug?: string; // set on older duplicate posts to point canonical to the newer slug
   hidden?: boolean; // excluded from sitemap, /blog/all listing, and search indexing — for off-topic reciprocal-link placements that stay live at their URL but shouldn't dilute topical relevance
   content: string; // HTML string
@@ -30,6 +31,7 @@ export const posts: BlogPost[] = [
     date: "2026-11-19",
     readingTime: "5 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/prestige-pricing/cover.webp", alt: "Serum bottle with a price tag on a stone plinth against green velvet" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -60,6 +62,11 @@ export const posts: BlogPost[] = [
 </table>
 <p>It fails for commodity products, branded items sold by many stores, and anything a shopper can compare spec by spec. In those categories a high price just loses the sale, as covered in <a href="/blog/elastic-vs-inelastic-demand-whats-the-difference">elastic vs inelastic demand</a>.</p>
 
+<figure class="post-image">
+  <img src="/images/blog/prestige-pricing/quality-signal.webp" alt="Three cards: quality is hard to assess, brand signals must be credible, and demand should be tested at the price ceiling" width="1440" height="810" loading="lazy" />
+  <figcaption>Prestige pricing only works when the product, brand and demand all support the higher price.</figcaption>
+</figure>
+
 <h2>Worked Example: Mid-Market vs Prestige</h2>
 <p>A skincare brand launches a serum that costs <strong>$8</strong> to make. It is weighing two positions:</p>
 <table>
@@ -74,6 +81,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 <p>The prestige price sells 45% fewer units and earns 57% more gross profit. More importantly, it only needs 140 sales a month to beat the mid-market plan. The risk is all in the second row: if prestige positioning isn't believable, sales at $68 could fall far below 220. That's why the conditions above matter more than the arithmetic. For category benchmarks, see our guide to <a href="/blog/pricing-skincare-products-on-shopify-charging-enough">pricing skincare on Shopify</a>.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/prestige-pricing/profit-comparison.webp" alt="Bar chart: a $29 serum selling 400 units earns $8,400 a month, a $68 serum selling 220 units earns $13,200" width="1440" height="810" loading="lazy" />
+  <figcaption>The prestige price sells fewer units but earns 57% more gross profit.</figcaption>
+</figure>
 
 <h2>How to Use Prestige Pricing, Step by Step</h2>
 <ol>
@@ -143,6 +155,7 @@ export const posts: BlogPost[] = [
     date: "2026-11-13",
     readingTime: "6 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/value-based-pricing/cover.webp", alt: "Candle beside stacked boxes marked with quality, nature and function icons" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -174,6 +187,11 @@ export const posts: BlogPost[] = [
 <li><strong>Test it.</strong> Check the price against real purchases, not just the calculation.</li>
 </ol>
 
+<figure class="post-image">
+  <img src="/images/blog/value-based-pricing/economic-value.webp" alt="Economic value calculation: $24 reference value plus $12 added value gives a $36 value ceiling" width="1440" height="810" loading="lazy" />
+  <figcaption>Economic value to the customer: the alternative's price plus the value of what makes yours better.</figcaption>
+</figure>
+
 <h2>Worked Example: Pricing a Candle by Value</h2>
 <p>A candle costs you <strong>$9</strong> to make. Cost-plus at 2x says $18. Similar candles from competitors sell for about <strong>$24</strong> and burn for 40 hours. Yours burns for 60 hours and uses a cleaner wax.</p>
 <table>
@@ -188,6 +206,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 <p>The value-based range is $24 to $36. Pricing at <strong>$30</strong> gives customers half the extra value, so the candle is clearly a better deal per hour of burn ($0.50 an hour against the competitor's $0.60), and earns you $21 a unit instead of $9 at the cost-plus price of $18. Even if you sold 40% fewer candles at $30 than at $18, you would still make 40% more profit (0.6 × $21 = $12.60 against $9). Whether sales actually fall that much is a question of <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity</a>, which is why step six matters.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/value-based-pricing/candle-example.webp" alt="Candle pricing options: $18 cost-plus with $9 profit, $30 value-based with $21 profit, $0.50 per burn hour against the competitor's $0.60" width="1440" height="810" loading="lazy" />
+  <figcaption>The value-based price earns more per unit and is still cheaper per hour of burn than the competitor.</figcaption>
+</figure>
 
 <h2>Why Most Companies Don't Price on Value</h2>
 <p>Value-based pricing is widely recommended and less widely used. In a study published in the Journal of Business Strategy, <a href="https://www.semanticscholar.org/paper/Customer-value%E2%80%90based-pricing-strategies:-why-resist-Hinterhuber/9e9a428df2aa34d03614b3caaf56cfd15645da94" target="_blank" rel="noopener noreferrer">Andreas Hinterhuber</a> surveyed 81 executives across business and consumer industries in Germany, Austria, China and the US and found five main obstacles:</p>
@@ -269,6 +292,7 @@ export const posts: BlogPost[] = [
     date: "2026-11-11",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/loss-leader-pricing/cover.webp", alt: "Wire basket of coffee bean bags next to a coffee grinder" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -306,6 +330,11 @@ export const posts: BlogPost[] = [
 <li><strong>It can reset what customers think the product is worth,</strong> the same anchoring risk covered in <a href="/blog/penetration-pricing">penetration pricing</a>.</li>
 </ul>
 
+<figure class="post-image">
+  <img src="/images/blog/loss-leader-pricing/basket-economics.webp" alt="Loss leader mechanics: a $40 grinder sold at cost, $8 margin per bag of beans, and the need to measure attach rate" width="1440" height="810" loading="lazy" />
+  <figcaption>A loss leader only pays if buyers come back for the profitable add-ons.</figcaption>
+</figure>
+
 <h2>Worked Example: Does the Loss Leader Pay?</h2>
 <p>A coffee store sells a burr grinder for $55 that costs $40, so it normally earns $15 a unit, and sells beans that earn $8 a bag. Normally it sells 100 grinders a month; 35% of those buyers add a bag of beans and buy about 1.5 more bags over the next three months.</p>
 <p>The store considers selling the grinder at cost, $40, as a loss leader. It expects grinder sales to jump to 240, but deal-seekers attach less: 25% add beans, and they buy about one more bag in the following three months.</p>
@@ -323,6 +352,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 <p>The loss leader more than doubled grinder sales and sold more beans, yet profit fell by more than half. To break even, the 240 grinder buyers would have had to generate $2,200 of bean profit, about $9.17 each, or 1.15 bags per buyer in three months. They bought 0.5. Loss leaders only pay when the attach and repeat rates are high, and those rates usually fall when the lead price attracts bargain hunters. The full logic of products that pull each other's sales is in <a href="/blog/cross-price-elasticity-of-demand">cross price elasticity of demand</a>.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/loss-leader-pricing/profit-comparison.webp" alt="Bar chart: selling 100 grinders at the normal price earns $2,200, selling 240 at cost earns $960" width="1440" height="810" loading="lazy" />
+  <figcaption>More grinders sold, less total profit once attach and repeat rates fall.</figcaption>
+</figure>
 
 <h2>How to Test a Loss Leader, Step by Step</h2>
 <ol>
@@ -394,6 +428,7 @@ export const posts: BlogPost[] = [
     date: "2026-11-06",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/penetration-pricing/cover.webp", alt: "Toy rocket on the highest of a set of rising blocks with an upward arrow" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -427,6 +462,11 @@ export const posts: BlogPost[] = [
 <p>The risk of penetration pricing has been measured for more than fifty years. In a 1969 field experiment published in the Journal of Personality and Social Psychology, <a href="https://www.semanticscholar.org/paper/Effect-of-initial-selling-price-on-subsequent-Doob-Carlsmith/d9bc0ee946e6d16e664f2219a44c8a46caf1e3dd" target="_blank" rel="noopener noreferrer">Doob and colleagues</a> introduced common household products in matched pairs of discount stores, either at a low introductory price or at the regular price, then set all stores to the same regular price. Subsequent sales were higher in the stores where the product had started at the regular price. Shoppers who first met the product at a discount treated the regular price as a price increase.</p>
 <p>That is the reference price problem: the launch price becomes what customers think the product is worth. It doesn't make penetration pricing wrong, but it means the cheap start has to buy something durable, like reviews, habit or switching costs, to outweigh the anchor.</p>
 
+<figure class="post-image">
+  <img src="/images/blog/penetration-pricing/launch-lifecycle.webp" alt="Penetration pricing lifecycle: $30 launch price for months 1 to 3, $40 full price for months 4 to 12, then track demand after launch" width="1440" height="810" loading="lazy" />
+  <figcaption>Set the full price before the introductory offer begins.</figcaption>
+</figure>
+
 <h2>Worked Example: Does the Cheap Launch Pay?</h2>
 <p>You're launching a product you plan to sell at <strong>$40</strong>. It costs <strong>$18</strong> to make, so full price earns $22 a unit. At $40 from day one, you expect about 300 sales a month. Alternatively, you launch at <strong>$30</strong> ($12 a unit) for three months, expect 600 sales a month while the price is low, then move to $40.</p>
 <table>
@@ -440,6 +480,11 @@ export const posts: BlogPost[] = [
   </tbody>
 </table>
 <p>The launch months alone barely differ: the cheap price doubled volume but cut margin per unit by almost half, which is close to break-even (you need 22 ÷ 12 = 1.83 times the volume just to match full-price profit). The whole outcome is decided after the price rise. If the reviews and repeat buyers from launch lift full-price demand above where it would otherwise have been, penetration wins by about $7,700. If customers anchored on $30 and buy less at $40, it loses about $2,200. Before launching low, be honest about which of those you expect, and why.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/penetration-pricing/launch-profit.webp" alt="Bar chart of 12-month gross profit: $79,200 at full price from day one, $86,940 if launching low lifts demand, $77,040 if demand falls" width="1440" height="810" loading="lazy" />
+  <figcaption>The cheap launch wins or loses on demand after the price rise.</figcaption>
+</figure>
 
 <h2>When Penetration Pricing Works</h2>
 <ul>
@@ -526,6 +571,7 @@ export const posts: BlogPost[] = [
     date: "2026-11-04",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/price-lining/cover.webp", alt: "Three pairs of headphones on plinths of rising height, from cream to dark green" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -564,6 +610,11 @@ export const posts: BlogPost[] = [
 </ul>
 <p>Price lining shares its psychology with <a href="/blog/is-price-anchoring-manipulative-or-just-smart-pricing">price anchoring</a> and <a href="/blog/price-priming">price priming</a>: the top line frames how the others are judged.</p>
 
+<figure class="post-image">
+  <img src="/images/blog/price-lining/price-tiers.webp" alt="Good, better, best price points: $25 entry, $35 core and $48 premium" width="1440" height="810" loading="lazy" />
+  <figcaption>Three clear price points instead of a dozen individual prices.</figcaption>
+</figure>
+
 <h2>Worked Example: Lining a T-Shirt Collection</h2>
 <p>A clothing store sells 24 t-shirts at 14 different prices between $22 and $41, about 1,000 units a month. The average selling price is $31.50 and the average landed cost $14.50, for <strong>$17,000</strong> of monthly gross profit. Shoppers find the range hard to read, so the store groups the shirts into three lines by fabric and cost:</p>
 <table>
@@ -588,6 +639,11 @@ export const posts: BlogPost[] = [
 <li><strong>Measure each line separately.</strong> Track units, mix and gross profit per line for a month or two after the change.</li>
 <li><strong>Move products, not prices, first.</strong> If a product sells strongly in its line, test it one line up. If it stalls, move it down, rather than inventing a new price point between lines.</li>
 </ol>
+
+<figure class="post-image">
+  <img src="/images/blog/price-lining/tier-setup.webp" alt="Three steps to build a price line: map the catalog, define tiers, check margins" width="1440" height="810" loading="lazy" />
+  <figcaption>Choose the tiers first, then assign products by value and cost.</figcaption>
+</figure>
 
 <h2>When Price Lining Doesn't Fit</h2>
 <ul>
@@ -655,6 +711,7 @@ export const posts: BlogPost[] = [
     date: "2026-11-04",
     readingTime: "7 min read",
     category: "Product",
+    cover: { src: "/images/blog/how-ai-pricing-software-handles-promotions/cover.webp", alt: "Laptop showing a sales chart with a spike under a magnifying glass" },
     funnelStage: "MOFU",
     author: {
       name: "Dexter",
@@ -670,6 +727,11 @@ export const posts: BlogPost[] = [
 <li><strong>Some of the spike is borrowed from later weeks.</strong> Shoppers stock up during the sale and buy less afterwards. Research by Harald van Heerde, Peter Leeflang and Dick Wittink in the <a href="https://research.tilburguniversity.edu/en/publications/the-estimation-of-pre-and-postpromotion-dips-with-store-level-sca/" target="_blank" rel="noopener noreferrer">Journal of Marketing Research</a> showed these pre- and post-promotion dips are real but hard to see in store-level data without models built specifically to capture them.</li>
 <li><strong>Not all of the spike is new demand.</strong> In a follow-up study, <a href="https://research.rug.nl/en/publications/is-75-of-the-sales-promotion-bump-due-to-brand-switching-no-only-/" target="_blank" rel="noopener noreferrer">van Heerde, Gupta and Wittink</a> found that only about a third of the unit sales bump from a promotion came from shoppers switching brands; the rest came from people buying sooner or buying more. A model that reads the whole bump as "customers love a lower price" is crediting price with effects that belong to timing and stockpiling.</li>
 </ol>
+
+<figure class="post-image">
+  <img src="/images/blog/how-ai-pricing-software-handles-promotions/promotion-spike.webp" alt="Example sales history: 100 units in a regular week at $30, 260 in a $24 promotion week, 60 in the week after the sale" width="1440" height="810" loading="lazy" />
+  <figcaption>A sale week and the dip after it are not normal demand.</figcaption>
+</figure>
 
 <h2>Worked Example: Same Product, Opposite Recommendations</h2>
 <p>A product normally sells for <strong>$30</strong> and costs <strong>$12</strong>. Over ten weeks it sold around 100 units a week at $30, around 111 a week during a few weeks at $27, then 260 units in a 20% off promotion week at $24, followed by a slow week of 60 units back at $30 as stocked-up customers stayed away.</p>
@@ -688,6 +750,11 @@ export const posts: BlogPost[] = [
 </table>
 <p>Two weeks out of ten flipped the answer. Trained on everything, the model sees a huge sales jump at $24 and concludes customers are extremely price-sensitive, so it recommends a permanent cut. With those weeks set aside, the regular-price weeks tell a different story: sales barely move between $27 and $30, so there is room to go up. Removing only the sale week but keeping the post-sale dip is not enough either; in this data it still produces an elasticity of -1.75 with a fit of just 0.23, a weak read that a good tool should label as low confidence.</p>
 <p>The cost of getting this wrong is ongoing. Acting on the first model means pricing the product 10% below its regular price every week, giving up margin to chase a price sensitivity that only existed during the sale.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/how-ai-pricing-software-handles-promotions/model-comparison.webp" alt="Elasticity estimates: -3.77 with all weeks included recommends cutting to $27; -0.94 with promotion effects flagged recommends raising to $33" width="1440" height="810" loading="lazy" />
+  <figcaption>Flagging two weeks flips the recommendation from a cut to a raise.</figcaption>
+</figure>
 
 <h2>How Good AI Pricing Software Handles Promotions</h2>
 <table>
@@ -773,6 +840,7 @@ export const posts: BlogPost[] = [
     date: "2026-10-14",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/competitor-undercutting-your-prices/cover.webp", alt: "Two price tags on either side of a shield with balance scales" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -796,6 +864,11 @@ export const posts: BlogPost[] = [
 <h2>Step 2: Check Whether It's Actually Hurting You</h2>
 <p>Look at your own sales, not their price. Compare units sold and conversion rate on the affected product for the two to four weeks since the undercut with the same period before, and against the same weeks last year if the product is seasonal. If sales haven't moved, your customers aren't choosing on price alone, and there's nothing to fix. A rival's price usually pulls your sales much less than sellers fear (economists measure that pull as <a href="/blog/cross-price-elasticity-of-demand">cross price elasticity of demand</a>), and your product's own <a href="/blog/what-does-price-elasticity-actually-mean">price elasticity</a> is the best guide to how exposed you are.</p>
 
+<figure class="post-image">
+  <img src="/images/blog/competitor-undercutting-your-prices/decision-framework.webp" alt="Three checks before matching a competitor: compare the offer like for like, check your sales, do the margin math" width="1440" height="810" loading="lazy" />
+  <figcaption>Check the offer and your own sales before touching your price.</figcaption>
+</figure>
+
 <h2>Step 3: Do the Break-Even Math</h2>
 <p>Say you sell a product at <strong>$50</strong> that costs you <strong>$30</strong>, and you sell 400 a month. A competitor cuts their price to $45.</p>
 <table>
@@ -812,6 +885,11 @@ export const posts: BlogPost[] = [
 <p>Matching feels safe, but it locks in a 25% drop in profit per unit on every sale, including all the customers who would have stayed anyway. Holding only loses to matching if you'd lose more than 100 units a month (400 × $15 = $6,000, and $6,000 ÷ $20 = 300 units). The general rule:</p>
 <p><strong>Matching pays only if holding would lose more than: 1 − (new profit per unit ÷ old profit per unit) of your volume.</strong></p>
 <p>Here that's 1 − ($15 ÷ $20) = 25%. For a product with a thinner margin the threshold is even higher. At a $40 cost, matching to $45 halves your profit per unit, so you'd need to be losing more than half your sales before matching made sense.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/competitor-undercutting-your-prices/break-even.webp" alt="Bar chart of monthly gross profit: matching at $45 earns $6,000, holding at $50 earns $7,040, holding and adding value earns $6,840" width="1440" height="810" loading="lazy" />
+  <figcaption>In the $50 product example, holding the price beats matching the cut.</figcaption>
+</figure>
 
 <h2>Step 4: Choose Your Response</h2>
 <ol>
@@ -890,6 +968,7 @@ export const posts: BlogPost[] = [
     date: "2026-10-14",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/ecommerce-margin-too-low/cover.webp", alt: "Stacks of gold coins beside a partly hollow stack and green blocks" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -927,6 +1006,11 @@ export const posts: BlogPost[] = [
 </table>
 <p>A 58% gross margin becomes a 9% net margin. No single line looks alarming, but together they take more than four-fifths of the gross profit. Run the same waterfall with your own numbers; the biggest bar is where to start.</p>
 
+<figure class="post-image">
+  <img src="/images/blog/ecommerce-margin-too-low/margin-waterfall.webp" alt="Margin waterfall for a $60 order: $57.12 after discounts, $33.12 after goods cost, $31.20 after returns, $26.20 after shipping, $24.19 after fees, $8.19 after advertising, $5.19 after overhead" width="1440" height="810" loading="lazy" />
+  <figcaption>Where the $60 order goes: each line takes a little, together most of the gross profit.</figcaption>
+</figure>
+
 <h2>Step 2: Check the Usual Suspects</h2>
 <ol>
 <li><strong>Cost of goods is understated.</strong> If you use the supplier's unit price instead of landed cost (freight, duty, packaging), every margin figure you look at is too optimistic. Tariffs have made this gap bigger for importers since 2025.</li>
@@ -955,6 +1039,11 @@ export const posts: BlogPost[] = [
 </table>
 <p>The price change wins because almost all of it reaches the bottom line; only the discount and payment fee scale with it. It also has room to absorb some lost volume: even if the 5% rise cost you 10% of orders, you'd earn 0.9 × $7.96 = $7.16 per original order, still well above $5.19. That's the store-level version of a pattern McKinsey found across large companies, where a <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-power-of-pricing" target="_blank" rel="noopener noreferrer">1% price increase with stable volume raised operating profit by about 8%</a> for the average S&amp;P 1500 company.</p>
 <p>The catch is the phrase "with stable volume". A price rise on a product whose customers are highly price-sensitive can lose more in volume than it gains in margin. Which products can take it is the question to answer before you change anything.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/ecommerce-margin-too-low/margin-fixes.webp" alt="Profit per order by fix: $5.19 now, $5.57 with fewer returns, $6.58 with fewer discount codes, $6.69 with a shipping threshold, $7.96 with a 5% price rise" width="1440" height="810" loading="lazy" />
+  <figcaption>A 5% price rise is worth more per order than any of the cost fixes.</figcaption>
+</figure>
 
 <h2>Step 4: Raise Prices Where Demand Allows</h2>
 <ol>
@@ -1023,6 +1112,7 @@ export const posts: BlogPost[] = [
     date: "2026-10-12",
     readingTime: "6 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/dynamic-pricing-vs-variable-pricing/cover.webp", alt: "Desk calendar, clock and laptop showing a rising price line" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -1036,6 +1126,11 @@ export const posts: BlogPost[] = [
 
 <h2>What Is Dynamic Pricing?</h2>
 <p><a href="/blog/what-is-dynamic-pricing">Dynamic pricing</a> means prices move in response to current conditions, often many times a week or day. The inputs are live: how fast a product is selling, how much stock is left, what competitors charge right now, or a demand model's latest estimate. The price tomorrow isn't set in advance; it's decided by the system when the conditions arrive. Airlines, ride-hailing apps and hotels are the classic examples.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/dynamic-pricing-vs-variable-pricing/two-pricing-systems.webp" alt="Variable pricing sets prices in advance for planned periods; dynamic pricing adjusts to live demand or stock" width="1440" height="810" loading="lazy" />
+  <figcaption>The difference is what triggers the price change.</figcaption>
+</figure>
 
 <h2>Dynamic Pricing vs Variable Pricing at a Glance</h2>
 <table>
@@ -1053,6 +1148,11 @@ export const posts: BlogPost[] = [
     <tr><td>Ecommerce example</td><td>Gift sets $5 higher from November 15 to December 24</td><td>A bestseller's price rises automatically when stock falls below 15 units</td></tr>
   </tbody>
 </table>
+
+<figure class="post-image">
+  <img src="/images/blog/dynamic-pricing-vs-variable-pricing/ecommerce-examples.webp" alt="Store examples: gift sets cost $5 more in a planned holiday window, a bestseller's price changes when stock drops below 15 units" width="1440" height="810" loading="lazy" />
+  <figcaption>A planned seasonal change versus a response to live inventory.</figcaption>
+</figure>
 
 <h2>A Real Example: From Variable to Dynamic in Baseball</h2>
 <p>Pro sports teams show the difference clearly because many made the switch publicly. For years, baseball teams used variable pricing: tickets cost more or less depending on the opponent and the day, set before the season started. The San Francisco Giants were one of the first teams to go further. According to <a href="https://www.cio.com/article/282100/business-intelligence-for-san-francisco-giants-dynamic-pricing-software-hits-a-home-run.html" target="_blank" rel="noopener noreferrer">CIO's account of the rollout</a>, the team piloted dynamic pricing software on 2,000 outfield and upper-deck seats in 2009, the seats that usually sold last, and sold an additional 25,000 tickets for an extra $500,000. It expanded the system park-wide in 2010.</p>
@@ -1134,6 +1234,7 @@ export const posts: BlogPost[] = [
     date: "2026-10-12",
     readingTime: "7 min read",
     category: "Pricing Strategy",
+    cover: { src: "/images/blog/segment-pricing/cover.webp", alt: "Three figures of rising height, each wearing a price tag" },
     author: {
       name: "Dexter",
       bio: "Dexter writes practical pricing guides for ecommerce sellers at Zorin.",
@@ -1161,6 +1262,11 @@ export const posts: BlogPost[] = [
 </table>
 <p>The fence is what makes segmentation work. The best fences are easy for the target group to cross and hard or unappealing for everyone else. A student price behind a verification step keeps most regular customers out; a "use code STUDENT" banner does not.</p>
 
+<figure class="post-image">
+  <img src="/images/blog/segment-pricing/price-fences.webp" alt="Three price fences: student identity verification, trade account approval, and volume thresholds" width="1440" height="810" loading="lazy" />
+  <figcaption>Each segment price needs a fence that keeps full-price buyers out.</figcaption>
+</figure>
+
 <h2>A Real Example: Spotify's Plans</h2>
 <p>Spotify is a clear public example of segment pricing built on fences. On its <a href="https://www.spotify.com/us/premium/" target="_blank" rel="noopener noreferrer">US Premium page</a> (checked September 2026), Premium Individual costs $12.99 a month and Premium Student costs $6.99, available only to students at an eligible accredited higher education institution. Duo costs $18.99 for two accounts and Family $21.99 for more. Each plan targets a segment with a different willingness to pay: students with limited budgets, couples, and households. The fences are student verification and account limits, which keep an individual subscriber from simply claiming the student rate.</p>
 <p>For an online store, the same principles apply at a smaller scale: a verified student or healthcare discount, a trade price list for salons or boutiques, a subscription price for repeat buyers, or a multipack for heavy users.</p>
@@ -1173,6 +1279,11 @@ export const posts: BlogPost[] = [
 <li><strong>With an unfenced public code:</strong> the student gain is the same, but suppose 50 of your 500 regular full-price buyers also find and use the code. That costs 50 × $8 = $400 of margin. Net result: $480 − $360 − $400 = <strong>−$280</strong> a month.</li>
 </ol>
 <p>The discount itself was a good idea. The missing fence turned it into a loss. Before launching any segment price, estimate how much full-price demand could leak into it. The same logic applies to general promotions, covered in <a href="/blog/which-products-actually-deserve-a-discount">which products actually deserve a discount</a>.</p>
+
+<figure class="post-image">
+  <img src="/images/blog/segment-pricing/student-discount.webp" alt="Monthly profit change: a verified student discount adds $120, an unfenced public code loses $280" width="1440" height="810" loading="lazy" />
+  <figcaption>The same discount gains or loses money depending on the fence.</figcaption>
+</figure>
 
 <h2>How to Set Up Segment Pricing, Step by Step</h2>
 <ol>

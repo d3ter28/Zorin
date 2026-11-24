@@ -17,7 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  const ogImage = post.ogImage ?? "/og-default.png";
+  const ogImage = post.ogImage ?? post.cover?.src ?? "/og-default.png";
+  const ogSize = !post.ogImage && post.cover ? { width: 1440, height: 810 } : { width: 1200, height: 630 };
   const canonicalUrl = `${BASE_URL}/blog/${post.canonicalSlug ?? post.slug}`;
 
   return {
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "article",
       publishedTime: post.date,
       modifiedTime: post.updatedDate ?? post.date,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      images: [{ url: ogImage, ...ogSize, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
@@ -127,6 +128,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.author ? `${post.author.name} · ` : ""}
               {formatIsoDate(post.date)} · {post.readingTime}
             </p>
+            {post.cover && (
+              <img
+                src={post.cover.src}
+                alt={post.cover.alt}
+                width={1440}
+                height={810}
+                fetchPriority="high"
+                className="mt-8 block h-auto w-full border border-line"
+              />
+            )}
           </div>
         </header>
 
